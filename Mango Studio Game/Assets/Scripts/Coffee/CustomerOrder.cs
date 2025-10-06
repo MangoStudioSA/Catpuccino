@@ -18,7 +18,7 @@ public class CustomerOrder : MonoBehaviour
 
         if (orderTxt != null )
         {
-            orderTxt.text = $"Quiero un cafe con: {coffee} Café, {sugar} Azúcar."; // Se muestra el pedido por texto
+            orderTxt.text = $"Quiero un cafe con: {coffee} café y {sugar} azúcar."; // Se muestra el pedido por texto
         }
     }
 
