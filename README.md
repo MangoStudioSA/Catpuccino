@@ -7,9 +7,9 @@
 - Cristina González de Lope
 - Ángela Sánchez Díaz
 
+**Redes sociales** → https://linktr.ee/mangostudiourjc?utm_source=linktree_profile_share&ltsid=bdd4e42b-4bf8-4e49-92eb-5ce8b950b732
 
-## Version 1.0
-### Fase Alfa
+## Version 1.0 - Fase Alfa
 ---
 
 ## 1. Introducción
@@ -87,6 +87,7 @@ Programadores.
 
 ### 3.3	Costes asociados
 
+
 ## 4. Mecánicas de Juego y Elementos de Juego
 
 ### 4.1	Descripción detallada del concepto de juego
@@ -100,6 +101,7 @@ En Catpuccino, el jugador se encargará de trabajar en una cafetería de gatos. 
 
 ### 4.5	Objetos, armas y power ups
 
+
 ## 5. Trasfondo
 
 ### 5.1	Descripción detallada de la historia y la trama
@@ -112,6 +114,7 @@ Moka: Es el primer gato que adopta Catherine. Es un gato tranquilo y obediente, 
 
 ### 5.3	Entornos y lugares
 El lugar principal del juego es la cafetería de Catherine, la que cuenta con un único espacio abierto separado por una barra que delimita por donde se pueden mover camarera y clientes. Hay varias mesas para que los clientes se puedan sentar y taburetes en la barra para los que prefieran sentarse en ella. En la decoración predominan los colores pastel y tiene un estilo visual delicado, que refuerza la identidad acogedora y distintiva del lugar. 
+
 
 ## 6. Arte
 
@@ -127,6 +130,7 @@ El escenario tendrá una estética cálida con maderas, plantas y luces colgante
 Los props serán las tazas, los pasteles, la máquina de café, los gatos… . Los elementos decorativos son cuadros, cojines, lámparas, estanterías con libros y teteras. Estos elementos tendrán pequeñas animaciones como vapor saliendo de las tazas o  billos si está el pedido está hecho perfecto.
 La interfaz se explicará más detalladamente en el siguiente apartado, pero esta tendrá botones redondeados, colores pastel, tipografía manuscrita o cursiva redonda. Contará con una iconografía clara como taza para café, la cara de un gato para los gatos, moneda para economía. El HUD contará con un diseño minimalista que muestre elementos como el dinero, la satisfacción de tus clientes y el estado de los gatos.
 
+
 ## 7. Sonido
 El estilo musical será lo-fi chillhop con influencias de jazz suave. El objetivo de utilizar este estilo de música es reforzar la sensación de estar en un lugar cómodo y sin estrés. Los instrumentos que deberá utilizar la música serán piano, contrabajo suave, percusión ligera, guitarra acústica, toques de sintetizador lo-fi. 
 Para cada sección del juego se tendrá temas musicales diferentes:
@@ -137,11 +141,13 @@ Para cada sección del juego se tendrá temas musicales diferentes:
 ### 7.1	Ambiente sonoro
 El ambiente sonoro del juego busca recrear la calidez de una cafetería, transmitiendo la sensación de un espacio tranquilo y agradable. Se escucharán sonidos característicos de las cafeterías como el goteo de un café al prepararse, el vapor de las máquinas y la campanita de los clientes entrando. Además se escucharan los maullidos de los gatos, el murmullo de los clientes teniendo conversaciones y el arrastre suave de sillas, creando así una atmósfera relajada. A lo largo del día, el ambiente sonoro cambiará sutilmente, en las horas pico el sonido de las diferentes actividades de los clientes sonará más alto, mientras que en los momentos de calma se podrá escuchar más a los gatos. Todos estos elementos sonoros estarán mezclados de manera estilizada, no buscando un realismo extremo, si no crear un ambiente atmosférico de calma y suavidad, siguiendo la estética general del juego.
 
+
 ## 8. Interfaz
 
 ### 8.1 Diseños básicos de los menús
 
 ### 8.2 Diagrama de flujo
+
 
 ## 9. Hoja de ruta del desarrollo
 
