@@ -14,5 +14,5 @@ public class Order
 
 }
 
-public enum CoffeeAmount { Poco, Medio, Mucho } // Se crean 3 cantidades para los cafes
-public enum SugarAmount { Poco, Medio, Mucho } // Se crean 3 cantidades para los cafes
+public enum CoffeeAmount { solo, cortado, latte } // Se crean 3 cantidades para los cafes
+public enum SugarAmount { ninguna, una, dos, tres } // Se crean 3 cantidades para los cafes
