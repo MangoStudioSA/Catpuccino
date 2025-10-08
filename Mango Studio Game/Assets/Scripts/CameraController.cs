@@ -20,7 +20,6 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         //si mantienes el click derecho (1) se mueve la camara
         //se almacena la posicion inicial del cursor al hacer click
         if (Input.GetMouseButtonDown(1)) //(solo el primer frame)
