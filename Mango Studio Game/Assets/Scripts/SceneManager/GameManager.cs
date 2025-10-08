@@ -1,7 +1,7 @@
 using UnityEngine;
 
 // Script encargado de gestionar la UI de las pantallas haciendo llamadas al SceneLoader
-public class UIGame : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
     public void GameScene() // Llama a la funcion de cargar el juego del sceneloader de la escena
     {
