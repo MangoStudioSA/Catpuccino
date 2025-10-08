@@ -399,13 +399,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 55580695}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.68, y: 0.505, z: -3.25}
+  m_LocalRotation: {x: 0, y: 0.34021536, z: 0, w: 0.9403476}
+  m_LocalPosition: {x: 3.94, y: 0.505, z: -3.44}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 39.78, z: 0}
 --- !u!1 &94516043
 GameObject:
   m_ObjectHideFlags: 0
@@ -577,7 +577,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &157940112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1492,10 +1492,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc956012293f8b341aa44494389011b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainMenuPanel: {fileID: 0}
-  optionsMainPanel: {fileID: 0}
   optionsGamePanel: {fileID: 946113424}
-  contactPanel: {fileID: 0}
   roomPanel: {fileID: 157940111}
   dialoguePanel: {fileID: 1406324021}
 --- !u!1 &362859654
@@ -4107,7 +4104,7 @@ RectTransform:
   m_Father: {fileID: 893861991}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 39, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -4783,7 +4780,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2090294127
 MonoBehaviour:
   m_ObjectHideFlags: 0
