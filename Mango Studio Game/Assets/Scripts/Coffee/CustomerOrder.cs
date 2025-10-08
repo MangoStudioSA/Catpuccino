@@ -20,11 +20,11 @@ public class CustomerOrder : MonoBehaviour
         {
             if (sugar == SugarAmount.ninguna || sugar == SugarAmount.una)
             {
-                orderTxt.text = $"Quiero un café {coffee} y {sugar} cucharada de azúcar."; // Se muestra el pedido por texto
+                orderTxt.text = $"Quiero un café {coffee} con {sugar} cucharada de azúcar."; // Se muestra el pedido por texto
             }
             else
             {
-                orderTxt.text = $"Quiero un café {coffee} y {sugar} cucharadas de azúcar."; // Se muestra el pedido por texto
+                orderTxt.text = $"Quiero un café {coffee} con {sugar} cucharadas de azúcar."; // Se muestra el pedido por texto
             }
         }
     }

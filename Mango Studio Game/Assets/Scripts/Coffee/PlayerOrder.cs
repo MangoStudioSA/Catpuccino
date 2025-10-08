@@ -13,6 +13,6 @@ public class PlayerOrder : MonoBehaviour
 
     void updateOrderText()
     {
-        playerPreparationTxt.text = $"Tienes que preparar un cafe con: {currentOrder.coffeeAm} cafe y {currentOrder.sugarAm} azucar.";
+        playerPreparationTxt.text = $"Tienes que preparar un cafe {currentOrder.coffeeAm} con {currentOrder.sugarAm} de azucar.";
     }
 }
