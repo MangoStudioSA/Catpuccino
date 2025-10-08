@@ -9,7 +9,7 @@
 
 **Redes sociales** → https://linktr.ee/mangostudiourjc?utm_source=linktree_profile_share&ltsid=bdd4e42b-4bf8-4e49-92eb-5ce8b950b732
 
-## Version 1.0 - Fase Alfa
+## Version 0.0 - Fase Alfa
 ---
 
 ## 1. Introducción
