@@ -63,12 +63,12 @@ Queremos incorporar un tipo de gacha, donde existen 2 tipos de sobres:
     - Sobre básico: 70 monedas del café.
     - Sobre premium: 220 monedas del café o 120 croquetas doradas.
 
-| **Producto**     | **Tipo de moneda**               | **Coste**                         | **Para qué sirve**                          | **Disponibilidad**   |
-|:----------------:|:--------------------------------:|:-------------------------------------------------------------------------------:|:--------------------:|
-| Monedas del café | Gratis                           | Recompensa por comandas y login   | Sirven para comprar sobres básicos y mejoras menores     | Siempre              |
-| Sobre básico     | Moneda del café                  | 70 monedas                        | 1 a 3 ítems básicos                         | Gratis diario + tienda |
-| Sobre premium    | Moneda premium o monedas del café| 220 monedas del café o 120 croquetas doradas   | 1 a 3 ítems raros o exclusivos | Tienda                 |
-| Moneda premium   | Dinero real                      | Pack 1: 0,99 € (100)  <br> Pack 2: 4,99 € (550)  <br> Pack 3: 9,99 € (1200)  <br> Pack 4: 19,99 € (2500) | Moneda premium para sobres, acelerar progresos y cosméticos | Tienda online        |
+| Producto         | Tipo de moneda                           | Coste                                          | Para qué sirve                                                | Disponibilidad       |
+|:----------------:|:-----------------------------------------:|:----------------------------------------------:|:--------------------------------------------------------------:|:--------------------:|
+| Monedas del café | Gratis                                    | Recompensa por comandas y login                | Sirven para comprar sobres básicos y mejoras menores            | Siempre              |
+| Sobre básico     | Moneda del café                           | 70 monedas                                     | 1 a 3 ítems básicos                                            | Gratis diario + tienda |
+| Sobre premium    | Moneda premium o monedas del café          | 220 monedas del café o 120 croquetas doradas   | 1 a 3 ítems raros o exclusivos                                 | Tienda               |
+| Moneda premium   | Dinero real                               | Pack 1: 0,99 € (100)  <br> Pack 2: 4,99 € (550)  <br> Pack 3: 9,99 € (1200)  <br> Pack 4: 19,99 € (2500) | Moneda premium para sobres, acelerar progresos y cosméticos | Tienda online        |
 
 
 ## 3. Planificación y costes
