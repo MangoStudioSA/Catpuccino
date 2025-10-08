@@ -80,4 +80,9 @@ public class SettingsManager : MonoBehaviour
         }
         SetFullscreen(isFullscreen);
     }
+
+    public void OnMouseEnterSound()
+    {
+        //SoundsMaster.Instance.PlaySound_Lever();
+    }
 }
