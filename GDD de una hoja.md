@@ -23,13 +23,13 @@ Por último, existirá la posibilidad de adoptar gatos con un sistema gacha de s
 
 
 ## Características
-    - Sistema de interacción con los clientes.
-    - Minijuegos para la elaboración de los cafés.
-    - Grado de satisfacción de los clientes según la calidad del pedido elaborado.
-    - Opción de abrir sobres de cartas con distintas razas de gatos.
-    - Formato de atender un número determinado de clientes por día.
-    - Sistema de obtener ingresos y pagar facturas, pudiendo caer en bancarrota.
-    - Creación propia de los assets (mobiliario, personajes principales, objetos interactuables, etc.)
+- Sistema de interacción con los clientes.
+- Minijuegos para la elaboración de los cafés.
+- Grado de satisfacción de los clientes según la calidad del pedido elaborado.
+- Opción de abrir sobres de cartas con distintas razas de gatos.
+- Formato de atender un número determinado de clientes por día.
+- Sistema de obtener ingresos y pagar facturas, pudiendo caer en bancarrota.
+- Creación propia de los assets (mobiliario, personajes principales, objetos interactuables, etc.)
 
 
 ## Interfaz
@@ -41,8 +41,8 @@ Por último, Catpuccino será un juego “responsive”, dado que la interfaz se
 ## Estilo de Arte
 Se incluyen referencias de estilo 2D y 3D de diversos videojuegos de simulación de comidas.
 
-    - **Estilo 2D:** Buena Pizza, Gran Pizza y Little Corner Tea House.
-    - **Estilo 3D:** Animal Crossing y Slime Rancher.
+- **Estilo 2D:** Buena Pizza, Gran Pizza y Little Corner Tea House.
+- **Estilo 3D:** Animal Crossing y Slime Rancher.
 
 
 | ![Buena Pizza, Gran Pizza](https://github.com/MangoStudioSA/Catpuccino/blob/6fd13b888c0d7e09d381f4ada87c7a1560359df1/PhotosGDD/BuenaPizza.jpg) | ![Little Corner Tea House](https://github.com/MangoStudioSA/Catpuccino/blob/6fd13b888c0d7e09d381f4ada87c7a1560359df1/PhotosGDD/LittleCornerTeaHouse.jpg) |
