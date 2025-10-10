@@ -211,7 +211,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &26241490
 RectTransform:
   m_ObjectHideFlags: 0
@@ -606,6 +606,7 @@ GameObject:
   m_Component:
   - component: {fileID: 50023189}
   - component: {fileID: 50023188}
+  - component: {fileID: 50023190}
   m_Layer: 0
   m_Name: MinigameController
   m_TagString: Untagged
@@ -627,8 +628,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coffeBar: {fileID: 362859654}
   coffeeSlider: {fileID: 948264107}
-  slideSpeed: 0.0005
-  maxAmount: 3
+  slideSpeed: 0.1
+  maxAmount: 4
 --- !u!4 &50023189
 Transform:
   m_ObjectHideFlags: 0
@@ -644,6 +645,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &50023190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 50023187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 530ffad5c22790b4597619d39547dabf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentOrder:
+    coffeeAm: 0
+    sugarAm: 0
+    coffeeTarget: 0
+    coffeePrecision: 0
+  playerPreparationTxt: {fileID: 0}
 --- !u!1 &55580695
 GameObject:
   m_ObjectHideFlags: 0
@@ -2422,9 +2441,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialoguePanel: {fileID: 995759339}
-  preparationPanel: {fileID: 1513091689}
+  preparationPanel: {fileID: 153319688}
   deliveryPanel: {fileID: 69314340}
   roomPanel: {fileID: 230416457}
+  npcOrder: {fileID: 2111219102}
+  playerOrder: {fileID: 50023190}
   acceptButton: {fileID: 1610250849}
 --- !u!114 &342197120
 MonoBehaviour:
@@ -9333,6 +9354,8 @@ MonoBehaviour:
   currentOrder:
     coffeeAm: 0
     sugarAm: 0
+    coffeeTarget: 0
+    coffeePrecision: 0
 --- !u!4 &2111219103
 Transform:
   m_ObjectHideFlags: 0
