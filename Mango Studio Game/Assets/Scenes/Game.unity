@@ -770,7 +770,7 @@ MonoBehaviour:
   molerButton: {fileID: 1919829060}
   slideSpeed: 0.8
   maxAmount: 4
-  tazaIsThere: 1
+  tazaIsThere: 0
   Taza: {fileID: 386902211}
 --- !u!4 &50023189
 Transform:
