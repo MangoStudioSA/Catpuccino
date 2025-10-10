@@ -6,8 +6,8 @@ public class CoffeeGameManager : MonoBehaviour
     public CustomerOrder npc;
     public PlayerOrder player;
     public OrderEvaluation evaluation;
-    public TextMeshProUGUI feedbackTxt;
-    public TextMeshProUGUI scoreTxt;
+    //public TextMeshProUGUI feedbackTxt;
+    //public TextMeshProUGUI scoreTxt;
 
     private int totalScore = 0;
     private int customersServed = 0;
@@ -15,20 +15,21 @@ public class CoffeeGameManager : MonoBehaviour
 
     void Start()
     {
-        npc.GenRandomOrder();
-        feedbackTxt.text = "";
-        scoreTxt.text = "";
+        //npc.GenRandomOrder();
+        //feedbackTxt.text = "";
+        //scoreTxt.text = "";
         
     }
 
     public void SubmitOrder()
     {
+
         int playerScore = evaluation.Evaluate(npc.currentOrder, player.currentOrder);
         totalScore += playerScore;
         customersServed++;
 
-        feedbackTxt.text = playerScore == 100 ? "Perfecto!" :
-                           playerScore >= 50 ? "No esta mal" : "Esto no es lo que habia pedido!";
+        //feedbackTxt.text = playerScore == 50 ? "Perfecto!" :
+//playerScore >= 25 ? "No esta mal" : "Esto no es lo que habia pedido!";
 
     }
 }
