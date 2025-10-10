@@ -6353,6 +6353,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 50023188}
+          m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
+          m_MethodName: BotonDownMachine
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   - eventID: 3
     callback:
       m_PersistentCalls:
@@ -6360,6 +6372,18 @@ MonoBehaviour:
         - m_Target: {fileID: 50023188}
           m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
           m_MethodName: StopCoffee
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 50023188}
+          m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
+          m_MethodName: BotonUpMachine
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -9008,6 +9032,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1748148548}
   m_CullTransparentMesh: 1
+--- !u!1001 &1772513142
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4286249829807548751, guid: 40fcd3f615988a74883f9aa3309e7971, type: 3}
+      propertyPath: m_Name
+      value: AudioMaster
+      objectReference: {fileID: 0}
+    - target: {fileID: 9049820028735950962, guid: 40fcd3f615988a74883f9aa3309e7971, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 980.74646
+      objectReference: {fileID: 0}
+    - target: {fileID: 9049820028735950962, guid: 40fcd3f615988a74883f9aa3309e7971, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 271.8161
+      objectReference: {fileID: 0}
+    - target: {fileID: 9049820028735950962, guid: 40fcd3f615988a74883f9aa3309e7971, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2967.094
+      objectReference: {fileID: 0}
+    - target: {fileID: 9049820028735950962, guid: 40fcd3f615988a74883f9aa3309e7971, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9049820028735950962, guid: 40fcd3f615988a74883f9aa3309e7971, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9049820028735950962, guid: 40fcd3f615988a74883f9aa3309e7971, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9049820028735950962, guid: 40fcd3f615988a74883f9aa3309e7971, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9049820028735950962, guid: 40fcd3f615988a74883f9aa3309e7971, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9049820028735950962, guid: 40fcd3f615988a74883f9aa3309e7971, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9049820028735950962, guid: 40fcd3f615988a74883f9aa3309e7971, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 40fcd3f615988a74883f9aa3309e7971, type: 3}
 --- !u!1 &1781593682
 GameObject:
   m_ObjectHideFlags: 0
@@ -10508,3 +10589,4 @@ SceneRoots:
   - {fileID: 2072732762}
   - {fileID: 960583783}
   - {fileID: 138900462}
+  - {fileID: 1772513142}

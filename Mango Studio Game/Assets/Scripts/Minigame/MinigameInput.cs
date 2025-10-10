@@ -151,4 +151,14 @@ public class MinigameInput : MonoBehaviour
     {
         //FiltroCafetera.SetActive(true);
     }
+
+    public void BotonDownMachine()
+    {
+        SoundsMaster.Instance.PlaySound_CoffeeMachine();
+    }
+
+    public void BotonUpMachine()
+    {
+        SoundsMaster.Instance.PlaySound_CoffeeReady();
+    }
 }

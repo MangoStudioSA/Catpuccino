@@ -95,7 +95,12 @@ public class SoundsMaster : MonoBehaviour
         PlaySound(sfx_clickMenu);
     }
 
-    public void PlaySound_ClickGame()
+    public void PlaySound_CoffeeReady()
+    {
+        PlaySound(sfx_coffee);
+    }
+
+    public void PlaySound_CoffeeMachine()
     {
         PlaySound(sfx_clickCoffeeMachine);
     }
