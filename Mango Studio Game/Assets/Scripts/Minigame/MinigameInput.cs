@@ -6,13 +6,20 @@ public class MinigameInput : MonoBehaviour
     [SerializeField] GameObject coffeBar; //panel que contiene la barra
     [SerializeField] UnityEngine.UI.Slider coffeeSlider; //la barrita que se mueve
 
+    [SerializeField] Button coffeeButton;
+    [SerializeField] Button molerButton;
+
     [SerializeField] float slideSpeed = 0.8f;
     [SerializeField] float maxAmount = 4.0f;
 
     float currentSlideTime = 0f;
     bool isSliding = false;
+    bool coffeeDone = false;
 
-    bool waitingForInput = false;
+    public bool tazaIsThere = false;
+
+
+    public GameObject Taza;
 
     PlayerOrder order;
 
@@ -20,11 +27,23 @@ public class MinigameInput : MonoBehaviour
     {
         order = FindFirstObjectByType<PlayerOrder>();
 
+        Taza.SetActive(false);
+        tazaIsThere = false;
+
         if (coffeeSlider != null)
         {
             coffeeSlider.minValue = 0f;
             coffeeSlider.maxValue = maxAmount;
             coffeeSlider.value = 0f;
+        }
+
+        if(coffeeButton != null)
+        {
+            coffeeButton.interactable = true;
+        }
+        if (molerButton != null)
+        {
+            molerButton.interactable = false;
         }
     }
 
@@ -51,11 +70,14 @@ public class MinigameInput : MonoBehaviour
     
     public void StartCoffee()
     {
-        //reiniciamos la pos de la barra
-        currentSlideTime = 0f;
+        if  (!isSliding && !coffeeDone)
+        {
+            //reiniciamos la pos de la barra
+            currentSlideTime = 0f;
 
-        isSliding = true;
-        Debug.Log("Preparacion: Carga de cafe iniciada.");
+            isSliding = true;
+            Debug.Log("Preparacion: Carga de cafe iniciada.");
+        }
     }
     
     public void StopCoffee()
@@ -64,6 +86,17 @@ public class MinigameInput : MonoBehaviour
         {
             // detenemos el movimiento
             isSliding = false;
+            coffeeDone = true;
+
+            if(coffeeButton != null)
+            {
+                coffeeButton.interactable = false;
+            }
+
+            if(molerButton != null)
+            {
+                molerButton.interactable = true;
+            }
 
             // guarda la pos del slider
             if (order != null && order.currentOrder != null)
@@ -76,12 +109,21 @@ public class MinigameInput : MonoBehaviour
                 Debug.LogWarning($"Preparacion: Cafe detenido en: {currentSlideTime:F2}, pero no se pudo guardar porque no hay un pedido activo.");
             }
         }
-
     }
-
     
     public void Moler()
     {
-        Debug.Log("Preparacion: Moliendo cafe");
+        if (molerButton != null && molerButton.interactable)
+        {
+            Debug.Log("Preparacion: Moliendo cafe");
+
+            molerButton.interactable = false;
+        }
+    }
+
+    public void PutTaza()
+    {
+        Taza.SetActive(true);
+        tazaIsThere = true;
     }
 }
