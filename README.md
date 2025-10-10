@@ -74,20 +74,18 @@ Queremos incorporar un tipo de gacha, donde existen 2 tipos de sobres:
 ## 3. Planificación y costes
 
 ### 3.1	El equipo humano
-- Artista 2D.
-- Artista 3D.
-- Artista de interfaces.
-- Artista de escenarios.
-- Diseñador de niveles.
-- Diseñador de sonido y música.
-- Programador de nivel.
-- Programador de interfaces.
-- Programador de mini-juegos.
+
+- **Garazi Blanco Jauregi**: Artista de objetos y elementos interactuables.
+- **Alberto Lopez Garcia de Ceca**: Artista de interfaces.
+- **Pablo García García**: Programador de nivel y personajes. 
+- **Cristina González de Lope**: Programador de nivel e interfaces.
+- **Ángela Sánchez Díaz**: Artista 2D y 3D de escenario y personajes.
 
 ### 3.2	Estimación temporal del desarrollo
 - **Fase Alpha** → 2-3 semanas →  Desarrollo del prototipo del videojuego, creación de redes sociales y porfolio y selección de monetización para el videojuego.
 - **Fase Beta** → 1 mes y medio → Implementación de assets propios y corrección de bugs más importantes.
 - **Fase Release** → 2 meses y medio → Versión final del videojuego.
+
 
 
 ## 4. Mecánicas de Juego y Elementos de Juego
@@ -153,13 +151,19 @@ El ambiente sonoro del juego busca recrear la calidez de una cafetería, transmi
 
 ## 9. Hoja de ruta del desarrollo
 
-### 9.1 Hito 1
+| #Hito         | Descripción                                  | Fecha                             | 
+|:-------------:|:--------------------------------------------:|:---------------------------------:|
+| 1             | GDD - 1 Hoja                                 |                                   |
+| 2             | GDD - Completo                               |                                   |
+| 3             | Concept art personajes                       |                                   |
+| 4             | Concept art escenario                        |                                   |
+| 5             | Concept art interfaces                       |                                   |
+| 6             | Concept art cartas                           |                                   |
+| 7             | Mecánicas completas                          |                                   |
+| 8             | Sistema de facturas/día                      |                                   |
+| 9             | Sistema de cartas gacha                      |                                   |
+| 10            | Implementación de clientes inteligentes      |                                   |
+| 11            | Implementación empleados                     |                                   |
+| 12            | Pulido completo                              |                                   |
 
-### 9.2 Hito 2
-
-### 9.3 Hito 3
-
-### 9.4 Fecha de lanzamiento
-
-
-
+- **Fecha de lanzamiento**: 12 de diciembre de 2025
