@@ -12,7 +12,8 @@ public class SoundsMaster : MonoBehaviour
     string loadedScene;
     [SerializeField] AudioClip sfx_menu;
     [SerializeField] AudioClip sfx_game;
-    [SerializeField] AudioClip sfx_click;
+    [SerializeField] AudioClip sfx_clickMenu;
+    [SerializeField] AudioClip sfx_clickCoffeeMachine;
     [SerializeField] AudioClip sfx_coffee;
     private void Awake()
     {
@@ -89,8 +90,13 @@ public class SoundsMaster : MonoBehaviour
         PlaySound(sfx_game);
     }
 
-    public void PlaySound_Click()
+    public void PlaySound_ClickMenu()
     {
-        PlaySound(sfx_click);
+        PlaySound(sfx_clickMenu);
+    }
+
+    public void PlaySound_ClickGame()
+    {
+        PlaySound(sfx_clickCoffeeMachine);
     }
 }

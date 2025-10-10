@@ -49,4 +49,9 @@ public class MainMenu_UI : MonoBehaviour
             mainMenuCanvasGroup.blocksRaycasts = true;
         }
     }
+
+    public void OnMouseEnterSound()
+    {
+        SoundsMaster.Instance.PlaySound_ClickMenu();
+    }
 }
