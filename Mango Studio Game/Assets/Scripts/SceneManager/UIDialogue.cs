@@ -10,6 +10,9 @@ public class UIDialogue : MonoBehaviour
     public GameObject roomPanel;
     CustomerManager manager;
 
+    public CustomerOrder npcOrder;
+    public PlayerOrder playerOrder;
+
     public Button acceptButton;
 
     void Start()
@@ -21,6 +24,18 @@ public class UIDialogue : MonoBehaviour
 
     public void StartPreparation()
     {
+        //inicializacion del pedido
+        if (npcOrder !=null && npcOrder.currentOrder !=null && playerOrder != null)
+        {
+            //creamos nuevo order en playerorder copiando las cantidades del NPC
+            playerOrder.NewOrder(npcOrder.currentOrder);
+        }
+        else
+        {
+            Debug.LogError("Falta la referencia de npcOrder o playerOrder, o el NPC aún no ha generado un pedido.");
+        }
+
+        //transicion de la ui
         dialoguePanel.SetActive(false);
         preparationPanel.SetActive(true);
     }

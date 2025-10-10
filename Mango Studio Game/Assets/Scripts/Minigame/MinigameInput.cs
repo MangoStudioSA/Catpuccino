@@ -1,12 +1,13 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MinigameInput : MonoBehaviour
 {
     [SerializeField] GameObject coffeBar; //panel que contiene la barra
     [SerializeField] UnityEngine.UI.Slider coffeeSlider; //la barrita que se mueve
 
-    [SerializeField] float slideSpeed = 0.8f;
-    [SerializeField] float maxAmount = 3f;
+    [SerializeField] float slideSpeed = 0.1f;
+    [SerializeField] float maxAmount = 4.0f;
 
     float currentSlideTime = 0f;
     bool isSliding = false;
@@ -21,7 +22,7 @@ public class MinigameInput : MonoBehaviour
         {
             coffeeSlider.minValue = 0f;
             coffeeSlider.maxValue = maxAmount;
-            coffeeSlider.value = maxAmount;
+            coffeeSlider.value = 0f;
         }
 
         if (coffeBar != null)
@@ -34,7 +35,7 @@ public class MinigameInput : MonoBehaviour
     {
         if (isSliding)
         {
-            currentSlideTime += Time.deltaTime * slideSpeed;
+            currentSlideTime += Time.unscaledDeltaTime * slideSpeed;
 
             if (currentSlideTime > maxAmount)
             {
@@ -43,7 +44,7 @@ public class MinigameInput : MonoBehaviour
                 Debug.Log("La barrita llego al limite");
             }
 
-            coffeeSlider.value += currentSlideTime;
+            coffeeSlider.value = currentSlideTime;
         }
     }
     public void AddCoffe()
@@ -73,10 +74,21 @@ public class MinigameInput : MonoBehaviour
     private void StopCoffeeSlide()
     {
         isSliding = false;
-        
+        coffeBar.SetActive(false);
+
+        //guarda la pos del slider
+        if (order != null && order.currentOrder !=null)
+        {
+            order.currentOrder.coffeePrecision = currentSlideTime;
+
+            Debug.Log($"Slider de Café detenido en: {currentSlideTime:F2}. Cantidad: {order.currentOrder.coffeeAm}");
+        }
+        else
+        {
+            Debug.LogWarning($"Slider de Café detenido en: {currentSlideTime:F2}, pero no se pudo guardar porque no hay un pedido activo (order.currentOrder es null).");
+        }
 
     }
-    
     
     public void Moler()
     {
