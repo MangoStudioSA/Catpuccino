@@ -1,25 +1,26 @@
 using UnityEngine;
 
-// Script encargado de gestionar la UI de las pantallas haciendo llamadas al SceneLoader
+
 public class GameManager : MonoBehaviour
 {
-    public void GameScene() // Llama a la funcion de cargar el juego del sceneloader de la escena
+    public static GameManager Instance { get; private set; }
+
+    [SerializeField] private int monedas = 100; // Inicio 100 monedas
+
+    void Awake()
     {
-        SceneLoader.Instance.LoadGame();
+        if (Instance != null) { Destroy(gameObject); } else { Instance = this; }
     }
 
-    public void EndGameMenu() // Llama a la funcion de cargar menu game over del sceneloader de la escena
+    void Start()
     {
-        SceneLoader.Instance.LoadGameOver();
+        HUDManager.Instance.UpdateMonedas(monedas);
     }
 
-    public void ReturnMenu() // Llama a la funcion de cargar menu principal del sceneloader de la escena
+    public void AnadirMonedas(int cantidad)
     {
-        SceneLoader.Instance.LoadMainMenu();
-    }
-
-    public void ExitGame() // Llama a la funcion de cerrar el juego del sceneloader de la escena
-    {
-        SceneLoader.Instance.QuitGame();
+        monedas += cantidad;
+        HUDManager.Instance.UpdateMonedas(monedas);
+        Debug.Log("Total de monedas ahora: " + monedas);
     }
 }
