@@ -45,12 +45,10 @@ Se incluyen referencias de estilo 2D y 3D de diversos videojuegos de simulación
     - **Estilo 3D:** Animal Crossing y Slime Rancher.
 
 
-| ![Buena Pizza, Gran Pizza]() | ![Little Corner Tea House]() |
+| ![Buena Pizza, Gran Pizza](https://github.com/MangoStudioSA/Catpuccino/blob/6fd13b888c0d7e09d381f4ada87c7a1560359df1/PhotosGDD/BuenaPizza.jpg) | ![Little Corner Tea House](https://github.com/MangoStudioSA/Catpuccino/blob/6fd13b888c0d7e09d381f4ada87c7a1560359df1/PhotosGDD/LittleCornerTeaHouse.jpg) |
 |-------------------------------|-------------------------------|
-| ![Animal Crossing]() | ![Slime Rancher]() |
+| ![Animal Crossing](https://github.com/MangoStudioSA/Catpuccino/blob/6fd13b888c0d7e09d381f4ada87c7a1560359df1/PhotosGDD/AnimalCrossing.jpg) | ![Slime Rancher](https://github.com/MangoStudioSA/Catpuccino/blob/6fd13b888c0d7e09d381f4ada87c7a1560359df1/PhotosGDD/SlimeRancher.jpeg) |
 
-
-![Diagrama de flujo](https://github.com/MangoStudioSA/Catpuccino/blob/5c1d44c05a4306867279206bdee7fa8ee9a4d120/PhotosGDD/Diagrama%20de%20flujo.jpg)
 
 ## Música/Sonido
 En cuanto a la ambientación del videojuego, esta se basará en música lo-fi chillhop con influencias de jazz suave. Los instrumentos que compondrán la música serán piano, contrabajo suave, percusión ligera, guitarra acústica, toques de sintetizador lo-fi. 
