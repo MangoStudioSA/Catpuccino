@@ -8,6 +8,8 @@ public class MinigameInput : MonoBehaviour
 
     [SerializeField] Button coffeeButton;
     [SerializeField] Button molerButton;
+    [SerializeField] Button filtroButton;
+    [SerializeField] Button filtroCafeteraButton;
 
     [SerializeField] float slideSpeed = 0.8f;
     [SerializeField] float maxAmount = 4.0f;
@@ -20,6 +22,8 @@ public class MinigameInput : MonoBehaviour
 
 
     public GameObject Taza;
+    //public GameObject Filtro;
+    //public GameObject FiltroCafetera;
 
     PlayerOrder order;
 
@@ -28,6 +32,12 @@ public class MinigameInput : MonoBehaviour
         order = FindFirstObjectByType<PlayerOrder>();
 
         Taza.SetActive(false);
+        //Filtro.SetActive(false);
+        //FiltroCafetera.SetActive(false);
+
+        filtroButton.interactable = false;
+        filtroCafeteraButton.interactable = false;
+
         tazaIsThere = false;
 
         if (coffeeSlider != null)
@@ -118,6 +128,8 @@ public class MinigameInput : MonoBehaviour
             Debug.Log("Preparacion: Moliendo cafe");
 
             molerButton.interactable = false;
+            filtroButton.interactable = true;
+            //Filtro.SetActive(true);
         }
     }
 
@@ -128,5 +140,15 @@ public class MinigameInput : MonoBehaviour
             Taza.SetActive(true);
             tazaIsThere = true;
         }
+    }
+    public void TakeFiltro()
+    {
+        //Filtro.SetActive(false);
+        filtroButton.interactable = false;
+        filtroCafeteraButton.interactable = true;
+    }
+    public void putFiltro()
+    {
+        //FiltroCafetera.SetActive(true);
     }
 }

@@ -5,9 +5,11 @@ public class CursorManager : MonoBehaviour
 {
     public Texture2D defaultCursorTexture;
     public Texture2D tazaCursorTexture;
+    public Texture2D filtroCursorTexture;
 
     public Vector2 hotSpotDefault = Vector2.zero; //el punto que hace click en si del cursor (ahora mismo arriba izquierda)
     public Vector2 hotSpotTaza = Vector2.zero; //el punto que hace click en si del cursor (ahora mismo arriba izquierda)
+    public Vector2 hotSpotFiltro = Vector2.zero; //el punto que hace click en si del cursor (ahora mismo arriba izquierda)
 
     public MinigameInput miniGameInput; //para poder usar tazaIsThere       
 
@@ -43,5 +45,14 @@ public class CursorManager : MonoBehaviour
         {
             Cursor.SetCursor(defaultCursorTexture, hotSpotDefault, CursorMode.Auto);
         }
+    }
+
+    public void TakeFiltro()
+    {
+        Cursor.SetCursor(filtroCursorTexture, hotSpotFiltro, CursorMode.Auto);
+    }
+    public void PutFiltro()
+    {
+        Cursor.SetCursor(defaultCursorTexture, hotSpotDefault, CursorMode.Auto);
     }
 }
