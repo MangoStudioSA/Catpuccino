@@ -14,9 +14,9 @@ public class SettingsManager : MonoBehaviour
     private void Start()
     {
         brightnessSlider.value = PlayerPrefs.GetFloat("Brightness", 1f);
-        volumeSlider.value = PlayerPrefs.GetFloat("Volume", 1f);
+        volumeSlider.value = PlayerPrefs.GetFloat("Volume", 0.5f);
         AdjustBrightness(PlayerPrefs.GetFloat("Brightness", 1f));
-        AdjustVolume(PlayerPrefs.GetFloat("Volume", 1f));
+        AdjustVolume(PlayerPrefs.GetFloat("Volume", 0.5f));
 
         if (volumeSlider != null)
         {
