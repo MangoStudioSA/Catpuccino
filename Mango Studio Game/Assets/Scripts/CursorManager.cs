@@ -39,6 +39,9 @@ public class CursorManager : MonoBehaviour
     }
     public void PutTaza()
     {
-        Cursor.SetCursor(defaultCursorTexture, hotSpotDefault, CursorMode.Auto);
+        if (miniGameInput.tazaIsThere == false)
+        {
+            Cursor.SetCursor(defaultCursorTexture, hotSpotDefault, CursorMode.Auto);
+        }
     }
 }
