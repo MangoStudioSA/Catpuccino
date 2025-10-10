@@ -123,7 +123,10 @@ public class MinigameInput : MonoBehaviour
 
     public void PutTaza()
     {
-        Taza.SetActive(true);
-        tazaIsThere = true;
+        if (tazaIsThere == false)
+        {
+            Taza.SetActive(true);
+            tazaIsThere = true;
+        }
     }
 }
