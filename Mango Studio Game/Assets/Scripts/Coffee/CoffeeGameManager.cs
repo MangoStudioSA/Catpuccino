@@ -34,5 +34,7 @@ public class CoffeeGameManager : MonoBehaviour
         //feedbackTxt.text = playerScore == 50 ? "Perfecto!" :
         //playerScore >= 25 ? "No esta mal" : "Esto no es lo que habia pedido!";
 
+        //calcula la satisfaccion
+        GameManager.Instance.AddSatisfactionPoint(playerScore);
     }
 }
