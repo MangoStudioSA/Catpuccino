@@ -6,8 +6,9 @@ public class CoffeeGameManager : MonoBehaviour
     public CustomerOrder npc;
     public PlayerOrder player;
     public OrderEvaluation evaluation;
-    //public TextMeshProUGUI feedbackTxt;
-    //public TextMeshProUGUI scoreTxt;
+    public TextMeshProUGUI orderFeedbackTxt;
+    public TextMeshProUGUI earnedMoneyTxt;
+    public TextMeshProUGUI servedCustomersTxt;
 
     private int totalScore = 0;
     private int customersServed = 0;
@@ -15,15 +16,11 @@ public class CoffeeGameManager : MonoBehaviour
 
     void Start()
     {
-        //npc.GenRandomOrder();
-        //feedbackTxt.text = "";
-        //scoreTxt.text = "";
-        
+        //npc.GenRandomOrder();     
     }
 
     public void SubmitOrder()
     {
-
         int playerScore = evaluation.Evaluate(npc.currentOrder, player.currentOrder);
         totalScore += playerScore;
         customersServed++;
@@ -31,10 +28,26 @@ public class CoffeeGameManager : MonoBehaviour
         // Añade monedas dependiendo de la puntuación
         GameManager.Instance.AnadirMonedas(playerScore);
 
-        //feedbackTxt.text = playerScore == 50 ? "Perfecto!" :
-        //playerScore >= 25 ? "No esta mal" : "Esto no es lo que habia pedido!";
-
         //calcula la satisfaccion
         GameManager.Instance.AddSatisfactionPoint(playerScore);
+
+        if (playerScore <= 20)
+        {
+            orderFeedbackTxt.text = "Esto no es lo que había pedido...";
+        }
+        else if (playerScore <= 40)
+        {
+            orderFeedbackTxt.text = "No está mal.";
+        }
+        else
+        {
+            orderFeedbackTxt.text = "¡Me encanta! ¡Es justo lo que había pedido!";
+        }
+
+        earnedMoneyTxt.text = $"¡Has ganado {playerScore:F2}$!";
+        servedCustomersTxt.text = $"¡Ya has servido a {customersServed:F0} clientes en la jornada de hoy!";
+
     }
+
+
 }
