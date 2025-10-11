@@ -27,9 +27,13 @@ public class MinigameInput : MonoBehaviour
 
     PlayerOrder order;
 
-    private void Start()
+    public void Start()
     {
         order = FindFirstObjectByType<PlayerOrder>();
+
+        currentSlideTime = 0f;
+        isSliding = false;
+        coffeeDone = false;
 
         Taza.SetActive(false);
         //Filtro.SetActive(false);
