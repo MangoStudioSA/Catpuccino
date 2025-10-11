@@ -8,7 +8,7 @@ public class CustomerOrder : MonoBehaviour
 
     public void Start()
     {
-        GenRandomOrder();
+        GenRandomOrder(); // Se genera el nuevo pedido
     }
     public void GenRandomOrder()
     {
@@ -18,11 +18,11 @@ public class CustomerOrder : MonoBehaviour
 
         if (orderTxt != null )
         {
-            if (sugar == SugarAmount.ninguna || sugar == SugarAmount.una)
+            if (sugar == SugarAmount.ninguna || sugar == SugarAmount.una) // Si el pedido tiene 1 o ninguna cucharada de azucar
             {
                 orderTxt.text = $"Quiero un café {coffee} con {sugar} cucharada de azúcar."; // Se muestra el pedido por texto
             }
-            else
+            else // Si el pedido tiene +1 cucharadas de azucar
             {
                 orderTxt.text = $"Quiero un café {coffee} con {sugar} cucharadas de azúcar."; // Se muestra el pedido por texto
             }

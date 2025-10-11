@@ -12,14 +12,24 @@ public class Order
     // guarda el valor del slider (0.0 a 4.0)
     public float coffeePrecision;
 
+    // valor exacto de cucharadas de azucar que el jugador debe echar (0, 1, 2 o 3)
+    public int sugarTarget;
+
+    // guarda el valor de las cucharadas del jugador (0 a 3)
+    public int sugarPrecision;
+
     public Order(CoffeeAmount coffee, SugarAmount sugar) // Constructor de los pedidos 
     {
         this.coffeeAm = coffee;
         this.sugarAm = sugar;
 
-        //inicializamos la precision a 0
+        //inicializamos la precision del cafe a 0
         this.coffeePrecision = 0f;
         this.coffeeTarget = GetTargetFromAmount(coffee);
+
+        //inicializamos la precision del azucar a 0
+        this.sugarPrecision = 0;
+        this.sugarTarget = GetSugarTargetFromAmount(sugar);
     }
 
     private float GetTargetFromAmount(CoffeeAmount amount)
@@ -34,6 +44,23 @@ public class Order
                 return 3.0f;
             default:
                 return 2.0f; //por si algo falla
+        }
+    }
+
+    private int GetSugarTargetFromAmount(SugarAmount Samount)
+    {
+        switch (Samount)
+        {
+            case SugarAmount.ninguna:
+                return 0;
+            case SugarAmount.una:
+                return 1;
+            case SugarAmount.dos:
+                return 2;
+            case SugarAmount.tres:
+                return 3;
+            default:
+                return 2; //por si algo falla
         }
     }
 

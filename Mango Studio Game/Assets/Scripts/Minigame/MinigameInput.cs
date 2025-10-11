@@ -173,8 +173,12 @@ public class MinigameInput : MonoBehaviour
     {
         if (cucharaInHand == true && coffeeServed == true)
         {
-            countSugar += 1;
-            Debug.Log("cantidad de azucar: " + countSugar);
+            if (countSugar <= 3)
+            {
+                countSugar += 1;
+                order.currentOrder.sugarPrecision = countSugar;
+                Debug.Log("cantidad de azucar: " + countSugar);
+            }
         }
     }
     public void TakeFiltro()
