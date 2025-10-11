@@ -28,8 +28,11 @@ public class CoffeeGameManager : MonoBehaviour
         totalScore += playerScore;
         customersServed++;
 
+        // Añade monedas dependiendo de la puntuación
+        GameManager.Instance.AnadirMonedas(playerScore);
+
         //feedbackTxt.text = playerScore == 50 ? "Perfecto!" :
-//playerScore >= 25 ? "No esta mal" : "Esto no es lo que habia pedido!";
+        //playerScore >= 25 ? "No esta mal" : "Esto no es lo que habia pedido!";
 
     }
 }

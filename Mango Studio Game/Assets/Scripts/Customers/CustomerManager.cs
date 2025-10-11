@@ -1,4 +1,3 @@
-using NUnit.Framework;
 using UnityEngine;
 using System.Collections.Generic;
 
@@ -14,23 +13,51 @@ public class CustomerManager : MonoBehaviour
     public GameObject orderingCustomer;
     public Queue<CustomerController> customers;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
         customers = new Queue<CustomerController>();
-        nextSpawn = Random.Range(minTime/2, maxTime/2);
     }
 
-    // Update is called once per frame
+    void Start()
+    {
+        nextSpawn = Random.Range(minTime / 2, maxTime / 2);
+    }
+
     void Update()
     {
         nextSpawn -= Time.deltaTime;
 
-        if (nextSpawn <= 0 && clients < maxClients)
+        if (nextSpawn <= 0 && clients < maxClients && TimeManager.Instance.IsOpen)
         {
             nextSpawn = Random.Range(minTime, maxTime);
             Instantiate(customer, spawn.transform.position, spawn.transform.rotation);
             clients += 1;
+        }
+    }
+
+    public void ResetForNewDay()
+    {
+        Debug.Log("Reiniciando clientes para el nuevo día.");
+
+        foreach (CustomerController customer in customers)
+        {
+            if (customer != null)
+            {
+                Destroy(customer.gameObject);
+            }
+        }
+
+        customers.Clear();
+        clients = 0;
+
+        if (orderingCustomer != null)
+        {
+            Destroy(orderingCustomer);
+            orderingCustomer = null;
+        }
+        if (orderButton != null)
+        {
+            orderButton.SetActive(false);
         }
     }
 }

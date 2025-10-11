@@ -4,25 +4,37 @@ using UnityEngine;
 public class UILoader : MonoBehaviour
 {
     [Header("Paneles UI")]
-    public GameObject optionsGamePanel; // Panel UI del menu de opciones (accediendo desde el juego)
+    public GameObject optionsGamePanel;
     public GameObject roomPanel;
     public GameObject dialoguePanel;
 
+    
+    // Referencia al script que genera los pedidos del cliente
+    [SerializeField] private CustomerOrder customerOrderGenerator;
+
     public void OpenGameOptions()
     {
-        optionsGamePanel.SetActive(true); // Activar UI menu opciones desde el juego
+        optionsGamePanel.SetActive(true);
         Time.timeScale = 0.0f;
     }
 
     public void CloseGameOptions()
     {
-        optionsGamePanel.SetActive(false); // Desactivar UI menu opciones desde el juego
+        optionsGamePanel.SetActive(false);
         Time.timeScale = 1.0f;
     }
 
     public void OpenDialogue()
     {
-        roomPanel.SetActive(false); // Desactivar UI menu principal
-        dialoguePanel.SetActive(true); // Activar UI menu opciones
+        
+        // Le decimos que genere un nuevo pedido aleatorio AHORA
+        if (customerOrderGenerator != null)
+        {
+            customerOrderGenerator.GenRandomOrder();
+        }
+        // --------------------
+
+        roomPanel.SetActive(false);
+        dialoguePanel.SetActive(true);
     }
 }

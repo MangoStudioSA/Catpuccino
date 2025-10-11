@@ -7,6 +7,7 @@ public class GameUIManager : MonoBehaviour
     [SerializeField] GameObject optionsPanel;
     [SerializeField] GameObject dialoguePanel;
     [SerializeField] GameObject preparationPanel;
+    [SerializeField] GameObject endOfDayPanel;
     private CanvasGroup gameCanvasGroup;
 
     public void Start()
@@ -56,6 +57,27 @@ public class GameUIManager : MonoBehaviour
         dialoguePanel.SetActive(false); // Desactivar UI menu opciones
         gameCanvasGroup.interactable = true;
         gameCanvasGroup.blocksRaycasts = true;
+    }
+    public void ShowEndOfDayPanel()
+    {
+        endOfDayPanel.SetActive(true);
+        // Desactivamos el panel principal del juego para que no se pueda interactuar con él
+        gamePanel.SetActive(false);
+        // Aquí podrías actualizar textos del panel con las ganancias, clientes atendidos, etc.
+    }
+
+    public void ShowGamePanel()
+    {
+        
+        endOfDayPanel.SetActive(false);
+        gamePanel.SetActive(true);
+    }
+    
+    
+    public void OnNextDayButtonPressed()
+    {
+        // Llama al TimeManager para que inicie el nuevo día
+        TimeManager.Instance.StartNewDay();
     }
 
 }
