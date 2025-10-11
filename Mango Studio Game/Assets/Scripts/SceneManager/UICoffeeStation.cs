@@ -7,6 +7,8 @@ public class UICoffeeStation : MonoBehaviour
 
     public CoffeeGameManager gameManager;
 
+    public MinigameInput miniGameInput;
+
     private void Start()
     {
         if(gameManager == null)
@@ -18,17 +20,11 @@ public class UICoffeeStation : MonoBehaviour
     public void SubmitOrderUI()
     {
 
-        if (gameManager != null)
+        if (gameManager != null && miniGameInput.coffeeServed == true && !miniGameInput.cucharaInHand)
         {
             gameManager.SubmitOrder();
+            preparationPanel.SetActive(false);
+            deliveryPanel.SetActive(true);
         }
-        else
-        {
-            Debug.LogError("falta la referencia a CoffeGameMaager");
-        }
-
-        preparationPanel.SetActive(false);
-        deliveryPanel.SetActive(true);
-
     }
 }

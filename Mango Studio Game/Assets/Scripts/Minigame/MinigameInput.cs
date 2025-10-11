@@ -10,6 +10,9 @@ public class MinigameInput : MonoBehaviour
     [SerializeField] Button molerButton;
     [SerializeField] Button filtroButton;
     [SerializeField] Button filtroCafeteraButton;
+    [SerializeField] Button echarCafeButton;
+    [SerializeField] Button submitOrderButton;
+    [SerializeField] Button sugarButton;
 
     [SerializeField] float slideSpeed = 0.8f;
     [SerializeField] float maxAmount = 4.0f;
@@ -17,8 +20,15 @@ public class MinigameInput : MonoBehaviour
     float currentSlideTime = 0f;
     bool isSliding = false;
     bool coffeeDone = false;
+    bool molerDone =false;
+
+    int countSugar;
+
+    public bool cucharaInHand = false;
 
     public bool tazaIsThere = false;
+    bool filtroIsInCafetera = false;
+    public bool coffeeServed = false;
 
 
     public GameObject Taza;
@@ -34,6 +44,9 @@ public class MinigameInput : MonoBehaviour
         currentSlideTime = 0f;
         isSliding = false;
         coffeeDone = false;
+        coffeeServed = false;
+
+        countSugar = 0;
 
         Taza.SetActive(false);
         //Filtro.SetActive(false);
@@ -41,8 +54,12 @@ public class MinigameInput : MonoBehaviour
 
         filtroButton.interactable = false;
         filtroCafeteraButton.interactable = false;
+        echarCafeButton.interactable = false;
+        submitOrderButton.interactable = false;
+        sugarButton.interactable = false;
 
         tazaIsThere = false;
+        filtroIsInCafetera = false;
 
         if (coffeeSlider != null)
         {
@@ -134,6 +151,7 @@ public class MinigameInput : MonoBehaviour
             molerButton.interactable = false;
             filtroButton.interactable = true;
             //Filtro.SetActive(true);
+            molerDone = true;
         }
     }
 
@@ -144,16 +162,65 @@ public class MinigameInput : MonoBehaviour
             Taza.SetActive(true);
             tazaIsThere = true;
         }
+        if (filtroIsInCafetera == true && coffeeServed == false)
+        {
+            echarCafeButton.interactable = true;
+        }
+ 
+    }
+
+    public void EcharAzucar()
+    {
+        if (cucharaInHand == true && coffeeServed == true)
+        {
+            countSugar += 1;
+            Debug.Log("cantidad de azucar: " + countSugar);
+        }
     }
     public void TakeFiltro()
     {
+        if (filtroIsInCafetera == false)
+        { 
         //Filtro.SetActive(false);
         filtroButton.interactable = false;
         filtroCafeteraButton.interactable = true;
+        }
     }
     public void putFiltro()
     {
+        if (filtroIsInCafetera == false)
+        {
+            filtroIsInCafetera = true;
+        }
         //FiltroCafetera.SetActive(true);
+        if (tazaIsThere == true && coffeeServed == false)
+        {
+            echarCafeButton.interactable = true;
+        }
+    }
+
+    public void EcharCafe()
+    {
+        if(tazaIsThere != false && filtroIsInCafetera != false && coffeeServed ==false)
+        {
+            Debug.Log("echando cafe");
+            coffeeServed = true;
+            echarCafeButton.interactable = false;
+            submitOrderButton.interactable = true;
+            sugarButton.interactable = true;
+        }
+    }
+
+    public void CogerAzucar()
+    {
+        if (cucharaInHand == false)
+        { 
+            cucharaInHand = true; 
+        }
+        else if (cucharaInHand == true)
+        {
+            cucharaInHand = false;
+        }
     }
 
     public void BotonDownMachine()

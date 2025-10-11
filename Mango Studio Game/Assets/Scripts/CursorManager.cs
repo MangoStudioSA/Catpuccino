@@ -6,10 +6,12 @@ public class CursorManager : MonoBehaviour
     public Texture2D defaultCursorTexture;
     public Texture2D tazaCursorTexture;
     public Texture2D filtroCursorTexture;
+    public Texture2D cucharaCursorTexture;
 
     public Vector2 hotSpotDefault = Vector2.zero; //el punto que hace click en si del cursor (ahora mismo arriba izquierda)
     public Vector2 hotSpotTaza = Vector2.zero; //el punto que hace click en si del cursor (ahora mismo arriba izquierda)
     public Vector2 hotSpotFiltro = Vector2.zero; //el punto que hace click en si del cursor (ahora mismo arriba izquierda)
+    public Vector2 hotSpotCuchara = Vector2.zero; //el punto que hace click en si del cursor (ahora mismo arriba izquierda)
 
     public MinigameInput miniGameInput; //para poder usar tazaIsThere       
 
@@ -54,5 +56,19 @@ public class CursorManager : MonoBehaviour
     public void PutFiltro()
     {
         Cursor.SetCursor(defaultCursorTexture, hotSpotDefault, CursorMode.Auto);
+    }
+    public void TakeCuchara()
+    {
+        //tenia problemas de sincronizacion asi que he tendio que hacerlo asi, tiene en cuenta a variable antigua en lugar de la nueva, por que se comprueba aqui si es true antes de lo que
+        //se pone en true en el otro script, se que es un poco chapuza pero funciona y yo soy artista no programadora :)
+        if (miniGameInput.cucharaInHand == true)
+        {
+            Cursor.SetCursor(cucharaCursorTexture, hotSpotCuchara, CursorMode.Auto);
+        }
+
+        if (miniGameInput.cucharaInHand == false)
+        {
+            Cursor.SetCursor(defaultCursorTexture, hotSpotDefault, CursorMode.Auto);
+        }
     }
 }
