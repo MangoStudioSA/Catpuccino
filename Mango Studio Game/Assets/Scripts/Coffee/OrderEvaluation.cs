@@ -16,10 +16,6 @@ public class OrderEvaluation : MonoBehaviour
         totalScore += Mathf.RoundToInt(coffeeScore);
 
         //EVALUACION DEL AZUCAR (CANTIDAD EXACTA)
-        /*if (npcOrder.sugarAm == playerOrder.sugarAm)
-        {
-            totalScore += MAX_SCORE_SUGAR;
-        }*/
         int sugarScore = EvaluateSugarPrecision(npcOrder, playerOrder);
         totalScore += sugarScore;
 

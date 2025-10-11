@@ -4,6 +4,7 @@ using TMPro;
 public class CustomerOrder : MonoBehaviour
 {
     public TextMeshProUGUI orderTxt;
+    public TextMeshProUGUI playerPreparationTxt;
     public Order currentOrder;
 
     public void Start()
@@ -27,6 +28,17 @@ public class CustomerOrder : MonoBehaviour
                 orderTxt.text = $"Quiero un café {coffee} con {sugar} cucharadas de azúcar."; // Se muestra el pedido por texto
             }
         }
-    }
 
+        if (playerPreparationTxt != null)
+        {
+            if (sugar == SugarAmount.ninguna || sugar == SugarAmount.una) // Si el pedido tiene 1 o ninguna cucharada de azucar
+            {
+                playerPreparationTxt.text = $"Tienes que preparar: Cafe {currentOrder.coffeeAm} con {currentOrder.sugarAm} cucharada de azucar.";
+            }
+            else
+            {
+                playerPreparationTxt.text = $"Tienes que preparar: Cafe {currentOrder.coffeeAm} con {currentOrder.sugarAm} cucharadas de azucar.";
+            }
+        }
+    }
 }
