@@ -58,12 +58,10 @@ public class OrderEvaluation : MonoBehaviour
 
     public int EvaluateSugarPrecision(Order npcOrder, Order playerOrder)
     {
-        //el objetivo es el valor ideal (0, 1, 2 o 3 cucharadas)
+        // El objetivo es el valor exacto de cucharadas de azucar (0, 1, 2 o 3)
         float Starget = npcOrder.sugarTarget;
-        //la precision es el numero de cucharadas que ha echado el player
+        // La precision es el numero de cucharadas que ha echado el player
         float playerSpoons = playerOrder.sugarPrecision;
-
-        Debug.Log($"[Evaluación Azúcar] Objetivo: {Starget} | Jugador: {playerSpoons}");
 
         int sugarScore = 0;
         if (playerSpoons == Starget) // Si el jugador ha echado las mismas cucharadas de azucar que las que se pedian suma 25 puntos
@@ -75,7 +73,9 @@ public class OrderEvaluation : MonoBehaviour
             sugarScore = 0; // En cualquier otro caso la puntuacion sera 0 
         }
 
-        return sugarScore;
+        Debug.Log($"[Evaluación Azúcar] Objetivo: {Starget} | Jugador: {playerSpoons}");
+
+        return sugarScore; // Se devuelve la puntuacion total del azucar
 
     }
 }

@@ -177,7 +177,7 @@ public class MinigameInput : MonoBehaviour
             {
                 countSugar += 1;
                 order.currentOrder.sugarPrecision = countSugar;
-                Debug.Log("cantidad de azucar: " + countSugar);
+                Debug.Log("Cantidad de azucar: " + countSugar);
             }
         }
     }
@@ -207,7 +207,7 @@ public class MinigameInput : MonoBehaviour
     {
         if(tazaIsThere != false && filtroIsInCafetera != false && coffeeServed ==false)
         {
-            Debug.Log("echando cafe");
+            Debug.Log("Preparacion: Echando cafe");
             coffeeServed = true;
             echarCafeButton.interactable = false;
             submitOrderButton.interactable = true;

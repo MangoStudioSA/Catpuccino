@@ -29,13 +29,14 @@ public class CustomerOrder : MonoBehaviour
             }
         }
 
+        // Informacion del pedido actual 
         if (playerPreparationTxt != null)
         {
             if (sugar == SugarAmount.ninguna || sugar == SugarAmount.una) // Si el pedido tiene 1 o ninguna cucharada de azucar
             {
                 playerPreparationTxt.text = $"Tienes que preparar: Cafe {currentOrder.coffeeAm} con {currentOrder.sugarAm} cucharada de azucar.";
             }
-            else
+            else // Si el pedido tiene +1 cucharadas de azucar
             {
                 playerPreparationTxt.text = $"Tienes que preparar: Cafe {currentOrder.coffeeAm} con {currentOrder.sugarAm} cucharadas de azucar.";
             }
