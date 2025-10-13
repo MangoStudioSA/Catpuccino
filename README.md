@@ -91,11 +91,22 @@ Queremos incorporar un tipo de gacha, donde existen 2 tipos de sobres:
 ## 4. Mecánicas de Juego y Elementos de Juego
 
 ### 4.1	Descripción detallada del concepto de juego
-En Catpuccino, el jugador se encargará de trabajar en una cafetería de gatos. Para esto, es necesario atender a los clientes, preparar su pedido y entregárselo en el menor tiempo posible.
+En Catpuccino, el jugador se encargará de trabajar en una cafetería de gatos. Para esto, es necesario atender a los clientes, preparar su pedido y entregárselo en el menor tiempo posible. 
+
+Los clientes irán llegando al local para realizar sus pedidos, y aunque es importante la rapidez, también es importante preparar bien los pedidos, ya que si no, la satisfacción de los clientes será menor, y no se recibirán propinas.
 
 ### 4.2	Descripción detallada de las mecánicas de juego
+El gameplay principal del juego se divide en tres etapas:
+- Atender a los clientes → Poco a poco, los clientes irán entrando al local, poniéndose a la cola (si tienen a otro cliente por delante). Al llegar al mostrador, esperarán a que el jugador les atienda. Al ser atendidos, aparecerá una caja de diálogo en la que el jugador puede visualizar los detalles del pedido y aceptarlo, pasando a la siguiente pantalla.
+- Preparar pedidos → Para preparar el pedido del cliente, el jugador tendrá que moler el café (teniendo en cuenta cómo lo ha solicitado el cliente), y preparar la taza antes de echarlo. Además, es necesario echar las cucharadas de azúcar correspondientes antes de entregar el pedido. En un futuro, se añadirá más variedad a los pedidos para dotar al juego de una mayor complejidad.
+- Entregar pedidos → Una vez entregado el pedido, el cliente indicará su satisfacción. Si el pedido entregado cuadra con lo que quería el cliente, estará satisfecho y el jugador recibirá una propina adicional. En el caso de que el pedido esté mal preparado, el cliente indicará su frustración, dejando menos dinero (y reduciendo el porcentaje de satisfacción de los clientes).
+
+Al finalizar la jornada, es necesario pagar las facturas correspondientes para mantener en funcionamiento el local (alquiler del local, costes de producción, publicidad…). Si el jugador ha conseguido suficientes beneficios para cubrir estos gastos, se podrá pasar al siguiente día de trabajo (continúa la partida), pero si el dinero ganado no es suficiente, finaliza la partida.
 
 ### 4.3	Controles
+Para mejorar la sencillez y accesibilidad del juego, todas las interacciones se realizan mediante interfaces gráficas, es decir, usando el click izquierdo del ratón para interactuar con los distintos botones/objetos del juego. 
+
+Además, esta decisión facilitará el trabajo a la hora de adaptar el juego para dispositivos móviles (solo es necesario cambiar los clicks por toques a la pantalla).
 
 ### 4.4	Niveles y misiones
 
