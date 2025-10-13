@@ -106,17 +106,17 @@ public class TimeManager : MonoBehaviour
         if (gameUIManager != null)
         {
             gameUIManager.ShowEndOfDayPanel();
-            requiredText.text = "Debes pagar " + required + " para cubrir los gastos del local";
+            requiredText.text = "Debes pagar " + required + "$ para cubrir los gastos del local";
         }
 
         if (gameManager.monedas >= required)
         {
-            earnedText.text = "Hoy has ganado " + gameManager.monedas + ", tienes suficiente para pagar las facturas pendientes";
+            earnedText.text = "Hoy has ganado " + gameManager.monedas + "$, tienes suficiente para pagar las facturas pendientes";
             endButtonText.text = "Siguiente día";
         }
         else
         {
-            earnedText.text = "Hoy has ganado " + gameManager.monedas + ", no tienes suficiente para pagar las facturas pendientes";
+            earnedText.text = "Hoy has ganado " + gameManager.monedas + "$, no tienes suficiente para pagar las facturas pendientes";
             endButtonText.text = "Finalizar partida";
         }
 
