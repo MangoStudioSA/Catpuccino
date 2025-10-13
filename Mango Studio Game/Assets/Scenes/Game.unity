@@ -5560,7 +5560,7 @@ MonoBehaviour:
   requiredText: {fileID: 643905293}
   earnedText: {fileID: 1621369669}
   endButtonText: {fileID: 1495100694}
-  secondsPerGameMinute: 0.01
+  secondsPerGameMinute: 0.5
   startHour: 9
   endHour: 21
   endMinutes: 0
