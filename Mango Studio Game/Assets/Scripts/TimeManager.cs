@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
+using UnityEngine.UI;
 
 public class TimeManager : MonoBehaviour
 {
@@ -8,12 +9,20 @@ public class TimeManager : MonoBehaviour
 
     [Header("UI")]
     [SerializeField] private TextMeshProUGUI timeText;
+    [SerializeField] private TextMeshProUGUI requiredText;
+    [SerializeField] private TextMeshProUGUI earnedText;
+    [SerializeField] private TextMeshProUGUI endButtonText;
 
     [Header("Configuración del Tiempo")]
     [SerializeField] private float secondsPerGameMinute = 1f;
     [SerializeField] private int startHour = 7;
     [SerializeField] private int endHour = 20;
     [SerializeField] private int endMinutes = 20;
+
+    [Header("Configuración de facturas")]
+    [SerializeField] private int requiredBase = 500;
+    [SerializeField] private int requiredIncrement = 250;
+
 
     private float currentTimeInSeconds;
     private int currentDay = 0;
@@ -23,6 +32,10 @@ public class TimeManager : MonoBehaviour
 
     private GameUIManager gameUIManager;
     private CustomerManager customerManager;
+    private GameManager gameManager;
+    private SceneUIManager sceneUIManager;
+
+    private int required = 0;
 
     void Awake()
     {
@@ -33,6 +46,8 @@ public class TimeManager : MonoBehaviour
     {
         gameUIManager = FindObjectOfType<GameUIManager>();
         customerManager = FindObjectOfType<CustomerManager>();
+        gameManager = FindObjectOfType<GameManager>();
+        sceneUIManager = FindObjectOfType<SceneUIManager>();
         StartNewDay();
     }
 
@@ -56,6 +71,11 @@ public class TimeManager : MonoBehaviour
 
     public void StartNewDay()
     {
+        if (gameManager.monedas <= required && currentDay != 0)
+        {
+            sceneUIManager.EndGameMenu();
+        }
+
         // Llamamos a la función de reinicio ANTES de hacer cualquier otra cosa
         if (customerManager != null)
         {
@@ -66,6 +86,8 @@ public class TimeManager : MonoBehaviour
         currentTimeInSeconds = startHour * 3600;
         IsOpen = true;
         isDayEnding = false;
+
+        required = requiredBase + (currentDay - 1) * requiredIncrement;
 
         if (gameUIManager != null)
         {
@@ -84,6 +106,18 @@ public class TimeManager : MonoBehaviour
         if (gameUIManager != null)
         {
             gameUIManager.ShowEndOfDayPanel();
+            requiredText.text = "Debes pagar " + required + " para cubrir los gastos del local";
+        }
+
+        if (gameManager.monedas >= required)
+        {
+            earnedText.text = "Hoy has ganado " + gameManager.monedas + ", tienes suficiente para pagar las facturas pendientes";
+            endButtonText.text = "Siguiente día";
+        }
+        else
+        {
+            earnedText.text = "Hoy has ganado " + gameManager.monedas + ", no tienes suficiente para pagar las facturas pendientes";
+            endButtonText.text = "Finalizar partida";
         }
 
         // La corrutina ahora simplemente termina aquí.
