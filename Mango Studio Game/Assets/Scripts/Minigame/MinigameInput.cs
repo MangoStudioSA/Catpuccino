@@ -14,6 +14,8 @@ public class MinigameInput : MonoBehaviour
     [SerializeField] Button submitOrderButton;
     [SerializeField] Button sugarButton;
     [SerializeField] Button iceButton;
+    [SerializeField] Button coverButton;
+
 
     [SerializeField] float slideSpeed = 0.8f;
     [SerializeField] float maxAmount = 4.0f;
@@ -25,9 +27,11 @@ public class MinigameInput : MonoBehaviour
 
     int countSugar = 0;
     int countIce = 0;
+    int countCover = 0;
 
     public bool cucharaInHand = false;
     public bool iceInHand = false;
+    public bool coverInHand = false;
 
     public bool tazaIsThere = false;
     bool filtroIsInCafetera = false;
@@ -50,6 +54,8 @@ public class MinigameInput : MonoBehaviour
         coffeeServed = false;
 
         countSugar = 0;
+        countIce = 0;
+        countCover = 0;
 
         Taza.SetActive(false);
         //Filtro.SetActive(false);
@@ -61,6 +67,7 @@ public class MinigameInput : MonoBehaviour
         submitOrderButton.interactable = false;
         sugarButton.interactable = false;
         iceButton.interactable = false;
+        coverButton.interactable= false;
 
         tazaIsThere = false;
         filtroIsInCafetera = false;
@@ -206,6 +213,7 @@ public class MinigameInput : MonoBehaviour
             submitOrderButton.interactable = true;
             sugarButton.interactable = true;
             iceButton.interactable = true;
+            coverButton.interactable = true;
         }
     }
 
@@ -236,6 +244,20 @@ public class MinigameInput : MonoBehaviour
         }
     }
 
+    public void PonerTapa()
+    {
+        //Si se tiene la tapa en la mano y el cafe esta servido entonces se puede poner la tapa
+        if (coverInHand == true && coffeeServed == true)
+        {
+            if (countCover <= 1)
+            {
+                countCover += 1; //Se incrementa el contador de hielo
+                order.currentOrder.typePrecision = countCover;
+                Debug.Log("Tapa puesta.");
+            }
+        }
+    }
+
     public void CogerAzucar()
     {
         if (cucharaInHand == false)
@@ -257,6 +279,18 @@ public class MinigameInput : MonoBehaviour
         else if (iceInHand == true)
         {
             iceInHand = false;
+        }
+    }
+
+    public void CogerTapa()
+    {
+        if (coverInHand == false)
+        {
+            coverInHand = true;
+        }
+        else if (coverInHand == true)
+        {
+            coverInHand = false;
         }
     }
 

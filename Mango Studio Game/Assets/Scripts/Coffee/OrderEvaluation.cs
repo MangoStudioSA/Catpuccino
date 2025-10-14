@@ -5,8 +5,9 @@ using UnityEngine.SocialPlatforms.Impl;
 public class OrderEvaluation : MonoBehaviour
 {
     private const int MAX_SCORE_COFFEE = 25;
-    private const int MAX_SCORE_SUGAR = 12;
-    private const int MAX_SCORE_ICE = 13;
+    private const int MAX_SCORE_SUGAR = 5;
+    private const int MAX_SCORE_ICE = 5;
+    private const int MAX_SCORE_COVER = 15; // Puntuacion tipo de pedido
     private const float MAX_ERROR = 2.0F;
     public int Evaluate(Order npcOrder, Order playerOrder)
     {
@@ -25,12 +26,17 @@ public class OrderEvaluation : MonoBehaviour
         int iceScore = EvaluateIcePrecision(npcOrder, playerOrder);
         totalScore += iceScore;
 
+        //EVALUACION DEL TIPO DE PEDIDO (CANTIDAD EXACTA)
+        int typeScore = EvaluateTypePrecision(npcOrder, playerOrder);
+        totalScore += typeScore;
+
 
         // Debug del puntaje TOTAL
         Debug.Log($"--- RESULTADO FINAL DE LA ORDEN ---");
         Debug.Log($"Puntuación del Café (Precisión): {Mathf.RoundToInt(coffeeScore)}/{MAX_SCORE_COFFEE} pts");
         Debug.Log($"Puntuación del Azúcar: {sugarScore}/{MAX_SCORE_SUGAR} pts");
         Debug.Log($"Puntuación del Hielo: {iceScore}/{MAX_SCORE_ICE} pts");
+        Debug.Log($"Puntuación del Tipo de pedido: {typeScore}/{MAX_SCORE_COVER} pts");
         Debug.Log($"Puntuación Total de la Orden: {totalScore} pts");
         Debug.Log($"------------------------------------");
 
@@ -71,7 +77,7 @@ public class OrderEvaluation : MonoBehaviour
         float playerSpoons = playerOrder.sugarPrecision;
 
         int sugarScore = 0;
-        if (playerSpoons == Starget) // Si el jugador ha echado las mismas cucharadas de azucar que las que se pedian suma 12 puntos
+        if (playerSpoons == Starget) // Si el jugador ha echado las mismas cucharadas de azucar que las que se pedian suma 5 puntos
         {
             sugarScore = MAX_SCORE_SUGAR;
         } 
@@ -94,7 +100,7 @@ public class OrderEvaluation : MonoBehaviour
         float playerIceSpoons = playerOrder.icePrecision;
 
         int iceScore = 0;
-        if (playerIceSpoons == Itarget) // Si el jugador ha echado los mismos hielos que los que se pedian suma 13 puntos
+        if (playerIceSpoons == Itarget) // Si el jugador ha echado los mismos hielos que los que se pedian suma 5 puntos
         {
             iceScore = MAX_SCORE_ICE;
         }
@@ -106,6 +112,29 @@ public class OrderEvaluation : MonoBehaviour
         Debug.Log($"[Evaluación Hielo] Objetivo: {Itarget} | Jugador: {playerIceSpoons}");
 
         return iceScore; // Se devuelve la puntuacion total del hielo
+
+    }
+
+    public int EvaluateTypePrecision(Order npcOrder, Order playerOrder)
+    {
+        // El objetivo es el valor exacto del tipo de pedido (0-tomar o 1-llevar)
+        float Typetarget = npcOrder.typeTarget;
+        // La precision es el numero que muestra si el jugador ha colocado o no la tapa para llevar
+        float playerType = playerOrder.typePrecision;
+
+        int typeScore = 0;
+        if (playerType == Typetarget) // Si el jugador ha colocado la tapa para llevar suma 10 puntos
+        {
+            typeScore = MAX_SCORE_COVER;
+        }
+        else
+        {
+            typeScore = 0; // En cualquier otro caso la puntuacion sera 0 
+        }
+
+        Debug.Log($"[Evaluación Tipo de pedido] Objetivo: {Typetarget} | Jugador: {playerType}");
+
+        return typeScore; // Se devuelve la puntuacion total del tipo de pedido
 
     }
 }

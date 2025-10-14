@@ -6,6 +6,7 @@ public class Order
     public CoffeeAmount coffeeAm;
     public SugarAmount sugarAm;
     public IceAmount iceAm;
+    public OrderType orderType;
 
     // valor de precisión que el jugador debe alcanzar (1.0, 2.0, o 3.0)
     public float coffeeTarget;
@@ -25,11 +26,20 @@ public class Order
     // guarda el valor de las cucharadas del jugador (0 a 2)
     public int icePrecision;
 
-    public Order(CoffeeAmount coffee, SugarAmount sugar, IceAmount ice) // Constructor de los pedidos 
+    // especifica el tipo de pedido que quiere el cliente (0-tomar o 1-llevar )
+    public int typeTarget;
+
+    // guarda el valor del si el jugador ha colocado o no la tapa (0-tomar o 1-llevar)
+    public int typePrecision;
+
+
+
+    public Order(CoffeeAmount coffee, SugarAmount sugar, IceAmount ice, OrderType type) // Constructor de los pedidos 
     {
         this.coffeeAm = coffee;
         this.sugarAm = sugar;
         this.iceAm = ice;
+        this.orderType = type;
 
         //inicializamos la precision del cafe a 0
         this.coffeePrecision = 0f;
@@ -42,6 +52,10 @@ public class Order
         //inicializamos la precision del hielo a 0
         this.icePrecision = 0;
         this.iceTarget = GetIceTargetFromAmount(ice);
+
+        //inicializamos la precision del hielo a 0
+        this.typePrecision = 0;
+        this.typeTarget = GetOrderTypeTargetFromAmount(type);
     }
 
     // Funciones utilizadas para declarar las cantidades requeridas en formato float o int
@@ -92,8 +106,22 @@ public class Order
         }
     }
 
+    private int GetOrderTypeTargetFromAmount(OrderType type)
+    {
+        switch (type)
+        {
+            case OrderType.tomar:
+                return 0;
+            case OrderType.llevar:
+                return 1;
+            default:
+                return 2; //por si algo falla
+        }
+    }
+
 }
 
 public enum CoffeeAmount { corto, medio, largo } // Se crean 3 cantidades para los cafes
 public enum SugarAmount { ninguna, una, dos, tres } // Se crean 4 cantidades para el azucar
 public enum IceAmount { ningun, un, dos } // Se crean 3 cantidades para los hielos
+public enum OrderType { tomar, llevar } // Se crean 2 tipos de pedidos 

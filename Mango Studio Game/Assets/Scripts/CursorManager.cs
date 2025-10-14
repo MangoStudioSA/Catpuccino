@@ -8,12 +8,15 @@ public class CursorManager : MonoBehaviour
     public Texture2D filtroCursorTexture;
     public Texture2D cucharaCursorTexture;
     public Texture2D hieloCucharaCursorTexture;
+    public Texture2D tapaCursorTexture;
+
 
     public Vector2 hotSpotDefault = Vector2.zero; //el punto que hace click en si del cursor (ahora mismo arriba izquierda)
     public Vector2 hotSpotTaza = Vector2.zero; //el punto que hace click en si del cursor (ahora mismo arriba izquierda)
     public Vector2 hotSpotFiltro = Vector2.zero; //el punto que hace click en si del cursor (ahora mismo arriba izquierda)
     public Vector2 hotSpotCuchara = Vector2.zero; //el punto que hace click en si del cursor (ahora mismo arriba izquierda)
     public Vector2 hotSpotHieloCuchara = Vector2.zero; //el punto que hace click en si del cursor (ahora mismo arriba izquierda)
+    public Vector2 hotSpotTapaCuchara = Vector2.zero; //el punto que hace click en si del cursor (ahora mismo arriba izquierda)
 
 
     public MinigameInput miniGameInput; //para poder usar tazaIsThere       
@@ -83,6 +86,19 @@ public class CursorManager : MonoBehaviour
         }
 
         if (miniGameInput.iceInHand == false)
+        {
+            Cursor.SetCursor(defaultCursorTexture, hotSpotDefault, CursorMode.Auto);
+        }
+    }
+
+    public void TakeCover()
+    {
+        if (miniGameInput.coverInHand == true)
+        {
+            Cursor.SetCursor(tapaCursorTexture, hotSpotTapaCuchara, CursorMode.Auto);
+        }
+
+        if (miniGameInput.coverInHand == false)
         {
             Cursor.SetCursor(defaultCursorTexture, hotSpotDefault, CursorMode.Auto);
         }
