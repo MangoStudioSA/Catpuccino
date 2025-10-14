@@ -97,9 +97,9 @@ Los clientes irán llegando al local para realizar sus pedidos, y aunque es impo
 
 ### 4.2	Descripción detallada de las mecánicas de juego
 El gameplay principal del juego se divide en tres etapas:
-- Atender a los clientes → Poco a poco, los clientes irán entrando al local, poniéndose a la cola (si tienen a otro cliente por delante). Al llegar al mostrador, esperarán a que el jugador les atienda. Al ser atendidos, aparecerá una caja de diálogo en la que el jugador puede visualizar los detalles del pedido y aceptarlo, pasando a la siguiente pantalla.
-- Preparar pedidos → Para preparar el pedido del cliente, el jugador tendrá que moler el café (teniendo en cuenta cómo lo ha solicitado el cliente), y preparar la taza antes de echarlo. Además, es necesario echar las cucharadas de azúcar correspondientes antes de entregar el pedido. En un futuro, se añadirá más variedad a los pedidos para dotar al juego de una mayor complejidad.
-- Entregar pedidos → Una vez entregado el pedido, el cliente indicará su satisfacción. Si el pedido entregado cuadra con lo que quería el cliente, estará satisfecho y el jugador recibirá una propina adicional. En el caso de que el pedido esté mal preparado, el cliente indicará su frustración, dejando menos dinero (y reduciendo el porcentaje de satisfacción de los clientes).
+- **Atender a los clientes** → Poco a poco, los clientes irán entrando al local, poniéndose a la cola (si tienen a otro cliente por delante). Al llegar al mostrador, esperarán a que el jugador les atienda. Al ser atendidos, aparecerá una caja de diálogo en la que el jugador puede visualizar los detalles del pedido y aceptarlo, pasando a la siguiente pantalla.
+- **Preparar pedidos** → Para preparar el pedido del cliente, el jugador tendrá que moler el café (teniendo en cuenta cómo lo ha solicitado el cliente), y preparar la taza antes de echarlo. Además, es necesario echar las cucharadas de azúcar correspondientes antes de entregar el pedido. En un futuro, se añadirá más variedad a los pedidos para dotar al juego de una mayor complejidad.
+- **Entregar pedidos** → Una vez entregado el pedido, el cliente indicará su satisfacción. Si el pedido entregado cuadra con lo que quería el cliente, estará satisfecho y el jugador recibirá una propina adicional. En el caso de que el pedido esté mal preparado, el cliente indicará su frustración, dejando menos dinero (y reduciendo el porcentaje de satisfacción de los clientes).
 
 Al finalizar la jornada, es necesario pagar las facturas correspondientes para mantener en funcionamiento el local (alquiler del local, costes de producción, publicidad…). Si el jugador ha conseguido suficientes beneficios para cubrir estos gastos, se podrá pasar al siguiente día de trabajo (continúa la partida), pero si el dinero ganado no es suficiente, finaliza la partida.
 
@@ -115,8 +115,14 @@ Cada día/jornada, estos gastos mínimos irán aumentando para aumentar la dific
 
 El objetivo (misión) del juego es lograr aguantar el máximo de días posible, es decir, la partida no tiene un final definido. No es posible pasar al siguiente día de trabajo sin tener suficiente dinero para cubrir las facturas, en este caso, se alcanzará la pantalla de fin de juego.
 
-### 4.5	Objetos, armas y power ups
-
+### 4.5	Objetos
+Durante la preparación de pedidos, el jugador deberá interactuar con varios objetos para montar el café del cliente. Entre ellos están:
+- **Taza/vaso** → Tazas para cafés y vasos para smoothies. Según el pedido del cliente se deberá escoger el recipiente adecuado. Además existen diferentes tamaños de bebida (pequeño, mediano y grande).
+- **Molinillo de café** → Para moler la cantidad de café que desea el cliente. Los cafés pueden ser cortos, medios o largos. El jugador deberá mantener el click izquierdo y llenar la barra de café hasta el punto correcto.
+- **Prensa** → Sirve para terminar de preparar el café molido antes de meterlo en la cafetera.
+- **Cafetera** → El último paso de preparación para echar el café terminado en la taza.
+- **Azúcar** → Se pueden añadir las cucharadas de azúcar deseadas, para darle el toque de dulzura que desee el cliente. 
+- **Hielos** → Para regular la temperatura de bebidas frías.
 
 ## 5. Trasfondo
 
