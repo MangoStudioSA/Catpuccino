@@ -1,10 +1,12 @@
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
 using UnityEngine.SocialPlatforms.Impl;
 
 public class OrderEvaluation : MonoBehaviour
 {
     private const int MAX_SCORE_COFFEE = 25;
-    private const int MAX_SCORE_SUGAR = 25;
+    private const int MAX_SCORE_SUGAR = 12;
+    private const int MAX_SCORE_ICE = 13;
     private const float MAX_ERROR = 2.0F;
     public int Evaluate(Order npcOrder, Order playerOrder)
     {
@@ -19,15 +21,20 @@ public class OrderEvaluation : MonoBehaviour
         int sugarScore = EvaluateSugarPrecision(npcOrder, playerOrder);
         totalScore += sugarScore;
 
+        //EVALUACION DEL HIELO (CANTIDAD EXACTA)
+        int iceScore = EvaluateIcePrecision(npcOrder, playerOrder);
+        totalScore += iceScore;
+
 
         // Debug del puntaje TOTAL
         Debug.Log($"--- RESULTADO FINAL DE LA ORDEN ---");
         Debug.Log($"Puntuación del Café (Precisión): {Mathf.RoundToInt(coffeeScore)}/{MAX_SCORE_COFFEE} pts");
         Debug.Log($"Puntuación del Azúcar: {sugarScore}/{MAX_SCORE_SUGAR} pts");
+        Debug.Log($"Puntuación del Hielo: {iceScore}/{MAX_SCORE_ICE} pts");
         Debug.Log($"Puntuación Total de la Orden: {totalScore} pts");
         Debug.Log($"------------------------------------");
 
-        //EL SCORE MAXIMO AHORA ES 50 (25+25)
+        //EL SCORE MAXIMO AHORA ES 50 (25+12+13)
         return totalScore; // Se devuelve la puntuacion del jugador
 
     }
@@ -36,6 +43,7 @@ public class OrderEvaluation : MonoBehaviour
     {
         //el objetivo es el valor ideal (1.0, 2.0, 3.0)
         float target = npcOrder.coffeeTarget;
+
         //la precision es donde para el player
         float playerStop = playerOrder.coffeePrecision;
         
@@ -43,7 +51,6 @@ public class OrderEvaluation : MonoBehaviour
         float error = Mathf.Abs(playerStop - target);
 
         Debug.Log($"[Evaluación Café] Objetivo: {target:F2} | Jugador: {playerStop:F2} | Error Absoluto: {error:F2}");
-
 
         //normalizamos el error de 0 a 1
         float normalizedError = Mathf.Clamp(error / MAX_ERROR, 0f, 1f);
@@ -64,7 +71,7 @@ public class OrderEvaluation : MonoBehaviour
         float playerSpoons = playerOrder.sugarPrecision;
 
         int sugarScore = 0;
-        if (playerSpoons == Starget) // Si el jugador ha echado las mismas cucharadas de azucar que las que se pedian suma 25 puntos
+        if (playerSpoons == Starget) // Si el jugador ha echado las mismas cucharadas de azucar que las que se pedian suma 12 puntos
         {
             sugarScore = MAX_SCORE_SUGAR;
         } 
@@ -76,6 +83,29 @@ public class OrderEvaluation : MonoBehaviour
         Debug.Log($"[Evaluación Azúcar] Objetivo: {Starget} | Jugador: {playerSpoons}");
 
         return sugarScore; // Se devuelve la puntuacion total del azucar
+
+    }
+
+    public int EvaluateIcePrecision(Order npcOrder, Order playerOrder)
+    {
+        // El objetivo es el valor exacto de cubitos de hielo (0, 1 o 2)
+        float Itarget = npcOrder.iceTarget;
+        // La precision es el numero de hielos que ha echado el player
+        float playerIceSpoons = playerOrder.icePrecision;
+
+        int iceScore = 0;
+        if (playerIceSpoons == Itarget) // Si el jugador ha echado los mismos hielos que los que se pedian suma 13 puntos
+        {
+            iceScore = MAX_SCORE_ICE;
+        }
+        else
+        {
+            iceScore = 0; // En cualquier otro caso la puntuacion sera 0 
+        }
+
+        Debug.Log($"[Evaluación Hielo] Objetivo: {Itarget} | Jugador: {playerIceSpoons}");
+
+        return iceScore; // Se devuelve la puntuacion total del hielo
 
     }
 }

@@ -13,6 +13,7 @@ public class MinigameInput : MonoBehaviour
     [SerializeField] Button echarCafeButton;
     [SerializeField] Button submitOrderButton;
     [SerializeField] Button sugarButton;
+    [SerializeField] Button iceButton;
 
     [SerializeField] float slideSpeed = 0.8f;
     [SerializeField] float maxAmount = 4.0f;
@@ -22,9 +23,11 @@ public class MinigameInput : MonoBehaviour
     bool coffeeDone = false;
     bool molerDone =false;
 
-    int countSugar;
+    int countSugar = 0;
+    int countIce = 0;
 
     public bool cucharaInHand = false;
+    public bool iceInHand = false;
 
     public bool tazaIsThere = false;
     bool filtroIsInCafetera = false;
@@ -57,6 +60,7 @@ public class MinigameInput : MonoBehaviour
         echarCafeButton.interactable = false;
         submitOrderButton.interactable = false;
         sugarButton.interactable = false;
+        iceButton.interactable = false;
 
         tazaIsThere = false;
         filtroIsInCafetera = false;
@@ -169,18 +173,6 @@ public class MinigameInput : MonoBehaviour
  
     }
 
-    public void EcharAzucar()
-    {
-        if (cucharaInHand == true && coffeeServed == true)
-        {
-            if (countSugar <= 3)
-            {
-                countSugar += 1;
-                order.currentOrder.sugarPrecision = countSugar;
-                Debug.Log("Cantidad de azucar: " + countSugar);
-            }
-        }
-    }
     public void TakeFiltro()
     {
         if (filtroIsInCafetera == false)
@@ -190,6 +182,7 @@ public class MinigameInput : MonoBehaviour
         filtroCafeteraButton.interactable = true;
         }
     }
+
     public void putFiltro()
     {
         if (filtroIsInCafetera == false)
@@ -212,6 +205,34 @@ public class MinigameInput : MonoBehaviour
             echarCafeButton.interactable = false;
             submitOrderButton.interactable = true;
             sugarButton.interactable = true;
+            iceButton.interactable = true;
+        }
+    }
+
+    public void EcharAzucar()
+    {
+        if (cucharaInHand == true && coffeeServed == true)
+        {
+            if (countSugar <= 3)
+            {
+                countSugar += 1;
+                order.currentOrder.sugarPrecision = countSugar;
+                Debug.Log("Cantidad de azucar: " + countSugar);
+            }
+        }
+    }
+
+    public void EcharHielo()
+    {
+        //Si se tiene la cuchara de hielo en la mano y el cafe esta servido entonces se puede echar el hielo
+        if (iceInHand == true && coffeeServed == true) 
+        {
+            if (countIce <= 2)
+            {
+                countIce += 1; //Se incrementa el contador de hielo
+                order.currentOrder.icePrecision = countIce;
+                Debug.Log("Cantidad de hielo: " + countIce);
+            }
         }
     }
 
@@ -224,6 +245,18 @@ public class MinigameInput : MonoBehaviour
         else if (cucharaInHand == true)
         {
             cucharaInHand = false;
+        }
+    }
+
+    public void CogerHielo()
+    {
+        if (iceInHand == false)
+        {
+            iceInHand = true;
+        }
+        else if (iceInHand == true)
+        {
+            iceInHand = false;
         }
     }
 
