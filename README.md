@@ -109,6 +109,11 @@ Para mejorar la sencillez y accesibilidad del juego, todas las interacciones se 
 Además, esta decisión facilitará el trabajo a la hora de adaptar el juego para dispositivos móviles (solo es necesario cambiar los clicks por toques a la pantalla).
 
 ### 4.4	Niveles y misiones
+Aunque en Catpuccino no haya niveles como tal, el juego se basa en jornadas/días de trabajo. Para poder pasar al siguiente día, se debe acumular un mínimo de dinero (puntos) durante el día, ya que al finalizar la jornada, el jugador deberá pagar ciertas facturas para cubrir los gastos de gestión del local.
+
+Cada día/jornada, estos gastos mínimos irán aumentando para aumentar la dificultad del juego. También aumentarán otros factores como la cantidad de clientes o la complejidad de sus pedidos. 
+
+El objetivo (misión) del juego es lograr aguantar el máximo de días posible, es decir, la partida no tiene un final definido. No es posible pasar al siguiente día de trabajo sin tener suficiente dinero para cubrir las facturas, en este caso, se alcanzará la pantalla de fin de juego.
 
 ### 4.5	Objetos, armas y power ups
 
