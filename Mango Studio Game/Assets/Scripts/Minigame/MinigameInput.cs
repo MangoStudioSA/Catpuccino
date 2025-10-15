@@ -30,6 +30,7 @@ public class MinigameInput : MonoBehaviour
     int countCover = 0;
 
     public bool cucharaInHand = false;
+    public bool tazaInHand = false;
     public bool iceInHand = false;
     public bool coverInHand = false;
 
@@ -172,6 +173,7 @@ public class MinigameInput : MonoBehaviour
         {
             Taza.SetActive(true);
             tazaIsThere = true;
+            tazaInHand = false;
         }
         if (filtroIsInCafetera == true && coffeeServed == false)
         {

@@ -42,9 +42,15 @@ public class CursorManager : MonoBehaviour
 
     public void TakeTaza()
     {
-        if (miniGameInput.tazaIsThere == false)
+        if (miniGameInput.tazaInHand == true)
+        {
+            Cursor.SetCursor(defaultCursorTexture, hotSpotDefault, CursorMode.Auto);
+            miniGameInput.tazaInHand = false;
+        }
+        else if (miniGameInput.tazaIsThere == false && miniGameInput.tazaInHand == false)
         {
             Cursor.SetCursor(tazaCursorTexture, hotSpotTaza, CursorMode.Auto);
+            miniGameInput.tazaInHand = true;
         }
     }
     public void PutTaza()
