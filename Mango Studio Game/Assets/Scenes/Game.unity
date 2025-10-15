@@ -5995,7 +5995,7 @@ MonoBehaviour:
   requiredText: {fileID: 643905293}
   earnedText: {fileID: 1621369669}
   endButtonText: {fileID: 1495100694}
-  secondsPerGameMinute: 0.01
+  secondsPerGameMinute: 0.25
   startHour: 7
   endHour: 20
   endMinutes: 0
@@ -12989,7 +12989,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1957982743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13463,8 +13463,8 @@ MonoBehaviour:
   pausePanel: {fileID: 1071502798}
   optionsPanel: {fileID: 399044284}
   dialoguePanel: {fileID: 995759339}
-  preparationPanel: {fileID: 0}
-  endOfDayPanel: {fileID: 0}
+  preparationPanel: {fileID: 153319688}
+  endOfDayPanel: {fileID: 1071443432}
   orderScreen: 0
 --- !u!1 &2100299597
 GameObject:

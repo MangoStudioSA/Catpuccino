@@ -13,35 +13,48 @@ public class CustomerOrder : MonoBehaviour
     }
     public void GenRandomOrder()
     {
-        CoffeeAmount coffee = (CoffeeAmount)Random.Range(0, 2); // Se genera una cantidad de cafe al azar entre los 3
-        SugarAmount sugar = (SugarAmount)Random.Range(0, 3); // Se genera una cantidad de azucar al azar entre los 4
-        IceAmount ice = (IceAmount)Random.Range(0, 2); // Se genera una cantidad de hielo al azar entre los 3
-        OrderType type = (OrderType)Random.Range(0, 1); // Se genera un tipo de pedido entre los 2
+        CoffeeAmount coffee = (CoffeeAmount)Random.Range(0, 2); // Se genera una cantidad de cafe al azar entre los 3 tipos
+        SugarAmount sugar = (SugarAmount)Random.Range(0, 3); // Se genera una cantidad de azucar al azar entre los 4 tipos
+        IceAmount ice = (IceAmount)Random.Range(0, 3); // Se genera una cantidad de hielo al azar entre los 4 tipos
+        OrderType type = (OrderType)Random.Range(0, 1); // Se genera un tipo de pedido entre los 2 tipos
+
         currentOrder = new Order(coffee, sugar, ice, type); // Se genera el nuevo pedido con las cantidades generadas
 
-        if (orderTxt != null )
+        if(orderTxt != null)
         {
-            if (sugar == SugarAmount.ninguna || sugar == SugarAmount.una && ice == IceAmount.ningun || ice == IceAmount.un) // Si el pedido tiene 1 o ninguna cucharada de azucar y 1 o ningun hielo
-            {
-                orderTxt.text = $"Quiero un café {coffee} con {sugar} cucharada de azúcar y {ice} hielo. Lo quiero para {type}."; // Se muestra el pedido por texto
-            }
-            else // Si el pedido tiene +1 cucharadas de azucar y +1 hielo
-            {
-                orderTxt.text = $"Quiero un café {coffee} con {sugar} cucharadas de azúcar y {ice} hielos. Lo quiero para {type}."; // Se muestra el pedido por texto
-            }
-        }
+            string sugarTxt;
+            string iceTxt;
 
-        // Informacion del pedido actual 
-        if (playerPreparationTxt != null)
-        {
-            if (sugar == SugarAmount.ninguna || sugar == SugarAmount.una && ice == IceAmount.ningun || ice == IceAmount.un) // Si el pedido tiene 1 o ninguna cucharada de azucar y 1 o ningun hielo
+            // Azúcar
+            switch(sugar)
             {
-                playerPreparationTxt.text = $"Tienes que preparar: Café {currentOrder.coffeeAm} con {currentOrder.sugarAm} cucharada de azúcar y {currentOrder.iceAm} hielo. Es un pedido para {type}.";
+                case SugarAmount.ninguna:
+                    sugarTxt = "sin azúcar";
+                    break;
+                case SugarAmount.una:
+                    sugarTxt = "con 1 cucharada de azúcar";
+                    break;
+                default:
+                    sugarTxt = $"con {(int)sugar} cucharadas de azúcar";
+                    break;
             }
-            else // Si el pedido tiene +1 cucharadas de azucar y +1 hielo
+
+            // Hielo
+            switch (ice)
             {
-                playerPreparationTxt.text = $"Tienes que preparar: Café {currentOrder.coffeeAm} con {currentOrder.sugarAm} cucharadas de azúcar y {currentOrder.iceAm} hielo. Es un pedido para {type}.";
+                case IceAmount.ningun:
+                    iceTxt = "sin hielo";
+                    break;
+                case IceAmount.un:
+                    iceTxt = "con 1 hielo";
+                    break;
+                default:
+                    iceTxt = $"con {(int)ice} hielos";
+                    break;
             }
+
+            orderTxt.text = $"Quiero un café {coffee} {sugarTxt} y {iceTxt}. Lo quiero para {type}.";
+            playerPreparationTxt.text = $"Tienes que preparar: Café {coffee} {sugarTxt} y {iceTxt}. Es un pedido para {type}.";
         }
     }
 }

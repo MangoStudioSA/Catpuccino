@@ -65,7 +65,6 @@ public class GameUIManager : MonoBehaviour
         endOfDayPanel.SetActive(true);
         // Desactivamos el panel principal del juego para que no se pueda interactuar con él
         gamePanel.SetActive(false);
-        // Aquí podrías actualizar textos del panel con las ganancias, clientes atendidos, etc.
     }
 
     public void ShowGamePanel()

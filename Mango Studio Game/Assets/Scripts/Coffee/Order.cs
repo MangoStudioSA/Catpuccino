@@ -101,6 +101,8 @@ public class Order
                 return 1;
             case IceAmount.dos:
                 return 2;
+            case IceAmount.tres:
+                return 3;
             default:
                 return 2; //por si algo falla
         }
@@ -123,5 +125,5 @@ public class Order
 
 public enum CoffeeAmount { corto, medio, largo } // Se crean 3 cantidades para los cafes
 public enum SugarAmount { ninguna, una, dos, tres } // Se crean 4 cantidades para el azucar
-public enum IceAmount { ningun, un, dos } // Se crean 3 cantidades para los hielos
+public enum IceAmount { ningun, un, dos, tres } // Se crean 3 cantidades para los hielos
 public enum OrderType { tomar, llevar } // Se crean 2 tipos de pedidos 
