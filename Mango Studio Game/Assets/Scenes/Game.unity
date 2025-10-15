@@ -1150,10 +1150,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawn: {fileID: 55580695}
   customer: {fileID: 2753711945148426859, guid: 94d53b207791064409231d5f47226cb2, type: 3}
-  minTime: 5
-  maxTime: 10
+  minTime: 10
+  maxTime: 20
   clients: 0
-  maxClients: 8
+  maxClients: 6
   orderButton: {fileID: 41301282}
   orderingCustomer: {fileID: 0}
 --- !u!4 &94516045
@@ -5996,10 +5996,10 @@ MonoBehaviour:
   earnedText: {fileID: 1621369669}
   endButtonText: {fileID: 1495100694}
   secondsPerGameMinute: 0.1
-  startHour: 9
-  endHour: 21
+  startHour: 7
+  endHour: 20
   endMinutes: 0
-  requiredBase: 500
+  requiredBase: 250
   requiredIncrement: 250
 --- !u!4 &863263443
 Transform:
@@ -13212,7 +13212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2134fdf4500373a41a4c508b731ddabc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monedas: 100
+  monedas: 0
 --- !u!4 &2072732762
 Transform:
   m_ObjectHideFlags: 0
