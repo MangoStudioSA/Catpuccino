@@ -790,6 +790,7 @@ MonoBehaviour:
   slideSpeed: 0.8
   maxAmount: 4
   cucharaInHand: 0
+  tazaInHand: 0
   iceInHand: 0
   coverInHand: 0
   tazaIsThere: 0
@@ -3474,6 +3475,7 @@ MonoBehaviour:
   dialoguePanel: {fileID: 995759339}
   preparationPanel: {fileID: 69314340}
   endOfDayPanel: {fileID: 1071443432}
+  orderScreen: 0
 --- !u!1 &386902211
 GameObject:
   m_ObjectHideFlags: 0
@@ -5993,7 +5995,7 @@ MonoBehaviour:
   requiredText: {fileID: 643905293}
   earnedText: {fileID: 1621369669}
   endButtonText: {fileID: 1495100694}
-  secondsPerGameMinute: 0.5
+  secondsPerGameMinute: 0.1
   startHour: 9
   endHour: 21
   endMinutes: 0
@@ -13463,6 +13465,7 @@ MonoBehaviour:
   dialoguePanel: {fileID: 995759339}
   preparationPanel: {fileID: 0}
   endOfDayPanel: {fileID: 0}
+  orderScreen: 0
 --- !u!1 &2100299597
 GameObject:
   m_ObjectHideFlags: 0

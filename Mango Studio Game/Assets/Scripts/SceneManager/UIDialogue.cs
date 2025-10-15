@@ -14,11 +14,14 @@ public class UIDialogue : MonoBehaviour
 
     public Button acceptButton;
 
+    GameUIManager gameUI;
+
     void Start()
     {
         preparationPanel.SetActive(false);
         acceptButton.onClick.AddListener(StartPreparation);
         manager = GameObject.FindWithTag("CustomerManager").GetComponent<CustomerManager>();
+        gameUI = GameObject.FindObjectOfType<GameUIManager>();
     }
 
     public void StartPreparation()
@@ -47,5 +50,6 @@ public class UIDialogue : MonoBehaviour
         manager.clients -= 1;
         manager.customers.Dequeue();
         Destroy(manager.orderingCustomer);
+        gameUI.orderScreen = false;
     }
 }

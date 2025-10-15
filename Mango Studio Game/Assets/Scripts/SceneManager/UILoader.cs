@@ -8,9 +8,16 @@ public class UILoader : MonoBehaviour
     public GameObject roomPanel;
     public GameObject dialoguePanel;
 
+    GameUIManager gameUIManager;
+
     
     // Referencia al script que genera los pedidos del cliente
     [SerializeField] private CustomerOrder customerOrderGenerator;
+
+    private void Start()
+    {
+        gameUIManager = GameObject.FindObjectOfType<GameUIManager>();
+    }
 
     public void OpenGameOptions()
     {
@@ -36,5 +43,6 @@ public class UILoader : MonoBehaviour
 
         roomPanel.SetActive(false);
         dialoguePanel.SetActive(true);
+        gameUIManager.orderScreen = true;
     }
 }

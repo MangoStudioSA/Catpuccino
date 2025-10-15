@@ -16,7 +16,7 @@ public class HUDManager : MonoBehaviour
 
     public void UpdateMonedas(int cantidad)
     {
-        textoMonedas.text = cantidad.ToString();
+        textoMonedas.text = cantidad + " $";
     }
 
     public void UpdateSatisfaccion(float cantidad)

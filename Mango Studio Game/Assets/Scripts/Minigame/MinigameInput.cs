@@ -169,7 +169,7 @@ public class MinigameInput : MonoBehaviour
 
     public void PutTaza()
     {
-        if (tazaIsThere == false)
+        if (tazaIsThere == false && tazaInHand)
         {
             Taza.SetActive(true);
             tazaIsThere = true;

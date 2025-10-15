@@ -10,6 +10,8 @@ public class GameUIManager : MonoBehaviour
     [SerializeField] GameObject endOfDayPanel;
     private CanvasGroup gameCanvasGroup;
 
+    public bool orderScreen = false;
+
     public void Start()
     {
         gameCanvasGroup = gamePanel.GetComponent<CanvasGroup>();

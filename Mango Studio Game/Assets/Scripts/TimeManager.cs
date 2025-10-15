@@ -61,7 +61,7 @@ public class TimeManager : MonoBehaviour
         float currentMinute = GetCurrentMinute();
 
         // Si se cumple la hora de cierre Y el proceso de fin de día no ha empezado ya
-        if (!isDayEnding && (currentHour > endHour || (currentHour == endHour && currentMinute >= endMinutes)))
+        if (!isDayEnding && (currentHour > endHour || (currentHour == endHour && currentMinute >= endMinutes)) && gameUIManager.orderScreen == false)
         {
             StartCoroutine(EndDaySequence());
         }
@@ -86,6 +86,9 @@ public class TimeManager : MonoBehaviour
         currentTimeInSeconds = startHour * 3600;
         IsOpen = true;
         isDayEnding = false;
+
+        gameManager.monedas -= required;
+        HUDManager.Instance.UpdateMonedas(gameManager.monedas);
 
         required = requiredBase + (currentDay - 1) * requiredIncrement;
 
