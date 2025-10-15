@@ -90,7 +90,7 @@ public class TimeManager : MonoBehaviour
         gameManager.monedas -= required;
         HUDManager.Instance.UpdateMonedas(gameManager.monedas);
 
-        required = requiredBase + (currentDay - 1) * requiredIncrement;
+        required = requiredBase + (currentDay - 1) * requiredIncrement + (int)Random.Range(-50, 50);
 
         if (gameUIManager != null)
         {
