@@ -192,12 +192,16 @@ Las referencias principales para el 2D son *Buena Pizza, Gran Pizza* y *Little C
 
 
 ### 6.4	Logo de la empresa
+![Logo Mango Studio](https://github.com/MangoStudioSA/Catpuccino/blob/e921cc81d0e6f43bd58ed52fc449a0f76f782ea9/PhotosGDD/LogoMangoStudio.PNG)
 
 ### 6.5	Logo del videojuego
+![Logo Catpuccino](https://github.com/MangoStudioSA/Catpuccino/blob/e921cc81d0e6f43bd58ed52fc449a0f76f782ea9/PhotosGDD/LogoCatpuccino.PNG)
 
 ### 6.6	Concept Art personaje principal
+![Concept Art PJ Principal](https://github.com/MangoStudioSA/Catpuccino/blob/e921cc81d0e6f43bd58ed52fc449a0f76f782ea9/PhotosGDD/conceptPJPrincipal.png)
 
 #### 6.6.1 Arte final personaje principal
+![Arte final PJ Principal](https://github.com/MangoStudioSA/Catpuccino/blob/e921cc81d0e6f43bd58ed52fc449a0f76f782ea9/PhotosGDD/arteFinalPJPrincipal.png)
 
 ### 6.7 Props
 
@@ -222,23 +226,24 @@ El ambiente sonoro del juego busca recrear la calidez de una cafetería, transmi
 ### 8.1 Diseños básicos de los menús
 
 ### 8.2 Diagrama de flujo
-![Diagrama de flujo](https://github.com/MangoStudioSA/Catpuccino/blob/5c1d44c05a4306867279206bdee7fa8ee9a4d120/PhotosGDD/Diagrama%20de%20flujo.jpg)
+![Diagrama de flujo]()
 
 ## 9. Hoja de ruta del desarrollo
 
 | #Hito         | Descripción                                  | Fecha                             | 
 |:-------------:|:--------------------------------------------:|:---------------------------------:|
-| 1             | GDD - 1 Hoja                                 |                                   |
-| 2             | GDD - Completo                               |                                   |
-| 3             | Concept art personajes                       |                                   |
-| 4             | Concept art escenario                        |                                   |
-| 5             | Concept art interfaces                       |                                   |
-| 6             | Concept art cartas                           |                                   |
-| 7             | Mecánicas completas                          |                                   |
-| 8             | Sistema de facturas/día                      |                                   |
-| 9             | Sistema de cartas gacha                      |                                   |
-| 10            | Implementación de clientes inteligentes      |                                   |
-| 11            | Implementación empleados                     |                                   |
-| 12            | Pulido completo                              |                                   |
+| 1             | GDD - 1 Hoja                                 | 12/10/2025                        |
+| 2             | Sistema de facturas/día                      | 16/10/2025                        |
+| 3             | Concept art cartas                           | 05/11/2025                        |
+| 4             | Concept art personajes                       | 13/11/2025                        |
+| 5             | Concept art escenario                        | 13/11/2025                        |
+| 6             | Concept art interfaces                       | 13/11/2025                        |
+| 7             | Sistema de cartas gacha                      | 14/11/2025                        |
+| 8             | Implementación empleados                     | 14/11/2025                        |
+| 9             | Implementación de clientes inteligentes      | 25/11/2025                        |
+| 10            | Mecánicas completas                          | 01/12/2025                        |
+| 11            | Pulido completo                              | 11/12/2025                        |
+| 12            | GDD - Completo                               | 11/12/2025                        |
+
 
 - **Fecha de lanzamiento**: 12 de diciembre de 2025
