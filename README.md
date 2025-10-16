@@ -226,7 +226,7 @@ El ambiente sonoro del juego busca recrear la calidez de una cafetería, transmi
 ### 8.1 Diseños básicos de los menús
 
 ### 8.2 Diagrama de flujo
-![Diagrama de flujo]()
+![Diagrama de flujo](https://github.com/MangoStudioSA/Catpuccino/blob/64dfdf535d3d2620bf3c7a313a3b5422ea3f72de/PhotosGDD/Diagrama%20de%20flujo.png)
 
 ## 9. Hoja de ruta del desarrollo
 
