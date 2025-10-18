@@ -229,16 +229,16 @@ En cuanto al estilo artístico y principios generales de la interfaz, esta tendr
 Las interfaces contarán con animaciones al clickear botones o interactuar con ellas con el objetivo de aportar dinamismo al juego a la vez que se le da vida a la propia interfaz.
 
 A continuación se muestran imágenes de la base para el diseño de cada una de las pantallas de la interfaz para conocer más en detalle cuales son los assets necesarios para el desarrollo de dicha interfaz, así como algunos de los botones que ya han sido diseñados para estas.
-![MainMenu](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/MainMenu.png)
-![Opciones](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Opciones.png)
-![Contacto](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Contacto.png)
-![Ingame](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Ingame.png)
-![Pausa](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Pausa.png)
-![Pedido](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Pedido.png)
-![Preparacion](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Preparacion.png)
-![PanelEntrega](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/PanelEntrega.png)
-![FinDia](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/FinDia.png)
-![FinJuego](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/FinJuego.png)
+| ![MainMenu](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/MainMenu.png) | ![Opciones](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Opciones.png) |
+|-------------------------------|-------------------------------|
+| ![Contacto](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Contacto.png) | ![Ingame](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Ingame.png) |
+|-------------------------------|-------------------------------|
+| ![Pausa](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Pausa.png) | ![Pedido](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Pedido.png) |
+|-------------------------------|-------------------------------|
+| ![Preparacion](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Preparacion.png) | ![PanelEntrega](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/PanelEntrega.png) |
+|-------------------------------|-------------------------------|
+| ![FinDia](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/FinDia.png) | ![FinJuego](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/FinJuego.png) |
+
 ![BotonJugar](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/botonJugar.png)
 | ![botonMenuInicio](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/botonMenuInicio.png) | ![botonMenuInicio2](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/botonMenuInicio2.png) |
 |-------------------------------|-------------------------------|
