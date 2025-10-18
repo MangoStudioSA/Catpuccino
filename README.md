@@ -1,11 +1,12 @@
 # Catpuccino
 
 **Desarrolladores - Grupo B:**
-- Garazi Blanco Jauregi → g.blancoj.2022@alumnos.urjc.es
-- Alberto López García de Ceca → a.lopezgar.2022@alumnos.urjc.es
-- Pablo García García → p.garciag.2022@alumnos.urjc.es
-- Cristina González de Lope → c.gonzalezde.2022@alumnos.urjc.es
-- Ángela Sánchez Díaz → a.sanchezdi.2022@alumnos.urjc.es
+- **Garazi Blanco Jauregi** → g.blancoj.2022@alumnos.urjc.es
+- **Alberto López García de Ceca** → a.lopezgar.2022@alumnos.urjc.es
+- **Pablo García García** → p.garciag.2022@alumnos.urjc.es
+- **Cristina González de Lope** → c.gonzalezde.2022@alumnos.urjc.es
+- **Ángela Sánchez Díaz** → a.sanchezdi.2022@alumnos.urjc.es
+- **Laura de la Cruz Cañadas** → l.delacruz.2022@alumnos.urjc.es
 
 **Redes sociales** → https://linktr.ee/mangostudiourjc?utm_source=linktree_profile_share&ltsid=bdd4e42b-4bf8-4e49-92eb-5ce8b950b732
 
@@ -80,11 +81,12 @@ Queremos incorporar un tipo de gacha, donde existen 2 tipos de sobres:
 
 ### 3.1	El equipo humano
 
-- **Garazi Blanco Jauregi**: Artista de objetos y elementos interactuables.
-- **Alberto Lopez Garcia de Ceca**: Artista de interfaces.
-- **Pablo García García**: Programador de nivel y personajes. 
-- **Cristina González de Lope**: Programador de nivel e interfaces.
-- **Ángela Sánchez Díaz**: Artista 2D y 3D de escenario y personajes.
+- **Garazi Blanco Jauregi:** Artista de objetos y elementos interactuables.
+- **Alberto Lopez Garcia de Ceca:** Artista de interfaces.
+- **Pablo García García:** Programador de nivel y personajes. 
+- **Cristina González de Lope:** Programadora de nivel e interfaces.
+- **Ángela Sánchez Díaz:** Artista 2D y 3D de escenario y personajes.
+- **Laura de la Cruz Cañadas:** Artista 2D y 3D de escenario y personajes y encargada de la música/efectos sonoros.
 
 ### 3.2	Estimación temporal del desarrollo
 - **Fase Alpha** → 2-3 semanas →  Desarrollo del prototipo del videojuego, creación de redes sociales y porfolio y selección de monetización para el videojuego.
@@ -256,14 +258,14 @@ A continuación se muestran imágenes de la base para el diseño de cada una de 
 | 2             | Sistema de facturas/día                      | 16/10/2025                        |
 | 3             | Concept art cartas                           | 05/11/2025                        |
 | 4             | Concept art personajes                       | 13/11/2025                        |
-| 5             | Concept art escenario                        | 13/11/2025                        |
-| 6             | Concept art interfaces                       | 13/11/2025                        |
-| 7             | Sistema de cartas gacha                      | 14/11/2025                        |
-| 8             | Implementación empleados                     | 14/11/2025                        |
-| 9             | Implementación de clientes inteligentes      | 25/11/2025                        |
-| 10            | Mecánicas completas                          | 01/12/2025                        |
-| 11            | Pulido completo                              | 11/12/2025                        |
-| 12            | GDD - Completo                               | 11/12/2025                        |
-
+| 5             | Concept art props                            | 13/11/2025                        |
+| 6             | Concept art escenario                        | 13/11/2025                        |
+| 7             | Concept art interfaces                       | 13/11/2025                        |
+| 8             | Sistema de cartas gacha                      | 14/11/2025                        |
+| 9             | Implementación empleados                     | 14/11/2025                        |
+| 10            | Implementación de clientes inteligentes      | 25/11/2025                        |
+| 11            | Mecánicas completas                          | 01/12/2025                        |
+| 12            | Pulido completo                              | 11/12/2025                        |
+| 13            | GDD - Completo                               | 11/12/2025                        |
 
 - **Fecha de lanzamiento**: 12 de diciembre de 2025
