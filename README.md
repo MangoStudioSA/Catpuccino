@@ -240,10 +240,11 @@ A continuación se muestran imágenes de la base para el diseño de cada una de 
 ![FinDia](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/FinDia.png)
 ![FinJuego](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/FinJuego.png)
 ![BotonJugar](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/botonJugar.png)
-![botonMenuInicio](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/botonMenuInicio.png)
-![botonMenuInicio2](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/botonMenuInicio2.png)
-![botonPausa](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/botonPausa.png)
-![botonAjustes](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/botonAjustes.png)
+| ![botonMenuInicio](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/botonMenuInicio.png) | ![botonMenuInicio2](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/botonMenuInicio2.png) |
+|-------------------------------|-------------------------------|
+| ![botonPausa](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/botonPausa.png) | ![botonAjustes](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/botonAjustes.png) |
+
+
 ### 8.2 Diagrama de flujo
 ![Diagrama de flujo](https://github.com/MangoStudioSA/Catpuccino/blob/64dfdf535d3d2620bf3c7a313a3b5422ea3f72de/PhotosGDD/Diagrama%20de%20flujo.png)
 
