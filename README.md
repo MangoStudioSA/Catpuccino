@@ -239,7 +239,7 @@ A continuación se muestran imágenes de la base para el diseño de cada una de 
 ![PanelEntrega](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/PanelEntrega.png)
 ![FinDia](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/FinDia.png)
 ![FinJuego](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/FinJuego.png)
-![BotonJugar](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/BotonJugar.png)
+![BotonJugar](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/botonJugar.png)
 ![botonMenuInicio](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/botonMenuInicio.png)
 ![botonMenuInicio2](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/botonMenuInicio2.png)
 ![botonPausa](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/botonPausa.png)
