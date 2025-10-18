@@ -2,7 +2,7 @@
 
 **Desarrolladores - Grupo B:**
 - Garazi Blanco Jauregi → g.blancoj.2022@alumnos.urjc.es
-- Alberto Lopez Garcia de Ceca → a.lopezgar.2022@alumnos.urjc.es
+- Alberto López García de Ceca → a.lopezgar.2022@alumnos.urjc.es
 - Pablo García García → p.garciag.2022@alumnos.urjc.es
 - Cristina González de Lope → c.gonzalezde.2022@alumnos.urjc.es
 - Ángela Sánchez Díaz → a.sanchezdi.2022@alumnos.urjc.es
