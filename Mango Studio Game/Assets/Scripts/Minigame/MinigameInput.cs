@@ -262,19 +262,21 @@ public class MinigameInput : MonoBehaviour
 
     public void CogerAzucar()
     {
-        if (cucharaInHand == false)
+        if ((coverInHand == false && cucharaInHand == false && iceInHand==false))
         { 
-            cucharaInHand = true; 
+            cucharaInHand = true;
+            Debug.Log("tengo azucar");
         }
         else if (cucharaInHand == true)
         {
             cucharaInHand = false;
+            Debug.Log("no tengo azucar");
         }
     }
 
     public void CogerHielo()
     {
-        if (iceInHand == false)
+        if ((coverInHand == false && iceInHand == false && cucharaInHand == false))
         {
             iceInHand = true;
         }
@@ -286,7 +288,7 @@ public class MinigameInput : MonoBehaviour
 
     public void CogerTapa()
     {
-        if (coverInHand == false)
+        if (coverInHand == false && iceInHand == false && cucharaInHand == false)
         {
             coverInHand = true;
         }

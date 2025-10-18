@@ -73,12 +73,12 @@ public class CursorManager : MonoBehaviour
     {
         //tenia problemas de sincronizacion asi que he tenido que hacerlo asi, tiene en cuenta a variable antigua en lugar de la nueva, por que se comprueba aqui si es true antes de lo que
         //se pone en true en el otro script, se que es un poco chapuza pero funciona y yo soy artista no programadora :)
-        if (miniGameInput.cucharaInHand == true)
+        if (miniGameInput.cucharaInHand == true && miniGameInput.coverInHand == false && miniGameInput.iceInHand==false)
         {
             Cursor.SetCursor(cucharaCursorTexture, hotSpotCuchara, CursorMode.Auto);
         }
 
-        if (miniGameInput.cucharaInHand == false)
+        if (miniGameInput.cucharaInHand == false && miniGameInput.coverInHand == false && miniGameInput.iceInHand == false)
         {
             Cursor.SetCursor(defaultCursorTexture, hotSpotDefault, CursorMode.Auto);
         }
@@ -86,12 +86,12 @@ public class CursorManager : MonoBehaviour
 
     public void TakeHielo()
     { 
-        if(miniGameInput.iceInHand == true)
+        if(miniGameInput.iceInHand == true && miniGameInput.cucharaInHand == false && miniGameInput.coverInHand == false)
         {
             Cursor.SetCursor(hieloCucharaCursorTexture, hotSpotHieloCuchara, CursorMode.Auto);
         }
 
-        if (miniGameInput.iceInHand == false)
+        if (miniGameInput.iceInHand == false && miniGameInput.cucharaInHand == false && miniGameInput.coverInHand == false)
         {
             Cursor.SetCursor(defaultCursorTexture, hotSpotDefault, CursorMode.Auto);
         }
@@ -99,12 +99,12 @@ public class CursorManager : MonoBehaviour
 
     public void TakeCover()
     {
-        if (miniGameInput.coverInHand == true)
+        if (miniGameInput.coverInHand == true && miniGameInput.cucharaInHand == false && miniGameInput.iceInHand == false)
         {
             Cursor.SetCursor(tapaCursorTexture, hotSpotTapaCuchara, CursorMode.Auto);
         }
 
-        if (miniGameInput.coverInHand == false)
+        if (miniGameInput.coverInHand == false && miniGameInput.cucharaInHand == false && miniGameInput.iceInHand == false)
         {
             Cursor.SetCursor(defaultCursorTexture, hotSpotDefault, CursorMode.Auto);
         }

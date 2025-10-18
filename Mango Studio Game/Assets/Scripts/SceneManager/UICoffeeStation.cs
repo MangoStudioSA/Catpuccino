@@ -20,7 +20,7 @@ public class UICoffeeStation : MonoBehaviour
     public void SubmitOrderUI()
     {
 
-        if (gameManager != null && miniGameInput.coffeeServed == true && !miniGameInput.cucharaInHand)
+        if (gameManager != null && miniGameInput.coffeeServed == true && !miniGameInput.cucharaInHand && !miniGameInput.iceInHand && !miniGameInput.coverInHand)
         {
             gameManager.SubmitOrder();
             preparationPanel.SetActive(false);
