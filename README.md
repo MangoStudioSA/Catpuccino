@@ -224,7 +224,24 @@ El ambiente sonoro del juego busca recrear la calidez de una cafetería, transmi
 ## 8. Interfaz
 
 ### 8.1 Diseños básicos de los menús
-
+En cuanto al estilo artístico y principios generales de la interfaz, esta tendrá una estética cartoon siguiendo el estilo de toda la parte 2D del videojuego. A su vez la paleta de colores serán pasteles, algunos de ellos con textura marmolada aportándole interés y profundidad a la interfaz. En cuanto a los fonts de la interfaz se contaran con varios, siendo el principal uno efecto tiza para botones y demas, y otro estilo arial para los bocadillos de texto de los clientes. La interfaz permitira cambiar tanto el font de la interfaz por uno mas simple, con el objetivo de hacer una interfaz amigable para todos los usuarios, asi como el cambio del idioma de esta, teniendo como posibilidades: español, ingles y euskera.
+Las interfaces contarán con animaciones al clickear botones o interactuar con ellas con el objetivo de aportar dinamismo al juego a la vez que se le da vida a la propia interfaz.
+A continuación se muestran imágenes de la base para el diseño de cada una de las pantallas de la interfaz para conocer más en detalle cuales son los assets necesarios para el desarrollo de dicha interfaz, así como algunos de los botones que ya han sido diseñados para estas.
+![MainMenu]()
+![Opciones]()
+![Contacto]()
+![Ingame]()
+![Pausa]()
+![Pedido]()
+![Preparacion]()
+![PanelEntrega]()
+![FinDia]()
+![FinJuego]()
+![BotonJugar]()
+![botonMenuInicio]()
+![botonMenuInicio2]()
+![botonPausa]()
+![botonAjustes]()
 ### 8.2 Diagrama de flujo
 ![Diagrama de flujo](https://github.com/MangoStudioSA/Catpuccino/blob/64dfdf535d3d2620bf3c7a313a3b5422ea3f72de/PhotosGDD/Diagrama%20de%20flujo.png)
 
