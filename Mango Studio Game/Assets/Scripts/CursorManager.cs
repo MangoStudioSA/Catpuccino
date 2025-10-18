@@ -3,23 +3,23 @@ using UnityEngine.UI;
 
 public class CursorManager : MonoBehaviour
 {
-    public Texture2D defaultCursorTexture;
-    public Texture2D tazaCursorTexture;
-    public Texture2D filtroCursorTexture;
-    public Texture2D cucharaCursorTexture;
-    public Texture2D hieloCucharaCursorTexture;
-    public Texture2D tapaCursorTexture;
+    [SerializeField] Texture2D defaultCursorTexture;
+    [SerializeField] Texture2D tazaCursorTexture;
+    [SerializeField] Texture2D filtroCursorTexture;
+    [SerializeField] Texture2D cucharaCursorTexture;
+    [SerializeField] Texture2D hieloCucharaCursorTexture;
+    [SerializeField] Texture2D tapaCursorTexture;
 
 
-    public Vector2 hotSpotDefault = Vector2.zero; //el punto que hace click en si del cursor (ahora mismo arriba izquierda)
-    public Vector2 hotSpotTaza = Vector2.zero; //el punto que hace click en si del cursor (ahora mismo arriba izquierda)
-    public Vector2 hotSpotFiltro = Vector2.zero; //el punto que hace click en si del cursor (ahora mismo arriba izquierda)
-    public Vector2 hotSpotCuchara = Vector2.zero; //el punto que hace click en si del cursor (ahora mismo arriba izquierda)
-    public Vector2 hotSpotHieloCuchara = Vector2.zero; //el punto que hace click en si del cursor (ahora mismo arriba izquierda)
-    public Vector2 hotSpotTapaCuchara = Vector2.zero; //el punto que hace click en si del cursor (ahora mismo arriba izquierda)
+    [SerializeField] Vector2 hotSpotDefault = Vector2.zero; //el punto que hace click en si del cursor (ahora mismo arriba izquierda)
+    [SerializeField] Vector2 hotSpotTaza = Vector2.zero; //el punto que hace click en si del cursor (ahora mismo arriba izquierda)
+    [SerializeField] Vector2 hotSpotFiltro = Vector2.zero; //el punto que hace click en si del cursor (ahora mismo arriba izquierda)
+    [SerializeField] Vector2 hotSpotCuchara = Vector2.zero; //el punto que hace click en si del cursor (ahora mismo arriba izquierda)
+    [SerializeField] Vector2 hotSpotHieloCuchara = Vector2.zero; //el punto que hace click en si del cursor (ahora mismo arriba izquierda)
+    [SerializeField] Vector2 hotSpotTapaCuchara = Vector2.zero; //el punto que hace click en si del cursor (ahora mismo arriba izquierda)
 
 
-    public MinigameInput miniGameInput; //para poder usar tazaIsThere       
+    [SerializeField] MinigameInput miniGameInput; //para poder usar tazaIsThere       
 
 
     void Start()
