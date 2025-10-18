@@ -231,7 +231,7 @@ Las interfaces contarán con animaciones al clickear botones o interactuar con e
 A continuación se muestran imágenes de la base para el diseño de cada una de las pantallas de la interfaz para conocer más en detalle cuales son los assets necesarios para el desarrollo de dicha interfaz, así como algunos de los botones que ya han sido diseñados para estas.
 ![MainMenu](https://github.com/MangoStudioSA/Catpuccino/blob/64dfdf535d3d2620bf3c7a313a3b5422ea3f72de/PhotosGDD/MainMenu.png)
 ![Opciones](https://github.com/MangoStudioSA/Catpuccino/blob/64dfdf535d3d2620bf3c7a313a3b5422ea3f72de/PhotosGDD/Opciones.png)
-![Contacto](https://github.com/MangoStudioSA/Catpuccino/blob/64dfdf535d3d2620bf3c7a313a3b5422ea3f72de/PhotosGDD/Contacto.png)
+![Contacto]([https://github.com/MangoStudioSA/Catpuccino/blob/64dfdf535d3d2620bf3c7a313a3b5422ea3f72de/PhotosGDD/Contacto.png](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Contacto.png))
 ![Ingame](https://github.com/MangoStudioSA/Catpuccino/blob/64dfdf535d3d2620bf3c7a313a3b5422ea3f72de/PhotosGDD/Ingame.png)
 ![Pausa](https://github.com/MangoStudioSA/Catpuccino/blob/64dfdf535d3d2620bf3c7a313a3b5422ea3f72de/PhotosGDD/Pausa.png)
 ![Pedido](https://github.com/MangoStudioSA/Catpuccino/blob/64dfdf535d3d2620bf3c7a313a3b5422ea3f72de/PhotosGDD/Pedido.png)
