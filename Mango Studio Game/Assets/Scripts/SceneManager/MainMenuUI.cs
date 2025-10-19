@@ -50,6 +50,11 @@ public class MainMenu_UI : MonoBehaviour
         }
     }
 
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
+
     public void OnMouseEnterSound()
     {
         SoundsMaster.Instance.PlaySound_ClickMenu();
