@@ -92,7 +92,7 @@ Queremos incorporar un tipo de gacha, donde existen 2 tipos de sobres:
 A continuación se muestra la estimación general de fases del proyecto:
 
 - **Fase Alfa** → 2-3 semanas →  Desarrollo del prototipo del videojuego, creación de redes sociales y porfolio y selección de monetización para el videojuego.
-- **Fase Beta** → 1 mes y medio → Implementación de assets propios y corrección de bugs más importantes.
+- **Fase Beta** → 1 mes y medio → Implementación de assets propios, base del método de monetización, mecánicas finales y corrección de bugs más importantes.
 - **Fase Release** → 2 meses y medio → Versión final del videojuego.
 
 Dentro de la fase actual (la fase alfa), se han desglosado las tareas y asignado a cada una su tiempos estimado, junto a sus respectivos responsables:
