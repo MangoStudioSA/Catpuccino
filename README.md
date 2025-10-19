@@ -86,12 +86,18 @@ Queremos incorporar un tipo de gacha, donde existen 2 tipos de sobres:
 - **Pablo García García:** Programador de nivel y personajes. 
 - **Cristina González de Lope:** Programadora de nivel e interfaces.
 - **Ángela Sánchez Díaz:** Artista 2D y 3D de escenario y personajes.
-- **Laura de la Cruz Cañadas:** Artista 2D y 3D de escenario y personajes y encargada de la música/efectos sonoros.
+- **Laura de la Cruz Cañadas:** Encargada de la música/efectos sonoros.
 
 ### 3.2	Estimación temporal del desarrollo
-- **Fase Alpha** → 2-3 semanas →  Desarrollo del prototipo del videojuego, creación de redes sociales y porfolio y selección de monetización para el videojuego.
+A continuación se muestra la estimación general de fases del proyecto:
+
+- **Fase Alfa** → 2-3 semanas →  Desarrollo del prototipo del videojuego, creación de redes sociales y porfolio y selección de monetización para el videojuego.
 - **Fase Beta** → 1 mes y medio → Implementación de assets propios y corrección de bugs más importantes.
 - **Fase Release** → 2 meses y medio → Versión final del videojuego.
+
+Dentro de la fase actual (la fase alfa), se han desglosado las tareas y asignado a cada una su tiempos estimado, junto a sus respectivos responsables:
+![Planificacion 1](https://github.com/MangoStudioSA/Catpuccino/blob/82fc0a40d4c50cbf85aa2fe60698a56b9d4b9ede/PhotosGDD/Planificacion1.png)
+![Planificacion 2](https://github.com/MangoStudioSA/Catpuccino/blob/82fc0a40d4c50cbf85aa2fe60698a56b9d4b9ede/PhotosGDD/Planificacion2.png)
 
 
 ## 4. Mecánicas de Juego y Elementos de Juego
