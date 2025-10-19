@@ -103,6 +103,8 @@ Dentro de la fase actual (la fase alfa), se han desglosado las tareas y asignado
 
 ## 4. Tutorial, mecánicas elementos de Juego
 
+Los clientes entrarán a la cafetería y se podrán atender haciendo clic sobre el botón con tick verde que aparece sobre su cabeza.
+
 Tutorial minijuego inicial básico:
 
 - Se hace clic en la taza y se coloca en la cafetera haciendo clic.
@@ -116,7 +118,9 @@ A continuación, si el cliente ha solicitado azúcar, hielo o un pedido para lle
 - Se hace clic sobre la hielera y se clica sobre la taza tantas veces como número de hielos se hayan solicitado.
 - Se hace clic sobre la tapa y se clica sobre la taza.
 
-Por último, se hace clic en el botón "*Entregar pedido*".
+Por último, se hace clic en el botón "*Entregar pedido*". 
+
+Se  mostrará una reacción por parte del cliente en función de la puntuació obtenida del minijuego. Además, si el jugador ha obtenido entre 45 y 50 puntos, obtendrá una propina. Cuando acabe el día a las 20:00 se tendrán que pagar las facturas correspondientes y, si el jugador no tiene suficiente dinero, el juego finalizará. Por el contrario, si el jugador ha ingresado el dinero suficiente, podrá avanzar al siguiente día.
 
 
 ### 4.1	Descripción detallada del concepto de juego
