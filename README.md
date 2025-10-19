@@ -96,6 +96,7 @@ A continuación se muestra la estimación general de fases del proyecto:
 - **Fase Release** → 2 meses y medio → Versión final del videojuego.
 
 Dentro de la fase actual (la fase alfa), se han desglosado las tareas y asignado a cada una su tiempos estimado, junto a sus respectivos responsables:
+
 ![Planificacion 1](https://github.com/MangoStudioSA/Catpuccino/blob/82fc0a40d4c50cbf85aa2fe60698a56b9d4b9ede/PhotosGDD/Planificacion1.png)
 ![Planificacion 2](https://github.com/MangoStudioSA/Catpuccino/blob/82fc0a40d4c50cbf85aa2fe60698a56b9d4b9ede/PhotosGDD/Planificacion2.png)
 
@@ -212,6 +213,8 @@ Las referencias principales para el 2D son *Buena Pizza, Gran Pizza* y *Little C
 ![Arte final PJ Principal](https://github.com/MangoStudioSA/Catpuccino/blob/e921cc81d0e6f43bd58ed52fc449a0f76f782ea9/PhotosGDD/arteFinalPJPrincipal.png)
 
 ### 6.7 Props
+![Boceto minijuego](https://github.com/MangoStudioSA/Catpuccino/blob/d73edd6ff94114cca9a8751dac0d0536c4a05147/PhotosGDD/minijuegoBOCETO.png)
+![Props tazas](https://github.com/MangoStudioSA/Catpuccino/blob/d73edd6ff94114cca9a8751dac0d0536c4a05147/PhotosGDD/props.png)
 
 
 
