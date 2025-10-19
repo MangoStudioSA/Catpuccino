@@ -101,7 +101,23 @@ Dentro de la fase actual (la fase alfa), se han desglosado las tareas y asignado
 ![Planificacion 2](https://github.com/MangoStudioSA/Catpuccino/blob/82fc0a40d4c50cbf85aa2fe60698a56b9d4b9ede/PhotosGDD/Planificacion2.png)
 
 
-## 4. Mecánicas de Juego y Elementos de Juego
+## 4. Tutorial, mecánicas elementos de Juego
+
+Tutorial minijuego inicial básico:
+
+- Se hace clic en la taza y se coloca en la cafetera haciendo clic.
+- Se presiona sobre el botón "*Café*" hasta la cantidad indicada.
+- Se hace clic sobre el filtro y se coloca en la cafetera haciendo clic.
+- Se hace clic sobre el botón "*Echar*".
+
+A continuación, si el cliente ha solicitado azúcar, hielo o un pedido para llevar se tendrá que realizar lo siguiente:
+
+- Se hace clic sobre la azucarera y se clica sobre la taza tantas veces como cucharadas de azúcar se hayan solicitado.
+- Se hace clic sobre la hielera y se clica sobre la taza tantas veces como número de hielos se hayan solicitado.
+- Se hace clic sobre la tapa y se clica sobre la taza.
+
+Por último, se hace clic en el botón "*Entregar pedido*".
+
 
 ### 4.1	Descripción detallada del concepto de juego
 En Catpuccino, el jugador se encargará de trabajar en una cafetería de gatos. Para esto, es necesario atender a los clientes, preparar su pedido y entregárselo en el menor tiempo posible. 
