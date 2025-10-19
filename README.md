@@ -98,7 +98,7 @@ A continuación se muestra la estimación general de fases del proyecto:
 Dentro de la fase actual (la fase alfa), se han desglosado las tareas y asignado a cada una su tiempos estimado, junto a sus respectivos responsables:
 
 ![Planificacion 1](https://github.com/MangoStudioSA/Catpuccino/blob/82fc0a40d4c50cbf85aa2fe60698a56b9d4b9ede/PhotosGDD/Planificacion1.png)
-![Planificacion 2](https://github.com/MangoStudioSA/Catpuccino/blob/82fc0a40d4c50cbf85aa2fe60698a56b9d4b9ede/PhotosGDD/Planificacion2.png)
+![Planificacion 2](https://github.com/MangoStudioSA/Catpuccino/blob/18780670bb9e7ab196550aeb57017209ed34464c/PhotosGDD/Planificacion2.png)
 
 
 ## 4. Tutorial, mecánicas elementos de Juego
