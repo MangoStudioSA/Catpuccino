@@ -8,6 +8,7 @@ public class TimeManager : MonoBehaviour
     public static TimeManager Instance { get; private set; }
 
     [Header("UI")]
+    [SerializeField] private TextMeshProUGUI currentDayText;
     [SerializeField] private TextMeshProUGUI timeText;
     [SerializeField] private TextMeshProUGUI requiredText;
     [SerializeField] private TextMeshProUGUI earnedText;
@@ -25,7 +26,7 @@ public class TimeManager : MonoBehaviour
 
 
     private float currentTimeInSeconds;
-    private int currentDay = 0;
+    public int currentDay = 0;
 
     public bool IsOpen { get; private set; }
     private bool isDayEnding = false; // Flag para evitar que la corrutina se lance múltiples veces
@@ -97,6 +98,7 @@ public class TimeManager : MonoBehaviour
             gameUIManager.ShowGamePanel();
         }
 
+        currentDayText.text = $"Día {currentDay:F0}"; // Se muestra el dia actual
         Debug.Log($"--- DÍA {currentDay} --- \nLa cafetería ha abierto.");
     }
 
@@ -134,7 +136,7 @@ public class TimeManager : MonoBehaviour
         {
             int hours = Mathf.FloorToInt(GetCurrentHour());
             int minutes = Mathf.FloorToInt(GetCurrentMinute());
-            timeText.text = $"{hours:D2}:{minutes:D2}";
+            timeText.text = $"{hours:D2}:{minutes:D2}h";
         }
     }
 
