@@ -5,6 +5,8 @@ public class CustomerOrder : MonoBehaviour
 {
     public TextMeshProUGUI orderTxt;
     public TextMeshProUGUI playerPreparationTxt;
+    public CoffeeUnlockerManager unlockManager;
+    public TimeManager timeManager;
     public Order currentOrder;
 
     public void Start()
@@ -13,14 +15,16 @@ public class CustomerOrder : MonoBehaviour
     }
     public void GenRandomOrder()
     {
-        CoffeeType coffeeType = (CoffeeType)Random.Range(0, System.Enum.GetValues(typeof(CoffeeType)).Length); // Se genera el tipo de cafe entre los disponibles
-        SugarAmount sugar = (SugarAmount)Random.Range(0, 3); // Se genera una cantidad de azucar al azar entre los 4 tipos
-        IceAmount ice = (IceAmount)Random.Range(0, 3); // Se genera una cantidad de hielo al azar entre los 4 tipos
-        OrderType type = (OrderType)Random.Range(0, 1); // Se genera un tipo de pedido entre los 2 tipos
+        int day = timeManager.currentDay;
+        //CoffeeType coffeeType = (CoffeeType)Random.Range(0, System.Enum.GetValues(typeof(CoffeeType)).Length); // Se genera el tipo de cafe entre los disponibles
+        CoffeeType coffeeType = unlockManager.GetRandomAvailableCoffee(day); // Se genera el tipo de cafe entre los disponibles
+        SugarAmount sugar = (SugarAmount)Random.Range(0, 3); // Se genera una cantidad de azucar al azar entre los 3 tipos
+        IceAmount ice = (IceAmount)Random.Range(0, 2); // Se genera una cantidad de hielo al azar entre los 2 tipos
+        OrderType type = (OrderType)Random.Range(0, 2); // Se genera un tipo de pedido entre los 2 tipos
 
         currentOrder = new Order(coffeeType, sugar, ice, type); // Se genera el nuevo pedido con las cantidades generadas
 
-        if(orderTxt != null)
+        if (orderTxt != null)
         {
             string sugarTxt;
             string iceTxt;

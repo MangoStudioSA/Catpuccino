@@ -34,7 +34,6 @@ public class Order
     public int waterPrecision;
 
 
-
     public Order(CoffeeType coffeeType, SugarAmount sugar, IceAmount ice, OrderType type) // Constructor de los pedidos 
     {
         this.coffeeType= coffeeType;
@@ -133,7 +132,7 @@ public class Order
 
 }
 
-public enum CoffeeType { espresso, americano } // Se crean los tipos de cafe
+public enum CoffeeType { espresso, americano, macchiatto, latte, capuccino, bombón, vienés, frappé, mocca, irish } // Se crean los tipos de cafe
 public enum CoffeeAmount { corto, medio, largo } // Se crean 3 cantidades para los cafes
 public enum WaterAmount { no, si } // Se crean 2 cantidades para el agua
 public enum SugarAmount { nada, poco, mucho } // Se crean 4 cantidades para el azucar
