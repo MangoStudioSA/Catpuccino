@@ -28,10 +28,10 @@ public class CustomerOrder : MonoBehaviour
             // Azúcar
             switch(sugar)
             {
-                case SugarAmount.ninguna:
+                case SugarAmount.nada:
                     sugarTxt = "sin azúcar";
                     break;
-                case SugarAmount.una:
+                case SugarAmount.poco:
                     sugarTxt = "con poco azúcar";
                     break;
                 default:
@@ -42,11 +42,11 @@ public class CustomerOrder : MonoBehaviour
             // Hielo
             switch (ice)
             {
-                case IceAmount.ningun:
+                case IceAmount.no:
                     iceTxt = "sin hielo";
                     break;
                 default:
-                    iceTxt = "con poco hielo";
+                    iceTxt = "con hielo";
                     break;
             }
 

@@ -7,7 +7,8 @@ public class OrderEvaluation : MonoBehaviour
     private const int MAX_SCORE_COFFEE = 25;
     private const int MAX_SCORE_SUGAR = 5;
     private const int MAX_SCORE_ICE = 5;
-    private const int MAX_SCORE_COVER = 15; // Puntuacion tipo de pedido
+    private const int MAX_SCORE_COVER = 5; // Puntuacion tipo de pedido
+    private const int MAX_SCORE_WATER = 10;
     private const float MAX_ERROR = 2.0F;
     public int Evaluate(Order npcOrder, Order playerOrder)
     {
@@ -17,6 +18,10 @@ public class OrderEvaluation : MonoBehaviour
         //evalua la precision y redondea la puntiacion a un entero
         float coffeeScore = EvaluateCoffePrecision(npcOrder, playerOrder);
         totalScore += Mathf.RoundToInt(coffeeScore);
+
+        //EVALUACION DEL AGUA (CANTIDAD EXACTA)
+        int waterScore = EvaluateWaterPrecision(npcOrder, playerOrder);
+        totalScore += waterScore;
 
         //EVALUACION DEL AZUCAR (CANTIDAD EXACTA)
         int sugarScore = EvaluateSugarPrecision(npcOrder, playerOrder);
@@ -34,6 +39,7 @@ public class OrderEvaluation : MonoBehaviour
         // Debug del puntaje TOTAL
         Debug.Log($"--- RESULTADO FINAL DE LA ORDEN ---");
         Debug.Log($"Puntuación del Café (Precisión): {Mathf.RoundToInt(coffeeScore)}/{MAX_SCORE_COFFEE} pts");
+        Debug.Log($"Puntuación del Agua: {waterScore}/{MAX_SCORE_WATER} pts");
         Debug.Log($"Puntuación del Azúcar: {sugarScore}/{MAX_SCORE_SUGAR} pts");
         Debug.Log($"Puntuación del Hielo: {iceScore}/{MAX_SCORE_ICE} pts");
         Debug.Log($"Puntuación del Tipo de pedido: {typeScore}/{MAX_SCORE_COVER} pts");
@@ -48,15 +54,15 @@ public class OrderEvaluation : MonoBehaviour
     public float EvaluateCoffePrecision (Order npcOrder, Order playerOrder)
     {
         //el objetivo es el valor ideal (1.0, 2.0, 3.0)
-        float target = npcOrder.coffeeTarget;
+        float coffeeTarget = npcOrder.coffeeTarget;
 
         //la precision es donde para el player
         float playerStop = playerOrder.coffeePrecision;
         
         //calculamos el error abs, distancia ente target y playerStop
-        float error = Mathf.Abs(playerStop - target);
+        float error = Mathf.Abs(playerStop - coffeeTarget);
 
-        Debug.Log($"[Evaluación Café] Objetivo: {target:F2} | Jugador: {playerStop:F2} | Error Absoluto: {error:F2}");
+        Debug.Log($"[Evaluación Café] Objetivo: {coffeeTarget:F2} | Jugador: {playerStop:F2} | Error Absoluto: {error:F2}");
 
         //normalizamos el error de 0 a 1
         float normalizedError = Mathf.Clamp(error / MAX_ERROR, 0f, 1f);
@@ -69,9 +75,32 @@ public class OrderEvaluation : MonoBehaviour
 
     }
 
+    public int EvaluateWaterPrecision(Order npcOrder, Order playerOrder)
+    {
+        // El objetivo es el valor exacto (0-sin o 1-con)
+        float waterTarget = npcOrder.waterTarget;
+        // La precision es la cantidad de agua que ha echado el jugador
+        float playerWater = playerOrder.waterPrecision;
+
+        int waterScore = 0;
+        if (playerWater == waterTarget) // Si el jugador ha echado la cantidad de agua que se pedia suma 10 puntos
+        {
+            waterScore = MAX_SCORE_WATER;
+        }
+        else
+        {
+            waterScore = 0; // En cualquier otro caso la puntuacion sera 0 
+        }
+
+        Debug.Log($"[Evaluación Agua] Objetivo: {waterTarget} | Jugador: {playerWater}");
+
+        return waterScore; // Se devuelve la puntuacion total del agua
+
+    }
+
     public int EvaluateSugarPrecision(Order npcOrder, Order playerOrder)
     {
-        // El objetivo es el valor exacto de cucharadas de azucar (0, 1, 2 o 3)
+        // El objetivo es el valor exacto de cucharadas de azucar (0, 1, 2)
         float Starget = npcOrder.sugarTarget;
         // La precision es el numero de cucharadas que ha echado el player
         float playerSpoons = playerOrder.sugarPrecision;
@@ -94,7 +123,7 @@ public class OrderEvaluation : MonoBehaviour
 
     public int EvaluateIcePrecision(Order npcOrder, Order playerOrder)
     {
-        // El objetivo es el valor exacto de cubitos de hielo (0, 1 o 2)
+        // El objetivo es el valor exacto de cubitos de hielo (0 o 1)
         float Itarget = npcOrder.iceTarget;
         // La precision es el numero de hielos que ha echado el player
         float playerIceSpoons = playerOrder.icePrecision;
@@ -123,7 +152,7 @@ public class OrderEvaluation : MonoBehaviour
         float playerType = playerOrder.typePrecision;
 
         int typeScore = 0;
-        if (playerType == Typetarget) // Si el jugador ha colocado la tapa para llevar suma 10 puntos
+        if (playerType == Typetarget) // Si el jugador ha preparado el tipo de pedido que se pedia suma 5 puntos
         {
             typeScore = MAX_SCORE_COVER;
         }

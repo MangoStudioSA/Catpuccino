@@ -4,7 +4,6 @@ using UnityEngine;
 public class Order
 {
     public CoffeeType coffeeType; 
-    //public CoffeeAmount coffeeAm;
     public SugarAmount sugarAm;
     public IceAmount iceAm;
     public OrderType orderType;
@@ -29,6 +28,11 @@ public class Order
     // guarda el valor del si el jugador ha colocado o no la tapa (0-tomar o 1-llevar)
     public int typePrecision;
 
+    // valor exacto de agua que el jugador debe echar (0-nada, 1-bastante)
+    public int waterTarget;
+    // guarda el valor del agua echada por el jugador (0 a 1)
+    public int waterPrecision;
+
 
 
     public Order(CoffeeType coffeeType, SugarAmount sugar, IceAmount ice, OrderType type) // Constructor de los pedidos 
@@ -40,7 +44,11 @@ public class Order
 
         //inicializamos la precision del cafe a 0
         this.coffeePrecision = 0f;
-        this.coffeeTarget = GetTargetFromAmount(coffeeType);
+        this.coffeeTarget = GetCoffeeTargetFromAmount(coffeeType);
+
+        //inicializamos la precision del agua a 0
+        this.waterPrecision = 0;
+        this.waterTarget = GetWaterTargetFromAmount(coffeeType);
 
         //inicializamos la precision del azucar a 0
         this.sugarPrecision = 0;
@@ -50,13 +58,13 @@ public class Order
         this.icePrecision = 0;
         this.iceTarget = GetIceTargetFromAmount(ice);
 
-        //inicializamos la precision del hielo a 0
+        //inicializamos la precision del tipo de pedido a 0
         this.typePrecision = 0;
         this.typeTarget = GetOrderTypeTargetFromAmount(type);
     }
 
     // Funciones utilizadas para declarar las cantidades requeridas en formato float o int
-    private float GetTargetFromAmount(CoffeeType coffeetype)
+    private float GetCoffeeTargetFromAmount(CoffeeType coffeetype)
     {
         switch (coffeetype)
         {
@@ -69,18 +77,29 @@ public class Order
         }
     }
 
+    private int GetWaterTargetFromAmount(CoffeeType coffeetype)
+    {
+        switch (coffeetype)
+        {
+            case CoffeeType.espresso:
+                return 0;
+            case CoffeeType.americano:
+                return 1;
+            default:
+                return 2; //por si algo falla
+        }
+    }
+
     private int GetSugarTargetFromAmount(SugarAmount Samount)
     {
         switch (Samount)
         {
-            case SugarAmount.ninguna:
+            case SugarAmount.nada:
                 return 0;
-            case SugarAmount.una:
+            case SugarAmount.poco:
                 return 1;
-            case SugarAmount.dos:
+            case SugarAmount.mucho:
                 return 2;
-            case SugarAmount.tres:
-                return 3;
             default:
                 return 2; //por si algo falla
         }
@@ -90,9 +109,9 @@ public class Order
     {
         switch (Iamount)
         {
-            case IceAmount.ningun:
+            case IceAmount.no:
                 return 0;
-            case IceAmount.un:
+            case IceAmount.si:
                 return 1;
             default:
                 return 2; //por si algo falla
@@ -116,6 +135,7 @@ public class Order
 
 public enum CoffeeType { espresso, americano } // Se crean los tipos de cafe
 public enum CoffeeAmount { corto, medio, largo } // Se crean 3 cantidades para los cafes
-public enum SugarAmount { ninguna, una, dos, tres } // Se crean 4 cantidades para el azucar
-public enum IceAmount { ningun, un, dos, tres } // Se crean 3 cantidades para los hielos
+public enum WaterAmount { no, si } // Se crean 2 cantidades para el agua
+public enum SugarAmount { nada, poco, mucho } // Se crean 4 cantidades para el azucar
+public enum IceAmount { no, si } // Se crean 3 cantidades para los hielos
 public enum OrderType { tomar, llevar } // Se crean 2 tipos de pedidos 

@@ -15,6 +15,7 @@ public class MinigameInput : MonoBehaviour
     [SerializeField] Button sugarButton;
     [SerializeField] Button iceButton;
     [SerializeField] Button coverButton;
+    [SerializeField] Button waterButton;
 
 
     [SerializeField] float slideSpeed = 0.8f;
@@ -28,11 +29,13 @@ public class MinigameInput : MonoBehaviour
     int countSugar = 0;
     int countIce = 0;
     int countCover = 0;
+    int countWater = 0;
 
     public bool cucharaInHand = false;
     public bool tazaInHand = false;
     public bool iceInHand = false;
     public bool coverInHand = false;
+    public bool waterInHand = false;
 
     public bool tazaIsThere = false;
     bool filtroIsInCafetera = false;
@@ -57,6 +60,7 @@ public class MinigameInput : MonoBehaviour
         countSugar = 0;
         countIce = 0;
         countCover = 0;
+        countWater = 0;
 
         Taza.SetActive(false);
         //Filtro.SetActive(false);
@@ -69,6 +73,7 @@ public class MinigameInput : MonoBehaviour
         sugarButton.interactable = false;
         iceButton.interactable = false;
         coverButton.interactable= false;
+        waterButton.interactable = false;
 
         tazaIsThere = false;
         filtroIsInCafetera = false;
@@ -174,12 +179,13 @@ public class MinigameInput : MonoBehaviour
             Taza.SetActive(true);
             tazaIsThere = true;
             tazaInHand = false;
+            waterButton.interactable = true;
         }
         if (filtroIsInCafetera == true && coffeeServed == false)
         {
             echarCafeButton.interactable = true;
         }
- 
+
     }
 
     public void TakeFiltro()
@@ -216,6 +222,75 @@ public class MinigameInput : MonoBehaviour
             sugarButton.interactable = true;
             iceButton.interactable = true;
             coverButton.interactable = true;
+            waterButton.interactable = false;
+        }
+    }
+
+    public void CogerAgua()
+    {
+        if ((coverInHand == false && cucharaInHand == false && iceInHand == false && waterInHand == false))
+        {
+            waterInHand = true;
+            Debug.Log("tengo el agua");
+        }
+        else if (waterInHand == true)
+        {
+            waterInHand = false;
+            Debug.Log("no tengo el agua");
+        }
+    }
+
+    public void CogerAzucar()
+    {
+        if ((coverInHand == false && cucharaInHand == false && iceInHand == false && waterInHand == false))
+        {
+            cucharaInHand = true;
+            Debug.Log("tengo el azucar");
+        }
+        else if (cucharaInHand == true)
+        {
+            cucharaInHand = false;
+            Debug.Log("no tengo el azucar");
+        }
+    }
+
+    public void CogerHielo()
+    {
+        if ((coverInHand == false && iceInHand == false && cucharaInHand == false && waterInHand == false))
+        {
+            iceInHand = true;
+            Debug.Log("tengo el hielo");
+        }
+        else if (iceInHand == true)
+        {
+            iceInHand = false;
+            Debug.Log("no tengo el hielo");
+        }
+    }
+
+    public void CogerTapa()
+    {
+        if (coverInHand == false && iceInHand == false && cucharaInHand == false && waterInHand == false)
+        {
+            coverInHand = true;
+            Debug.Log("tengo la tapa");
+        }
+        else if (coverInHand == true)
+        {
+            coverInHand = false;
+            Debug.Log("no tengo la tapa");
+        }
+    }
+    public void EcharAgua()
+    {
+        if (waterInHand == true && coffeeServed == false)
+        {
+            if (countWater <= 1)
+            {
+                countWater += 1;
+                order.currentOrder.waterPrecision = countWater;
+                Debug.Log("Has echado agua.");
+            }
         }
     }
 
@@ -237,11 +312,11 @@ public class MinigameInput : MonoBehaviour
         //Si se tiene la cuchara de hielo en la mano y el cafe esta servido entonces se puede echar el hielo
         if (iceInHand == true && coffeeServed == true) 
         {
-            if (countIce <= 2)
+            if (countIce <= 1)
             {
                 countIce += 1; //Se incrementa el contador de hielo
                 order.currentOrder.icePrecision = countIce;
-                Debug.Log("Cantidad de hielo: " + countIce);
+                Debug.Log("Has echado hielo.");
             }
         }
     }
@@ -260,43 +335,7 @@ public class MinigameInput : MonoBehaviour
         }
     }
 
-    public void CogerAzucar()
-    {
-        if ((coverInHand == false && cucharaInHand == false && iceInHand==false))
-        { 
-            cucharaInHand = true;
-            Debug.Log("tengo azucar");
-        }
-        else if (cucharaInHand == true)
-        {
-            cucharaInHand = false;
-            Debug.Log("no tengo azucar");
-        }
-    }
-
-    public void CogerHielo()
-    {
-        if ((coverInHand == false && iceInHand == false && cucharaInHand == false))
-        {
-            iceInHand = true;
-        }
-        else if (iceInHand == true)
-        {
-            iceInHand = false;
-        }
-    }
-
-    public void CogerTapa()
-    {
-        if (coverInHand == false && iceInHand == false && cucharaInHand == false)
-        {
-            coverInHand = true;
-        }
-        else if (coverInHand == true)
-        {
-            coverInHand = false;
-        }
-    }
+   
 
     public void BotonDownMachine()
     {
