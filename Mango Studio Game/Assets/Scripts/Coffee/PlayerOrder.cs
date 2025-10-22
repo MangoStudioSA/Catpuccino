@@ -6,6 +6,6 @@ public class PlayerOrder : MonoBehaviour
 
     public void NewOrder(Order npcOrder)
     {
-        currentOrder = new Order(npcOrder.coffeeAm, npcOrder.sugarAm, npcOrder.iceAm, npcOrder.orderType);
+        currentOrder = new Order(npcOrder.coffeeType, npcOrder.sugarAm, npcOrder.iceAm, npcOrder.orderType);
     }
 }
