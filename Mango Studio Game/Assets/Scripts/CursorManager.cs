@@ -43,22 +43,31 @@ public class CursorManager : MonoBehaviour
         }
     }
 
-    public void TakeTaza()
+    public void TakeTazaFromShelf()
     {
-        if (miniGameInput.tazaInHand == true)
+        if (!miniGameInput.tazaInHand && !miniGameInput.tazaIsThere)
+        {
+            miniGameInput.tazaInHand = true;
+            Cursor.SetCursor(tazaCursorTexture, hotSpotTaza, CursorMode.Auto);
+        }
+    }
+
+    public void UpdateCursorTaza()
+    {
+        if (miniGameInput.waterInHand || miniGameInput.cucharaInHand || miniGameInput.iceInHand || miniGameInput.coverInHand || miniGameInput.milkInHand)
+            return;
+        if (miniGameInput.tazaInHand)
         {
             Cursor.SetCursor(defaultCursorTexture, hotSpotDefault, CursorMode.Auto);
-            miniGameInput.tazaInHand = false;
         }
-        else if (miniGameInput.tazaIsThere == false && miniGameInput.tazaInHand == false)
+        else
         {
             Cursor.SetCursor(tazaCursorTexture, hotSpotTaza, CursorMode.Auto);
-            miniGameInput.tazaInHand = true;
         }
     }
     public void PutTaza()
     {
-        if (miniGameInput.tazaIsThere == false)
+        if (!miniGameInput.tazaIsThere)
         {
             Cursor.SetCursor(defaultCursorTexture, hotSpotDefault, CursorMode.Auto);
         }
@@ -76,7 +85,7 @@ public class CursorManager : MonoBehaviour
     {
         //tenia problemas de sincronizacion asi que he tenido que hacerlo asi, tiene en cuenta a variable antigua en lugar de la nueva, por que se comprueba aqui si es true antes de lo que
         //se pone en true en el otro script, se que es un poco chapuza pero funciona y yo soy artista no programadora :)
-        if (miniGameInput.cucharaInHand == true && miniGameInput.coverInHand == false && miniGameInput.iceInHand==false && miniGameInput.waterInHand == false && miniGameInput.milkInHand == false)
+        if (miniGameInput.cucharaInHand && !miniGameInput.coverInHand && !miniGameInput.iceInHand && !miniGameInput.waterInHand && !miniGameInput.milkInHand)
         {
             Cursor.SetCursor(cucharaCursorTexture, hotSpotCuchara, CursorMode.Auto);
         }

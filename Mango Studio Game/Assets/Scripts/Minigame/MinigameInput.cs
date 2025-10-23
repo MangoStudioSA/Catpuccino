@@ -4,16 +4,6 @@ using UnityEngine.UI;
 public class MinigameInput : MonoBehaviour
 {
     #region Variables
-    /*[SerializeField] Button coffeeButton;
-    [SerializeField] Button molerButton;
-    [SerializeField] Button filtroButton;
-    [SerializeField] Button filtroCafeteraButton;
-    [SerializeField] Button echarCafeButton;
-    [SerializeField] Button submitOrderButton;
-    [SerializeField] Button sugarButton;
-    [SerializeField] Button iceButton;
-    [SerializeField] Button coverButton;
-    [SerializeField] Button waterButton;*/
 
     [SerializeField] GameObject coffeBar; //panel que contiene la barra
     [SerializeField] ButtonUnlockManager buttonManager;
@@ -69,15 +59,6 @@ public class MinigameInput : MonoBehaviour
         //Filtro.SetActive(false);
         //FiltroCafetera.SetActive(false);
 
-        /*filtroButton.interactable = false;
-        filtroCafeteraButton.interactable = false;
-        echarCafeButton.interactable = false;
-        submitOrderButton.interactable = false;
-        sugarButton.interactable = false;
-        iceButton.interactable = false;
-        coverButton.interactable= false;
-        waterButton.interactable = false;*/
-
         tazaIsThere = false;
         filtroIsInCafetera = false;
 
@@ -87,15 +68,6 @@ public class MinigameInput : MonoBehaviour
             coffeeSlider.maxValue = maxAmount;
             coffeeSlider.value = 0f;
         }
-
-        /*if(coffeeButton != null)
-        {
-            coffeeButton.interactable = true;
-        }
-        if (molerButton != null)
-        {
-            molerButton.interactable = false;
-        }*/
 
         buttonManager.EnableButton(buttonManager.coffeeButton);
         buttonManager.DisableButton(buttonManager.molerButton);
@@ -142,15 +114,6 @@ public class MinigameInput : MonoBehaviour
             isSliding = false;
             coffeeDone = true;
 
-            /*if(coffeeButton != null)
-            {
-                coffeeButton.interactable = false;
-            }
-
-            if(molerButton != null)
-            {
-                molerButton.interactable = true;
-            }*/
             buttonManager.DisableButton(buttonManager.coffeeButton);
             buttonManager.EnableButton(buttonManager.molerButton);
 
@@ -174,45 +137,65 @@ public class MinigameInput : MonoBehaviour
         buttonManager.DisableButton(buttonManager.molerButton);
         buttonManager.EnableButton(buttonManager.filtroButton);
         molerDone = true;
-
-        /*if (molerButton != null && molerButton.interactable)
-        {
-            Debug.Log("Preparacion: Moliendo cafe");
-
-            molerButton.interactable = false;
-            filtroButton.interactable = true;
-            //Filtro.SetActive(true);
-            molerDone = true;
-        }*/
     }
 
-    public void PutTaza()
+    public void TakeOrPutTaza()
     {
-        if (tazaIsThere == false && tazaInHand)
+        if (waterInHand || cucharaInHand || iceInHand || coverInHand || milkInHand)
+            return;
+
+        if (!tazaIsThere && tazaInHand)
+        {
+            // Poner en la cafetera
+            Taza.SetActive(true);
+            tazaInHand = false;
+            tazaIsThere = true;
+
+            buttonManager.EnableButton(buttonManager.waterButton);
+            buttonManager.EnableButton(buttonManager.milkButton);
+        }
+        else if (tazaIsThere && !tazaInHand)
+        {
+            //Recoger de la cafetera
+            Taza.SetActive(false);
+            tazaInHand = true;
+            tazaIsThere = false;
+        }
+        if (filtroIsInCafetera == true && coffeeServed == false)
+        {
+            buttonManager.EnableButton(buttonManager.echarCafeButton);
+        }
+    }
+    /*public void PutTaza()
+    {
+        if (!tazaIsThere && tazaInHand)
         {
             Taza.SetActive(true);
             tazaIsThere = true;
             tazaInHand = false;
-            //waterButton.interactable = true;
+
             buttonManager.EnableButton(buttonManager.waterButton);
             buttonManager.EnableButton(buttonManager.milkButton);
         }
+        else if (tazaIsThere && !tazaInHand)
+        {
+            Taza.SetActive(false);
+            tazaIsThere = false;
+            tazaInHand = true;
+        }
         if (filtroIsInCafetera == true && coffeeServed == false)
         {
-            //echarCafeButton.interactable = true;
             buttonManager.EnableButton(buttonManager.echarCafeButton);
         }
-
-    }
+    }*/
 
     public void TakeFiltro()
     {
         if (filtroIsInCafetera == false)
         {
         ////Filtro.SetActive(false);
-        //filtroButton.interactable = false;
+
         buttonManager.DisableButton(buttonManager.filtroButton);
-        //filtroCafeteraButton.interactable = true;
         buttonManager.EnableButton(buttonManager.filtroCafeteraButton);
 
         }
@@ -227,7 +210,6 @@ public class MinigameInput : MonoBehaviour
         //FiltroCafetera.SetActive(true);
         if (tazaIsThere == true && coffeeServed == false)
         {
-            //echarCafeButton.interactable = true;
             buttonManager.EnableButton(buttonManager.echarCafeButton);
         }
     }
@@ -245,13 +227,6 @@ public class MinigameInput : MonoBehaviour
             buttonManager.EnableButton(buttonManager.coverButton);
             buttonManager.DisableButton(buttonManager.waterButton);
             buttonManager.DisableButton(buttonManager.milkButton);
-
-            /*echarCafeButton.interactable = false;
-            submitOrderButton.interactable = true;
-            sugarButton.interactable = true;
-            iceButton.interactable = true;
-            coverButton.interactable = true;
-            waterButton.interactable = false;*/
         }
     }
     #endregion
