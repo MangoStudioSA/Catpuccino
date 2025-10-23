@@ -35,12 +35,18 @@ public class TimeManager : MonoBehaviour
     private CustomerManager customerManager;
     private GameManager gameManager;
     private SceneUIManager sceneUIManager;
+    private ButtonUnlockManager buttonUnlockManager;
 
     private int required = 0;
 
     void Awake()
     {
         if (Instance != null) { Destroy(gameObject); } else { Instance = this; }
+        buttonUnlockManager = FindObjectOfType<ButtonUnlockManager>();
+        if (buttonUnlockManager == null)
+        {
+            Debug.LogError("No se encontro buttonunlockmanager en la escena");
+        }
     }
 
     void Start()
@@ -90,6 +96,10 @@ public class TimeManager : MonoBehaviour
 
         gameManager.monedas -= required;
         HUDManager.Instance.UpdateMonedas(gameManager.monedas);
+
+        GameProgressManager.Instance.UpdateMechanicsForDay(currentDay);
+        buttonUnlockManager.RefreshButtons();
+
 
         required = requiredBase + (currentDay - 1) * requiredIncrement + (int)Random.Range(-50, 50);
 

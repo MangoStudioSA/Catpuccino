@@ -3,10 +3,8 @@ using UnityEngine.UI;
 
 public class MinigameInput : MonoBehaviour
 {
-    [SerializeField] GameObject coffeBar; //panel que contiene la barra
-    [SerializeField] UnityEngine.UI.Slider coffeeSlider; //la barrita que se mueve
-
-    [SerializeField] Button coffeeButton;
+    #region Variables
+    /*[SerializeField] Button coffeeButton;
     [SerializeField] Button molerButton;
     [SerializeField] Button filtroButton;
     [SerializeField] Button filtroCafeteraButton;
@@ -15,8 +13,11 @@ public class MinigameInput : MonoBehaviour
     [SerializeField] Button sugarButton;
     [SerializeField] Button iceButton;
     [SerializeField] Button coverButton;
-    [SerializeField] Button waterButton;
+    [SerializeField] Button waterButton;*/
 
+    [SerializeField] GameObject coffeBar; //panel que contiene la barra
+    [SerializeField] ButtonUnlockManager buttonManager;
+    [SerializeField] UnityEngine.UI.Slider coffeeSlider; //la barrita que se mueve
 
     [SerializeField] float slideSpeed = 0.8f;
     [SerializeField] float maxAmount = 4.0f;
@@ -30,23 +31,24 @@ public class MinigameInput : MonoBehaviour
     int countIce = 0;
     int countCover = 0;
     int countWater = 0;
+    int countMilk = 0;
 
     public bool cucharaInHand = false;
     public bool tazaInHand = false;
     public bool iceInHand = false;
     public bool coverInHand = false;
     public bool waterInHand = false;
+    public bool milkInHand = false;
 
     public bool tazaIsThere = false;
     bool filtroIsInCafetera = false;
     public bool coffeeServed = false;
 
-
+    PlayerOrder order;
     public GameObject Taza;
     //public GameObject Filtro;
     //public GameObject FiltroCafetera;
-
-    PlayerOrder order;
+    #endregion
 
     public void Start()
     {
@@ -61,19 +63,20 @@ public class MinigameInput : MonoBehaviour
         countIce = 0;
         countCover = 0;
         countWater = 0;
+        countMilk = 0;
 
         Taza.SetActive(false);
         //Filtro.SetActive(false);
         //FiltroCafetera.SetActive(false);
 
-        filtroButton.interactable = false;
+        /*filtroButton.interactable = false;
         filtroCafeteraButton.interactable = false;
         echarCafeButton.interactable = false;
         submitOrderButton.interactable = false;
         sugarButton.interactable = false;
         iceButton.interactable = false;
         coverButton.interactable= false;
-        waterButton.interactable = false;
+        waterButton.interactable = false;*/
 
         tazaIsThere = false;
         filtroIsInCafetera = false;
@@ -85,14 +88,17 @@ public class MinigameInput : MonoBehaviour
             coffeeSlider.value = 0f;
         }
 
-        if(coffeeButton != null)
+        /*if(coffeeButton != null)
         {
             coffeeButton.interactable = true;
         }
         if (molerButton != null)
         {
             molerButton.interactable = false;
-        }
+        }*/
+
+        buttonManager.EnableButton(buttonManager.coffeeButton);
+        buttonManager.DisableButton(buttonManager.molerButton);
     }
 
     public void Update()
@@ -115,7 +121,7 @@ public class MinigameInput : MonoBehaviour
         }
     }
 
-    
+    #region Mecanicas minijuego
     public void StartCoffee()
     {
         if  (!isSliding && !coffeeDone)
@@ -136,7 +142,7 @@ public class MinigameInput : MonoBehaviour
             isSliding = false;
             coffeeDone = true;
 
-            if(coffeeButton != null)
+            /*if(coffeeButton != null)
             {
                 coffeeButton.interactable = false;
             }
@@ -144,7 +150,10 @@ public class MinigameInput : MonoBehaviour
             if(molerButton != null)
             {
                 molerButton.interactable = true;
-            }
+            }*/
+            buttonManager.DisableButton(buttonManager.coffeeButton);
+            buttonManager.EnableButton(buttonManager.molerButton);
+
 
             // guarda la pos del slider
             if (order != null && order.currentOrder != null)
@@ -161,7 +170,12 @@ public class MinigameInput : MonoBehaviour
     
     public void Moler()
     {
-        if (molerButton != null && molerButton.interactable)
+        Debug.Log("Preparacion: Moliendo cafe");
+        buttonManager.DisableButton(buttonManager.molerButton);
+        buttonManager.EnableButton(buttonManager.filtroButton);
+        molerDone = true;
+
+        /*if (molerButton != null && molerButton.interactable)
         {
             Debug.Log("Preparacion: Moliendo cafe");
 
@@ -169,7 +183,7 @@ public class MinigameInput : MonoBehaviour
             filtroButton.interactable = true;
             //Filtro.SetActive(true);
             molerDone = true;
-        }
+        }*/
     }
 
     public void PutTaza()
@@ -179,11 +193,14 @@ public class MinigameInput : MonoBehaviour
             Taza.SetActive(true);
             tazaIsThere = true;
             tazaInHand = false;
-            waterButton.interactable = true;
+            //waterButton.interactable = true;
+            buttonManager.EnableButton(buttonManager.waterButton);
+            buttonManager.EnableButton(buttonManager.milkButton);
         }
         if (filtroIsInCafetera == true && coffeeServed == false)
         {
-            echarCafeButton.interactable = true;
+            //echarCafeButton.interactable = true;
+            buttonManager.EnableButton(buttonManager.echarCafeButton);
         }
 
     }
@@ -191,10 +208,13 @@ public class MinigameInput : MonoBehaviour
     public void TakeFiltro()
     {
         if (filtroIsInCafetera == false)
-        { 
-        //Filtro.SetActive(false);
-        filtroButton.interactable = false;
-        filtroCafeteraButton.interactable = true;
+        {
+        ////Filtro.SetActive(false);
+        //filtroButton.interactable = false;
+        buttonManager.DisableButton(buttonManager.filtroButton);
+        //filtroCafeteraButton.interactable = true;
+        buttonManager.EnableButton(buttonManager.filtroCafeteraButton);
+
         }
     }
 
@@ -207,7 +227,8 @@ public class MinigameInput : MonoBehaviour
         //FiltroCafetera.SetActive(true);
         if (tazaIsThere == true && coffeeServed == false)
         {
-            echarCafeButton.interactable = true;
+            //echarCafeButton.interactable = true;
+            buttonManager.EnableButton(buttonManager.echarCafeButton);
         }
     }
 
@@ -217,18 +238,42 @@ public class MinigameInput : MonoBehaviour
         {
             Debug.Log("Preparacion: Echando cafe");
             coffeeServed = true;
-            echarCafeButton.interactable = false;
+            buttonManager.DisableButton(buttonManager.echarCafeButton);
+            buttonManager.EnableButton(buttonManager.submitOrderButton);
+            buttonManager.EnableButton(buttonManager.sugarButton);
+            buttonManager.EnableButton(buttonManager.iceButton);
+            buttonManager.EnableButton(buttonManager.coverButton);
+            buttonManager.DisableButton(buttonManager.waterButton);
+            buttonManager.DisableButton(buttonManager.milkButton);
+
+            /*echarCafeButton.interactable = false;
             submitOrderButton.interactable = true;
             sugarButton.interactable = true;
             iceButton.interactable = true;
             coverButton.interactable = true;
-            waterButton.interactable = false;
+            waterButton.interactable = false;*/
+        }
+    }
+    #endregion
+
+    #region Mecanicas 
+    public void CogerLeche()
+    {
+        if ((milkInHand == false && coverInHand == false && cucharaInHand == false && iceInHand == false && waterInHand == false))
+        {
+            milkInHand = true;
+            Debug.Log("tengo la leche");
+        }
+        else if (milkInHand == true)
+        {
+            milkInHand = false;
+            Debug.Log("no tengo la leche");
         }
     }
 
     public void CogerAgua()
     {
-        if ((coverInHand == false && cucharaInHand == false && iceInHand == false && waterInHand == false))
+        if ((coverInHand == false && cucharaInHand == false && iceInHand == false && waterInHand == false && milkInHand == false))
         {
             waterInHand = true;
             Debug.Log("tengo el agua");
@@ -242,7 +287,7 @@ public class MinigameInput : MonoBehaviour
 
     public void CogerAzucar()
     {
-        if ((coverInHand == false && cucharaInHand == false && iceInHand == false && waterInHand == false))
+        if ((coverInHand == false && cucharaInHand == false && iceInHand == false && waterInHand == false && milkInHand == false))
         {
             cucharaInHand = true;
             Debug.Log("tengo el azucar");
@@ -256,7 +301,7 @@ public class MinigameInput : MonoBehaviour
 
     public void CogerHielo()
     {
-        if ((coverInHand == false && iceInHand == false && cucharaInHand == false && waterInHand == false))
+        if ((coverInHand == false && iceInHand == false && cucharaInHand == false && waterInHand == false && milkInHand == false))
         {
             iceInHand = true;
             Debug.Log("tengo el hielo");
@@ -270,7 +315,7 @@ public class MinigameInput : MonoBehaviour
 
     public void CogerTapa()
     {
-        if (coverInHand == false && iceInHand == false && cucharaInHand == false && waterInHand == false)
+        if (coverInHand == false && iceInHand == false && cucharaInHand == false && waterInHand == false && milkInHand == false)
         {
             coverInHand = true;
             Debug.Log("tengo la tapa");
@@ -281,6 +326,19 @@ public class MinigameInput : MonoBehaviour
             Debug.Log("no tengo la tapa");
         }
     }
+    public void EcharLeche()
+    {
+        if (milkInHand == true && coffeeServed == false)
+        {
+            if (countMilk <= 1)
+            {
+                countMilk += 1;
+                order.currentOrder.milkPrecision = countMilk;
+                Debug.Log("Cantidad de leche: " + countMilk);
+            }
+        }
+    }
+
     public void EcharAgua()
     {
         if (waterInHand == true && coffeeServed == false)
@@ -335,8 +393,9 @@ public class MinigameInput : MonoBehaviour
         }
     }
 
-   
+    #endregion
 
+    #region Sonidos
     public void BotonDownMachine()
     {
         SoundsMaster.Instance.PlaySound_CoffeeMachine();
@@ -346,4 +405,5 @@ public class MinigameInput : MonoBehaviour
     {
         SoundsMaster.Instance.PlaySound_CoffeeReady();
     }
+    #endregion
 }

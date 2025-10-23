@@ -13,6 +13,16 @@ public class Order
     // guarda el valor del slider (0.0 a 4.0)
     public float coffeePrecision;
 
+    // valor exacto de leche que el jugador debe echar (0-nada, 1-poco, 2-mucha)
+    public int milkTarget;
+    // guarda el valor de la leche echada por el jugador (0 a 1)
+    public int milkPrecision;
+
+    // valor exacto de agua que el jugador debe echar (0-nada, 1-bastante)
+    public int waterTarget;
+    // guarda el valor del agua echada por el jugador (0 a 1)
+    public int waterPrecision;
+
     // valor exacto de cucharadas de azucar que el jugador debe echar (0-nada, 1-poco o 2-mucho)
     public int sugarTarget;
     // guarda el valor de las cucharadas del jugador (0 a 2)
@@ -28,10 +38,7 @@ public class Order
     // guarda el valor del si el jugador ha colocado o no la tapa (0-tomar o 1-llevar)
     public int typePrecision;
 
-    // valor exacto de agua que el jugador debe echar (0-nada, 1-bastante)
-    public int waterTarget;
-    // guarda el valor del agua echada por el jugador (0 a 1)
-    public int waterPrecision;
+   
 
 
     public Order(CoffeeType coffeeType, SugarAmount sugar, IceAmount ice, OrderType type) // Constructor de los pedidos 
@@ -44,6 +51,10 @@ public class Order
         //inicializamos la precision del cafe a 0
         this.coffeePrecision = 0f;
         this.coffeeTarget = GetCoffeeTargetFromAmount(coffeeType);
+
+        //inicializamos la precision de la leche a 0
+        this.milkPrecision = 0;
+        this.milkTarget = GetMilkTargetFromAmount(coffeeType);
 
         //inicializamos la precision del agua a 0
         this.waterPrecision = 0;
@@ -71,8 +82,24 @@ public class Order
                 return 1.0f;
             case CoffeeType.americano:
                 return 1.0f;
+            case CoffeeType.macchiatto:
+                return 1.0f;
             default:
                 return 2.0f; //por si algo falla
+        }
+    }
+    private int GetMilkTargetFromAmount(CoffeeType coffeetype)
+    {
+        switch (coffeetype)
+        {
+            case CoffeeType.espresso:
+                return 0;
+            case CoffeeType.americano:
+                return 0;
+            case CoffeeType.macchiatto:
+                return 1;
+            default:
+                return 2; //por si algo falla
         }
     }
 
@@ -84,6 +111,8 @@ public class Order
                 return 0;
             case CoffeeType.americano:
                 return 1;
+            case CoffeeType.macchiatto:
+                return 0;
             default:
                 return 2; //por si algo falla
         }
@@ -134,6 +163,7 @@ public class Order
 
 public enum CoffeeType { espresso, americano, macchiatto, latte, capuccino, bombón, vienés, frappé, mocca, irish } // Se crean los tipos de cafe
 public enum CoffeeAmount { corto, medio, largo } // Se crean 3 cantidades para los cafes
+public enum MilkAmount { nada, poco, mucha } // Se crean 3 cantidades de leche
 public enum WaterAmount { no, si } // Se crean 2 cantidades para el agua
 public enum SugarAmount { nada, poco, mucho } // Se crean 4 cantidades para el azucar
 public enum IceAmount { no, si } // Se crean 3 cantidades para los hielos

@@ -754,10 +754,12 @@ GameObject:
   m_Component:
   - component: {fileID: 50023189}
   - component: {fileID: 50023188}
+  - component: {fileID: 50023195}
   - component: {fileID: 50023190}
   - component: {fileID: 50023192}
   - component: {fileID: 50023191}
   - component: {fileID: 50023193}
+  - component: {fileID: 50023194}
   m_Layer: 0
   m_Name: MinigameController
   m_TagString: Untagged
@@ -778,17 +780,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coffeBar: {fileID: 0}
+  buttonManager: {fileID: 50023195}
   coffeeSlider: {fileID: 948264107}
-  coffeeButton: {fileID: 1209831045}
-  molerButton: {fileID: 1919829060}
-  filtroButton: {fileID: 1376509724}
-  filtroCafeteraButton: {fileID: 1683990715}
-  echarCafeButton: {fileID: 1099100926}
-  submitOrderButton: {fileID: 1838202980}
-  sugarButton: {fileID: 573849090}
-  iceButton: {fileID: 496000360}
-  coverButton: {fileID: 1656632135}
-  waterButton: {fileID: 74253029}
   slideSpeed: 0.8
   maxAmount: 4
   cucharaInHand: 0
@@ -796,6 +789,7 @@ MonoBehaviour:
   iceInHand: 0
   coverInHand: 0
   waterInHand: 0
+  milkInHand: 0
   tazaIsThere: 0
   coffeeServed: 0
   Taza: {fileID: 386902211}
@@ -833,14 +827,16 @@ MonoBehaviour:
     orderType: 0
     coffeeTarget: 0
     coffeePrecision: 0
+    milkTarget: 0
+    milkPrecision: 0
+    waterTarget: 0
+    waterPrecision: 0
     sugarTarget: 0
     sugarPrecision: 0
     iceTarget: 0
     icePrecision: 0
     typeTarget: 0
     typePrecision: 0
-    waterTarget: 0
-    waterPrecision: 0
 --- !u!114 &50023191
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -884,6 +880,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6a0aa9984ea28b4197580e17e389398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &50023194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 50023187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6290b5e207243941b15508e4fb92615, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coffeeEnabled: 0
+  waterEnabled: 0
+  milkEnabled: 0
+  sugarEnabled: 0
+  iceEnabled: 0
+  typeOrderEnabled: 0
+--- !u!114 &50023195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 50023187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85fe928d2fedb2748bed0e9fef2167c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coffeeButton: {fileID: 1209831045}
+  milkButton: {fileID: 1639563791}
+  waterButton: {fileID: 74253029}
+  sugarButton: {fileID: 573849090}
+  iceButton: {fileID: 496000360}
+  coverButton: {fileID: 1656632135}
+  molerButton: {fileID: 1919829060}
+  filtroButton: {fileID: 1376509724}
+  filtroCafeteraButton: {fileID: 1683990715}
+  echarCafeButton: {fileID: 1099100926}
+  submitOrderButton: {fileID: 1838202980}
 --- !u!1 &55580695
 GameObject:
   m_ObjectHideFlags: 0
@@ -1169,10 +1206,10 @@ RectTransform:
   - {fileID: 1069588663}
   m_Father: {fileID: 153319689}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.014740742}
-  m_AnchorMax: {x: 0.59452087, y: 0.20644444}
-  m_AnchoredPosition: {x: 4.863934, y: 3.0399787}
-  m_SizeDelta: {x: 6.5029907, y: -2.401001}
+  m_AnchorMin: {x: 0.4106042, y: 0.014740742}
+  m_AnchorMax: {x: 0.51100004, y: 0.209}
+  m_AnchoredPosition: {x: -4.206299, y: 1.5400391}
+  m_SizeDelta: {x: -4.4970093, y: -5.401001}
   m_Pivot: {x: 0.46865252, y: 0.50000006}
 --- !u!114 &74253029
 MonoBehaviour:
@@ -1753,6 +1790,7 @@ RectTransform:
   - {fileID: 573849093}
   - {fileID: 496000359}
   - {fileID: 74253028}
+  - {fileID: 1639563790}
   - {fileID: 1656632134}
   - {fileID: 186747668}
   m_Father: {fileID: 2090294130}
@@ -3617,6 +3655,7 @@ MonoBehaviour:
   hieloCucharaCursorTexture: {fileID: 2800000, guid: 6ded99d3dfc8a3343917f18168e246af, type: 3}
   tapaCursorTexture: {fileID: 2800000, guid: d91a1575464ba39438ee0b13bf0f845b, type: 3}
   aguaCursorTexture: {fileID: 2800000, guid: 4b6a04789cbdcbb44a8c87cf78ce5a6c, type: 3}
+  lecheCursorTexture: {fileID: 2800000, guid: 90be48a8b10add4418a7b59a749d75ff, type: 3}
   hotSpotDefault: {x: 0, y: 0}
   hotSpotTaza: {x: 0, y: 0}
   hotSpotFiltro: {x: 0, y: 0}
@@ -3624,6 +3663,7 @@ MonoBehaviour:
   hotSpotHieloCuchara: {x: 0, y: 0}
   hotSpotTapaCuchara: {x: 0, y: 0}
   hotSpotAgua: {x: 0, y: 0}
+  hotSpotLeche: {x: 0, y: 0}
   miniGameInput: {fileID: 50023188}
 --- !u!114 &342197123
 MonoBehaviour:
@@ -6444,6 +6484,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 50023188}
+        m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
+        m_MethodName: EcharLeche
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &893382640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6588,7 +6640,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.75652087, y: 0.040481478}
   m_AnchorMax: {x: 0.9806459, y: 0.2545926}
-  m_AnchoredPosition: {x: -0.8499756, y: 0.2199707}
+  m_AnchoredPosition: {x: -0.8498535, y: 0.2199707}
   m_SizeDelta: {x: -1.6999998, y: 2.0000992}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &900449643
@@ -8039,7 +8091,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.75652087, y: 0.31585187}
   m_AnchorMax: {x: 0.97700006, y: 0.45614818}
-  m_AnchoredPosition: {x: 2.6500244, y: -44.88008}
+  m_AnchoredPosition: {x: 2.6501465, y: -44.880066}
   m_SizeDelta: {x: 5.299999, y: -0.9998779}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1091936116
@@ -8598,7 +8650,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.44639584, y: 0.72755563}
   m_AnchorMax: {x: 0.5517708, y: 0.77270377}
-  m_AnchoredPosition: {x: 2, y: -0.08242798}
+  m_AnchoredPosition: {x: 2, y: -0.08239746}
   m_SizeDelta: {x: -2, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1141688322
@@ -11929,6 +11981,151 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1621369667}
   m_CullTransparentMesh: 1
+--- !u!1 &1639563789
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1639563790}
+  - component: {fileID: 1639563793}
+  - component: {fileID: 1639563792}
+  - component: {fileID: 1639563791}
+  m_Layer: 5
+  m_Name: ButtonMilk
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1639563790
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1639563789}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1960704264}
+  m_Father: {fileID: 153319689}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.57575005, y: 0.014740742}
+  m_AnchorMax: {x: 0.67877084, y: 0.209}
+  m_AnchoredPosition: {x: 1.4277344, y: 1.5400391}
+  m_SizeDelta: {x: -8.497009, y: -5.401001}
+  m_Pivot: {x: 0.46865252, y: 0.50000006}
+--- !u!114 &1639563791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1639563789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1639563792}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 50023188}
+        m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
+        m_MethodName: CogerLeche
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 342197122}
+        m_TargetAssemblyTypeName: CursorManager, Assembly-CSharp
+        m_MethodName: TakeMilk
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1639563792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1639563789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: e6a3a85ee89b38145ac0bdbd8df380c4, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1639563793
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1639563789}
+  m_CullTransparentMesh: 1
 --- !u!1 &1656632133
 GameObject:
   m_ObjectHideFlags: 0
@@ -11965,7 +12162,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.04247917, y: 0.418}
   m_AnchorMax: {x: 0.10054167, y: 0.4897778}
-  m_AnchoredPosition: {x: 1.1300049, y: -2.308998}
+  m_AnchoredPosition: {x: 1.1303711, y: -2.3089905}
   m_SizeDelta: {x: -7.0266113, y: -5.850998}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1656632135
@@ -13719,7 +13916,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1957982743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13777,6 +13974,142 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1960704263
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1960704264}
+  - component: {fileID: 1960704266}
+  - component: {fileID: 1960704265}
+  m_Layer: 5
+  m_Name: Text (TMP)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1960704264
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1960704263}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1639563790}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 103}
+  m_SizeDelta: {x: 186, y: 206}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1960704265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1960704263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Leche
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4281479730
+  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 24
+  m_fontSizeBase: 24
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1960704266
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1960704263}
+  m_CullTransparentMesh: 1
 --- !u!1 &2051559960
 GameObject:
   m_ObjectHideFlags: 0
@@ -13942,7 +14275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2134fdf4500373a41a4c508b731ddabc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monedas: 0
+  monedas: 300
 --- !u!4 &2072732762
 Transform:
   m_ObjectHideFlags: 0
@@ -14161,13 +14494,13 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 153319689}
   - {fileID: 1071502799}
   - {fileID: 399044285}
   - {fileID: 995759340}
   - {fileID: 69314341}
   - {fileID: 1338571649}
   - {fileID: 230416458}
+  - {fileID: 153319689}
   - {fileID: 1957982745}
   - {fileID: 1071443433}
   m_Father: {fileID: 0}
@@ -14505,14 +14838,16 @@ MonoBehaviour:
     orderType: 0
     coffeeTarget: 0
     coffeePrecision: 0
+    milkTarget: 0
+    milkPrecision: 0
+    waterTarget: 0
+    waterPrecision: 0
     sugarTarget: 0
     sugarPrecision: 0
     iceTarget: 0
     icePrecision: 0
     typeTarget: 0
     typePrecision: 0
-    waterTarget: 0
-    waterPrecision: 0
 --- !u!4 &2111219103
 Transform:
   m_ObjectHideFlags: 0

@@ -9,45 +9,85 @@ public class OrderEvaluation : MonoBehaviour
     private const int MAX_SCORE_ICE = 5;
     private const int MAX_SCORE_COVER = 5; // Puntuacion tipo de pedido
     private const int MAX_SCORE_WATER = 10;
+    private const int MAX_SCORE_MILK = 10;
     private const float MAX_ERROR = 2.0F;
     public int Evaluate(Order npcOrder, Order playerOrder)
     {
         int totalScore = 0; // Inicializa la puntuacion del jugador en 0
+        int maxPossibleScore = 0;
 
-        //EVALUACION DEL CAFE (PRECISION SLIDER)
-        //evalua la precision y redondea la puntiacion a un entero
-        float coffeeScore = EvaluateCoffePrecision(npcOrder, playerOrder);
-        totalScore += Mathf.RoundToInt(coffeeScore);
+        var progress = GameProgressManager.Instance;
 
-        //EVALUACION DEL AGUA (CANTIDAD EXACTA)
-        int waterScore = EvaluateWaterPrecision(npcOrder, playerOrder);
-        totalScore += waterScore;
+        // MECANICA CAFE
+        if (progress.coffeeEnabled)
+        {
+            //EVALUACION DEL CAFE (PRECISION SLIDER)
+            //evalua la precision y redondea la puntiacion a un entero
+            float coffeeScore = EvaluateCoffePrecision(npcOrder, playerOrder);
+            totalScore += Mathf.RoundToInt(coffeeScore);
+            maxPossibleScore += MAX_SCORE_COFFEE;
+            Debug.Log($"Puntuación del Café (Precisión): {Mathf.RoundToInt(coffeeScore)}/{MAX_SCORE_COFFEE} pts");
+        }
 
-        //EVALUACION DEL AZUCAR (CANTIDAD EXACTA)
-        int sugarScore = EvaluateSugarPrecision(npcOrder, playerOrder);
-        totalScore += sugarScore;
+        // MECANICA LECHE
+        if (progress.milkEnabled)
+        {
+            //EVALUACION DE LA LECHE (CANTIDAD EXACTA)
+            int milkScore = EvaluateMilkPrecision(npcOrder, playerOrder);
+            totalScore += milkScore;
+            maxPossibleScore += MAX_SCORE_MILK;
+            Debug.Log($"Puntuación de la Leche: {(milkScore)}/{MAX_SCORE_MILK} pts");
+        }
 
-        //EVALUACION DEL HIELO (CANTIDAD EXACTA)
-        int iceScore = EvaluateIcePrecision(npcOrder, playerOrder);
-        totalScore += iceScore;
+        // MECANICA AGUA
+        if (progress.waterEnabled)
+        {
+            //EVALUACION DEL AGUA (CANTIDAD EXACTA)
+            int waterScore = EvaluateWaterPrecision(npcOrder, playerOrder);
+            totalScore += waterScore;
+            maxPossibleScore += MAX_SCORE_WATER;
+            Debug.Log($"Puntuación del Agua: {waterScore}/{MAX_SCORE_WATER} pts");
+        }
 
-        //EVALUACION DEL TIPO DE PEDIDO (CANTIDAD EXACTA)
-        int typeScore = EvaluateTypePrecision(npcOrder, playerOrder);
-        totalScore += typeScore;
+        // MECANICA AZUCAR
+        if (progress.sugarEnabled)
+        {
+            //EVALUACION DEL AZUCAR (CANTIDAD EXACTA)
+            int sugarScore = EvaluateSugarPrecision(npcOrder, playerOrder);
+            totalScore += sugarScore;
+            maxPossibleScore += MAX_SCORE_SUGAR;
+            Debug.Log($"Puntuación del Azúcar: {sugarScore}/{MAX_SCORE_SUGAR} pts");
+        }
 
+        // MECANICA HIELO
+        if (progress.iceEnabled)
+        {
+            //EVALUACION DEL HIELO (CANTIDAD EXACTA)
+            int iceScore = EvaluateIcePrecision(npcOrder, playerOrder);
+            totalScore += iceScore;
+            maxPossibleScore += MAX_SCORE_ICE;
+            Debug.Log($"Puntuación del Hielo: {iceScore}/{MAX_SCORE_ICE} pts");
+        }
+
+        // MECANICA TIPO DE PEDIDO
+        if (progress.typeOrderEnabled)
+        {
+            //EVALUACION DEL TIPO DE PEDIDO (CANTIDAD EXACTA)
+            int typeScore = EvaluateTypePrecision(npcOrder, playerOrder);
+            totalScore += typeScore;
+            maxPossibleScore += MAX_SCORE_COVER;
+            Debug.Log($"Puntuación del Tipo de pedido: {typeScore}/{MAX_SCORE_COVER} pts");
+        }
+
+        float percentScore = ((float)totalScore / maxPossibleScore) * 100f;
 
         // Debug del puntaje TOTAL
         Debug.Log($"--- RESULTADO FINAL DE LA ORDEN ---");
-        Debug.Log($"Puntuación del Café (Precisión): {Mathf.RoundToInt(coffeeScore)}/{MAX_SCORE_COFFEE} pts");
-        Debug.Log($"Puntuación del Agua: {waterScore}/{MAX_SCORE_WATER} pts");
-        Debug.Log($"Puntuación del Azúcar: {sugarScore}/{MAX_SCORE_SUGAR} pts");
-        Debug.Log($"Puntuación del Hielo: {iceScore}/{MAX_SCORE_ICE} pts");
-        Debug.Log($"Puntuación del Tipo de pedido: {typeScore}/{MAX_SCORE_COVER} pts");
-        Debug.Log($"Puntuación Total de la Orden: {totalScore} pts");
+        Debug.Log($"Puntuación Total de la Orden: {totalScore}/{maxPossibleScore} ({percentScore:F1}%)pts");
         Debug.Log($"------------------------------------");
 
         //EL SCORE MAXIMO AHORA ES 50 (25+12+13)
-        return totalScore; // Se devuelve la puntuacion del jugador
+        return Mathf.RoundToInt(percentScore); // Se devuelve la puntuacion del jugador
 
     }
 
@@ -72,6 +112,29 @@ public class OrderEvaluation : MonoBehaviour
         Debug.Log($"[Evaluación Café] Error Normalizado: {normalizedError:F2} | Puntuación Bruta: {score:F2}");
 
         return score;
+
+    }
+
+    public int EvaluateMilkPrecision(Order npcOrder, Order playerOrder)
+    {
+        // El objetivo es el valor exacto (0-sin o 1-con)
+        float milkTarget = npcOrder.milkTarget;
+        // La precision es la cantidad de leche que ha echado el jugador
+        float playerMilk = playerOrder.milkPrecision;
+
+        int milkScore = 0;
+        if (playerMilk == milkTarget) // Si el jugador ha echado la cantidad de leche que se pedia suma 10 puntos
+        {
+            milkScore = MAX_SCORE_MILK;
+        }
+        else
+        {
+            milkScore = 0; // En cualquier otro caso la puntuacion sera 0 
+        }
+
+        Debug.Log($"[Evaluación Leche] Objetivo: {milkTarget} | Jugador: {playerMilk}");
+
+        return milkScore; // Se devuelve la puntuacion total de la leche
 
     }
 
