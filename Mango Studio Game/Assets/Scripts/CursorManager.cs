@@ -45,7 +45,7 @@ public class CursorManager : MonoBehaviour
 
     public void TakeTazaFromShelf()
     {
-        if (!miniGameInput.tazaInHand && !miniGameInput.tazaIsThere)
+        if (!miniGameInput.tazaInHand && !miniGameInput.tazaIsInCafetera)
         {
             miniGameInput.tazaInHand = true;
             Cursor.SetCursor(tazaCursorTexture, hotSpotTaza, CursorMode.Auto);
@@ -54,8 +54,9 @@ public class CursorManager : MonoBehaviour
 
     public void UpdateCursorTaza()
     {
-        if (miniGameInput.waterInHand || miniGameInput.cucharaInHand || miniGameInput.iceInHand || miniGameInput.coverInHand || miniGameInput.milkInHand)
+        if (miniGameInput.TengoOtroObjetoEnLaMano())
             return;
+
         if (miniGameInput.tazaInHand)
         {
             Cursor.SetCursor(defaultCursorTexture, hotSpotDefault, CursorMode.Auto);
@@ -67,7 +68,7 @@ public class CursorManager : MonoBehaviour
     }
     public void PutTaza()
     {
-        if (!miniGameInput.tazaIsThere)
+        if (!miniGameInput.tazaIsInCafetera)
         {
             Cursor.SetCursor(defaultCursorTexture, hotSpotDefault, CursorMode.Auto);
         }
@@ -85,12 +86,12 @@ public class CursorManager : MonoBehaviour
     {
         //tenia problemas de sincronizacion asi que he tenido que hacerlo asi, tiene en cuenta a variable antigua en lugar de la nueva, por que se comprueba aqui si es true antes de lo que
         //se pone en true en el otro script, se que es un poco chapuza pero funciona y yo soy artista no programadora :)
-        if (miniGameInput.cucharaInHand && !miniGameInput.coverInHand && !miniGameInput.iceInHand && !miniGameInput.waterInHand && !miniGameInput.milkInHand)
+        if (miniGameInput.cucharaInHand == true && miniGameInput.waterInHand == false && miniGameInput.coverInHand == false && miniGameInput.iceInHand == false && miniGameInput.milkInHand == false)
         {
             Cursor.SetCursor(cucharaCursorTexture, hotSpotCuchara, CursorMode.Auto);
         }
 
-        if (miniGameInput.cucharaInHand == false && miniGameInput.coverInHand == false && miniGameInput.iceInHand == false && miniGameInput.waterInHand == false && miniGameInput.milkInHand == false)
+        if (!miniGameInput.TengoOtroObjetoEnLaMano())
         {
             Cursor.SetCursor(defaultCursorTexture, hotSpotDefault, CursorMode.Auto);
         }
@@ -103,7 +104,7 @@ public class CursorManager : MonoBehaviour
             Cursor.SetCursor(aguaCursorTexture, hotSpotAgua, CursorMode.Auto);
         }
 
-        if (miniGameInput.milkInHand == false && miniGameInput.waterInHand == false && miniGameInput.coverInHand == false && miniGameInput.cucharaInHand == false && miniGameInput.iceInHand == false)
+        if (!miniGameInput.milkInHand == false && miniGameInput.waterInHand == false && miniGameInput.coverInHand == false && miniGameInput.cucharaInHand == false && miniGameInput.iceInHand == false)
         {
             Cursor.SetCursor(defaultCursorTexture, hotSpotDefault, CursorMode.Auto);
         }
@@ -146,5 +147,10 @@ public class CursorManager : MonoBehaviour
         {
             Cursor.SetCursor(defaultCursorTexture, hotSpotDefault, CursorMode.Auto);
         }
+    }
+
+    public void SetDefaultCursor()
+    {
+        Cursor.SetCursor(defaultCursorTexture, hotSpotDefault, CursorMode.Auto);
     }
 }

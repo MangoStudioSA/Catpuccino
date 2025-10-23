@@ -12,6 +12,7 @@ public class ButtonUnlockManager : MonoBehaviour
     [SerializeField] public Button coverButton;
 
     [Header("Botones del minijuego")]
+    [SerializeField] public Button cogerTazaInicioButton;
     [SerializeField] public Button molerButton;
     [SerializeField] public Button filtroButton;
     [SerializeField] public Button filtroCafeteraButton;

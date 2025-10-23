@@ -30,12 +30,17 @@ public class MinigameInput : MonoBehaviour
     public bool waterInHand = false;
     public bool milkInHand = false;
 
-    public bool tazaIsThere = false;
     bool filtroIsInCafetera = false;
     public bool coffeeServed = false;
 
     PlayerOrder order;
     public GameObject Taza;
+    public bool tazaIsInCafetera = false;
+    public bool tazaIsInEspumador = false;
+
+    public Transform puntoCafetera;
+    public Transform puntoEspumador;
+
     //public GameObject Filtro;
     //public GameObject FiltroCafetera;
     #endregion
@@ -43,6 +48,7 @@ public class MinigameInput : MonoBehaviour
     public void Start()
     {
         order = FindFirstObjectByType<PlayerOrder>();
+        buttonManager.EnableButton(buttonManager.cogerTazaInicioButton);
 
         currentSlideTime = 0f;
         isSliding = false;
@@ -59,7 +65,8 @@ public class MinigameInput : MonoBehaviour
         //Filtro.SetActive(false);
         //FiltroCafetera.SetActive(false);
 
-        tazaIsThere = false;
+        tazaIsInCafetera = false;
+        tazaIsInEspumador= false;
         filtroIsInCafetera = false;
 
         if (coffeeSlider != null)
@@ -139,56 +146,84 @@ public class MinigameInput : MonoBehaviour
         molerDone = true;
     }
 
-    public void TakeOrPutTaza()
+    public void ActualizarBotonCogerTaza()
     {
-        if (waterInHand || cucharaInHand || iceInHand || coverInHand || milkInHand)
+        if (tazaInHand || tazaIsInCafetera || tazaIsInEspumador)
+        {
+            buttonManager.DisableButton(buttonManager.cogerTazaInicioButton);
+        }
+        else
+        {
+            buttonManager.EnableButton(buttonManager.cogerTazaInicioButton);
+        }
+    }
+
+    public void ToggleTazaCafetera()
+    {
+        if (TengoOtroObjetoEnLaMano())
             return;
 
-        if (!tazaIsThere && tazaInHand)
+        if (!tazaIsInCafetera && tazaInHand)
         {
             // Poner en la cafetera
             Taza.SetActive(true);
+            Taza.transform.position = puntoCafetera.position;
+
             tazaInHand = false;
-            tazaIsThere = true;
+            tazaIsInCafetera = true;
+            tazaIsInEspumador = false;
 
             buttonManager.EnableButton(buttonManager.waterButton);
             buttonManager.EnableButton(buttonManager.milkButton);
         }
-        else if (tazaIsThere && !tazaInHand)
+        else if (tazaIsInCafetera && !tazaInHand)
         {
             //Recoger de la cafetera
             Taza.SetActive(false);
             tazaInHand = true;
-            tazaIsThere = false;
+            tazaIsInCafetera = false;
         }
         if (filtroIsInCafetera == true && coffeeServed == false)
         {
             buttonManager.EnableButton(buttonManager.echarCafeButton);
         }
+
+        ActualizarBotonCogerTaza();
     }
-    /*public void PutTaza()
+
+    public void ToggleTazaEspumador()
     {
-        if (!tazaIsThere && tazaInHand)
+        if (TengoOtroObjetoEnLaMano())
+            return;
+
+        if (!tazaIsInEspumador && tazaInHand)
         {
+            // Poner en el espumador
             Taza.SetActive(true);
-            tazaIsThere = true;
+            Taza.transform.position = puntoEspumador.position;
+
             tazaInHand = false;
+            tazaIsInCafetera = false;
+            tazaIsInEspumador = true;
 
-            buttonManager.EnableButton(buttonManager.waterButton);
-            buttonManager.EnableButton(buttonManager.milkButton);
+            buttonManager.DisableButton(buttonManager.waterButton);
+            buttonManager.DisableButton(buttonManager.milkButton);
         }
-        else if (tazaIsThere && !tazaInHand)
+        else if (tazaIsInEspumador && !tazaInHand)
         {
+            //Recoger del espumador
             Taza.SetActive(false);
-            tazaIsThere = false;
-            tazaInHand = true;
-        }
-        if (filtroIsInCafetera == true && coffeeServed == false)
-        {
-            buttonManager.EnableButton(buttonManager.echarCafeButton);
-        }
-    }*/
 
+            tazaInHand = true;
+            tazaIsInEspumador = false;
+        }
+        if (coffeeServed == false)
+        {
+            //buttonManager.EnableButton(buttonManager.echarCafeButton);
+        }
+        ActualizarBotonCogerTaza();
+    }
+    
     public void TakeFiltro()
     {
         if (filtroIsInCafetera == false)
@@ -208,7 +243,7 @@ public class MinigameInput : MonoBehaviour
             filtroIsInCafetera = true;
         }
         //FiltroCafetera.SetActive(true);
-        if (tazaIsThere == true && coffeeServed == false)
+        if (tazaIsInCafetera == true && coffeeServed == false)
         {
             buttonManager.EnableButton(buttonManager.echarCafeButton);
         }
@@ -216,7 +251,7 @@ public class MinigameInput : MonoBehaviour
 
     public void EcharCafe()
     {
-        if(tazaIsThere != false && filtroIsInCafetera != false && coffeeServed ==false)
+        if(tazaIsInCafetera != false && filtroIsInCafetera != false && coffeeServed ==false)
         {
             Debug.Log("Preparacion: Echando cafe");
             coffeeServed = true;
@@ -234,7 +269,7 @@ public class MinigameInput : MonoBehaviour
     #region Mecanicas 
     public void CogerLeche()
     {
-        if ((milkInHand == false && coverInHand == false && cucharaInHand == false && iceInHand == false && waterInHand == false))
+        if (!TengoOtroObjetoEnLaMano() && !tazaInHand)
         {
             milkInHand = true;
             Debug.Log("tengo la leche");
@@ -248,7 +283,7 @@ public class MinigameInput : MonoBehaviour
 
     public void CogerAgua()
     {
-        if ((coverInHand == false && cucharaInHand == false && iceInHand == false && waterInHand == false && milkInHand == false))
+        if (!TengoOtroObjetoEnLaMano() && !tazaInHand)
         {
             waterInHand = true;
             Debug.Log("tengo el agua");
@@ -262,7 +297,7 @@ public class MinigameInput : MonoBehaviour
 
     public void CogerAzucar()
     {
-        if ((coverInHand == false && cucharaInHand == false && iceInHand == false && waterInHand == false && milkInHand == false))
+        if (!TengoOtroObjetoEnLaMano() && !tazaInHand)
         {
             cucharaInHand = true;
             Debug.Log("tengo el azucar");
@@ -276,7 +311,7 @@ public class MinigameInput : MonoBehaviour
 
     public void CogerHielo()
     {
-        if ((coverInHand == false && iceInHand == false && cucharaInHand == false && waterInHand == false && milkInHand == false))
+        if (!TengoOtroObjetoEnLaMano() && !tazaInHand)
         {
             iceInHand = true;
             Debug.Log("tengo el hielo");
@@ -290,7 +325,7 @@ public class MinigameInput : MonoBehaviour
 
     public void CogerTapa()
     {
-        if (coverInHand == false && iceInHand == false && cucharaInHand == false && waterInHand == false && milkInHand == false)
+        if (!TengoOtroObjetoEnLaMano() && !tazaInHand)
         {
             coverInHand = true;
             Debug.Log("tengo la tapa");
@@ -366,6 +401,11 @@ public class MinigameInput : MonoBehaviour
                 Debug.Log("Tapa puesta.");
             }
         }
+    }
+
+    public bool TengoOtroObjetoEnLaMano()
+    {
+        return cucharaInHand || waterInHand || milkInHand || iceInHand || coverInHand;
     }
 
     #endregion
