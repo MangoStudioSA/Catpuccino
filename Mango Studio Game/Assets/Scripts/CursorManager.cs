@@ -52,12 +52,12 @@ public class CursorManager : MonoBehaviour
         }
     }
 
-    public void UpdateCursorTaza()
+    public void UpdateCursorTaza(bool dejandoTaza)
     {
         if (miniGameInput.TengoOtroObjetoEnLaMano())
             return;
 
-        if (miniGameInput.tazaInHand)
+        if (dejandoTaza)
         {
             Cursor.SetCursor(defaultCursorTexture, hotSpotDefault, CursorMode.Auto);
         }
@@ -101,10 +101,10 @@ public class CursorManager : MonoBehaviour
     {
         if (miniGameInput.milkInHand == true && miniGameInput.waterInHand == false && miniGameInput.coverInHand == false && miniGameInput.cucharaInHand == false && miniGameInput.iceInHand == false)
         {
-            Cursor.SetCursor(aguaCursorTexture, hotSpotAgua, CursorMode.Auto);
+            Cursor.SetCursor(lecheCursorTexture, hotSpotLeche, CursorMode.Auto);
         }
 
-        if (!miniGameInput.milkInHand == false && miniGameInput.waterInHand == false && miniGameInput.coverInHand == false && miniGameInput.cucharaInHand == false && miniGameInput.iceInHand == false)
+        if (!miniGameInput.TengoOtroObjetoEnLaMano())
         {
             Cursor.SetCursor(defaultCursorTexture, hotSpotDefault, CursorMode.Auto);
         }
@@ -117,7 +117,7 @@ public class CursorManager : MonoBehaviour
             Cursor.SetCursor(aguaCursorTexture, hotSpotAgua, CursorMode.Auto);
         }
 
-        if (miniGameInput.waterInHand == false && miniGameInput.coverInHand == false && miniGameInput.cucharaInHand == false && miniGameInput.iceInHand == false && miniGameInput.milkInHand == false)
+        if (!miniGameInput.TengoOtroObjetoEnLaMano())
         {
             Cursor.SetCursor(defaultCursorTexture, hotSpotDefault, CursorMode.Auto);
         }
@@ -130,7 +130,7 @@ public class CursorManager : MonoBehaviour
             Cursor.SetCursor(hieloCucharaCursorTexture, hotSpotHieloCuchara, CursorMode.Auto);
         }
 
-        if (miniGameInput.iceInHand == false && miniGameInput.cucharaInHand == false && miniGameInput.coverInHand == false && miniGameInput.waterInHand == false && miniGameInput.milkInHand == false)
+        if (!miniGameInput.TengoOtroObjetoEnLaMano())
         {
             Cursor.SetCursor(defaultCursorTexture, hotSpotDefault, CursorMode.Auto);
         }
@@ -143,14 +143,9 @@ public class CursorManager : MonoBehaviour
             Cursor.SetCursor(tapaCursorTexture, hotSpotTapaCuchara, CursorMode.Auto);
         }
 
-        if (miniGameInput.coverInHand == false && miniGameInput.cucharaInHand == false && miniGameInput.iceInHand == false && miniGameInput.waterInHand == false && miniGameInput.milkInHand == false)
+        if (!miniGameInput.TengoOtroObjetoEnLaMano())
         {
             Cursor.SetCursor(defaultCursorTexture, hotSpotDefault, CursorMode.Auto);
         }
-    }
-
-    public void SetDefaultCursor()
-    {
-        Cursor.SetCursor(defaultCursorTexture, hotSpotDefault, CursorMode.Auto);
     }
 }

@@ -3,6 +3,9 @@ using UnityEngine;
 [System.Serializable]
 public class Order
 {
+    public int orderId;
+    public static int nextId = 1;
+
     public CoffeeType coffeeType; 
     public SugarAmount sugarAm;
     public IceAmount iceAm;
@@ -17,6 +20,11 @@ public class Order
     public int milkTarget;
     // guarda el valor de la leche echada por el jugador (0 a 1)
     public int milkPrecision;
+
+    // booleano de cómo se necesita la leche (false-fria, true-caliente)
+    public bool heatedMilkTarget;
+    // guarda el valor de como ha preparado la leche el jugador
+    public bool heatedMilkPrecision;
 
     // valor exacto de agua que el jugador debe echar (0-nada, 1-bastante)
     public int waterTarget;
@@ -38,11 +46,11 @@ public class Order
     // guarda el valor del si el jugador ha colocado o no la tapa (0-tomar o 1-llevar)
     public int typePrecision;
 
-   
-
-
     public Order(CoffeeType coffeeType, SugarAmount sugar, IceAmount ice, OrderType type) // Constructor de los pedidos 
     {
+        orderId = nextId-2;
+        nextId++;
+
         this.coffeeType= coffeeType;
         this.sugarAm = sugar;
         this.iceAm = ice;
@@ -55,6 +63,10 @@ public class Order
         //inicializamos la precision de la leche a 0
         this.milkPrecision = 0;
         this.milkTarget = GetMilkTargetFromAmount(coffeeType);
+
+        //inicializamos la precision de la leche caliente en false
+        this.heatedMilkPrecision = false;
+        this.heatedMilkTarget = GetHeatMilkTargetFromAmount(coffeeType);
 
         //inicializamos la precision del agua a 0
         this.waterPrecision = 0;
@@ -84,6 +96,10 @@ public class Order
                 return 1.0f;
             case CoffeeType.macchiatto:
                 return 1.0f;
+            case CoffeeType.latte:
+                return 2.0f;
+            case CoffeeType.capuccino:
+                return 1.0f;
             default:
                 return 2.0f; //por si algo falla
         }
@@ -98,8 +114,31 @@ public class Order
                 return 0;
             case CoffeeType.macchiatto:
                 return 1;
+            case CoffeeType.latte:
+                return 2;
+            case CoffeeType.capuccino:
+                return 1;
             default:
                 return 2; //por si algo falla
+        }
+    }
+
+    private bool GetHeatMilkTargetFromAmount(CoffeeType coffeetype)
+    {
+        switch (coffeetype)
+        {
+            case CoffeeType.espresso:
+                return false;
+            case CoffeeType.americano:
+                return false;
+            case CoffeeType.macchiatto:
+                return false;
+            case CoffeeType.latte:
+                return true;
+            case CoffeeType.capuccino:
+                return true;
+            default:
+                return false; //por si algo falla
         }
     }
 
@@ -112,6 +151,10 @@ public class Order
             case CoffeeType.americano:
                 return 1;
             case CoffeeType.macchiatto:
+                return 0;
+            case CoffeeType.latte:
+                return 0;
+            case CoffeeType.capuccino:
                 return 0;
             default:
                 return 2; //por si algo falla
@@ -164,6 +207,7 @@ public class Order
 public enum CoffeeType { espresso, americano, macchiatto, latte, capuccino, bombón, vienés, frappé, mocca, irish } // Se crean los tipos de cafe
 public enum CoffeeAmount { corto, medio, largo } // Se crean 3 cantidades para los cafes
 public enum MilkAmount { nada, poco, mucha } // Se crean 3 cantidades de leche
+public enum HeatMilk { fria, caliente } // Se crean 2 tipos de leche
 public enum WaterAmount { no, si } // Se crean 2 cantidades para el agua
 public enum SugarAmount { nada, poco, mucho } // Se crean 4 cantidades para el azucar
 public enum IceAmount { no, si } // Se crean 3 cantidades para los hielos

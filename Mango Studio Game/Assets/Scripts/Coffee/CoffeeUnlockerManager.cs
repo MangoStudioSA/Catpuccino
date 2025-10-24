@@ -18,9 +18,12 @@ public class CoffeeUnlockerManager : MonoBehaviour
     // Se genera un tipo aleatorio de cafe en funcion de los que se encuentren disponibles en el dia actual
     public CoffeeType GetRandomAvailableCoffee(int currentDay)
     {
-        int day = Mathf.Clamp(currentDay, 1, coffeUnlocks.Count);
-        CoffeeType[] available = coffeUnlocks[day];
-
+        CoffeeType[] available = GetAvailableCoffees(currentDay);
+        if (available.Length == 0)
+        {
+            Debug.Log("No hay cafes disponibles");
+            return CoffeeType.espresso;
+        }
         return available[Random.Range(0, available.Length)];
     }
 

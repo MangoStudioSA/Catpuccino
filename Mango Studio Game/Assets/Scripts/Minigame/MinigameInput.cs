@@ -7,6 +7,7 @@ public class MinigameInput : MonoBehaviour
 
     [SerializeField] GameObject coffeBar; //panel que contiene la barra
     [SerializeField] ButtonUnlockManager buttonManager;
+    [SerializeField] CursorManager cursorManager;
     [SerializeField] UnityEngine.UI.Slider coffeeSlider; //la barrita que se mueve
 
     [SerializeField] float slideSpeed = 0.8f;
@@ -32,6 +33,8 @@ public class MinigameInput : MonoBehaviour
 
     bool filtroIsInCafetera = false;
     public bool coffeeServed = false;
+    public bool milkServed = false;
+    public bool heatMilk = false;
 
     PlayerOrder order;
     public GameObject Taza;
@@ -78,6 +81,7 @@ public class MinigameInput : MonoBehaviour
 
         buttonManager.EnableButton(buttonManager.coffeeButton);
         buttonManager.DisableButton(buttonManager.molerButton);
+        buttonManager.DisableButton(buttonManager.filtroCafeteraButton);
     }
 
     public void Update()
@@ -109,7 +113,7 @@ public class MinigameInput : MonoBehaviour
             currentSlideTime = 0f;
 
             isSliding = true;
-            Debug.Log("Preparacion: Carga de cafe iniciada.");
+            Debug.Log($"[Cliente {order.currentOrder.orderId}] Preparacion: Carga de cafe iniciada.");
         }
     }
     
@@ -129,18 +133,18 @@ public class MinigameInput : MonoBehaviour
             if (order != null && order.currentOrder != null)
             {
                 order.currentOrder.coffeePrecision = currentSlideTime;
-                Debug.Log($"Preparacion: Cafe detenido en: {currentSlideTime:F2}. Valor guardado.");
-            }
+                Debug.Log($"[Cliente {order.currentOrder.orderId}] Preparacion: Cafe detenido en: {currentSlideTime:F2}. Valor guardado.");
+            } 
             else
             {
-                Debug.LogWarning($"Preparacion: Cafe detenido en: {currentSlideTime:F2}, pero no se pudo guardar porque no hay un pedido activo.");
+                Debug.LogWarning($"[Cliente {order.currentOrder.orderId}] Preparacion: Cafe detenido en: {currentSlideTime:F2}, pero no se pudo guardar porque no hay un pedido activo.");
             }
         }
     }
     
     public void Moler()
     {
-        Debug.Log("Preparacion: Moliendo cafe");
+        Debug.Log($"[Cliente {order.currentOrder.orderId}] Preparacion: Moliendo cafe");
         buttonManager.DisableButton(buttonManager.molerButton);
         buttonManager.EnableButton(buttonManager.filtroButton);
         molerDone = true;
@@ -163,6 +167,9 @@ public class MinigameInput : MonoBehaviour
         if (TengoOtroObjetoEnLaMano())
             return;
 
+        if (!tazaInHand && !tazaIsInCafetera)
+            return;
+
         if (!tazaIsInCafetera && tazaInHand)
         {
             // Poner en la cafetera
@@ -175,6 +182,8 @@ public class MinigameInput : MonoBehaviour
 
             buttonManager.EnableButton(buttonManager.waterButton);
             buttonManager.EnableButton(buttonManager.milkButton);
+
+            cursorManager.UpdateCursorTaza(true);
         }
         else if (tazaIsInCafetera && !tazaInHand)
         {
@@ -182,6 +191,12 @@ public class MinigameInput : MonoBehaviour
             Taza.SetActive(false);
             tazaInHand = true;
             tazaIsInCafetera = false;
+
+            cursorManager.UpdateCursorTaza(false);
+        }
+        else
+        {
+            Debug.Log("No hay ninguna taza en la cafetera");
         }
         if (filtroIsInCafetera == true && coffeeServed == false)
         {
@@ -194,6 +209,8 @@ public class MinigameInput : MonoBehaviour
     public void ToggleTazaEspumador()
     {
         if (TengoOtroObjetoEnLaMano())
+            return;
+        if (!tazaInHand && !tazaIsInEspumador)
             return;
 
         if (!tazaIsInEspumador && tazaInHand)
@@ -208,6 +225,8 @@ public class MinigameInput : MonoBehaviour
 
             buttonManager.DisableButton(buttonManager.waterButton);
             buttonManager.DisableButton(buttonManager.milkButton);
+
+            cursorManager.UpdateCursorTaza(true);
         }
         else if (tazaIsInEspumador && !tazaInHand)
         {
@@ -216,10 +235,16 @@ public class MinigameInput : MonoBehaviour
 
             tazaInHand = true;
             tazaIsInEspumador = false;
+
+            cursorManager.UpdateCursorTaza(false);
         }
-        if (coffeeServed == false)
+        else
         {
-            //buttonManager.EnableButton(buttonManager.echarCafeButton);
+            Debug.Log("No hay ninguna taza en el espumador");
+        }
+        if (milkServed)
+        {
+            buttonManager.EnableButton(buttonManager.calentarButton);
         }
         ActualizarBotonCogerTaza();
     }
@@ -253,15 +278,28 @@ public class MinigameInput : MonoBehaviour
     {
         if(tazaIsInCafetera != false && filtroIsInCafetera != false && coffeeServed ==false)
         {
-            Debug.Log("Preparacion: Echando cafe");
+            Debug.Log($"[Cliente {order.currentOrder.orderId}] Preparacion: Echando cafe");
             coffeeServed = true;
             buttonManager.DisableButton(buttonManager.echarCafeButton);
+            buttonManager.DisableButton(buttonManager.calentarButton);
+            buttonManager.DisableButton(buttonManager.espumadorButton);
             buttonManager.EnableButton(buttonManager.submitOrderButton);
             buttonManager.EnableButton(buttonManager.sugarButton);
             buttonManager.EnableButton(buttonManager.iceButton);
             buttonManager.EnableButton(buttonManager.coverButton);
             buttonManager.DisableButton(buttonManager.waterButton);
             buttonManager.DisableButton(buttonManager.milkButton);
+        }
+    }
+
+    public void CalentarLeche()
+    {
+        if (tazaIsInEspumador == true && milkServed == true && coffeeServed == false)
+        {
+            Debug.Log($"[Cliente {order.currentOrder.orderId}] Preparacion: Calentando la leche");
+            heatMilk = true;
+            order.currentOrder.heatedMilkPrecision = heatMilk;
+            buttonManager.DisableButton(buttonManager.calentarButton);
         }
     }
     #endregion
@@ -344,8 +382,11 @@ public class MinigameInput : MonoBehaviour
             {
                 countMilk += 1;
                 order.currentOrder.milkPrecision = countMilk;
-                Debug.Log("Cantidad de leche: " + countMilk);
+                Debug.Log($"[Cliente {order.currentOrder.orderId}] Cantidad de leche: " + countMilk);
             }
+            milkServed = true;
+            buttonManager.EnableButton(buttonManager.espumadorButton);
+
         }
     }
 
@@ -357,7 +398,7 @@ public class MinigameInput : MonoBehaviour
             {
                 countWater += 1;
                 order.currentOrder.waterPrecision = countWater;
-                Debug.Log("Has echado agua.");
+                Debug.Log($"[Cliente {order.currentOrder.orderId}] Has echado agua.");
             }
         }
     }
@@ -370,7 +411,7 @@ public class MinigameInput : MonoBehaviour
             {
                 countSugar += 1;
                 order.currentOrder.sugarPrecision = countSugar;
-                Debug.Log("Cantidad de azucar: " + countSugar);
+                Debug.Log($"[Cliente {order.currentOrder.orderId}] Cantidad de azucar: " + countSugar);
             }
         }
     }
@@ -384,7 +425,7 @@ public class MinigameInput : MonoBehaviour
             {
                 countIce += 1; //Se incrementa el contador de hielo
                 order.currentOrder.icePrecision = countIce;
-                Debug.Log("Has echado hielo.");
+                Debug.Log($"[Cliente {order.currentOrder.orderId}] Has echado hielo.");
             }
         }
     }
@@ -398,7 +439,7 @@ public class MinigameInput : MonoBehaviour
             {
                 countCover += 1; //Se incrementa el contador de hielo
                 order.currentOrder.typePrecision = countCover;
-                Debug.Log("Tapa puesta.");
+                Debug.Log($"[Cliente {order.currentOrder.orderId}] Tapa puesta.");
             }
         }
     }

@@ -9,7 +9,8 @@ public class OrderEvaluation : MonoBehaviour
     private const int MAX_SCORE_ICE = 5;
     private const int MAX_SCORE_COVER = 5; // Puntuacion tipo de pedido
     private const int MAX_SCORE_WATER = 10;
-    private const int MAX_SCORE_MILK = 10;
+    private const int MAX_SCORE_MILK = 5;
+    private const int MAX_SCORE_HEATEDMILK = 10;
     private const float MAX_ERROR = 2.0F;
     public int Evaluate(Order npcOrder, Order playerOrder)
     {
@@ -26,17 +27,27 @@ public class OrderEvaluation : MonoBehaviour
             float coffeeScore = EvaluateCoffePrecision(npcOrder, playerOrder);
             totalScore += Mathf.RoundToInt(coffeeScore);
             maxPossibleScore += MAX_SCORE_COFFEE;
-            Debug.Log($"Puntuación del Café (Precisión): {Mathf.RoundToInt(coffeeScore)}/{MAX_SCORE_COFFEE} pts");
+            Debug.Log($"[Cliente {playerOrder.orderId}] Puntuación del Café (Precisión): {Mathf.RoundToInt(coffeeScore)}/{MAX_SCORE_COFFEE} pts");
         }
 
-        // MECANICA LECHE
+        // MECANICA LECHE FRIA
         if (progress.milkEnabled)
         {
             //EVALUACION DE LA LECHE (CANTIDAD EXACTA)
             int milkScore = EvaluateMilkPrecision(npcOrder, playerOrder);
             totalScore += milkScore;
             maxPossibleScore += MAX_SCORE_MILK;
-            Debug.Log($"Puntuación de la Leche: {(milkScore)}/{MAX_SCORE_MILK} pts");
+            Debug.Log($"[Cliente {playerOrder.orderId}] Puntuación de la Leche fria: {(milkScore)}/{MAX_SCORE_MILK} pts");
+        }
+
+        // MECANICA LECHE CALIENTE
+        if (progress.heatedMilkEnabled)
+        {
+            //EVALUACION DE LA LECHE CALIENTE (BOOL)
+            int heatedMilkScore = EvaluateHeatedMilkPrecision(npcOrder, playerOrder);
+            totalScore += heatedMilkScore;
+            maxPossibleScore += MAX_SCORE_HEATEDMILK;
+            Debug.Log($"[Cliente {playerOrder.orderId}] Puntuación de la Leche caliente: {(heatedMilkScore)}/{MAX_SCORE_HEATEDMILK} pts");
         }
 
         // MECANICA AGUA
@@ -46,7 +57,7 @@ public class OrderEvaluation : MonoBehaviour
             int waterScore = EvaluateWaterPrecision(npcOrder, playerOrder);
             totalScore += waterScore;
             maxPossibleScore += MAX_SCORE_WATER;
-            Debug.Log($"Puntuación del Agua: {waterScore}/{MAX_SCORE_WATER} pts");
+            Debug.Log($"[Cliente {playerOrder.orderId}] Puntuación del Agua: {waterScore}/{MAX_SCORE_WATER} pts");
         }
 
         // MECANICA AZUCAR
@@ -56,7 +67,7 @@ public class OrderEvaluation : MonoBehaviour
             int sugarScore = EvaluateSugarPrecision(npcOrder, playerOrder);
             totalScore += sugarScore;
             maxPossibleScore += MAX_SCORE_SUGAR;
-            Debug.Log($"Puntuación del Azúcar: {sugarScore}/{MAX_SCORE_SUGAR} pts");
+            Debug.Log($"[Cliente {playerOrder.orderId}] Puntuación del Azúcar: {sugarScore}/{MAX_SCORE_SUGAR} pts");
         }
 
         // MECANICA HIELO
@@ -66,7 +77,7 @@ public class OrderEvaluation : MonoBehaviour
             int iceScore = EvaluateIcePrecision(npcOrder, playerOrder);
             totalScore += iceScore;
             maxPossibleScore += MAX_SCORE_ICE;
-            Debug.Log($"Puntuación del Hielo: {iceScore}/{MAX_SCORE_ICE} pts");
+            Debug.Log($"[Cliente {playerOrder.orderId}] Puntuación del Hielo: {iceScore}/{MAX_SCORE_ICE} pts");
         }
 
         // MECANICA TIPO DE PEDIDO
@@ -76,14 +87,14 @@ public class OrderEvaluation : MonoBehaviour
             int typeScore = EvaluateTypePrecision(npcOrder, playerOrder);
             totalScore += typeScore;
             maxPossibleScore += MAX_SCORE_COVER;
-            Debug.Log($"Puntuación del Tipo de pedido: {typeScore}/{MAX_SCORE_COVER} pts");
+            Debug.Log($"[Cliente {playerOrder.orderId}] Puntuación del Tipo de pedido: {typeScore}/{MAX_SCORE_COVER} pts");
         }
 
         float percentScore = ((float)totalScore / maxPossibleScore) * 100f;
 
         // Debug del puntaje TOTAL
-        Debug.Log($"--- RESULTADO FINAL DE LA ORDEN ---");
-        Debug.Log($"Puntuación Total de la Orden: {totalScore}/{maxPossibleScore} ({percentScore:F1}%)pts");
+        Debug.Log($"--- RESULTADO FINAL DE LA ORDEN {playerOrder.orderId} ---");
+        Debug.Log($"Puntuación Total de la Orden {playerOrder.orderId}: {totalScore}/{maxPossibleScore} ({percentScore:F1}%)pts");
         Debug.Log($"------------------------------------");
 
         //EL SCORE MAXIMO AHORA ES 50 (25+12+13)
@@ -102,14 +113,14 @@ public class OrderEvaluation : MonoBehaviour
         //calculamos el error abs, distancia ente target y playerStop
         float error = Mathf.Abs(playerStop - coffeeTarget);
 
-        Debug.Log($"[Evaluación Café] Objetivo: {coffeeTarget:F2} | Jugador: {playerStop:F2} | Error Absoluto: {error:F2}");
+        Debug.Log($"[Evaluación Café Cliente {playerOrder.orderId}] Objetivo: {coffeeTarget:F2} | Jugador: {playerStop:F2} | Error Absoluto: {error:F2}");
 
         //normalizamos el error de 0 a 1
         float normalizedError = Mathf.Clamp(error / MAX_ERROR, 0f, 1f);
         //calculamos la puntuacion. Puntuacion maxima * (1 - error normalizado)
         float score = MAX_SCORE_COFFEE * (1f - normalizedError);
 
-        Debug.Log($"[Evaluación Café] Error Normalizado: {normalizedError:F2} | Puntuación Bruta: {score:F2}");
+        Debug.Log($"[Evaluación Café Cliente {playerOrder.orderId}] Error Normalizado: {normalizedError:F2} | Puntuación Bruta: {score:F2}");
 
         return score;
 
@@ -132,9 +143,32 @@ public class OrderEvaluation : MonoBehaviour
             milkScore = 0; // En cualquier otro caso la puntuacion sera 0 
         }
 
-        Debug.Log($"[Evaluación Leche] Objetivo: {milkTarget} | Jugador: {playerMilk}");
+        Debug.Log($"[Evaluación Leche fria Cliente {playerOrder.orderId}] Objetivo: {milkTarget} | Jugador: {playerMilk}");
 
         return milkScore; // Se devuelve la puntuacion total de la leche
+
+    }
+
+    public int EvaluateHeatedMilkPrecision(Order npcOrder, Order playerOrder)
+    {
+        // El objetivo es el valor exacto (false-fria o true-caliente)
+        bool heatedMilkTarget = npcOrder.heatedMilkTarget;
+        // La precision es si el jugador ha calentado o no la leche
+        bool playerHeatedMilk = playerOrder.heatedMilkPrecision;
+
+        int heatedMilkScore = 0;
+        if (playerHeatedMilk == heatedMilkTarget) // Si el jugador ha preparado la leche que se pedia suma 10 puntos
+        {
+            heatedMilkScore = MAX_SCORE_HEATEDMILK;
+        }
+        else
+        {
+            heatedMilkScore = 0; // En cualquier otro caso la puntuacion sera 0 
+        }
+
+        Debug.Log($"[Evaluación Leche caliente Cliente {playerOrder.orderId}] Objetivo: {heatedMilkTarget} | Jugador: {playerHeatedMilk}");
+
+        return heatedMilkScore; // Se devuelve la puntuacion total de la leche
 
     }
 
@@ -155,7 +189,7 @@ public class OrderEvaluation : MonoBehaviour
             waterScore = 0; // En cualquier otro caso la puntuacion sera 0 
         }
 
-        Debug.Log($"[Evaluación Agua] Objetivo: {waterTarget} | Jugador: {playerWater}");
+        Debug.Log($"[Evaluación Agua Cliente {playerOrder.orderId}] Objetivo: {waterTarget} | Jugador: {playerWater}");
 
         return waterScore; // Se devuelve la puntuacion total del agua
 
@@ -178,7 +212,7 @@ public class OrderEvaluation : MonoBehaviour
             sugarScore = 0; // En cualquier otro caso la puntuacion sera 0 
         }
 
-        Debug.Log($"[Evaluación Azúcar] Objetivo: {Starget} | Jugador: {playerSpoons}");
+        Debug.Log($"[Evaluación Azúcar Cliente {playerOrder.orderId}] Objetivo: {Starget} | Jugador: {playerSpoons}");
 
         return sugarScore; // Se devuelve la puntuacion total del azucar
 
@@ -201,7 +235,7 @@ public class OrderEvaluation : MonoBehaviour
             iceScore = 0; // En cualquier otro caso la puntuacion sera 0 
         }
 
-        Debug.Log($"[Evaluación Hielo] Objetivo: {Itarget} | Jugador: {playerIceSpoons}");
+        Debug.Log($"[Evaluación Hielo Cliente {playerOrder.orderId}] Objetivo: {Itarget} | Jugador: {playerIceSpoons}");
 
         return iceScore; // Se devuelve la puntuacion total del hielo
 
@@ -224,7 +258,7 @@ public class OrderEvaluation : MonoBehaviour
             typeScore = 0; // En cualquier otro caso la puntuacion sera 0 
         }
 
-        Debug.Log($"[Evaluación Tipo de pedido] Objetivo: {Typetarget} | Jugador: {playerType}");
+        Debug.Log($"[Evaluación Tipo de pedido Cliente {playerOrder.orderId}] Objetivo: {Typetarget} | Jugador: {playerType}");
 
         return typeScore; // Se devuelve la puntuacion total del tipo de pedido
 

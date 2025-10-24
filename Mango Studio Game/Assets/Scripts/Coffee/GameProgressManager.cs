@@ -20,6 +20,7 @@ public class GameProgressManager : MonoBehaviour
     public bool coffeeEnabled;
     public bool waterEnabled;
     public bool milkEnabled;
+    public bool heatedMilkEnabled;
     public bool sugarEnabled;
     public bool iceEnabled;
     public bool typeOrderEnabled;
@@ -45,6 +46,13 @@ public class GameProgressManager : MonoBehaviour
                 milkEnabled = true;
                 break;
             case 3:
+                coffeeEnabled = true;
+                waterEnabled = true;
+                sugarEnabled = true;
+                iceEnabled = true;
+                typeOrderEnabled = true;
+                milkEnabled = true;
+                heatedMilkEnabled = true;
                 break;
             case 4:
                 break;

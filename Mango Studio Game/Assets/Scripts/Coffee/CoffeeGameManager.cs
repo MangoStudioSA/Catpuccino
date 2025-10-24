@@ -40,15 +40,15 @@ public class CoffeeGameManager : MonoBehaviour
         GameManager.Instance.AddSatisfactionPoint(playerScore);
 
         // Se mostrara un feedback distinto en funcion de la puntuacion obtenida
-        if (playerScore <= 20) 
+        if (playerScore <= 40) 
         {
             orderFeedbackTxt.text = "Esto no es lo que había pedido...";
         }
-        else if (playerScore <= 40)
+        else if (playerScore <= 90)
         {
             orderFeedbackTxt.text = "No está mal.";
         }
-        else if (playerScore < 45)
+        else if (playerScore > 90)
         {
             orderFeedbackTxt.text = "¡Me encanta! ¡Es justo lo que había pedido!";
         }
