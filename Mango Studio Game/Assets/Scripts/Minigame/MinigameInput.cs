@@ -46,6 +46,12 @@ public class MinigameInput : MonoBehaviour
     public bool vasoIsInEspumador = false;
     public bool vasoTapaPuesta = false;
 
+    public Sprite vasoConTapa;
+    public Sprite vasoConCafe;
+    public Sprite vasoSinCafe;
+    public Sprite tazaSinCafe;
+    public Sprite tazaConCafe;
+
     public Transform puntoCafetera;
     public Transform puntoEspumador;
 
@@ -74,6 +80,11 @@ public class MinigameInput : MonoBehaviour
         Vaso.SetActive(false);
         //Filtro.SetActive(false);
         //FiltroCafetera.SetActive(false);
+        Image taza = Taza.GetComponent<Image>();
+        taza.sprite = tazaSinCafe;
+
+        Image vaso = Vaso.GetComponent<Image>();
+        vaso.sprite = vasoSinCafe;
 
         tazaIsInCafetera = false;
         tazaIsInEspumador= false;
@@ -398,6 +409,17 @@ public class MinigameInput : MonoBehaviour
             buttonManager.DisableButton(buttonManager.waterButton);
             buttonManager.DisableButton(buttonManager.milkButton);
         }
+
+        if(tazaIsInCafetera)
+        {
+            Image taza = Taza.GetComponent<Image>();
+            taza.sprite = tazaConCafe;
+        }
+        else if (vasoIsInCafetera)
+        {
+            Image vaso = Vaso.GetComponent<Image>();
+            vaso.sprite = vasoConCafe;
+        }
     }
 
     public void CalentarLeche()
@@ -549,6 +571,8 @@ public class MinigameInput : MonoBehaviour
                 order.currentOrder.typePrecision = countCover;
                 Debug.Log($"[Cliente {order.currentOrder.orderId}] Tapa puesta.");
             }
+            Image vaso = Vaso.GetComponent<Image>();
+            vaso.sprite = vasoConTapa;
         }
     }
 

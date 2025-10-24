@@ -802,6 +802,11 @@ MonoBehaviour:
   vasoIsInCafetera: 0
   vasoIsInEspumador: 0
   vasoTapaPuesta: 0
+  vasoConTapa: {fileID: 1520677557, guid: e288ad6c858bce44d98d91c579e9587e, type: 3}
+  vasoConCafe: {fileID: -1224174487, guid: e288ad6c858bce44d98d91c579e9587e, type: 3}
+  vasoSinCafe: {fileID: -710495507, guid: e288ad6c858bce44d98d91c579e9587e, type: 3}
+  tazaSinCafe: {fileID: -1357573665, guid: e288ad6c858bce44d98d91c579e9587e, type: 3}
+  tazaConCafe: {fileID: 1626960977, guid: e288ad6c858bce44d98d91c579e9587e, type: 3}
   puntoCafetera: {fileID: 365230178}
   puntoEspumador: {fileID: 1266513885}
 --- !u!4 &50023189
@@ -1824,7 +1829,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &153319689
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13505,7 +13510,7 @@ RectTransform:
   m_Father: {fileID: 893861991}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 39, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
