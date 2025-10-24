@@ -26,6 +26,7 @@ public class MinigameInput : MonoBehaviour
 
     public bool cucharaInHand = false;
     public bool tazaInHand = false;
+    public bool vasoInHand = false;
     public bool iceInHand = false;
     public bool coverInHand = false;
     public bool waterInHand = false;
@@ -38,8 +39,12 @@ public class MinigameInput : MonoBehaviour
 
     PlayerOrder order;
     public GameObject Taza;
+    public GameObject Vaso;
     public bool tazaIsInCafetera = false;
     public bool tazaIsInEspumador = false;
+    public bool vasoIsInCafetera = false;
+    public bool vasoIsInEspumador = false;
+    public bool vasoTapaPuesta = false;
 
     public Transform puntoCafetera;
     public Transform puntoEspumador;
@@ -52,6 +57,7 @@ public class MinigameInput : MonoBehaviour
     {
         order = FindFirstObjectByType<PlayerOrder>();
         buttonManager.EnableButton(buttonManager.cogerTazaInicioButton);
+        buttonManager.EnableButton(buttonManager.cogerVasoInicioButton);
 
         currentSlideTime = 0f;
         isSliding = false;
@@ -65,11 +71,15 @@ public class MinigameInput : MonoBehaviour
         countMilk = 0;
 
         Taza.SetActive(false);
+        Vaso.SetActive(false);
         //Filtro.SetActive(false);
         //FiltroCafetera.SetActive(false);
 
         tazaIsInCafetera = false;
         tazaIsInEspumador= false;
+        vasoIsInCafetera = false;
+        vasoIsInEspumador = false;
+
         filtroIsInCafetera = false;
 
         if (coffeeSlider != null)
@@ -152,13 +162,25 @@ public class MinigameInput : MonoBehaviour
 
     public void ActualizarBotonCogerTaza()
     {
-        if (tazaInHand || tazaIsInCafetera || tazaIsInEspumador)
+        if (tazaInHand || tazaIsInCafetera || tazaIsInEspumador || vasoInHand || vasoIsInCafetera || vasoIsInEspumador)
         {
             buttonManager.DisableButton(buttonManager.cogerTazaInicioButton);
         }
         else
         {
             buttonManager.EnableButton(buttonManager.cogerTazaInicioButton);
+        }
+    }
+
+    public void ActualizarBotonCogerVaso()
+    {
+        if (vasoInHand || vasoIsInCafetera || vasoIsInEspumador || tazaInHand || tazaIsInCafetera || tazaIsInEspumador)
+        {
+            buttonManager.DisableButton(buttonManager.cogerVasoInicioButton);
+        }
+        else
+        {
+            buttonManager.EnableButton(buttonManager.cogerVasoInicioButton);
         }
     }
 
@@ -184,6 +206,8 @@ public class MinigameInput : MonoBehaviour
             buttonManager.EnableButton(buttonManager.milkButton);
 
             cursorManager.UpdateCursorTaza(true);
+            Debug.Log($"Taza colocada: {tazaIsInCafetera}");
+
         }
         else if (tazaIsInCafetera && !tazaInHand)
         {
@@ -227,6 +251,8 @@ public class MinigameInput : MonoBehaviour
             buttonManager.DisableButton(buttonManager.milkButton);
 
             cursorManager.UpdateCursorTaza(true);
+            Debug.Log($"Taza colocada: {tazaIsInEspumador}");
+
         }
         else if (tazaIsInEspumador && !tazaInHand)
         {
@@ -248,7 +274,97 @@ public class MinigameInput : MonoBehaviour
         }
         ActualizarBotonCogerTaza();
     }
-    
+
+    public void ToggleVasoCafetera()
+    {
+        if (TengoOtroObjetoEnLaMano())
+            return;
+
+        if (!vasoInHand && !vasoIsInCafetera)
+            return;
+
+        if (!vasoIsInCafetera && vasoInHand)
+        {
+            // Poner en la cafetera
+            Vaso.SetActive(true);
+            Vaso.transform.position = puntoCafetera.position;
+
+            vasoInHand = false;
+            vasoIsInCafetera = true;
+            vasoIsInEspumador = false;
+
+            buttonManager.EnableButton(buttonManager.waterButton);
+            buttonManager.EnableButton(buttonManager.milkButton);
+
+            cursorManager.UpdateCursorVaso(true);
+            Debug.Log($"Vaso colocado: {vasoIsInCafetera}");
+        }
+        else if (vasoIsInCafetera && !vasoInHand)
+        {
+            //Recoger de la cafetera
+            Vaso.SetActive(false);
+            vasoInHand = true;
+            vasoIsInCafetera = false;
+
+            cursorManager.UpdateCursorVaso(false);
+        }
+        else
+        {
+            Debug.Log("No hay ningun vaso en la cafetera");
+        }
+        if (filtroIsInCafetera == true && coffeeServed == false)
+        {
+            buttonManager.EnableButton(buttonManager.echarCafeButton);
+        }
+
+        ActualizarBotonCogerVaso();
+    }
+
+    public void ToggleVasoEspumador()
+    {
+        if (TengoOtroObjetoEnLaMano())
+            return;
+
+        if (!vasoInHand && !vasoIsInEspumador)
+            return;
+
+        if (!vasoIsInEspumador && vasoInHand)
+        {
+            // Poner en el espumador
+            Vaso.SetActive(true);
+            Vaso.transform.position = puntoEspumador.position;
+
+            vasoInHand = false;
+            vasoIsInCafetera = false;
+            vasoIsInEspumador = true;
+
+            buttonManager.DisableButton(buttonManager.waterButton);
+            buttonManager.DisableButton(buttonManager.milkButton);
+
+            cursorManager.UpdateCursorVaso(true);
+            Debug.Log($"Vaso colocado: {vasoIsInEspumador}");
+        }
+        else if (vasoIsInEspumador && !vasoInHand)
+        {
+            //Recoger del espumador
+            Vaso.SetActive(false);
+
+            vasoInHand = true;
+            vasoIsInEspumador = false;
+
+            cursorManager.UpdateCursorVaso(false);
+        }
+        else
+        {
+            Debug.Log("No hay ningun vaso en el espumador");
+        }
+        if (milkServed)
+        {
+            buttonManager.EnableButton(buttonManager.calentarButton);
+        }
+        ActualizarBotonCogerVaso();
+    }
+
     public void TakeFiltro()
     {
         if (filtroIsInCafetera == false)
@@ -268,7 +384,7 @@ public class MinigameInput : MonoBehaviour
             filtroIsInCafetera = true;
         }
         //FiltroCafetera.SetActive(true);
-        if (tazaIsInCafetera == true && coffeeServed == false)
+        if (tazaIsInCafetera == true || vasoIsInCafetera == true && coffeeServed == false)
         {
             buttonManager.EnableButton(buttonManager.echarCafeButton);
         }
@@ -276,7 +392,9 @@ public class MinigameInput : MonoBehaviour
 
     public void EcharCafe()
     {
-        if(tazaIsInCafetera != false && filtroIsInCafetera != false && coffeeServed ==false)
+        bool recipienteEnCafetera = tazaIsInCafetera || vasoIsInCafetera;
+
+        if(recipienteEnCafetera && filtroIsInCafetera != false && coffeeServed == false)
         {
             Debug.Log($"[Cliente {order.currentOrder.orderId}] Preparacion: Echando cafe");
             coffeeServed = true;
@@ -294,7 +412,7 @@ public class MinigameInput : MonoBehaviour
 
     public void CalentarLeche()
     {
-        if (tazaIsInEspumador == true && milkServed == true && coffeeServed == false)
+        if ((tazaIsInEspumador == true || vasoIsInEspumador == true) && milkServed == true && coffeeServed == false)
         {
             Debug.Log($"[Cliente {order.currentOrder.orderId}] Preparacion: Calentando la leche");
             heatMilk = true;
@@ -307,7 +425,7 @@ public class MinigameInput : MonoBehaviour
     #region Mecanicas 
     public void CogerLeche()
     {
-        if (!TengoOtroObjetoEnLaMano() && !tazaInHand)
+        if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand)
         {
             milkInHand = true;
             Debug.Log("tengo la leche");
@@ -321,7 +439,7 @@ public class MinigameInput : MonoBehaviour
 
     public void CogerAgua()
     {
-        if (!TengoOtroObjetoEnLaMano() && !tazaInHand)
+        if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand)
         {
             waterInHand = true;
             Debug.Log("tengo el agua");
@@ -335,7 +453,7 @@ public class MinigameInput : MonoBehaviour
 
     public void CogerAzucar()
     {
-        if (!TengoOtroObjetoEnLaMano() && !tazaInHand)
+        if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand)
         {
             cucharaInHand = true;
             Debug.Log("tengo el azucar");
@@ -349,7 +467,7 @@ public class MinigameInput : MonoBehaviour
 
     public void CogerHielo()
     {
-        if (!TengoOtroObjetoEnLaMano() && !tazaInHand)
+        if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand)
         {
             iceInHand = true;
             Debug.Log("tengo el hielo");
@@ -363,7 +481,7 @@ public class MinigameInput : MonoBehaviour
 
     public void CogerTapa()
     {
-        if (!TengoOtroObjetoEnLaMano() && !tazaInHand)
+        if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand)
         {
             coverInHand = true;
             Debug.Log("tengo la tapa");
@@ -433,7 +551,7 @@ public class MinigameInput : MonoBehaviour
     public void PonerTapa()
     {
         //Si se tiene la tapa en la mano y el cafe esta servido entonces se puede poner la tapa
-        if (coverInHand == true && coffeeServed == true)
+        if (coverInHand == true && coffeeServed == true && vasoIsInCafetera)
         {
             if (countCover <= 1)
             {

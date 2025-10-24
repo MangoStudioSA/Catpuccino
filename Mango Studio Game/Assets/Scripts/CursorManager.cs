@@ -5,6 +5,7 @@ public class CursorManager : MonoBehaviour
 {
     [SerializeField] Texture2D defaultCursorTexture;
     [SerializeField] Texture2D tazaCursorTexture;
+    [SerializeField] Texture2D vasoCursorTexture;
     [SerializeField] Texture2D filtroCursorTexture;
     [SerializeField] Texture2D cucharaCursorTexture;
     [SerializeField] Texture2D hieloCucharaCursorTexture;
@@ -14,6 +15,7 @@ public class CursorManager : MonoBehaviour
 
     [SerializeField] Vector2 hotSpotDefault = Vector2.zero; //el punto que hace click en si del cursor (ahora mismo arriba izquierda)
     [SerializeField] Vector2 hotSpotTaza = Vector2.zero; //el punto que hace click en si del cursor (ahora mismo arriba izquierda)
+    [SerializeField] Vector2 hotSpotVaso = Vector2.zero; //el punto que hace click en si del cursor (ahora mismo arriba izquierda)
     [SerializeField] Vector2 hotSpotFiltro = Vector2.zero; //el punto que hace click en si del cursor (ahora mismo arriba izquierda)
     [SerializeField] Vector2 hotSpotCuchara = Vector2.zero; //el punto que hace click en si del cursor (ahora mismo arriba izquierda)
     [SerializeField] Vector2 hotSpotHieloCuchara = Vector2.zero; //el punto que hace click en si del cursor (ahora mismo arriba izquierda)
@@ -52,6 +54,15 @@ public class CursorManager : MonoBehaviour
         }
     }
 
+    public void TakeVasoFromShelf()
+    {
+        if (!miniGameInput.vasoInHand && !miniGameInput.vasoIsInCafetera)
+        {
+            miniGameInput.vasoInHand = true;
+            Cursor.SetCursor(vasoCursorTexture, hotSpotVaso, CursorMode.Auto);
+        }
+    }
+
     public void UpdateCursorTaza(bool dejandoTaza)
     {
         if (miniGameInput.TengoOtroObjetoEnLaMano())
@@ -66,6 +77,22 @@ public class CursorManager : MonoBehaviour
             Cursor.SetCursor(tazaCursorTexture, hotSpotTaza, CursorMode.Auto);
         }
     }
+
+    public void UpdateCursorVaso(bool dejandoVaso)
+    {
+        if (miniGameInput.TengoOtroObjetoEnLaMano())
+            return;
+
+        if (dejandoVaso)
+        {
+            Cursor.SetCursor(defaultCursorTexture, hotSpotDefault, CursorMode.Auto);
+        }
+        else
+        {
+            Cursor.SetCursor(vasoCursorTexture, hotSpotVaso, CursorMode.Auto);
+        }
+    }
+
     public void PutTaza()
     {
         if (!miniGameInput.tazaIsInCafetera)
