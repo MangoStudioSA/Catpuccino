@@ -12,8 +12,11 @@ public class OrderEvaluation : MonoBehaviour
     private const int MAX_SCORE_MILK = 10;
     private const int MAX_SCORE_HEATEDMILK = 5;
     private const float MAX_ERROR = 2.0F;
-    public int Evaluate(Order npcOrder, Order playerOrder)
+
+    public EvaluationResult Evaluate(Order npcOrder, Order playerOrder)
     {
+        EvaluationResult result = new EvaluationResult();
+
         int totalScore = 0; // Inicializa la puntuacion del jugador en 0
         int maxPossibleScore = 0;
 
@@ -90,15 +93,20 @@ public class OrderEvaluation : MonoBehaviour
             Debug.Log($"[Cliente {playerOrder.orderId}] Puntuación del Tipo de pedido: {typeScore}/{MAX_SCORE_COVER} pts");
         }
 
-        float percentScore = ((float)totalScore / maxPossibleScore) * 100f;
+        float percentScore = (float) totalScore / maxPossibleScore;
+
+        float basePrice = CoffeePriceManager.Instance.GetBasePrice(playerOrder.coffeeType);
+        result.moneyEarned = Mathf.RoundToInt(basePrice * percentScore);
+
+        result.score = Mathf.RoundToInt(percentScore * 100f);
 
         // Debug del puntaje TOTAL
         Debug.Log($"--- RESULTADO FINAL DE LA ORDEN {playerOrder.orderId} ---");
         Debug.Log($"Puntuación Total de la Orden {playerOrder.orderId}: {totalScore}/{maxPossibleScore} ({percentScore:F1}%)pts");
+        Debug.Log($"Ingresos Totales de la Orden {playerOrder.orderId}: ({result.moneyEarned:F1}%)$");
         Debug.Log($"------------------------------------");
 
-        //EL SCORE MAXIMO AHORA ES 50 (25+12+13)
-        return Mathf.RoundToInt(percentScore); // Se devuelve la puntuacion del jugador
+        return result; // Se devuelve la puntuacion y los ingresos del jugador
 
     }
 

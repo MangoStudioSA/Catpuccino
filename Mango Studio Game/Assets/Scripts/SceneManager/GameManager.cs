@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
         customersRated++;
 
         // Calculamos la media. La puntuación máxima es 50, así que la convertimos a un % (0-100).
-        float averageSatisfaction = ((float)totalSatisfactionScore / customersRated) / 50f * 100f;
+        float averageSatisfaction = ((float)totalSatisfactionScore / customersRated);
 
         // Le pasamos la nueva media al HUD para que la muestre
         HUDManager.Instance.UpdateSatisfaccion(averageSatisfaction);

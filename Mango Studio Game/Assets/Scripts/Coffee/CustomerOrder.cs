@@ -54,8 +54,8 @@ public class CustomerOrder : MonoBehaviour
                     break;
             }
 
-            orderTxt.text = $"Quiero un café {coffeeType} {sugarTxt} y {iceTxt}. Lo quiero para {type}.";
-            playerPreparationTxt.text = $"Tienes que preparar: Café {coffeeType} {sugarTxt} y {iceTxt}. Es un pedido para {type}.";
+            orderTxt.text = $"Quiero un {coffeeType} {sugarTxt} y {iceTxt}. Lo quiero para {type}.";
+            playerPreparationTxt.text = $"Tienes que preparar: {coffeeType} {sugarTxt} y {iceTxt}. Es un pedido para {type}.";
         }
     }
 }

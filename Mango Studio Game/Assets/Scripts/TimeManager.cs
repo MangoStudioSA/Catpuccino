@@ -21,8 +21,8 @@ public class TimeManager : MonoBehaviour
     [SerializeField] private int endMinutes = 20;
 
     [Header("Configuración de facturas")]
-    [SerializeField] private int requiredBase = 500;
-    [SerializeField] private int requiredIncrement = 250;
+    [SerializeField] private int requiredBase = 50;
+    [SerializeField] private int requiredIncrement = 20;
 
 
     private float currentTimeInSeconds;
@@ -37,12 +37,12 @@ public class TimeManager : MonoBehaviour
     private SceneUIManager sceneUIManager;
     private ButtonUnlockManager buttonUnlockManager;
 
-    private int required = 0;
+    private int requiredMoney = 0;
 
     void Awake()
     {
         if (Instance != null) { Destroy(gameObject); } else { Instance = this; }
-        buttonUnlockManager = FindObjectOfType<ButtonUnlockManager>();
+        buttonUnlockManager = FindFirstObjectByType<ButtonUnlockManager>();
         if (buttonUnlockManager == null)
         {
             Debug.LogError("No se encontro buttonunlockmanager en la escena");
@@ -51,10 +51,10 @@ public class TimeManager : MonoBehaviour
 
     void Start()
     {
-        gameUIManager = FindObjectOfType<GameUIManager>();
-        customerManager = FindObjectOfType<CustomerManager>();
-        gameManager = FindObjectOfType<GameManager>();
-        sceneUIManager = FindObjectOfType<SceneUIManager>();
+        gameUIManager = FindFirstObjectByType<GameUIManager>();
+        customerManager = FindFirstObjectByType<CustomerManager>();
+        gameManager = FindFirstObjectByType<GameManager>();
+        sceneUIManager = FindFirstObjectByType<SceneUIManager>();
         StartNewDay();
     }
 
@@ -78,7 +78,7 @@ public class TimeManager : MonoBehaviour
 
     public void StartNewDay()
     {
-        if (gameManager.monedas <= required && currentDay != 0)
+        if (gameManager.monedas <= requiredMoney && currentDay != 0)
         {
             sceneUIManager.EndGameMenu();
         }
@@ -94,14 +94,14 @@ public class TimeManager : MonoBehaviour
         IsOpen = true;
         isDayEnding = false;
 
-        gameManager.monedas -= required;
+        gameManager.monedas -= requiredMoney;
         HUDManager.Instance.UpdateMonedas(gameManager.monedas);
 
         GameProgressManager.Instance.UpdateMechanicsForDay(currentDay);
         buttonUnlockManager.RefreshButtons();
 
 
-        required = requiredBase + (currentDay - 1) * requiredIncrement + (int)Random.Range(-50, 50);
+        requiredMoney = requiredBase + (currentDay - 1) * requiredIncrement + (int)Random.Range(-50, 50);
 
         if (gameUIManager != null)
         {
@@ -118,6 +118,7 @@ public class TimeManager : MonoBehaviour
         Debug.Log($"--- DÍA {currentDay} --- \nLa cafetería ha abierto.");
     }
 
+
     private IEnumerator EndDaySequence()
     {
         isDayEnding = true; // Marcamos que el fin de día ha comenzado
@@ -127,10 +128,10 @@ public class TimeManager : MonoBehaviour
         if (gameUIManager != null)
         {
             gameUIManager.ShowEndOfDayPanel();
-            requiredText.text = "Debes pagar " + required + "$ para cubrir los gastos del local";
+            requiredText.text = "Debes pagar " + requiredMoney + "$ para cubrir los gastos del local";
         }
 
-        if (gameManager.monedas >= required)
+        if (gameManager.monedas >= requiredMoney)
         {
             earnedText.text = "Hoy has ganado " + gameManager.monedas + "$, tienes suficiente para pagar las facturas pendientes";
             endButtonText.text = "Siguiente día";

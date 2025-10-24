@@ -16,7 +16,7 @@ public class MinigameInput : MonoBehaviour
     float currentSlideTime = 0f;
     bool isSliding = false;
     bool coffeeDone = false;
-    bool molerDone =false;
+    //bool molerDone =false;
 
     int countSugar = 0;
     int countIce = 0;
@@ -157,7 +157,7 @@ public class MinigameInput : MonoBehaviour
         Debug.Log($"[Cliente {order.currentOrder.orderId}] Preparacion: Moliendo cafe");
         buttonManager.DisableButton(buttonManager.molerButton);
         buttonManager.EnableButton(buttonManager.filtroButton);
-        molerDone = true;
+        //molerDone = true;
     }
 
     public void ActualizarBotonCogerTaza()

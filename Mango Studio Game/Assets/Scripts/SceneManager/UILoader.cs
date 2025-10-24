@@ -16,7 +16,7 @@ public class UILoader : MonoBehaviour
 
     private void Start()
     {
-        gameUIManager = GameObject.FindObjectOfType<GameUIManager>();
+        gameUIManager = GameObject.FindFirstObjectByType<GameUIManager>();
     }
 
     public void OpenGameOptions()

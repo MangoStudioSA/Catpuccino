@@ -21,7 +21,7 @@ public class UIDialogue : MonoBehaviour
         preparationPanel.SetActive(false);
         acceptButton.onClick.AddListener(StartPreparation);
         manager = GameObject.FindWithTag("CustomerManager").GetComponent<CustomerManager>();
-        gameUI = GameObject.FindObjectOfType<GameUIManager>();
+        gameUI = GameObject.FindFirstObjectByType<GameUIManager>();
     }
 
     public void StartPreparation()

@@ -13,28 +13,28 @@ public class CoffeeGameManager : MonoBehaviour
     public TextMeshProUGUI servedCustomersTxt;
     public TextMeshProUGUI earnedTipTxt;
 
+    private int playerScore = 0;
     private int totalScore = 0;
     private int customersServed = 0;
+    private int moneyEarned = 0;
 
-
-    void Start()
-    {
-        //npc.GenRandomOrder();     
-    }
 
     public void SubmitOrder()
     {
         // Se calcula la puntuacion del pedido comparando lo que se pedia con el resultado del jugador
-        int playerScore = evaluation.Evaluate(npc.currentOrder, player.currentOrder);
+        EvaluationResult result = evaluation.Evaluate(npc.currentOrder, player.currentOrder);
         // Se suma la puntuacion obtenida a la total
-        totalScore += playerScore; 
+        playerScore = result.score;
+        totalScore += playerScore;
+        // Se suma el dinero ingresado
+        moneyEarned = result.moneyEarned;
         // Se aumenta en 1 el total de clientes atendidos
         customersServed++;
         // Se inicializa la propina en 0
         int tip = 0;
 
         // Añade monedas dependiendo de la puntuación
-        GameManager.Instance.AnadirMonedas(playerScore);
+        GameManager.Instance.AnadirMonedas(moneyEarned);
 
         // Calcula la satisfaccion del cliente
         GameManager.Instance.AddSatisfactionPoint(playerScore);
@@ -44,22 +44,25 @@ public class CoffeeGameManager : MonoBehaviour
         {
             orderFeedbackTxt.text = "Esto no es lo que había pedido...";
         }
-        else if (playerScore <= 90)
+        else if (playerScore <= 80)
         {
             orderFeedbackTxt.text = "No está mal.";
         }
-        else if (playerScore > 90)
+        else if (playerScore <= 92)
         {
             orderFeedbackTxt.text = "¡Me encanta! ¡Es justo lo que había pedido!";
+            tip += 1;
+            // Añade la propina a los ingresos totales
+            GameManager.Instance.AnadirMonedas(tip);
         }
         else
         {
             orderFeedbackTxt.text = "¡Me encanta! ¡Es justo lo que había pedido!";
-            tip += 7;
+            tip += 2;
             // Añade la propina a los ingresos totales
             GameManager.Instance.AnadirMonedas(tip);
         }
-        earnedMoneyTxt.text = $"¡Has ganado {playerScore:F2}$!";
+        earnedMoneyTxt.text = $"¡Has ganado {moneyEarned:F2}$!";
 
         // Se mostrara un feedback distinto en funcion del numero de clientes atendidos
         if (customersServed == 1)
