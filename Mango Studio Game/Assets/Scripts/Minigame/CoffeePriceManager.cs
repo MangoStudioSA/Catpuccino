@@ -8,6 +8,7 @@ public class CoffeePriceManager : MonoBehaviour
     private Dictionary<CoffeeType, float> coffeePrices = new Dictionary<CoffeeType, float>()
     {
         { CoffeeType.espresso, 1.5f },
+        { CoffeeType.lungo, 1.7f },
         { CoffeeType.americano, 2.0f },
         { CoffeeType.macchiatto, 2.5f },
         { CoffeeType.latte, 3.0f },
@@ -15,7 +16,7 @@ public class CoffeePriceManager : MonoBehaviour
         { CoffeeType.bombón, 3.5f },
         { CoffeeType.vienés, 3.5f },
         { CoffeeType.frappé, 4.0f },
-        { CoffeeType.mocca, 3.5f },
+        { CoffeeType.mocca, 4.5f },
         { CoffeeType.irish, 5.0f }
     };
 

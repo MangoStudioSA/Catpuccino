@@ -92,6 +92,8 @@ public class Order
         {
             case CoffeeType.espresso:
                 return 1.0f;
+            case CoffeeType.lungo:
+                return 3.0f;
             case CoffeeType.americano:
                 return 1.0f;
             case CoffeeType.macchiatto:
@@ -100,6 +102,16 @@ public class Order
                 return 2.0f;
             case CoffeeType.capuccino:
                 return 1.0f;
+            case CoffeeType.bombón:
+                return 2.0f;
+            case CoffeeType.vienés:
+                return 1.0f;
+            case CoffeeType.frappé:
+                return 2.0f;
+            case CoffeeType.mocca:
+                return 1.0f;
+            case CoffeeType.irish:
+                return 2.0f;
             default:
                 return 2.0f; //por si algo falla
         }
@@ -110,6 +122,8 @@ public class Order
         {
             case CoffeeType.espresso:
                 return 0;
+            case CoffeeType.lungo:
+                return 0;
             case CoffeeType.americano:
                 return 0;
             case CoffeeType.macchiatto:
@@ -118,6 +132,16 @@ public class Order
                 return 2;
             case CoffeeType.capuccino:
                 return 1;
+            case CoffeeType.bombón:
+                return 0;
+            case CoffeeType.vienés:
+                return 0;
+            case CoffeeType.frappé:
+                return 0;
+            case CoffeeType.mocca:
+                return 1;
+            case CoffeeType.irish:
+                return 0;
             default:
                 return 2; //por si algo falla
         }
@@ -129,6 +153,8 @@ public class Order
         {
             case CoffeeType.espresso:
                 return false;
+            case CoffeeType.lungo:
+                return false;
             case CoffeeType.americano:
                 return false;
             case CoffeeType.macchiatto:
@@ -136,6 +162,16 @@ public class Order
             case CoffeeType.latte:
                 return true;
             case CoffeeType.capuccino:
+                return true;
+            case CoffeeType.bombón:
+                return false;
+            case CoffeeType.vienés:
+                return false;
+            case CoffeeType.frappé:
+                return false;
+            case CoffeeType.mocca:
+                return true;
+            case CoffeeType.irish:
                 return true;
             default:
                 return false; //por si algo falla
@@ -148,6 +184,8 @@ public class Order
         {
             case CoffeeType.espresso:
                 return 0;
+            case CoffeeType.lungo:
+                return 0;
             case CoffeeType.americano:
                 return 1;
             case CoffeeType.macchiatto:
@@ -155,6 +193,16 @@ public class Order
             case CoffeeType.latte:
                 return 0;
             case CoffeeType.capuccino:
+                return 0;
+            case CoffeeType.bombón:
+                return 0;
+            case CoffeeType.vienés:
+                return 0;
+            case CoffeeType.frappé:
+                return 0;
+            case CoffeeType.mocca:
+                return 0;
+            case CoffeeType.irish:
                 return 0;
             default:
                 return 2; //por si algo falla
@@ -204,7 +252,7 @@ public class Order
 
 }
 
-public enum CoffeeType { espresso, americano, macchiatto, latte, capuccino, bombón, vienés, frappé, mocca, irish } // Se crean los tipos de cafe
+public enum CoffeeType { espresso, lungo, americano, macchiatto, latte, capuccino, bombón, vienés, frappé, mocca, irish } // Se crean los tipos de cafe
 public enum CoffeeAmount { corto, medio, largo } // Se crean 3 cantidades para los cafes
 public enum MilkAmount { nada, poco, mucha } // Se crean 3 cantidades de leche
 public enum HeatMilk { fria, caliente } // Se crean 2 tipos de leche

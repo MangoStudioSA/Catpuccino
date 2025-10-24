@@ -55,12 +55,40 @@ public class GameProgressManager : MonoBehaviour
                 heatedMilkEnabled = true;
                 break;
             case 4:
+                coffeeEnabled = true;
+                waterEnabled = true;
+                sugarEnabled = true;
+                iceEnabled = true;
+                typeOrderEnabled = true;
+                milkEnabled = true;
+                heatedMilkEnabled = true;
                 break;
             case 5:
+                coffeeEnabled = true;
+                waterEnabled = true;
+                sugarEnabled = true;
+                iceEnabled = true;
+                typeOrderEnabled = true;
+                milkEnabled = true;
+                heatedMilkEnabled = true;
                 break;
             case 6:
+                coffeeEnabled = true;
+                waterEnabled = true;
+                sugarEnabled = true;
+                iceEnabled = true;
+                typeOrderEnabled = true;
+                milkEnabled = true;
+                heatedMilkEnabled = true;
                 break;
             case 7:
+                coffeeEnabled = true;
+                waterEnabled = true;
+                sugarEnabled = true;
+                iceEnabled = true;
+                typeOrderEnabled = true;
+                milkEnabled = true;
+                heatedMilkEnabled = true;
                 break;
             default:
                 coffeeEnabled = waterEnabled = sugarEnabled = iceEnabled = typeOrderEnabled = true;

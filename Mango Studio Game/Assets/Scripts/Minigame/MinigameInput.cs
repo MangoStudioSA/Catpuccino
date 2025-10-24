@@ -160,26 +160,16 @@ public class MinigameInput : MonoBehaviour
         //molerDone = true;
     }
 
-    public void ActualizarBotonCogerTaza()
+    public void ActualizarBotonCogerEnvase()
     {
         if (tazaInHand || tazaIsInCafetera || tazaIsInEspumador || vasoInHand || vasoIsInCafetera || vasoIsInEspumador)
         {
             buttonManager.DisableButton(buttonManager.cogerTazaInicioButton);
-        }
-        else
-        {
-            buttonManager.EnableButton(buttonManager.cogerTazaInicioButton);
-        }
-    }
-
-    public void ActualizarBotonCogerVaso()
-    {
-        if (vasoInHand || vasoIsInCafetera || vasoIsInEspumador || tazaInHand || tazaIsInCafetera || tazaIsInEspumador)
-        {
             buttonManager.DisableButton(buttonManager.cogerVasoInicioButton);
         }
         else
         {
+            buttonManager.EnableButton(buttonManager.cogerTazaInicioButton);
             buttonManager.EnableButton(buttonManager.cogerVasoInicioButton);
         }
     }
@@ -227,7 +217,7 @@ public class MinigameInput : MonoBehaviour
             buttonManager.EnableButton(buttonManager.echarCafeButton);
         }
 
-        ActualizarBotonCogerTaza();
+        ActualizarBotonCogerEnvase();
     }
 
     public void ToggleTazaEspumador()
@@ -272,7 +262,7 @@ public class MinigameInput : MonoBehaviour
         {
             buttonManager.EnableButton(buttonManager.calentarButton);
         }
-        ActualizarBotonCogerTaza();
+        ActualizarBotonCogerEnvase();
     }
 
     public void ToggleVasoCafetera()
@@ -317,7 +307,7 @@ public class MinigameInput : MonoBehaviour
             buttonManager.EnableButton(buttonManager.echarCafeButton);
         }
 
-        ActualizarBotonCogerVaso();
+        ActualizarBotonCogerEnvase();
     }
 
     public void ToggleVasoEspumador()
@@ -362,7 +352,7 @@ public class MinigameInput : MonoBehaviour
         {
             buttonManager.EnableButton(buttonManager.calentarButton);
         }
-        ActualizarBotonCogerVaso();
+        ActualizarBotonCogerEnvase();
     }
 
     public void TakeFiltro()

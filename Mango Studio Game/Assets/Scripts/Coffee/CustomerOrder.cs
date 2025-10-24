@@ -16,7 +16,7 @@ public class CustomerOrder : MonoBehaviour
     public void GenRandomOrder()
     {
         int day = timeManager.currentDay;
-        //CoffeeType coffeeType = (CoffeeType)Random.Range(0, System.Enum.GetValues(typeof(CoffeeType)).Length); // Se genera el tipo de cafe entre los disponibles
+
         CoffeeType coffeeType = unlockManager.GetRandomAvailableCoffee(day); // Se genera el tipo de cafe entre los disponibles
         SugarAmount sugar = (SugarAmount)Random.Range(0, 3); // Se genera una cantidad de azucar al azar entre los 3 tipos
         IceAmount ice = (IceAmount)Random.Range(0, 2); // Se genera una cantidad de hielo al azar entre los 2 tipos

@@ -47,7 +47,7 @@ public class CursorManager : MonoBehaviour
 
     public void TakeTazaFromShelf()
     {
-        if (!miniGameInput.tazaInHand && !miniGameInput.tazaIsInCafetera)
+        if (!miniGameInput.tazaInHand && !miniGameInput.tazaIsInCafetera && !miniGameInput.vasoInHand)
         {
             miniGameInput.tazaInHand = true;
             Cursor.SetCursor(tazaCursorTexture, hotSpotTaza, CursorMode.Auto);
@@ -56,7 +56,7 @@ public class CursorManager : MonoBehaviour
 
     public void TakeVasoFromShelf()
     {
-        if (!miniGameInput.vasoInHand && !miniGameInput.vasoIsInCafetera)
+        if (!miniGameInput.vasoInHand && !miniGameInput.vasoIsInCafetera && !miniGameInput.tazaInHand)
         {
             miniGameInput.vasoInHand = true;
             Cursor.SetCursor(vasoCursorTexture, hotSpotVaso, CursorMode.Auto);

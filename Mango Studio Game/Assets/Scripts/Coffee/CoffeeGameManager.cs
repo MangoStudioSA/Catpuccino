@@ -23,19 +23,22 @@ public class CoffeeGameManager : MonoBehaviour
     {
         // Se calcula la puntuacion del pedido comparando lo que se pedia con el resultado del jugador
         EvaluationResult result = evaluation.Evaluate(npc.currentOrder, player.currentOrder);
+
         // Se suma la puntuacion obtenida a la total
         playerScore = result.score;
         totalScore += playerScore;
+
         // Se suma el dinero ingresado
         moneyEarned = result.moneyEarned;
+
         // Se aumenta en 1 el total de clientes atendidos
         customersServed++;
+
         // Se inicializa la propina en 0
         int tip = 0;
 
         // Añade monedas dependiendo de la puntuación
         GameManager.Instance.AnadirMonedas(moneyEarned);
-
         // Calcula la satisfaccion del cliente
         GameManager.Instance.AddSatisfactionPoint(playerScore);
 
