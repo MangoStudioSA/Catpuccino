@@ -12,6 +12,10 @@ public class CursorManager : MonoBehaviour
     [SerializeField] Texture2D tapaCursorTexture;
     [SerializeField] Texture2D aguaCursorTexture;
     [SerializeField] Texture2D lecheCursorTexture;
+    [SerializeField] Texture2D lecheCondensadaCursorTexture;
+    [SerializeField] Texture2D cremaCursorTexture;
+    [SerializeField] Texture2D chocolateCursorTexture;
+    [SerializeField] Texture2D whiskeyCursorTexture;
 
     [SerializeField] Vector2 hotSpotDefault = Vector2.zero; //el punto que hace click en si del cursor (ahora mismo arriba izquierda)
     [SerializeField] Vector2 hotSpotTaza = Vector2.zero; //el punto que hace click en si del cursor (ahora mismo arriba izquierda)
@@ -22,14 +26,17 @@ public class CursorManager : MonoBehaviour
     [SerializeField] Vector2 hotSpotTapaCuchara = Vector2.zero; //el punto que hace click en si del cursor (ahora mismo arriba izquierda)
     [SerializeField] Vector2 hotSpotAgua = Vector2.zero; //el punto que hace click en si del cursor (ahora mismo arriba izquierda)
     [SerializeField] Vector2 hotSpotLeche = Vector2.zero; //el punto que hace click en si del cursor (ahora mismo arriba izquierda)
+    [SerializeField] Vector2 hotSpotLecheCondensada = Vector2.zero; //el punto que hace click en si del cursor (ahora mismo arriba izquierda)
+    [SerializeField] Vector2 hotSpotCrema = Vector2.zero; //el punto que hace click en si del cursor (ahora mismo arriba izquierda)
+    [SerializeField] Vector2 hotSpotChocolate = Vector2.zero; //el punto que hace click en si del cursor (ahora mismo arriba izquierda)
+    [SerializeField] Vector2 hotSpotWhiskey = Vector2.zero; //el punto que hace click en si del cursor (ahora mismo arriba izquierda)
 
-
-    [SerializeField] MinigameInput miniGameInput; //para poder usar tazaIsThere       
+    [SerializeField] MinigameInput miniGameInput; //para poder usar referencias a los vasos y tazas       
 
 
     void Start()
     {
-        //ocultamos cursor por defecto de so
+        //ocultamos cursor por defecto
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
 
@@ -45,6 +52,7 @@ public class CursorManager : MonoBehaviour
         }
     }
 
+    // Gestionar coger la taza del estante
     public void TakeTazaFromShelf()
     {
         if (!miniGameInput.tazaInHand && !miniGameInput.tazaIsInCafetera && !miniGameInput.vasoInHand)
@@ -54,6 +62,7 @@ public class CursorManager : MonoBehaviour
         }
     }
 
+    // Gestionar coger el vaso del estante
     public void TakeVasoFromShelf()
     {
         if (!miniGameInput.vasoInHand && !miniGameInput.vasoIsInCafetera && !miniGameInput.tazaInHand)
@@ -63,6 +72,7 @@ public class CursorManager : MonoBehaviour
         }
     }
 
+    // Gestionar cursor taza
     public void UpdateCursorTaza(bool dejandoTaza)
     {
         if (miniGameInput.TengoOtroObjetoEnLaMano())
@@ -78,6 +88,7 @@ public class CursorManager : MonoBehaviour
         }
     }
 
+    // Gestionar cursor vaso
     public void UpdateCursorVaso(bool dejandoVaso)
     {
         if (miniGameInput.TengoOtroObjetoEnLaMano())
@@ -92,28 +103,20 @@ public class CursorManager : MonoBehaviour
             Cursor.SetCursor(vasoCursorTexture, hotSpotVaso, CursorMode.Auto);
         }
     }
-
-    public void PutTaza()
-    {
-        if (!miniGameInput.tazaIsInCafetera)
-        {
-            Cursor.SetCursor(defaultCursorTexture, hotSpotDefault, CursorMode.Auto);
-        }
-    }
-
     public void TakeFiltro()
     {
         Cursor.SetCursor(filtroCursorTexture, hotSpotFiltro, CursorMode.Auto);
     }
+
     public void PutFiltro()
     {
         Cursor.SetCursor(defaultCursorTexture, hotSpotDefault, CursorMode.Auto);
     }
+
     public void TakeCuchara()
     {
-        //tenia problemas de sincronizacion asi que he tenido que hacerlo asi, tiene en cuenta a variable antigua en lugar de la nueva, por que se comprueba aqui si es true antes de lo que
-        //se pone en true en el otro script, se que es un poco chapuza pero funciona y yo soy artista no programadora :)
-        if (miniGameInput.cucharaInHand == true && miniGameInput.waterInHand == false && miniGameInput.coverInHand == false && miniGameInput.iceInHand == false && miniGameInput.milkInHand == false)
+        if (miniGameInput.cucharaInHand && !miniGameInput.waterInHand && !miniGameInput.coverInHand && !miniGameInput.iceInHand && !miniGameInput.milkInHand 
+            && !miniGameInput.condensedMilkInHand && !miniGameInput.creamInHand && !miniGameInput.chocolateInHand && !miniGameInput.whiskeyInHand)
         {
             Cursor.SetCursor(cucharaCursorTexture, hotSpotCuchara, CursorMode.Auto);
         }
@@ -126,7 +129,8 @@ public class CursorManager : MonoBehaviour
 
     public void TakeMilk()
     {
-        if (miniGameInput.milkInHand == true && miniGameInput.waterInHand == false && miniGameInput.coverInHand == false && miniGameInput.cucharaInHand == false && miniGameInput.iceInHand == false)
+        if (miniGameInput.milkInHand && !miniGameInput.waterInHand && !miniGameInput.coverInHand && !miniGameInput.cucharaInHand && !miniGameInput.iceInHand 
+            && !miniGameInput.condensedMilkInHand && !miniGameInput.creamInHand && !miniGameInput.chocolateInHand && !miniGameInput.whiskeyInHand)
         {
             Cursor.SetCursor(lecheCursorTexture, hotSpotLeche, CursorMode.Auto);
         }
@@ -139,7 +143,8 @@ public class CursorManager : MonoBehaviour
 
     public void TakeWater()
     {
-        if (miniGameInput.waterInHand == true && miniGameInput.coverInHand == false && miniGameInput.cucharaInHand == false && miniGameInput.iceInHand == false && miniGameInput.milkInHand == false)
+        if (miniGameInput.waterInHand && !miniGameInput.coverInHand && !miniGameInput.cucharaInHand && !miniGameInput.iceInHand && !miniGameInput.milkInHand 
+            && !miniGameInput.condensedMilkInHand && !miniGameInput.creamInHand && !miniGameInput.chocolateInHand && !miniGameInput.whiskeyInHand)
         {
             Cursor.SetCursor(aguaCursorTexture, hotSpotAgua, CursorMode.Auto);
         }
@@ -150,9 +155,66 @@ public class CursorManager : MonoBehaviour
         }
     }
 
+    public void TakeCondensedMilk()
+    {
+        if (miniGameInput.condensedMilkInHand && !miniGameInput.waterInHand && !miniGameInput.coverInHand && !miniGameInput.cucharaInHand && !miniGameInput.iceInHand 
+            && !miniGameInput.milkInHand && !miniGameInput.creamInHand && !miniGameInput.chocolateInHand && !miniGameInput.whiskeyInHand)
+        {
+            Cursor.SetCursor(lecheCondensadaCursorTexture, hotSpotLecheCondensada, CursorMode.Auto);
+        }
+
+        if (!miniGameInput.TengoOtroObjetoEnLaMano())
+        {
+            Cursor.SetCursor(defaultCursorTexture, hotSpotDefault, CursorMode.Auto);
+        }
+    }
+
+    public void TakeCream()
+    {
+        if (miniGameInput.creamInHand && !miniGameInput.waterInHand && !miniGameInput.coverInHand && !miniGameInput.cucharaInHand && !miniGameInput.iceInHand
+            && !miniGameInput.milkInHand && !miniGameInput.condensedMilkInHand && !miniGameInput.chocolateInHand && !miniGameInput.whiskeyInHand)
+        {
+            Cursor.SetCursor(cremaCursorTexture, hotSpotCrema, CursorMode.Auto);
+        }
+
+        if (!miniGameInput.TengoOtroObjetoEnLaMano())
+        {
+            Cursor.SetCursor(defaultCursorTexture, hotSpotDefault, CursorMode.Auto);
+        }
+    }
+
+    public void TakeChocolate()
+    {
+        if (miniGameInput.chocolateInHand && !miniGameInput.waterInHand && !miniGameInput.coverInHand && !miniGameInput.cucharaInHand && !miniGameInput.iceInHand 
+            && !miniGameInput.milkInHand && !miniGameInput.condensedMilkInHand && !miniGameInput.creamInHand && !miniGameInput.whiskeyInHand)
+        {
+            Cursor.SetCursor(chocolateCursorTexture, hotSpotChocolate, CursorMode.Auto);
+        }
+
+        if (!miniGameInput.TengoOtroObjetoEnLaMano())
+        {
+            Cursor.SetCursor(defaultCursorTexture, hotSpotDefault, CursorMode.Auto);
+        }
+    }
+
+    public void TakeWhiskey()
+    {
+        if (miniGameInput.whiskeyInHand && !miniGameInput.waterInHand && !miniGameInput.coverInHand && !miniGameInput.cucharaInHand && !miniGameInput.iceInHand 
+            && !miniGameInput.milkInHand && !miniGameInput.condensedMilkInHand && !miniGameInput.creamInHand && !miniGameInput.chocolateInHand)
+        {
+            Cursor.SetCursor(whiskeyCursorTexture, hotSpotWhiskey, CursorMode.Auto);
+        }
+
+        if (!miniGameInput.TengoOtroObjetoEnLaMano())
+        {
+            Cursor.SetCursor(defaultCursorTexture, hotSpotDefault, CursorMode.Auto);
+        }
+    }
+
     public void TakeHielo()
     { 
-        if(miniGameInput.iceInHand == true && miniGameInput.cucharaInHand == false && miniGameInput.coverInHand == false && miniGameInput.waterInHand == false && miniGameInput.milkInHand == false)
+        if(miniGameInput.iceInHand && !miniGameInput.cucharaInHand && !miniGameInput.coverInHand && !miniGameInput.waterInHand && !miniGameInput.milkInHand 
+            && !miniGameInput.condensedMilkInHand  && !miniGameInput.creamInHand && !miniGameInput.chocolateInHand && !miniGameInput.whiskeyInHand)
         {
             Cursor.SetCursor(hieloCucharaCursorTexture, hotSpotHieloCuchara, CursorMode.Auto);
         }
@@ -165,7 +227,8 @@ public class CursorManager : MonoBehaviour
 
     public void TakeCover()
     {
-        if (miniGameInput.coverInHand == true && miniGameInput.cucharaInHand == false && miniGameInput.iceInHand == false && miniGameInput.waterInHand == false && miniGameInput.milkInHand == false)
+        if (miniGameInput.coverInHand && !miniGameInput.cucharaInHand && !miniGameInput.iceInHand && !miniGameInput.waterInHand && !miniGameInput.milkInHand 
+            && !miniGameInput.condensedMilkInHand && !miniGameInput.creamInHand && !miniGameInput.chocolateInHand && !miniGameInput.whiskeyInHand)
         {
             Cursor.SetCursor(tapaCursorTexture, hotSpotTapaCuchara, CursorMode.Auto);
         }

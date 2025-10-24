@@ -19,11 +19,16 @@ public class GameProgressManager : MonoBehaviour
     //Mecanicas activas
     public bool coffeeEnabled;
     public bool waterEnabled;
-    public bool milkEnabled;
-    public bool heatedMilkEnabled;
     public bool sugarEnabled;
     public bool iceEnabled;
     public bool typeOrderEnabled;
+    public bool milkEnabled;
+    public bool heatedMilkEnabled;
+    public bool condensedMilkEnabled;
+    public bool creamEnabled;
+    public bool chocolateEnabled;
+    public bool whiskeyEnabled;
+
 
     public void UpdateMechanicsForDay(int day)
     {
@@ -71,6 +76,8 @@ public class GameProgressManager : MonoBehaviour
                 typeOrderEnabled = true;
                 milkEnabled = true;
                 heatedMilkEnabled = true;
+                condensedMilkEnabled = true;
+                creamEnabled = true;
                 break;
             case 6:
                 coffeeEnabled = true;
@@ -89,6 +96,8 @@ public class GameProgressManager : MonoBehaviour
                 typeOrderEnabled = true;
                 milkEnabled = true;
                 heatedMilkEnabled = true;
+                chocolateEnabled = true;
+                whiskeyEnabled = true;
                 break;
             default:
                 coffeeEnabled = waterEnabled = sugarEnabled = iceEnabled = typeOrderEnabled = true;

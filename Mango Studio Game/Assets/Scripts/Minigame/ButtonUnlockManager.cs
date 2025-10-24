@@ -10,6 +10,10 @@ public class ButtonUnlockManager : MonoBehaviour
     [SerializeField] public Button sugarButton;
     [SerializeField] public Button iceButton;
     [SerializeField] public Button coverButton;
+    [SerializeField] public Button condensedMilkButton;
+    [SerializeField] public Button creamButton;
+    [SerializeField] public Button chocolateButton;
+    [SerializeField] public Button whiskeyButton;
 
     [Header("Botones del minijuego")]
     [SerializeField] public Button cogerTazaInicioButton;
@@ -36,7 +40,10 @@ public class ButtonUnlockManager : MonoBehaviour
         milkButton.gameObject.SetActive(progress.milkEnabled);
         calentarButton.gameObject.SetActive(progress.heatedMilkEnabled);
         espumadorButton.gameObject.SetActive(progress.heatedMilkEnabled);
-
+        condensedMilkButton.gameObject.SetActive(progress.condensedMilkEnabled);
+        creamButton.gameObject.SetActive(progress.creamEnabled);
+        chocolateButton.gameObject.SetActive(progress.chocolateEnabled);
+        whiskeyButton.gameObject.SetActive(progress.whiskeyEnabled);
 
         // Inicialmente se desactiva la interactividad de los botones
         filtroButton.interactable = false;
@@ -51,7 +58,10 @@ public class ButtonUnlockManager : MonoBehaviour
         coverButton.interactable = false;
         waterButton.interactable = false;
         milkButton.interactable = false;
-
+        condensedMilkButton.interactable = false;
+        creamButton.interactable = false;
+        chocolateButton.interactable = false;
+        whiskeyButton.interactable = false;
     }
 
     public void EnableButton(Button button)

@@ -31,6 +31,26 @@ public class Order
     // guarda el valor del agua echada por el jugador (0 a 1)
     public int waterPrecision;
 
+    // valor de leche condensada que el jugador debe echar (0-no, 1-si)
+    public int condensedMilkTarget;
+    // guarda el valor de leche condensada echada por el jugador (0 a 1)
+    public int condensedMilkPrecision;
+
+    // valor de crema que el jugador debe echar (0-no, 1-si)
+    public int creamTarget;
+    // guarda el valor de crema echada por el jugador (0 a 1)
+    public int creamPrecision;
+
+    // valor de chocolate que el jugador debe echar (0-no, 1-si)
+    public int chocolateTarget;
+    // guarda el valor de chocolate echado por el jugador (0 a 1)
+    public int chocolatePrecision;
+
+    // valor de whiskey que el jugador debe echar (0-no, 1-si)
+    public int whiskeyTarget;
+    // guarda el valor del whiskey echado por el jugador (0 a 1)
+    public int whiskeyPrecision;
+
     // valor exacto de cucharadas de azucar que el jugador debe echar (0-nada, 1-poco o 2-mucho)
     public int sugarTarget;
     // guarda el valor de las cucharadas del jugador (0 a 2)
@@ -72,13 +92,29 @@ public class Order
         this.waterPrecision = 0;
         this.waterTarget = GetWaterTargetFromAmount(coffeeType);
 
+        //inicializamos la precision de la leche condensada a 0
+        this.condensedMilkPrecision = 0;
+        this.condensedMilkTarget = GetCondensedMilkTargetFromAmount(coffeeType);
+
+        //inicializamos la precision de la crema a 0
+        this.creamPrecision = 0;
+        this.creamTarget = GetCreamTargetFromAmount(coffeeType);
+
+        //inicializamos la precision del chocolate a 0
+        this.chocolatePrecision = 0;
+        this.chocolateTarget = GetChocolateTargetFromAmount(coffeeType);
+
+        //inicializamos la precision del whiskey a 0
+        this.whiskeyPrecision = 0;
+        this.whiskeyTarget = GetWhiskeyTargetFromAmount(coffeeType);
+
         //inicializamos la precision del azucar a 0
         this.sugarPrecision = 0;
         this.sugarTarget = GetSugarTargetFromAmount(sugar);
 
         //inicializamos la precision del hielo a 0
         this.icePrecision = 0;
-        this.iceTarget = GetIceTargetFromAmount(ice);
+        this.iceTarget = GetIceTargetFromAmount(ice, coffeeType);
 
         //inicializamos la precision del tipo de pedido a 0
         this.typePrecision = 0;
@@ -116,6 +152,7 @@ public class Order
                 return 2.0f; //por si algo falla
         }
     }
+    
     private int GetMilkTargetFromAmount(CoffeeType coffeetype)
     {
         switch (coffeetype)
@@ -141,7 +178,7 @@ public class Order
             case CoffeeType.mocca:
                 return 1;
             case CoffeeType.irish:
-                return 0;
+                return 1;
             default:
                 return 2; //por si algo falla
         }
@@ -209,6 +246,130 @@ public class Order
         }
     }
 
+    private int GetCondensedMilkTargetFromAmount(CoffeeType coffeetype)
+    {
+        switch (coffeetype)
+        {
+            case CoffeeType.espresso:
+                return 0;
+            case CoffeeType.lungo:
+                return 0;
+            case CoffeeType.americano:
+                return 0;
+            case CoffeeType.macchiatto:
+                return 0;
+            case CoffeeType.latte:
+                return 0;
+            case CoffeeType.capuccino:
+                return 0;
+            case CoffeeType.bombón:
+                return 1;
+            case CoffeeType.vienés:
+                return 0;
+            case CoffeeType.frappé:
+                return 0;
+            case CoffeeType.mocca:
+                return 0;
+            case CoffeeType.irish:
+                return 0;
+            default:
+                return 2; //por si algo falla
+        }
+    }
+
+    private int GetCreamTargetFromAmount(CoffeeType coffeetype)
+    {
+        switch (coffeetype)
+        {
+            case CoffeeType.espresso:
+                return 0;
+            case CoffeeType.lungo:
+                return 0;
+            case CoffeeType.americano:
+                return 0;
+            case CoffeeType.macchiatto:
+                return 0;
+            case CoffeeType.latte:
+                return 0;
+            case CoffeeType.capuccino:
+                return 0;
+            case CoffeeType.bombón:
+                return 0;
+            case CoffeeType.vienés:
+                return 1;
+            case CoffeeType.frappé:
+                return 1;
+            case CoffeeType.mocca:
+                return 0;
+            case CoffeeType.irish:
+                return 0;
+            default:
+                return 2; //por si algo falla
+        }
+    }
+
+    private int GetChocolateTargetFromAmount(CoffeeType coffeetype)
+    {
+        switch (coffeetype)
+        {
+            case CoffeeType.espresso:
+                return 0;
+            case CoffeeType.lungo:
+                return 0;
+            case CoffeeType.americano:
+                return 0;
+            case CoffeeType.macchiatto:
+                return 0;
+            case CoffeeType.latte:
+                return 0;
+            case CoffeeType.capuccino:
+                return 0;
+            case CoffeeType.bombón:
+                return 0;
+            case CoffeeType.vienés:
+                return 0;
+            case CoffeeType.frappé:
+                return 0;
+            case CoffeeType.mocca:
+                return 1;
+            case CoffeeType.irish:
+                return 0;
+            default:
+                return 2; //por si algo falla
+        }
+    }
+
+    private int GetWhiskeyTargetFromAmount(CoffeeType coffeetype)
+    {
+        switch (coffeetype)
+        {
+            case CoffeeType.espresso:
+                return 0;
+            case CoffeeType.lungo:
+                return 0;
+            case CoffeeType.americano:
+                return 0;
+            case CoffeeType.macchiatto:
+                return 0;
+            case CoffeeType.latte:
+                return 0;
+            case CoffeeType.capuccino:
+                return 0;
+            case CoffeeType.bombón:
+                return 0;
+            case CoffeeType.vienés:
+                return 0;
+            case CoffeeType.frappé:
+                return 0;
+            case CoffeeType.mocca:
+                return 0;
+            case CoffeeType.irish:
+                return 1;
+            default:
+                return 2; //por si algo falla
+        }
+    }
+
     private int GetSugarTargetFromAmount(SugarAmount Samount)
     {
         switch (Samount)
@@ -224,8 +385,12 @@ public class Order
         }
     }
 
-    private int GetIceTargetFromAmount(IceAmount Iamount)
+    private int GetIceTargetFromAmount(IceAmount Iamount, CoffeeType coffeeType)
     {
+        if (coffeeType == CoffeeType.frappé)
+        {
+            return 1;
+        }
         switch (Iamount)
         {
             case IceAmount.no:
@@ -253,10 +418,14 @@ public class Order
 }
 
 public enum CoffeeType { espresso, lungo, americano, macchiatto, latte, capuccino, bombón, vienés, frappé, mocca, irish } // Se crean los tipos de cafe
-public enum CoffeeAmount { corto, medio, largo } // Se crean 3 cantidades para los cafes
+//public enum CoffeeAmount { corto, medio, largo } // Se crean 3 cantidades para los cafes
 public enum MilkAmount { nada, poco, mucha } // Se crean 3 cantidades de leche
 public enum HeatMilk { fria, caliente } // Se crean 2 tipos de leche
-public enum WaterAmount { no, si } // Se crean 2 cantidades para el agua
-public enum SugarAmount { nada, poco, mucho } // Se crean 4 cantidades para el azucar
-public enum IceAmount { no, si } // Se crean 3 cantidades para los hielos
+public enum WaterAmount { no, si } // Se crean 2 cantidades de agua
+public enum CondensedMilkAmount { no, si } // Se crean 2 cantidades de leche condensada
+public enum CreamAmount { no, si } // Se crean 2 cantidades de crema
+public enum ChocolateAmount { no, si } // Se crean 2 cantidades de chocolate
+public enum WhiskeyAmount { no, si } // Se crean 2 cantidades de whiskey
+public enum SugarAmount { nada, poco, mucho } // Se crean 3 cantidades de azucar
+public enum IceAmount { no, si } // Se crean 2 cantidades de hielo
 public enum OrderType { tomar, llevar } // Se crean 2 tipos de pedidos 

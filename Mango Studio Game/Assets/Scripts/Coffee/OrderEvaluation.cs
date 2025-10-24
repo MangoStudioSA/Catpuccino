@@ -10,7 +10,12 @@ public class OrderEvaluation : MonoBehaviour
     private const int MAX_SCORE_COVER = 15; // Puntuacion tipo de pedido
     private const int MAX_SCORE_WATER = 10;
     private const int MAX_SCORE_MILK = 10;
-    private const int MAX_SCORE_HEATEDMILK = 5;
+    private const int MAX_SCORE_HEATEDMILK = 10;
+    private const int MAX_SCORE_CONDENSEDMILK = 5;
+    private const int MAX_SCORE_CREAM = 5;
+    private const int MAX_SCORE_CHOCOLATE = 5;
+    private const int MAX_SCORE_WHISKEY = 5;
+
     private const float MAX_ERROR = 2.0F;
 
     public EvaluationResult Evaluate(Order npcOrder, Order playerOrder)
@@ -33,10 +38,20 @@ public class OrderEvaluation : MonoBehaviour
             Debug.Log($"[Cliente {playerOrder.orderId}] Puntuación del Café (Precisión): {Mathf.RoundToInt(coffeeScore)}/{MAX_SCORE_COFFEE} pts");
         }
 
+        // MECANICA AGUA
+        if (progress.waterEnabled)
+        {
+            //EVALUACION DEL AGUA (CANTIDAD EXACTA)
+            int waterScore = EvaluateWaterPrecision(npcOrder, playerOrder);
+            totalScore += waterScore;
+            maxPossibleScore += MAX_SCORE_WATER;
+            Debug.Log($"[Cliente {playerOrder.orderId}] Puntuación del Agua: {waterScore}/{MAX_SCORE_WATER} pts");
+        }
+
         // MECANICA LECHE FRIA
         if (progress.milkEnabled)
         {
-            //EVALUACION DE LA LECHE (CANTIDAD EXACTA)
+            //EVALUACION DE LA LECHE FRIA (CANTIDAD EXACTA)
             int milkScore = EvaluateMilkPrecision(npcOrder, playerOrder);
             totalScore += milkScore;
             maxPossibleScore += MAX_SCORE_MILK;
@@ -53,14 +68,44 @@ public class OrderEvaluation : MonoBehaviour
             Debug.Log($"[Cliente {playerOrder.orderId}] Puntuación de la Leche caliente: {(heatedMilkScore)}/{MAX_SCORE_HEATEDMILK} pts");
         }
 
-        // MECANICA AGUA
-        if (progress.waterEnabled)
+        // MECANICA LECHE CONDENSADA
+        if (progress.condensedMilkEnabled)
         {
-            //EVALUACION DEL AGUA (CANTIDAD EXACTA)
-            int waterScore = EvaluateWaterPrecision(npcOrder, playerOrder);
-            totalScore += waterScore;
-            maxPossibleScore += MAX_SCORE_WATER;
-            Debug.Log($"[Cliente {playerOrder.orderId}] Puntuación del Agua: {waterScore}/{MAX_SCORE_WATER} pts");
+            //EVALUACION DE LA LECHE CONDENSADA (CANTIDAD EXACTA)
+            int condensedMilkScore = EvaluateCondensedMilkPrecision(npcOrder, playerOrder);
+            totalScore += condensedMilkScore;
+            maxPossibleScore += MAX_SCORE_CONDENSEDMILK;
+            Debug.Log($"[Cliente {playerOrder.orderId}] Puntuación de la Leche condensada: {condensedMilkScore}/{MAX_SCORE_CONDENSEDMILK} pts");
+        }
+
+        // MECANICA CREMA
+        if (progress.creamEnabled)
+        {
+            //EVALUACION DE LA CREMA (CANTIDAD EXACTA)
+            int creamScore = EvaluateCreamPrecision(npcOrder, playerOrder);
+            totalScore += creamScore;
+            maxPossibleScore += MAX_SCORE_CREAM;
+            Debug.Log($"[Cliente {playerOrder.orderId}] Puntuación de la Crema: {creamScore}/{MAX_SCORE_CREAM} pts");
+        }
+
+        // MECANICA CHOCOLATE
+        if (progress.chocolateEnabled)
+        {
+            //EVALUACION DEL CHOCOLATE (CANTIDAD EXACTA)
+            int chocolateScore = EvaluateChocolatePrecision(npcOrder, playerOrder);
+            totalScore += chocolateScore;
+            maxPossibleScore += MAX_SCORE_CHOCOLATE;
+            Debug.Log($"[Cliente {playerOrder.orderId}] Puntuación del Chocolate: {chocolateScore}/{MAX_SCORE_CHOCOLATE} pts");
+        }
+
+        // MECANICA WHISKEY
+        if (progress.whiskeyEnabled)
+        {
+            //EVALUACION DEL WHISKEY (CANTIDAD EXACTA)
+            int whiskeyScore = EvaluateWhiskeyPrecision(npcOrder, playerOrder);
+            totalScore += whiskeyScore;
+            maxPossibleScore += MAX_SCORE_WHISKEY;
+            Debug.Log($"[Cliente {playerOrder.orderId}] Puntuación del Whiskey: {whiskeyScore}/{MAX_SCORE_WHISKEY} pts");
         }
 
         // MECANICA AZUCAR
@@ -203,6 +248,98 @@ public class OrderEvaluation : MonoBehaviour
 
     }
 
+    public int EvaluateCondensedMilkPrecision(Order npcOrder, Order playerOrder)
+    {
+        // El objetivo es el valor exacto (0-sin o 1-con)
+        float condensedMilkTarget = npcOrder.condensedMilkTarget;
+        // La precision es la cantidad de leche condensada que ha echado el jugador
+        float playerCondensedMilk = playerOrder.condensedMilkPrecision;
+
+        int condensedMilkScore = 0;
+        if (playerCondensedMilk == condensedMilkTarget) // Si el jugador ha echado la cantidad de leche condensada que se pedia suma 5 puntos
+        {
+            condensedMilkScore = MAX_SCORE_CONDENSEDMILK;
+        }
+        else
+        {
+            condensedMilkScore = 0; // En cualquier otro caso la puntuacion sera 0 
+        }
+
+        Debug.Log($"[Evaluación Agua Cliente {playerOrder.orderId}] Objetivo: {condensedMilkTarget} | Jugador: {playerCondensedMilk}");
+
+        return condensedMilkScore; // Se devuelve la puntuacion total de la leche condensada
+
+    }
+
+    public int EvaluateCreamPrecision(Order npcOrder, Order playerOrder)
+    {
+        // El objetivo es el valor exacto (0-sin o 1-con)
+        float creamTarget = npcOrder.creamTarget;
+        // La precision es la cantidad de crema que ha echado el jugador
+        float playerCream = playerOrder.creamPrecision;
+
+        int creamScore = 0;
+        if (playerCream == creamTarget) // Si el jugador ha echado la cantidad de crema que se pedia suma 5 puntos
+        {
+            creamScore = MAX_SCORE_CREAM;
+        }
+        else
+        {
+            creamScore = 0; // En cualquier otro caso la puntuacion sera 0 
+        }
+
+        Debug.Log($"[Evaluación Crema Cliente {playerOrder.orderId}] Objetivo: {creamTarget} | Jugador: {playerCream}");
+
+        return creamScore; // Se devuelve la puntuacion total de la crema
+
+    }
+
+    public int EvaluateChocolatePrecision(Order npcOrder, Order playerOrder)
+    {
+        // El objetivo es el valor exacto (0-sin o 1-con)
+        float chocolateTarget = npcOrder.chocolateTarget;
+        // La precision es la cantidad de chocolate que ha echado el jugador
+        float playerChocolate = playerOrder.chocolatePrecision;
+
+        int chocolateScore = 0;
+        if (playerChocolate == chocolateTarget) // Si el jugador ha echado la cantidad de chocolate que se pedia suma 5 puntos
+        {
+            chocolateScore = MAX_SCORE_CHOCOLATE;
+        }
+        else
+        {
+            chocolateScore = 0; // En cualquier otro caso la puntuacion sera 0 
+        }
+
+        Debug.Log($"[Evaluación Chocolate Cliente {playerOrder.orderId}] Objetivo: {chocolateTarget} | Jugador: {playerChocolate}");
+
+        return chocolateScore; // Se devuelve la puntuacion total del chocolate
+
+    }
+
+    public int EvaluateWhiskeyPrecision(Order npcOrder, Order playerOrder)
+    {
+        // El objetivo es el valor exacto (0-sin o 1-con)
+        float whiskeyTarget = npcOrder.whiskeyTarget;
+        // La precision es la cantidad de whiskey que ha echado el jugador
+        float playerWhiskey = playerOrder.whiskeyPrecision;
+
+        int whiskeyScore = 0;
+        if (playerWhiskey == whiskeyTarget) // Si el jugador ha echado la cantidad de whiskey que se pedia suma 5 puntos
+        {
+            whiskeyScore = MAX_SCORE_WHISKEY;
+        }
+        else
+        {
+            whiskeyScore = 0; // En cualquier otro caso la puntuacion sera 0 
+        }
+
+        Debug.Log($"[Evaluación Whiskey Cliente {playerOrder.orderId}] Objetivo: {whiskeyTarget} | Jugador: {playerWhiskey}");
+
+        return whiskeyScore; // Se devuelve la puntuacion total del whiskey
+
+    }
+
     public int EvaluateSugarPrecision(Order npcOrder, Order playerOrder)
     {
         // El objetivo es el valor exacto de cucharadas de azucar (0, 1, 2)
@@ -257,7 +394,7 @@ public class OrderEvaluation : MonoBehaviour
         float playerType = playerOrder.typePrecision;
 
         int typeScore = 0;
-        if (playerType == Typetarget) // Si el jugador ha preparado el tipo de pedido que se pedia suma 5 puntos
+        if (playerType == Typetarget) // Si el jugador ha preparado el tipo de pedido que se pedia suma 15 puntos
         {
             typeScore = MAX_SCORE_COVER;
         }
@@ -269,6 +406,5 @@ public class OrderEvaluation : MonoBehaviour
         Debug.Log($"[Evaluación Tipo de pedido Cliente {playerOrder.orderId}] Objetivo: {Typetarget} | Jugador: {playerType}");
 
         return typeScore; // Se devuelve la puntuacion total del tipo de pedido
-
     }
 }

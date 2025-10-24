@@ -54,8 +54,16 @@ public class CustomerOrder : MonoBehaviour
                     break;
             }
 
-            orderTxt.text = $"Quiero un {coffeeType} {sugarTxt} y {iceTxt}. Lo quiero para {type}.";
-            playerPreparationTxt.text = $"Tienes que preparar: {coffeeType} {sugarTxt} y {iceTxt}. Es un pedido para {type}.";
+            if (coffeeType == CoffeeType.frappé)
+            {
+                orderTxt.text = $"Quiero un {coffeeType} {sugarTxt}. Lo quiero para {type}.";
+                playerPreparationTxt.text = $"Tienes que preparar: {coffeeType} {sugarTxt} y {iceTxt}. Es un pedido para {type}.";
+            }
+            else
+            {
+                orderTxt.text = $"Quiero un {coffeeType} {sugarTxt} y {iceTxt}. Lo quiero para {type}.";
+                playerPreparationTxt.text = $"Tienes que preparar: {coffeeType} {sugarTxt} y {iceTxt}. Es un pedido para {type}.";
+            }
         }
     }
 }
