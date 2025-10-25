@@ -145,7 +145,7 @@ public class MinigameInput : MonoBehaviour
         }
     }
 
-    #region Mecanicas minijuego
+    #region Mecanicas minijuego cafe
     public void StartCoffee()
     {
         if  (!isSliding && !coffeeDone)
@@ -466,7 +466,7 @@ public class MinigameInput : MonoBehaviour
     }
     #endregion
 
-    #region Mecanicas 
+    #region Mecanicas desbloqueables cafe
     public void CogerLeche()
     {
         if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand)
