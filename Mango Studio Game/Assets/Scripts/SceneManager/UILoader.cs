@@ -10,7 +10,7 @@ public class UILoader : MonoBehaviour
 
     GameUIManager gameUIManager;
 
-    
+
     // Referencia al script que genera los pedidos del cliente
     [SerializeField] private CustomerOrder customerOrderGenerator;
 

@@ -15,6 +15,7 @@ public class OrderEvaluation : MonoBehaviour
     private const int MAX_SCORE_CREAM = 5;
     private const int MAX_SCORE_CHOCOLATE = 5;
     private const int MAX_SCORE_WHISKEY = 5;
+    private const int MAX_SCORE_FOODTYPE = 15;
 
     private const float MAX_ERROR = 2.0F;
 
@@ -136,6 +137,16 @@ public class OrderEvaluation : MonoBehaviour
             totalScore += typeScore;
             maxPossibleScore += MAX_SCORE_COVER;
             Debug.Log($"[Cliente {playerOrder.orderId}] Puntuación del Tipo de pedido: {typeScore}/{MAX_SCORE_COVER} pts");
+        }
+
+        // MECANICA TIPO DE COMIDA
+        if (progress.cakesEnabled)
+        {
+            //EVALUACION DEL TIPO DE COMIDAD (TIPO EXACTO)
+            int typeFoodScore = EvaluateTypeFoodPrecision(npcOrder, playerOrder);
+            totalScore += typeFoodScore;
+            maxPossibleScore += MAX_SCORE_FOODTYPE;
+            Debug.Log($"[Cliente {playerOrder.orderId}] Puntuación del Tipo de comida: {typeFoodScore}/{MAX_SCORE_FOODTYPE} pts");
         }
 
         float percentScore = (float) totalScore / maxPossibleScore;
@@ -406,5 +417,41 @@ public class OrderEvaluation : MonoBehaviour
         Debug.Log($"[Evaluación Tipo de pedido Cliente {playerOrder.orderId}] Objetivo: {Typetarget} | Jugador: {playerType}");
 
         return typeScore; // Se devuelve la puntuacion total del tipo de pedido
+    }
+
+    public int EvaluateTypeFoodPrecision(Order npcOrder, Order playerOrder)
+    {
+        if (npcOrder.foodOrder == null || playerOrder.foodOrder == null)
+            return 0;
+
+        // El objetivo es el valor exacto del tipo de pedido (0-tomar o 1-llevar)
+        FoodCategory targetCategory = npcOrder.foodOrder.foodTargetCategory;
+        int targetType = npcOrder.foodOrder.foodTargetType;
+
+        // La precision es el numero que muestra si el jugador ha colocado o no la tapa para llevar
+        FoodCategory playerCategory = playerOrder.foodOrder.foodPrecisionCategory;
+        int playerType = playerOrder.foodOrder.foodPrecisionType;
+
+        if (playerCategory == FoodCategory.no || playerType < 0)
+            return 0;
+
+        int typeFoodScore = 0;
+
+        if (playerCategory == targetCategory && playerType == targetType)     // Si el jugador ha preparado el tipo de pedido que se pedia suma 15 puntos
+        {
+            typeFoodScore = MAX_SCORE_FOODTYPE;
+        }
+        else if (playerCategory == targetCategory && playerType != targetType)
+        {
+            typeFoodScore = 5; 
+        }
+        else
+        {
+            typeFoodScore = 0;
+        }
+
+        Debug.Log($"[Evaluación Tipo de commida Cliente {playerOrder.orderId}] Objetivo: {targetCategory}{targetType} | Jugador: {playerCategory} {playerType}");
+
+        return typeFoodScore; // Se devuelve la puntuacion total del tipo de comida
     }
 }

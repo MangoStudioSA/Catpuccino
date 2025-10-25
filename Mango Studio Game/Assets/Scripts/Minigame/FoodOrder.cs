@@ -8,32 +8,51 @@ public class FoodOrder
     public CookieType cookieType;
     public MufflinType mufflinType;
 
+    public FoodCategory foodTargetCategory;
+    public int foodTargetType;
+
+    public FoodCategory foodPrecisionCategory;
+    public int foodPrecisionType;
+
     public FoodOrder(FoodCategory category)
     {
         this.category = category;
-        cakeType = CakeType.ninguno;
-        cookieType = CookieType.ninguno;
-        mufflinType = MufflinType.ninguno;
+        foodTargetCategory = category;
+        foodPrecisionCategory = FoodCategory.no;
+        foodPrecisionType = -1;
 
         switch (category)
         {
             case FoodCategory.bizcocho:
-                cakeType = (CakeType)Random.Range(1, System.Enum.GetValues(typeof(CakeType)).Length);
+                foodTargetType = Random.Range(1, System.Enum.GetValues(typeof(CakeType)).Length);
+                cakeType = (CakeType)foodTargetType;
                 break;
             case FoodCategory.galleta:
-                cookieType = (CookieType)Random.Range(1, System.Enum.GetValues(typeof(CookieType)).Length);
+                foodTargetType = Random.Range(1, System.Enum.GetValues(typeof(CookieType)).Length);
+                cookieType = (CookieType)foodTargetType;
                 break;
             case FoodCategory.mufflin:
-                mufflinType = (MufflinType)Random.Range(1, System.Enum.GetValues(typeof(MufflinType)).Length);
+                foodTargetType = Random.Range(1, System.Enum.GetValues(typeof(MufflinType)).Length);
+                mufflinType = (MufflinType)foodTargetType;
+                break;
+            default:
+                foodTargetType = -1;
                 break;
         }
+    }
+
+    public void SetPrecision(FoodCategory category, int type)
+    {
+        foodPrecisionCategory = category;
+        foodPrecisionType = type;
+        Debug.Log($"La precisionCategory es: {category} y la precisionType es: {type}");
     }
 
     public string GetFoodDescription()
     {
         if (category == FoodCategory.no)
         {
-            return "No quiero comida";
+            return "No quiero comida.";
         }
 
         string tipo = "";
@@ -56,13 +75,13 @@ public class FoodOrder
         }
 
         if (string.IsNullOrEmpty(nombre) || nombre == "no")
-            return "No quiero comida.";
+            return "No comida.";
 
         // Se corrigen nombres espaciados
         nombre = nombre.Replace("RedVelvet", "Red Velvet")
                         .Replace("dulceLeche", "dulce de leche");
 
-        return $" También, quiero {tipo} de {nombre.ToLower()}";
+        return $" También, quiero {tipo} de {nombre.ToLower()}.";
     }
 }
 

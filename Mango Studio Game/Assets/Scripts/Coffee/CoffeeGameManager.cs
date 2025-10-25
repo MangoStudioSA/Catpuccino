@@ -18,7 +18,6 @@ public class CoffeeGameManager : MonoBehaviour
     private int customersServed = 0;
     private int moneyEarned = 0;
 
-
     public void SubmitOrder()
     {
         // Se calcula la puntuacion del pedido comparando lo que se pedia con el resultado del jugador

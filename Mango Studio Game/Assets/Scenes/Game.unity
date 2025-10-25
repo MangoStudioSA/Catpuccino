@@ -754,6 +754,7 @@ GameObject:
   m_Component:
   - component: {fileID: 50023189}
   - component: {fileID: 50023188}
+  - component: {fileID: 50023197}
   - component: {fileID: 50023195}
   - component: {fileID: 50023190}
   - component: {fileID: 50023192}
@@ -797,11 +798,29 @@ MonoBehaviour:
   creamInHand: 0
   chocolateInHand: 0
   whiskeyInHand: 0
+  platoInHand: 0
+  foodInHand: 0
+  platoIsInEncimera: 0
+  foodIsInPlato: 0
+  foodCategoryInHand: 0
   coffeeServed: 0
   milkServed: 0
   heatMilk: 0
+  foodServed: 0
+  foodManager: {fileID: 50023197}
+  foodOrder:
+    category: 0
+    cakeType: 0
+    cookieType: 0
+    mufflinType: 0
+    foodTargetCategory: 0
+    foodTargetType: 0
+    foodPrecisionCategory: 0
+    foodPrecisionType: 0
   Taza: {fileID: 386902211}
   Vaso: {fileID: 2016690274}
+  Plato: {fileID: 1786740808}
+  Comida: {fileID: 0}
   tazaIsInCafetera: 0
   tazaIsInEspumador: 0
   vasoIsInCafetera: 0
@@ -814,6 +833,8 @@ MonoBehaviour:
   tazaConCafe: {fileID: 1626960977, guid: e288ad6c858bce44d98d91c579e9587e, type: 3}
   puntoCafetera: {fileID: 365230178}
   puntoEspumador: {fileID: 1266513885}
+  puntoPlato: {fileID: 1955836105}
+  puntoComida: {fileID: 1048102190}
 --- !u!4 &50023189
 Transform:
   m_ObjectHideFlags: 0
@@ -852,6 +873,10 @@ MonoBehaviour:
       cakeType: 0
       cookieType: 0
       mufflinType: 0
+      foodTargetCategory: 0
+      foodTargetType: 0
+      foodPrecisionCategory: 0
+      foodPrecisionType: 0
     coffeeTarget: 0
     coffeePrecision: 0
     milkTarget: 0
@@ -976,6 +1001,18 @@ MonoBehaviour:
   submitOrderButton: {fileID: 1838202980}
   bakeryButton: {fileID: 1082078882}
   returnBakeryButton: {fileID: 569478934}
+  cogerPlatoInicioButton: {fileID: 1822414049}
+  cogerBZanahoriaButton: {fileID: 1285437426}
+  cogerBMantequillaButton: {fileID: 2014591114}
+  cogerBChocolateButton: {fileID: 1434989450}
+  cogerBRedVelvetButton: {fileID: 94120223}
+  cogerGChocolateButton: {fileID: 1426963565}
+  cogerGChocolateBlButton: {fileID: 1206601179}
+  cogerGMantequillaButton: {fileID: 1142898002}
+  cogerMArandanosButton: {fileID: 1265485775}
+  cogerMCerezaButton: {fileID: 1293447404}
+  cogerMPistachoButton: {fileID: 376533071}
+  cogerMDulceLecheButton: {fileID: 731598299}
   hornoButton: {fileID: 1532907067}
 --- !u!114 &50023196
 MonoBehaviour:
@@ -989,6 +1026,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8bcc474397cbaa4db36870e6062f544, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &50023197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 50023187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ecca8dc2d3dc844a94b456dc8105348, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BZanahoria: {fileID: 309942767}
+  BMantequilla: {fileID: 801309280}
+  BChocolate: {fileID: 708130278}
+  BRedVelvet: {fileID: 98089538}
+  GChocolate: {fileID: 1354414399}
+  GChocolateB: {fileID: 1901911379}
+  GMantequilla: {fileID: 619921038}
+  MArandano: {fileID: 1560350577}
+  MCereza: {fileID: 1564548820}
+  MPistacho: {fileID: 1032402577}
+  MDulceLeche: {fileID: 1392499142}
+  BZanahoriaCursor: {fileID: 2800000, guid: 672094a4dc41edf43a7ddd445685574b, type: 3}
+  BMantequillaCursor: {fileID: 2800000, guid: 904307b384c4400479cc44ad66edf7b6, type: 3}
+  BChocolateCursor: {fileID: 2800000, guid: 47e9828597888cf4bb6c06eecf3ff06a, type: 3}
+  BRedVelvetCursor: {fileID: 2800000, guid: 32e75a38ef75b8c43853dfdc43313845, type: 3}
+  GChocolateCursor: {fileID: 2800000, guid: d875397378315e342af6cb7df3a75bb8, type: 3}
+  GChocolateBCursor: {fileID: 2800000, guid: e294c384c4b3fc5459fdca476f2b80e3, type: 3}
+  GMantequillaCursor: {fileID: 2800000, guid: 8c5be4a1751d3314492c3eb64f1c5d3d, type: 3}
+  MArandanoCursor: {fileID: 2800000, guid: ee2f85918e8b7134b90c99665a7eb202, type: 3}
+  MCerezaCursor: {fileID: 2800000, guid: b141ee19096a85f499ca35ae089a3f2a, type: 3}
+  MPistachoCursor: {fileID: 2800000, guid: a30a44f7ddef3404bbcf63b114e7e6b0, type: 3}
+  MDulceLecheCursor: {fileID: 2800000, guid: e2d46340db9734f40b0528db61cd7ab4, type: 3}
 --- !u!1 &55580695
 GameObject:
   m_ObjectHideFlags: 0
@@ -1518,12 +1589,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 342197122}
         m_TargetAssemblyTypeName: CursorManager, Assembly-CSharp
-        m_MethodName: TakeTazaFromShelf
-        m_Mode: 1
+        m_MethodName: TakeCakeByInt
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 4
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1673,10 +1744,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 848366282}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.30552083, y: 0.418}
-  m_AnchorMax: {x: 0.3604792, y: 0.5065186}
-  m_AnchoredPosition: {x: 1.8929443, y: -1.2344055}
-  m_SizeDelta: {x: 2.7149963, y: -3.1345367}
+  m_AnchorMin: {x: 0.1643523, y: 0.354}
+  m_AnchorMax: {x: 0.26139447, y: 0.5406744}
+  m_AnchoredPosition: {x: -3.7944942, y: -0.72688293}
+  m_SizeDelta: {x: -3, y: 2.699997}
   m_Pivot: {x: 0.49999997, y: 0.45705903}
 --- !u!114 &98089540
 MonoBehaviour:
@@ -3064,7 +3135,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &270205275
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3811,10 +3882,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 848366282}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.30552083, y: 0.418}
-  m_AnchorMax: {x: 0.3604792, y: 0.5065186}
-  m_AnchoredPosition: {x: 1.8929443, y: -1.2344055}
-  m_SizeDelta: {x: 2.7149963, y: -3.1345367}
+  m_AnchorMin: {x: 0.15653574, y: 0.342}
+  m_AnchorMax: {x: 0.26139447, y: 0.5314496}
+  m_AnchoredPosition: {x: 4.2055054, y: 3.901947}
+  m_SizeDelta: {x: -1.0399933, y: -0.30000305}
   m_Pivot: {x: 0.49999997, y: 0.45705903}
 --- !u!114 &309942769
 MonoBehaviour:
@@ -4492,6 +4563,7 @@ MonoBehaviour:
   cremaCursorTexture: {fileID: 2800000, guid: f56f03063f05f0849a6b0a7e73f5929f, type: 3}
   chocolateCursorTexture: {fileID: 2800000, guid: 9b7304dd088dc414a86c3fcdc8b6aa44, type: 3}
   whiskeyCursorTexture: {fileID: 2800000, guid: d7c92f2e34465bb478e59650a5511215, type: 3}
+  platoCursorTexture: {fileID: 2800000, guid: 5b906b957816adc4bbb37630bc5926e7, type: 3}
   hotSpotDefault: {x: 0, y: 0}
   hotSpotTaza: {x: 0, y: 0}
   hotSpotVaso: {x: 0, y: 0}
@@ -4505,7 +4577,9 @@ MonoBehaviour:
   hotSpotCrema: {x: 0, y: 0}
   hotSpotChocolate: {x: 0, y: 0}
   hotSpotWhiskey: {x: 0, y: 0}
+  hotSpotPlato: {x: 0, y: 0}
   miniGameInput: {fileID: 50023188}
+  foodManager: {fileID: 50023197}
 --- !u!114 &342197123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4522,7 +4596,6 @@ MonoBehaviour:
   pausePanel: {fileID: 1071502798}
   optionsPanel: {fileID: 399044284}
   dialoguePanel: {fileID: 995759339}
-  preparationPanel: {fileID: 69314340}
   endOfDayPanel: {fileID: 1071443432}
   orderScreen: 0
 --- !u!1 &365230177
@@ -4790,12 +4863,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 342197122}
         m_TargetAssemblyTypeName: CursorManager, Assembly-CSharp
-        m_MethodName: TakeTazaFromShelf
-        m_Mode: 1
+        m_MethodName: TakeMufflinByInt
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -6177,7 +6250,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Tapa
+  m_text: '
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -7435,10 +7510,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 848366282}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.52752084, y: 0.448}
-  m_AnchorMax: {x: 0.58252084, y: 0.53166676}
-  m_AnchoredPosition: {x: 0.014404297, y: 0.8701172}
-  m_SizeDelta: {x: 0.76498413, y: 0.636322}
+  m_AnchorMin: {x: 0.1643523, y: 0.342}
+  m_AnchorMax: {x: 0.25300002, y: 0.5203256}
+  m_AnchoredPosition: {x: -1.3930054, y: -4.287979}
+  m_SizeDelta: {x: -1.6400146, y: -4.630005}
   m_Pivot: {x: 0.45341194, y: 0.49999973}
 --- !u!114 &619921040
 MonoBehaviour:
@@ -7859,10 +7934,10 @@ RectTransform:
   - {fileID: 475091066}
   m_Father: {fileID: 270205275}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.15360418, y: 0.37237045}
-  m_AnchorMax: {x: 0.2593958, y: 0.4477778}
-  m_AnchoredPosition: {x: -2.8000488, y: -2.2999878}
-  m_SizeDelta: {x: 1.5422363, y: -3.9640007}
+  m_AnchorMin: {x: 0.15100001, y: 0.32500002}
+  m_AnchorMax: {x: 0.26900002, y: 0.48955557}
+  m_AnchoredPosition: {x: 0.71447754, y: 1.1819763}
+  m_SizeDelta: {x: -1.4288006, y: -3.8399963}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &652682661
 MonoBehaviour:
@@ -7910,7 +7985,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 50023188}
         m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
-        m_MethodName: ToggleTazaCafetera
+        m_MethodName: PlacePlatoEncimera
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7922,115 +7997,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 50023188}
         m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
-        m_MethodName: ToggleVasoCafetera
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 50023188}
-        m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
-        m_MethodName: EcharAzucar
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 50023188}
-        m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
-        m_MethodName: EcharHielo
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 50023188}
-        m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
-        m_MethodName: PonerTapa
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 50023188}
-        m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
-        m_MethodName: EcharAgua
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 50023188}
-        m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
-        m_MethodName: EcharLeche
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 50023188}
-        m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
-        m_MethodName: EcharLecheCondensada
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 50023188}
-        m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
-        m_MethodName: EcharCrema
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 50023188}
-        m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
-        m_MethodName: EcharChocolate
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 50023188}
-        m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
-        m_MethodName: EcharWhiskey
+        m_MethodName: ToggleFoodPlato
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8518,10 +8485,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 848366282}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.047000002, y: 0.30940053}
-  m_AnchorMax: {x: 0.11535227, y: 0.48982424}
-  m_AnchoredPosition: {x: 161.22302, y: 3.9349976}
-  m_SizeDelta: {x: -4.4396973, y: 0.9189987}
+  m_AnchorMin: {x: 0.1643523, y: 0.354}
+  m_AnchorMax: {x: 0.26139447, y: 0.55085015}
+  m_AnchoredPosition: {x: -0.69299316, y: 0.5380249}
+  m_SizeDelta: {x: -0.80999756, y: -2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &708130280
 MonoBehaviour:
@@ -8721,12 +8688,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 342197122}
         m_TargetAssemblyTypeName: CursorManager, Assembly-CSharp
-        m_MethodName: TakeTazaFromShelf
-        m_Mode: 1
+        m_MethodName: TakeMufflinByInt
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 4
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -9479,10 +9446,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 848366282}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.52752084, y: 0.448}
-  m_AnchorMax: {x: 0.58252084, y: 0.53166676}
-  m_AnchoredPosition: {x: 0.014526367, y: 0.87013245}
-  m_SizeDelta: {x: 0.76498413, y: 0.636322}
+  m_AnchorMin: {x: 0.15653574, y: 0.354}
+  m_AnchorMax: {x: 0.26139447, y: 0.5}
+  m_AnchoredPosition: {x: -0.9017334, y: 5.212033}
+  m_SizeDelta: {x: -10, y: 4.149994}
   m_Pivot: {x: 0.45341194, y: 0.49999973}
 --- !u!114 &801309282
 MonoBehaviour:
@@ -12112,10 +12079,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 848366282}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.52752084, y: 0.448}
-  m_AnchorMax: {x: 0.58252084, y: 0.53166676}
-  m_AnchoredPosition: {x: 0.014526367, y: 0.87013245}
-  m_SizeDelta: {x: 0.76498413, y: 0.636322}
+  m_AnchorMin: {x: 0.1643523, y: 0.342}
+  m_AnchorMax: {x: 0.25300002, y: 0.56562537}
+  m_AnchoredPosition: {x: -1.3927002, y: 6.212036}
+  m_SizeDelta: {x: 3.000122, y: -0.36999512}
   m_Pivot: {x: 0.45341194, y: 0.49999973}
 --- !u!114 &1032402579
 MonoBehaviour:
@@ -12293,6 +12260,41 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1042402480}
   m_CullTransparentMesh: 1
+--- !u!1 &1048102189
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1048102190}
+  m_Layer: 5
+  m_Name: PuntoComida
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1048102190
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1048102189}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1101363697}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.17654167, y: 0.37300003}
+  m_AnchorMax: {x: 0.231, y: 0.46385187}
+  m_AnchoredPosition: {x: -0.8400879, y: 1.1199951}
+  m_SizeDelta: {x: -3, y: 2}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1056640260
 GameObject:
   m_ObjectHideFlags: 0
@@ -13445,6 +13447,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1955836105}
+  - {fileID: 1048102190}
   - {fileID: 591006215}
   m_Father: {fileID: 270205275}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -14021,12 +14024,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 342197122}
         m_TargetAssemblyTypeName: CursorManager, Assembly-CSharp
-        m_MethodName: TakeTazaFromShelf
-        m_Mode: 1
+        m_MethodName: TakeCookieByInt
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -14510,12 +14513,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 342197122}
         m_TargetAssemblyTypeName: CursorManager, Assembly-CSharp
-        m_MethodName: TakeTazaFromShelf
-        m_Mode: 1
+        m_MethodName: TakeCookieByInt
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -15220,12 +15223,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 342197122}
         m_TargetAssemblyTypeName: CursorManager, Assembly-CSharp
-        m_MethodName: TakeTazaFromShelf
-        m_Mode: 1
+        m_MethodName: TakeMufflinByInt
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -15448,12 +15451,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 342197122}
         m_TargetAssemblyTypeName: CursorManager, Assembly-CSharp
-        m_MethodName: TakeTazaFromShelf
-        m_Mode: 1
+        m_MethodName: TakeCakeByInt
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -15581,12 +15584,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 342197122}
         m_TargetAssemblyTypeName: CursorManager, Assembly-CSharp
-        m_MethodName: TakeTazaFromShelf
-        m_Mode: 1
+        m_MethodName: TakeMufflinByInt
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -16253,10 +16256,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 848366282}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.047000002, y: 0.30940053}
-  m_AnchorMax: {x: 0.11535227, y: 0.48982424}
-  m_AnchoredPosition: {x: 161.22299, y: 3.934967}
-  m_SizeDelta: {x: -4.4396973, y: 0.91900635}
+  m_AnchorMin: {x: 0.14767699, y: 0.30940053}
+  m_AnchorMax: {x: 0.26868993, y: 0.56562537}
+  m_AnchoredPosition: {x: 1.3070068, y: -0.4619751}
+  m_SizeDelta: {x: -7.899994, y: 7.100006}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1354414401
 MonoBehaviour:
@@ -16745,10 +16748,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 848366282}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.30552083, y: 0.418}
-  m_AnchorMax: {x: 0.3604792, y: 0.5065186}
-  m_AnchoredPosition: {x: 1.8929443, y: -1.2344055}
-  m_SizeDelta: {x: 2.7149963, y: -3.1345367}
+  m_AnchorMin: {x: 0.15653574, y: 0.29922476}
+  m_AnchorMax: {x: 0.26868993, y: 0.6101008}
+  m_AnchoredPosition: {x: -3.7944946, y: -0.42985535}
+  m_SizeDelta: {x: 17, y: 0}
   m_Pivot: {x: 0.49999997, y: 0.45705903}
 --- !u!114 &1392499144
 MonoBehaviour:
@@ -17009,12 +17012,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 342197122}
         m_TargetAssemblyTypeName: CursorManager, Assembly-CSharp
-        m_MethodName: TakeTazaFromShelf
-        m_Mode: 1
+        m_MethodName: TakeCookieByInt
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -17217,12 +17220,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 342197122}
         m_TargetAssemblyTypeName: CursorManager, Assembly-CSharp
-        m_MethodName: TakeTazaFromShelf
-        m_Mode: 1
+        m_MethodName: TakeCakeByInt
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -18270,10 +18273,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 848366282}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.30552083, y: 0.418}
-  m_AnchorMax: {x: 0.3604792, y: 0.5065186}
-  m_AnchoredPosition: {x: 1.8929443, y: -1.2344055}
-  m_SizeDelta: {x: 2.7149963, y: -3.1345367}
+  m_AnchorMin: {x: 0.15653574, y: 0.354}
+  m_AnchorMax: {x: 0.26139447, y: 0.55085015}
+  m_AnchoredPosition: {x: 2.2055058, y: -0.21157837}
+  m_SizeDelta: {x: -4.2299957, y: 6.0599976}
   m_Pivot: {x: 0.49999997, y: 0.45705903}
 --- !u!114 &1560350579
 MonoBehaviour:
@@ -18345,10 +18348,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 848366282}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.047000002, y: 0.30940053}
-  m_AnchorMax: {x: 0.11535227, y: 0.48982424}
-  m_AnchoredPosition: {x: 161.22302, y: 3.9349976}
-  m_SizeDelta: {x: -4.4396973, y: 0.9189987}
+  m_AnchorMin: {x: 0.1643523, y: 0.38085014}
+  m_AnchorMax: {x: 0.25300002, y: 0.5203256}
+  m_AnchoredPosition: {x: -2.6929932, y: 3.538025}
+  m_SizeDelta: {x: -6, y: 0.66999817}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1564548822
 MonoBehaviour:
@@ -20317,10 +20320,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 848366282}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5214792, y: 0.328}
-  m_AnchorMax: {x: 0.58252084, y: 0.402}
-  m_AnchoredPosition: {x: -909.28796, y: -17.565002}
-  m_SizeDelta: {x: -1.4396744, y: -2.0810165}
+  m_AnchorMin: {x: 0.13460551, y: 0.30940053}
+  m_AnchorMax: {x: 0.282, y: 0.5203256}
+  m_AnchoredPosition: {x: -0.7186279, y: -0.06802368}
+  m_SizeDelta: {x: -4.5799866, y: 3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1786740810
 MonoBehaviour:
@@ -20756,7 +20759,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 342197122}
         m_TargetAssemblyTypeName: CursorManager, Assembly-CSharp
-        m_MethodName: TakeTazaFromShelf
+        m_MethodName: TakePlatoFromShelf
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -21352,139 +21355,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1863339081}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 50023188}
-        m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
-        m_MethodName: ToggleTazaCafetera
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 50023188}
-        m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
-        m_MethodName: ToggleVasoCafetera
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 50023188}
-        m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
-        m_MethodName: EcharAzucar
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 50023188}
-        m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
-        m_MethodName: EcharHielo
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 50023188}
-        m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
-        m_MethodName: PonerTapa
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 50023188}
-        m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
-        m_MethodName: EcharAgua
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 50023188}
-        m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
-        m_MethodName: EcharLeche
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 50023188}
-        m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
-        m_MethodName: EcharLecheCondensada
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 50023188}
-        m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
-        m_MethodName: EcharCrema
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 50023188}
-        m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
-        m_MethodName: EcharChocolate
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 50023188}
-        m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
-        m_MethodName: EcharWhiskey
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1863339081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21691,10 +21562,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 848366282}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.30552083, y: 0.418}
-  m_AnchorMax: {x: 0.3604792, y: 0.5065186}
-  m_AnchoredPosition: {x: 1.8928833, y: -1.2344055}
-  m_SizeDelta: {x: 2.7149963, y: -3.1345367}
+  m_AnchorMin: {x: 0.17226788, y: 0.36417577}
+  m_AnchorMax: {x: 0.25300002, y: 0.51017576}
+  m_AnchoredPosition: {x: -1.7945561, y: -0.6162877}
+  m_SizeDelta: {x: 1.2299957, y: -1}
   m_Pivot: {x: 0.49999997, y: 0.45705903}
 --- !u!114 &1901911381
 MonoBehaviour:
@@ -22029,10 +21900,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1101363697}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.17654167, y: 0.37600002}
-  m_AnchorMax: {x: 0.231, y: 0.47222224}
-  m_AnchoredPosition: {x: -0.8400879, y: 0.94000244}
-  m_SizeDelta: {x: -3, y: -4}
+  m_AnchorMin: {x: 0.17654167, y: 0.35000002}
+  m_AnchorMax: {x: 0.231, y: 0.44418523}
+  m_AnchoredPosition: {x: -0.8400879, y: -0.7200012}
+  m_SizeDelta: {x: -3, y: -2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1957982742
 GameObject:
@@ -22051,7 +21922,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1957982743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22599,12 +22470,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 342197122}
         m_TargetAssemblyTypeName: CursorManager, Assembly-CSharp
-        m_MethodName: TakeTazaFromShelf
-        m_Mode: 1
+        m_MethodName: TakeCakeByInt
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -23275,7 +23146,6 @@ MonoBehaviour:
   pausePanel: {fileID: 1071502798}
   optionsPanel: {fileID: 399044284}
   dialoguePanel: {fileID: 995759339}
-  preparationPanel: {fileID: 153319688}
   endOfDayPanel: {fileID: 1071443432}
   orderScreen: 0
 --- !u!1 &2100299597
@@ -23592,6 +23462,10 @@ MonoBehaviour:
       cakeType: 0
       cookieType: 0
       mufflinType: 0
+      foodTargetCategory: 0
+      foodTargetType: 0
+      foodPrecisionCategory: 0
+      foodPrecisionType: 0
     coffeeTarget: 0
     coffeePrecision: 0
     milkTarget: 0

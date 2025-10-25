@@ -29,6 +29,18 @@ public class ButtonUnlockManager : MonoBehaviour
     [Header("Botones del minijuego de pastelería")]
     [SerializeField] public Button bakeryButton;
     [SerializeField] public Button returnBakeryButton;
+    [SerializeField] public Button cogerPlatoInicioButton;
+    [SerializeField] public Button cogerBZanahoriaButton;
+    [SerializeField] public Button cogerBMantequillaButton;
+    [SerializeField] public Button cogerBChocolateButton;
+    [SerializeField] public Button cogerBRedVelvetButton;
+    [SerializeField] public Button cogerGChocolateButton;
+    [SerializeField] public Button cogerGChocolateBlButton;
+    [SerializeField] public Button cogerGMantequillaButton;
+    [SerializeField] public Button cogerMArandanosButton;
+    [SerializeField] public Button cogerMCerezaButton;
+    [SerializeField] public Button cogerMPistachoButton;
+    [SerializeField] public Button cogerMDulceLecheButton;
     [SerializeField] public Button hornoButton;
 
     private void Start()
@@ -48,7 +60,19 @@ public class ButtonUnlockManager : MonoBehaviour
         creamButton.gameObject.SetActive(progress.creamEnabled);
         chocolateButton.gameObject.SetActive(progress.chocolateEnabled);
         whiskeyButton.gameObject.SetActive(progress.whiskeyEnabled);
+
         bakeryButton.gameObject.SetActive(progress.cakesEnabled);
+        cogerBChocolateButton.gameObject.SetActive(progress.cakesEnabled);
+        cogerBMantequillaButton.gameObject.SetActive(progress.cakesEnabled);
+        cogerBRedVelvetButton.gameObject.SetActive(progress.cakesEnabled);
+        cogerBZanahoriaButton.gameObject.SetActive(progress.cakesEnabled);
+        cogerGChocolateBlButton.gameObject.SetActive(progress.cookiesEnabled);
+        cogerGMantequillaButton.gameObject.SetActive(progress.cookiesEnabled);
+        cogerGChocolateButton.gameObject.SetActive(progress.cookiesEnabled);
+        cogerMArandanosButton.gameObject.SetActive(progress.mufflinsEnabled);
+        cogerMCerezaButton.gameObject.SetActive(progress.mufflinsEnabled);
+        cogerMPistachoButton.gameObject.SetActive(progress.mufflinsEnabled);
+        cogerMDulceLecheButton.gameObject.SetActive(progress.mufflinsEnabled);
 
         // Inicialmente se desactiva la interactividad de los botones
         filtroButton.interactable = false;
@@ -67,8 +91,19 @@ public class ButtonUnlockManager : MonoBehaviour
         creamButton.interactable = false;
         chocolateButton.interactable = false;
         whiskeyButton.interactable = false;
-    }
 
+        cogerBChocolateButton.interactable = false;
+        cogerBMantequillaButton.interactable = false;
+        cogerBRedVelvetButton.interactable = false;
+        cogerBZanahoriaButton.interactable = false;
+        cogerGChocolateBlButton.interactable = false;
+        cogerGMantequillaButton.interactable = false;
+        cogerGChocolateButton.interactable = false;
+        cogerMArandanosButton.interactable = false;
+        cogerMCerezaButton.interactable = false;
+        cogerMPistachoButton.interactable = false;
+        cogerMDulceLecheButton.interactable = false;
+    }
     public void EnableButton(Button button)
     {
         if (button != null)

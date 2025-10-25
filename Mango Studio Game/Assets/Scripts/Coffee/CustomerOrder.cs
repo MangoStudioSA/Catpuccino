@@ -21,7 +21,7 @@ public class CustomerOrder : MonoBehaviour
         int day = timeManager.currentDay;
 
         // Hay un 0.6% de probabilidades de que el cliente pida comida
-        if (Random.value < 0.6f)
+        if (Random.value < 0.9f)
         {
             FoodCategory randomCategory = foodUnlockManager.GetRandomAvailableFood(day); //Se selecciona la comida que se encuentre disponible
             foodOrder = new FoodOrder(randomCategory);
@@ -72,7 +72,7 @@ public class CustomerOrder : MonoBehaviour
             }
             else
             {
-                foodTxt = " No quiero comida.";
+                foodTxt = " No hay comida.";
             }
 
             // Generacion dialogo del pedido

@@ -68,6 +68,7 @@ public class Order
     // guarda el valor del si el jugador ha colocado o no la tapa (0-tomar o 1-llevar)
     public int typePrecision;
 
+
     public Order(CoffeeType coffeeType, SugarAmount sugar, IceAmount ice, OrderType type, FoodOrder foodOrder = null) // Constructor de los pedidos 
     {
         orderId = nextId;
@@ -77,7 +78,7 @@ public class Order
         this.sugarAm = sugar;
         this.iceAm = ice;
         this.orderType = type;
-        this.foodOrder = foodOrder;
+        this.foodOrder = foodOrder ?? new FoodOrder(FoodCategory.no);
 
         //inicializamos la precision del cafe a 0
         this.coffeePrecision = 0f;

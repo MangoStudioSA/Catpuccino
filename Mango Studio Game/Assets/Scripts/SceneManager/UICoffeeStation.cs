@@ -16,6 +16,7 @@ public class UICoffeeStation : MonoBehaviour
         {
             gameManager = FindFirstObjectByType<CoffeeGameManager>();
         }
+        bakeryPanel.SetActive(false);   
     }
     public void ShowBakeryPanel()
     {

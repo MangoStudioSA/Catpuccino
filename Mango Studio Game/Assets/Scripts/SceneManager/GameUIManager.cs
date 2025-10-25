@@ -6,7 +6,7 @@ public class GameUIManager : MonoBehaviour
     [SerializeField] GameObject pausePanel;
     [SerializeField] GameObject optionsPanel;
     [SerializeField] GameObject dialoguePanel;
-    [SerializeField] GameObject preparationPanel;
+    //[SerializeField] GameObject preparationPanel;
     [SerializeField] GameObject endOfDayPanel;
     private CanvasGroup gameCanvasGroup;
 

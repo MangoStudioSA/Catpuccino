@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -40,14 +41,30 @@ public class MinigameInput : MonoBehaviour
     public bool chocolateInHand = false;
     public bool whiskeyInHand = false;
 
+    public bool platoInHand = false;
+    public bool foodInHand = false;
+    public bool platoIsInEncimera = false;
+    public bool foodIsInPlato = false;
+
+    public FoodCategory foodCategoryInHand;
+    public object foodTypeInHand;
+
     bool filtroIsInCafetera = false;
     public bool coffeeServed = false;
     public bool milkServed = false;
     public bool heatMilk = false;
+    public bool foodServed = false;
 
     PlayerOrder order;
+    public FoodManager foodManager;
+    public FoodOrder foodOrder;
+
     public GameObject Taza;
     public GameObject Vaso;
+    public GameObject Plato;
+    public GameObject Comida;
+    GameObject foodInPlatoObj = null;
+
     public bool tazaIsInCafetera = false;
     public bool tazaIsInEspumador = false;
     public bool vasoIsInCafetera = false;
@@ -62,59 +79,19 @@ public class MinigameInput : MonoBehaviour
 
     public Transform puntoCafetera;
     public Transform puntoEspumador;
-
-    //public GameObject Filtro;
-    //public GameObject FiltroCafetera;
+    public Transform puntoPlato;
+    public Transform puntoComida;
     #endregion
 
     public void Start()
     {
         order = FindFirstObjectByType<PlayerOrder>();
-        buttonManager.EnableButton(buttonManager.cogerTazaInicioButton);
-        buttonManager.EnableButton(buttonManager.cogerVasoInicioButton);
 
-        currentSlideTime = 0f;
-        isSliding = false;
-        coffeeDone = false;
-        coffeeServed = false;
-
-        countSugar = 0;
-        countIce = 0;
-        countCover = 0;
-        countWater = 0;
-        countMilk = 0;
-        countCondensedMilk = 0;
-        countCream = 0;
-        countChocolate = 0;
-        countWhiskey = 0;
-
-        Taza.SetActive(false);
-        Vaso.SetActive(false);
-        //Filtro.SetActive(false);
-        //FiltroCafetera.SetActive(false);
-        Image taza = Taza.GetComponent<Image>();
-        taza.sprite = tazaSinCafe;
-
-        Image vaso = Vaso.GetComponent<Image>();
-        vaso.sprite = vasoSinCafe;
-
-        tazaIsInCafetera = false;
-        tazaIsInEspumador= false;
-        vasoIsInCafetera = false;
-        vasoIsInEspumador = false;
-
-        filtroIsInCafetera = false;
-
-        if (coffeeSlider != null)
-        {
-            coffeeSlider.minValue = 0f;
-            coffeeSlider.maxValue = maxAmount;
-            coffeeSlider.value = 0f;
-        }
-
-        buttonManager.EnableButton(buttonManager.coffeeButton);
-        buttonManager.DisableButton(buttonManager.molerButton);
-        buttonManager.DisableButton(buttonManager.filtroCafeteraButton);
+        ResetCafe();
+        ResetFoodState();
+        
+        ActualizarBotonCogerComida();
+        ActualizarBotonCogerEnvase();
     }
 
     public void Update()
@@ -136,12 +113,91 @@ public class MinigameInput : MonoBehaviour
             }
         }
 
-        if (tazaInHand || vasoInHand)
+        if (tazaInHand || vasoInHand )
         {
             buttonManager.DisableButton(buttonManager.submitOrderButton);
-        } else if (coffeeServed)
+            buttonManager.DisableButton(buttonManager.bakeryButton);
+        } 
+        else if (coffeeServed)
         {
             buttonManager.EnableButton(buttonManager.submitOrderButton);
+        }
+
+        if (platoInHand)
+        {
+            buttonManager.DisableButton(buttonManager.returnBakeryButton);
+        } 
+        else
+        {
+            buttonManager.EnableButton(buttonManager.returnBakeryButton);
+        }
+
+        //ActualizarBotonCogerComida();
+    }
+
+    public void ResetCafe()
+    {
+        buttonManager.EnableButton(buttonManager.cogerTazaInicioButton);
+        buttonManager.EnableButton(buttonManager.cogerVasoInicioButton);
+        buttonManager.EnableButton(buttonManager.coffeeButton);
+        buttonManager.DisableButton(buttonManager.molerButton);
+        buttonManager.DisableButton(buttonManager.filtroCafeteraButton);
+
+        Taza.SetActive(false);
+        Vaso.SetActive(false);
+
+        Image taza = Taza.GetComponent<Image>();
+        taza.sprite = tazaSinCafe;
+
+        Image vaso = Vaso.GetComponent<Image>();
+        vaso.sprite = vasoSinCafe;
+
+        currentSlideTime = 0f;
+        isSliding = coffeeDone = coffeeServed = milkServed = heatMilk = false;
+        tazaIsInCafetera = tazaIsInEspumador = vasoIsInCafetera = vasoIsInEspumador = filtroIsInCafetera = false;
+        countSugar = countIce = countCover = countWater = countMilk = countCondensedMilk = countCream = countChocolate = countWhiskey = 0;
+
+        if (coffeeSlider != null)
+        {
+            coffeeSlider.minValue = 0f;
+            coffeeSlider.maxValue = maxAmount;
+            coffeeSlider.value = 0f;
+        }
+    }
+
+    public void ResetFoodState()
+    {
+        buttonManager.EnableButton(buttonManager.cogerPlatoInicioButton);
+        buttonManager.EnableButton(buttonManager.bakeryButton);
+        buttonManager.EnableButton(buttonManager.returnBakeryButton);
+
+        platoInHand = false;
+        platoIsInEncimera = false;
+        foodIsInPlato = false;
+        foodInHand = false;
+        foodServed = false;
+
+        foodCategoryInHand = FoodCategory.no;
+        foodTypeInHand = null;
+
+        Plato.SetActive(false);
+
+        if (order.currentOrder != null && order.currentOrder.foodOrder != null)
+        {
+            GameObject previousFood = foodManager.GetFoodObject(
+                order.currentOrder.foodOrder.foodTargetCategory,
+                order.currentOrder.foodOrder.foodTargetType
+            );
+
+            if ( previousFood != null )
+                previousFood.SetActive(false);
+
+            order.currentOrder.foodOrder = null;
+        }
+        if (foodInPlatoObj != null)
+        {
+            foodInPlatoObj.SetActive(false);
+            foodInPlatoObj = null;
         }
     }
 
@@ -197,11 +253,47 @@ public class MinigameInput : MonoBehaviour
         {
             buttonManager.DisableButton(buttonManager.cogerTazaInicioButton);
             buttonManager.DisableButton(buttonManager.cogerVasoInicioButton);
+            buttonManager.DisableButton(buttonManager.cogerPlatoInicioButton);
         }
         else
         {
             buttonManager.EnableButton(buttonManager.cogerTazaInicioButton);
             buttonManager.EnableButton(buttonManager.cogerVasoInicioButton);
+            buttonManager.EnableButton(buttonManager.cogerPlatoInicioButton);
+        }
+    }
+
+    public void ActualizarBotonCogerComida()
+    {
+        bool canTakeFood = platoIsInEncimera && !foodInHand && !foodIsInPlato && !foodServed;
+
+        Button[] botonesComida =
+        {
+            buttonManager.cogerBChocolateButton,
+            buttonManager.cogerBZanahoriaButton,
+            buttonManager.cogerBMantequillaButton,
+            buttonManager.cogerBRedVelvetButton,
+            buttonManager.cogerGChocolateBlButton,
+            buttonManager.cogerGChocolateButton,
+            buttonManager.cogerGMantequillaButton,
+            buttonManager.cogerMArandanosButton,
+            buttonManager.cogerMCerezaButton,
+            buttonManager.cogerMPistachoButton,
+            buttonManager.cogerMDulceLecheButton
+        };
+
+        foreach (Button boton in botonesComida)
+        {
+            if (boton == null) continue;
+
+            if (canTakeFood)
+            {
+                buttonManager.EnableButton(boton);  
+            }
+            else
+            {
+                buttonManager.DisableButton(boton);
+            }
         }
     }
 
@@ -390,6 +482,93 @@ public class MinigameInput : MonoBehaviour
             buttonManager.EnableButton(buttonManager.calentarButton);
         }
         ActualizarBotonCogerEnvase();
+    }
+
+    public void PlacePlatoEncimera()
+    {
+        if (platoIsInEncimera)
+            return;
+
+        if (TengoOtroObjetoEnLaMano())
+            return;
+
+        if (!platoInHand && !platoIsInEncimera)
+            return;
+
+        if (platoInHand)
+        {
+            // Poner en la encimera
+            Plato.SetActive(true);
+            Plato.transform.position = puntoPlato.position;
+
+            platoInHand = false;
+            platoIsInEncimera = true;
+
+            cursorManager.UpdateCursorPlato(true);
+            Debug.Log($"Plato colocado: {platoIsInEncimera}");
+        }
+        ActualizarBotonCogerEnvase();
+        ActualizarBotonCogerComida();
+    }
+
+    public void ToggleFoodPlato()
+    {
+        if (!foodInHand && !foodIsInPlato)
+           return;
+
+        if (!platoIsInEncimera)
+            return;
+
+        if (foodInHand)
+        {
+            GameObject foodObj = foodManager.GetFoodObject(foodCategoryInHand, foodTypeInHand);
+            if (foodObj == null)
+            {
+                Debug.Log("No se encontro el objeto de comida correspondiente");
+                return;
+            }
+
+            foodObj.SetActive(true);
+            foodObj.transform.position = puntoComida.position;
+
+            foodInPlatoObj = foodObj;
+
+            foodIsInPlato = true;
+            foodServed = true;
+            foodInHand = false;
+
+            cursorManager.UpdateCursorFood(true, foodCategoryInHand, foodTypeInHand);
+            
+            if (order.currentOrder.foodOrder != null)
+            {
+                order.currentOrder.foodOrder.SetPrecision(foodCategoryInHand, (int)foodTypeInHand);
+            }
+            else
+            {
+                Debug.Log("No hay comida en el pedido del cliente, no se puede establecer precision");
+            }
+            
+            foodCategoryInHand = FoodCategory.no;
+            foodTypeInHand = null;
+
+            Debug.Log("Comida colocada en el plato");
+            
+        }
+        else if (foodIsInPlato)
+        {
+            foodInPlatoObj.SetActive(false);
+
+            foodIsInPlato = false;
+            foodInHand = true;
+
+            foodCategoryInHand = order.currentOrder.foodOrder.foodPrecisionCategory;
+            foodTypeInHand = order.currentOrder.foodOrder.foodPrecisionType;
+
+            cursorManager.UpdateCursorFood(false, foodCategoryInHand, foodTypeInHand);
+            Debug.Log("Comida recogida del plato");
+        }
+        
+        ActualizarBotonCogerComida();
     }
 
     public void TakeFiltro()
@@ -708,7 +887,7 @@ public class MinigameInput : MonoBehaviour
     }
     public bool TengoOtroObjetoEnLaMano()
     {
-        return cucharaInHand || waterInHand || milkInHand || condensedMilkInHand || creamInHand || chocolateInHand || whiskeyInHand || iceInHand || coverInHand;
+        return cucharaInHand || waterInHand || milkInHand || condensedMilkInHand || creamInHand || chocolateInHand || whiskeyInHand || iceInHand || coverInHand || foodInHand;
     }
 
     #endregion

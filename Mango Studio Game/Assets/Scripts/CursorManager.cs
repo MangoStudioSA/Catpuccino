@@ -1,8 +1,10 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class CursorManager : MonoBehaviour
 {
+    [Header("Texturas cursores cafe")]
     [SerializeField] Texture2D defaultCursorTexture;
     [SerializeField] Texture2D tazaCursorTexture;
     [SerializeField] Texture2D vasoCursorTexture;
@@ -17,6 +19,10 @@ public class CursorManager : MonoBehaviour
     [SerializeField] Texture2D chocolateCursorTexture;
     [SerializeField] Texture2D whiskeyCursorTexture;
 
+    [Header("Texturas cursores comida")]
+    [SerializeField] Texture2D platoCursorTexture;
+
+    [Header("HotSpots cursores cafe")]
     [SerializeField] Vector2 hotSpotDefault = Vector2.zero; //el punto que hace click en si del cursor (ahora mismo arriba izquierda)
     [SerializeField] Vector2 hotSpotTaza = Vector2.zero; //el punto que hace click en si del cursor (ahora mismo arriba izquierda)
     [SerializeField] Vector2 hotSpotVaso = Vector2.zero; //el punto que hace click en si del cursor (ahora mismo arriba izquierda)
@@ -31,8 +37,12 @@ public class CursorManager : MonoBehaviour
     [SerializeField] Vector2 hotSpotChocolate = Vector2.zero; //el punto que hace click en si del cursor (ahora mismo arriba izquierda)
     [SerializeField] Vector2 hotSpotWhiskey = Vector2.zero; //el punto que hace click en si del cursor (ahora mismo arriba izquierda)
 
-    [SerializeField] MinigameInput miniGameInput; //para poder usar referencias a los vasos y tazas       
+    [Header("HotSpots cursores comida")]
+    [SerializeField] Vector2 hotSpotPlato = Vector2.zero; //el punto que hace click en si del cursor (ahora mismo arriba izquierda)
 
+
+    [SerializeField] MinigameInput miniGameInput; //para poder usar referencias a los vasos y tazas       
+    public FoodManager foodManager;
 
     void Start()
     {
@@ -72,6 +82,69 @@ public class CursorManager : MonoBehaviour
         }
     }
 
+    // Gestionar coger el plato del estante
+    public void TakePlatoFromShelf()
+    {
+        if (miniGameInput.platoIsInEncimera)
+            return;
+
+        if (!miniGameInput.platoInHand)
+        {
+            miniGameInput.platoInHand = true;
+            Cursor.SetCursor(platoCursorTexture, hotSpotPlato, CursorMode.Auto);
+        }
+    }
+
+    // El boton llamara a una de las 3 funciones segun el tipo de comida que se trate (asociado al index del tipo de cada una)
+    public void TakeCakeByInt(int index)
+    {
+        TakeFood(FoodCategory.bizcocho, (CakeType)index);
+    }
+
+    public void TakeCookieByInt(int index)
+    {
+        TakeFood(FoodCategory.galleta, (CookieType)index);
+    }
+
+    public void TakeMufflinByInt(int index)
+    {
+        TakeFood(FoodCategory.mufflin, (MufflinType)index);
+    }
+
+    // Gestionar coger la comida del estante
+    public void TakeFood(FoodCategory category, object type)
+    {
+        if (miniGameInput.foodInHand || miniGameInput.platoInHand)
+            return;
+
+        miniGameInput.foodInHand = true;
+        miniGameInput.foodCategoryInHand = category;
+        miniGameInput.foodTypeInHand = type;
+        miniGameInput.ActualizarBotonCogerComida();
+
+        Texture2D cursor = foodManager.GetFoodCursor(category, type);
+        Cursor.SetCursor(cursor, Vector2.zero, CursorMode.Auto);
+        Debug.Log($"Comina en mano: {category}{type}");
+    }
+
+    // Gestionar cursor comida
+    public void UpdateCursorFood(bool dejandoComida, FoodCategory category, object type)
+    {
+        if (miniGameInput.TengoOtroObjetoEnLaMano())
+            return;
+
+        Texture2D cursor = foodManager.GetFoodCursor(category, type);
+
+        if (dejandoComida)
+        {
+            Cursor.SetCursor(defaultCursorTexture, hotSpotDefault, CursorMode.Auto);
+        }
+        else
+        {
+            Cursor.SetCursor(cursor, Vector2.zero, CursorMode.Auto);
+        }
+    }
+
     // Gestionar cursor taza
     public void UpdateCursorTaza(bool dejandoTaza)
     {
@@ -101,6 +174,22 @@ public class CursorManager : MonoBehaviour
         else
         {
             Cursor.SetCursor(vasoCursorTexture, hotSpotVaso, CursorMode.Auto);
+        }
+    }
+
+    // Gestionar cursor plato
+    public void UpdateCursorPlato(bool dejandoPlato)
+    {
+        if (miniGameInput.TengoOtroObjetoEnLaMano())
+            return;
+
+        if (dejandoPlato)
+        {
+            Cursor.SetCursor(defaultCursorTexture, hotSpotDefault, CursorMode.Auto);
+        }
+        else
+        {
+            Cursor.SetCursor(platoCursorTexture, hotSpotPlato, CursorMode.Auto);
         }
     }
     public void TakeFiltro()
