@@ -11,6 +11,8 @@ public class Order
     public IceAmount iceAm;
     public OrderType orderType;
 
+    public FoodOrder foodOrder;
+
     // valor de precisión que el jugador debe alcanzar (1.0, 2.0, o 3.0)
     public float coffeeTarget;
     // guarda el valor del slider (0.0 a 4.0)
@@ -66,15 +68,16 @@ public class Order
     // guarda el valor del si el jugador ha colocado o no la tapa (0-tomar o 1-llevar)
     public int typePrecision;
 
-    public Order(CoffeeType coffeeType, SugarAmount sugar, IceAmount ice, OrderType type) // Constructor de los pedidos 
+    public Order(CoffeeType coffeeType, SugarAmount sugar, IceAmount ice, OrderType type, FoodOrder foodOrder = null) // Constructor de los pedidos 
     {
-        orderId = nextId-2;
+        orderId = nextId;
         nextId++;
 
         this.coffeeType= coffeeType;
         this.sugarAm = sugar;
         this.iceAm = ice;
         this.orderType = type;
+        this.foodOrder = foodOrder;
 
         //inicializamos la precision del cafe a 0
         this.coffeePrecision = 0f;
@@ -429,3 +432,4 @@ public enum WhiskeyAmount { no, si } // Se crean 2 cantidades de whiskey
 public enum SugarAmount { nada, poco, mucho } // Se crean 3 cantidades de azucar
 public enum IceAmount { no, si } // Se crean 2 cantidades de hielo
 public enum OrderType { tomar, llevar } // Se crean 2 tipos de pedidos 
+

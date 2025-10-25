@@ -69,12 +69,10 @@ public class GameUIManager : MonoBehaviour
 
     public void ShowGamePanel()
     {
-        
         endOfDayPanel.SetActive(false);
         gamePanel.SetActive(true);
     }
-    
-    
+
     public void OnNextDayButtonPressed()
     {
         // Llama al TimeManager para que inicie el nuevo día

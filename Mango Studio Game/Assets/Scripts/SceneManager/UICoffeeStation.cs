@@ -4,6 +4,7 @@ public class UICoffeeStation : MonoBehaviour
 {
     public GameObject preparationPanel;
     public GameObject deliveryPanel;
+    public GameObject bakeryPanel;
 
     public CoffeeGameManager gameManager;
 
@@ -15,6 +16,17 @@ public class UICoffeeStation : MonoBehaviour
         {
             gameManager = FindFirstObjectByType<CoffeeGameManager>();
         }
+    }
+    public void ShowBakeryPanel()
+    {
+        preparationPanel.SetActive(false);
+        bakeryPanel.SetActive(true);
+    }
+
+    public void ReturnBakeryPanel()
+    {
+        bakeryPanel.SetActive(false);
+        preparationPanel.SetActive(true);
     }
 
     public void SubmitOrderUI()

@@ -28,7 +28,10 @@ public class GameProgressManager : MonoBehaviour
     public bool creamEnabled;
     public bool chocolateEnabled;
     public bool whiskeyEnabled;
-
+    // Comida
+    public bool cakesEnabled;
+    public bool cookiesEnabled;
+    public bool mufflinsEnabled;
 
     public void UpdateMechanicsForDay(int day)
     {
@@ -49,6 +52,7 @@ public class GameProgressManager : MonoBehaviour
                 iceEnabled = true;
                 typeOrderEnabled = true;
                 milkEnabled = true;
+                cakesEnabled = true;
                 break;
             case 3:
                 coffeeEnabled = true;
@@ -57,8 +61,10 @@ public class GameProgressManager : MonoBehaviour
                 iceEnabled = true;
                 typeOrderEnabled = true;
                 milkEnabled = true;
+                cakesEnabled = true;
                 heatedMilkEnabled = true;
                 break;
+
             case 4:
                 coffeeEnabled = true;
                 waterEnabled = true;
@@ -66,8 +72,11 @@ public class GameProgressManager : MonoBehaviour
                 iceEnabled = true;
                 typeOrderEnabled = true;
                 milkEnabled = true;
+                cakesEnabled = true;
                 heatedMilkEnabled = true;
+                cookiesEnabled = true;
                 break;
+
             case 5:
                 coffeeEnabled = true;
                 waterEnabled = true;
@@ -75,10 +84,13 @@ public class GameProgressManager : MonoBehaviour
                 iceEnabled = true;
                 typeOrderEnabled = true;
                 milkEnabled = true;
+                cakesEnabled = true;
                 heatedMilkEnabled = true;
+                cookiesEnabled = true;
                 condensedMilkEnabled = true;
                 creamEnabled = true;
                 break;
+
             case 6:
                 coffeeEnabled = true;
                 waterEnabled = true;
@@ -86,8 +98,14 @@ public class GameProgressManager : MonoBehaviour
                 iceEnabled = true;
                 typeOrderEnabled = true;
                 milkEnabled = true;
+                cakesEnabled = true;
                 heatedMilkEnabled = true;
+                cookiesEnabled = true;
+                condensedMilkEnabled = true;
+                creamEnabled = true;
+                mufflinsEnabled = true;
                 break;
+
             case 7:
                 coffeeEnabled = true;
                 waterEnabled = true;
@@ -95,10 +113,16 @@ public class GameProgressManager : MonoBehaviour
                 iceEnabled = true;
                 typeOrderEnabled = true;
                 milkEnabled = true;
+                cakesEnabled = true;
                 heatedMilkEnabled = true;
+                cookiesEnabled = true;
+                condensedMilkEnabled = true;
+                creamEnabled = true;
+                mufflinsEnabled = true;
                 chocolateEnabled = true;
                 whiskeyEnabled = true;
                 break;
+
             default:
                 coffeeEnabled = waterEnabled = sugarEnabled = iceEnabled = typeOrderEnabled = true;
                 break;

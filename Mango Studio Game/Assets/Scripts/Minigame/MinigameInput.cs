@@ -135,6 +135,14 @@ public class MinigameInput : MonoBehaviour
                 Debug.Log("La barrita llego al limite");
             }
         }
+
+        if (tazaInHand || vasoInHand)
+        {
+            buttonManager.DisableButton(buttonManager.submitOrderButton);
+        } else if (coffeeServed)
+        {
+            buttonManager.EnableButton(buttonManager.submitOrderButton);
+        }
     }
 
     #region Mecanicas minijuego
@@ -427,7 +435,7 @@ public class MinigameInput : MonoBehaviour
             buttonManager.DisableButton(buttonManager.creamButton);
             buttonManager.DisableButton(buttonManager.chocolateButton);
 
-            buttonManager.EnableButton(buttonManager.submitOrderButton);
+            //buttonManager.EnableButton(buttonManager.submitOrderButton);
             buttonManager.EnableButton(buttonManager.sugarButton);
             buttonManager.EnableButton(buttonManager.iceButton);
             buttonManager.EnableButton(buttonManager.coverButton);

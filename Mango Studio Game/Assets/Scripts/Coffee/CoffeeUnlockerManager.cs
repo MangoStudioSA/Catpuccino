@@ -3,15 +3,15 @@ using System.Collections.Generic;
 
 public class CoffeeUnlockerManager : MonoBehaviour
 {
-    // Se crea un diccionario relacionando el dia del juego con los cafes y comidas que se desbloquean 
+    // Se crea un diccionario relacionando el dia del juego con los cafes que se desbloquean 
     private Dictionary<int, CoffeeType[]> coffeUnlocks = new Dictionary<int, CoffeeType[]>()
     {
         {1, new CoffeeType[] { CoffeeType.espresso, CoffeeType.lungo, CoffeeType.americano } },
         {2, new CoffeeType[] { CoffeeType.macchiatto } },
-        {3, new CoffeeType[] { CoffeeType.latte, CoffeeType.capuccino } },
-        {4, new CoffeeType[] { } },
+        {3, new CoffeeType[] { CoffeeType.latte, CoffeeType.capuccino } }, 
+        {4, new CoffeeType[] { }},
         {5, new CoffeeType[] { CoffeeType.bombón, CoffeeType.vienés, CoffeeType.frappé } },
-        {6, new CoffeeType[] { } },
+        {6, new CoffeeType[] { }},
         {7, new CoffeeType[] { CoffeeType.mocca, CoffeeType.irish } },
     };
 
