@@ -151,8 +151,10 @@ public class OrderEvaluation : MonoBehaviour
 
         float percentScore = (float) totalScore / maxPossibleScore;
 
-        float basePrice = CoffeePriceManager.Instance.GetBasePrice(playerOrder.coffeeType);
-        result.moneyEarned = Mathf.RoundToInt(basePrice * percentScore);
+        float baseCoffeePrice = CoffeePriceManager.Instance.GetBaseCoffeePrice(playerOrder.coffeeType);
+        float baseFoodPrice = FoodPriceManager.Instance.GetBaseFoodPrice(playerOrder.foodOrder.category);
+        float totalBasePrice = baseCoffeePrice + baseFoodPrice;
+        result.moneyEarned = Mathf.RoundToInt(totalBasePrice * percentScore);
 
         result.score = Mathf.RoundToInt(percentScore * 100f);
 

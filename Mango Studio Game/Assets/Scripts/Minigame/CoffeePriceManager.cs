@@ -28,7 +28,7 @@ public class CoffeePriceManager : MonoBehaviour
             Destroy(gameObject);
     }
 
-    public float GetBasePrice(CoffeeType coffeeType)
+    public float GetBaseCoffeePrice(CoffeeType coffeeType)
     {
         if (coffeePrices.ContainsKey(coffeeType))
         {

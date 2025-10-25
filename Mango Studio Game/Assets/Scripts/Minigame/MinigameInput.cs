@@ -15,72 +15,32 @@ public class MinigameInput : MonoBehaviour
     [SerializeField] float maxAmount = 4.0f;
 
     float currentSlideTime = 0f;
-    bool isSliding = false;
-    bool coffeeDone = false;
-    //bool molerDone =false;
+    bool isSliding = false, coffeeDone = false;
 
-    int countSugar = 0;
-    int countIce = 0;
-    int countCover = 0;
-    int countWater = 0;
-    int countMilk = 0;
-    int countCondensedMilk = 0;
-    int countCream = 0;
-    int countChocolate = 0;
-    int countWhiskey = 0;
+    int countSugar = 0, countIce = 0, countCover = 0, countWater = 0, countMilk = 0, countCondensedMilk = 0, countCream = 0, countChocolate = 0, countWhiskey = 0;
+  
+    public bool cucharaInHand = false, tazaInHand = false, vasoInHand = false, iceInHand = false, coverInHand = false, waterInHand = false, milkInHand = false, 
+        condensedMilkInHand = false, creamInHand = false, chocolateInHand = false, whiskeyInHand = false;
 
-    public bool cucharaInHand = false;
-    public bool tazaInHand = false;
-    public bool vasoInHand = false;
-    public bool iceInHand = false;
-    public bool coverInHand = false;
-    public bool waterInHand = false;
-    public bool milkInHand = false;
-    public bool condensedMilkInHand = false;
-    public bool creamInHand = false;
-    public bool chocolateInHand = false;
-    public bool whiskeyInHand = false;
+    public bool platoInHand = false, foodInHand = false, platoIsInEncimera = false, foodIsInPlato = false;
 
-    public bool platoInHand = false;
-    public bool foodInHand = false;
-    public bool platoIsInEncimera = false;
-    public bool foodIsInPlato = false;
+    public bool tazaIsInCafetera = false, tazaIsInEspumador = false, vasoIsInCafetera = false, vasoIsInEspumador = false, vasoTapaPuesta = false, filtroIsInCafetera = false;
+
+    public bool coffeeServed = false, milkServed = false, heatMilk = false, foodServed = false;
 
     public FoodCategory foodCategoryInHand;
     public object foodTypeInHand;
-
-    bool filtroIsInCafetera = false;
-    public bool coffeeServed = false;
-    public bool milkServed = false;
-    public bool heatMilk = false;
-    public bool foodServed = false;
 
     PlayerOrder order;
     public FoodManager foodManager;
     public FoodOrder foodOrder;
 
-    public GameObject Taza;
-    public GameObject Vaso;
-    public GameObject Plato;
-    public GameObject Comida;
+    public GameObject Taza, Vaso, Plato;
     GameObject foodInPlatoObj = null;
 
-    public bool tazaIsInCafetera = false;
-    public bool tazaIsInEspumador = false;
-    public bool vasoIsInCafetera = false;
-    public bool vasoIsInEspumador = false;
-    public bool vasoTapaPuesta = false;
+    public Sprite vasoConTapa, vasoConCafe, vasoSinCafe, tazaSinCafe, tazaConCafe;
+    public Transform puntoCafetera, puntoEspumador, puntoPlato, puntoComida;
 
-    public Sprite vasoConTapa;
-    public Sprite vasoConCafe;
-    public Sprite vasoSinCafe;
-    public Sprite tazaSinCafe;
-    public Sprite tazaConCafe;
-
-    public Transform puntoCafetera;
-    public Transform puntoEspumador;
-    public Transform puntoPlato;
-    public Transform puntoComida;
     #endregion
 
     public void Start()
@@ -118,11 +78,6 @@ public class MinigameInput : MonoBehaviour
             buttonManager.DisableButton(buttonManager.submitOrderButton);
             buttonManager.DisableButton(buttonManager.bakeryButton);
         } 
-        else if (coffeeServed)
-        {
-            buttonManager.EnableButton(buttonManager.submitOrderButton);
-        }
-
         if (platoInHand)
         {
             buttonManager.DisableButton(buttonManager.returnBakeryButton);
@@ -131,8 +86,6 @@ public class MinigameInput : MonoBehaviour
         {
             buttonManager.EnableButton(buttonManager.returnBakeryButton);
         }
-
-        //ActualizarBotonCogerComida();
     }
 
     public void ResetCafe()
@@ -182,7 +135,7 @@ public class MinigameInput : MonoBehaviour
 
         Plato.SetActive(false);
 
-        if (order.currentOrder != null && order.currentOrder.foodOrder != null)
+        /*if (order.currentOrder != null && order.currentOrder.foodOrder != null)
         {
             GameObject previousFood = foodManager.GetFoodObject(
                 order.currentOrder.foodOrder.foodTargetCategory,
@@ -193,7 +146,7 @@ public class MinigameInput : MonoBehaviour
                 previousFood.SetActive(false);
 
             order.currentOrder.foodOrder = null;
-        }
+        }*/
         if (foodInPlatoObj != null)
         {
             foodInPlatoObj.SetActive(false);
@@ -614,7 +567,7 @@ public class MinigameInput : MonoBehaviour
             buttonManager.DisableButton(buttonManager.creamButton);
             buttonManager.DisableButton(buttonManager.chocolateButton);
 
-            //buttonManager.EnableButton(buttonManager.submitOrderButton);
+            buttonManager.EnableButton(buttonManager.submitOrderButton);
             buttonManager.EnableButton(buttonManager.sugarButton);
             buttonManager.EnableButton(buttonManager.iceButton);
             buttonManager.EnableButton(buttonManager.coverButton);
@@ -651,12 +604,10 @@ public class MinigameInput : MonoBehaviour
         if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand)
         {
             milkInHand = true;
-            Debug.Log("tengo la leche");
         }
         else if (milkInHand == true)
         {
             milkInHand = false;
-            Debug.Log("no tengo la leche");
         }
     }
     public void CogerAgua()
@@ -664,12 +615,10 @@ public class MinigameInput : MonoBehaviour
         if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand)
         {
             waterInHand = true;
-            Debug.Log("tengo el agua");
         }
         else if (waterInHand == true)
         {
             waterInHand = false;
-            Debug.Log("no tengo el agua");
         }
     }
     public void CogerLecheCondensada()
@@ -677,12 +626,10 @@ public class MinigameInput : MonoBehaviour
         if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand)
         {
             condensedMilkInHand = true;
-            Debug.Log("tengo la leche condensada");
         }
         else if (condensedMilkInHand == true)
         {
             condensedMilkInHand = false;
-            Debug.Log("no tengo la leche condensada");
         }
     }
     public void CogerCrema()
@@ -690,12 +637,10 @@ public class MinigameInput : MonoBehaviour
         if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand)
         {
             creamInHand = true;
-            Debug.Log("tengo la crema");
         }
         else if (creamInHand == true)
         {
             creamInHand = false;
-            Debug.Log("no tengo la crema");
         }
     }
     public void CogerChocolate()
@@ -703,12 +648,10 @@ public class MinigameInput : MonoBehaviour
         if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand)
         {
             chocolateInHand = true;
-            Debug.Log("tengo el chocolate");
         }
         else if (chocolateInHand == true)
         {
             chocolateInHand = false;
-            Debug.Log("no tengo el chocolate");
         }
     }
     public void CogerWhiskey()
@@ -716,12 +659,10 @@ public class MinigameInput : MonoBehaviour
         if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand)
         {
             whiskeyInHand = true;
-            Debug.Log("tengo el whiskey");
         }
         else if (whiskeyInHand == true)
         {
             whiskeyInHand = false;
-            Debug.Log("no tengo el whiskey");
         }
     }
     public void CogerAzucar()
@@ -729,12 +670,10 @@ public class MinigameInput : MonoBehaviour
         if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand)
         {
             cucharaInHand = true;
-            Debug.Log("tengo el azucar");
         }
         else if (cucharaInHand == true)
         {
             cucharaInHand = false;
-            Debug.Log("no tengo el azucar");
         }
     }
     public void CogerHielo()
@@ -742,12 +681,10 @@ public class MinigameInput : MonoBehaviour
         if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand)
         {
             iceInHand = true;
-            Debug.Log("tengo el hielo");
         }
         else if (iceInHand == true)
         {
             iceInHand = false;
-            Debug.Log("no tengo el hielo");
         }
     }
     public void CogerTapa()
@@ -755,12 +692,10 @@ public class MinigameInput : MonoBehaviour
         if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand)
         {
             coverInHand = true;
-            Debug.Log("tengo la tapa");
         }
         else if (coverInHand == true)
         {
             coverInHand = false;
-            Debug.Log("no tengo la tapa");
         }
     }
     public void EcharLeche()
