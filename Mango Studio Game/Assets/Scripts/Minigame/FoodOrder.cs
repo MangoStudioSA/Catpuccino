@@ -89,3 +89,4 @@ public enum FoodCategory { no, bizcocho, galleta, mufflin }
 public enum CakeType { ninguno, chocolate, mantequilla, zanahoria, RedVelvet }
 public enum CookieType { ninguno, chocolate, blanco, mantequilla }
 public enum MufflinType { ninguno, pistacho, arandanos, cereza, dulceLeche }
+public enum CookState { crudo, horneado, quemado }

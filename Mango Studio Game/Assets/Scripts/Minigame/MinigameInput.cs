@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +11,7 @@ public class MinigameInput : MonoBehaviour
     [SerializeField] ButtonUnlockManager buttonManager;
     [SerializeField] CursorManager cursorManager;
     [SerializeField] UnityEngine.UI.Slider coffeeSlider; //la barrita que se mueve
+    [SerializeField] UnityEngine.UI.Slider bakeSlider;
 
     [SerializeField] float slideSpeed = 0.8f;
     [SerializeField] float maxAmount = 4.0f;
@@ -17,29 +19,33 @@ public class MinigameInput : MonoBehaviour
     float currentSlideTime = 0f;
     bool isSliding = false, coffeeDone = false;
 
+    public float tiempoHorneado = 15f;
+    private Coroutine horneadoCoroutine;
+    private CookState currentCookState;
+
     int countSugar = 0, countIce = 0, countCover = 0, countWater = 0, countMilk = 0, countCondensedMilk = 0, countCream = 0, countChocolate = 0, countWhiskey = 0;
   
     public bool cucharaInHand = false, tazaInHand = false, vasoInHand = false, iceInHand = false, coverInHand = false, waterInHand = false, milkInHand = false, 
         condensedMilkInHand = false, creamInHand = false, chocolateInHand = false, whiskeyInHand = false;
 
-    public bool platoInHand = false, foodInHand = false, platoIsInEncimera = false, foodIsInPlato = false;
+    public bool platoInHand = false, foodInHand = false, platoIsInEncimera = false, foodIsInPlato = false, foodIsInHorno = false;
 
     public bool tazaIsInCafetera = false, tazaIsInEspumador = false, vasoIsInCafetera = false, vasoIsInEspumador = false, vasoTapaPuesta = false, filtroIsInCafetera = false;
 
-    public bool coffeeServed = false, milkServed = false, heatMilk = false, foodServed = false;
+    public bool coffeeServed = false, milkServed = false, heatMilk = false, foodServed = false, foodBaked = false;
 
-    public FoodCategory foodCategoryInHand, foodCategoryInPlato;
-    public object foodTypeInHand, foodTypeInPlato;
+    public FoodCategory foodCategoryInHand, foodCategoryInPlato, foodCategoryInHorno;
+    public object foodTypeInHand, foodTypeInPlato, foodTypeInHorno;
 
     PlayerOrder order;
     public FoodManager foodManager;
     public FoodOrder foodOrder;
 
     public GameObject Taza, Vaso, Plato;
-    GameObject foodInPlatoObj = null;
+    GameObject foodInPlatoObj = null, foodInHornoObj = null;
 
     public Sprite vasoConTapa, vasoConCafe, vasoSinCafe, tazaSinCafe, tazaConCafe;
-    public Transform puntoCafetera, puntoEspumador, puntoPlato, puntoComida;
+    public Transform puntoCafetera, puntoEspumador, puntoPlato, puntoComida, puntoHorno;
 
     #endregion
 
@@ -90,6 +96,10 @@ public class MinigameInput : MonoBehaviour
         {
             buttonManager.EnableButton(buttonManager.returnBakeryButton);
         }
+        if (foodBaked)
+        {
+            buttonManager.DisableButton(buttonManager.hornearButton);
+        }
     }
 
     public void ResetCafe()
@@ -127,12 +137,16 @@ public class MinigameInput : MonoBehaviour
         buttonManager.EnableButton(buttonManager.cogerPlatoInicioButton);
         buttonManager.EnableButton(buttonManager.bakeryButton);
         buttonManager.EnableButton(buttonManager.returnBakeryButton);
+        buttonManager.stopHorneadoButton.gameObject.SetActive(false);
+        bakeSlider.gameObject.SetActive(false);
 
         platoInHand = false;
         platoIsInEncimera = false;
         foodIsInPlato = false;
+        foodIsInHorno = false;
         foodInHand = false;
         foodServed = false;
+        foodBaked = false;
 
         foodCategoryInHand = FoodCategory.no;
         foodTypeInHand = null;
@@ -222,7 +236,7 @@ public class MinigameInput : MonoBehaviour
 
     public void ActualizarBotonCogerComida()
     {
-        bool canTakeFood = platoIsInEncimera && !foodInHand && !foodIsInPlato && !foodServed;
+        bool canTakeFood = platoIsInEncimera && !foodInHand && !foodIsInPlato && !foodServed && !foodIsInHorno;
 
         Button[] botonesComida =
         {
@@ -528,6 +542,126 @@ public class MinigameInput : MonoBehaviour
         }
         
         ActualizarBotonCogerComida();
+    }
+
+    public void ToggleFoodHorno()
+    {
+        if (!foodInHand && !platoIsInEncimera)
+            return;
+
+        if (foodInHand)
+        {
+            GameObject foodObj = foodManager.GetFoodObject(foodCategoryInHand, foodTypeInHand);
+            if (foodObj == null)
+            {
+                Debug.Log("No se encontro el objeto de comida correspondiente");
+                return;
+            }
+
+            foodObj.SetActive(true);
+            foodObj.transform.position = puntoHorno.position;
+
+            foodInHornoObj = foodObj;
+            //  Se asocia la categoria y el tipo de comida de la mano al horno
+            foodCategoryInHorno = foodCategoryInHand;
+            foodTypeInHorno = foodTypeInHand;
+
+            foodIsInHorno = true;
+            foodInHand = false;
+
+            cursorManager.UpdateCursorFood(true, foodCategoryInHand, foodTypeInHand);
+            buttonManager.EnableButton(buttonManager.hornearButton);
+
+            //  Se resetea la categoria y el tipo de comida de la mano 
+            foodCategoryInHand = FoodCategory.no;
+            foodTypeInHand = null;
+
+            Debug.Log("Comida colocada en el horno");
+
+        }
+        else if (foodIsInHorno)
+        {
+            foodInHornoObj.SetActive(false);
+            foodIsInHorno = false;
+            foodInHand = true;
+            //  Se asocia la categoria y el tipo de comida del horno a la mano
+            foodCategoryInHand = foodCategoryInHorno;
+            foodTypeInHand = foodTypeInHorno;
+            //  Se resetea la categoria y el tipo de comida del horno 
+            foodCategoryInHorno = FoodCategory.no;
+            foodTypeInHorno = null;
+
+            cursorManager.UpdateCursorFood(false, foodCategoryInHand, foodTypeInHand);
+            Debug.Log($"Comida recogida del horno. Estado: {currentCookState}");
+        }
+
+        ActualizarBotonCogerComida();
+    }
+
+    public void StartHorneado()
+    {
+        if (!foodIsInHorno || foodInHornoObj == null || foodBaked)
+            return;
+        if (horneadoCoroutine != null )
+        {
+            StopCoroutine(horneadoCoroutine);
+        }
+        horneadoCoroutine = StartCoroutine(HornearCoroutine());
+        foodBaked = true;
+        buttonManager.stopHorneadoButton.gameObject.SetActive(true);
+    }
+
+    private IEnumerator HornearCoroutine()
+    {
+        Debug.Log("Comienza el horneado...");
+        bakeSlider.gameObject.SetActive(true);
+        bakeSlider.value = 0f;
+
+        float elapsed = 0f;
+        float tiempoIdealMin = tiempoHorneado * 0.45f;
+        float tiempoIdealMax = tiempoHorneado * 0.65f;
+
+        currentCookState = CookState.crudo;
+
+        while (elapsed < tiempoHorneado)
+        {
+            elapsed += Time.deltaTime;
+            bakeSlider.value = elapsed / tiempoHorneado;
+            yield return null;
+        }
+
+        currentCookState = CookState.quemado;
+        bakeSlider.gameObject.SetActive(false);
+        buttonManager.DisableButton(buttonManager.hornearButton);
+        buttonManager.stopHorneadoButton.gameObject.SetActive(false);
+        Debug.Log("Se ha pasado el tiempo: comida quemada");
+    }
+
+    public void StopHorneado()
+    {
+        if (horneadoCoroutine != null )
+        {
+            StopCoroutine(horneadoCoroutine);
+            horneadoCoroutine = null;
+        }
+
+        float progress = bakeSlider.value;
+        bakeSlider.gameObject.SetActive(false);
+
+        if (progress < 0.45f)
+        {
+            currentCookState = CookState.crudo;
+        }
+        else if (progress <= 0.65f)
+        {
+            currentCookState = CookState.horneado;
+        } else
+        {
+            currentCookState = CookState.quemado;
+        }
+        Debug.Log($"Horneado detenido: {currentCookState}");
+        buttonManager.DisableButton(buttonManager.hornearButton);
+        buttonManager.stopHorneadoButton.gameObject.SetActive(false);
     }
 
     public void TakeFiltro()

@@ -42,6 +42,9 @@ public class ButtonUnlockManager : MonoBehaviour
     [SerializeField] public Button cogerMPistachoButton;
     [SerializeField] public Button cogerMDulceLecheButton;
     [SerializeField] public Button hornoButton;
+    [SerializeField] public Button hornearButton;
+    [SerializeField] public Button stopHorneadoButton;
+
 
     private void Start()
     {
@@ -103,6 +106,7 @@ public class ButtonUnlockManager : MonoBehaviour
         cogerMCerezaButton.interactable = false;
         cogerMPistachoButton.interactable = false;
         cogerMDulceLecheButton.interactable = false;
+        hornearButton.interactable = false;
     }
     public void EnableButton(Button button)
     {
