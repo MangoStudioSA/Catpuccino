@@ -16,6 +16,7 @@ public class OrderEvaluation : MonoBehaviour
     private const int MAX_SCORE_CHOCOLATE = 5;
     private const int MAX_SCORE_WHISKEY = 5;
     private const int MAX_SCORE_FOODTYPE = 15;
+    private const int MAX_SCORE_COOKSTATE = 15;
 
     private const float MAX_ERROR = 2.0F;
 
@@ -139,7 +140,7 @@ public class OrderEvaluation : MonoBehaviour
             Debug.Log($"[Cliente {playerOrder.orderId}] Puntuación del Tipo de pedido: {typeScore}/{MAX_SCORE_COVER} pts");
         }
 
-        // MECANICA TIPO DE COMIDA
+        // MECANICA TIPO DE COMIDA Y ESTADO DE HORNEADO
         if (progress.cakesEnabled)
         {
             //EVALUACION DEL TIPO DE COMIDAD (TIPO EXACTO)
@@ -147,6 +148,11 @@ public class OrderEvaluation : MonoBehaviour
             totalScore += typeFoodScore;
             maxPossibleScore += MAX_SCORE_FOODTYPE;
             Debug.Log($"[Cliente {playerOrder.orderId}] Puntuación del Tipo de comida: {typeFoodScore}/{MAX_SCORE_FOODTYPE} pts");
+
+            int cookStateScore = EvaluateCookStatePrecision(npcOrder, playerOrder);
+            totalScore += cookStateScore;
+            maxPossibleScore += MAX_SCORE_COOKSTATE;
+            Debug.Log($"[Cliente {playerOrder.orderId}] Puntuación del Horneado: {cookStateScore}/{MAX_SCORE_COOKSTATE} pts");
         }
 
         float percentScore = (float) totalScore / maxPossibleScore;
@@ -426,11 +432,9 @@ public class OrderEvaluation : MonoBehaviour
         if (npcOrder.foodOrder == null || playerOrder.foodOrder == null)
             return 0;
 
-        // El objetivo es el valor exacto del tipo de pedido (0-tomar o 1-llevar)
         FoodCategory targetCategory = npcOrder.foodOrder.foodTargetCategory;
         int targetType = npcOrder.foodOrder.foodTargetType;
 
-        // La precision es el numero que muestra si el jugador ha colocado o no la tapa para llevar
         FoodCategory playerCategory = playerOrder.foodOrder.foodPrecisionCategory;
         int playerType = playerOrder.foodOrder.foodPrecisionType;
 
@@ -452,8 +456,35 @@ public class OrderEvaluation : MonoBehaviour
             typeFoodScore = 0;
         }
 
-        Debug.Log($"[Evaluación Tipo de commida Cliente {playerOrder.orderId}] Objetivo: {targetCategory}{targetType} | Jugador: {playerCategory} {playerType}");
+        Debug.Log($"[Evaluación Tipo de commida Cliente {playerOrder.orderId}] Objetivo: {targetCategory} {targetType} | Jugador: {playerCategory} {playerType}");
 
         return typeFoodScore; // Se devuelve la puntuacion total del tipo de comida
+    }
+
+    public int EvaluateCookStatePrecision(Order npcOrder, Order playerOrder)
+    {
+        if (npcOrder.foodOrder == null || playerOrder.foodOrder == null)
+            return 0;
+
+        CookState targetState = npcOrder.foodOrder.targetCookState;
+        CookState playerState = playerOrder.foodOrder.precisionCookState;
+
+        if (playerState == CookState.no)
+            return 0;
+
+        int cookStateScore = 0;
+
+        if (playerState == targetState)     // Si el jugador ha preparado el tipo de pedido que se pedia suma 15 puntos
+        {
+            cookStateScore = MAX_SCORE_COOKSTATE;
+        }
+        else
+        {
+            cookStateScore = 0;
+        }
+
+        Debug.Log($"[Evaluación Horneado Cliente {playerOrder.orderId}] Objetivo: {targetState} | Jugador: {playerState}");
+
+        return cookStateScore; // Se devuelve la puntuacion total del tipo de comida
     }
 }

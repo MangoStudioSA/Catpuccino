@@ -12,6 +12,7 @@ public class MinigameInput : MonoBehaviour
     [SerializeField] CursorManager cursorManager;
     [SerializeField] UnityEngine.UI.Slider coffeeSlider; //la barrita que se mueve
     [SerializeField] UnityEngine.UI.Slider bakeSlider;
+    [SerializeField] private Image fillBakeImage;
 
     [SerializeField] float slideSpeed = 0.8f;
     [SerializeField] float maxAmount = 4.0f;
@@ -87,6 +88,7 @@ public class MinigameInput : MonoBehaviour
         else
         {
             buttonManager.EnableButton(buttonManager.bakeryButton);
+            buttonManager.EnableButton(buttonManager.submitOrderButton);
         }
         if (platoInHand)
         {
@@ -153,18 +155,6 @@ public class MinigameInput : MonoBehaviour
 
         Plato.SetActive(false);
 
-        /*if (order.currentOrder != null && order.currentOrder.foodOrder != null)
-        {
-            GameObject previousFood = foodManager.GetFoodObject(
-                order.currentOrder.foodOrder.foodTargetCategory,
-                order.currentOrder.foodOrder.foodTargetType
-            );
-
-            if ( previousFood != null )
-                previousFood.SetActive(false);
-
-            order.currentOrder.foodOrder = null;
-        }*/
         if (foodInPlatoObj != null)
         {
             foodInPlatoObj.SetActive(false);
@@ -224,13 +214,11 @@ public class MinigameInput : MonoBehaviour
         {
             buttonManager.DisableButton(buttonManager.cogerTazaInicioButton);
             buttonManager.DisableButton(buttonManager.cogerVasoInicioButton);
-            buttonManager.DisableButton(buttonManager.cogerPlatoInicioButton);
         }
         else
         {
             buttonManager.EnableButton(buttonManager.cogerTazaInicioButton);
             buttonManager.EnableButton(buttonManager.cogerVasoInicioButton);
-            buttonManager.EnableButton(buttonManager.cogerPlatoInicioButton);
         }
     }
 
@@ -512,7 +500,8 @@ public class MinigameInput : MonoBehaviour
             
             if (order.currentOrder.foodOrder != null)
             {
-                order.currentOrder.foodOrder.SetPrecision(foodCategoryInHand, (int)foodTypeInHand);
+                order.currentOrder.foodOrder.SetFoodPrecision(foodCategoryInHand, (int)foodTypeInHand);
+                order.currentOrder.foodOrder.SetCookStatePrecision(currentCookState);
             }
             else
             {
@@ -627,6 +616,7 @@ public class MinigameInput : MonoBehaviour
         {
             elapsed += Time.deltaTime;
             bakeSlider.value = elapsed / tiempoHorneado;
+            UpdateBakingBarColor(bakeSlider.value);
             yield return null;
         }
 
@@ -635,6 +625,21 @@ public class MinigameInput : MonoBehaviour
         buttonManager.DisableButton(buttonManager.hornearButton);
         buttonManager.stopHorneadoButton.gameObject.SetActive(false);
         Debug.Log("Se ha pasado el tiempo: comida quemada");
+    }
+
+    private void UpdateBakingBarColor(float value)
+    {
+        Color newColor;
+
+        if (value < 0.4f)
+        {
+            newColor = Color.Lerp(Color.yellow, Color.green, value * 2.5f);
+        }
+        else
+        {
+            newColor = Color.Lerp(Color.green, Color.red, (value - 0.45f) * 0.55f);
+        }
+        fillBakeImage.color = newColor;
     }
 
     public void StopHorneado()
@@ -648,11 +653,11 @@ public class MinigameInput : MonoBehaviour
         float progress = bakeSlider.value;
         bakeSlider.gameObject.SetActive(false);
 
-        if (progress < 0.45f)
+        if (progress < 0.40f)
         {
             currentCookState = CookState.crudo;
         }
-        else if (progress <= 0.65f)
+        else if (progress <= 0.70f)
         {
             currentCookState = CookState.horneado;
         } else

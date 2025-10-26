@@ -14,12 +14,18 @@ public class FoodOrder
     public FoodCategory foodPrecisionCategory;
     public int foodPrecisionType;
 
+    public CookState targetCookState;
+    public CookState precisionCookState;
+
     public FoodOrder(FoodCategory category)
     {
         this.category = category;
         foodTargetCategory = category;
         foodPrecisionCategory = FoodCategory.no;
         foodPrecisionType = -1;
+
+        targetCookState = CookState.horneado;
+        precisionCookState = CookState.no;
 
         switch (category)
         {
@@ -41,11 +47,17 @@ public class FoodOrder
         }
     }
 
-    public void SetPrecision(FoodCategory category, int type)
+    public void SetFoodPrecision(FoodCategory category, int type)
     {
         foodPrecisionCategory = category;
         foodPrecisionType = type;
         Debug.Log($"La precisionCategory es: {category} y la precisionType es: {type}");
+    }
+
+    public void SetCookStatePrecision(CookState state)
+    {
+        precisionCookState = state;
+        Debug.Log($"Estado de coccion asignado: {state}");
     }
 
     public string GetFoodDescription()
@@ -89,4 +101,4 @@ public enum FoodCategory { no, bizcocho, galleta, mufflin }
 public enum CakeType { ninguno, chocolate, mantequilla, zanahoria, RedVelvet }
 public enum CookieType { ninguno, chocolate, blanco, mantequilla }
 public enum MufflinType { ninguno, pistacho, arandanos, cereza, dulceLeche }
-public enum CookState { crudo, horneado, quemado }
+public enum CookState { no, crudo, horneado, quemado }
