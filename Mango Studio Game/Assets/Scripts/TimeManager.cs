@@ -15,18 +15,18 @@ public class TimeManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI endButtonText;
 
     [Header("Configuración del Tiempo")]
-    [SerializeField] private float secondsPerGameMinute = 1f;
-    [SerializeField] private int startHour = 7;
-    [SerializeField] private int endHour = 20;
-    [SerializeField] private int endMinutes = 20;
+    [SerializeField] private float secondsPerGameMinute;
+    [SerializeField] private int startHour;
+    [SerializeField] private int endHour;
+    [SerializeField] private int endMinutes;
 
     [Header("Configuración de facturas")]
-    [SerializeField] private int requiredBase = 50;
-    [SerializeField] private int requiredIncrement = 20;
+    //SerializeField] private int requiredBase;
+    [SerializeField] private float requiredIncrement;
 
 
     private float currentTimeInSeconds;
-    public int currentDay = 0;
+    public int currentDay;
 
     public bool IsOpen { get; private set; }
     private bool isDayEnding = false; // Flag para evitar que la corrutina se lance múltiples veces
@@ -38,6 +38,11 @@ public class TimeManager : MonoBehaviour
     private ButtonUnlockManager buttonUnlockManager;
 
     private int requiredMoney = 0;
+
+    private float averageCoffeePrice = 3f;
+    private float averageFoodPrice = 4f;
+
+    private int customersPerDay = 15;
 
     void Awake()
     {
@@ -100,8 +105,12 @@ public class TimeManager : MonoBehaviour
         GameProgressManager.Instance.UpdateMechanicsForDay(currentDay);
         buttonUnlockManager.RefreshButtons();
 
+        float dailyIncome = (averageCoffeePrice + averageFoodPrice) * customersPerDay;
+        float difficultyFactor = 1f + (currentDay - 1) * requiredIncrement;
+        int randomVariation = (int)Random.Range(-10f, 20f);
 
-        requiredMoney = requiredBase + (currentDay - 1) * requiredIncrement + (int)Random.Range(-50, 50);
+        //requiredMoney = requiredBase + (currentDay - 1) * requiredIncrement + (int)Random.Range(-50, 50);
+        requiredMoney = Mathf.RoundToInt(dailyIncome * difficultyFactor) + randomVariation;
 
         if (gameUIManager != null)
         {

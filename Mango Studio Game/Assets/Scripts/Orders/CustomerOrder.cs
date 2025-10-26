@@ -72,14 +72,14 @@ public class CustomerOrder : MonoBehaviour
             }
             else
             {
-                foodTxt = " No hay comida.";
+                foodTxt = " No quiero comida.";
             }
 
             // Generacion dialogo del pedido
             if (coffeeType == CoffeeType.frappé)
             {
                 orderTxt.text = $"Quiero un {coffeeType} {sugarTxt}.{foodTxt} Lo quiero para {type}.";
-                playerPreparationTxt.text = $"Tienes que preparar: {coffeeType} {sugarTxt} y {iceTxt}.{foodTxt} Es un pedido para {type}.";
+                playerPreparationTxt.text = $"Tienes que preparar: {coffeeType} {sugarTxt}.{foodTxt} Es un pedido para {type}.";
             }
             else
             {

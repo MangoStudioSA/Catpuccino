@@ -87,7 +87,7 @@ public class FoodOrder
         }
 
         if (string.IsNullOrEmpty(nombre) || nombre == "no")
-            return "No comida.";
+            return "No quiero comida.";
 
         // Se corrigen nombres espaciados
         nombre = nombre.Replace("RedVelvet", "Red Velvet")
