@@ -36,6 +36,8 @@ public class TimeManager : MonoBehaviour
     private GameManager gameManager;
     private SceneUIManager sceneUIManager;
     private ButtonUnlockManager buttonUnlockManager;
+    public CoffeeRecipesManager coffeeRecipesManager;
+    public CoffeeUnlockerManager coffeeUnlockerManager;
 
     private int requiredMoney = 0;
 
@@ -103,6 +105,7 @@ public class TimeManager : MonoBehaviour
         HUDManager.Instance.UpdateMonedas(gameManager.monedas);
 
         GameProgressManager.Instance.UpdateMechanicsForDay(currentDay);
+        coffeeRecipesManager.UnlockRecipesForDay(currentDay, coffeeUnlockerManager);
         buttonUnlockManager.RefreshButtons();
 
         float dailyIncome = (averageCoffeePrice + averageFoodPrice) * customersPerDay;

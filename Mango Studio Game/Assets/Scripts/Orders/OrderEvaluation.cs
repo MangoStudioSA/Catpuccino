@@ -7,7 +7,7 @@ public class OrderEvaluation : MonoBehaviour
     private const int MAX_SCORE_COFFEE = 25;
     private const int MAX_SCORE_SUGAR = 5;
     private const int MAX_SCORE_ICE = 5;
-    private const int MAX_SCORE_COVER = 15; // Puntuacion tipo de pedido
+    private const int MAX_SCORE_COVER = 15; 
     private const int MAX_SCORE_WATER = 10;
     private const int MAX_SCORE_MILK = 10;
     private const int MAX_SCORE_HEATEDMILK = 10;

@@ -4,11 +4,11 @@ using TMPro;
 public class CustomerOrder : MonoBehaviour
 {
     public TextMeshProUGUI orderTxt;
-    public TextMeshProUGUI playerPreparationTxt;
     public CoffeeUnlockerManager unlockManager;
     public FoodUnlockerManager foodUnlockManager;
     public TimeManager timeManager;
     public Order currentOrder;
+    public OrderNoteUI orderNoteUI;
 
     FoodOrder foodOrder = null;
 
@@ -33,6 +33,7 @@ public class CustomerOrder : MonoBehaviour
         OrderType type = (OrderType)Random.Range(0, 2); // Se genera un tipo de pedido entre los 2 tipos
 
         currentOrder = new Order(coffeeType, sugar, ice, type, foodOrder); // Se genera el nuevo pedido con las cantidades generadas
+        orderNoteUI.SetCurrentOrder(currentOrder);
 
         if (orderTxt != null)
         {
@@ -79,12 +80,10 @@ public class CustomerOrder : MonoBehaviour
             if (coffeeType == CoffeeType.frappé)
             {
                 orderTxt.text = $"Quiero un {coffeeType} {sugarTxt}.{foodTxt} Lo quiero para {type}.";
-                playerPreparationTxt.text = $"Tienes que preparar: {coffeeType} {sugarTxt}.{foodTxt} Es un pedido para {type}.";
             }
             else
             {
                 orderTxt.text = $"Quiero un {coffeeType} {sugarTxt} y {iceTxt}.{foodTxt} Lo quiero para {type}.";
-                playerPreparationTxt.text = $"Tienes que preparar: {coffeeType} {sugarTxt} y {iceTxt}.{foodTxt} Es un pedido para {type}.";
             }
         }
     }
