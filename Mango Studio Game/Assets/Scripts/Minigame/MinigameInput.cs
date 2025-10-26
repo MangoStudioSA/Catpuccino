@@ -88,7 +88,6 @@ public class MinigameInput : MonoBehaviour
         else
         {
             buttonManager.EnableButton(buttonManager.bakeryButton);
-            buttonManager.EnableButton(buttonManager.submitOrderButton);
         }
         if (platoInHand)
         {

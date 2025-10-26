@@ -53,6 +53,7 @@ public class MainMenu_UI : MonoBehaviour
     public void ExitGame()
     {
         Application.Quit();
+        Debug.Log("Saliendo del juego");
     }
 
     public void OnMouseEnterSound()

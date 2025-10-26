@@ -28,7 +28,7 @@ public class CoffeeRecipesManager : MonoBehaviour
 
     public void UnlockRecipesForDay(int currentDay, CoffeeUnlockerManager coffeeUnlockerManager)
     {
-        CoffeeType[] newRecipeUnlocked = coffeeUnlockerManager.GetUnlockedCoffees(currentDay);
+        CoffeeType[] newRecipeUnlocked = coffeeUnlockerManager.GetAvailableCoffees(currentDay);
         foreach (var coffee in newRecipeUnlocked)
         {
             UnlockCoffeRecipePanel (coffee);

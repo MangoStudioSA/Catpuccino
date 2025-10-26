@@ -27,6 +27,7 @@ public class OrderNoteUI : MonoBehaviour
     public void SetCurrentOrder(Order order)
     {
         currentOrder = order;
+        UpdateNoteText(order);
     }
 
     public void ToggleNote()
@@ -58,14 +59,7 @@ public class OrderNoteUI : MonoBehaviour
 
         if (order.foodOrder.category != FoodCategory.no)
         {
-            note += $"- Comida: ";
-            switch (order.foodOrder.category)
-            {
-                case FoodCategory.bizcocho:
-                    note += $"";
-                    break;
-            }
-                
+            note += $"- Comida: {currentOrder.foodOrder.GetSimpleFoodDescription()}";
         }
         else
         {

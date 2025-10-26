@@ -95,6 +95,35 @@ public class FoodOrder
 
         return $" También, quiero {tipo} de {nombre.ToLower()}.";
     }
+
+    public string GetSimpleFoodDescription()
+    {
+        if (category == FoodCategory.no)
+        {
+            return "Sin comida.";
+        }
+
+        string nombre = "";
+
+        switch (category)
+        {
+            case FoodCategory.bizcocho:
+                nombre = cakeType.ToString();
+                break;
+            case FoodCategory.galleta:
+                nombre = cookieType.ToString();
+                break;
+            case FoodCategory.mufflin:
+                nombre = mufflinType.ToString();
+                break;
+        }
+
+        // Se corrigen nombres espaciados
+        nombre = nombre.Replace("RedVelvet", "Red Velvet")
+                        .Replace("dulceLeche", "dulce de leche");
+
+        return $"{category} de {nombre}.";
+    }
 }
 
 public enum FoodCategory { no, bizcocho, galleta, mufflin }
