@@ -63,7 +63,7 @@ jobs:
 
       # 2. Sube la build a itch.io usando Butler
       - name: Deploy to itch.io
-        uses: josephbmanley/butler-publish-itchio-action@v1
+        uses: uses: josephbmanley/butler-publish-itchio-action@768d80f9d45e07af871f3080e72f96e83811e5f1
         with:
           api_key: ${{ secrets.ITCHIO_API_KEY }}
           
