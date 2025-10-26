@@ -21,8 +21,9 @@ jobs:
       - name: Cache Unity Library
         uses: actions/cache@v3
         with:
-          path: Library
-          key: Library-${{ hashFiles('Assets/**/*', 'Packages/**/*', 'ProjectSettings/**/*') }}
+          # ¡Ajusta esta ruta si tu carpeta Library está dentro de "Mango Studio Game"!
+          path: Mango Studio Game/Library
+          key: Library-${{ hashFiles('Mango Studio Game/Assets/**/*', 'Mango Studio Game/Packages/**/*', 'Mango Studio Game/ProjectSettings/**/*') }}
           restore-keys: |
             Library-
 
@@ -30,21 +31,23 @@ jobs:
       - name: Build WebGL
         uses: game-ci/unity-builder@v4
         env:
-          # Usa los secretos que guardamos en el Paso 2
+          # Usa los secretos que guardamos
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
+          # Le dice a la acción que el proyecto está en esta subcarpeta
           projectPath: "Mango Studio Game"
           targetPlatform: WebGL
           # Carpeta donde se guardará la build
           buildsPath: build/webgl
-          
+
       # 4. Guarda la build para que el siguiente 'job' pueda usarla
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
           name: webgl-build
+          # Asegúrate de que esta ruta coincide con buildsPath
           path: build/webgl
 
   # ------ 2. TRABAJO DE DESPLIEGUE (DEPLOY) ------
@@ -52,26 +55,27 @@ jobs:
     name: 🚀 Deploy to itch.io
     needs: build # Se espera a que termine el 'job' de 'build'
     runs-on: ubuntu-latest
-    
+
     steps:
       # 1. Descarga la build compilada
       - name: Download build artifact
         uses: actions/download-artifact@v4
         with:
           name: webgl-build
+          # Descárgala en la misma estructura
           path: build/webgl
 
-      # 2. Sube la build a itch.io usando Butler
+      #
+      # ---- ESTE ES EL PASO MODIFICADO ----
+      #
+      # 2. Sube la build a itch.io usando Butler (NUEVO FORMATO)
       - name: Deploy to itch.io
-        uses: yeslayla/butler-publish-itchio-action@v1
-        with:
-          api_key: ${{ secrets.ITCHIO_API_KEY }}
-          
-          # ¡CAMBIA ESTO! Formato: "tu-usuario-de-itchio/el-nombre-de-tu-juego"
-          game: "mangostudiourjc/catpuccino" 
-          
-          # ¡CAMBIA ESTO! El canal al que subes (ej: "web-testing" o "web-latest")
-          channel: "web-testing" 
-          
-          # La carpeta que contiene la build WebGL
-          package: build/webgl
+        uses: yeslayla/butler-publish-itchio-action@master # Usa @master y el nombre de usuario correcto
+        env:
+          BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }} # Nombre del secreto actualizado
+          CHANNEL: "web-testing"                              # Tu canal
+          ITCH_GAME: "catpuccino"                               # Solo el nombre del juego
+          ITCH_USER: "mangostudiourjc"                          # Solo el nombre de usuario
+          PACKAGE: build/webgl                                # La carpeta de la build
+      # -----------------------------------
+      #
