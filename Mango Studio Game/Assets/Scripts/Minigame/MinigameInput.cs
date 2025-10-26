@@ -28,8 +28,8 @@ public class MinigameInput : MonoBehaviour
 
     public bool coffeeServed = false, milkServed = false, heatMilk = false, foodServed = false;
 
-    public FoodCategory foodCategoryInHand;
-    public object foodTypeInHand;
+    public FoodCategory foodCategoryInHand, foodCategoryInPlato;
+    public object foodTypeInHand, foodTypeInPlato;
 
     PlayerOrder order;
     public FoodManager foodManager;
@@ -73,15 +73,19 @@ public class MinigameInput : MonoBehaviour
             }
         }
 
-        if (tazaInHand || vasoInHand )
+        if (tazaInHand || vasoInHand || TengoOtroObjetoEnLaMano())
         {
             buttonManager.DisableButton(buttonManager.submitOrderButton);
             buttonManager.DisableButton(buttonManager.bakeryButton);
-        } 
+        }
+        else
+        {
+            buttonManager.EnableButton(buttonManager.bakeryButton);
+        }
         if (platoInHand)
         {
             buttonManager.DisableButton(buttonManager.returnBakeryButton);
-        } 
+        }
         else
         {
             buttonManager.EnableButton(buttonManager.returnBakeryButton);
@@ -466,11 +470,8 @@ public class MinigameInput : MonoBehaviour
 
     public void ToggleFoodPlato()
     {
-        if (!foodInHand && !foodIsInPlato)
+        if (!foodInHand && !foodIsInPlato && !platoIsInEncimera)
            return;
-
-        if (!platoIsInEncimera)
-            return;
 
         if (foodInHand)
         {
@@ -485,6 +486,9 @@ public class MinigameInput : MonoBehaviour
             foodObj.transform.position = puntoComida.position;
 
             foodInPlatoObj = foodObj;
+            //  Se asocia la categoria y el tipo de comida de la mano al plato
+            foodCategoryInPlato = foodCategoryInHand;
+            foodTypeInPlato = foodTypeInHand;
 
             foodIsInPlato = true;
             foodServed = true;
@@ -500,7 +504,7 @@ public class MinigameInput : MonoBehaviour
             {
                 Debug.Log("No hay comida en el pedido del cliente, no se puede establecer precision");
             }
-            
+            //  Se resetea la categoria y el tipo de comida de la mano 
             foodCategoryInHand = FoodCategory.no;
             foodTypeInHand = null;
 
@@ -510,12 +514,14 @@ public class MinigameInput : MonoBehaviour
         else if (foodIsInPlato)
         {
             foodInPlatoObj.SetActive(false);
-
             foodIsInPlato = false;
             foodInHand = true;
-
-            foodCategoryInHand = order.currentOrder.foodOrder.foodPrecisionCategory;
-            foodTypeInHand = order.currentOrder.foodOrder.foodPrecisionType;
+            //  Se asocia la categoria y el tipo de comida del plato a la mano
+            foodCategoryInHand = foodCategoryInPlato;
+            foodTypeInHand = foodTypeInPlato;
+            //  Se resetea la categoria y el tipo de comida del plato 
+            foodCategoryInPlato = FoodCategory.no;
+            foodTypeInPlato = null;
 
             cursorManager.UpdateCursorFood(false, foodCategoryInHand, foodTypeInHand);
             Debug.Log("Comida recogida del plato");

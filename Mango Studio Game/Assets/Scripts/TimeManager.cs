@@ -111,8 +111,8 @@ public class TimeManager : MonoBehaviour
         currentDayText.text = $"Día {currentDay:F0}"; // Se muestra el dia actual
         if (HUDManager.Instance != null)
         {
-            HUDManager.Instance.ShowAvailableCoffees();
-            HUDManager.Instance.ShowUnlockedCoffees();
+            HUDManager.Instance.ShowAvailableElements();
+            HUDManager.Instance.ShowUnlockedElements();
         }
 
         Debug.Log($"--- DÍA {currentDay} --- \nLa cafetería ha abierto.");

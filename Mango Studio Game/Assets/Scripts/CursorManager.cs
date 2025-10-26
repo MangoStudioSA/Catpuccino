@@ -130,9 +130,6 @@ public class CursorManager : MonoBehaviour
     // Gestionar cursor comida
     public void UpdateCursorFood(bool dejandoComida, FoodCategory category, object type)
     {
-        if (miniGameInput.TengoOtroObjetoEnLaMano())
-            return;
-
         Texture2D cursor = foodManager.GetFoodCursor(category, type);
 
         if (dejandoComida)

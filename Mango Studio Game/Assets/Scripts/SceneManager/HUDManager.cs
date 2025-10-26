@@ -3,19 +3,20 @@ using TMPro;
 
 public class HUDManager : MonoBehaviour
 {
-    public CoffeeUnlockerManager unlockManager;
+    public CoffeeUnlockerManager coffeeUnlockManager;
+    public FoodUnlockerManager foodUnlockerManager;
     public TimeManager timeManager;
     public static HUDManager Instance { get; private set; }
 
     public TextMeshProUGUI textoSatisfaccion;
-    public TextMeshProUGUI availableCoffeesTxt;
-    public TextMeshProUGUI unlockedCoffeesTxt;
+    public TextMeshProUGUI availableElementsTxt;
+    public TextMeshProUGUI unlockedElementsTxt;
     public TextMeshProUGUI textoMonedas;
 
     void Awake()
     {
         if (Instance != null) { Destroy(gameObject); } else { Instance = this; }
-        ShowAvailableCoffees();
+        ShowAvailableElements();
     }
 
     public void UpdateMonedas(int cantidad)
@@ -30,35 +31,64 @@ public class HUDManager : MonoBehaviour
     }
 
     // Funcion encargada de mostrar por pantalla los cafes disponibles del dia actual
-    public void ShowAvailableCoffees()
+    public void ShowAvailableElements()
     {
         int day = timeManager.currentDay;
-        CoffeeType[] availableCoffees = unlockManager.GetAvailableCoffees(day);
+        CoffeeType[] availableCoffees = coffeeUnlockManager.GetAvailableCoffees(day);
+        FoodCategory[] availableFood = foodUnlockerManager.GetAvailableFood(day);
 
-        if (availableCoffees.Length == 0)
+        string message = "Disponible en la carta: \n";
+
+        if (availableCoffees.Length > 0)
         {
-            availableCoffeesTxt.text = "No hay cafes disponibles.";
-            return;
+            string coffeesList = string.Join(", ", availableCoffees); // Se separa cada cafe por ","
+            message += $"Cafés: {coffeesList}. \n";
+        } else
+        {
+            message += "No hay cafes disponibles. \n";
         }
 
-        string coffeesList = string.Join(", ", availableCoffees); // Se separa cada cafe por ","
-        availableCoffeesTxt.text = $"Cafés disponibles hoy: {coffeesList}.";
+        if (availableFood.Length > 0)
+        {
+            string foodList = string.Join(", ", availableFood); // Se separa cada comida por ","
+            message += $"Comidas: {foodList}.";
+        }
+        else
+        {
+            message += "No hay comida disponible.";
+        }
+        availableElementsTxt.text = message;
     }
 
     // Funcion encargada de mostrar por pantalla los cafes desbloqueados en el dia actual
-    public void ShowUnlockedCoffees()
+    public void ShowUnlockedElements()
     {
         int day = timeManager.currentDay;
-        CoffeeType[] unlockedCoffees = unlockManager.GetUnlockedCoffees(day);
+        CoffeeType[] unlockedCoffees = coffeeUnlockManager.GetUnlockedCoffees(day);
+        FoodCategory[] unlockedFood = foodUnlockerManager.GetUnlockedFood(day);
 
-        if (unlockedCoffees.Length == 0)
+        string message = "Hoy has desbloqueado: \n";
+
+        if (unlockedCoffees.Length > 0)
         {
-            unlockedCoffeesTxt.text = "No has desbloqueado ningún café.";
-            return;
+            string unlockedCoffeesList = string.Join(", ", unlockedCoffees); // Se separa cada cafe por ","
+            message += $"Cafés: {unlockedCoffeesList}. \n";
+        }
+        else
+        {
+            message += "";
         }
 
-        string unlockedCoffeesList = string.Join(", ", unlockedCoffees); // Se separa cada cafe por ","
-        unlockedCoffeesTxt.text = $"¡Has desbloqueado los siguientes cafes: {unlockedCoffeesList}!";
+        if (unlockedFood.Length > 0)
+        {
+            string unlockedFoodList = string.Join(", ", unlockedFood); // Se separa cada comida por ","
+            message += $"Comidas: {unlockedFoodList}. \n";
+        }
+        else
+        {
+            message += "";
+        }
+        unlockedElementsTxt.text = message;
     }
 
 
