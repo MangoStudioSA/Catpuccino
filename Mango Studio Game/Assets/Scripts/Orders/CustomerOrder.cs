@@ -77,7 +77,7 @@ public class CustomerOrder : MonoBehaviour
             }
 
             // Generacion dialogo del pedido
-            if (coffeeType == CoffeeType.frappé)
+            if (coffeeType == CoffeeType.frappe)
             {
                 orderTxt.text = $"Quiero un {coffeeType} {sugarTxt}.{foodTxt} Lo quiero para {type}.";
             }

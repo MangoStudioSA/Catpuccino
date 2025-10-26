@@ -13,9 +13,9 @@ public class CoffeePriceManager : MonoBehaviour
         { CoffeeType.macchiatto, 2.5f },
         { CoffeeType.latte, 3.0f },
         { CoffeeType.capuccino, 3.0f },
-        { CoffeeType.bombón, 3.5f },
-        { CoffeeType.vienés, 3.5f },
-        { CoffeeType.frappé, 4.0f },
+        { CoffeeType.bombon, 3.5f },
+        { CoffeeType.vienes, 3.5f },
+        { CoffeeType.frappe, 4.0f },
         { CoffeeType.mocca, 4.5f },
         { CoffeeType.irish, 5.0f }
     };

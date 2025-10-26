@@ -10,7 +10,7 @@ public class CoffeeUnlockerManager : MonoBehaviour
         {2, new CoffeeType[] { CoffeeType.macchiatto } },
         {3, new CoffeeType[] { CoffeeType.latte, CoffeeType.capuccino } }, 
         {4, new CoffeeType[] { }},
-        {5, new CoffeeType[] { CoffeeType.bombón, CoffeeType.vienés, CoffeeType.frappé } },
+        {5, new CoffeeType[] { CoffeeType.bombon, CoffeeType.vienes, CoffeeType.frappe } },
         {6, new CoffeeType[] { }},
         {7, new CoffeeType[] { CoffeeType.mocca, CoffeeType.irish } },
     };

@@ -142,11 +142,11 @@ public class Order
                 return 2.0f;
             case CoffeeType.capuccino:
                 return 1.0f;
-            case CoffeeType.bombón:
+            case CoffeeType.bombon:
                 return 2.0f;
-            case CoffeeType.vienés:
+            case CoffeeType.vienes:
                 return 1.0f;
-            case CoffeeType.frappé:
+            case CoffeeType.frappe:
                 return 2.0f;
             case CoffeeType.mocca:
                 return 1.0f;
@@ -173,11 +173,11 @@ public class Order
                 return 2;
             case CoffeeType.capuccino:
                 return 1;
-            case CoffeeType.bombón:
+            case CoffeeType.bombon:
                 return 0;
-            case CoffeeType.vienés:
+            case CoffeeType.vienes:
                 return 0;
-            case CoffeeType.frappé:
+            case CoffeeType.frappe:
                 return 0;
             case CoffeeType.mocca:
                 return 1;
@@ -204,11 +204,11 @@ public class Order
                 return true;
             case CoffeeType.capuccino:
                 return true;
-            case CoffeeType.bombón:
+            case CoffeeType.bombon:
                 return false;
-            case CoffeeType.vienés:
+            case CoffeeType.vienes:
                 return false;
-            case CoffeeType.frappé:
+            case CoffeeType.frappe:
                 return false;
             case CoffeeType.mocca:
                 return true;
@@ -235,11 +235,11 @@ public class Order
                 return 0;
             case CoffeeType.capuccino:
                 return 0;
-            case CoffeeType.bombón:
+            case CoffeeType.bombon:
                 return 0;
-            case CoffeeType.vienés:
+            case CoffeeType.vienes:
                 return 0;
-            case CoffeeType.frappé:
+            case CoffeeType.frappe:
                 return 0;
             case CoffeeType.mocca:
                 return 0;
@@ -266,11 +266,11 @@ public class Order
                 return 0;
             case CoffeeType.capuccino:
                 return 0;
-            case CoffeeType.bombón:
+            case CoffeeType.bombon:
                 return 1;
-            case CoffeeType.vienés:
+            case CoffeeType.vienes:
                 return 0;
-            case CoffeeType.frappé:
+            case CoffeeType.frappe:
                 return 0;
             case CoffeeType.mocca:
                 return 0;
@@ -297,11 +297,11 @@ public class Order
                 return 0;
             case CoffeeType.capuccino:
                 return 0;
-            case CoffeeType.bombón:
+            case CoffeeType.bombon:
                 return 0;
-            case CoffeeType.vienés:
+            case CoffeeType.vienes:
                 return 1;
-            case CoffeeType.frappé:
+            case CoffeeType.frappe:
                 return 1;
             case CoffeeType.mocca:
                 return 0;
@@ -328,11 +328,11 @@ public class Order
                 return 0;
             case CoffeeType.capuccino:
                 return 0;
-            case CoffeeType.bombón:
+            case CoffeeType.bombon:
                 return 0;
-            case CoffeeType.vienés:
+            case CoffeeType.vienes:
                 return 0;
-            case CoffeeType.frappé:
+            case CoffeeType.frappe:
                 return 0;
             case CoffeeType.mocca:
                 return 1;
@@ -359,11 +359,11 @@ public class Order
                 return 0;
             case CoffeeType.capuccino:
                 return 0;
-            case CoffeeType.bombón:
+            case CoffeeType.bombon:
                 return 0;
-            case CoffeeType.vienés:
+            case CoffeeType.vienes:
                 return 0;
-            case CoffeeType.frappé:
+            case CoffeeType.frappe:
                 return 0;
             case CoffeeType.mocca:
                 return 0;
@@ -391,7 +391,7 @@ public class Order
 
     private int GetIceTargetFromAmount(IceAmount Iamount, CoffeeType coffeeType)
     {
-        if (coffeeType == CoffeeType.frappé)
+        if (coffeeType == CoffeeType.frappe)
         {
             return 1;
         }
@@ -421,7 +421,7 @@ public class Order
 
 }
 
-public enum CoffeeType { espresso, lungo, americano, macchiatto, latte, capuccino, bombón, vienés, frappé, mocca, irish } // Se crean los tipos de cafe
+public enum CoffeeType { espresso, lungo, americano, macchiatto, latte, capuccino, bombon, vienes, frappe, mocca, irish } // Se crean los tipos de cafe
 //public enum CoffeeAmount { corto, medio, largo } // Se crean 3 cantidades para los cafes
 public enum MilkAmount { nada, poco, mucha } // Se crean 3 cantidades de leche
 public enum HeatMilk { fria, caliente } // Se crean 2 tipos de leche
