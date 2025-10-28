@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 using UnityEngine.UI;
 
 public class CursorManager : MonoBehaviour
@@ -14,6 +15,7 @@ public class CursorManager : MonoBehaviour
     [SerializeField] Texture2D tapaCursorTexture;
     [SerializeField] Texture2D aguaCursorTexture;
     [SerializeField] Texture2D lecheCursorTexture;
+    [SerializeField] Texture2D tazaLecheCursorTexture;
     [SerializeField] Texture2D lecheCondensadaCursorTexture;
     [SerializeField] Texture2D cremaCursorTexture;
     [SerializeField] Texture2D chocolateCursorTexture;
@@ -32,6 +34,7 @@ public class CursorManager : MonoBehaviour
     [SerializeField] Vector2 hotSpotTapaCuchara = Vector2.zero; //el punto que hace click en si del cursor (ahora mismo arriba izquierda)
     [SerializeField] Vector2 hotSpotAgua = Vector2.zero; //el punto que hace click en si del cursor (ahora mismo arriba izquierda)
     [SerializeField] Vector2 hotSpotLeche = Vector2.zero; //el punto que hace click en si del cursor (ahora mismo arriba izquierda)
+    [SerializeField] Vector2 hotSpotTazaLeche = Vector2.zero; //el punto que hace click en si del cursor (ahora mismo arriba izquierda)
     [SerializeField] Vector2 hotSpotLecheCondensada = Vector2.zero; //el punto que hace click en si del cursor (ahora mismo arriba izquierda)
     [SerializeField] Vector2 hotSpotCrema = Vector2.zero; //el punto que hace click en si del cursor (ahora mismo arriba izquierda)
     [SerializeField] Vector2 hotSpotChocolate = Vector2.zero; //el punto que hace click en si del cursor (ahora mismo arriba izquierda)
@@ -81,6 +84,18 @@ public class CursorManager : MonoBehaviour
             Cursor.SetCursor(vasoCursorTexture, hotSpotVaso, CursorMode.Auto);
         }
     }
+
+
+    // Gestionar coger la taza de leche
+    public void TakeTazaWithMilk()
+    {
+        if (!miniGameInput.tazaMilkInHand && !miniGameInput.TengoOtroObjetoEnLaMano())
+        {
+            miniGameInput.tazaMilkInHand = true;
+            Cursor.SetCursor(tazaLecheCursorTexture, hotSpotTazaLeche, CursorMode.Auto);
+        }
+    }
+
 
     // Gestionar coger el plato del estante
     public void TakePlatoFromShelf()
@@ -171,6 +186,22 @@ public class CursorManager : MonoBehaviour
         else
         {
             Cursor.SetCursor(vasoCursorTexture, hotSpotVaso, CursorMode.Auto);
+        }
+    }
+
+    // Gestionar cursor taza con leche
+    public void UpdateCursorTazaMilk(bool dejandoTazaLeche)
+    {
+        if (miniGameInput.TengoOtroObjetoEnLaMano())
+            return;
+
+        if (dejandoTazaLeche)
+        {
+            Cursor.SetCursor(defaultCursorTexture, hotSpotDefault, CursorMode.Auto);
+        }
+        else
+        {
+            Cursor.SetCursor(tazaLecheCursorTexture, hotSpotTazaLeche, CursorMode.Auto);
         }
     }
 

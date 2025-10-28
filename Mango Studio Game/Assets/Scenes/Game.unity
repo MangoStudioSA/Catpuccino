@@ -876,6 +876,7 @@ MonoBehaviour:
   cucharaInHand: 0
   tazaInHand: 0
   vasoInHand: 0
+  tazaMilkInHand: 0
   iceInHand: 0
   coverInHand: 0
   waterInHand: 0
@@ -893,6 +894,7 @@ MonoBehaviour:
   tazaIsInEspumador: 0
   vasoIsInCafetera: 0
   vasoIsInEspumador: 0
+  tazaMilkIsInEspumador: 0
   vasoTapaPuesta: 0
   filtroIsInCafetera: 0
   coffeeServed: 0
@@ -917,6 +919,7 @@ MonoBehaviour:
     precisionCookState: 0
   Taza: {fileID: 386902211}
   Vaso: {fileID: 2016690274}
+  TazaLeche: {fileID: 1645141594}
   Plato: {fileID: 1786740808}
   vasoConTapa: {fileID: 1520677557, guid: e288ad6c858bce44d98d91c579e9587e, type: 3}
   vasoConCafe: {fileID: -1224174487, guid: e288ad6c858bce44d98d91c579e9587e, type: 3}
@@ -1093,6 +1096,7 @@ MonoBehaviour:
   echarCafeButton: {fileID: 1099100926}
   calentarButton: {fileID: 472504998}
   espumadorButton: {fileID: 1775370128}
+  cogerTazaLecheButton: {fileID: 1946061797}
   submitOrderButton: {fileID: 1838202980}
   bakeryButton: {fileID: 1082078882}
   returnBakeryButton: {fileID: 569478934}
@@ -1483,10 +1487,10 @@ RectTransform:
   - {fileID: 1069588663}
   m_Father: {fileID: 86830683}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.36549988, y: 0.014740742}
-  m_AnchorMax: {x: 0.46400002, y: 0.209}
-  m_AnchoredPosition: {x: -2.5041504, y: 1.2631836}
-  m_SizeDelta: {x: -2.1768494, y: -4.846924}
+  m_AnchorMin: {x: 0.27868754, y: 0.028592594}
+  m_AnchorMax: {x: 0.37852085, y: 0.22200002}
+  m_AnchoredPosition: {x: 0.6709595, y: -0.5968628}
+  m_SizeDelta: {x: -4.1768494, y: -3.8469238}
   m_Pivot: {x: 0.46865252, y: 0.50000006}
 --- !u!114 &74253029
 MonoBehaviour:
@@ -4986,7 +4990,8 @@ MonoBehaviour:
   hieloCucharaCursorTexture: {fileID: 2800000, guid: 6ded99d3dfc8a3343917f18168e246af, type: 3}
   tapaCursorTexture: {fileID: 2800000, guid: d91a1575464ba39438ee0b13bf0f845b, type: 3}
   aguaCursorTexture: {fileID: 2800000, guid: 4b6a04789cbdcbb44a8c87cf78ce5a6c, type: 3}
-  lecheCursorTexture: {fileID: 2800000, guid: 90be48a8b10add4418a7b59a749d75ff, type: 3}
+  lecheCursorTexture: {fileID: 2800000, guid: e7c295c9a3da89947aa59b8cdedfd4f0, type: 3}
+  tazaLecheCursorTexture: {fileID: 2800000, guid: 90be48a8b10add4418a7b59a749d75ff, type: 3}
   lecheCondensadaCursorTexture: {fileID: 2800000, guid: f2d23f3c5f3b4c043b1be40264ee2c50, type: 3}
   cremaCursorTexture: {fileID: 2800000, guid: f56f03063f05f0849a6b0a7e73f5929f, type: 3}
   chocolateCursorTexture: {fileID: 2800000, guid: 9b7304dd088dc414a86c3fcdc8b6aa44, type: 3}
@@ -5001,6 +5006,7 @@ MonoBehaviour:
   hotSpotTapaCuchara: {x: 0, y: 0}
   hotSpotAgua: {x: 0, y: 0}
   hotSpotLeche: {x: 0, y: 0}
+  hotSpotTazaLeche: {x: 0, y: 0}
   hotSpotLecheCondensada: {x: 0, y: 0}
   hotSpotCrema: {x: 0, y: 0}
   hotSpotChocolate: {x: 0, y: 0}
@@ -5095,10 +5101,10 @@ RectTransform:
   - {fileID: 1042402481}
   m_Father: {fileID: 86830683}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.22931251, y: 0.014740742}
-  m_AnchorMax: {x: 0.32175, y: 0.209}
-  m_AnchoredPosition: {x: -2.4301758, y: -0.8901367}
-  m_SizeDelta: {x: -4.899994, y: -0.94000244}
+  m_AnchorMin: {x: 0.17256251, y: 0.028592594}
+  m_AnchorMax: {x: 0.26039582, y: 0.22200002}
+  m_AnchoredPosition: {x: -1.2799072, y: -2.750183}
+  m_SizeDelta: {x: 4.100006, y: 0.05999756}
   m_Pivot: {x: 0.46865252, y: 0.50000006}
 --- !u!114 &371112197
 MonoBehaviour:
@@ -11891,7 +11897,7 @@ MonoBehaviour:
   endHour: 20
   endMinutes: 0
   requiredIncrement: 1.075
-  currentDay: 0
+  currentDay: 5
   coffeeRecipesManager: {fileID: 50023198}
   coffeeUnlockerManager: {fileID: 50023193}
 --- !u!4 &863263443
@@ -12441,7 +12447,19 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 50023188}
         m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
-        m_MethodName: EcharLeche
+        m_MethodName: EcharLecheFria
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 50023188}
+        m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
+        m_MethodName: EcharLecheCaliente
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -14271,6 +14289,142 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1029379771}
+  m_CullTransparentMesh: 1
+--- !u!1 &1029977431
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1029977432}
+  - component: {fileID: 1029977434}
+  - component: {fileID: 1029977433}
+  m_Layer: 5
+  m_Name: Text (TMP)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1029977432
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1029977431}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1946061796}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1029977433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1029977431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: 
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4281479730
+  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 24
+  m_fontSizeBase: 24
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1029977434
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1029977431}
   m_CullTransparentMesh: 1
 --- !u!1 &1032402577
 GameObject:
@@ -17395,6 +17549,7 @@ RectTransform:
   - {fileID: 1376509723}
   - {fileID: 1683990714}
   - {fileID: 1210999607}
+  - {fileID: 1946061796}
   - {fileID: 1086673707}
   - {fileID: 1919829059}
   m_Father: {fileID: 153319689}
@@ -21634,10 +21789,10 @@ RectTransform:
   - {fileID: 1960704264}
   m_Father: {fileID: 86830683}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.49322918, y: 0.014740742}
-  m_AnchorMax: {x: 0.59452087, y: 0.209}
-  m_AnchoredPosition: {x: -2.0761108, y: 1.5400391}
-  m_SizeDelta: {x: -4.393997, y: -5.401001}
+  m_AnchorMin: {x: 0.3981458, y: 0.028592594}
+  m_AnchorMax: {x: 0.5, y: 0.22200002}
+  m_AnchoredPosition: {x: -2.0808105, y: -0.32000732}
+  m_SizeDelta: {x: -6.393997, y: -4.401001}
   m_Pivot: {x: 0.46865252, y: 0.50000006}
 --- !u!114 &1639563791
 MonoBehaviour:
@@ -21956,6 +22111,81 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1644113066}
+  m_CullTransparentMesh: 1
+--- !u!1 &1645141594
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1645141595}
+  - component: {fileID: 1645141597}
+  - component: {fileID: 1645141596}
+  m_Layer: 5
+  m_Name: TazaLeche
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1645141595
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1645141594}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1805872226}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5214792, y: 0.328}
+  m_AnchorMax: {x: 0.5214792, y: 0.328}
+  m_AnchoredPosition: {x: 217.9397, y: 81.34796}
+  m_SizeDelta: {x: 152, y: 152.34}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1645141596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1645141594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 4664e8690dc46034bbc814be5645e81d, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1645141597
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1645141594}
   m_CullTransparentMesh: 1
 --- !u!1 &1656632133
 GameObject:
@@ -23385,7 +23615,7 @@ GameObject:
   - component: {fileID: 1775370129}
   - component: {fileID: 1775370128}
   m_Layer: 5
-  m_Name: ButtonEspumadorVasoTaza
+  m_Name: ButtonEspumadorTaza
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23457,19 +23687,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 50023188}
         m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
-        m_MethodName: ToggleTazaEspumador
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 50023188}
-        m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
-        m_MethodName: ToggleVasoEspumador
+        m_MethodName: ToggleTazaLecheEspumador
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -23830,6 +24048,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 386902212}
+  - {fileID: 1645141595}
   - {fileID: 2016690275}
   - {fileID: 1169323749}
   - {fileID: 1217273031}
@@ -25609,6 +25828,139 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1943458873}
+  m_CullTransparentMesh: 1
+--- !u!1 &1946061795
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1946061796}
+  - component: {fileID: 1946061799}
+  - component: {fileID: 1946061798}
+  - component: {fileID: 1946061797}
+  m_Layer: 5
+  m_Name: ButtonTazaLeche
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1946061796
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1946061795}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1029977432}
+  m_Father: {fileID: 1212706817}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.51785415, y: 0.040000003}
+  m_AnchorMax: {x: 0.595, y: 0.17437036}
+  m_AnchoredPosition: {x: 1.7800293, y: 0.14001465}
+  m_SizeDelta: {x: 1.789978, y: 5}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1946061797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1946061795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1946061798}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 342197122}
+        m_TargetAssemblyTypeName: CursorManager, Assembly-CSharp
+        m_MethodName: TakeTazaWithMilk
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1946061798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1946061795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 4664e8690dc46034bbc814be5645e81d, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1946061799
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1946061795}
   m_CullTransparentMesh: 1
 --- !u!1 &1955836104
 GameObject:

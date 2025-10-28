@@ -24,6 +24,7 @@ public class ButtonUnlockManager : MonoBehaviour
     [SerializeField] public Button echarCafeButton;
     [SerializeField] public Button calentarButton;
     [SerializeField] public Button espumadorButton;
+    [SerializeField] public Button cogerTazaLecheButton;
     [SerializeField] public Button submitOrderButton;
 
     [Header("Botones del minijuego de pastelería")]
@@ -59,6 +60,7 @@ public class ButtonUnlockManager : MonoBehaviour
         milkButton.gameObject.SetActive(progress.milkEnabled);
         calentarButton.gameObject.SetActive(progress.heatedMilkEnabled);
         espumadorButton.gameObject.SetActive(progress.heatedMilkEnabled);
+        cogerTazaLecheButton.gameObject.SetActive(progress.heatedMilkEnabled);
         condensedMilkButton.gameObject.SetActive(progress.condensedMilkEnabled);
         creamButton.gameObject.SetActive(progress.creamEnabled);
         chocolateButton.gameObject.SetActive(progress.chocolateEnabled);
@@ -82,7 +84,7 @@ public class ButtonUnlockManager : MonoBehaviour
         filtroCafeteraButton.interactable = false;
         echarCafeButton.interactable = false;
         calentarButton.interactable = false;
-        espumadorButton.interactable = false;
+        cogerTazaLecheButton.interactable = false;
         submitOrderButton.interactable = false;
 
         sugarButton.interactable = false;
