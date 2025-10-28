@@ -24,9 +24,9 @@ public class Order
     public int milkPrecision;
 
     // booleano de cómo se necesita la leche (false-fria, true-caliente)
-    public bool heatedMilkTarget;
+    public int heatedMilkTarget;
     // guarda el valor de como ha preparado la leche el jugador
-    public bool heatedMilkPrecision;
+    public int heatedMilkPrecision;
 
     // valor exacto de agua que el jugador debe echar (0-nada, 1-bastante)
     public int waterTarget;
@@ -89,7 +89,7 @@ public class Order
         this.milkTarget = GetMilkTargetFromAmount(coffeeType);
 
         //inicializamos la precision de la leche caliente en false
-        this.heatedMilkPrecision = false;
+        this.heatedMilkPrecision = 0;
         this.heatedMilkTarget = GetHeatMilkTargetFromAmount(coffeeType);
 
         //inicializamos la precision del agua a 0
@@ -188,34 +188,34 @@ public class Order
         }
     }
 
-    private bool GetHeatMilkTargetFromAmount(CoffeeType coffeetype)
+    private int GetHeatMilkTargetFromAmount(CoffeeType coffeetype)
     {
         switch (coffeetype)
         {
             case CoffeeType.espresso:
-                return false;
+                return 0;
             case CoffeeType.lungo:
-                return false;
+                return 0;
             case CoffeeType.americano:
-                return false;
+                return 0;
             case CoffeeType.macchiatto:
-                return false;
+                return 0;
             case CoffeeType.latte:
-                return true;
+                return 1;
             case CoffeeType.capuccino:
-                return true;
+                return 1;
             case CoffeeType.bombon:
-                return false;
+                return 0;
             case CoffeeType.vienes:
-                return false;
+                return 0;
             case CoffeeType.frappe:
-                return false;
+                return 0;
             case CoffeeType.mocca:
-                return true;
+                return 1;
             case CoffeeType.irish:
-                return true;
+                return 1;
             default:
-                return false; //por si algo falla
+                return 0; //por si algo falla
         }
     }
 
@@ -424,7 +424,7 @@ public class Order
 public enum CoffeeType { espresso, lungo, americano, macchiatto, latte, capuccino, bombon, vienes, frappe, mocca, irish } // Se crean los tipos de cafe
 //public enum CoffeeAmount { corto, medio, largo } // Se crean 3 cantidades para los cafes
 public enum MilkAmount { nada, poco, mucha } // Se crean 3 cantidades de leche
-public enum HeatMilk { fria, caliente } // Se crean 2 tipos de leche
+public enum HeatMilk { fria, caliente, quemada } // Se crean 2 tipos de leche
 public enum WaterAmount { no, si } // Se crean 2 cantidades de agua
 public enum CondensedMilkAmount { no, si } // Se crean 2 cantidades de leche condensada
 public enum CreamAmount { no, si } // Se crean 2 cantidades de crema

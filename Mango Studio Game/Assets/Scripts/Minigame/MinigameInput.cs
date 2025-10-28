@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Jobs;
 using UnityEngine.UI;
 
 public class MinigameInput : MonoBehaviour
@@ -17,15 +18,25 @@ public class MinigameInput : MonoBehaviour
     [SerializeField] float slideSpeed = 0.8f;
     [SerializeField] float maxAmount = 4.0f;
 
-    float currentSlideTime = 0f;
-    bool isSliding = false, coffeeDone = false;
+    [Header("Mecánica espumador")]
+    [SerializeField] private GameObject heatPanel;
+    [SerializeField] private Image curvedFillImage;
+    [SerializeField] private float fillSpeed = 0.5f;
+    //[SerializeField] private float maxHeat = 1f;
+    [SerializeField] private float currentHeat = 0f;
+    [SerializeField] private bool isHeating = false;
 
+    [Header("Horneados")]
     public float tiempoHorneado = 15f;
+
     private Coroutine horneadoCoroutine;
     private CookState currentCookState;
 
+    float currentSlideTime = 0f;
+    bool isSliding = false, coffeeDone = false;
+    
     int countSugar = 0, countIce = 0, countCover = 0, countWater = 0, countMilk = 0, countCondensedMilk = 0, countCream = 0, countChocolate = 0, countWhiskey = 0;
-  
+
     public bool cucharaInHand = false, tazaInHand = false, vasoInHand = false, iceInHand = false, coverInHand = false, waterInHand = false, milkInHand = false, 
         condensedMilkInHand = false, creamInHand = false, chocolateInHand = false, whiskeyInHand = false;
 
@@ -33,7 +44,7 @@ public class MinigameInput : MonoBehaviour
 
     public bool tazaIsInCafetera = false, tazaIsInEspumador = false, vasoIsInCafetera = false, vasoIsInEspumador = false, vasoTapaPuesta = false, filtroIsInCafetera = false;
 
-    public bool coffeeServed = false, milkServed = false, heatMilk = false, foodServed = false, foodBaked = false;
+    public bool coffeeServed = false, milkServed = false, heatedMilk = false, foodServed = false, foodBaked = false;
 
     public FoodCategory foodCategoryInHand, foodCategoryInPlato, foodCategoryInHorno;
     public object foodTypeInHand, foodTypeInPlato, foodTypeInHorno;
@@ -80,10 +91,28 @@ public class MinigameInput : MonoBehaviour
             }
         }
 
+        if (isHeating && Input.GetMouseButton(0))
+        {
+            currentHeat += fillSpeed * Time.unscaledDeltaTime;
+            currentHeat = Mathf.Clamp01(currentHeat);
+
+            curvedFillImage.fillAmount = currentHeat;
+            curvedFillImage.color = Color.Lerp(Color.blue, Color.red, currentHeat);
+        }
+
+        if ( isHeating && Input.GetMouseButtonUp(0))
+        {
+            StopHeating();
+        }
+
         if (tazaInHand || vasoInHand || TengoOtroObjetoEnLaMano())
         {
             buttonManager.DisableButton(buttonManager.submitOrderButton);
             buttonManager.DisableButton(buttonManager.bakeryButton);
+        }
+        else if (coffeeServed)
+        {
+            buttonManager.EnableButton(buttonManager.submitOrderButton);
         }
         else
         {
@@ -111,6 +140,8 @@ public class MinigameInput : MonoBehaviour
         buttonManager.DisableButton(buttonManager.molerButton);
         buttonManager.DisableButton(buttonManager.filtroCafeteraButton);
 
+        heatPanel.SetActive(false);
+
         Taza.SetActive(false);
         Vaso.SetActive(false);
 
@@ -120,8 +151,8 @@ public class MinigameInput : MonoBehaviour
         Image vaso = Vaso.GetComponent<Image>();
         vaso.sprite = vasoSinCafe;
 
-        currentSlideTime = 0f;
-        isSliding = coffeeDone = coffeeServed = milkServed = heatMilk = false;
+        currentSlideTime = currentHeat = 0f;
+        isSliding = coffeeDone = coffeeServed = milkServed = heatedMilk = isHeating = false;
         tazaIsInCafetera = tazaIsInEspumador = vasoIsInCafetera = vasoIsInEspumador = filtroIsInCafetera = false;
         countSugar = countIce = countCover = countWater = countMilk = countCondensedMilk = countCream = countChocolate = countWhiskey = 0;
 
@@ -711,7 +742,6 @@ public class MinigameInput : MonoBehaviour
             buttonManager.DisableButton(buttonManager.creamButton);
             buttonManager.DisableButton(buttonManager.chocolateButton);
 
-            buttonManager.EnableButton(buttonManager.submitOrderButton);
             buttonManager.EnableButton(buttonManager.sugarButton);
             buttonManager.EnableButton(buttonManager.iceButton);
             buttonManager.EnableButton(buttonManager.coverButton);
@@ -730,14 +760,57 @@ public class MinigameInput : MonoBehaviour
         }
     }
 
-    public void CalentarLeche()
+    /*public void CalentarLeche()
     {
         if ((tazaIsInEspumador == true || vasoIsInEspumador == true) && milkServed == true && coffeeServed == false)
         {
             Debug.Log($"[Cliente {order.currentOrder.orderId}] Preparacion: Calentando la leche");
-            heatMilk = true;
-            order.currentOrder.heatedMilkPrecision = heatMilk;
+            heatedMilk = true;
+            order.currentOrder.heatedMilkPrecision = heatedMilk;
             buttonManager.DisableButton(buttonManager.calentarButton);
+        }
+    }*/
+
+    public void StartHeating()
+    {
+        if (!isHeating && !heatedMilk)
+        {
+            currentHeat = 0f;
+            isHeating = true;
+
+            heatPanel.SetActive(true);
+            curvedFillImage.fillAmount = 0f;
+            curvedFillImage.color = Color.blue;
+
+            Debug.Log("Calentando la leche...");
+        }
+    }
+
+    public void StopHeating()
+    {
+        if (isHeating)
+        {
+            isHeating = false;
+            heatedMilk = true;
+
+            heatPanel.SetActive (false);
+            buttonManager.DisableButton(buttonManager.calentarButton);
+
+            if (currentHeat < 0.4f)
+            {
+                order.currentOrder.heatedMilkPrecision = 0;
+                Debug.Log("Leche fria");
+            } 
+            else if (currentHeat < 0.8f)
+            {
+                order.currentOrder.heatedMilkPrecision = 1;
+                Debug.Log("Leche caliente");
+            }
+            else
+            {
+                order.currentOrder.heatedMilkPrecision = 2;
+                Debug.Log("Leche quemada");
+            }
         }
     }
     #endregion

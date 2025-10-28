@@ -223,10 +223,10 @@ public class OrderEvaluation : MonoBehaviour
 
     public int EvaluateHeatedMilkPrecision(Order npcOrder, Order playerOrder)
     {
-        // El objetivo es el valor exacto (false-fria o true-caliente)
-        bool heatedMilkTarget = npcOrder.heatedMilkTarget;
+        // El objetivo es el valor exacto (0-fria o 2-caliente, existe la opcion 3-quemada, que penalizara siempre)
+        int heatedMilkTarget = npcOrder.heatedMilkTarget;
         // La precision es si el jugador ha calentado o no la leche
-        bool playerHeatedMilk = playerOrder.heatedMilkPrecision;
+        int playerHeatedMilk = playerOrder.heatedMilkPrecision;
 
         int heatedMilkScore = 0;
         if (playerHeatedMilk == heatedMilkTarget) // Si el jugador ha preparado la leche que se pedia suma 10 puntos
@@ -235,7 +235,7 @@ public class OrderEvaluation : MonoBehaviour
         }
         else
         {
-            heatedMilkScore = 0; // En cualquier otro caso la puntuacion sera 0 
+            heatedMilkScore = -5; // En cualquier otro caso la puntuacion restara 5 
         }
 
         Debug.Log($"[Evaluación Leche caliente Cliente {playerOrder.orderId}] Objetivo: {heatedMilkTarget} | Jugador: {playerHeatedMilk}");
