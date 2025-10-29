@@ -68,6 +68,10 @@ public class Order
     // guarda el valor del si el jugador ha colocado o no la tapa (0-tomar o 1-llevar)
     public int typePrecision;
 
+    // especifica el tipo de pedido que quiere el cliente (0-tomar o 1-llevar )
+    public int typeOrderFoodTarget;
+    // guarda el valor del si el jugador ha colocado o no la tapa (0-tomar o 1-llevar)
+    public int typeOrderFoodPrecision;
 
     public Order(CoffeeType coffeeType, SugarAmount sugar, IceAmount ice, OrderType type, FoodOrder foodOrder = null) // Constructor de los pedidos 
     {
@@ -123,6 +127,8 @@ public class Order
         //inicializamos la precision del tipo de pedido a 0
         this.typePrecision = 0;
         this.typeTarget = GetOrderTypeTargetFromAmount(type);
+        this.typeOrderFoodPrecision = 0;
+        this.typeOrderFoodTarget = GetOrderTypeTargetFromAmount(type);
     }
 
     // Funciones utilizadas para declarar las cantidades requeridas en formato float o int

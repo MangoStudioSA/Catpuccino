@@ -34,6 +34,7 @@ public class ButtonUnlockManager : MonoBehaviour
     [SerializeField] public Button bakeryButton;
     [SerializeField] public Button returnBakeryButton;
     [SerializeField] public Button cogerPlatoInicioButton;
+    [SerializeField] public Button cogerBolsaLlevarInicioButton;
     [SerializeField] public Button cogerBZanahoriaButton;
     [SerializeField] public Button cogerBMantequillaButton;
     [SerializeField] public Button cogerBChocolateButton;

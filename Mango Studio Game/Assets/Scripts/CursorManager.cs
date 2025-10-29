@@ -23,6 +23,7 @@ public class CursorManager : MonoBehaviour
 
     [Header("Texturas cursores comida")]
     [SerializeField] Texture2D platoCursorTexture;
+    [SerializeField] Texture2D bolsaLlevarCursorTexture;
 
     [Header("HotSpots cursores cafe")]
     [SerializeField] Vector2 hotSpotDefault = Vector2.zero; //el punto que hace click en si del cursor (ahora mismo arriba izquierda)
@@ -42,6 +43,7 @@ public class CursorManager : MonoBehaviour
 
     [Header("HotSpots cursores comida")]
     [SerializeField] Vector2 hotSpotPlato = Vector2.zero; //el punto que hace click en si del cursor (ahora mismo arriba izquierda)
+    [SerializeField] Vector2 hotSpotBolsaLlevar = Vector2.zero; //el punto que hace click en si del cursor (ahora mismo arriba izquierda)
 
 
     [SerializeField] MinigameInput miniGameInput; //para poder usar referencias a los vasos y tazas       
@@ -119,6 +121,19 @@ public class CursorManager : MonoBehaviour
         {
             miniGameInput.platoInHand = true;
             Cursor.SetCursor(platoCursorTexture, hotSpotPlato, CursorMode.Auto);
+        }
+    }
+
+    // Gestionar coger la bolsa para llevar del estante
+    public void TakeCarryBagFromShelf()
+    {
+        if (miniGameInput.carryBagIsInEncimera)
+            return;
+
+        if (!miniGameInput.carryBagInHand)
+        {
+            miniGameInput.carryBagInHand = true;
+            Cursor.SetCursor(bolsaLlevarCursorTexture, hotSpotBolsaLlevar, CursorMode.Auto);
         }
     }
 
@@ -232,6 +247,23 @@ public class CursorManager : MonoBehaviour
             Cursor.SetCursor(platoCursorTexture, hotSpotPlato, CursorMode.Auto);
         }
     }
+
+    // Gestionar cursor bolsa para llevar
+    public void UpdateCursorCarryBag(bool dejandoBolsa)
+    {
+        if (miniGameInput.TengoOtroObjetoEnLaMano())
+            return;
+
+        if (dejandoBolsa)
+        {
+            Cursor.SetCursor(defaultCursorTexture, hotSpotDefault, CursorMode.Auto);
+        }
+        else
+        {
+            Cursor.SetCursor(bolsaLlevarCursorTexture, hotSpotBolsaLlevar, CursorMode.Auto);
+        }
+    }
+
     public void TakeFiltro()
     {
         Cursor.SetCursor(filtroCursorTexture, hotSpotFiltro, CursorMode.Auto);
