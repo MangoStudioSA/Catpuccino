@@ -41,7 +41,10 @@ public class OrderNoteUI : MonoBehaviour
         StopAllCoroutines();
         StartCoroutine(SlideNote(isVisible));    
     }
-
+    public void ResetNote()
+    {
+        notePanelOrder.gameObject.SetActive(false);
+    }
     private void UpdateNoteText(Order order)
     {
         if (order == null)

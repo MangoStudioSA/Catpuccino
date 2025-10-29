@@ -60,6 +60,7 @@ public class MinigameInput : MonoBehaviour
     PlayerOrder order;
     public FoodManager foodManager;
     public FoodOrder foodOrder;
+    public OrderNoteUI orderNoteUI;
 
     public GameObject Taza, Vaso, TazaLeche, Plato, PlatoTaza, BolsaLlevar;
     GameObject foodInPlatoObj = null, foodInHornoObj = null, foodInBolsaLlevarObj = null;
@@ -73,6 +74,7 @@ public class MinigameInput : MonoBehaviour
     {
         order = FindFirstObjectByType<PlayerOrder>();
 
+        orderNoteUI.ResetNote();
         ResetCafe();
         ResetFoodState();
         

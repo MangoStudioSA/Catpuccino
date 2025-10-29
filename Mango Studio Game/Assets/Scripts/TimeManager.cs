@@ -38,6 +38,7 @@ public class TimeManager : MonoBehaviour
     private ButtonUnlockManager buttonUnlockManager;
     public CoffeeRecipesManager coffeeRecipesManager;
     public CoffeeUnlockerManager coffeeUnlockerManager;
+    public HUDManager HUDmanager;
 
     private int requiredMoney = 0;
 
@@ -127,6 +128,8 @@ public class TimeManager : MonoBehaviour
             HUDManager.Instance.ShowUnlockedElements();
         }
 
+        HUDmanager.ResetNote();
+            
         Debug.Log($"--- DÍA {currentDay} --- \nLa cafetería ha abierto.");
     }
 
