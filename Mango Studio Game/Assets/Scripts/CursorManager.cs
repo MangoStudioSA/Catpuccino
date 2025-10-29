@@ -96,6 +96,18 @@ public class CursorManager : MonoBehaviour
         }
     }
 
+    // Gestionar coger el plato para la taza del estante
+    public void TakePlatoCupFromShelf()
+    {
+        if (miniGameInput.platoTazaIsInTable)
+            return;
+
+        if (!miniGameInput.platoTazaInHand)
+        {
+            miniGameInput.platoTazaInHand = true;
+            Cursor.SetCursor(platoCursorTexture, hotSpotPlato, CursorMode.Auto);
+        }
+    }
 
     // Gestionar coger el plato del estante
     public void TakePlatoFromShelf()

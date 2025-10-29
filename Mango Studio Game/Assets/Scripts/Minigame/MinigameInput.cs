@@ -30,7 +30,6 @@ public class MinigameInput : MonoBehaviour
     [SerializeField] private GameObject heatPanel;
     [SerializeField] private Image curvedFillImage;
     [SerializeField] private float fillSpeed = 0.5f;
-    //[SerializeField] private float maxHeat = 1f;
     [SerializeField] private float currentHeat = 0f;
     [SerializeField] private bool isHeating = false;
 
@@ -45,14 +44,14 @@ public class MinigameInput : MonoBehaviour
     
     int countSugar = 0, countIce = 0, countCover = 0, countWater = 0, countMilk = 0, countCondensedMilk = 0, countCream = 0, countChocolate = 0, countWhiskey = 0;
 
-    public bool cucharaInHand = false, tazaInHand = false, vasoInHand = false, tazaMilkInHand = false, iceInHand = false, coverInHand = false, waterInHand = false, milkInHand = false, 
+    public bool cucharaInHand = false, tazaInHand = false, vasoInHand = false, platoTazaInHand = false, tazaMilkInHand = false, iceInHand = false, coverInHand = false, waterInHand = false, milkInHand = false, 
         condensedMilkInHand = false, creamInHand = false, chocolateInHand = false, whiskeyInHand = false;
 
     public bool platoInHand = false, foodInHand = false, platoIsInEncimera = false, foodIsInPlato = false, foodIsInHorno = false;
 
-    public bool tazaIsInCafetera = false, vasoIsInCafetera = false, tazaMilkIsInEspumador = false, vasoTapaPuesta = false, filtroIsInCafetera = false;
+    public bool tazaIsInCafetera = false, tazaIsInPlato = false, vasoIsInCafetera = false, vasoIsInTable = false, platoTazaIsInTable = false, tazaMilkIsInEspumador = false, vasoTapaPuesta = false, filtroIsInCafetera = false;
 
-    public bool coffeeServed = false, milkServed = false, heatedMilk = false, foodServed = false, foodBaked = false;
+    public bool coffeeServed = false, milkServed = false, heatedMilk = false, foodServed = false, foodBaked = false, cupServed = false;
 
     public FoodCategory foodCategoryInHand, foodCategoryInPlato, foodCategoryInHorno;
     public object foodTypeInHand, foodTypeInPlato, foodTypeInHorno;
@@ -61,11 +60,11 @@ public class MinigameInput : MonoBehaviour
     public FoodManager foodManager;
     public FoodOrder foodOrder;
 
-    public GameObject Taza, Vaso, TazaLeche, Plato;
+    public GameObject Taza, Vaso, TazaLeche, Plato, PlatoTaza;
     GameObject foodInPlatoObj = null, foodInHornoObj = null;
 
     public Sprite vasoConTapa, vasoConCafe, vasoSinCafe, tazaSinCafe, tazaConCafe;
-    public Transform puntoCafetera, puntoEspumador, puntoPlato, puntoComida, puntoHorno;
+    public Transform puntoCafetera, puntoEspumador, puntoPlato, puntoComida, puntoHorno, puntoMesa, puntoTazaPlato;
 
     #endregion
 
@@ -135,6 +134,7 @@ public class MinigameInput : MonoBehaviour
     {
         buttonManager.coffeeButton.gameObject.SetActive(true);
         buttonManager.filtroCafeteraButton.gameObject.SetActive(true);
+        buttonManager.filtroButton.gameObject.SetActive(true);
 
         buttonManager.EnableButton(buttonManager.cogerTazaInicioButton);
         buttonManager.EnableButton(buttonManager.cogerVasoInicioButton);
@@ -148,6 +148,7 @@ public class MinigameInput : MonoBehaviour
 
         Taza.SetActive(false);
         Vaso.SetActive(false);
+        PlatoTaza.SetActive(false);
         TazaLeche.SetActive(false);
 
         Image taza = Taza.GetComponent<Image>();
@@ -157,8 +158,8 @@ public class MinigameInput : MonoBehaviour
         vaso.sprite = vasoSinCafe;
 
         currentSlideTime = currentHeat = currentMolido = 0f;
-        isSliding = coffeeDone = coffeeServed = milkServed = heatedMilk = isHeating = isMoliendo = false;
-        tazaIsInCafetera = vasoIsInCafetera = tazaMilkIsInEspumador = filtroIsInCafetera = false;
+        isSliding = coffeeDone = coffeeServed = cupServed = milkServed = heatedMilk = isHeating = isMoliendo = false;
+        tazaIsInCafetera = tazaIsInPlato = vasoIsInCafetera = vasoIsInTable = platoTazaIsInTable = tazaMilkIsInEspumador = filtroIsInCafetera = false;
         countSugar = countIce = countCover = countWater = countMilk = countCondensedMilk = countCream = countChocolate = countWhiskey = 0;
 
         if (coffeeSlider != null)
@@ -173,6 +174,7 @@ public class MinigameInput : MonoBehaviour
         buttonManager.EnableButton(buttonManager.cogerPlatoInicioButton);
         buttonManager.EnableButton(buttonManager.bakeryButton);
         buttonManager.EnableButton(buttonManager.returnBakeryButton);
+        buttonManager.DisableButton(buttonManager.hornoButton);
         buttonManager.stopHorneadoButton.gameObject.SetActive(false);
         bakeSlider.gameObject.SetActive(false);
 
@@ -199,20 +201,31 @@ public class MinigameInput : MonoBehaviour
     {
         return cucharaInHand || waterInHand || milkInHand || condensedMilkInHand || creamInHand || chocolateInHand || whiskeyInHand || iceInHand || coverInHand || foodInHand;
     }
+    public void DisableMechanics()
+    {
+        buttonManager.DisableButton(buttonManager.sugarButton);
+        buttonManager.DisableButton(buttonManager.iceButton);
+        buttonManager.DisableButton(buttonManager.whiskeyButton);
+        buttonManager.DisableButton(buttonManager.coverButton);
+    }
     public void CheckButtons()
     {
         if (tazaInHand || vasoInHand || TengoOtroObjetoEnLaMano())
         {
             buttonManager.DisableButton(buttonManager.submitOrderButton);
             buttonManager.DisableButton(buttonManager.bakeryButton);
+            buttonManager.DisableButton(buttonManager.recipesBookButton);
+            buttonManager.DisableButton(buttonManager.orderNoteButton);
         }
-        else if (coffeeServed)
+        else if (cupServed || vasoIsInTable)
         {
             buttonManager.EnableButton(buttonManager.submitOrderButton);
         }
         else
         {
             buttonManager.EnableButton(buttonManager.bakeryButton);
+            buttonManager.EnableButton(buttonManager.recipesBookButton);
+            buttonManager.EnableButton(buttonManager.orderNoteButton);
         }
 
         if (heatedMilk && milkServed)
@@ -333,6 +346,44 @@ public class MinigameInput : MonoBehaviour
 
         ActualizarBotonCogerEnvase();
     }
+    public void ToggleTazaPlato()
+    {
+        if (TengoOtroObjetoEnLaMano())
+            return;
+
+        if (!tazaInHand && !tazaIsInPlato)
+            return;
+
+        if (!tazaIsInPlato && tazaInHand)
+        {
+            // Poner en el plato
+            Taza.SetActive(true);
+            Taza.transform.position = puntoTazaPlato.position;
+
+            tazaInHand = false;
+            tazaIsInPlato = true;
+            cupServed = true;
+
+            cursorManager.UpdateCursorTaza(true);
+            DisableMechanics();
+            Debug.Log($"Taza colocada: {tazaIsInPlato}");
+
+        }
+        else if (tazaIsInPlato && !tazaInHand)
+        {
+            //Recoger de la cafetera
+            Taza.SetActive(false);
+            tazaInHand = true;
+            tazaIsInPlato = false;
+            cupServed = false;
+
+            cursorManager.UpdateCursorTaza(false);
+        }
+        else
+        {
+            Debug.Log("No hay ninguna taza en el plato");
+        }
+    }
     public void ToggleVasoCafetera()
     {
         if (TengoOtroObjetoEnLaMano() || tazaMilkInHand)
@@ -380,6 +431,71 @@ public class MinigameInput : MonoBehaviour
 
         ActualizarBotonCogerEnvase();
     }
+    public void ToggleVasoMesa()
+    {
+        if (TengoOtroObjetoEnLaMano() || tazaMilkInHand)
+            return;
+
+        if (!vasoInHand && !vasoIsInTable)
+            return;
+
+        if (!vasoIsInTable && vasoInHand)
+        {
+            // Poner en la cafetera
+            Vaso.SetActive(true);
+            Vaso.transform.position = puntoMesa.position;
+
+            vasoInHand = false;
+            vasoIsInTable = true;
+
+            cursorManager.UpdateCursorVaso(true);
+
+            DisableMechanics();
+            Debug.Log($"Vaso colocado: {vasoIsInTable}");
+        }
+        else if (vasoIsInTable && !vasoInHand)
+        {
+            //Recoger de la cafetera
+            Vaso.SetActive(false);
+            vasoInHand = true;
+            vasoIsInTable = false;
+
+            cursorManager.UpdateCursorVaso(false);
+        }
+        else
+        {
+            Debug.Log("No hay ningun vaso en la cafetera");
+        }
+        if (filtroIsInCafetera == true && coffeeServed == false)
+        {
+            buttonManager.EnableButton(buttonManager.echarCafeButton);
+        }
+    }
+    public void PlacePlatoTazaMesa()
+    {
+        if (platoTazaIsInTable)
+            return;
+
+        if (TengoOtroObjetoEnLaMano())
+            return;
+
+        if (!platoTazaInHand && !platoTazaIsInTable)
+            return;
+
+        if (platoTazaInHand)
+        {
+            // Poner en la mesa
+            PlatoTaza.SetActive(true);
+            PlatoTaza.transform.position = puntoMesa.position;
+
+            platoTazaInHand = false;
+            platoTazaIsInTable = true;
+
+            cursorManager.UpdateCursorPlato(true);
+            buttonManager.DisableButton(buttonManager.cogerPlatoTazaButton);
+            Debug.Log($"Plato colocado: {platoTazaIsInTable}");
+        }
+    }
     public void StartCoffee()
     {
         if  (!isSliding && !coffeeDone)
@@ -414,7 +530,6 @@ public class MinigameInput : MonoBehaviour
             }
         }
     }
-    
     public void StartMoler()
     {
         if (!isMoliendo)
@@ -445,6 +560,7 @@ public class MinigameInput : MonoBehaviour
         if (filtroIsInCafetera == false)
         {
             buttonManager.DisableButton(buttonManager.filtroButton);
+            buttonManager.filtroButton.gameObject.SetActive(false);
             buttonManager.EnableButton(buttonManager.filtroCafeteraButton);
         }
     }
@@ -868,6 +984,7 @@ public class MinigameInput : MonoBehaviour
             platoIsInEncimera = true;
 
             cursorManager.UpdateCursorPlato(true);
+            buttonManager.EnableButton(buttonManager.hornoButton);
             Debug.Log($"Plato colocado: {platoIsInEncimera}");
         }
         ActualizarBotonCogerEnvase();
