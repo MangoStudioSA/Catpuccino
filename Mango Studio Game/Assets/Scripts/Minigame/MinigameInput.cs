@@ -139,10 +139,18 @@ public class MinigameInput : MonoBehaviour
 
         buttonManager.EnableButton(buttonManager.cogerTazaInicioButton);
         buttonManager.EnableButton(buttonManager.cogerVasoInicioButton);
-        buttonManager.DisableButton(buttonManager.cogerTazaLecheButton);
+        buttonManager.EnableButton(buttonManager.cogerPlatoTazaButton);
         buttonManager.EnableButton(buttonManager.coffeeButton);
+
+        buttonManager.DisableButton(buttonManager.cogerTazaLecheButton);
         buttonManager.DisableButton(buttonManager.molerButton);
         buttonManager.DisableButton(buttonManager.filtroCafeteraButton);
+        buttonManager.DisableButton(buttonManager.waterButton);
+        buttonManager.DisableButton(buttonManager.milkButton);
+        buttonManager.DisableButton(buttonManager.condensedMilkButton);
+        buttonManager.DisableButton(buttonManager.creamButton);
+        buttonManager.DisableButton(buttonManager.chocolateButton);
+        DisableMechanics();
 
         heatPanel.SetActive(false);
         molerPanel.SetActive(false);
@@ -161,7 +169,7 @@ public class MinigameInput : MonoBehaviour
         currentSlideTime = currentHeat = currentMolido = 0f;
         isSliding = coffeeDone = coffeeServed = cupServed = milkServed = heatedMilk = isHeating = isMoliendo = false;
         tazaIsInCafetera = tazaIsInPlato = vasoIsInCafetera = vasoIsInTable = platoTazaIsInTable = tazaMilkIsInEspumador = filtroIsInCafetera = false;
-        countSugar = countIce = countCover = countWater = countMilk = countCondensedMilk = countCream = countChocolate = countWhiskey = 0;
+        countSugar = countIce = countCover = countFoodCover = countWater = countMilk = countCondensedMilk = countCream = countChocolate = countWhiskey = 0;
 
         if (coffeeSlider != null)
         {
@@ -176,7 +184,9 @@ public class MinigameInput : MonoBehaviour
         buttonManager.EnableButton(buttonManager.cogerBolsaLlevarInicioButton);
         buttonManager.EnableButton(buttonManager.bakeryButton);
         buttonManager.EnableButton(buttonManager.returnBakeryButton);
+
         buttonManager.DisableButton(buttonManager.hornoButton);
+
         buttonManager.stopHorneadoButton.gameObject.SetActive(false);
         bakeSlider.gameObject.SetActive(false);
 
@@ -204,6 +214,12 @@ public class MinigameInput : MonoBehaviour
             foodInPlatoObj = null;
         }
 
+        if (foodInHornoObj != null)
+        {
+            foodInHornoObj.SetActive(false);
+            foodInHornoObj = null;
+        }
+
         if (foodInBolsaLlevarObj != null)
         {
             foodInBolsaLlevarObj = null;
@@ -228,6 +244,7 @@ public class MinigameInput : MonoBehaviour
             buttonManager.DisableButton(buttonManager.bakeryButton);
             buttonManager.DisableButton(buttonManager.recipesBookButton);
             buttonManager.DisableButton(buttonManager.orderNoteButton);
+            buttonManager.DisableButton(buttonManager.papeleraButton);
         }
         else if (cupServed || vasoIsInTable)
         {
@@ -249,7 +266,7 @@ public class MinigameInput : MonoBehaviour
             buttonManager.EnableButton(buttonManager.calentarButton);
         }
 
-        if (platoInHand)
+        if (platoInHand || foodInHand)
         {
             buttonManager.DisableButton(buttonManager.returnBakeryButton);
         }
@@ -262,7 +279,14 @@ public class MinigameInput : MonoBehaviour
             buttonManager.DisableButton(buttonManager.hornearButton);
         }
     }
+    public void ResetMinigame()
+    {
+        if (TengoOtroObjetoEnLaMano()) return;
 
+        ResetCafe();
+        ResetFoodState();
+        ActualizarBotonCogerComida();
+    }
     #region Mecanicas cafe
     public void ActualizarBotonCogerEnvase()
     {
@@ -1113,8 +1137,8 @@ public class MinigameInput : MonoBehaviour
             foodCategoryInCarryBag = foodCategoryInHand;
             foodTypeInCarryBag = foodTypeInHand;
 
-            countFoodCover = 1;
-            order.currentOrder.typeOrderFoodPrecision = countCover; // Se guarda el resultado obtenido en la precision del jugador
+            countFoodCover += 1;
+            order.currentOrder.typeOrderFoodPrecision = countFoodCover; // Se guarda el resultado obtenido en la precision del jugador
 
             foodIsInBolsaLlevar = true;
             foodServed = true;
@@ -1139,7 +1163,6 @@ public class MinigameInput : MonoBehaviour
         }
         ActualizarBotonCogerComida();
     }
-
     public void ToggleFoodHorno()
     {
         if (!foodInHand && !platoIsInEncimera && !carryBagIsInEncimera)
