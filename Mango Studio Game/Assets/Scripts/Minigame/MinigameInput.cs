@@ -18,6 +18,14 @@ public class MinigameInput : MonoBehaviour
     [SerializeField] float slideSpeed = 0.8f;
     [SerializeField] float maxAmount = 4.0f;
 
+    [Header("Mecánica molar café")]
+    [SerializeField] private GameObject molerPanel;
+    [SerializeField] private Image molerFillImage;
+    [SerializeField] private float molerFillSpeed = 0.5f;
+    [SerializeField] private float maxFillMoler = 1f;
+    [SerializeField] private float currentMolido = 0f;
+    [SerializeField] private bool isMoliendo = false;
+
     [Header("Mecánica espumador")]
     [SerializeField] private GameObject heatPanel;
     [SerializeField] private Image curvedFillImage;
@@ -74,12 +82,12 @@ public class MinigameInput : MonoBehaviour
 
     public void Update()
     {
-        //movimiento
+        // Movimiento slider cantidad cafe
         if (isSliding)
         {
-            currentSlideTime += Time.unscaledDeltaTime * slideSpeed; //no se por que pero solo me funciona si uso unscaled (no lo entiendo)
+            currentSlideTime += Time.unscaledDeltaTime * slideSpeed; 
 
-            //el slider se actualiza con el tiempo de deslizamiento
+            // El slider se actualiza con el tiempo de deslizamiento
             coffeeSlider.value = currentSlideTime;
 
 
@@ -91,6 +99,22 @@ public class MinigameInput : MonoBehaviour
             }
         }
 
+        // Movimiento circunferencia moler cafe
+        if (isMoliendo && Input.GetMouseButton(0))
+        {
+            currentMolido += molerFillSpeed * Time.unscaledDeltaTime;
+            currentMolido = Mathf.Clamp01(currentMolido);
+
+            molerFillImage.fillAmount = currentMolido * 0.5f;
+            molerFillImage.color = Color.Lerp(Color.yellow, Color.red, currentMolido);
+        }
+
+        if (currentMolido >= maxFillMoler)
+        {
+            StopMoler();
+        }
+
+        // Movimiento circunferencia calentar leche
         if (isHeating && Input.GetMouseButton(0))
         {
             currentHeat += fillSpeed * Time.unscaledDeltaTime;
@@ -105,43 +129,8 @@ public class MinigameInput : MonoBehaviour
             StopHeating();
         }
 
-        if (tazaInHand || vasoInHand || TengoOtroObjetoEnLaMano())
-        {
-            buttonManager.DisableButton(buttonManager.submitOrderButton);
-            buttonManager.DisableButton(buttonManager.bakeryButton);
-        }
-        else if (coffeeServed)
-        {
-            buttonManager.EnableButton(buttonManager.submitOrderButton);
-        }
-        else
-        {
-            buttonManager.EnableButton(buttonManager.bakeryButton);
-        }
-
-        if (heatedMilk && milkServed)
-        {
-            buttonManager.DisableButton(buttonManager.calentarButton);
-        } 
-        else if (tazaMilkIsInEspumador)
-        {
-            buttonManager.EnableButton(buttonManager.calentarButton);
-        }
-
-        if (platoInHand)
-        {
-            buttonManager.DisableButton(buttonManager.returnBakeryButton);
-        }
-        else
-        {
-            buttonManager.EnableButton(buttonManager.returnBakeryButton);
-        }
-        if (foodBaked)
-        {
-            buttonManager.DisableButton(buttonManager.hornearButton);
-        }
+        CheckButtons();
     }
-
     public void ResetCafe()
     {
         buttonManager.coffeeButton.gameObject.SetActive(true);
@@ -153,6 +142,7 @@ public class MinigameInput : MonoBehaviour
         buttonManager.DisableButton(buttonManager.filtroCafeteraButton);
 
         heatPanel.SetActive(false);
+        molerPanel.SetActive(false);
 
         Taza.SetActive(false);
         Vaso.SetActive(false);
@@ -164,8 +154,8 @@ public class MinigameInput : MonoBehaviour
         Image vaso = Vaso.GetComponent<Image>();
         vaso.sprite = vasoSinCafe;
 
-        currentSlideTime = currentHeat = 0f;
-        isSliding = coffeeDone = coffeeServed = milkServed = heatedMilk = isHeating = false;
+        currentSlideTime = currentHeat = currentMolido = 0f;
+        isSliding = coffeeDone = coffeeServed = milkServed = heatedMilk = isHeating = isMoliendo = false;
         tazaIsInCafetera = vasoIsInCafetera = tazaMilkIsInEspumador = filtroIsInCafetera = false;
         countSugar = countIce = countCover = countWater = countMilk = countCondensedMilk = countCream = countChocolate = countWhiskey = 0;
 
@@ -176,7 +166,6 @@ public class MinigameInput : MonoBehaviour
             coffeeSlider.value = 0f;
         }
     }
-
     public void ResetFoodState()
     {
         buttonManager.EnableButton(buttonManager.cogerPlatoInicioButton);
@@ -204,52 +193,50 @@ public class MinigameInput : MonoBehaviour
             foodInPlatoObj = null;
         }
     }
-
-    #region Mecanicas minijuego cafe
-    public void StartCoffee()
+    public bool TengoOtroObjetoEnLaMano()
     {
-        if  (!isSliding && !coffeeDone)
+        return cucharaInHand || waterInHand || milkInHand || condensedMilkInHand || creamInHand || chocolateInHand || whiskeyInHand || iceInHand || coverInHand || foodInHand;
+    }
+    public void CheckButtons()
+    {
+        if (tazaInHand || vasoInHand || TengoOtroObjetoEnLaMano())
         {
-            //reiniciamos la pos de la barra
-            currentSlideTime = 0f;
+            buttonManager.DisableButton(buttonManager.submitOrderButton);
+            buttonManager.DisableButton(buttonManager.bakeryButton);
+        }
+        else if (coffeeServed)
+        {
+            buttonManager.EnableButton(buttonManager.submitOrderButton);
+        }
+        else
+        {
+            buttonManager.EnableButton(buttonManager.bakeryButton);
+        }
 
-            isSliding = true;
-            Debug.Log($"[Cliente {order.currentOrder.orderId}] Preparacion: Carga de cafe iniciada.");
+        if (heatedMilk && milkServed)
+        {
+            buttonManager.DisableButton(buttonManager.calentarButton);
+        }
+        else if (tazaMilkIsInEspumador)
+        {
+            buttonManager.EnableButton(buttonManager.calentarButton);
+        }
+
+        if (platoInHand)
+        {
+            buttonManager.DisableButton(buttonManager.returnBakeryButton);
+        }
+        else
+        {
+            buttonManager.EnableButton(buttonManager.returnBakeryButton);
+        }
+        if (foodBaked)
+        {
+            buttonManager.DisableButton(buttonManager.hornearButton);
         }
     }
-    
-    public void StopCoffee()
-    {
-        if (isSliding)
-        {
-            // detenemos el movimiento
-            isSliding = false;
-            coffeeDone = true;
 
-            buttonManager.DisableButton(buttonManager.coffeeButton);
-            buttonManager.EnableButton(buttonManager.molerButton);
-
-            // guarda la pos del slider
-            if (order != null && order.currentOrder != null)
-            {
-                order.currentOrder.coffeePrecision = currentSlideTime;
-                Debug.Log($"[Cliente {order.currentOrder.orderId}] Preparacion: Cafe detenido en: {currentSlideTime:F2}. Valor guardado.");
-            } 
-            else
-            {
-                Debug.LogWarning($"[Cliente {order.currentOrder.orderId}] Preparacion: Cafe detenido en: {currentSlideTime:F2}, pero no se pudo guardar porque no hay un pedido activo.");
-            }
-        }
-    }
-    
-    public void Moler()
-    {
-        Debug.Log($"[Cliente {order.currentOrder.orderId}] Preparacion: Moliendo cafe");
-        buttonManager.DisableButton(buttonManager.molerButton);
-
-        buttonManager.EnableButton(buttonManager.filtroButton);
-    }
-
+    #region Mecanicas cafe
     public void ActualizarBotonCogerEnvase()
     {
         if (tazaInHand || tazaIsInCafetera || vasoInHand || vasoIsInCafetera)
@@ -263,7 +250,6 @@ public class MinigameInput : MonoBehaviour
             buttonManager.EnableButton(buttonManager.cogerVasoInicioButton);
         }
     }
-
     public void ActualizarBotonCogerComida()
     {
         bool canTakeFood = platoIsInEncimera && !foodInHand && !foodIsInPlato && !foodServed && !foodIsInHorno;
@@ -289,7 +275,7 @@ public class MinigameInput : MonoBehaviour
 
             if (canTakeFood)
             {
-                buttonManager.EnableButton(boton);  
+                buttonManager.EnableButton(boton);
             }
             else
             {
@@ -297,7 +283,6 @@ public class MinigameInput : MonoBehaviour
             }
         }
     }
-
     public void ToggleTazaCafetera()
     {
         if (TengoOtroObjetoEnLaMano() || tazaMilkInHand)
@@ -346,51 +331,6 @@ public class MinigameInput : MonoBehaviour
 
         ActualizarBotonCogerEnvase();
     }
-
-    public void ToggleTazaLecheEspumador()
-    {
-        if (TengoOtroObjetoEnLaMano())
-            return;
-        if (!tazaMilkInHand && !tazaMilkIsInEspumador)
-            return;
-
-        if (!tazaMilkIsInEspumador && tazaMilkInHand)
-        {
-            // Poner en el espumador
-            TazaLeche.SetActive(true);
-            TazaLeche.transform.position = puntoEspumador.position;
-
-            tazaMilkInHand = false;
-            tazaMilkIsInEspumador = true;
-
-            buttonManager.DisableButton(buttonManager.waterButton);
-            buttonManager.DisableButton(buttonManager.milkButton);
-            buttonManager.DisableButton(buttonManager.cogerTazaLecheButton);
-
-            cursorManager.UpdateCursorTazaMilk(true);
-            Debug.Log($"Taza con leche colocada en espumador: {tazaMilkIsInEspumador}");
-
-        }
-        else if (tazaMilkIsInEspumador && !tazaMilkInHand)
-        {
-            //Recoger del espumador
-            TazaLeche.SetActive(false);
-
-            tazaMilkInHand = true;
-            tazaMilkIsInEspumador = false;
-
-            cursorManager.UpdateCursorTazaMilk(false);
-        }
-        else
-        {
-            Debug.Log("No hay ninguna taza en el espumador");
-        }
-        if (milkServed)
-        {
-            buttonManager.EnableButton(buttonManager.calentarButton);
-        }
-    }
-
     public void ToggleVasoCafetera()
     {
         if (TengoOtroObjetoEnLaMano() || tazaMilkInHand)
@@ -438,7 +378,469 @@ public class MinigameInput : MonoBehaviour
 
         ActualizarBotonCogerEnvase();
     }
+    public void StartCoffee()
+    {
+        if  (!isSliding && !coffeeDone)
+        {
+            //reiniciamos la pos de la barra
+            currentSlideTime = 0f;
 
+            isSliding = true;
+            Debug.Log($"[Cliente {order.currentOrder.orderId}] Preparacion: Carga de cafe iniciada.");
+        }
+    }
+    public void StopCoffee()
+    {
+        if (isSliding)
+        {
+            // detenemos el movimiento
+            isSliding = false;
+            coffeeDone = true;
+
+            buttonManager.DisableButton(buttonManager.coffeeButton);
+            buttonManager.EnableButton(buttonManager.molerButton);
+
+            // guarda la pos del slider
+            if (order != null && order.currentOrder != null)
+            {
+                order.currentOrder.coffeePrecision = currentSlideTime;
+                Debug.Log($"[Cliente {order.currentOrder.orderId}] Preparacion: Cafe detenido en: {currentSlideTime:F2}. Valor guardado.");
+            } 
+            else
+            {
+                Debug.LogWarning($"[Cliente {order.currentOrder.orderId}] Preparacion: Cafe detenido en: {currentSlideTime:F2}, pero no se pudo guardar porque no hay un pedido activo.");
+            }
+        }
+    }
+    
+    public void StartMoler()
+    {
+        if (!isMoliendo)
+        {
+            currentMolido = 0f;
+            isMoliendo = true;
+
+            molerPanel.SetActive(true);
+            molerFillImage.fillAmount = 0f;
+            molerFillImage.color = Color.yellow;
+            Debug.Log($"[Cliente {order.currentOrder.orderId}] Preparacion: Moliendo cafe...");
+        }
+    }
+    public void StopMoler()
+    {
+        if (isMoliendo || currentMolido == maxFillMoler)
+        {
+            isMoliendo = false;
+            molerPanel.SetActive(false);
+
+            Debug.Log($"[Cliente {order.currentOrder.orderId}] Cafe molido");
+            buttonManager.DisableButton(buttonManager.molerButton);
+            buttonManager.EnableButton(buttonManager.filtroButton);
+        }
+    }
+    public void TakeFiltro()
+    {
+        if (filtroIsInCafetera == false)
+        {
+            buttonManager.DisableButton(buttonManager.filtroButton);
+            buttonManager.EnableButton(buttonManager.filtroCafeteraButton);
+        }
+    }
+    public void PutFiltro()
+    {
+        if (filtroIsInCafetera == false)
+        {
+            filtroIsInCafetera = true;
+        }
+
+        if (tazaIsInCafetera == true || vasoIsInCafetera == true && coffeeServed == false)
+        {
+            buttonManager.EnableButton(buttonManager.echarCafeButton);
+        }
+    }
+    public void EcharCafe()
+    {
+        bool recipienteEnCafetera = tazaIsInCafetera || vasoIsInCafetera;
+
+        if(recipienteEnCafetera && filtroIsInCafetera != false && coffeeServed == false)
+        {
+            Debug.Log($"[Cliente {order.currentOrder.orderId}] Preparacion: Echando cafe");
+            coffeeServed = true;
+
+            buttonManager.filtroCafeteraButton.gameObject.SetActive(false);
+
+            buttonManager.DisableButton(buttonManager.echarCafeButton);
+            buttonManager.DisableButton(buttonManager.filtroCafeteraButton);
+            buttonManager.DisableButton(buttonManager.calentarButton);
+            buttonManager.DisableButton(buttonManager.waterButton);
+            buttonManager.DisableButton(buttonManager.milkButton);
+            buttonManager.DisableButton(buttonManager.condensedMilkButton);
+            buttonManager.DisableButton(buttonManager.creamButton);
+            buttonManager.DisableButton(buttonManager.chocolateButton);
+
+            buttonManager.EnableButton(buttonManager.sugarButton);
+            buttonManager.EnableButton(buttonManager.iceButton);
+            buttonManager.EnableButton(buttonManager.coverButton);
+            buttonManager.EnableButton(buttonManager.whiskeyButton);
+        }
+
+        if(tazaIsInCafetera)
+        {
+            Image taza = Taza.GetComponent<Image>();
+            taza.sprite = tazaConCafe;
+        }
+        else if (vasoIsInCafetera)
+        {
+            Image vaso = Vaso.GetComponent<Image>();
+            vaso.sprite = vasoConCafe;
+        }
+    }
+    #endregion
+
+    #region Mecanicas leche
+    public void CogerLeche()
+    {
+        if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand)
+        {
+            milkInHand = true;
+        }
+        else if (milkInHand == true)
+        {
+            milkInHand = false;
+        }
+    }
+    public void EcharLecheFria()
+    {
+        //Si se tiene la leche en la mano y el cafe no esta servido entonces se puede echar
+        if (milkInHand == true && coffeeServed == false)
+        {
+            if (countMilk <= 1)
+            {
+                countMilk += 1; //Se incrementa el contador de leche
+                order.currentOrder.milkPrecision = countMilk; // Se guarda el resultado obtenido en la precision del jugador
+                Debug.Log($"[Cliente {order.currentOrder.orderId}] Cantidad de leche: " + countMilk);
+            }
+            milkServed = true;
+        }
+    }
+    public void ToggleTazaLecheEspumador()
+    {
+        if (TengoOtroObjetoEnLaMano())
+            return;
+        if (!tazaMilkInHand && !tazaMilkIsInEspumador)
+            return;
+
+        if (!tazaMilkIsInEspumador && tazaMilkInHand)
+        {
+            // Poner en el espumador
+            TazaLeche.SetActive(true);
+            TazaLeche.transform.position = puntoEspumador.position;
+
+            tazaMilkInHand = false;
+            tazaMilkIsInEspumador = true;
+
+            buttonManager.DisableButton(buttonManager.waterButton);
+            buttonManager.DisableButton(buttonManager.milkButton);
+            buttonManager.DisableButton(buttonManager.cogerTazaLecheButton);
+
+            cursorManager.UpdateCursorTazaMilk(true);
+            Debug.Log($"Taza con leche colocada en espumador: {tazaMilkIsInEspumador}");
+
+        }
+        else if (tazaMilkIsInEspumador && !tazaMilkInHand)
+        {
+            //Recoger del espumador
+            TazaLeche.SetActive(false);
+
+            tazaMilkInHand = true;
+            tazaMilkIsInEspumador = false;
+
+            cursorManager.UpdateCursorTazaMilk(false);
+        }
+        else
+        {
+            Debug.Log("No hay ninguna taza en el espumador");
+        }
+        if (milkServed)
+        {
+            buttonManager.EnableButton(buttonManager.calentarButton);
+        }
+    }
+    public void StartHeating()
+    {
+        if (!isHeating && !heatedMilk)
+        {
+            currentHeat = 0f;
+            isHeating = true;
+
+            heatPanel.SetActive(true);
+            curvedFillImage.fillAmount = 0f;
+            curvedFillImage.color = Color.blue;
+
+            Debug.Log($"[Cliente {order.currentOrder.orderId}] Calentando la leche...");
+        }
+    }
+    public void StopHeating()
+    {
+        if (isHeating)
+        {
+            isHeating = false;
+            heatedMilk = true;
+
+            heatPanel.SetActive(false);
+            buttonManager.calentarButton.gameObject.SetActive(false);
+            buttonManager.DisableButton(buttonManager.calentarButton);
+
+            Debug.Log($"[Cliente {order.currentOrder.orderId}] Leche calentada");
+        }
+    }
+    public void EcharLecheCaliente()
+    {
+        //Si se tiene la leche caliente en la mano y el cafe no esta servido entonces se puede echar
+        if (tazaMilkInHand == true && coffeeServed == false)
+        {
+            if (countMilk <= 1)
+            {
+                if (currentHeat < 0.4f)
+                {
+                    order.currentOrder.heatedMilkPrecision = 0;
+                    Debug.Log("Leche fria echada");
+                }
+                else if (currentHeat < 0.8f)
+                {
+                    order.currentOrder.heatedMilkPrecision = 1;
+                    Debug.Log("Leche caliente echada");
+                }
+                else
+                {
+                    order.currentOrder.heatedMilkPrecision = 2;
+                    Debug.Log("Leche quemada echada");
+                }
+            }
+            milkServed = true;
+        }
+    }
+    #endregion
+
+    #region Mecanica agua
+    public void CogerAgua()
+    {
+        if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand)
+        {
+            waterInHand = true;
+        }
+        else if (waterInHand == true)
+        {
+            waterInHand = false;
+        }
+    }
+    public void EcharAgua()
+    {
+        //Si se tiene el agua en la mano y el cafe no esta servido entonces se puede echar 
+        if (waterInHand == true && coffeeServed == false)
+        {
+            if (countWater <= 1)
+            {
+                countWater += 1; //Se incrementa el contador de agua
+                order.currentOrder.waterPrecision = countWater; // Se guarda el resultado obtenido en la precision del jugador
+                Debug.Log($"[Cliente {order.currentOrder.orderId}] Has echado agua.");
+            }
+        }
+    }
+    #endregion
+
+    #region Mecanica leche condensada
+    public void CogerLecheCondensada()
+    {
+        if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand)
+        {
+            condensedMilkInHand = true;
+        }
+        else if (condensedMilkInHand == true)
+        {
+            condensedMilkInHand = false;
+        }
+    }
+    public void EcharLecheCondensada()
+    {
+        //Si se tiene la leche condensada en la mano y el cafe no esta servido entonces se puede echar 
+        if (condensedMilkInHand == true && coffeeServed == false)
+        {
+            if (countCondensedMilk <= 1)
+            {
+                countCondensedMilk += 1; //Se incrementa el contador de leche condensada
+                order.currentOrder.condensedMilkPrecision = countCondensedMilk; // Se guarda el resultado obtenido en la precision del jugador
+                Debug.Log($"[Cliente {order.currentOrder.orderId}] Has echado leche condensada.");
+            }
+        }
+    }
+    #endregion
+
+    #region Mecanica crema
+    public void CogerCrema()
+    {
+        if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand)
+        {
+            creamInHand = true;
+        }
+        else if (creamInHand == true)
+        {
+            creamInHand = false;
+        }
+    }
+    public void EcharCrema()
+    {
+        //Si se tiene la crema en la mano y el cafe no esta servido entonces se puede echar
+        if (creamInHand == true && coffeeServed == false)
+        {
+            if (countCream <= 1)
+            {
+                countCream += 1; //Se incrementa el contador de crema
+                order.currentOrder.creamPrecision = countCream; // Se guarda el resultado obtenido en la precision del jugador
+                Debug.Log($"[Cliente {order.currentOrder.orderId}] Has echado crema.");
+            }
+        }
+    }
+    #endregion
+
+    #region Mecanica chocolate
+    public void CogerChocolate()
+    {
+        if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand)
+        {
+            chocolateInHand = true;
+        }
+        else if (chocolateInHand == true)
+        {
+            chocolateInHand = false;
+        }
+    }
+    public void EcharChocolate()
+    {
+        //Si se tiene el chocolate en la mano y el cafe no esta servido entonces se puede echar
+        if (chocolateInHand == true && coffeeServed == false)
+        {
+            if (countChocolate <= 3)
+            {
+                countChocolate += 1; //Se incrementa el contador de chocolate
+                order.currentOrder.chocolatePrecision = countChocolate; // Se guarda el resultado obtenido en la precision del jugador
+                Debug.Log($"[Cliente {order.currentOrder.orderId}] Has echado chocolate.");
+            }
+        }
+    }
+    #endregion
+
+    #region Mecanica whiskey
+    public void CogerWhiskey()
+    {
+        if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand)
+        {
+            whiskeyInHand = true;
+        }
+        else if (whiskeyInHand == true)
+        {
+            whiskeyInHand = false;
+        }
+    }
+    public void EcharWhiskey()
+    {
+        //Si se tiene el whiskey en la mano y el cafe esta servido entonces se puede echar
+        if (whiskeyInHand == true && coffeeServed == true)
+        {
+            if (countWhiskey <= 1)
+            {
+                countWhiskey += 1; //Se incrementa el contador de hielo
+                order.currentOrder.whiskeyPrecision = countWhiskey; // Se guarda el resultado obtenido en la precision del jugador
+                Debug.Log($"[Cliente {order.currentOrder.orderId}] Has echado whiskey.");
+            }
+        }
+    }
+    #endregion
+
+    #region Mecanica azucar
+    public void CogerAzucar()
+    {
+        if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand)
+        {
+            cucharaInHand = true;
+        }
+        else if (cucharaInHand == true)
+        {
+            cucharaInHand = false;
+        }
+    }
+    public void EcharAzucar()
+    {
+        //Si se tiene la cuchara de azucar en la mano y el cafe esta servido entonces se puede echar
+        if (cucharaInHand == true && coffeeServed == true)
+        {
+            if (countSugar <= 1)
+            {
+                countSugar += 1; //Se incrementa el contador de hielo
+                order.currentOrder.sugarPrecision = countSugar; // Se guarda el resultado obtenido en la precision del jugador
+                Debug.Log($"[Cliente {order.currentOrder.orderId}] Cantidad de azucar: " + countSugar);
+            }
+        }
+    }
+    #endregion
+
+    #region Mecanica hielo
+    public void CogerHielo()
+    {
+        if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand)
+        {
+            iceInHand = true;
+        }
+        else if (iceInHand == true)
+        {
+            iceInHand = false;
+        }
+    }
+    public void EcharHielo()
+    {
+        //Si se tiene la cuchara de hielo en la mano y el cafe esta servido entonces se puede echar
+        if (iceInHand == true && coffeeServed == true)
+        {
+            if (countIce <= 1)
+            {
+                countIce += 1; //Se incrementa el contador de hielo
+                order.currentOrder.icePrecision = countIce; // Se guarda el resultado obtenido en la precision del jugador
+                Debug.Log($"[Cliente {order.currentOrder.orderId}] Has echado hielo.");
+            }
+        }
+    }
+    #endregion
+
+    #region Mecanica tipo de pedido
+    public void CogerTapa()
+    {
+        if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand)
+        {
+            coverInHand = true;
+        }
+        else if (coverInHand == true)
+        {
+            coverInHand = false;
+        }
+    }
+    public void PonerTapa()
+    {
+        //Si se tiene la tapa en la mano y el cafe esta servido entonces se puede poner
+        if (coverInHand == true && coffeeServed == true && vasoIsInCafetera)
+        {
+            if (countCover <= 1)
+            {
+                countCover += 1; //Se incrementa el contador de hielo
+                order.currentOrder.typePrecision = countCover; // Se guarda el resultado obtenido en la precision del jugador
+                Debug.Log($"[Cliente {order.currentOrder.orderId}] Tapa puesta.");
+            }
+            Image vaso = Vaso.GetComponent<Image>();
+            vaso.sprite = vasoConTapa;
+        }
+    }
+    #endregion
+
+    #region Mecanicas comida
     public void PlacePlatoEncimera()
     {
         if (platoIsInEncimera)
@@ -465,11 +867,10 @@ public class MinigameInput : MonoBehaviour
         ActualizarBotonCogerEnvase();
         ActualizarBotonCogerComida();
     }
-
     public void ToggleFoodPlato()
     {
         if (!foodInHand && !foodIsInPlato && !platoIsInEncimera)
-           return;
+            return;
 
         if (foodInHand)
         {
@@ -493,7 +894,7 @@ public class MinigameInput : MonoBehaviour
             foodInHand = false;
 
             cursorManager.UpdateCursorFood(true, foodCategoryInHand, foodTypeInHand);
-            
+
             if (order.currentOrder.foodOrder != null)
             {
                 order.currentOrder.foodOrder.SetFoodPrecision(foodCategoryInHand, (int)foodTypeInHand);
@@ -508,7 +909,7 @@ public class MinigameInput : MonoBehaviour
             foodTypeInHand = null;
 
             Debug.Log("Comida colocada en el plato");
-            
+
         }
         else if (foodIsInPlato)
         {
@@ -525,10 +926,9 @@ public class MinigameInput : MonoBehaviour
             cursorManager.UpdateCursorFood(false, foodCategoryInHand, foodTypeInHand);
             Debug.Log("Comida recogida del plato");
         }
-        
+
         ActualizarBotonCogerComida();
     }
-
     public void ToggleFoodHorno()
     {
         if (!foodInHand && !platoIsInEncimera)
@@ -582,12 +982,11 @@ public class MinigameInput : MonoBehaviour
 
         ActualizarBotonCogerComida();
     }
-
     public void StartHorneado()
     {
         if (!foodIsInHorno || foodInHornoObj == null || foodBaked)
             return;
-        if (horneadoCoroutine != null )
+        if (horneadoCoroutine != null)
         {
             StopCoroutine(horneadoCoroutine);
         }
@@ -595,7 +994,6 @@ public class MinigameInput : MonoBehaviour
         foodBaked = true;
         buttonManager.stopHorneadoButton.gameObject.SetActive(true);
     }
-
     private IEnumerator HornearCoroutine()
     {
         Debug.Log("Comienza el horneado...");
@@ -622,7 +1020,6 @@ public class MinigameInput : MonoBehaviour
         buttonManager.stopHorneadoButton.gameObject.SetActive(false);
         Debug.Log("Se ha pasado el tiempo: comida quemada");
     }
-
     private void UpdateBakingBarColor(float value)
     {
         Color newColor;
@@ -637,10 +1034,9 @@ public class MinigameInput : MonoBehaviour
         }
         fillBakeImage.color = newColor;
     }
-
     public void StopHorneado()
     {
-        if (horneadoCoroutine != null )
+        if (horneadoCoroutine != null)
         {
             StopCoroutine(horneadoCoroutine);
             horneadoCoroutine = null;
@@ -656,7 +1052,8 @@ public class MinigameInput : MonoBehaviour
         else if (progress <= 0.70f)
         {
             currentCookState = CookState.horneado;
-        } else
+        }
+        else
         {
             currentCookState = CookState.quemado;
         }
@@ -664,351 +1061,6 @@ public class MinigameInput : MonoBehaviour
         buttonManager.DisableButton(buttonManager.hornearButton);
         buttonManager.stopHorneadoButton.gameObject.SetActive(false);
     }
-
-    public void TakeFiltro()
-    {
-        if (filtroIsInCafetera == false)
-        {
-            buttonManager.DisableButton(buttonManager.filtroButton);
-            buttonManager.EnableButton(buttonManager.filtroCafeteraButton);
-        }
-    }
-
-    public void putFiltro()
-    {
-        if (filtroIsInCafetera == false)
-        {
-            filtroIsInCafetera = true;
-        }
-
-        if (tazaIsInCafetera == true || vasoIsInCafetera == true && coffeeServed == false)
-        {
-            buttonManager.EnableButton(buttonManager.echarCafeButton);
-        }
-    }
-
-    public void EcharCafe()
-    {
-        bool recipienteEnCafetera = tazaIsInCafetera || vasoIsInCafetera;
-
-        if(recipienteEnCafetera && filtroIsInCafetera != false && coffeeServed == false)
-        {
-            Debug.Log($"[Cliente {order.currentOrder.orderId}] Preparacion: Echando cafe");
-            coffeeServed = true;
-
-            buttonManager.filtroCafeteraButton.gameObject.SetActive(false);
-
-            buttonManager.DisableButton(buttonManager.echarCafeButton);
-            buttonManager.DisableButton(buttonManager.filtroCafeteraButton);
-            buttonManager.DisableButton(buttonManager.calentarButton);
-            buttonManager.DisableButton(buttonManager.waterButton);
-            buttonManager.DisableButton(buttonManager.milkButton);
-            buttonManager.DisableButton(buttonManager.condensedMilkButton);
-            buttonManager.DisableButton(buttonManager.creamButton);
-            buttonManager.DisableButton(buttonManager.chocolateButton);
-
-            buttonManager.EnableButton(buttonManager.sugarButton);
-            buttonManager.EnableButton(buttonManager.iceButton);
-            buttonManager.EnableButton(buttonManager.coverButton);
-            buttonManager.EnableButton(buttonManager.whiskeyButton);
-        }
-
-        if(tazaIsInCafetera)
-        {
-            Image taza = Taza.GetComponent<Image>();
-            taza.sprite = tazaConCafe;
-        }
-        else if (vasoIsInCafetera)
-        {
-            Image vaso = Vaso.GetComponent<Image>();
-            vaso.sprite = vasoConCafe;
-        }
-    }
-
-    public void StartHeating()
-    {
-        if (!isHeating && !heatedMilk)
-        {
-            currentHeat = 0f;
-            isHeating = true;
-
-            heatPanel.SetActive(true);
-            curvedFillImage.fillAmount = 0f;
-            curvedFillImage.color = Color.blue;
-
-            Debug.Log($"[Cliente {order.currentOrder.orderId}] Calentando la leche...");
-        }
-    }
-
-    public void StopHeating()
-    {
-        if (isHeating)
-        {
-            isHeating = false;
-            heatedMilk = true;
-
-            heatPanel.SetActive (false);
-            buttonManager.calentarButton.gameObject.SetActive(false);
-            buttonManager.DisableButton(buttonManager.calentarButton);
-
-            Debug.Log($"[Cliente {order.currentOrder.orderId}] Leche calentada");
-        }
-    }
-    #endregion
-
-    #region Mecanicas desbloqueables cafe
-    public void CogerLeche()
-    {
-        if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand)
-        {
-            milkInHand = true;
-        }
-        else if (milkInHand == true)
-        {
-            milkInHand = false;
-        }
-    }
-    public void CogerAgua()
-    {
-        if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand)
-        {
-            waterInHand = true;
-        }
-        else if (waterInHand == true)
-        {
-            waterInHand = false;
-        }
-    }
-    public void CogerLecheCondensada()
-    {
-        if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand)
-        {
-            condensedMilkInHand = true;
-        }
-        else if (condensedMilkInHand == true)
-        {
-            condensedMilkInHand = false;
-        }
-    }
-    public void CogerCrema()
-    {
-        if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand)
-        {
-            creamInHand = true;
-        }
-        else if (creamInHand == true)
-        {
-            creamInHand = false;
-        }
-    }
-    public void CogerChocolate()
-    {
-        if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand)
-        {
-            chocolateInHand = true;
-        }
-        else if (chocolateInHand == true)
-        {
-            chocolateInHand = false;
-        }
-    }
-    public void CogerWhiskey()
-    {
-        if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand)
-        {
-            whiskeyInHand = true;
-        }
-        else if (whiskeyInHand == true)
-        {
-            whiskeyInHand = false;
-        }
-    }
-    public void CogerAzucar()
-    {
-        if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand)
-        {
-            cucharaInHand = true;
-        }
-        else if (cucharaInHand == true)
-        {
-            cucharaInHand = false;
-        }
-    }
-    public void CogerHielo()
-    {
-        if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand)
-        {
-            iceInHand = true;
-        }
-        else if (iceInHand == true)
-        {
-            iceInHand = false;
-        }
-    }
-    public void CogerTapa()
-    {
-        if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand)
-        {
-            coverInHand = true;
-        }
-        else if (coverInHand == true)
-        {
-            coverInHand = false;
-        }
-    }
-    public void EcharLecheFria()
-    {
-        //Si se tiene la leche en la mano y el cafe no esta servido entonces se puede echar
-        if (milkInHand == true && coffeeServed == false)
-        {
-            if (countMilk <= 1)
-            {
-                countMilk += 1; //Se incrementa el contador de leche
-                order.currentOrder.milkPrecision = countMilk; // Se guarda el resultado obtenido en la precision del jugador
-                Debug.Log($"[Cliente {order.currentOrder.orderId}] Cantidad de leche: " + countMilk);
-            }
-            milkServed = true; 
-        }
-    }
-
-    public void EcharLecheCaliente()
-    {
-        //Si se tiene la leche caliente en la mano y el cafe no esta servido entonces se puede echar
-        if (tazaMilkInHand == true && coffeeServed == false)
-        {
-            if (countMilk <= 1)
-            {
-                if (currentHeat < 0.4f)
-                {
-                    order.currentOrder.heatedMilkPrecision = 0;
-                    Debug.Log("Leche fria echada");
-                }
-                else if (currentHeat < 0.8f)
-                {
-                    order.currentOrder.heatedMilkPrecision = 1;
-                    Debug.Log("Leche caliente echada");
-                }
-                else
-                {
-                    order.currentOrder.heatedMilkPrecision = 2;
-                    Debug.Log("Leche quemada echada");
-                }
-            }
-            milkServed = true;
-        }
-    }
-
-    public void EcharAgua()
-    {
-        //Si se tiene el agua en la mano y el cafe no esta servido entonces se puede echar 
-        if (waterInHand == true && coffeeServed == false)
-        {
-            if (countWater <= 1)
-            {
-                countWater += 1; //Se incrementa el contador de agua
-                order.currentOrder.waterPrecision = countWater; // Se guarda el resultado obtenido en la precision del jugador
-                Debug.Log($"[Cliente {order.currentOrder.orderId}] Has echado agua.");
-            }
-        }
-    }
-    public void EcharLecheCondensada()
-    {
-        //Si se tiene la leche condensada en la mano y el cafe no esta servido entonces se puede echar 
-        if (condensedMilkInHand == true && coffeeServed == false)
-        {
-            if (countCondensedMilk <= 1)
-            {
-                countCondensedMilk += 1; //Se incrementa el contador de leche condensada
-                order.currentOrder.condensedMilkPrecision = countCondensedMilk; // Se guarda el resultado obtenido en la precision del jugador
-                Debug.Log($"[Cliente {order.currentOrder.orderId}] Has echado leche condensada.");
-            }
-        }
-    }
-    public void EcharCrema()
-    {
-        //Si se tiene la crema en la mano y el cafe no esta servido entonces se puede echar
-        if (creamInHand == true && coffeeServed == false)
-        {
-            if (countCream <= 1)
-            {
-                countCream += 1; //Se incrementa el contador de crema
-                order.currentOrder.creamPrecision = countCream; // Se guarda el resultado obtenido en la precision del jugador
-                Debug.Log($"[Cliente {order.currentOrder.orderId}] Has echado crema.");
-            }
-        }
-    }
-    public void EcharChocolate()
-    {
-        //Si se tiene el chocolate en la mano y el cafe no esta servido entonces se puede echar
-        if (chocolateInHand == true && coffeeServed == false)
-        {
-            if (countChocolate <= 3)
-            {
-                countChocolate += 1; //Se incrementa el contador de chocolate
-                order.currentOrder.chocolatePrecision = countChocolate; // Se guarda el resultado obtenido en la precision del jugador
-                Debug.Log($"[Cliente {order.currentOrder.orderId}] Has echado chocolate.");
-            }
-        }
-    }
-    public void EcharWhiskey()
-    {
-        //Si se tiene el whiskey en la mano y el cafe esta servido entonces se puede echar
-        if (whiskeyInHand == true && coffeeServed == true)
-        {
-            if (countWhiskey <= 1)
-            {
-                countWhiskey += 1; //Se incrementa el contador de hielo
-                order.currentOrder.whiskeyPrecision = countWhiskey; // Se guarda el resultado obtenido en la precision del jugador
-                Debug.Log($"[Cliente {order.currentOrder.orderId}] Has echado whiskey.");
-            }
-        }
-    }
-    public void EcharAzucar()
-    {
-        //Si se tiene la cuchara de azucar en la mano y el cafe esta servido entonces se puede echar
-        if (cucharaInHand == true && coffeeServed == true)
-        {
-            if (countSugar <= 1)
-            {
-                countSugar += 1; //Se incrementa el contador de hielo
-                order.currentOrder.sugarPrecision = countSugar; // Se guarda el resultado obtenido en la precision del jugador
-                Debug.Log($"[Cliente {order.currentOrder.orderId}] Cantidad de azucar: " + countSugar);
-            }
-        }
-    }
-    public void EcharHielo()
-    {
-        //Si se tiene la cuchara de hielo en la mano y el cafe esta servido entonces se puede echar
-        if (iceInHand == true && coffeeServed == true) 
-        {
-            if (countIce <= 1)
-            {
-                countIce += 1; //Se incrementa el contador de hielo
-                order.currentOrder.icePrecision = countIce; // Se guarda el resultado obtenido en la precision del jugador
-                Debug.Log($"[Cliente {order.currentOrder.orderId}] Has echado hielo.");
-            }
-        }
-    }
-    public void PonerTapa()
-    {
-        //Si se tiene la tapa en la mano y el cafe esta servido entonces se puede poner
-        if (coverInHand == true && coffeeServed == true && vasoIsInCafetera)
-        {
-            if (countCover <= 1)
-            {
-                countCover += 1; //Se incrementa el contador de hielo
-                order.currentOrder.typePrecision = countCover; // Se guarda el resultado obtenido en la precision del jugador
-                Debug.Log($"[Cliente {order.currentOrder.orderId}] Tapa puesta.");
-            }
-            Image vaso = Vaso.GetComponent<Image>();
-            vaso.sprite = vasoConTapa;
-        }
-    }
-    public bool TengoOtroObjetoEnLaMano()
-    {
-        return cucharaInHand || waterInHand || milkInHand || condensedMilkInHand || creamInHand || chocolateInHand || whiskeyInHand || iceInHand || coverInHand || foodInHand;
-    }
-
     #endregion
 
     #region Sonidos

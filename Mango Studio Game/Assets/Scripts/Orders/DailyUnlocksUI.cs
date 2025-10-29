@@ -2,9 +2,9 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 
-public class OrderNoteUI : MonoBehaviour
+public class DailyUnlocksUI : MonoBehaviour
 {
-    [SerializeField] private RectTransform notePanelOrder;
+    [SerializeField] private RectTransform noteDailyUnlocks;
     [SerializeField] private TextMeshProUGUI noteTxt;
     [SerializeField] private float slideDuration = 0.5f;
     
@@ -18,11 +18,11 @@ public class OrderNoteUI : MonoBehaviour
 
     private void Awake()
     {
-        visiblePos = notePanelOrder.anchoredPosition;
+        visiblePos = noteDailyUnlocks.anchoredPosition;
 
-        hiddenPos = new Vector2(visiblePos.x, visiblePos.y + notePanelOrder.rect.height);
-        notePanelOrder.anchoredPosition = hiddenPos;
-        notePanelOrder.gameObject.SetActive(false);
+        hiddenPos = new Vector2(visiblePos.x, visiblePos.y - noteDailyUnlocks.rect.height);
+        noteDailyUnlocks.anchoredPosition = hiddenPos;
+        noteDailyUnlocks.gameObject.SetActive(false);
     }
     public void SetCurrentOrder(Order order)
     {
@@ -35,7 +35,7 @@ public class OrderNoteUI : MonoBehaviour
         if (currentOrder == null) return; 
 
         isVisible = !isVisible;
-        notePanelOrder.gameObject.SetActive(true);
+        noteDailyUnlocks.gameObject.SetActive(true);
         UpdateNoteText(currentOrder);
 
         StopAllCoroutines();
@@ -71,7 +71,7 @@ public class OrderNoteUI : MonoBehaviour
 
     private IEnumerator SlideNote (bool show)
     {
-        Vector2 start = notePanelOrder.anchoredPosition;
+        Vector2 start = noteDailyUnlocks.anchoredPosition;
         Vector2 end = show ? visiblePos : hiddenPos;
 
         float elapsed = 0f;
@@ -80,13 +80,13 @@ public class OrderNoteUI : MonoBehaviour
             elapsed += Time.deltaTime;
             float t = Mathf.Clamp01(elapsed / slideDuration);
             t = Mathf.SmoothStep(0f, 1f, t);
-            notePanelOrder.anchoredPosition = Vector2.Lerp(start, end, t);
+            noteDailyUnlocks.anchoredPosition = Vector2.Lerp(start, end, t);
             yield return null;
         }
 
-        notePanelOrder.anchoredPosition = end;
+        noteDailyUnlocks.anchoredPosition = end;
 
         if (!show)
-            notePanelOrder.gameObject.SetActive(false);
+            noteDailyUnlocks.gameObject.SetActive(false);
     }
 }
