@@ -134,9 +134,11 @@ public class MinigameInput : MonoBehaviour
     public void ResetCafe()
     {
         buttonManager.coffeeButton.gameObject.SetActive(true);
+        buttonManager.filtroCafeteraButton.gameObject.SetActive(true);
 
         buttonManager.EnableButton(buttonManager.cogerTazaInicioButton);
         buttonManager.EnableButton(buttonManager.cogerVasoInicioButton);
+        buttonManager.DisableButton(buttonManager.cogerTazaLecheButton);
         buttonManager.EnableButton(buttonManager.coffeeButton);
         buttonManager.DisableButton(buttonManager.molerButton);
         buttonManager.DisableButton(buttonManager.filtroCafeteraButton);
@@ -474,6 +476,7 @@ public class MinigameInput : MonoBehaviour
             buttonManager.DisableButton(buttonManager.calentarButton);
             buttonManager.DisableButton(buttonManager.waterButton);
             buttonManager.DisableButton(buttonManager.milkButton);
+            buttonManager.DisableButton(buttonManager.cogerTazaLecheButton);
             buttonManager.DisableButton(buttonManager.condensedMilkButton);
             buttonManager.DisableButton(buttonManager.creamButton);
             buttonManager.DisableButton(buttonManager.chocolateButton);
@@ -618,6 +621,9 @@ public class MinigameInput : MonoBehaviour
                 }
             }
             milkServed = true;
+            TazaLeche.SetActive(false);
+            tazaMilkInHand = false;
+            cursorManager.UpdateCursorTazaMilk(true);
         }
     }
     #endregion
