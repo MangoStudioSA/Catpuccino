@@ -23,6 +23,7 @@ public class OrderNoteUI : MonoBehaviour
         hiddenPos = new Vector2(visiblePos.x, visiblePos.y + notePanelOrder.rect.height);
         notePanelOrder.anchoredPosition = hiddenPos;
         notePanelOrder.gameObject.SetActive(false);
+        isVisible = false;
     }
     public void SetCurrentOrder(Order order)
     {
@@ -39,7 +40,12 @@ public class OrderNoteUI : MonoBehaviour
         UpdateNoteText(currentOrder);
 
         StopAllCoroutines();
-        StartCoroutine(SlideNote(isVisible));    
+        StartCoroutine(SlideNote(isVisible));  
+        
+        if (isVisible)
+        {
+            FindFirstObjectByType<TutorialManager>().CompleteCurrentStep();
+        }
     }
     public void ResetNote()
     {

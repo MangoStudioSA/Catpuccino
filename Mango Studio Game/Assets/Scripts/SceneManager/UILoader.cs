@@ -44,5 +44,7 @@ public class UILoader : MonoBehaviour
         roomPanel.SetActive(false);
         dialoguePanel.SetActive(true);
         gameUIManager.orderScreen = true;
+
+        FindFirstObjectByType<TutorialManager>().CompleteCurrentStep();
     }
 }

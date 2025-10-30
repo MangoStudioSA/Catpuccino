@@ -30,6 +30,7 @@ public class ButtonUnlockManager : MonoBehaviour
     [SerializeField] public Button recipesBookButton;
     [SerializeField] public Button orderNoteButton;
     [SerializeField] public Button papeleraButton;
+    [SerializeField] public Button endDeliveryButton;
 
     [Header("Botones del minijuego de pastelería")]
     [SerializeField] public Button bakeryButton;
@@ -50,7 +51,6 @@ public class ButtonUnlockManager : MonoBehaviour
     [SerializeField] public Button hornoButton;
     [SerializeField] public Button hornearButton;
     [SerializeField] public Button stopHorneadoButton;
-
 
     private void Start()
     {

@@ -109,11 +109,11 @@ public class MinigameInput : MonoBehaviour
 
             molerFillImage.fillAmount = currentMolido * 0.5f;
             molerFillImage.color = Color.Lerp(Color.yellow, Color.red, currentMolido);
-        }
 
-        if (currentMolido >= maxFillMoler)
-        {
-            StopMoler();
+            if (currentMolido >= maxFillMoler)
+            {
+                StopMoler();
+            }
         }
 
         // Movimiento circunferencia calentar leche
@@ -566,7 +566,10 @@ public class MinigameInput : MonoBehaviour
             {
                 Debug.LogWarning($"[Cliente {order.currentOrder.orderId}] Preparacion: Cafe detenido en: {currentSlideTime:F2}, pero no se pudo guardar porque no hay un pedido activo.");
             }
+
+            FindFirstObjectByType<TutorialManager>().CompleteCurrentStep();
         }
+
     }
     public void StartMoler()
     {
@@ -591,6 +594,8 @@ public class MinigameInput : MonoBehaviour
             Debug.Log($"[Cliente {order.currentOrder.orderId}] Cafe molido");
             buttonManager.DisableButton(buttonManager.molerButton);
             buttonManager.EnableButton(buttonManager.filtroButton);
+
+            FindFirstObjectByType<TutorialManager>().CompleteCurrentStep();
         }
     }
     public void TakeFiltro()
@@ -607,12 +612,15 @@ public class MinigameInput : MonoBehaviour
         if (filtroIsInCafetera == false)
         {
             filtroIsInCafetera = true;
+            FindFirstObjectByType<TutorialManager>().CompleteCurrentStep();
         }
 
         if (tazaIsInCafetera == true || vasoIsInCafetera == true && coffeeServed == false)
         {
             buttonManager.EnableButton(buttonManager.echarCafeButton);
         }
+
+ 
     }
     public void EcharCafe()
     {
@@ -639,9 +647,11 @@ public class MinigameInput : MonoBehaviour
             buttonManager.EnableButton(buttonManager.iceButton);
             buttonManager.EnableButton(buttonManager.coverButton);
             buttonManager.EnableButton(buttonManager.whiskeyButton);
+
+            FindFirstObjectByType<TutorialManager>().CompleteCurrentStep();
         }
 
-        if(tazaIsInCafetera)
+        if (tazaIsInCafetera)
         {
             Image taza = Taza.GetComponent<Image>();
             taza.sprite = tazaConCafe;

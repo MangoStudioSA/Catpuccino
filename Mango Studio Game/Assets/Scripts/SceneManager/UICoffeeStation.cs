@@ -8,6 +8,7 @@ public class UICoffeeStation : MonoBehaviour
     public GameObject recipesPanel;
 
     public CoffeeGameManager gameManager;
+    TutorialManager tutorialManager;
 
     public MinigameInput miniGameInput;
 
@@ -32,6 +33,7 @@ public class UICoffeeStation : MonoBehaviour
         recipesPanel.SetActive(false);
         preparationPanel.SetActive(true);
         Time.timeScale = 1.0f;
+        FindFirstObjectByType<TutorialManager>().CompleteCurrentStep();
     }
 
     public void ShowBakeryPanel()
@@ -54,6 +56,8 @@ public class UICoffeeStation : MonoBehaviour
             gameManager.SubmitOrder();
             preparationPanel.SetActive(false);
             deliveryPanel.SetActive(true);
+
+            FindFirstObjectByType<TutorialManager>().CompleteCurrentStep();
         }
     }
 }

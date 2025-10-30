@@ -40,6 +40,8 @@ public class UIDialogue : MonoBehaviour
         //transicion de la ui
         dialoguePanel.SetActive(false);
         preparationPanel.SetActive(true);
+
+        FindFirstObjectByType<TutorialManager>().CompleteCurrentStep();
     }
 
     public void EndDelivery()
@@ -51,5 +53,7 @@ public class UIDialogue : MonoBehaviour
         manager.customers.Dequeue();
         Destroy(manager.orderingCustomer);
         gameUI.orderScreen = false;
+
+        FindFirstObjectByType<TutorialManager>().CompleteCurrentStep();
     }
 }
