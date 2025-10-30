@@ -26,13 +26,13 @@ public class TutorialManager : MonoBehaviour
     public float bounceScale = 1.04f;
     public float bounceSpeed = 0.7f;
 
-    private int currentStep = 0;
+    public int currentStep = 0;
     private int tutorialDay = 0;
-    private bool isRunning = false;
+    public bool isRunning = false;
 
     public ButtonUnlockManager buttonManager;
 
-    private void Start()
+    public void Start()
     {
         tutorialPanel.gameObject.SetActive(false);
 
@@ -42,6 +42,8 @@ public class TutorialManager : MonoBehaviour
         {
             SetupSteps();
             StartTutorial();
+            isRunning = true;
+            Debug.Log("Comenzando tutorial");
         }
     }
 
@@ -55,7 +57,7 @@ public class TutorialManager : MonoBehaviour
                 message = "¡Bienvenidx a Catpuccino! Tu primer día en la cafetería ha comenzado.",
                 position = new Vector2(0f,0f),
                 autoAdvance = true,
-                autoDelay = 10f
+                autoDelay = 6f
             });
             // Paso 1
             steps.Add(new TutorialStep
@@ -71,128 +73,143 @@ public class TutorialManager : MonoBehaviour
             steps.Add(new TutorialStep
             {
                 message = "¡Ya sabes que quiere el cliente! ¡Manos a la obra, haz clic en \"Aceptar pedido\"!",
-                position = new Vector2(400f, -90f),
+                position = new Vector2(400f, -91f),
                 autoAdvance = false,
                 onStepStart = () =>
                 {
-
                 }
             });
             // Paso 3
             steps.Add(new TutorialStep
             {
-                message = "Para saber cómo preparar el café puedes abrir el libro de recetas",
-                position = new Vector2(-250f, 410),
-                autoAdvance = false,
-                onStepStart = () =>
-                {
-                    buttonManager.EnableButton(buttonManager.recipesBookButton);
-                }
+                message = "Coloca una taza para poder echar el café. Si se trata de un pedido para llevar coloca un vaso.",
+                position = new Vector2(-723f, 110f),
+                autoAdvance = true,
+                autoDelay = 5f
             });
             // Paso 4
             steps.Add(new TutorialStep
             {
-                message = "Ahora que ya sabes cómo preparar el café, haz clic en el botón para seleccionar la cantidad de café correspondiente.",
-                position = new Vector2(-325f, -202f),
-                autoAdvance = false,
-                onStepStart = () =>
-                {
-                    buttonManager.EnableButton(buttonManager.coffeeButton);
-                }
+                message = "Si es para tomar, deberás clicar sobre un plato y colocarlo en la zona de entrega.",
+                position = new Vector2(575f, -125f),
+                autoAdvance = true,
+                autoDelay = 5f
             });
             // Paso 5
             steps.Add(new TutorialStep
             {
-                message = "¡Presiona la palanca para moler el café!",
-                position = new Vector2(243f, 114f),
-                autoAdvance = true,
-                onStepStart = () =>
-                {
-                    buttonManager.EnableButton(buttonManager.molerButton);
-                }
-            });
-            // Paso 6
-            steps.Add(new TutorialStep
-            {
-                message = "Una vez molido el café, mueve el filtro a la cafetera clicando sobre él.",
-                position = new Vector2(-96f, -288f),
-                autoAdvance = false,
-                onStepStart = () =>
-                {
-                    buttonManager.EnableButton(buttonManager.filtroButton);
-                }
-            });
-            // Paso 7
-            steps.Add(new TutorialStep
-            {
-                message = "Coloca una taza para poder echar el café. Si se trata de un pedido para llevar coloca un vaso.",
-                position = new Vector2(20f, 280f),
-                autoAdvance = true,
-                autoDelay = 5f
-            });
-            // Paso 8
-            steps.Add(new TutorialStep
-            {
-                message = "Si es un pedido para tomar, deberás colocar un plato, mientras que si es para llevar deberás colocar la tapa del vaso.",
+                message = "Si es para llevar, al finalizar deberás clicar sobre la tapa y colocarla en el vaso.",
                 position = new Vector2(-654f, 225f),
                 autoAdvance = true,
                 autoDelay = 5f
             });
-            // Paso 9
+            // Paso 6
             steps.Add(new TutorialStep
             {
-                message = "Puedes comprobar los requisitos de la orden clicando en \"Pedido\"",
-                position = new Vector2(195f, 280f),
+                message = "Puedes comprobar los requisitos de la comanda clicando en \"Pedido\"",
+                position = new Vector2(120f, 280f),
                 autoAdvance = false,
                 onStepStart = () =>
                 {
                     buttonManager.EnableButton(buttonManager.orderNoteButton);
                 }
             });
-            // Paso 10
+            // Paso 7
             steps.Add(new TutorialStep
             {
-                message = "¡Ya puedes clicar para echar el café!",
-                position = new Vector2(-488f, -31f),
+                message = "Para saber cómo preparar los cafés haz clic en el libro de recetas.",
+                position = new Vector2(-685f, 325f),
                 autoAdvance = false,
                 onStepStart = () =>
                 {
-                    buttonManager.EnableButton(buttonManager.echarCafeButton);
+                    buttonManager.EnableButton(buttonManager.recipesBookButton);
+                }
+            });
+            // Paso 8
+            steps.Add(new TutorialStep
+            {
+                message = "Ahora que ya sabes cómo preparar el café, mantén presionado el botón para seleccionar la cantidad de café correspondiente.",
+                position = new Vector2(-380f, -120f),
+                autoAdvance = false,
+                onStepStart = () =>
+                {
+                    buttonManager.EnableButton(buttonManager.coffeeButton);
+                }
+            });
+            // Paso 9
+            steps.Add(new TutorialStep
+            {
+                message = "¡Mantén presionada la palanca para moler el café!",
+                position = new Vector2(160f, 114f),
+                autoAdvance = false,
+                onStepStart = () =>
+                {
+                    buttonManager.EnableButton(buttonManager.molerButton);
+                }
+            });
+            // Paso 10
+            steps.Add(new TutorialStep
+            {
+                message = "Una vez molido el café, mueve el filtro a la cafetera clicando sobre él.",
+                position = new Vector2(-157f, -231f),
+                autoAdvance = false,
+                onStepStart = () =>
+                {
+                    buttonManager.EnableButton(buttonManager.filtroButton);
                 }
             });
             // Paso 11
             steps.Add(new TutorialStep
             {
-                message = "Ahora puedes echar el azúcar y los hielos clicando sobre ellos.",
-                position = new Vector2(20f, 280f),
+                message = "Comprueba si el café se prepara con agua. Si es así, clica sobre ella e interactúa con el recipiente.",
+                position = new Vector2(30f, -390f),
                 autoAdvance = true,
                 autoDelay = 5f
             });
             // Paso 12
             steps.Add(new TutorialStep
             {
-                message = "¡Ten cuidado con el orden! ¡Algunos elementos se bloquearan a medida que realizas acciones!",
-                position = new Vector2(30f, -390f),
-                autoAdvance = true,
-                autoDelay = 4f
+                message = "¡Ya puedes clicar para echar el café!",
+                position = new Vector2(-390f, 180f),
+                autoAdvance = false,
+                onStepStart = () =>
+                {
+                    buttonManager.EnableButton(buttonManager.echarCafeButton);
+                }
             });
             // Paso 13
             steps.Add(new TutorialStep
             {
-                message = "¡Si te equivocas con la preparación puedes empezar de 0 clicando sobre la basura!",
-                position = new Vector2(-146f, 141f),
+                message = "Ahora puedes echar el azúcar y los hielos clicando sobre ellos e interactuando con el recipiente mediante clic.",
+                position = new Vector2(30f, -390f),
                 autoAdvance = true,
-                autoDelay = 4f
+                autoDelay = 5f
             });
             // Paso 14
             steps.Add(new TutorialStep
             {
-                message = "Cuando tengas todo listo coloca el vaso sobre la mesa. Si es una taza coloca el plato y posteriormente la taza.",
-                position = new Vector2(600f, -49f),
+                message = "¡Ten cuidado con el orden! ¡Algunos elementos se bloquearan a medida que realices acciones!",
+                position = new Vector2(30f, -390f),
                 autoAdvance = true,
                 autoDelay = 4f
             });
             // Paso 15
+            steps.Add(new TutorialStep
+            {
+                message = "¡Si te equivocas con la preparación puedes empezar de 0 clicando sobre la basura!",
+                position = new Vector2(-200f, 100f),
+                autoAdvance = true,
+                autoDelay = 4f
+            });
+            // Paso 16
+            steps.Add(new TutorialStep
+            {
+                message = "Cuando tengas todo listo, coloca el vaso sobre la mesa. Si se trata de una taza, colócala sobre el plato.",
+                position = new Vector2(600f, -100f),
+                autoAdvance = true,
+                autoDelay = 4f
+            });
+            // Paso 17
             steps.Add(new TutorialStep
             {
                 message = "Presiona \"Entregar\" para entregarle el pedido al cliente.",
@@ -203,23 +220,23 @@ public class TutorialManager : MonoBehaviour
                     buttonManager.EnableButton(buttonManager.submitOrderButton);
                 }
             });
-            // Paso 16
+            // Paso 18
             steps.Add(new TutorialStep
             {
-                message = "El cliente te dará una valoración y pagará en función de la puntuación que hayas obtenido al preparar su comanda.",
+                message = "El cliente expondrá su valoración y pagará en función de la puntuación que hayas obtenido al preparar su comanda.",
                 position = new Vector2(-480f, -160f),
                 autoAdvance = true,
                 autoDelay = 5f
             });
-            // Paso 17
+            // Paso 19
             steps.Add(new TutorialStep
             {
-                message = "¡Si está muy contento podrá darte una propina!",
+                message = "¡Si la puntuación es alta te dará una propina!",
                 position = new Vector2(350f, 375f),
                 autoAdvance = true,
                 autoDelay = 5f
             });
-            // Paso 18
+            // Paso 20
             steps.Add(new TutorialStep
             {
                 message = "Haz clic en \"Finalizar\" para volver a la cafetería.",
@@ -230,18 +247,18 @@ public class TutorialManager : MonoBehaviour
                     buttonManager.EnableButton(buttonManager.endDeliveryButton);
                 }
             });
-            // Paso 19
+            // Paso 21
             steps.Add(new TutorialStep
             {
-                message = "¡Ya has atendido a tu primer cliente! Sigue atendiendo a más para poder pagar las facturas al final del día. La cafetería cierra a las 20:00pm.",
+                message = "¡Ya has atendido a tu primer cliente! Sigue atendiendo más para poder pagar las facturas al final del día. ¡La cafetería cierra a las 20:00pm!",
                 position = new Vector2(0f, 0f),
                 autoAdvance = true,
                 autoDelay = 5f
             });
-            // Paso 20
+            // Paso 22
             steps.Add(new TutorialStep
             {
-                message = "Aquí tienes 100$ para ayudarte a pasar el primer día. ¡Disfruta de Catpuccino!",
+                message = "Como recompensa, se te ingresarán 100$ para ayudarte a pasar el primer día. ¡Disfruta de Catpuccino!",
                 position = new Vector2(0f, 0f),
                 autoAdvance = true,
                 autoDelay = 5f
@@ -355,11 +372,11 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
-    private void EndTutorial()
+    public void EndTutorial()
     {
         isRunning = false;
         tutorialPanel.gameObject.SetActive(false);
-        HUDManager.Instance.UpdateMonedas(100);
+        GameManager.Instance.AnadirMonedas(100);
         Debug.Log("Tutorial completado");
     }
 }

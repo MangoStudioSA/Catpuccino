@@ -15,6 +15,7 @@ public class OrderNoteUI : MonoBehaviour
 
     private bool isVisible = false;
     private Order currentOrder;
+    public TutorialManager tutorialManager;
 
     private void Awake()
     {
@@ -40,12 +41,10 @@ public class OrderNoteUI : MonoBehaviour
         UpdateNoteText(currentOrder);
 
         StopAllCoroutines();
-        StartCoroutine(SlideNote(isVisible));  
-        
-        if (isVisible)
-        {
-            FindFirstObjectByType<TutorialManager>().CompleteCurrentStep();
-        }
+        StartCoroutine(SlideNote(isVisible));
+
+        if (tutorialManager.isRunning && tutorialManager.currentStep == 6)
+            FindFirstObjectByType<TutorialManager>().CompleteCurrentStep();        
     }
     public void ResetNote()
     {

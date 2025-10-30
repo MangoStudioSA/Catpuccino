@@ -15,6 +15,7 @@ public class UIDialogue : MonoBehaviour
     public Button acceptButton;
 
     GameUIManager gameUI;
+    public TutorialManager tutorialManager;
 
     void Start()
     {
@@ -41,7 +42,8 @@ public class UIDialogue : MonoBehaviour
         dialoguePanel.SetActive(false);
         preparationPanel.SetActive(true);
 
-        FindFirstObjectByType<TutorialManager>().CompleteCurrentStep();
+        if (tutorialManager.isRunning && tutorialManager.currentStep == 2)
+            FindFirstObjectByType<TutorialManager>().CompleteCurrentStep();
     }
 
     public void EndDelivery()
@@ -54,6 +56,7 @@ public class UIDialogue : MonoBehaviour
         Destroy(manager.orderingCustomer);
         gameUI.orderScreen = false;
 
-        FindFirstObjectByType<TutorialManager>().CompleteCurrentStep();
+        if (tutorialManager.isRunning && tutorialManager.currentStep == 20)
+            FindFirstObjectByType<TutorialManager>().CompleteCurrentStep();
     }
 }

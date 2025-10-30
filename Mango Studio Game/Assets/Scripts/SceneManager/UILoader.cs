@@ -9,7 +9,7 @@ public class UILoader : MonoBehaviour
     public GameObject dialoguePanel;
 
     GameUIManager gameUIManager;
-
+    public TutorialManager tutorialManager;
 
     // Referencia al script que genera los pedidos del cliente
     [SerializeField] private CustomerOrder customerOrderGenerator;
@@ -45,6 +45,7 @@ public class UILoader : MonoBehaviour
         dialoguePanel.SetActive(true);
         gameUIManager.orderScreen = true;
 
-        FindFirstObjectByType<TutorialManager>().CompleteCurrentStep();
+        if (tutorialManager.isRunning && tutorialManager.currentStep == 1)
+            FindFirstObjectByType<TutorialManager>().CompleteCurrentStep();
     }
 }

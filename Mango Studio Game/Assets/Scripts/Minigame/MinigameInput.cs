@@ -61,6 +61,7 @@ public class MinigameInput : MonoBehaviour
     public FoodManager foodManager;
     public FoodOrder foodOrder;
     public OrderNoteUI orderNoteUI;
+    public TutorialManager tutorialManager;
 
     public GameObject Taza, Vaso, TazaLeche, Plato, PlatoTaza, BolsaLlevar;
     GameObject foodInPlatoObj = null, foodInHornoObj = null, foodInBolsaLlevarObj = null;
@@ -110,7 +111,7 @@ public class MinigameInput : MonoBehaviour
             molerFillImage.fillAmount = currentMolido * 0.5f;
             molerFillImage.color = Color.Lerp(Color.yellow, Color.red, currentMolido);
 
-            if (currentMolido >= maxFillMoler)
+            if (currentMolido == maxFillMoler)
             {
                 StopMoler();
             }
@@ -136,14 +137,14 @@ public class MinigameInput : MonoBehaviour
     public void ResetCafe()
     {
         buttonManager.coffeeButton.gameObject.SetActive(true);
-        buttonManager.filtroCafeteraButton.gameObject.SetActive(true);
-        buttonManager.filtroButton.gameObject.SetActive(true);
+        buttonManager.filtroCafeteraButton.gameObject.SetActive(false);
+        buttonManager.filtroButton.gameObject.SetActive(false);
 
         buttonManager.EnableButton(buttonManager.cogerTazaInicioButton);
         buttonManager.EnableButton(buttonManager.cogerVasoInicioButton);
         buttonManager.EnableButton(buttonManager.cogerPlatoTazaButton);
-        buttonManager.EnableButton(buttonManager.coffeeButton);
 
+        buttonManager.DisableButton(buttonManager.coffeeButton);
         buttonManager.DisableButton(buttonManager.cogerTazaLecheButton);
         buttonManager.DisableButton(buttonManager.molerButton);
         buttonManager.DisableButton(buttonManager.filtroCafeteraButton);
@@ -240,6 +241,23 @@ public class MinigameInput : MonoBehaviour
     }
     public void CheckButtons()
     {
+        if (tutorialManager.isRunning && tutorialManager.currentStep == 20)
+            buttonManager.EnableButton(buttonManager.endDeliveryButton);
+        else if (tutorialManager.isRunning)
+            buttonManager.DisableButton(buttonManager.endDeliveryButton);
+
+        if (tutorialManager.isRunning && cupServed)
+            buttonManager.EnableButton(buttonManager.submitOrderButton);
+        else if (tutorialManager.isRunning)
+            buttonManager.DisableButton(buttonManager.submitOrderButton);
+
+        if (tutorialManager.isRunning && tutorialManager.currentStep == 21 || tutorialManager.currentStep == 22)
+            buttonManager.DisableButton(buttonManager.gameButton);
+
+        if (tazaIsInCafetera || vasoIsInCafetera)
+            buttonManager.EnableButton(buttonManager.coffeeButton);
+            buttonManager.EnableButton(buttonManager.papeleraButton);
+
         if (tazaInHand || vasoInHand || TengoOtroObjetoEnLaMano())
         {
             buttonManager.DisableButton(buttonManager.submitOrderButton);
@@ -485,6 +503,7 @@ public class MinigameInput : MonoBehaviour
 
             vasoInHand = false;
             vasoIsInTable = true;
+            cupServed = true;
 
             cursorManager.UpdateCursorVaso(true);
 
@@ -497,6 +516,7 @@ public class MinigameInput : MonoBehaviour
             Vaso.SetActive(false);
             vasoInHand = true;
             vasoIsInTable = false;
+            cupServed = false;
 
             cursorManager.UpdateCursorVaso(false);
         }
@@ -567,9 +587,9 @@ public class MinigameInput : MonoBehaviour
                 Debug.LogWarning($"[Cliente {order.currentOrder.orderId}] Preparacion: Cafe detenido en: {currentSlideTime:F2}, pero no se pudo guardar porque no hay un pedido activo.");
             }
 
-            FindFirstObjectByType<TutorialManager>().CompleteCurrentStep();
+            if (tutorialManager.isRunning && tutorialManager.currentStep == 8)
+                FindFirstObjectByType<TutorialManager>().CompleteCurrentStep();
         }
-
     }
     public void StartMoler()
     {
@@ -586,16 +606,18 @@ public class MinigameInput : MonoBehaviour
     }
     public void StopMoler()
     {
-        if (isMoliendo || currentMolido == maxFillMoler)
+        if (isMoliendo && currentMolido == maxFillMoler)
         {
             isMoliendo = false;
             molerPanel.SetActive(false);
 
             Debug.Log($"[Cliente {order.currentOrder.orderId}] Cafe molido");
             buttonManager.DisableButton(buttonManager.molerButton);
+            buttonManager.filtroButton.gameObject.SetActive(true);
             buttonManager.EnableButton(buttonManager.filtroButton);
 
-            FindFirstObjectByType<TutorialManager>().CompleteCurrentStep();
+            if (tutorialManager.isRunning && tutorialManager.currentStep == 9)
+                FindFirstObjectByType<TutorialManager>().CompleteCurrentStep();
         }
     }
     public void TakeFiltro()
@@ -605,6 +627,7 @@ public class MinigameInput : MonoBehaviour
             buttonManager.DisableButton(buttonManager.filtroButton);
             buttonManager.filtroButton.gameObject.SetActive(false);
             buttonManager.EnableButton(buttonManager.filtroCafeteraButton);
+            buttonManager.filtroCafeteraButton.gameObject.SetActive(true);
         }
     }
     public void PutFiltro()
@@ -612,7 +635,9 @@ public class MinigameInput : MonoBehaviour
         if (filtroIsInCafetera == false)
         {
             filtroIsInCafetera = true;
-            FindFirstObjectByType<TutorialManager>().CompleteCurrentStep();
+
+            if (tutorialManager.isRunning && tutorialManager.currentStep == 10)
+                FindFirstObjectByType<TutorialManager>().CompleteCurrentStep();
         }
 
         if (tazaIsInCafetera == true || vasoIsInCafetera == true && coffeeServed == false)
@@ -648,7 +673,8 @@ public class MinigameInput : MonoBehaviour
             buttonManager.EnableButton(buttonManager.coverButton);
             buttonManager.EnableButton(buttonManager.whiskeyButton);
 
-            FindFirstObjectByType<TutorialManager>().CompleteCurrentStep();
+            if (tutorialManager.isRunning && tutorialManager.currentStep == 12)
+                FindFirstObjectByType<TutorialManager>().CompleteCurrentStep();
         }
 
         if (tazaIsInCafetera)
