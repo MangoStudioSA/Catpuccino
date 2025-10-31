@@ -43,7 +43,7 @@ public class OrderNoteUI : MonoBehaviour
         StopAllCoroutines();
         StartCoroutine(SlideNote(isVisible));
 
-        if (tutorialManager.isRunning && tutorialManager.currentStep == 6)
+        if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 6)
             FindFirstObjectByType<TutorialManager>().CompleteCurrentStep();        
     }
     public void ResetNote()

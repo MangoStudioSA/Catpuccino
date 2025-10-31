@@ -42,8 +42,15 @@ public class UIDialogue : MonoBehaviour
         dialoguePanel.SetActive(false);
         preparationPanel.SetActive(true);
 
-        if (tutorialManager.isRunning && tutorialManager.currentStep == 2)
+        if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 2)
             FindFirstObjectByType<TutorialManager>().CompleteCurrentStep();
+
+        if (tutorialManager.isRunningT2)
+            tutorialManager.StartTutorial2();
+
+        if (tutorialManager.isRunningT3)
+            tutorialManager.StartTutorial3();
+
     }
 
     public void EndDelivery()
@@ -56,7 +63,7 @@ public class UIDialogue : MonoBehaviour
         Destroy(manager.orderingCustomer);
         gameUI.orderScreen = false;
 
-        if (tutorialManager.isRunning && tutorialManager.currentStep == 20)
+        if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 20)
             FindFirstObjectByType<TutorialManager>().CompleteCurrentStep();
     }
 }

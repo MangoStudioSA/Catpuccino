@@ -48,6 +48,7 @@ public class CursorManager : MonoBehaviour
 
     [SerializeField] MinigameInput miniGameInput; //para poder usar referencias a los vasos y tazas       
     public FoodManager foodManager;
+    public TutorialManager tutorialManager;
 
     void Start()
     {
@@ -167,6 +168,9 @@ public class CursorManager : MonoBehaviour
         Texture2D cursor = foodManager.GetFoodCursor(category, type);
         Cursor.SetCursor(cursor, Vector2.zero, CursorMode.Auto);
         Debug.Log($"Comina en mano: {category}{type}");
+
+        if (tutorialManager.isRunningT2 && tutorialManager.currentStep == 3)
+            FindFirstObjectByType<TutorialManager>().CompleteCurrentStep2();
     }
 
     // Gestionar cursor comida
@@ -398,5 +402,10 @@ public class CursorManager : MonoBehaviour
         {
             Cursor.SetCursor(defaultCursorTexture, hotSpotDefault, CursorMode.Auto);
         }
+    }
+
+    public void SetDefaultCursor()
+    {
+        Cursor.SetCursor(defaultCursorTexture, hotSpotDefault, CursorMode.Auto);
     }
 }

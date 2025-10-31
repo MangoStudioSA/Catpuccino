@@ -40,7 +40,7 @@ public class MinigameInput : MonoBehaviour
     private CookState currentCookState;
 
     float currentSlideTime = 0f;
-    bool isSliding = false, coffeeDone = false;
+    bool isSliding = false, isBaking = false, coffeeDone = false;
     
     int countSugar = 0, countIce = 0, countCover = 0, countFoodCover = 0, countWater = 0, countMilk = 0, countCondensedMilk = 0, countCream = 0, countChocolate = 0, countWhiskey = 0;
 
@@ -132,6 +132,24 @@ public class MinigameInput : MonoBehaviour
             StopHeating();
         }
 
+        // Horneado
+        if (isBaking || isHeating)
+        {
+            buttonManager.hornoButton.gameObject.SetActive(false);
+            buttonManager.DisableButton(buttonManager.hornoButton);
+
+            buttonManager.espumadorButton.gameObject.SetActive(false);
+            buttonManager.DisableButton(buttonManager.espumadorButton);
+        }
+        else
+        {
+            buttonManager.hornoButton.gameObject.SetActive(true);
+            buttonManager.EnableButton(buttonManager.hornoButton);
+
+            buttonManager.espumadorButton.gameObject.SetActive(true);
+            buttonManager.EnableButton(buttonManager.espumadorButton);
+        }
+
         CheckButtons();
     }
     public void ResetCafe()
@@ -139,6 +157,9 @@ public class MinigameInput : MonoBehaviour
         buttonManager.coffeeButton.gameObject.SetActive(true);
         buttonManager.filtroCafeteraButton.gameObject.SetActive(false);
         buttonManager.filtroButton.gameObject.SetActive(false);
+        buttonManager.calentarButton.gameObject.SetActive(true);
+        buttonManager.molerButton.gameObject.SetActive(true);
+        buttonManager.echarCafeButton.gameObject.SetActive(true);
 
         buttonManager.EnableButton(buttonManager.cogerTazaInicioButton);
         buttonManager.EnableButton(buttonManager.cogerVasoInicioButton);
@@ -153,6 +174,8 @@ public class MinigameInput : MonoBehaviour
         buttonManager.DisableButton(buttonManager.condensedMilkButton);
         buttonManager.DisableButton(buttonManager.creamButton);
         buttonManager.DisableButton(buttonManager.chocolateButton);
+        buttonManager.DisableButton(buttonManager.calentarButton);
+        buttonManager.DisableButton(buttonManager.echarCafeButton);
         DisableMechanics();
 
         heatPanel.SetActive(false);
@@ -195,7 +218,7 @@ public class MinigameInput : MonoBehaviour
 
         //platoInHand = false;
         platoIsInEncimera = foodIsInHorno = foodIsInPlato = foodIsInBolsaLlevar = carryBagIsInEncimera = false;
-        foodServed = foodBaked = false;
+        foodServed = foodBaked = isBaking = false;
         countFoodCover = 0;
         //foodInHand = false;
 
@@ -241,18 +264,30 @@ public class MinigameInput : MonoBehaviour
     }
     public void CheckButtons()
     {
-        if (tutorialManager.isRunning && tutorialManager.currentStep == 20)
+        if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 20)
             buttonManager.EnableButton(buttonManager.endDeliveryButton);
-        else if (tutorialManager.isRunning)
+        else if (tutorialManager.isRunningT1)
             buttonManager.DisableButton(buttonManager.endDeliveryButton);
 
-        if (tutorialManager.isRunning && cupServed)
+        if (tutorialManager.isRunningT1 && cupServed)
             buttonManager.EnableButton(buttonManager.submitOrderButton);
-        else if (tutorialManager.isRunning)
+        else if (tutorialManager.isRunningT1)
             buttonManager.DisableButton(buttonManager.submitOrderButton);
 
-        if (tutorialManager.isRunning && tutorialManager.currentStep == 21 || tutorialManager.currentStep == 22)
+        if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 21 || tutorialManager.currentStep == 22)
             buttonManager.DisableButton(buttonManager.gameButton);
+        else
+            buttonManager.EnableButton(buttonManager.gameButton);
+
+        if (tutorialManager.isRunningT2 && tutorialManager.currentStep == 0)
+            buttonManager.DisableButton(buttonManager.bakeryButton);
+        else
+            buttonManager.EnableButton(buttonManager.bakeryButton);
+
+        if (tutorialManager.isRunningT2 && tutorialManager.currentStep != 9)
+            buttonManager.DisableButton(buttonManager.returnBakeryButton);
+        else if (tutorialManager.isRunningT2 && tutorialManager.currentStep == 9)
+            buttonManager.EnableButton(buttonManager.returnBakeryButton);
 
         if (tazaIsInCafetera || vasoIsInCafetera)
             buttonManager.EnableButton(buttonManager.coffeeButton);
@@ -290,7 +325,7 @@ public class MinigameInput : MonoBehaviour
         {
             buttonManager.DisableButton(buttonManager.returnBakeryButton);
         }
-        else
+        else if (!tutorialManager.isRunningT2)
         {
             buttonManager.EnableButton(buttonManager.returnBakeryButton);
         }
@@ -307,6 +342,7 @@ public class MinigameInput : MonoBehaviour
         ResetFoodState();
         ActualizarBotonCogerComida();
     }
+    
     #region Mecanicas cafe
     public void ActualizarBotonCogerEnvase()
     {
@@ -573,6 +609,7 @@ public class MinigameInput : MonoBehaviour
             isSliding = false;
             coffeeDone = true;
 
+            buttonManager.coffeeButton.gameObject.SetActive(false);
             buttonManager.DisableButton(buttonManager.coffeeButton);
             buttonManager.EnableButton(buttonManager.molerButton);
 
@@ -587,7 +624,7 @@ public class MinigameInput : MonoBehaviour
                 Debug.LogWarning($"[Cliente {order.currentOrder.orderId}] Preparacion: Cafe detenido en: {currentSlideTime:F2}, pero no se pudo guardar porque no hay un pedido activo.");
             }
 
-            if (tutorialManager.isRunning && tutorialManager.currentStep == 8)
+            if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 8)
                 FindFirstObjectByType<TutorialManager>().CompleteCurrentStep();
         }
     }
@@ -612,11 +649,12 @@ public class MinigameInput : MonoBehaviour
             molerPanel.SetActive(false);
 
             Debug.Log($"[Cliente {order.currentOrder.orderId}] Cafe molido");
+            buttonManager.molerButton.gameObject.SetActive(false);
             buttonManager.DisableButton(buttonManager.molerButton);
             buttonManager.filtroButton.gameObject.SetActive(true);
             buttonManager.EnableButton(buttonManager.filtroButton);
 
-            if (tutorialManager.isRunning && tutorialManager.currentStep == 9)
+            if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 9)
                 FindFirstObjectByType<TutorialManager>().CompleteCurrentStep();
         }
     }
@@ -636,7 +674,7 @@ public class MinigameInput : MonoBehaviour
         {
             filtroIsInCafetera = true;
 
-            if (tutorialManager.isRunning && tutorialManager.currentStep == 10)
+            if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 10)
                 FindFirstObjectByType<TutorialManager>().CompleteCurrentStep();
         }
 
@@ -657,6 +695,7 @@ public class MinigameInput : MonoBehaviour
             coffeeServed = true;
 
             buttonManager.filtroCafeteraButton.gameObject.SetActive(false);
+            buttonManager.echarCafeButton.gameObject.SetActive(false);
 
             buttonManager.DisableButton(buttonManager.echarCafeButton);
             buttonManager.DisableButton(buttonManager.filtroCafeteraButton);
@@ -673,7 +712,7 @@ public class MinigameInput : MonoBehaviour
             buttonManager.EnableButton(buttonManager.coverButton);
             buttonManager.EnableButton(buttonManager.whiskeyButton);
 
-            if (tutorialManager.isRunning && tutorialManager.currentStep == 12)
+            if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 12)
                 FindFirstObjectByType<TutorialManager>().CompleteCurrentStep();
         }
 
@@ -718,7 +757,7 @@ public class MinigameInput : MonoBehaviour
     }
     public void ToggleTazaLecheEspumador()
     {
-        if (TengoOtroObjetoEnLaMano())
+        if (TengoOtroObjetoEnLaMano() | vasoInHand | tazaInHand)
             return;
         if (!tazaMilkInHand && !tazaMilkIsInEspumador)
             return;
@@ -738,6 +777,9 @@ public class MinigameInput : MonoBehaviour
 
             cursorManager.UpdateCursorTazaMilk(true);
             Debug.Log($"Taza con leche colocada en espumador: {tazaMilkIsInEspumador}");
+
+            if (tutorialManager.isRunningT3 && tutorialManager.currentStep == 1)
+                FindFirstObjectByType<TutorialManager>().CompleteCurrentStep3();
 
         }
         else if (tazaMilkIsInEspumador && !tazaMilkInHand)
@@ -771,6 +813,9 @@ public class MinigameInput : MonoBehaviour
             curvedFillImage.color = Color.blue;
 
             Debug.Log($"[Cliente {order.currentOrder.orderId}] Calentando la leche...");
+
+            if (tutorialManager.isRunningT3 && tutorialManager.currentStep == 2)
+                FindFirstObjectByType<TutorialManager>().CompleteCurrentStep3();
         }
     }
     public void StopHeating()
@@ -1010,7 +1055,7 @@ public class MinigameInput : MonoBehaviour
     #region Mecanica tipo de pedido
     public void CogerTapa()
     {
-        if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand)
+        if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand && !tazaMilkInHand)
         {
             coverInHand = true;
         }
@@ -1032,6 +1077,10 @@ public class MinigameInput : MonoBehaviour
             }
             Image vaso = Vaso.GetComponent<Image>();
             vaso.sprite = vasoConTapa;
+
+            buttonManager.DisableButton(buttonManager.coverButton);
+            cursorManager.SetDefaultCursor();
+            coverInHand = false;
         }
     }
     #endregion
@@ -1064,6 +1113,9 @@ public class MinigameInput : MonoBehaviour
             Debug.Log($"Plato colocado: {platoIsInEncimera}");
         }
         ActualizarBotonCogerComida();
+
+        if (tutorialManager.isRunningT2 && tutorialManager.currentStep == 2)
+            FindFirstObjectByType<TutorialManager>().CompleteCurrentStep2();
     }
     public void PlaceCarryBagEncimera()
     {
@@ -1137,6 +1189,8 @@ public class MinigameInput : MonoBehaviour
 
             Debug.Log("Comida colocada en el plato");
 
+            if (tutorialManager.isRunningT2 && tutorialManager.currentStep == 7)
+                FindFirstObjectByType<TutorialManager>().CompleteCurrentStep2();
         }
         else if (foodIsInPlato)
         {
@@ -1198,6 +1252,9 @@ public class MinigameInput : MonoBehaviour
             foodTypeInHand = null;
 
             Debug.Log("Comida colocada en la bolsa para llevar");
+
+            if (tutorialManager.isRunningT2 && tutorialManager.currentStep == 7)
+                FindFirstObjectByType<TutorialManager>().CompleteCurrentStep2();
         }
         ActualizarBotonCogerComida();
     }
@@ -1235,6 +1292,9 @@ public class MinigameInput : MonoBehaviour
 
             Debug.Log("Comida colocada en el horno");
 
+            if (tutorialManager.isRunningT2 && tutorialManager.currentStep == 4)
+                FindFirstObjectByType<TutorialManager>().CompleteCurrentStep2();
+
         }
         else if (foodIsInHorno)
         {
@@ -1263,8 +1323,11 @@ public class MinigameInput : MonoBehaviour
             StopCoroutine(horneadoCoroutine);
         }
         horneadoCoroutine = StartCoroutine(HornearCoroutine());
-        foodBaked = true;
+        isBaking = true;
         buttonManager.stopHorneadoButton.gameObject.SetActive(true);
+
+        if (tutorialManager.isRunningT2 && tutorialManager.currentStep == 5)
+            FindFirstObjectByType<TutorialManager>().CompleteCurrentStep2();
     }
     private IEnumerator HornearCoroutine()
     {
@@ -1314,6 +1377,8 @@ public class MinigameInput : MonoBehaviour
             horneadoCoroutine = null;
         }
 
+        isBaking = false;
+        foodBaked = true;
         float progress = bakeSlider.value;
         bakeSlider.gameObject.SetActive(false);
 

@@ -27,7 +27,9 @@ public class UICoffeeStation : MonoBehaviour
         preparationPanel.SetActive(false);
         recipesPanel.SetActive(true);
         Time.timeScale = 0.0f;
-        tutorialManager.tutorialPanel.gameObject.SetActive(false);
+        
+        if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 7)
+            tutorialManager.tutorialPanel.gameObject.SetActive(false);
     }
     public void CloseRecipesPanel()
     {
@@ -35,21 +37,29 @@ public class UICoffeeStation : MonoBehaviour
         preparationPanel.SetActive(true);
         Time.timeScale = 1.0f;
 
-        tutorialManager.tutorialPanel.gameObject.SetActive(true);
-        if (tutorialManager.isRunning && tutorialManager.currentStep == 7)
+        if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 7)
+        {
+            tutorialManager.tutorialPanel.gameObject.SetActive(true);
             FindFirstObjectByType<TutorialManager>().CompleteCurrentStep();
+        }
     }
 
     public void ShowBakeryPanel()
     {
         preparationPanel.SetActive(false);
         bakeryPanel.SetActive(true);
+
+        if (tutorialManager.isRunningT2 && tutorialManager.currentStep == 1)
+            FindFirstObjectByType<TutorialManager>().CompleteCurrentStep2();
     }
 
     public void ReturnBakeryPanel()
     {
         bakeryPanel.SetActive(false);
         preparationPanel.SetActive(true);
+
+        if (tutorialManager.isRunningT2 && tutorialManager.currentStep == 9)
+            FindFirstObjectByType<TutorialManager>().CompleteCurrentStep2();
     }
 
     public void SubmitOrderUI()
@@ -61,7 +71,7 @@ public class UICoffeeStation : MonoBehaviour
             preparationPanel.SetActive(false);
             deliveryPanel.SetActive(true);
 
-            if (tutorialManager.isRunning && tutorialManager.currentStep == 17)
+            if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 17)
                 FindFirstObjectByType<TutorialManager>().CompleteCurrentStep();
         }
     }

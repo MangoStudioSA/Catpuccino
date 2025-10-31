@@ -10,11 +10,19 @@ public class ButtonUnlockManager : MonoBehaviour
         public bool ignoreSpriteChange = false;
     }
 
+    [SerializeField] public ButtonConfig[] allButtons;
+
+
     [Header("Sprites botones")]
     [SerializeField] private Sprite defaultSprite;
     [SerializeField] private Sprite activeSprite;
 
-    [SerializeField] public ButtonConfig[] allButtons;
+    [Header("Botones de interacciones")]
+    [SerializeField] public Button endDeliveryButton;
+    [SerializeField] public Button gameButton;
+    [SerializeField] public Button submitOrderButton;
+    [SerializeField] public Button recipesBookButton;
+    [SerializeField] public Button orderNoteButton;
 
     [Header("Botones de las mecanicas")]
     [SerializeField] public Button coffeeButton;
@@ -39,12 +47,7 @@ public class ButtonUnlockManager : MonoBehaviour
     [SerializeField] public Button calentarButton;
     [SerializeField] public Button espumadorButton;
     [SerializeField] public Button cogerTazaLecheButton;
-    [SerializeField] public Button submitOrderButton;
-    [SerializeField] public Button recipesBookButton;
-    [SerializeField] public Button orderNoteButton;
     [SerializeField] public Button papeleraButton;
-    [SerializeField] public Button endDeliveryButton;
-    [SerializeField] public Button gameButton;
 
     [Header("Botones del minijuego de pastelería")]
     [SerializeField] public Button bakeryButton;
@@ -70,6 +73,12 @@ public class ButtonUnlockManager : MonoBehaviour
     {
         allButtons = new ButtonConfig[]
         {
+            new ButtonConfig { button = endDeliveryButton, ignoreSpriteChange = false },
+            new ButtonConfig { button = gameButton, ignoreSpriteChange = true },
+            new ButtonConfig { button = submitOrderButton, ignoreSpriteChange = false },
+            new ButtonConfig { button = recipesBookButton, ignoreSpriteChange = false },
+            new ButtonConfig { button = orderNoteButton, ignoreSpriteChange = false },
+
             new ButtonConfig { button = coffeeButton, ignoreSpriteChange = false },
             new ButtonConfig { button = milkButton, ignoreSpriteChange = true },
             new ButtonConfig { button = waterButton, ignoreSpriteChange = true },
@@ -91,11 +100,7 @@ public class ButtonUnlockManager : MonoBehaviour
             new ButtonConfig { button = calentarButton, ignoreSpriteChange = false },
             new ButtonConfig { button = espumadorButton, ignoreSpriteChange = true },
             new ButtonConfig { button = cogerTazaLecheButton, ignoreSpriteChange = true },
-            new ButtonConfig { button = submitOrderButton, ignoreSpriteChange = false },
-            new ButtonConfig { button = recipesBookButton, ignoreSpriteChange = false },
-            new ButtonConfig { button = orderNoteButton, ignoreSpriteChange = false },
             new ButtonConfig { button = papeleraButton, ignoreSpriteChange = true },
-            new ButtonConfig { button = endDeliveryButton, ignoreSpriteChange = true },
 
             new ButtonConfig { button = bakeryButton, ignoreSpriteChange = false },
             new ButtonConfig { button = returnBakeryButton, ignoreSpriteChange = false },

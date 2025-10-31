@@ -45,7 +45,7 @@ public class UILoader : MonoBehaviour
         dialoguePanel.SetActive(true);
         gameUIManager.orderScreen = true;
 
-        if (tutorialManager.isRunning && tutorialManager.currentStep == 1)
+        if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 1)
             FindFirstObjectByType<TutorialManager>().CompleteCurrentStep();
     }
 }

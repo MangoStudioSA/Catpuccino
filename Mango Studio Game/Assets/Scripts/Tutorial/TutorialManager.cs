@@ -14,7 +14,7 @@ public class TutorialManager : MonoBehaviour
         public bool autoAdvance;
         public float autoDelay = 5f;
         public System.Action onStepStart;
-        public System.Action onStepComplete; 
+        public System.Action onStepComplete;
     }
 
     [Header("Tutorial")]
@@ -22,40 +22,77 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI tutorialText;
     [SerializeField] CanvasGroup canvasGroup;
     [SerializeField] private List<TutorialStep> steps;
+
     public float fadeDuration = 0.5f;
     public float bounceScale = 1.04f;
     public float bounceSpeed = 0.7f;
 
     public int currentStep = 0;
-    private int tutorialDay = 0;
-    public bool isRunning = false;
+    public bool isRunningT1 = false;
+    public bool isRunningT2 = false;
+    public bool isRunningT3 = false;
 
     public ButtonUnlockManager buttonManager;
 
-    public void Start()
+    private void OnEnable()
     {
-        tutorialPanel.gameObject.SetActive(false);
-
-        int currentDay = FindFirstObjectByType<TimeManager>().currentDay;
-
-        if (currentDay == tutorialDay)
-        {
-            SetupSteps();
-            StartTutorial();
-            isRunning = true;
-            Debug.Log("Comenzando tutorial");
-        }
+        if (TimeManager.Instance != null) TimeManager.Instance.onDayStarted += HandleDayStarted;
     }
 
-    private void SetupSteps()
+    private void OnDisable()
+    {
+        if (TimeManager.Instance != null) TimeManager.Instance.onDayStarted -= HandleDayStarted;
+    }
+
+    private IEnumerator Start()
+    {
+        tutorialPanel.gameObject.SetActive(false);
+        yield return new WaitForSeconds(0.1f);
+
+        int currentDay = TimeManager.Instance.currentDay;
+        HandleDayStarted(currentDay);
+    }
+
+    private void HandleDayStarted (int day)
+    {
+        Debug.Log($"[TutorialManager] HandleDayStarted: {day}");
+
+        switch (day)
+        {
+            case 4:
+                SetupDay1Tutorial();
+                StartTutorial1();
+                isRunningT1 = true;
+                Debug.Log("Comenzando tutorial día 1");
+                break;
+
+            case 2:
+                SetupDay2Tutorial();
+                isRunningT2 = true;
+                Debug.Log("Comenzando tutorial día 2");
+                break;
+
+            case 5:
+                SetupDay3Tutorial();
+                isRunningT3 = true;
+                Debug.Log("Comenzando tutorial día 3");
+                break;
+
+            default:
+                Debug.Log("[TutorialManager] No hay tutorial configurado para hoy");
+                break;
+        }
+    }
+    #region Tutorial dia 1
+    private void SetupDay1Tutorial()
     {
         steps = new List<TutorialStep>();
         {
             // Paso 0
             steps.Add(new TutorialStep
             {
-                message = "¡Bienvenidx a Catpuccino! Tu primer día en la cafetería ha comenzado.",
-                position = new Vector2(0f,0f),
+                message = "¡Bienvenido/a a Catpuccino! Tu primer día en la cafetería ha comenzado.",
+                position = new Vector2(0f, 0f),
                 autoAdvance = true,
                 autoDelay = 6f
             });
@@ -266,20 +303,19 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
-    public void StartTutorial()
+    public void StartTutorial1()
     {
-        isRunning = true;
         currentStep = 0;
         if (!gameObject.activeSelf)
             gameObject.SetActive(true);
-        StartCoroutine(ShowStep());
+        StartCoroutine(ShowStepT1());
     }
 
-    private IEnumerator ShowStep()
+    private IEnumerator ShowStepT1()
     {
         if (currentStep >= steps.Count)
         {
-            EndTutorial();
+            EndTutorialT1();
             yield break;
         }
 
@@ -303,7 +339,6 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
-    // Llamar cuando el jugador haga la acción correcta
     public void CompleteCurrentStep()
     {
         StopAllCoroutines();
@@ -313,11 +348,297 @@ public class TutorialManager : MonoBehaviour
             step.onStepComplete?.Invoke();
 
             currentStep++;
-            if (currentStep < steps.Count) StartCoroutine(ShowStep());
-            else EndTutorial();
+            if (currentStep < steps.Count) StartCoroutine(ShowStepT1());
+            else EndTutorialT1();
         }));
     }
 
+    public void EndTutorialT1()
+    {
+        isRunningT1 = false;
+        tutorialPanel.gameObject.SetActive(false);
+        GameManager.Instance.AnadirMonedas(100);
+        Debug.Log("Tutorial completado");
+    }
+    #endregion
+
+    #region Tutorial dia 2
+    private void SetupDay2Tutorial()
+    {
+        steps = new List<TutorialStep>();
+        {
+            // Paso 0
+            steps.Add(new TutorialStep
+            {
+                message = "¡Cada día desbloquearás nuevas recetas e ingredientes! Interactúa con ellos haciendo clic.",
+                position = new Vector2(245f, -390f),
+                autoAdvance = true,
+                autoDelay = 5f
+            });
+            // Paso 1
+            steps.Add(new TutorialStep
+            {
+                message = "¡Ahora puedes visitar la zona de pastelería! Haz clic sobre el bótón para ir.",
+                position = new Vector2(50f, 290f),
+                autoAdvance = false,
+                onStepStart = () =>
+                {
+                    buttonManager.EnableButton(buttonManager.bakeryButton);
+                }
+            });
+            // Paso 2
+            steps.Add(new TutorialStep
+            {
+                message = "Comienza poniendo un plato o una bolsa para llevar en la encimera según el tipo de pedido.",
+                position = new Vector2(-600f, 60f),
+                autoAdvance = false,
+                onStepStart = () =>
+                {
+                }
+            });
+            // Paso 3
+            steps.Add(new TutorialStep
+            {
+                message = "Ahora, selecciona el tipo de bizcocho correspondiente.",
+                position = new Vector2(460f, 100f),
+                autoAdvance = false,
+                onStepStart = () =>
+                {
+                }
+            });
+            // Paso 4
+            steps.Add(new TutorialStep
+            {
+                message = "Mediante clic, coloca el bizcocho en el horno.",
+                position = new Vector2(-186f, 195f),
+                autoAdvance = false,
+                onStepStart = () =>
+                {
+                }
+            });
+            // Paso 5
+            steps.Add(new TutorialStep
+            {
+                message = "¡Pulsa el botón para hornearlo!",
+                position = new Vector2(-160f, -360f),
+                autoAdvance = false,
+                onStepStart = () =>
+                {
+                }
+            });
+            // Paso 6
+            steps.Add(new TutorialStep
+            {
+                message = "Vigila el tiempo de horneado. ¡Si lo paras antes quedará crudo! ¡Si te pasas se quemará!",
+                position = new Vector2(-146f, 306f),
+                autoAdvance = true,
+                autoDelay = 4f
+            });
+            // Paso 7
+            steps.Add(new TutorialStep
+            {
+                message = "Una vez finalice el horneado. Mueve el bizcocho al recipiente mediante clic.",
+                position = new Vector2(-680f, 100f),
+                autoAdvance = false,
+                onStepStart = () =>
+                {
+                }
+            });
+            // Paso 8
+            steps.Add(new TutorialStep
+            {
+                message = "Si el cliente no había pedido comida, puedes comenzar de 0 clicando sobre la basura.",
+                position = new Vector2(-600f, 60f),
+                autoAdvance = true,
+                autoDelay = 4f
+            });
+            // Paso 9
+            steps.Add(new TutorialStep
+            {
+                message = "¡Ya has finalizado la preparación del dulce! Vuelve a la zona de los cafés para continuar la comanda.",
+                position = new Vector2(280f, 221f),
+                autoAdvance = false,
+                onStepStart = () =>
+                {
+                    buttonManager.EnableButton(buttonManager.returnBakeryButton);
+                }
+            });
+        }
+    }
+
+    public void StartTutorial2()
+    {
+        currentStep = 0;
+        if (!gameObject.activeSelf)
+            gameObject.SetActive(true);
+
+        StartCoroutine(ShowStepT2());
+    }
+
+    public void CompleteCurrentStep2()
+    {
+        StopAllCoroutines();
+        StartCoroutine(FadeOutPanel(() =>
+        {
+            var step = steps[currentStep];
+            step.onStepComplete?.Invoke();
+
+            currentStep++;
+            if (currentStep < steps.Count) StartCoroutine(ShowStepT2());
+            else EndTutorialT2();
+        }));
+    }
+
+    private IEnumerator ShowStepT2()
+    {
+        if (currentStep >= steps.Count)
+        {
+            EndTutorialT2();
+            yield break;
+        }
+
+        var step = steps[currentStep];
+
+        // Mover el panel a la posicion indicada
+        tutorialPanel.anchoredPosition = step.position;
+        tutorialText.text = step.message;
+        tutorialPanel.gameObject.SetActive(true);
+
+        step.onStepStart?.Invoke();
+
+        // Efecto fade + rebote al mostrar el paso del turorial
+        yield return StartCoroutine(FadeInPanel());
+        StartCoroutine(BouncePanelLoop());
+
+        if (step.autoAdvance)
+        {
+            yield return new WaitForSeconds(step.autoDelay);
+            CompleteCurrentStep2();
+        }
+    }
+
+    public void EndTutorialT2()
+    {
+        isRunningT2 = false;
+        tutorialPanel.gameObject.SetActive(false);
+        Debug.Log("Tutorial 2 completado");
+    }
+    #endregion
+
+    #region Tutorial dia 3
+    private void SetupDay3Tutorial()
+    {
+        steps = new List<TutorialStep>();
+        {
+            // Paso 0
+            steps.Add(new TutorialStep
+            {
+                message = "¡Hoy has desbloqueado la opción de calentar la leche!",
+                position = new Vector2(0f, 0f),
+                autoAdvance = true,
+                autoDelay = 5f
+            });
+            // Paso 1
+            steps.Add(new TutorialStep
+            {
+                message = "Clica sobre la taza de leche y colócala en el espumador.",
+                position = new Vector2(-140f, -170f),
+                autoAdvance = false,
+                onStepStart = () =>
+                {
+                    buttonManager.EnableButton(buttonManager.cogerTazaLecheButton);
+                }
+            });
+            // Paso 2
+            steps.Add(new TutorialStep
+            {
+                message = "Ahora, presiona la rueda para calentar hasta el punto indicado.",
+                position = new Vector2(100f, 260f),
+                autoAdvance = false,
+                onStepStart = () =>
+                {
+                    buttonManager.EnableButton(buttonManager.calentarButton);
+                }
+            });
+            // Paso 3
+            steps.Add(new TutorialStep
+            {
+                message = "¡Ten cuidado de no pasarte calentando la leche ni de dejarla fría!",
+                position = new Vector2(581f, 54f),
+                autoAdvance = true,
+                autoDelay = 4f
+            });
+            // Paso 4
+            steps.Add(new TutorialStep
+            {
+                message = "¡Ahora puedes echarle la leche caliente a tus cafés!",
+                position = new Vector2(581f, 54f),
+                autoAdvance = true,
+                autoDelay = 4f
+            });
+        }
+    }
+
+    public void StartTutorial3()
+    {
+        currentStep = 0;
+        if (!gameObject.activeSelf)
+            gameObject.SetActive(true);
+
+        StartCoroutine(ShowStepT3());
+    }
+
+    public void CompleteCurrentStep3()
+    {
+        StopAllCoroutines();
+        StartCoroutine(FadeOutPanel(() =>
+        {
+            var step = steps[currentStep];
+            step.onStepComplete?.Invoke();
+
+            currentStep++;
+            if (currentStep < steps.Count) StartCoroutine(ShowStepT3());
+            else EndTutorialT3();
+        }));
+    }
+
+    private IEnumerator ShowStepT3()
+    {
+        if (currentStep >= steps.Count)
+        {
+            EndTutorialT3();
+            yield break;
+        }
+
+        var step = steps[currentStep];
+
+        // Mover el panel a la posicion indicada
+        tutorialPanel.anchoredPosition = step.position;
+        tutorialText.text = step.message;
+        tutorialPanel.gameObject.SetActive(true);
+
+        step.onStepStart?.Invoke();
+
+        // Efecto fade + rebote al mostrar el paso del turorial
+        yield return StartCoroutine(FadeInPanel());
+        StartCoroutine(BouncePanelLoop());
+
+        if (step.autoAdvance)
+        {
+            yield return new WaitForSeconds(step.autoDelay);
+            CompleteCurrentStep3();
+        }
+    }
+
+    public void EndTutorialT3()
+    {
+        isRunningT2 = false;
+        tutorialPanel.gameObject.SetActive(false);
+        Debug.Log("Tutorial 3 completado");
+    }
+    #endregion
+
+    // Funciones para la animacion y el fade in/out de los mensajes 
     private IEnumerator FadeInPanel()
     {
         canvasGroup.alpha = 0f;
@@ -343,10 +664,11 @@ public class TutorialManager : MonoBehaviour
         tutorialPanel.gameObject.SetActive(false);
         onFinish?.Invoke();
     }
+
     private IEnumerator BouncePanelLoop()
     {
         Vector3 originalScale = Vector3.one;
-        Vector3 targetScale = Vector3.one * bounceScale; 
+        Vector3 targetScale = Vector3.one * bounceScale;
 
         while (tutorialPanel.gameObject.activeSelf)
         {
@@ -371,13 +693,4 @@ public class TutorialManager : MonoBehaviour
             }
         }
     }
-
-    public void EndTutorial()
-    {
-        isRunning = false;
-        tutorialPanel.gameObject.SetActive(false);
-        GameManager.Instance.AnadirMonedas(100);
-        Debug.Log("Tutorial completado");
-    }
 }
-

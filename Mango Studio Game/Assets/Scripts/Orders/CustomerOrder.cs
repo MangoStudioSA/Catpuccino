@@ -20,8 +20,8 @@ public class CustomerOrder : MonoBehaviour
     {
         int day = timeManager.currentDay;
 
-        // Hay un 0.6% de probabilidades de que el cliente pida comida
-        if (Random.value < 0.9f)
+        // Hay un 0.8% de probabilidades de que el cliente pida comida
+        if (Random.value < 0.8f)
         {
             FoodCategory randomCategory = foodUnlockManager.GetRandomAvailableFood(day); //Se selecciona la comida que se encuentre disponible
             foodOrder = new FoodOrder(randomCategory);

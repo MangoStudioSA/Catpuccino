@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using System.Collections;
 using UnityEngine.UI;
+using System;
 
 public class TimeManager : MonoBehaviour
 {
@@ -27,6 +28,7 @@ public class TimeManager : MonoBehaviour
 
     private float currentTimeInSeconds;
     public int currentDay;
+    public event Action<int> onDayStarted;
 
     public bool IsOpen { get; private set; }
     private bool isDayEnding = false; // Flag para evitar que la corrutina se lance múltiples veces
@@ -111,7 +113,7 @@ public class TimeManager : MonoBehaviour
 
         float dailyIncome = (averageCoffeePrice + averageFoodPrice) * customersPerDay;
         float difficultyFactor = 1f + (currentDay - 1) * requiredIncrement;
-        int randomVariation = (int)Random.Range(-10f, 20f);
+        int randomVariation = (int)UnityEngine.Random.Range(-10f, 20f);
 
         //requiredMoney = requiredBase + (currentDay - 1) * requiredIncrement + (int)Random.Range(-50, 50);
         requiredMoney = Mathf.RoundToInt(dailyIncome * difficultyFactor) + randomVariation;
@@ -131,6 +133,7 @@ public class TimeManager : MonoBehaviour
         HUDmanager.ResetNote();
             
         Debug.Log($"--- DÍA {currentDay} --- \nLa cafetería ha abierto.");
+        onDayStarted?.Invoke(currentDay);
     }
 
 
