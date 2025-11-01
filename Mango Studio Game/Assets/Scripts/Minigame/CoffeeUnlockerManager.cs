@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class CoffeeUnlockerManager : MonoBehaviour
 {
     // Se crea un diccionario relacionando el dia del juego con los cafes que se desbloquean 
-    private Dictionary<int, CoffeeType[]> coffeUnlocks = new Dictionary<int, CoffeeType[]>()
+    private Dictionary<int, CoffeeType[]> coffeeUnlocks = new()
     {
         {1, new CoffeeType[] { CoffeeType.espresso, CoffeeType.lungo, CoffeeType.americano } },
         {2, new CoffeeType[] { CoffeeType.macchiatto } },
@@ -27,16 +27,16 @@ public class CoffeeUnlockerManager : MonoBehaviour
         return available[Random.Range(0, available.Length)];
     }
 
-    // Se crea un array con todos los tipos de cafes disponibles
+    // Se crea un array con todos los tipos de cafes disponibles ese dia
     public CoffeeType[] GetAvailableCoffees(int currentDay)
     {
-        List<CoffeeType> available = new List<CoffeeType>();
+        List<CoffeeType> available = new();
 
         for (int d = 1; d <= currentDay; d++)
         {
-            if (coffeUnlocks.ContainsKey(d))
+            if (coffeeUnlocks.ContainsKey(d))
             {
-                foreach (CoffeeType ct in coffeUnlocks[d])
+                foreach (CoffeeType ct in coffeeUnlocks[d])
                 {
                     if (!available.Contains(ct))
                         available.Add(ct);
@@ -50,8 +50,8 @@ public class CoffeeUnlockerManager : MonoBehaviour
     // Se crea un array con los tipos de cafes desbloqueados ese día
     public CoffeeType[] GetUnlockedCoffees(int currentDay)
     {
-        int day = Mathf.Clamp(currentDay, 1, coffeUnlocks.Count);
-        return coffeUnlocks[day];
+        int day = Mathf.Clamp(currentDay, 1, coffeeUnlocks.Count);
+        return coffeeUnlocks[day];
     }
 
 }

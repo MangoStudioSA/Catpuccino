@@ -139,7 +139,7 @@ public class OrderEvaluation : MonoBehaviour
             totalScore += typeScore;
             maxPossibleScore += MAX_SCORE_COVER;
 
-            if (progress.cakesEnabled)
+            if (progress.cakesEnabled && npcOrder.foodOrder.category != FoodCategory.no)
             {
                 int typeOrderFoodScore = EvaluateTypeOrderFoodPrecision(npcOrder, playerOrder);
                 totalScore += typeOrderFoodScore;
@@ -150,7 +150,7 @@ public class OrderEvaluation : MonoBehaviour
         }
 
         // MECANICA TIPO DE COMIDA Y ESTADO DE HORNEADO
-        if (progress.cakesEnabled)
+        if (progress.cakesEnabled && npcOrder.foodOrder.category != FoodCategory.no)
         {
             //EVALUACION DEL TIPO DE COMIDAD (TIPO EXACTO)
             int typeFoodScore = EvaluateTypeFoodPrecision(npcOrder, playerOrder);

@@ -7,18 +7,22 @@ using UnityEngine.UI;
 public class MinigameInput : MonoBehaviour
 {
     #region Variables
+    [Header("Referencias")]
+    public PlayerOrder order;
+    public OrderNoteUI orderNoteUI;
+    public TutorialManager tutorialManager;
+    public GameObject coffeBar; //panel que contiene la barra
+    public ButtonUnlockManager buttonManager;
+    public CursorManager cursorManager;
 
-    [SerializeField] GameObject coffeBar; //panel que contiene la barra
-    [SerializeField] ButtonUnlockManager buttonManager;
-    [SerializeField] CursorManager cursorManager;
-    [SerializeField] UnityEngine.UI.Slider coffeeSlider; //la barrita que se mueve
-    [SerializeField] UnityEngine.UI.Slider bakeSlider;
-    [SerializeField] private Image fillBakeImage;
+    [Header("Mecánica cantidad café")]
+    public UnityEngine.UI.Slider coffeeSlider; //la barrita que se mueve
+    public float slideSpeed = 0.8f;
+    public float maxAmount = 4.0f;
+    float currentSlideTime = 0f;
+    bool isSliding = false;
 
-    [SerializeField] float slideSpeed = 0.8f;
-    [SerializeField] float maxAmount = 4.0f;
-
-    [Header("Mecánica molar café")]
+    [Header("Mecánica moler café")]
     [SerializeField] private GameObject molerPanel;
     [SerializeField] private Image molerFillImage;
     [SerializeField] private float molerFillSpeed = 0.5f;
@@ -33,42 +37,46 @@ public class MinigameInput : MonoBehaviour
     [SerializeField] private float currentHeat = 0f;
     [SerializeField] private bool isHeating = false;
 
-    [Header("Horneados")]
-    public float tiempoHorneado = 15f;
-
-    private Coroutine horneadoCoroutine;
-    private CookState currentCookState;
-
-    float currentSlideTime = 0f;
-    bool isSliding = false, isBaking = false, coffeeDone = false;
-    
-    int countSugar = 0, countIce = 0, countCover = 0, countFoodCover = 0, countWater = 0, countMilk = 0, countCondensedMilk = 0, countCream = 0, countChocolate = 0, countWhiskey = 0;
+    [Header("Variables café")]
+    int countSugar = 0; 
+    int countIce = 0;
+    int countCover = 0;
+    int countWater = 0;
+    int countMilk = 0;
+    int countCondensedMilk = 0;
+    int countCream = 0;
+    int countChocolate = 0;
+    int countWhiskey = 0;
+    public bool coffeeDone = false;
+    public bool coffeeServed = false;
+    public bool milkServed = false;
+    public bool heatedMilk = false;
+    public bool cupServed = false;
 
     public bool cucharaInHand = false, tazaInHand = false, vasoInHand = false, platoTazaInHand = false, tazaMilkInHand = false, iceInHand = false, coverInHand = false, 
         waterInHand = false, milkInHand = false, condensedMilkInHand = false, creamInHand = false, chocolateInHand = false, whiskeyInHand = false;
-
-    public bool platoInHand = false, carryBagInHand = false, foodInHand = false, platoIsInEncimera = false, carryBagIsInEncimera = false, foodIsInBolsaLlevar = false, foodIsInPlato = false, foodIsInHorno = false;
-
-    public bool tazaIsInCafetera = false, tazaIsInPlato = false, vasoIsInCafetera = false, vasoIsInTable = false, platoTazaIsInTable = false, tazaMilkIsInEspumador = false, 
+    
+    public bool tazaIsInCafetera = false, tazaIsInPlato = false, vasoIsInCafetera = false, vasoIsInTable = false, platoTazaIsInTable = false, tazaMilkIsInEspumador = false,
         vasoTapaPuesta = false, filtroIsInCafetera = false;
 
-    public bool coffeeServed = false, milkServed = false, heatedMilk = false, foodServed = false, foodBaked = false, cupServed = false;
 
-    public FoodCategory foodCategoryInHand, foodCategoryInPlato, foodCategoryInCarryBag, foodCategoryInHorno;
-    public object foodTypeInHand, foodTypeInPlato, foodTypeInCarryBag, foodTypeInHorno;
+    [Header("Objetos fisicos")]
+    public GameObject Taza;
+    public GameObject Vaso;
+    public GameObject TazaLeche; 
+    public GameObject PlatoTaza;
 
-    PlayerOrder order;
-    public FoodManager foodManager;
-    public FoodOrder foodOrder;
-    public OrderNoteUI orderNoteUI;
-    public TutorialManager tutorialManager;
+    public Transform puntoCafetera;
+    public Transform puntoEspumador;
+    public Transform puntoMesa;
+    public Transform puntoTazaPlato;
 
-    public GameObject Taza, Vaso, TazaLeche, Plato, PlatoTaza, BolsaLlevar;
-    GameObject foodInPlatoObj = null, foodInHornoObj = null, foodInBolsaLlevarObj = null;
-
-    public Sprite vasoConTapa, vasoConCafe, vasoSinCafe, tazaSinCafe, tazaConCafe;
-    public Transform puntoCafetera, puntoEspumador, puntoEncimera, puntoComida, puntoHorno, puntoMesa, puntoTazaPlato;
-
+    [Header("Sprites")]
+    public Sprite vasoConTapa;
+    public Sprite vasoConCafe;
+    public Sprite vasoSinCafe;
+    public Sprite tazaSinCafe;
+    public Sprite tazaConCafe;
     #endregion
 
     public void Start()
@@ -77,78 +85,15 @@ public class MinigameInput : MonoBehaviour
 
         orderNoteUI.ResetNote();
         ResetCafe();
-        ResetFoodState();
         
-        ActualizarBotonCogerComida();
         ActualizarBotonCogerEnvase();
     }
 
     public void Update()
     {
-        // Movimiento slider cantidad cafe
-        if (isSliding)
-        {
-            currentSlideTime += Time.unscaledDeltaTime * slideSpeed; 
-
-            // El slider se actualiza con el tiempo de deslizamiento
-            coffeeSlider.value = currentSlideTime;
-
-
-            if (currentSlideTime > maxAmount)
-            {
-                currentSlideTime = maxAmount;
-                StopCoffee();
-                Debug.Log("La barrita llego al limite");
-            }
-        }
-
-        // Movimiento circunferencia moler cafe
-        if (isMoliendo && Input.GetMouseButton(0))
-        {
-            currentMolido += molerFillSpeed * Time.unscaledDeltaTime;
-            currentMolido = Mathf.Clamp01(currentMolido);
-
-            molerFillImage.fillAmount = currentMolido * 0.5f;
-            molerFillImage.color = Color.Lerp(Color.yellow, Color.red, currentMolido);
-
-            if (currentMolido == maxFillMoler)
-            {
-                StopMoler();
-            }
-        }
-
-        // Movimiento circunferencia calentar leche
-        if (isHeating && Input.GetMouseButton(0))
-        {
-            currentHeat += fillSpeed * Time.unscaledDeltaTime;
-            currentHeat = Mathf.Clamp01(currentHeat);
-
-            curvedFillImage.fillAmount = currentHeat;
-            curvedFillImage.color = Color.Lerp(Color.blue, Color.red, currentHeat);
-        }
-
-        if ( isHeating && Input.GetMouseButtonUp(0))
-        {
-            StopHeating();
-        }
-
-        // Horneado
-        if (isBaking || isHeating)
-        {
-            buttonManager.hornoButton.gameObject.SetActive(false);
-            buttonManager.DisableButton(buttonManager.hornoButton);
-
-            buttonManager.espumadorButton.gameObject.SetActive(false);
-            buttonManager.DisableButton(buttonManager.espumadorButton);
-        }
-        else
-        {
-            buttonManager.hornoButton.gameObject.SetActive(true);
-            buttonManager.EnableButton(buttonManager.hornoButton);
-
-            buttonManager.espumadorButton.gameObject.SetActive(true);
-            buttonManager.EnableButton(buttonManager.espumadorButton);
-        }
+        HandleCoffeeSlider();
+        HandleMoler();
+        HandleHeating();
 
         CheckButtons();
     }
@@ -195,7 +140,7 @@ public class MinigameInput : MonoBehaviour
         currentSlideTime = currentHeat = currentMolido = 0f;
         isSliding = coffeeDone = coffeeServed = cupServed = milkServed = heatedMilk = isHeating = isMoliendo = false;
         tazaIsInCafetera = tazaIsInPlato = vasoIsInCafetera = vasoIsInTable = platoTazaIsInTable = tazaMilkIsInEspumador = filtroIsInCafetera = false;
-        countSugar = countIce = countCover = countFoodCover = countWater = countMilk = countCondensedMilk = countCream = countChocolate = countWhiskey = 0;
+        countSugar = countIce = countCover = countWater = countMilk = countCondensedMilk = countCream = countChocolate = countWhiskey = 0;
 
         if (coffeeSlider != null)
         {
@@ -204,56 +149,73 @@ public class MinigameInput : MonoBehaviour
             coffeeSlider.value = 0f;
         }
     }
-    public void ResetFoodState()
+    private void HandleCoffeeSlider()
     {
-        buttonManager.EnableButton(buttonManager.cogerPlatoInicioButton);
-        buttonManager.EnableButton(buttonManager.cogerBolsaLlevarInicioButton);
-        buttonManager.EnableButton(buttonManager.bakeryButton);
-        buttonManager.EnableButton(buttonManager.returnBakeryButton);
-
-        buttonManager.DisableButton(buttonManager.hornoButton);
-
-        buttonManager.stopHorneadoButton.gameObject.SetActive(false);
-        bakeSlider.gameObject.SetActive(false);
-
-        //platoInHand = false;
-        platoIsInEncimera = foodIsInHorno = foodIsInPlato = foodIsInBolsaLlevar = carryBagIsInEncimera = false;
-        foodServed = foodBaked = isBaking = false;
-        countFoodCover = 0;
-        //foodInHand = false;
-
-        foodCategoryInHand = FoodCategory.no;
-        foodTypeInHand = null;
-        foodCategoryInPlato = FoodCategory.no;
-        foodTypeInHorno = null;
-        foodCategoryInCarryBag = FoodCategory.no;
-        foodTypeInCarryBag = null;
-        foodCategoryInHorno = FoodCategory.no;
-        foodTypeInHorno = null;
-
-        Plato.SetActive(false);
-        BolsaLlevar.SetActive(false);
-
-        if (foodInPlatoObj != null)
+        // Movimiento slider cantidad cafe
+        if (isSliding)
         {
-            foodInPlatoObj.SetActive(false);
-            foodInPlatoObj = null;
+            currentSlideTime += Time.unscaledDeltaTime * slideSpeed;
+
+            // El slider se actualiza con el tiempo de deslizamiento
+            coffeeSlider.value = currentSlideTime;
+
+
+            if (currentSlideTime > maxAmount)
+            {
+                currentSlideTime = maxAmount;
+                StopCoffee();
+                Debug.Log("La barrita llego al limite");
+            }
+        }
+    }
+    private void HandleMoler()
+    {
+        if (isMoliendo && Input.GetMouseButton(0))
+        {
+            currentMolido += molerFillSpeed * Time.unscaledDeltaTime;
+            currentMolido = Mathf.Clamp01(currentMolido);
+
+            molerFillImage.fillAmount = currentMolido * 0.5f;
+            molerFillImage.color = Color.Lerp(Color.yellow, Color.red, currentMolido);
+
+            if (currentMolido == maxFillMoler)
+            {
+                StopMoler();
+            }
+        }
+    }
+    private void HandleHeating()
+    {
+        // Movimiento circunferencia calentar leche
+        if (isHeating && Input.GetMouseButton(0))
+        {
+            currentHeat += fillSpeed * Time.unscaledDeltaTime;
+            currentHeat = Mathf.Clamp01(currentHeat);
+
+            curvedFillImage.fillAmount = currentHeat;
+            curvedFillImage.color = Color.Lerp(Color.blue, Color.red, currentHeat);
         }
 
-        if (foodInHornoObj != null)
+        if (isHeating && Input.GetMouseButtonUp(0))
         {
-            foodInHornoObj.SetActive(false);
-            foodInHornoObj = null;
+            StopHeating();
         }
 
-        if (foodInBolsaLlevarObj != null)
+        // Espumador
+        if (isHeating)
         {
-            foodInBolsaLlevarObj = null;
+            buttonManager.espumadorButton.gameObject.SetActive(false);
+            buttonManager.DisableButton(buttonManager.espumadorButton);
+        }
+        else
+        {
+            buttonManager.espumadorButton.gameObject.SetActive(true);
+            buttonManager.EnableButton(buttonManager.espumadorButton);
         }
     }
     public bool TengoOtroObjetoEnLaMano()
     {
-        return cucharaInHand || waterInHand || milkInHand || condensedMilkInHand || creamInHand || chocolateInHand || whiskeyInHand || iceInHand || coverInHand || foodInHand;
+        return cucharaInHand || waterInHand || milkInHand || condensedMilkInHand || creamInHand || chocolateInHand || whiskeyInHand || iceInHand || coverInHand;
     }
     public void DisableMechanics()
     {
@@ -320,27 +282,6 @@ public class MinigameInput : MonoBehaviour
         {
             buttonManager.EnableButton(buttonManager.calentarButton);
         }
-
-        if (platoInHand || foodInHand)
-        {
-            buttonManager.DisableButton(buttonManager.returnBakeryButton);
-        }
-        else if (!tutorialManager.isRunningT2)
-        {
-            buttonManager.EnableButton(buttonManager.returnBakeryButton);
-        }
-        if (foodBaked)
-        {
-            buttonManager.DisableButton(buttonManager.hornearButton);
-        }
-    }
-    public void ResetMinigame()
-    {
-        if (TengoOtroObjetoEnLaMano()) return;
-
-        ResetCafe();
-        ResetFoodState();
-        ActualizarBotonCogerComida();
     }
     
     #region Mecanicas cafe
@@ -357,39 +298,7 @@ public class MinigameInput : MonoBehaviour
             buttonManager.EnableButton(buttonManager.cogerVasoInicioButton);
         }
     }
-    public void ActualizarBotonCogerComida()
-    {
-        bool canTakeFood = carryBagIsInEncimera || platoIsInEncimera && !foodInHand && !foodIsInPlato && !foodServed && !foodIsInHorno;
-
-        Button[] botonesComida =
-        {
-            buttonManager.cogerBChocolateButton,
-            buttonManager.cogerBZanahoriaButton,
-            buttonManager.cogerBMantequillaButton,
-            buttonManager.cogerBRedVelvetButton,
-            buttonManager.cogerGChocolateBlButton,
-            buttonManager.cogerGChocolateButton,
-            buttonManager.cogerGMantequillaButton,
-            buttonManager.cogerMArandanosButton,
-            buttonManager.cogerMCerezaButton,
-            buttonManager.cogerMPistachoButton,
-            buttonManager.cogerMDulceLecheButton
-        };
-
-        foreach (Button boton in botonesComida)
-        {
-            if (boton == null) continue;
-
-            if (canTakeFood)
-            {
-                buttonManager.EnableButton(boton);
-            }
-            else
-            {
-                buttonManager.DisableButton(boton);
-            }
-        }
-    }
+   
     public void ToggleTazaCafetera()
     {
         if (TengoOtroObjetoEnLaMano() || tazaMilkInHand)
@@ -1082,321 +991,6 @@ public class MinigameInput : MonoBehaviour
             cursorManager.SetDefaultCursor();
             coverInHand = false;
         }
-    }
-    #endregion
-
-    #region Mecanicas comida
-    public void PlacePlatoEncimera()
-    {
-        if (platoIsInEncimera || carryBagIsInEncimera)
-            return;
-
-        if (TengoOtroObjetoEnLaMano())
-            return;
-
-        if (!platoInHand && !platoIsInEncimera)
-            return;
-
-        if (platoInHand)
-        {
-            // Poner en la encimera
-            Plato.SetActive(true);
-            Plato.transform.position = puntoEncimera.position;
-
-            platoInHand = false;
-            platoIsInEncimera = true;
-
-            cursorManager.UpdateCursorPlato(true);
-            buttonManager.EnableButton(buttonManager.hornoButton);
-            buttonManager.DisableButton(buttonManager.cogerBolsaLlevarInicioButton);
-            buttonManager.DisableButton(buttonManager.cogerPlatoInicioButton);
-            Debug.Log($"Plato colocado: {platoIsInEncimera}");
-        }
-        ActualizarBotonCogerComida();
-
-        if (tutorialManager.isRunningT2 && tutorialManager.currentStep == 2)
-            FindFirstObjectByType<TutorialManager>().CompleteCurrentStep2();
-    }
-    public void PlaceCarryBagEncimera()
-    {
-        if (carryBagIsInEncimera || platoIsInEncimera)
-            return;
-
-        if (TengoOtroObjetoEnLaMano())
-            return;
-
-        if (!carryBagInHand && !carryBagIsInEncimera)
-            return;
-
-        if (carryBagInHand)
-        {
-            // Poner en la encimera
-            BolsaLlevar.SetActive(true);
-            BolsaLlevar.transform.position = puntoEncimera.position;
-
-            carryBagInHand = false;
-            carryBagIsInEncimera = true;
-
-            cursorManager.UpdateCursorCarryBag(true);
-            buttonManager.EnableButton(buttonManager.hornoButton);
-            buttonManager.DisableButton(buttonManager.cogerBolsaLlevarInicioButton);
-            buttonManager.DisableButton(buttonManager.cogerPlatoInicioButton);
-            Debug.Log($"Bolsa para llevar colocada: {carryBagIsInEncimera}");
-        }
-        ActualizarBotonCogerComida();
-    }
-    public void ToggleFoodPlato()
-    {
-        if (carryBagIsInEncimera) return;
-
-        if (!foodInHand && !foodIsInPlato && !platoIsInEncimera) return;
-
-        if (foodInHand)
-        {
-            GameObject foodObj = foodManager.GetFoodObject(foodCategoryInHand, foodTypeInHand);
-            if (foodObj == null)
-            {
-                Debug.Log("No se encontro el objeto de comida correspondiente");
-                return;
-            }
-
-            foodObj.SetActive(true);
-            foodObj.transform.position = puntoComida.position;
-
-            foodInPlatoObj = foodObj;
-            //  Se asocia la categoria y el tipo de comida de la mano al plato
-            foodCategoryInPlato = foodCategoryInHand;
-            foodTypeInPlato = foodTypeInHand;
-
-            foodIsInPlato = true;
-            foodServed = true;
-            foodInHand = false;
-
-            cursorManager.UpdateCursorFood(true, foodCategoryInHand, foodTypeInHand);
-
-            if (order.currentOrder.foodOrder != null)
-            {
-                order.currentOrder.foodOrder.SetFoodPrecision(foodCategoryInHand, (int)foodTypeInHand);
-                order.currentOrder.foodOrder.SetCookStatePrecision(currentCookState);
-            }
-            else
-            {
-                Debug.Log("No hay comida en el pedido del cliente, no se puede establecer precision");
-            }
-            //  Se resetea la categoria y el tipo de comida de la mano 
-            foodCategoryInHand = FoodCategory.no;
-            foodTypeInHand = null;
-
-            Debug.Log("Comida colocada en el plato");
-
-            if (tutorialManager.isRunningT2 && tutorialManager.currentStep == 7)
-                FindFirstObjectByType<TutorialManager>().CompleteCurrentStep2();
-        }
-        else if (foodIsInPlato)
-        {
-            foodInPlatoObj.SetActive(false);
-            foodIsInPlato = false;
-            foodInHand = true;
-            //  Se asocia la categoria y el tipo de comida del plato a la mano
-            foodCategoryInHand = foodCategoryInPlato;
-            foodTypeInHand = foodTypeInPlato;
-            //  Se resetea la categoria y el tipo de comida del plato 
-            foodCategoryInPlato = FoodCategory.no;
-            foodTypeInPlato = null;
-
-            cursorManager.UpdateCursorFood(false, foodCategoryInHand, foodTypeInHand);
-            Debug.Log("Comida recogida del plato");
-        }
-
-        ActualizarBotonCogerComida();
-    }
-    public void ToggleFoodBolsaLlevar()
-    {
-        if (platoIsInEncimera) return;
-        if (!foodInHand && !foodIsInBolsaLlevar && !carryBagIsInEncimera) return;
-
-        if (foodInHand)
-        {
-            GameObject foodObj = foodManager.GetFoodObject(foodCategoryInHand, foodTypeInHand);
-            if (foodObj == null)
-            {
-                Debug.Log("No se encontro el objeto de comida correspondiente");
-                return;
-            }
-
-            foodInBolsaLlevarObj = foodObj;
-            //  Se asocia la categoria y el tipo de comida de la mano al plato
-            foodCategoryInCarryBag = foodCategoryInHand;
-            foodTypeInCarryBag = foodTypeInHand;
-
-            countFoodCover += 1;
-            order.currentOrder.typeOrderFoodPrecision = countFoodCover; // Se guarda el resultado obtenido en la precision del jugador
-
-            foodIsInBolsaLlevar = true;
-            foodServed = true;
-            foodInHand = false;
-
-            cursorManager.UpdateCursorFood(true, foodCategoryInHand, foodTypeInHand);
-
-            if (order.currentOrder.foodOrder != null)
-            {
-                order.currentOrder.foodOrder.SetFoodPrecision(foodCategoryInHand, (int)foodTypeInHand);
-                order.currentOrder.foodOrder.SetCookStatePrecision(currentCookState);
-            }
-            else
-            {
-                Debug.Log("No hay comida en el pedido del cliente, no se puede establecer precision");
-            }
-            //  Se resetea la categoria y el tipo de comida de la mano 
-            foodCategoryInHand = FoodCategory.no;
-            foodTypeInHand = null;
-
-            Debug.Log("Comida colocada en la bolsa para llevar");
-
-            if (tutorialManager.isRunningT2 && tutorialManager.currentStep == 7)
-                FindFirstObjectByType<TutorialManager>().CompleteCurrentStep2();
-        }
-        ActualizarBotonCogerComida();
-    }
-    public void ToggleFoodHorno()
-    {
-        if (!foodInHand && !platoIsInEncimera && !carryBagIsInEncimera)
-            return;
-
-        if (foodInHand)
-        {
-            GameObject foodObj = foodManager.GetFoodObject(foodCategoryInHand, foodTypeInHand);
-            if (foodObj == null)
-            {
-                Debug.Log("No se encontro el objeto de comida correspondiente");
-                return;
-            }
-
-            foodObj.SetActive(true);
-            foodObj.transform.position = puntoHorno.position;
-
-            foodInHornoObj = foodObj;
-            //  Se asocia la categoria y el tipo de comida de la mano al horno
-            foodCategoryInHorno = foodCategoryInHand;
-            foodTypeInHorno = foodTypeInHand;
-
-            foodIsInHorno = true;
-            foodInHand = false;
-
-            cursorManager.UpdateCursorFood(true, foodCategoryInHand, foodTypeInHand);
-            buttonManager.EnableButton(buttonManager.hornearButton);
-
-            //  Se resetea la categoria y el tipo de comida de la mano 
-            foodCategoryInHand = FoodCategory.no;
-            foodTypeInHand = null;
-
-            Debug.Log("Comida colocada en el horno");
-
-            if (tutorialManager.isRunningT2 && tutorialManager.currentStep == 4)
-                FindFirstObjectByType<TutorialManager>().CompleteCurrentStep2();
-
-        }
-        else if (foodIsInHorno)
-        {
-            foodInHornoObj.SetActive(false);
-            foodIsInHorno = false;
-            foodInHand = true;
-            //  Se asocia la categoria y el tipo de comida del horno a la mano
-            foodCategoryInHand = foodCategoryInHorno;
-            foodTypeInHand = foodTypeInHorno;
-            //  Se resetea la categoria y el tipo de comida del horno 
-            foodCategoryInHorno = FoodCategory.no;
-            foodTypeInHorno = null;
-
-            cursorManager.UpdateCursorFood(false, foodCategoryInHand, foodTypeInHand);
-            Debug.Log($"Comida recogida del horno. Estado: {currentCookState}");
-        }
-
-        ActualizarBotonCogerComida();
-    }
-    public void StartHorneado()
-    {
-        if (!foodIsInHorno || foodInHornoObj == null || foodBaked)
-            return;
-        if (horneadoCoroutine != null)
-        {
-            StopCoroutine(horneadoCoroutine);
-        }
-        horneadoCoroutine = StartCoroutine(HornearCoroutine());
-        isBaking = true;
-        buttonManager.stopHorneadoButton.gameObject.SetActive(true);
-
-        if (tutorialManager.isRunningT2 && tutorialManager.currentStep == 5)
-            FindFirstObjectByType<TutorialManager>().CompleteCurrentStep2();
-    }
-    private IEnumerator HornearCoroutine()
-    {
-        Debug.Log("Comienza el horneado...");
-        bakeSlider.gameObject.SetActive(true);
-        bakeSlider.value = 0f;
-
-        float elapsed = 0f;
-        float tiempoIdealMin = tiempoHorneado * 0.45f;
-        float tiempoIdealMax = tiempoHorneado * 0.65f;
-
-        currentCookState = CookState.crudo;
-
-        while (elapsed < tiempoHorneado)
-        {
-            elapsed += Time.deltaTime;
-            bakeSlider.value = elapsed / tiempoHorneado;
-            UpdateBakingBarColor(bakeSlider.value);
-            yield return null;
-        }
-
-        currentCookState = CookState.quemado;
-        bakeSlider.gameObject.SetActive(false);
-        buttonManager.DisableButton(buttonManager.hornearButton);
-        buttonManager.stopHorneadoButton.gameObject.SetActive(false);
-        Debug.Log("Se ha pasado el tiempo: comida quemada");
-    }
-    private void UpdateBakingBarColor(float value)
-    {
-        Color newColor;
-
-        if (value < 0.4f)
-        {
-            newColor = Color.Lerp(Color.yellow, Color.green, value * 2.5f);
-        }
-        else
-        {
-            newColor = Color.Lerp(Color.green, Color.red, (value - 0.45f) * 0.55f);
-        }
-        fillBakeImage.color = newColor;
-    }
-    public void StopHorneado()
-    {
-        if (horneadoCoroutine != null)
-        {
-            StopCoroutine(horneadoCoroutine);
-            horneadoCoroutine = null;
-        }
-
-        isBaking = false;
-        foodBaked = true;
-        float progress = bakeSlider.value;
-        bakeSlider.gameObject.SetActive(false);
-
-        if (progress < 0.40f)
-        {
-            currentCookState = CookState.crudo;
-        }
-        else if (progress <= 0.70f)
-        {
-            currentCookState = CookState.horneado;
-        }
-        else
-        {
-            currentCookState = CookState.quemado;
-        }
-        Debug.Log($"Horneado detenido: {currentCookState}");
-        buttonManager.DisableButton(buttonManager.hornearButton);
-        buttonManager.stopHorneadoButton.gameObject.SetActive(false);
     }
     #endregion
 

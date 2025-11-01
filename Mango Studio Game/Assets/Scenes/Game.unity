@@ -906,6 +906,7 @@ GameObject:
   m_Component:
   - component: {fileID: 50023189}
   - component: {fileID: 50023188}
+  - component: {fileID: 50023200}
   - component: {fileID: 50023197}
   - component: {fileID: 50023195}
   - component: {fileID: 50023190}
@@ -935,12 +936,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a85ca06c74f4b9f468ddbdb0e55d30c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  order: {fileID: 0}
+  orderNoteUI: {fileID: 50023199}
+  tutorialManager: {fileID: 841635553}
   coffeBar: {fileID: 0}
   buttonManager: {fileID: 50023195}
   cursorManager: {fileID: 342197122}
   coffeeSlider: {fileID: 948264107}
-  bakeSlider: {fileID: 544665798}
-  fillBakeImage: {fileID: 1090232296}
   slideSpeed: 0.8
   maxAmount: 4
   molerPanel: {fileID: 1879685845}
@@ -954,7 +956,11 @@ MonoBehaviour:
   fillSpeed: 0.5
   currentHeat: 0
   isHeating: 0
-  tiempoHorneado: 15
+  coffeeDone: 0
+  coffeeServed: 0
+  milkServed: 0
+  heatedMilk: 0
+  cupServed: 0
   cucharaInHand: 0
   tazaInHand: 0
   vasoInHand: 0
@@ -968,14 +974,6 @@ MonoBehaviour:
   creamInHand: 0
   chocolateInHand: 0
   whiskeyInHand: 0
-  platoInHand: 0
-  carryBagInHand: 0
-  foodInHand: 0
-  platoIsInEncimera: 0
-  carryBagIsInEncimera: 0
-  foodIsInBolsaLlevar: 0
-  foodIsInPlato: 0
-  foodIsInHorno: 0
   tazaIsInCafetera: 0
   tazaIsInPlato: 0
   vasoIsInCafetera: 0
@@ -984,48 +982,19 @@ MonoBehaviour:
   tazaMilkIsInEspumador: 0
   vasoTapaPuesta: 0
   filtroIsInCafetera: 0
-  coffeeServed: 0
-  milkServed: 0
-  heatedMilk: 0
-  foodServed: 0
-  foodBaked: 0
-  cupServed: 0
-  foodCategoryInHand: 0
-  foodCategoryInPlato: 0
-  foodCategoryInCarryBag: 0
-  foodCategoryInHorno: 0
-  foodManager: {fileID: 50023197}
-  foodOrder:
-    category: 0
-    cakeType: 0
-    cookieType: 0
-    mufflinType: 0
-    foodTargetCategory: 0
-    foodTargetType: 0
-    foodPrecisionCategory: 0
-    foodPrecisionType: 0
-    targetCookState: 0
-    precisionCookState: 0
-  orderNoteUI: {fileID: 50023199}
-  tutorialManager: {fileID: 841635553}
   Taza: {fileID: 386902211}
   Vaso: {fileID: 2016690274}
   TazaLeche: {fileID: 1645141594}
-  Plato: {fileID: 1786740808}
   PlatoTaza: {fileID: 1275036455}
-  BolsaLlevar: {fileID: 935583402}
+  puntoCafetera: {fileID: 365230178}
+  puntoEspumador: {fileID: 1266513885}
+  puntoMesa: {fileID: 1938362649}
+  puntoTazaPlato: {fileID: 1573721646}
   vasoConTapa: {fileID: 1520677557, guid: e288ad6c858bce44d98d91c579e9587e, type: 3}
   vasoConCafe: {fileID: -1224174487, guid: e288ad6c858bce44d98d91c579e9587e, type: 3}
   vasoSinCafe: {fileID: -710495507, guid: e288ad6c858bce44d98d91c579e9587e, type: 3}
   tazaSinCafe: {fileID: -1357573665, guid: e288ad6c858bce44d98d91c579e9587e, type: 3}
   tazaConCafe: {fileID: 1626960977, guid: e288ad6c858bce44d98d91c579e9587e, type: 3}
-  puntoCafetera: {fileID: 365230178}
-  puntoEspumador: {fileID: 1266513885}
-  puntoEncimera: {fileID: 1955836105}
-  puntoComida: {fileID: 1048102190}
-  puntoHorno: {fileID: 591006215}
-  puntoMesa: {fileID: 1938362649}
-  puntoTazaPlato: {fileID: 1573721646}
 --- !u!4 &50023189
 Transform:
   m_ObjectHideFlags: 0
@@ -1109,6 +1078,7 @@ MonoBehaviour:
   npc: {fileID: 2111219102}
   player: {fileID: 50023190}
   evaluation: {fileID: 50023192}
+  gameManager: {fileID: 2072732761}
   orderFeedbackTxt: {fileID: 1307985018}
   earnedMoneyTxt: {fileID: 1484668476}
   servedCustomersTxt: {fileID: 2051559962}
@@ -1312,6 +1282,62 @@ MonoBehaviour:
   slideDuration: 0.5
   npc: {fileID: 2111219102}
   tutorialManager: {fileID: 841635553}
+--- !u!114 &50023200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 50023187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 511d0cb483d6f46488ec69edbe2e363c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  order: {fileID: 0}
+  foodManager: {fileID: 50023197}
+  foodOrder:
+    category: 0
+    cakeType: 0
+    cookieType: 0
+    mufflinType: 0
+    foodTargetCategory: 0
+    foodTargetType: 0
+    foodPrecisionCategory: 0
+    foodPrecisionType: 0
+    targetCookState: 0
+    precisionCookState: 0
+  tutorialManager: {fileID: 841635553}
+  buttonManager: {fileID: 50023195}
+  cursorManager: {fileID: 342197122}
+  bakeSlider: {fileID: 544665798}
+  fillBakeImage: {fileID: 1090232296}
+  Plato: {fileID: 1786740808}
+  BolsaLlevar: {fileID: 935583402}
+  puntoEncimera: {fileID: 1955836105}
+  puntoComida: {fileID: 1048102190}
+  puntoHorno: {fileID: 591006215}
+  platoInHand: 0
+  carryBagInHand: 0
+  foodInHand: 0
+  platoIsInEncimera: 0
+  carryBagIsInEncimera: 0
+  foodIsInBolsaLlevar: 0
+  foodIsInPlato: 0
+  foodIsInHorno: 0
+  isBaking: 0
+  foodServed: 0
+  foodBaked: 0
+  countFoodCover: 0
+  foodCategoryInHand: 0
+  foodTypeInHand: 0
+  foodCategoryInPlato: 0
+  foodTypeInPlato: 0
+  foodCategoryInCarryBag: 0
+  foodTypeInCarryBag: 0
+  foodCategoryInHorno: 0
+  foodTypeInHorno: 0
+  tiempoHorneado: 15
 --- !u!1 &55580695
 GameObject:
   m_ObjectHideFlags: 0
@@ -5498,6 +5524,7 @@ MonoBehaviour:
   miniGameInput: {fileID: 50023188}
   foodManager: {fileID: 50023197}
   tutorialManager: {fileID: 841635553}
+  foodMinigameInput: {fileID: 50023200}
 --- !u!114 &342197123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5528,8 +5555,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b58417e8880cf7c44b987ff127992fba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceptClientButton: {fileID: 0}
-  fixedPos: {x: -3, y: 228}
 --- !u!1 &362105302
 GameObject:
   m_ObjectHideFlags: 0
@@ -9211,8 +9236,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 50023188}
-        m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
+      - m_Target: {fileID: 50023200}
+        m_TargetAssemblyTypeName: FoodMinigameInput, Assembly-CSharp
         m_MethodName: StopHorneado
         m_Mode: 1
         m_Arguments:
@@ -9693,8 +9718,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 50023188}
-        m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
+      - m_Target: {fileID: 50023200}
+        m_TargetAssemblyTypeName: FoodMinigameInput, Assembly-CSharp
         m_MethodName: ResetFoodState
         m_Mode: 1
         m_Arguments:
@@ -10384,8 +10409,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 50023188}
-        m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
+      - m_Target: {fileID: 50023200}
+        m_TargetAssemblyTypeName: FoodMinigameInput, Assembly-CSharp
         m_MethodName: PlacePlatoEncimera
         m_Mode: 1
         m_Arguments:
@@ -10396,8 +10421,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 50023188}
-        m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
+      - m_Target: {fileID: 50023200}
+        m_TargetAssemblyTypeName: FoodMinigameInput, Assembly-CSharp
         m_MethodName: ToggleFoodPlato
         m_Mode: 1
         m_Arguments:
@@ -10408,8 +10433,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 50023188}
-        m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
+      - m_Target: {fileID: 50023200}
+        m_TargetAssemblyTypeName: FoodMinigameInput, Assembly-CSharp
         m_MethodName: PlaceCarryBagEncimera
         m_Mode: 1
         m_Arguments:
@@ -10420,9 +10445,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 50023188}
-        m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
-        m_MethodName: ToggleFoodBolsaLlevar
+      - m_Target: {fileID: 50023200}
+        m_TargetAssemblyTypeName: FoodMinigameInput, Assembly-CSharp
+        m_MethodName: ToggleFoodCarryBag
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12888,10 +12913,11 @@ MonoBehaviour:
   endHour: 20
   endMinutes: 0
   requiredIncrement: 1.075
-  currentDay: 2
+  currentDay: 4
   coffeeRecipesManager: {fileID: 50023198}
   coffeeUnlockerManager: {fileID: 50023193}
   HUDmanager: {fileID: 960583782}
+  playerDataManager: {fileID: 0}
 --- !u!4 &863263443
 Transform:
   m_ObjectHideFlags: 0
@@ -27025,8 +27051,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 50023188}
-        m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
+      - m_Target: {fileID: 50023200}
+        m_TargetAssemblyTypeName: FoodMinigameInput, Assembly-CSharp
         m_MethodName: ToggleFoodHorno
         m_Mode: 1
         m_Arguments:
@@ -28378,8 +28404,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 50023188}
-        m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
+      - m_Target: {fileID: 50023200}
+        m_TargetAssemblyTypeName: FoodMinigameInput, Assembly-CSharp
         m_MethodName: StartHorneado
         m_Mode: 1
         m_Arguments:
@@ -29075,6 +29101,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2072732762}
   - component: {fileID: 2072732761}
+  - component: {fileID: 2072732763}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -29095,6 +29122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monedas: 1000
+  playerDataManager: {fileID: 0}
 --- !u!4 &2072732762
 Transform:
   m_ObjectHideFlags: 0
@@ -29110,6 +29138,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2072732763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2072732760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b638cdfa96db64bb1ce75043fa14af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+    currentDay: 0
+    money: 0
+    totalCustomersServed: 0
+    customersSatisfaction: 0
 --- !u!1 &2077449452
 GameObject:
   m_ObjectHideFlags: 0
@@ -29785,51 +29830,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orderTxt: {fileID: 1349629253}
-  unlockManager: {fileID: 50023193}
-  foodUnlockManager: {fileID: 50023196}
+  coffeeUnlocker: {fileID: 50023193}
+  foodUnlocker: {fileID: 50023196}
   timeManager: {fileID: 863263442}
-  currentOrder:
-    orderId: 0
-    coffeeType: 0
-    sugarAm: 0
-    iceAm: 0
-    orderType: 0
-    foodOrder:
-      category: 0
-      cakeType: 0
-      cookieType: 0
-      mufflinType: 0
-      foodTargetCategory: 0
-      foodTargetType: 0
-      foodPrecisionCategory: 0
-      foodPrecisionType: 0
-      targetCookState: 0
-      precisionCookState: 0
-    coffeeTarget: 0
-    coffeePrecision: 0
-    milkTarget: 0
-    milkPrecision: 0
-    heatedMilkTarget: 0
-    heatedMilkPrecision: 0
-    waterTarget: 0
-    waterPrecision: 0
-    condensedMilkTarget: 0
-    condensedMilkPrecision: 0
-    creamTarget: 0
-    creamPrecision: 0
-    chocolateTarget: 0
-    chocolatePrecision: 0
-    whiskeyTarget: 0
-    whiskeyPrecision: 0
-    sugarTarget: 0
-    sugarPrecision: 0
-    iceTarget: 0
-    icePrecision: 0
-    typeTarget: 0
-    typePrecision: 0
-    typeOrderFoodTarget: 0
-    typeOrderFoodPrecision: 0
   orderNoteUI: {fileID: 50023199}
+  foodRequestChance: 0.8
 --- !u!4 &2111219103
 Transform:
   m_ObjectHideFlags: 0

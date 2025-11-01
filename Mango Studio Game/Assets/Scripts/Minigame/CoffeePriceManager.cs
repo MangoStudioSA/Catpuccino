@@ -5,6 +5,7 @@ public class CoffeePriceManager : MonoBehaviour
 {
     public static CoffeePriceManager Instance;
 
+    // Se crea un diccionario con los tipos de cafes y los precios asociados
     private Dictionary<CoffeeType, float> coffeePrices = new Dictionary<CoffeeType, float>()
     {
         { CoffeeType.espresso, 1.5f },
@@ -23,11 +24,15 @@ public class CoffeePriceManager : MonoBehaviour
     private void Awake()
     {
         if (Instance == null)
+        {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
         else
             Destroy(gameObject);
     }
 
+    // Funcion para obtener el precio del cafe introducido
     public float GetBaseCoffeePrice(CoffeeType coffeeType)
     {
         if (coffeePrices.ContainsKey(coffeeType))

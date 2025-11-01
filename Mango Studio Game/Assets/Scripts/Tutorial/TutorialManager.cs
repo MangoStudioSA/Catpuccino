@@ -72,7 +72,7 @@ public class TutorialManager : MonoBehaviour
                 Debug.Log("Comenzando tutorial día 2");
                 break;
 
-            case 5:
+            case 6:
                 SetupDay3Tutorial();
                 isRunningT3 = true;
                 Debug.Log("Comenzando tutorial día 3");

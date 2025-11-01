@@ -1,91 +1,86 @@
 using UnityEngine;
 using TMPro;
 
+[System.Serializable]
+public class EvaluationResult
+{
+    public int score;
+    public int moneyEarned;
+}
+
 public class CoffeeGameManager : MonoBehaviour
 {
+    [Header("Referencias")]
     public CustomerOrder npc;
     public PlayerOrder player;
     public OrderEvaluation evaluation;
+    [SerializeField] private GameManager gameManager;
 
-    // GameObjects de texto para la interfaz
+    [Header("UI Texts")]
     public TextMeshProUGUI orderFeedbackTxt;
     public TextMeshProUGUI earnedMoneyTxt;
     public TextMeshProUGUI servedCustomersTxt;
     public TextMeshProUGUI earnedTipTxt;
 
-    private int playerScore = 0;
     private int totalScore = 0;
     private int customersServed = 0;
-    private int moneyEarned = 0;
 
+    private void Awake()
+    {
+        if (gameManager == null)
+            gameManager = FindFirstObjectByType<GameManager>();
+    }
     public void SubmitOrder()
     {
         // Se calcula la puntuacion del pedido comparando lo que se pedia con el resultado del jugador
         EvaluationResult result = evaluation.Evaluate(npc.currentOrder, player.currentOrder);
 
-        // Se suma la puntuacion obtenida a la total
-        playerScore = result.score;
-        totalScore += playerScore;
+        if (result == null)
+        {
+            Debug.LogWarning("Evaluation result null");
+            return;
+        }
 
-        // Se suma el dinero ingresado
-        moneyEarned = result.moneyEarned;
-
-        // Se aumenta en 1 el total de clientes atendidos
+        // Se suma la puntuacion obtenida a la total y se suma 1 al numero de clientes atendidos
+        totalScore += result.score;
         customersServed++;
+        // Añade el dinero y la puntuacion para calcular la satisfaccion media
+        gameManager.AnadirMonedas(result.moneyEarned);
+        gameManager.AddSatisfactionPoint(result.score);
 
-        // Se inicializa la propina en 0
-        int tip = 0;
-
-        // Añade monedas dependiendo de la puntuación
-        GameManager.Instance.AnadirMonedas(moneyEarned);
-        // Calcula la satisfaccion del cliente
-        GameManager.Instance.AddSatisfactionPoint(playerScore);
-
+        // Se calcula la propina obtenida
+        int tip = CalculateTip(result.score);
         // Se mostrara un feedback distinto en funcion de la puntuacion obtenida
-        if (playerScore <= 40) 
+        if (tip > 0) 
         {
-            orderFeedbackTxt.text = "Esto no es lo que había pedido...";
+            gameManager.AnadirMonedas(tip);
+            earnedTipTxt.text = $"¡El cliente ha dejado una propina de {tip}$!";
         }
-        else if (playerScore <= 80)
+        else 
         {
-            orderFeedbackTxt.text = "No está mal.";
-        }
-        else if (playerScore <= 92)
-        {
-            orderFeedbackTxt.text = "¡Me encanta! ¡Es justo lo que había pedido!";
-            tip += 1;
-            // Añade la propina a los ingresos totales
-            GameManager.Instance.AnadirMonedas(tip);
-        }
-        else
-        {
-            orderFeedbackTxt.text = "¡Me encanta! ¡Es justo lo que había pedido!";
-            tip += 2;
-            // Añade la propina a los ingresos totales
-            GameManager.Instance.AnadirMonedas(tip);
-        }
-        earnedMoneyTxt.text = $"¡Has ganado {moneyEarned:F2}$!";
-
-        // Se mostrara un feedback distinto en funcion del numero de clientes atendidos
-        if (customersServed == 1)
-        {
-            servedCustomersTxt.text = $"¡Ya has servido a {customersServed:F0} cliente en la jornada de hoy!";
-        }
-        else
-        {
-            servedCustomersTxt.text = $"¡Ya has servido a {customersServed:F0} clientes en la jornada de hoy!";
+            earnedTipTxt.text = "El cliente no ha dejado propina.";
         }
 
-        // Se mostrara un feedback distinto en funcion de si hay o no propina
-        if (tip > 0)
-        {
-            earnedTipTxt.text = $"¡El cliente ha dejado una propina de {tip:F0}$!";
-        }
-        else
-        {
-            earnedTipTxt.text = $"El cliente no ha dejado propina.";
-        }
+        orderFeedbackTxt.text = GenerateFeedbackText(result.score);
+        earnedMoneyTxt.text = $"¡Has ganado {result.moneyEarned}$!";
+        servedCustomersTxt.text = customersServed == 1
+            ? "¡Ya has servido a 1 cliente en la jornada de hoy!"
+            : $"¡Ya has servido a {customersServed} clientes en la jornada de hoy!";
     }
 
+    // Funcion para calcular la propina
+    private int CalculateTip(int score)
+    {
+        if (score <= 80) return 0;
+        if (score <= 92) return 1;
+        else return 2;
+    }
+    // Funcion para generar el texto en funcion de la puntuacion obtenida
+    private string GenerateFeedbackText(int score)
+    {
+        if (score <= 40) return "Esto no es lo que había pedido...";
+        else if (score <= 80) return "No está mal.";
+        else return "¡Me encanta! ¡Es justo lo que había pedido!";
+    }
 
 }

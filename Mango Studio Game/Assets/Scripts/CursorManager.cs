@@ -49,6 +49,7 @@ public class CursorManager : MonoBehaviour
     [SerializeField] MinigameInput miniGameInput; //para poder usar referencias a los vasos y tazas       
     public FoodManager foodManager;
     public TutorialManager tutorialManager;
+    public FoodMinigameInput foodMinigameInput;
 
     void Start()
     {
@@ -115,12 +116,12 @@ public class CursorManager : MonoBehaviour
     // Gestionar coger el plato del estante
     public void TakePlatoFromShelf()
     {
-        if (miniGameInput.platoIsInEncimera)
+        if (foodMinigameInput.platoIsInEncimera)
             return;
 
-        if (!miniGameInput.platoInHand)
+        if (!foodMinigameInput.platoInHand)
         {
-            miniGameInput.platoInHand = true;
+            foodMinigameInput.platoInHand = true;
             Cursor.SetCursor(platoCursorTexture, hotSpotPlato, CursorMode.Auto);
         }
     }
@@ -128,12 +129,12 @@ public class CursorManager : MonoBehaviour
     // Gestionar coger la bolsa para llevar del estante
     public void TakeCarryBagFromShelf()
     {
-        if (miniGameInput.carryBagIsInEncimera)
+        if (foodMinigameInput.carryBagIsInEncimera)
             return;
 
-        if (!miniGameInput.carryBagInHand)
+        if (!foodMinigameInput.carryBagInHand)
         {
-            miniGameInput.carryBagInHand = true;
+            foodMinigameInput.carryBagInHand = true;
             Cursor.SetCursor(bolsaLlevarCursorTexture, hotSpotBolsaLlevar, CursorMode.Auto);
         }
     }
@@ -157,13 +158,13 @@ public class CursorManager : MonoBehaviour
     // Gestionar coger la comida del estante
     public void TakeFood(FoodCategory category, object type)
     {
-        if (miniGameInput.foodInHand || miniGameInput.platoInHand)
+        if (foodMinigameInput.foodInHand || foodMinigameInput.platoInHand)
             return;
 
-        miniGameInput.foodInHand = true;
-        miniGameInput.foodCategoryInHand = category;
-        miniGameInput.foodTypeInHand = type;
-        miniGameInput.ActualizarBotonCogerComida();
+        foodMinigameInput.foodInHand = true;
+        foodMinigameInput.foodCategoryInHand = category;
+        foodMinigameInput.foodTypeInHand = (int)type;
+        foodMinigameInput.ActualizarBotonCogerComida();
 
         Texture2D cursor = foodManager.GetFoodCursor(category, type);
         Cursor.SetCursor(cursor, Vector2.zero, CursorMode.Auto);

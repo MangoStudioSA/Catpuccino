@@ -20,9 +20,9 @@ public class FoodOrder
     public FoodOrder(FoodCategory category)
     {
         this.category = category;
-        foodTargetCategory = category;
-        foodPrecisionCategory = FoodCategory.no;
-        foodPrecisionType = -1;
+        this.foodTargetCategory = category;
+        this.foodPrecisionCategory = FoodCategory.no;
+        this.foodPrecisionType = -1;
 
         targetCookState = CookState.horneado;
         precisionCookState = CookState.no;
@@ -120,6 +120,8 @@ public class FoodOrder
 
         // Se corrigen nombres espaciados
         nombre = nombre.Replace("RedVelvet", "Red Velvet")
+                        .Replace("blanco", "chocolate blanco")
+                        .Replace("arandanos", "arándanos")
                         .Replace("dulceLeche", "dulce de leche");
 
         return $"{category} de {nombre}.";

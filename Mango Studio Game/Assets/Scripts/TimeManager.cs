@@ -41,6 +41,7 @@ public class TimeManager : MonoBehaviour
     public CoffeeRecipesManager coffeeRecipesManager;
     public CoffeeUnlockerManager coffeeUnlockerManager;
     public HUDManager HUDmanager;
+    public PlayerDataManager playerDataManager;
 
     private int requiredMoney = 0;
 
@@ -53,6 +54,8 @@ public class TimeManager : MonoBehaviour
     {
         if (Instance != null) { Destroy(gameObject); } else { Instance = this; }
         buttonUnlockManager = FindFirstObjectByType<ButtonUnlockManager>();
+        playerDataManager = FindFirstObjectByType<PlayerDataManager>();
+
         if (buttonUnlockManager == null)
         {
             Debug.LogError("No se encontro buttonunlockmanager en la escena");
@@ -100,6 +103,7 @@ public class TimeManager : MonoBehaviour
         }
 
         currentDay++;
+        playerDataManager.NextDay();
         currentTimeInSeconds = startHour * 3600;
         IsOpen = true;
         isDayEnding = false;

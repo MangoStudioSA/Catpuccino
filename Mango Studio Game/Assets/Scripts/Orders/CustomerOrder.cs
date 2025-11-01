@@ -3,88 +3,71 @@ using TMPro;
 
 public class CustomerOrder : MonoBehaviour
 {
-    public TextMeshProUGUI orderTxt;
-    public CoffeeUnlockerManager unlockManager;
-    public FoodUnlockerManager foodUnlockManager;
-    public TimeManager timeManager;
-    public Order currentOrder;
-    public OrderNoteUI orderNoteUI;
+    [Header("Referencias")]
+    [SerializeField] private TextMeshProUGUI orderTxt;
+    [SerializeField] private CoffeeUnlockerManager coffeeUnlocker;
+    [SerializeField] private FoodUnlockerManager foodUnlocker;
+    [SerializeField] private TimeManager timeManager;
+    [SerializeField] private OrderNoteUI orderNoteUI;
 
-    FoodOrder foodOrder = null;
+    [Header("Datos pedido actual")]
+    public Order currentOrder { get; private set; }
+    private FoodOrder foodOrder = null;
 
-    public void Start()
-    {
-        //GenRandomOrder(); // Se genera el nuevo pedido
-    }
+    [Range(0f, 1f), Tooltip("Probabilidad de que el cliente pida comida")]
+    [SerializeField] private float foodRequestChance = 0.8f;
+
     public void GenRandomOrder()
     {
-        int day = timeManager.currentDay;
-
-        // Hay un 0.8% de probabilidades de que el cliente pida comida
-        if (Random.value < 0.8f)
+        if (timeManager == null || coffeeUnlocker == null)
         {
-            FoodCategory randomCategory = foodUnlockManager.GetRandomAvailableFood(day); //Se selecciona la comida que se encuentre disponible
-            foodOrder = new FoodOrder(randomCategory);
+            Debug.LogError("[CustomerOrder] Faltan referencias (TimeManager o CoffeeUnlockerManager).");
+            return;
         }
 
-        CoffeeType coffeeType = unlockManager.GetRandomAvailableCoffee(day); // Se genera el tipo de cafe entre los disponibles
-        SugarAmount sugar = (SugarAmount)Random.Range(0, 3); // Se genera una cantidad de azucar al azar entre los 3 tipos
-        IceAmount ice = (IceAmount)Random.Range(0, 2); // Se genera una cantidad de hielo al azar entre los 2 tipos
-        OrderType type = (OrderType)Random.Range(0, 2); // Se genera un tipo de pedido entre los 2 tipos
+        int currentDay = timeManager.currentDay;
+
+        foodOrder = null;
+        if (foodUnlocker != null && Random.value < foodRequestChance)
+        {
+            FoodCategory randomCategory = foodUnlocker.GetRandomAvailableFood(currentDay);
+            if (randomCategory != FoodCategory.no)
+                foodOrder = new FoodOrder(randomCategory);
+        }
+
+        CoffeeType coffeeType = coffeeUnlocker.GetRandomAvailableCoffee(currentDay); // Se genera el tipo de cafe entre los disponibles
+        SugarAmount sugar = (SugarAmount)Random.Range(0, System.Enum.GetValues(typeof(SugarAmount)).Length); // Se genera una cantidad de azucar al azar entre los 3 tipos
+        IceAmount ice = (IceAmount)Random.Range(0, System.Enum.GetValues(typeof(IceAmount)).Length); // Se genera una cantidad de hielo al azar entre los 2 tipos
+        OrderType type = (OrderType)Random.Range(0, System.Enum.GetValues(typeof(OrderType)).Length); // Se genera un tipo de pedido entre los 2 tipos
 
         currentOrder = new Order(coffeeType, sugar, ice, type, foodOrder); // Se genera el nuevo pedido con las cantidades generadas
         orderNoteUI.SetCurrentOrder(currentOrder);
 
-        if (orderTxt != null)
+        if (orderTxt != null) orderTxt.text = BuildOrderText(currentOrder);
+    }
+
+    private string BuildOrderText(Order order)
+    {
+        if (order == null) return "Error: pedido no generado";
+
+        string sugarText = order.sugarAm switch
         {
-            string sugarTxt;
-            string iceTxt;
-            string foodTxt;
+            SugarAmount.nada => "sin azúcar",
+            SugarAmount.poco => "con poco azúcar",
+            _ => "con mucho azúcar"
+        };
+        string iceText = order.iceAm switch
+        {
+            IceAmount.no => "sin hielo",
+            _ => "con hielo"
+        };
+        string foodText = order.foodOrder != null
+            ? order.foodOrder.GetFoodDescription()
+            : " No quiero comida.";
+        string baseText = order.coffeeType == CoffeeType.frappe
+            ? $"Quiero un {order.coffeeType} {sugarText}.{foodText} Lo quiero para {order.orderType}."
+            : $"Quiero un {order.coffeeType} {sugarText} y {iceText}.{foodText} Lo quiero para {order.orderType}.";
 
-            // Azúcar
-            switch(sugar)
-            {
-                case SugarAmount.nada:
-                    sugarTxt = "sin azúcar";
-                    break;
-                case SugarAmount.poco:
-                    sugarTxt = "con poco azúcar";
-                    break;
-                default:
-                    sugarTxt = "con mucho azúcar";
-                    break;
-            }
-
-            // Hielo
-            switch (ice)
-            {
-                case IceAmount.no:
-                    iceTxt = "sin hielo";
-                    break;
-                default:
-                    iceTxt = "con hielo";
-                    break;
-            }
-
-            // Comida
-            if (foodOrder != null)
-            {
-                foodTxt = foodOrder.GetFoodDescription();
-            }
-            else
-            {
-                foodTxt = " No quiero comida.";
-            }
-
-            // Generacion dialogo del pedido
-            if (coffeeType == CoffeeType.frappe)
-            {
-                orderTxt.text = $"Quiero un {coffeeType} {sugarTxt}.{foodTxt} Lo quiero para {type}.";
-            }
-            else
-            {
-                orderTxt.text = $"Quiero un {coffeeType} {sugarTxt} y {iceTxt}.{foodTxt} Lo quiero para {type}.";
-            }
-        }
+        return baseText;
     }
 }

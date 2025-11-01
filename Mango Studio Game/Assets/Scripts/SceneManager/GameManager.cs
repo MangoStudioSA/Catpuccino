@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] public int monedas; // Inicio monedas
 
+    public PlayerDataManager playerDataManager;
 
     private int totalSatisfactionScore = 0;
     private int customersRated = 0;
@@ -14,6 +15,7 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         if (Instance != null) { Destroy(gameObject); } else { Instance = this; }
+        playerDataManager = FindFirstObjectByType<PlayerDataManager>();
     }
 
     void Start()
@@ -25,6 +27,7 @@ public class GameManager : MonoBehaviour
     {
         monedas += cantidad;
         HUDManager.Instance.UpdateMonedas(monedas);
+        playerDataManager.AddMoney(monedas);
         Debug.Log("Total de monedas ahora: " + monedas);
     }
 
@@ -38,6 +41,7 @@ public class GameManager : MonoBehaviour
 
         // Le pasamos la nueva media al HUD para que la muestre
         HUDManager.Instance.UpdateSatisfaccion(averageSatisfaction);
+        playerDataManager.AddSatisfaction(averageSatisfaction);
         Debug.Log($"Satisfacción media ahora: {averageSatisfaction:F1}%");
     }
 }
