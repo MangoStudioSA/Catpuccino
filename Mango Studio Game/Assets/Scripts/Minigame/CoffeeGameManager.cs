@@ -46,6 +46,7 @@ public class CoffeeGameManager : MonoBehaviour
         customersServed++;
         // Añade el dinero y la puntuacion para calcular la satisfaccion media
         gameManager.AnadirMonedas(result.moneyEarned);
+        gameManager.AddServedCustomers(customersServed);
         gameManager.AddSatisfactionPoint(result.score);
 
         // Se calcula la propina obtenida

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainMenu_UI : MonoBehaviour
+public class UIMainMenu : MonoBehaviour
 {
     [SerializeField] GameObject mainMenuPanel;
     [SerializeField] GameObject settingsPanel;

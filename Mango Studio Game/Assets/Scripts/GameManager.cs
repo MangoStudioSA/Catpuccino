@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
 
     private int totalSatisfactionScore = 0;
     private int customersRated = 0;
+    private int servedCustomers = 0;
 
     void Awake()
     {
@@ -21,6 +22,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         HUDManager.Instance.UpdateMonedas(monedas);
+        playerDataManager.AddMoney(monedas);
     }
 
     public void AnadirMonedas(int cantidad)
@@ -29,6 +31,13 @@ public class GameManager : MonoBehaviour
         HUDManager.Instance.UpdateMonedas(monedas);
         playerDataManager.AddMoney(monedas);
         Debug.Log("Total de monedas ahora: " + monedas);
+    }
+
+    public void AddServedCustomers(int cantidad)
+    {
+        servedCustomers = cantidad;
+        playerDataManager.AddServedCustomers(cantidad);
+        Debug.Log("Total de clientes servidos ahora: " + cantidad);
     }
 
     public void AddSatisfactionPoint(int score)

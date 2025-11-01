@@ -29,6 +29,18 @@ public class SceneLoader : MonoBehaviour
         SceneManager.LoadScene("Game"); // Cargar escena juego
     }
 
+    public void LoadNewGame()
+    {
+        PlayerDataManager.instance.ResetPlayerData();
+        SceneManager.LoadScene("Game"); // Cargar escena juego
+    }
+
+    public void LoadShop()
+    {
+        SceneManager.LoadScene("Shop"); // Cargar escena tienda
+        Debug.Log("Cargando tienda");
+    }
+
     public void LoadGameOver()
     {
         SceneManager.LoadScene("GameOver"); // Cargar escena fin del juego

@@ -44,6 +44,8 @@ public class TimeManager : MonoBehaviour
     public PlayerDataManager playerDataManager;
 
     private int requiredMoney = 0;
+    private int premiumCoins = 0;
+    private int basicCoins = 0;
 
     private float averageCoffeePrice = 3f;
     private float averageFoodPrice = 4f;
@@ -102,11 +104,20 @@ public class TimeManager : MonoBehaviour
             customerManager.ResetForNewDay();
         }
 
+        playerDataManager.ResetPlayerData();    
         currentDay++;
         playerDataManager.NextDay();
         currentTimeInSeconds = startHour * 3600;
         IsOpen = true;
         isDayEnding = false;
+        
+        basicCoins += 50;
+        playerDataManager.AddBasicCoins(basicCoins);
+        HUDManager.Instance.UpdateBasicCoins(basicCoins);
+
+        premiumCoins += 0;
+        playerDataManager.AddPremiumCoins(premiumCoins);
+        HUDManager.Instance.UpdatePremiumCoins(premiumCoins);
 
         gameManager.monedas -= requiredMoney;
         HUDManager.Instance.UpdateMonedas(gameManager.monedas);

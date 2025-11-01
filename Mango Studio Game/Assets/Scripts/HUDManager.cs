@@ -29,6 +29,8 @@ public class HUDManager : MonoBehaviour
 
     public TextMeshProUGUI textoSatisfaccion;
     public TextMeshProUGUI textoMonedas;
+    [SerializeField] private TextMeshProUGUI basicCoinsTxt;
+    [SerializeField] private TextMeshProUGUI premiumCoinsTxt;
 
     void Awake()
     {
@@ -62,6 +64,15 @@ public class HUDManager : MonoBehaviour
     {
         // "F0" formatea el número para que no tenga decimales
         textoSatisfaccion.text = $"Satisfacción: {cantidad:F0}%";
+    }
+
+    public void UpdateBasicCoins(int cantidad)
+    {
+        basicCoinsTxt.text = $"Monedas básicas: {cantidad}";
+    }
+    public void UpdatePremiumCoins(int cantidad)
+    {
+        premiumCoinsTxt.text = $"Monedas premium: {cantidad}";
     }
 
     // Funcion encargada de mostrar por pantalla los cafes disponibles del dia actual
