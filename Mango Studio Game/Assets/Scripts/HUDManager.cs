@@ -14,7 +14,7 @@ public class HUDManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI availableElementsTxt;
 
     [SerializeField] private GameObject unlockedCanvas;
-    [SerializeField] private float displayDuration = 5f;
+    [SerializeField] private float displayDuration = 3f;
     [SerializeField] private float fadeDuration = 0.5f;
     [SerializeField] private bool useUnscaledTime = false;
     [SerializeField] private TextMeshProUGUI unlockedElementsTxt;

@@ -25,6 +25,10 @@ public class ShopManager : MonoBehaviour
 
     [Header("Panel UI")]
     public GameObject coinsShopPanel;
+    public GameObject openPackPanel;
+
+    [Header("Referencias")]
+    public CardPackManager cardPackManager;
 
     private void Start()
     {
@@ -60,6 +64,11 @@ public class ShopManager : MonoBehaviour
         coinsShopPanel.SetActive(false);
     }
 
+    public void CloseOpenPackPanel()
+    {
+        openPackPanel.SetActive(false);
+    }
+
     public void OnBuyPackCoinsClicked()
     {
         message.Show("Aún no puedes realizar esta acción. Requiere dinero real.");
@@ -70,7 +79,9 @@ public class ShopManager : MonoBehaviour
         if (PlayerDataManager.instance.SpendBasicCoins(basicPackCost))
         {
             Debug.Log("Sobre básico abierto");
-            UpdateUI(); 
+            UpdateUI();
+
+            cardPackManager.ShowPackPanel("basic");
         }
         else
         {
@@ -84,6 +95,8 @@ public class ShopManager : MonoBehaviour
         {
             Debug.Log("Sobre premium abierto");
             UpdateUI();
+
+            cardPackManager.ShowPackPanel("premium");
         }
         else
         {

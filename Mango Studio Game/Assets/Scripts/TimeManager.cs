@@ -47,6 +47,7 @@ public class TimeManager : MonoBehaviour
     private int premiumCoins = 0;
     private int basicCoins = 0;
 
+    // Variables para las facturas
     private float averageCoffeePrice = 3f;
     private float averageFoodPrice = 4f;
 
@@ -104,28 +105,36 @@ public class TimeManager : MonoBehaviour
             customerManager.ResetForNewDay();
         }
 
-        playerDataManager.ResetPlayerData();    
+        playerDataManager.ResetPlayerData(); // Esta puesta para las pruebas, hay que quitarla
+        
+        // Se aumenta el dia y se guarda en el progreso del jugador
         currentDay++;
         playerDataManager.NextDay();
+
+        // Se actualiza el tiempo y las variables
         currentTimeInSeconds = startHour * 3600;
         IsOpen = true;
         isDayEnding = false;
         
-        basicCoins += 50;
+        // Asignar monedas basicas y premium
+        basicCoins += 1000;
         playerDataManager.AddBasicCoins(basicCoins);
         HUDManager.Instance.UpdateBasicCoins(basicCoins);
 
-        premiumCoins += 0;
+        premiumCoins += 1000;
         playerDataManager.AddPremiumCoins(premiumCoins);
         HUDManager.Instance.UpdatePremiumCoins(premiumCoins);
 
+        // Restar dinero de facturas
         gameManager.monedas -= requiredMoney;
         HUDManager.Instance.UpdateMonedas(gameManager.monedas);
 
+        // Actualizar mecanicas y elementos disponibles para el dia actual
         GameProgressManager.Instance.UpdateMechanicsForDay(currentDay);
         coffeeRecipesManager.UnlockRecipesForDay(currentDay, coffeeUnlockerManager);
         buttonUnlockManager.RefreshButtons();
-
+        
+        // Calculo facturas
         float dailyIncome = (averageCoffeePrice + averageFoodPrice) * customersPerDay;
         float difficultyFactor = 1f + (currentDay - 1) * requiredIncrement;
         int randomVariation = (int)UnityEngine.Random.Range(-10f, 20f);
@@ -138,14 +147,16 @@ public class TimeManager : MonoBehaviour
             gameUIManager.ShowGamePanel();
         }
 
-        currentDayText.text = $"Día {currentDay:F0}"; // Se muestra el dia actual
+        // Se muestra el dia actual
+        currentDayText.text = $"Día {currentDay:F0}"; 
         if (HUDManager.Instance != null)
         {
             HUDManager.Instance.ShowAvailableElements();
             HUDManager.Instance.ShowUnlockedElements();
         }
 
-        HUDmanager.ResetNote();
+        // Se resetea la pizarra con la carta del dia
+        HUDmanager.ResetNote(); 
             
         Debug.Log($"--- DÍA {currentDay} --- \nLa cafetería ha abierto.");
         onDayStarted?.Invoke(currentDay);
