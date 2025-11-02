@@ -1,28 +1,15 @@
+using NUnit.Framework;
+using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-[System.Serializable]
-public class PlayerData
-{
-    public int currentDay = 0;
-    public int money = 0;
-    public int basicCoins = 0;
-    public int premiumCoins = 0;
-    public int totalCustomersServed = 0;
-    public float customersSatisfaction = 0;
-
-    public PlayerData() { }
-    public PlayerData(int day, int money)
-    {
-        this.currentDay = day;
-        this.money = money;
-    }
-}
 public class PlayerDataManager : MonoBehaviour
 {
     public static PlayerDataManager instance;
     public PlayerData data = new();
     private string savePath;
+
+    private List<string> unlockedCards = new();
 
     private void Awake()
     {
@@ -102,17 +89,26 @@ public class PlayerDataManager : MonoBehaviour
         return false;
     }
 
+    public void AddCard(string cardName)
+    {
+        if (!data.unlockedCards.Contains(cardName))
+        {
+            data.unlockedCards.Add(cardName);
+            data.SyncListFromSet();
+            SaveData();
+            Debug.Log($"Carta añadida: {cardName}");
+        }
+    }
+
+    public HashSet<string> GetUnlockedCards()
+    {
+        return new HashSet<string>(data.unlockedCards);
+    }
+
     public void NextDay()
     {
         data.currentDay++;
         SaveData();
-    }
-
-    public void SaveData()
-    {
-        string json = JsonUtility.ToJson(data, true);
-        File.WriteAllText(savePath, json);
-        Debug.Log("Datos guardados en: " + savePath);
     }
 
     public void ResetPlayerData()
@@ -127,12 +123,24 @@ public class PlayerDataManager : MonoBehaviour
         Debug.Log("Datos reiniciados");
     }
 
+    public void SaveData()
+    {
+        if (data == null) return;
+
+        data.SyncListFromSet();
+
+        string json = JsonUtility.ToJson(data, true);
+        File.WriteAllText(savePath, json);
+        Debug.Log("Datos guardados en: " + savePath);
+    }
+
     public void LoadData()
     {
         if (File.Exists(savePath))
         {
             string json = File.ReadAllText(savePath);
             data = JsonUtility.FromJson<PlayerData>(json);
+
             Debug.Log("Datos cargados correctamente");
         }
         else
@@ -140,6 +148,8 @@ public class PlayerDataManager : MonoBehaviour
             data = new PlayerData(0, 0);
             SaveData();
         }
+
+        data.InitializeUnlockedCards();
     }
 
     public void ResetData()

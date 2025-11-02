@@ -9,15 +9,20 @@ public class CardPackManager : MonoBehaviour
     public GameObject packPanel; // Panel 
     public RectTransform packRect; // Sobre
     public Image cardImage; // Imagen de la carta
+    public Image packImage; // Imagen de la carta
     public TextMeshProUGUI cardText; // Texto de la carta
     public Button openButton; // Boton de abrir sobre
     public Button closeButton; // Boton de cerrar panel
 
-    [Header("Colores rarezas")]
-    public Color basicColor = Color.blue;
-    public Color intermediateColor = Color.green;
-    public Color rareColor = Color.magenta;
-    public Color legendaryColor = Color.yellow;
+    [Header("Colores rarezas de sobres")]
+    public Color basicPackColor; 
+    public Color premiumPackColor; 
+
+    [Header("Colores rarezas de carta")]
+    public Color basicColor;       
+    public Color intermediateColor;
+    public Color rareColor;        
+    public Color legendaryColor;   
 
     [Header("Configuración animación")]
     public float dropDuration = 2f; // Duracion del movimiento
@@ -28,11 +33,13 @@ public class CardPackManager : MonoBehaviour
 
     public enum CardRarity { Basic, Intermediate, Rare, Legendary }
 
+    // Se resetean todas las variables cada vez que se ejecute
     public void Start()
     {
         packPanel.SetActive(false);
         cardImage.gameObject.SetActive(false);
         openButton.gameObject.SetActive(false);
+        closeButton.gameObject.SetActive(false);
         openButton.onClick.AddListener(OpenPack);
         packRect.anchoredPosition = Vector2.zero;
         isOpening = false;
@@ -41,32 +48,53 @@ public class CardPackManager : MonoBehaviour
         closeButton.interactable = false;
     }
 
-    public void ShowPackPanel(string packType)
+    // Se muestra el panel y se asocia el tipo de sobre que se va a abrir
+    public void PreparePack(string packType)
     {
-        if (isOpening) return;
-
         pendindPackType = packType;
         packPanel.SetActive(true);
-        cardImage.gameObject.SetActive(false);
-        openButton.gameObject.SetActive(true);
 
+        if(openButton != null)
+            openButton.gameObject.SetActive(true);
+
+        closeButton.gameObject.SetActive(false);
+        closeButton.interactable = false;
+        cardImage.gameObject.SetActive(false);
         packRect.anchoredPosition = Vector2.zero;   
+
+        if (packType == "basic")
+        {
+            packImage.color = basicPackColor;
+        }
+        else if (packType == "premium")
+        {
+            packImage.color = premiumPackColor;
+        }
+        Debug.Log("Tipo de sobre abierto: " + packType);
     }
 
+    // Se ejecuta la corrutina de abrir sobre
     public void OpenPack()
     {
         if (isOpening || string.IsNullOrEmpty(pendindPackType)) return;
-        StartCoroutine(OpenPackAnimation());
-    }
 
-    private IEnumerator OpenPackAnimation()
-    {
-        closeButton.interactable = false;
         isOpening = true;
-        openButton.gameObject.SetActive(false);
+        if (openButton != null)
+            openButton.gameObject.SetActive(false);
 
         CardRarity rarity = DeterminateRarity(pendindPackType);
-        string cardName = GenerateCardName(rarity); 
+        string cardName = GenerateCardName(rarity);
+
+        StartCoroutine(OpenPackAnimation(rarity, cardName));
+
+        PlayerDataManager.instance.AddCard(cardName);
+    }
+
+    private IEnumerator OpenPackAnimation(CardRarity rarity, string cardName)
+    {
+        // Resetear la carta y determinar su rareza y nombre
+        isOpening = true;
+        openButton.gameObject.SetActive(false);
 
         // Reiniciar posicion carta
         packRect.anchoredPosition = new Vector2(0, 200f);
@@ -78,6 +106,7 @@ public class CardPackManager : MonoBehaviour
         Vector2 targetPos = startPos - new Vector2(0, packMoveDistance);
         float elapsed = 0f;
 
+        // Animacion de caida del sobre
         while (elapsed < dropDuration)
         {
             elapsed += Time.deltaTime;
@@ -86,7 +115,7 @@ public class CardPackManager : MonoBehaviour
             yield return null;
         }
 
-        // Mostrar la carta
+        // Mostrar la carta y su color
         cardImage.gameObject.SetActive(true);
         cardText.text = cardName;
 
@@ -98,9 +127,40 @@ public class CardPackManager : MonoBehaviour
             case CardRarity.Legendary: cardImage.color = legendaryColor; break;
         }
 
-        yield return new WaitForSeconds(1.5f);
+        // Fade in carta - se empieza con alpha en 0
+        Color imgColor = cardImage.color;
+        Color textColor = cardText.color;
+        imgColor.a = 0f;
+        textColor.a = 0f;
+        cardImage.color = imgColor;
+        cardText.color = textColor;
+
+        float fadeDuration = 1.2f;
+        float fadeElapsed = 0f;
+
+        while (fadeElapsed < fadeDuration)
+        {
+            fadeElapsed += Time.deltaTime;
+            float alpha = Mathf.Clamp01(fadeElapsed / fadeDuration);
+
+            imgColor.a = alpha;
+            textColor.a = alpha;
+
+            cardImage.color = imgColor;
+            cardText.color = textColor;
+
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(1.25f);
         isOpening = false;
+        closeButton.gameObject.SetActive(true);
         closeButton.interactable = true;
+        PlayerDataManager.instance.AddCard(cardName);
+
+        var collection = FindFirstObjectByType<CardCollectionManager>();
+        if (collection != null)
+            collection.GenerateCollection();
     }
 
     private CardRarity DeterminateRarity(string packType)
@@ -115,8 +175,8 @@ public class CardPackManager : MonoBehaviour
         }
         else // Sobre premium
         {
-            if (roll < 0.5f) return CardRarity.Intermediate;
-            if (roll < 0.92f) return CardRarity.Rare;
+            if (roll < 0.6f) return CardRarity.Intermediate;
+            if (roll < 0.95f) return CardRarity.Rare;
             return CardRarity.Legendary;
         }
     }

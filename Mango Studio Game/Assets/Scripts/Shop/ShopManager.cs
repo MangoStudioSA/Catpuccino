@@ -14,6 +14,8 @@ public class ShopManager : MonoBehaviour
     public Button premiumPackButton;
     public Button coinsShopButton;
     public Button closeCoinsShopButton;
+    public Button openCollectionButton;
+    public Button closeCollectionButton;
     public Button buyPack1;
     public Button buyPack2;
     public Button buyPack3;
@@ -26,6 +28,7 @@ public class ShopManager : MonoBehaviour
     [Header("Panel UI")]
     public GameObject coinsShopPanel;
     public GameObject openPackPanel;
+    public GameObject collectionPanel;
 
     [Header("Referencias")]
     public CardPackManager cardPackManager;
@@ -54,41 +57,53 @@ public class ShopManager : MonoBehaviour
         premiumCoinsText.text = $"{data.premiumCoins}";
     }
 
+    #region Interaccion paneles
     public void OpenCoinsShop()
     {
-        coinsShopPanel.SetActive(true);
+        coinsShopPanel.SetActive(true); // Abrir panel de comprar monedas premium
     }
 
     public void CloseCoinsShop()
     {
-        coinsShopPanel.SetActive(false);
+        coinsShopPanel.SetActive(false); // Cerrar panel de comprar monedas premium
+    }
+
+    public void OpenCollectionPanel()
+    {
+        collectionPanel.SetActive(true); // Abrir panel de comprar monedas premium
+    }
+
+    public void CloseCollectionPanel()
+    {
+        collectionPanel.SetActive(false); // Cerrar panel de comprar monedas premium
     }
 
     public void CloseOpenPackPanel()
     {
-        openPackPanel.SetActive(false);
+        openPackPanel.SetActive(false); // Cerrar panel de abrir sobre
     }
+    #endregion
 
     public void OnBuyPackCoinsClicked()
     {
-        message.Show("Aún no puedes realizar esta acción. Requiere dinero real.");
+        message.Show("Aún no puedes realizar esta acción. Requiere dinero real."); // Mensaje cuando el jugador intenta comprar monedas premium
     }
 
+    // Interaccion con el boton de comprar un sobre basico
     public void BuyBasicPack()
     {
         if (PlayerDataManager.instance.SpendBasicCoins(basicPackCost))
         {
             Debug.Log("Sobre básico abierto");
             UpdateUI();
-
-            cardPackManager.ShowPackPanel("basic");
+            cardPackManager.PreparePack("basic");
         }
         else
         {
             Debug.LogWarning("No tienes suficientes monedas para el sobre básico.");
         }
     }
-
+    // Interaccion con el boton de comprar un sobre premium
     public void BuyPremiumPack()
     {
         if (PlayerDataManager.instance.SpendPremiumCoins(premiumPackCost))
@@ -96,7 +111,7 @@ public class ShopManager : MonoBehaviour
             Debug.Log("Sobre premium abierto");
             UpdateUI();
 
-            cardPackManager.ShowPackPanel("premium");
+            cardPackManager.PreparePack("premium");
         }
         else
         {
