@@ -91,6 +91,7 @@ public class FoodMinigameInput : MonoBehaviour
         buttonManager.DisableButton(buttonManager.hornoButton);
 
         buttonManager.stopHorneadoButton.gameObject.SetActive(false);
+        buttonManager.hornearButton.gameObject.SetActive(true);
         bakeSlider.gameObject.SetActive(false);
 
         //platoInHand = false;
@@ -389,6 +390,7 @@ public class FoodMinigameInput : MonoBehaviour
         horneadoCoroutine = StartCoroutine(HornearCoroutine());
         isBaking = true;
         buttonManager.stopHorneadoButton.gameObject.SetActive(true);
+        buttonManager.hornearButton.gameObject.SetActive(false);
 
         if (tutorialManager.isRunningT2 && tutorialManager.currentStep == 5)
             FindFirstObjectByType<TutorialManager>().CompleteCurrentStep2();

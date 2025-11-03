@@ -59,7 +59,7 @@ public class TutorialManager : MonoBehaviour
 
         switch (day)
         {
-            case 4:
+            case 1:
                 SetupDay1Tutorial();
                 StartTutorial1();
                 isRunningT1 = true;
@@ -206,7 +206,7 @@ public class TutorialManager : MonoBehaviour
             // Paso 12
             steps.Add(new TutorialStep
             {
-                message = "¡Ya puedes clicar para echar el café!",
+                message = "¡Ya puedes clicar para echar el café! ¡Presiona el botón cuando el marcador esté cerca de la zona marcada!",
                 position = new Vector2(-390f, 180f),
                 autoAdvance = false,
                 onStepStart = () =>

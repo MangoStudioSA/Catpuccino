@@ -44,6 +44,7 @@ public class ButtonUnlockManager : MonoBehaviour
     [SerializeField] public Button filtroButton;
     [SerializeField] public Button filtroCafeteraButton;
     [SerializeField] public Button echarCafeButton;
+    [SerializeField] public Button pararEcharCafeButton;
     [SerializeField] public Button calentarButton;
     [SerializeField] public Button espumadorButton;
     [SerializeField] public Button cogerTazaLecheButton;
@@ -97,6 +98,7 @@ public class ButtonUnlockManager : MonoBehaviour
             new ButtonConfig { button = filtroButton, ignoreSpriteChange = true },
             new ButtonConfig { button = filtroCafeteraButton, ignoreSpriteChange = true },
             new ButtonConfig { button = echarCafeButton, ignoreSpriteChange = false },
+            new ButtonConfig { button = pararEcharCafeButton, ignoreSpriteChange = false },
             new ButtonConfig { button = calentarButton, ignoreSpriteChange = false },
             new ButtonConfig { button = espumadorButton, ignoreSpriteChange = true },
             new ButtonConfig { button = cogerTazaLecheButton, ignoreSpriteChange = true },
@@ -158,6 +160,7 @@ public class ButtonUnlockManager : MonoBehaviour
         filtroButton.interactable = false;
         filtroCafeteraButton.interactable = false;
         echarCafeButton.interactable = false;
+        pararEcharCafeButton.interactable = false;
         calentarButton.interactable = false;
         cogerTazaLecheButton.interactable = false;
         submitOrderButton.interactable = false;

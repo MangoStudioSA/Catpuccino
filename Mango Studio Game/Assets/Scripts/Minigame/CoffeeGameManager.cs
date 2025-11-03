@@ -21,6 +21,7 @@ public class CoffeeGameManager : MonoBehaviour
     public TextMeshProUGUI earnedMoneyTxt;
     public TextMeshProUGUI servedCustomersTxt;
     public TextMeshProUGUI earnedTipTxt;
+    public TextMeshProUGUI scoreTxt;
 
     private int totalScore = 0;
     private int customersServed = 0;
@@ -62,11 +63,20 @@ public class CoffeeGameManager : MonoBehaviour
             earnedTipTxt.text = "El cliente no ha dejado propina.";
         }
 
-        orderFeedbackTxt.text = GenerateFeedbackText(result.score);
+        string feedback = GenerateFeedbackText(
+            result.score,
+            evaluation.isOrderWithFood,
+            evaluation.lastWrongFoodType,
+            evaluation.lastBadCookStateRaw,
+            evaluation.lastBadCookStateBurned
+        );
+
+        orderFeedbackTxt.text = feedback;
         earnedMoneyTxt.text = $"¡Has ganado {result.moneyEarned}$!";
         servedCustomersTxt.text = customersServed == 1
             ? "¡Ya has servido a 1 cliente en la jornada de hoy!"
             : $"¡Ya has servido a {customersServed} clientes en la jornada de hoy!";
+        scoreTxt.text = $"Puntuación total: {result.score}/100"; 
     }
 
     // Funcion para calcular la propina
@@ -77,11 +87,25 @@ public class CoffeeGameManager : MonoBehaviour
         else return 2;
     }
     // Funcion para generar el texto en funcion de la puntuacion obtenida
-    private string GenerateFeedbackText(int score)
+    private string GenerateFeedbackText(int score, bool isOrderWithFood, bool wrongFoodType, bool badCookStateRaw, bool badCookStateBurned)
     {
-        if (score <= 40) return "Esto no es lo que había pedido...";
-        else if (score <= 80) return "No está mal.";
-        else return "¡Me encanta! ¡Es justo lo que había pedido!";
+        string feedback = "";
+        if (score <= 40) feedback = "Este café no es lo que había pedido...";
+        else if (score <= 80) feedback = "El café no está mal.";
+        else feedback = "¡Me encanta! ¡Es justo el café que había pedido!";
+
+        if (isOrderWithFood)
+        {
+            if (wrongFoodType) feedback += " Esta comida no es la que había pedido... ¿Te has equivocado de plato?";
+            else if (badCookStateRaw) feedback += " Esta comida está cruda... ¡Así no se puede comer!";
+            else if (badCookStateBurned) feedback += " La comida está quemada... ¡Así no se puede comer!";
+            else feedback += " La comida está bien preparada.";
+        }
+        else
+        {
+            feedback += "";
+        }
+        return feedback;
     }
 
 }

@@ -6,6 +6,7 @@ using UnityEngine.SocialPlatforms.Impl;
 public class OrderEvaluation : MonoBehaviour
 {
     private const int MAX_SCORE_COFFEE = 25;
+    private const int MAX_SCORE_SERVEDCOFFEE = 25;
     private const int MAX_SCORE_SUGAR = 5;
     private const int MAX_SCORE_ICE = 5;
     private const int MAX_SCORE_COVER = 15; 
@@ -22,6 +23,11 @@ public class OrderEvaluation : MonoBehaviour
 
     private const float MAX_ERROR = 2.0F;
 
+    public bool isOrderWithFood = false;
+    public bool lastWrongFoodType = false;
+    public bool lastBadCookStateBurned = false;
+    public bool lastBadCookStateRaw = false;
+
     public EvaluationResult Evaluate(Order npcOrder, Order playerOrder)
     {
         EvaluationResult result = new EvaluationResult();
@@ -31,15 +37,26 @@ public class OrderEvaluation : MonoBehaviour
 
         var progress = GameProgressManager.Instance;
 
-        // MECANICA CAFE
+        // MECANICA CANTIDAD CAFE
         if (progress.coffeeEnabled)
         {
-            //EVALUACION DEL CAFE (PRECISION SLIDER)
+            //EVALUACION DE LA CANTIDAD DE CAFE SELECCIONADA (PRECISION SLIDER)
             //evalua la precision y redondea la puntiacion a un entero
             float coffeeScore = EvaluateCoffePrecision(npcOrder, playerOrder);
             totalScore += Mathf.RoundToInt(coffeeScore);
             maxPossibleScore += MAX_SCORE_COFFEE;
-            Debug.Log($"[Cliente {playerOrder.orderId}] Puntuación del Café (Precisión): {Mathf.RoundToInt(coffeeScore)}/{MAX_SCORE_COFFEE} pts");
+            Debug.Log($"[Cliente {playerOrder.orderId}] Puntuación de cantidad Café (Precisión): {Mathf.RoundToInt(coffeeScore)}/{MAX_SCORE_COFFEE} pts");
+        }
+
+        // MECANICA ECHAR CAFE
+        if (progress.coffeeEnabled)
+        {
+            //EVALUACION DE ECHAR EL CAFE (PRECISION SLIDER)
+            //evalua la precision y redondea la puntiacion a un entero
+            float coffeeServingScore = EvaluateCoffeServingPrecision(npcOrder, playerOrder);
+            totalScore += Mathf.RoundToInt(coffeeServingScore);
+            maxPossibleScore += MAX_SCORE_SERVEDCOFFEE;
+            Debug.Log($"[Cliente {playerOrder.orderId}] Puntuación de echar Café (Precisión): {Mathf.RoundToInt(coffeeServingScore)}/{MAX_SCORE_SERVEDCOFFEE} pts");
         }
 
         // MECANICA AGUA
@@ -146,6 +163,7 @@ public class OrderEvaluation : MonoBehaviour
                 totalScore += typeOrderFoodScore;
                 maxPossibleScore += MAX_SCORE_COVERFOOD;
                 typeScore += typeOrderFoodScore;
+                isOrderWithFood = true;
                 Debug.Log($"[Cliente {playerOrder.orderId}] Puntuación del Tipo de pedido: {typeScore}/{MAX_SCORE_COVER + MAX_SCORE_COVERFOOD} pts");
             }
             else
@@ -206,9 +224,33 @@ public class OrderEvaluation : MonoBehaviour
         //calculamos la puntuacion. Puntuacion maxima * (1 - error normalizado)
         float score = MAX_SCORE_COFFEE * (1f - normalizedError);
 
-        Debug.Log($"[Evaluación Café Cliente {playerOrder.orderId}] Error Normalizado: {normalizedError:F2} | Puntuación Bruta: {score:F2}");
+        Debug.Log($"[Evaluación cantidad café Cliente {playerOrder.orderId}] Error Normalizado: {normalizedError:F2} | Puntuación Bruta: {score:F2}");
 
         return score;
+
+    }
+
+    public float EvaluateCoffeServingPrecision(Order npcOrder, Order playerOrder)
+    {
+        //el objetivo es el valor ideal (0.5)
+        float coffeeServingTarget = npcOrder.coffeeServedTarget;
+
+        //la precision es donde para el player
+        float playerServedStop = playerOrder.coffeeServedPrecision;
+
+        //calculamos el error abs, distancia ente target y playerStop
+        float errorServing = Mathf.Abs(playerServedStop - coffeeServingTarget);
+
+        Debug.Log($"[Evaluación Café Cliente {playerOrder.orderId}] Objetivo: {coffeeServingTarget:F2} | Jugador: {playerServedStop:F2} | Error Absoluto: {errorServing:F2}");
+
+        //normalizamos el error de 0 a 1
+        float normalizedServedError = Mathf.Clamp(errorServing / MAX_ERROR, 0f, 1f);
+        //calculamos la puntuacion. Puntuacion maxima * (1 - error normalizado)
+        float servedCoffeScore = MAX_SCORE_SERVEDCOFFEE * (1f - normalizedServedError);
+
+        Debug.Log($"[Evaluación echar café Cliente {playerOrder.orderId}] Error Normalizado: {normalizedServedError:F2} | Puntuación Bruta: {servedCoffeScore:F2}");
+
+        return servedCoffeScore;
 
     }
 
@@ -489,7 +531,8 @@ public class OrderEvaluation : MonoBehaviour
         }
         else
         {
-            typeFoodScore = 0;
+            typeFoodScore = -10;
+            lastWrongFoodType = true;
         }
 
         Debug.Log($"[Evaluación Tipo de commida Cliente {playerOrder.orderId}] Objetivo: {targetCategory} {targetType} | Jugador: {playerCategory} {playerType}");
@@ -505,18 +548,21 @@ public class OrderEvaluation : MonoBehaviour
         CookState targetState = npcOrder.foodOrder.targetCookState;
         CookState playerState = playerOrder.foodOrder.precisionCookState;
 
-        if (playerState == CookState.no)
-            return 0;
-
         int cookStateScore = 0;
 
         if (playerState == targetState)     // Si el jugador ha preparado el tipo de pedido que se pedia suma 15 puntos
         {
             cookStateScore = MAX_SCORE_COOKSTATE;
         }
-        else
+        else if (playerState == CookState.crudo)
         {
-            cookStateScore = 0;
+            cookStateScore = -15;
+            lastBadCookStateRaw = true;
+        }
+        else if (playerState == CookState.quemado)
+        {
+            cookStateScore = -15;
+            lastBadCookStateBurned = true;
         }
 
         Debug.Log($"[Evaluación Horneado Cliente {playerOrder.orderId}] Objetivo: {targetState} | Jugador: {playerState}");

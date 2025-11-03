@@ -18,6 +18,11 @@ public class Order
     // guarda el valor del slider (0.0 a 4.0)
     public float coffeePrecision;
 
+    // valor de precisión que el jugador debe alcanzar (0.5)
+    public float coffeeServedTarget;
+    // guarda el valor del slider (0.0 a 4.0)
+    public float coffeeServedPrecision;
+
     // valor exacto de leche que el jugador debe echar (0-nada, 1-poco, 2-mucha)
     public int milkTarget;
     // guarda el valor de la leche echada por el jugador (0 a 1)
@@ -84,9 +89,13 @@ public class Order
         this.orderType = type;
         this.foodOrder = foodOrder ?? new FoodOrder(FoodCategory.no);
 
-        //inicializamos la precision del cafe a 0
+        //inicializamos la precision de moler el cafe a 0
         this.coffeePrecision = 0f;
         this.coffeeTarget = GetCoffeeTargetFromAmount(coffeeType);
+
+        //inicializamos la precision de echar el cafe a 0
+        this.coffeeServedPrecision = 0f;
+        this.coffeeServedTarget = 0.5f;
 
         //inicializamos la precision de la leche a 0
         this.milkPrecision = 0;
