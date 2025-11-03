@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SocialPlatforms;
 using UnityEngine.SocialPlatforms.Impl;
@@ -145,8 +146,12 @@ public class OrderEvaluation : MonoBehaviour
                 totalScore += typeOrderFoodScore;
                 maxPossibleScore += MAX_SCORE_COVERFOOD;
                 typeScore += typeOrderFoodScore;
+                Debug.Log($"[Cliente {playerOrder.orderId}] Puntuación del Tipo de pedido: {typeScore}/{MAX_SCORE_COVER + MAX_SCORE_COVERFOOD} pts");
             }
-            Debug.Log($"[Cliente {playerOrder.orderId}] Puntuación del Tipo de pedido: {typeScore}/{MAX_SCORE_COVER + MAX_SCORE_COVERFOOD} pts");
+            else
+            {
+                Debug.Log($"[Cliente {playerOrder.orderId}] Puntuación del Tipo de pedido: {typeScore}/{MAX_SCORE_COVER} pts");
+            }
         }
 
         // MECANICA TIPO DE COMIDA Y ESTADO DE HORNEADO

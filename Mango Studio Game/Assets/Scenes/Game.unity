@@ -2858,7 +2858,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &153319689
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12898,7 +12898,7 @@ MonoBehaviour:
   endHour: 20
   endMinutes: 0
   requiredIncrement: 1.075
-  currentDay: 4
+  currentDay: 2
   coffeeRecipesManager: {fileID: 50023198}
   coffeeUnlockerManager: {fileID: 50023193}
   HUDmanager: {fileID: 960583782}
@@ -25361,7 +25361,7 @@ RectTransform:
   m_Father: {fileID: 893861991}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 39, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -29728,6 +29728,7 @@ MonoBehaviour:
     premiumCoins: 0
     totalCustomersServed: 0
     customersSatisfaction: 0
+    unlockedCardsList: []
 --- !u!1 &2077449452
 GameObject:
   m_ObjectHideFlags: 0

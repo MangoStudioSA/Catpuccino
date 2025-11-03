@@ -8,7 +8,9 @@ public class ShopManager : MonoBehaviour
     public TextMeshProUGUI basicCoinsText;
     public TextMeshProUGUI premiumCoinsText;
     [SerializeField] private MessagePopUp message;
-     
+    [SerializeField] private MessagePopUp messageBuyBP;
+    [SerializeField] private MessagePopUp messageBuyPP;
+
     [Header("Botones")]
     public Button basicPackButton;
     public Button premiumPackButton;
@@ -16,19 +18,24 @@ public class ShopManager : MonoBehaviour
     public Button closeCoinsShopButton;
     public Button openCollectionButton;
     public Button closeCollectionButton;
-    public Button buyPack1;
-    public Button buyPack2;
-    public Button buyPack3;
-    public Button buyPack4;
+    public Button buyPack1Button;
+    public Button buyPack2Button;
+    public Button buyPack3Button;
+    public Button buyPack4Button;
+    public Button acceptBuyBasicPackButton;
+    public Button acceptBuyPremiumPackButton;
 
     [Header("Costes de los sobres")]
     public int basicPackCost = 70;
-    public int premiumPackCost = 120;
+    public int premiumPackCostBC = 120;
+    public int premiumPackCostPC = 220;
 
     [Header("Panel UI")]
     public GameObject coinsShopPanel;
     public GameObject openPackPanel;
     public GameObject collectionPanel;
+    public GameObject buyBasicPackMsgPanel;
+    public GameObject buyPremiumPackMsgPanel;
 
     [Header("Referencias")]
     public CardPackManager cardPackManager;
@@ -36,16 +43,20 @@ public class ShopManager : MonoBehaviour
     private void Start()
     {
         UpdateUI();
-
-        basicPackButton.onClick.AddListener(BuyBasicPack);
-        premiumPackButton.onClick.AddListener(BuyPremiumPack);
+;
         coinsShopButton.onClick.AddListener(OpenCoinsShop);
         closeCoinsShopButton.onClick.AddListener(CloseCoinsShop);
 
-        buyPack1.onClick.AddListener(OnBuyPackCoinsClicked);
-        buyPack2.onClick.AddListener(OnBuyPackCoinsClicked);
-        buyPack3.onClick.AddListener(OnBuyPackCoinsClicked);
-        buyPack4.onClick.AddListener(OnBuyPackCoinsClicked);
+        buyPack1Button.onClick.AddListener(OnBuyPackCoinsClicked);
+        buyPack2Button.onClick.AddListener(OnBuyPackCoinsClicked);
+        buyPack3Button.onClick.AddListener(OnBuyPackCoinsClicked);
+        buyPack4Button.onClick.AddListener(OnBuyPackCoinsClicked);
+
+        basicPackButton.onClick.AddListener(OnBuyBasicPackClicked);
+        premiumPackButton.onClick.AddListener(OnBuyPremiumPackClicked);
+
+        acceptBuyBasicPackButton.onClick.AddListener(OnFinalBuyBasicPackClicked);
+        acceptBuyPremiumPackButton.onClick.AddListener(OnFinalBuyPremiumPackClicked);
 
         coinsShopPanel.SetActive(false); 
     }
@@ -89,6 +100,28 @@ public class ShopManager : MonoBehaviour
         message.Show("Aún no puedes realizar esta acción. Requiere dinero real."); // Mensaje cuando el jugador intenta comprar monedas premium
     }
 
+    public void OnBuyBasicPackClicked()
+    {
+        messageBuyBP.Show("Si compras este sobre gastarás 70 monedas de café. ¿Deseas continuar y abrirlo?"); // Mensaje cuando el jugador intenta comprar un sobre básico
+    }
+
+    public void OnBuyPremiumPackClicked()
+    {
+        messageBuyPP.Show("Si compras este sobre gastarás 120 croquetas doradas o 220 monedas de café. ¿Deseas continuar y abrirlo?"); // Mensaje cuando el jugador intenta comprar un sobre premium
+    }
+
+    public void OnFinalBuyBasicPackClicked()
+    {
+        BuyBasicPack();
+        buyBasicPackMsgPanel.SetActive(false);
+    }
+
+    public void OnFinalBuyPremiumPackClicked()
+    {
+        BuyPremiumPack();
+        buyPremiumPackMsgPanel.SetActive(false);
+    }
+
     // Interaccion con el boton de comprar un sobre basico
     public void BuyBasicPack()
     {
@@ -106,7 +139,7 @@ public class ShopManager : MonoBehaviour
     // Interaccion con el boton de comprar un sobre premium
     public void BuyPremiumPack()
     {
-        if (PlayerDataManager.instance.SpendPremiumCoins(premiumPackCost))
+        if (PlayerDataManager.instance.SpendPremiumCoins(premiumPackCostBC) || PlayerDataManager.instance.SpendPremiumCoins(premiumPackCostPC))
         {
             Debug.Log("Sobre premium abierto");
             UpdateUI();
