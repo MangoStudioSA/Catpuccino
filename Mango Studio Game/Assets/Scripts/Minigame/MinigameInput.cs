@@ -114,9 +114,12 @@ public class MinigameInput : MonoBehaviour
         buttonManager.coffeeButton.gameObject.SetActive(true);
         buttonManager.filtroCafeteraButton.gameObject.SetActive(false);
         buttonManager.filtroButton.gameObject.SetActive(false);
-        buttonManager.calentarButton.gameObject.SetActive(true);
+
         buttonManager.molerButton.gameObject.SetActive(true);
         buttonManager.echarCafeButton.gameObject.SetActive(true);
+        buttonManager.cogerTazaLecheButton.gameObject.SetActive(true);
+        buttonManager.milkButton.gameObject.SetActive(true);
+        buttonManager.calentarButton.gameObject.SetActive(true);
 
         buttonManager.EnableButton(buttonManager.cogerTazaInicioButton);
         buttonManager.EnableButton(buttonManager.cogerVasoInicioButton);
@@ -206,6 +209,8 @@ public class MinigameInput : MonoBehaviour
     }
     private void HandleHeating()
     {
+        if (!tazaMilkIsInEspumador) return;
+
         // Movimiento circunferencia calentar leche
         if (isHeating && Input.GetMouseButton(0))
         {
@@ -294,15 +299,6 @@ public class MinigameInput : MonoBehaviour
             buttonManager.EnableButton(buttonManager.recipesBookButton);
             buttonManager.EnableButton(buttonManager.orderNoteButton);
         }
-
-        if (heatedMilk && milkServed)
-        {
-            buttonManager.DisableButton(buttonManager.calentarButton);
-        }
-        else if (tazaMilkIsInEspumador)
-        {
-            buttonManager.EnableButton(buttonManager.calentarButton);
-        }
     }
     
     #region Mecanicas cafe
@@ -373,7 +369,10 @@ public class MinigameInput : MonoBehaviour
         if (TengoOtroObjetoEnLaMano() || filtroInHand || tazaMilkInHand)
             return;
 
-        if (!tazaInHand && !tazaIsInPlato)
+        if (!tazaInHand)
+            return;
+
+        if (!platoTazaIsInTable)
             return;
 
         if (!tazaIsInPlato && tazaInHand)
@@ -638,7 +637,6 @@ public class MinigameInput : MonoBehaviour
 
         buttonManager.DisableButton(buttonManager.echarCafeButton);
         buttonManager.DisableButton(buttonManager.filtroCafeteraButton);
-        buttonManager.DisableButton(buttonManager.calentarButton);
         buttonManager.DisableButton(buttonManager.waterButton);
         buttonManager.DisableButton(buttonManager.milkButton);
         buttonManager.DisableButton(buttonManager.cogerTazaLecheButton);
@@ -649,6 +647,7 @@ public class MinigameInput : MonoBehaviour
         buttonManager.EnableButton(buttonManager.pararEcharCafeButton);
 
         buttonManager.echarCafeButton.gameObject.SetActive(false);
+        buttonManager.calentarButton.gameObject.SetActive(false);
         buttonManager.pararEcharCafeButton.gameObject.SetActive(true);
     }
 
@@ -744,6 +743,7 @@ public class MinigameInput : MonoBehaviour
                 Debug.Log($"[Cliente {order.currentOrder.orderId}] Cantidad de leche: " + countMilk);
             }
             milkServed = true;
+            buttonManager.cogerTazaLecheButton.gameObject.SetActive(false);
         }
     }
     public void ToggleTazaLecheEspumador()
@@ -763,8 +763,11 @@ public class MinigameInput : MonoBehaviour
             tazaMilkIsInEspumador = true;
 
             buttonManager.DisableButton(buttonManager.waterButton);
+            buttonManager.milkButton.gameObject.SetActive(false);
             buttonManager.DisableButton(buttonManager.milkButton);
             buttonManager.DisableButton(buttonManager.cogerTazaLecheButton);
+
+            buttonManager.EnableButton(buttonManager.calentarButton);
 
             cursorManager.UpdateCursorTazaMilk(true);
             Debug.Log($"Taza con leche colocada en espumador: {tazaMilkIsInEspumador}");
@@ -783,17 +786,11 @@ public class MinigameInput : MonoBehaviour
 
             cursorManager.UpdateCursorTazaMilk(false);
         }
-        else
-        {
-            Debug.Log("No hay ninguna taza en el espumador");
-        }
-        if (milkServed)
-        {
-            buttonManager.EnableButton(buttonManager.calentarButton);
-        }
     }
     public void StartHeating()
     {
+        if (!tazaMilkIsInEspumador || TengoOtroObjetoEnLaMano()) return;
+
         if (!isHeating && !heatedMilk)
         {
             currentHeat = 0f;

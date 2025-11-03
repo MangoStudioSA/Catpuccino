@@ -66,6 +66,7 @@ public class CoffeeGameManager : MonoBehaviour
         string feedback = GenerateFeedbackText(
             result.score,
             evaluation.isOrderWithFood,
+            evaluation.playerForgotFood,
             evaluation.lastWrongFoodType,
             evaluation.lastBadCookStateRaw,
             evaluation.lastBadCookStateBurned
@@ -87,7 +88,7 @@ public class CoffeeGameManager : MonoBehaviour
         else return 2;
     }
     // Funcion para generar el texto en funcion de la puntuacion obtenida
-    private string GenerateFeedbackText(int score, bool isOrderWithFood, bool wrongFoodType, bool badCookStateRaw, bool badCookStateBurned)
+    private string GenerateFeedbackText(int score, bool isOrderWithFood, bool playerForgotFood, bool wrongFoodType, bool badCookStateRaw, bool badCookStateBurned)
     {
         string feedback = "";
         if (score <= 40) feedback = "Este café no es lo que había pedido...";
@@ -96,7 +97,8 @@ public class CoffeeGameManager : MonoBehaviour
 
         if (isOrderWithFood)
         {
-            if (wrongFoodType) feedback += " Esta comida no es la que había pedido... ¿Te has equivocado de plato?";
+            if (playerForgotFood) feedback += " Te has olvidado de preparar la comida...";
+            else if (wrongFoodType) feedback += " Esta comida no es la que había pedido... ¿Te has equivocado de plato?";
             else if (badCookStateRaw) feedback += " Esta comida está cruda... ¡Así no se puede comer!";
             else if (badCookStateBurned) feedback += " La comida está quemada... ¡Así no se puede comer!";
             else feedback += " La comida está bien preparada.";

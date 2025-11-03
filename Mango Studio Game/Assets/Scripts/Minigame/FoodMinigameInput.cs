@@ -224,13 +224,6 @@ public class FoodMinigameInput : MonoBehaviour
     // Funcion para interactuar con la comida en el plato 
     public void ToggleFoodPlato()
     {
-        Debug.Log("=== [ToggleFoodPlato] ===");
-        Debug.Log($"foodManager: {foodManager}");
-        Debug.Log($"cursorManager: {cursorManager}");
-        Debug.Log($"order: {order}");
-        Debug.Log($"order.currentOrder: {order?.currentOrder}");
-        Debug.Log($"foodCategoryInHand: {foodCategoryInHand}");
-        Debug.Log($"foodTypeInHand: {foodTypeInHand}");
         // Comprobaciones previas
         if (carryBagIsInEncimera) return;
         if (!foodInHand && !foodIsInPlato && !platoIsInEncimera) return;
@@ -262,6 +255,10 @@ public class FoodMinigameInput : MonoBehaviour
             if (order.currentOrder.foodOrder != null)
             {
                 order.currentOrder.foodOrder.SetFoodPrecision(foodCategoryInHand, foodTypeInHand);
+                if (currentCookState == CookState.no)
+                {
+                    currentCookState = CookState.crudo;
+                }
                 order.currentOrder.foodOrder.SetCookStatePrecision(currentCookState);
             }
             //  Se resetea la categoria y el tipo de comida de la mano 
@@ -317,6 +314,10 @@ public class FoodMinigameInput : MonoBehaviour
             if (order.currentOrder.foodOrder != null)
             {
                 order.currentOrder.foodOrder.SetFoodPrecision(foodCategoryInHand, foodTypeInHand);
+                if (currentCookState == CookState.no)
+                {
+                    currentCookState = CookState.crudo;
+                }
                 order.currentOrder.foodOrder.SetCookStatePrecision(currentCookState);
             }
             //  Se resetea la categoria y el tipo de comida de la mano 

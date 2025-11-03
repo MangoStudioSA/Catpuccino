@@ -24,10 +24,19 @@ public class OrderEvaluation : MonoBehaviour
     private const float MAX_ERROR = 2.0F;
 
     public bool isOrderWithFood = false;
+    public bool playerForgotFood = false;
     public bool lastWrongFoodType = false;
     public bool lastBadCookStateBurned = false;
     public bool lastBadCookStateRaw = false;
 
+    public void Start()
+    {
+        isOrderWithFood = false;
+        playerForgotFood = false;
+        lastBadCookStateBurned = false;
+        lastBadCookStateRaw = false;
+        lastWrongFoodType = false;
+    }
     public EvaluationResult Evaluate(Order npcOrder, Order playerOrder)
     {
         EvaluationResult result = new EvaluationResult();
@@ -525,14 +534,15 @@ public class OrderEvaluation : MonoBehaviour
         {
             typeFoodScore = MAX_SCORE_FOODTYPE;
         }
-        else if (playerCategory == targetCategory && playerType != targetType)
-        {
-            typeFoodScore = 5; 
-        }
-        else
+        else if (playerCategory != targetCategory && playerType != targetType)
         {
             typeFoodScore = -10;
             lastWrongFoodType = true;
+        }
+        else
+        {
+            typeFoodScore = -15;
+            playerForgotFood = true;
         }
 
         Debug.Log($"[Evaluación Tipo de commida Cliente {playerOrder.orderId}] Objetivo: {targetCategory} {targetType} | Jugador: {playerCategory} {playerType}");
@@ -553,6 +563,11 @@ public class OrderEvaluation : MonoBehaviour
         if (playerState == targetState)     // Si el jugador ha preparado el tipo de pedido que se pedia suma 15 puntos
         {
             cookStateScore = MAX_SCORE_COOKSTATE;
+        }
+        else if (playerState == CookState.no)
+        {
+            cookStateScore = -15;
+            playerForgotFood = true;
         }
         else if (playerState == CookState.crudo)
         {

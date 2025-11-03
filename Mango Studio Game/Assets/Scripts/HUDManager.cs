@@ -68,11 +68,11 @@ public class HUDManager : MonoBehaviour
 
     public void UpdateBasicCoins(int cantidad)
     {
-        basicCoinsTxt.text = $"Monedas básicas: {cantidad}";
+        basicCoinsTxt.text = $"Monedas de café: {cantidad}";
     }
     public void UpdatePremiumCoins(int cantidad)
     {
-        premiumCoinsTxt.text = $"Monedas premium: {cantidad}";
+        premiumCoinsTxt.text = $"Croquetas doradas: {cantidad}";
     }
 
     // Funcion encargada de mostrar por pantalla los cafes disponibles del dia actual

@@ -25,7 +25,7 @@ public class FoodOrder
         this.foodPrecisionType = -1;
 
         targetCookState = CookState.horneado;
-        precisionCookState = CookState.crudo;
+        precisionCookState = CookState.no;
 
         switch (category)
         {
@@ -132,4 +132,4 @@ public enum FoodCategory { no, bizcocho, galleta, mufflin }
 public enum CakeType { ninguno, chocolate, mantequilla, zanahoria,RedVelvet}
 public enum CookieType { ninguno, chocolate,blanco, mantequilla }
 public enum MufflinType { ninguno, pistacho,arandanos, cereza,dulceLeche}
-public enum CookState { crudo, horneado, quemado }
+public enum CookState { no, crudo, horneado, quemado }
