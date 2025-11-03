@@ -3,16 +3,6 @@ using UnityEngine.UI;
 
 public class ButtonUnlockManager : MonoBehaviour
 {
-    [System.Serializable]
-    public class ButtonConfig
-    {
-        public Button button;
-        public bool ignoreSpriteChange = false;
-    }
-
-    [SerializeField] public ButtonConfig[] allButtons;
-
-
     [Header("Sprites botones")]
     [SerializeField] private Sprite defaultSprite;
     [SerializeField] private Sprite activeSprite;
@@ -70,60 +60,6 @@ public class ButtonUnlockManager : MonoBehaviour
     [SerializeField] public Button hornearButton;
     [SerializeField] public Button stopHorneadoButton;
 
-    private void Awake()
-    {
-        allButtons = new ButtonConfig[]
-        {
-            new ButtonConfig { button = endDeliveryButton, ignoreSpriteChange = false },
-            new ButtonConfig { button = gameButton, ignoreSpriteChange = true },
-            new ButtonConfig { button = submitOrderButton, ignoreSpriteChange = false },
-            new ButtonConfig { button = recipesBookButton, ignoreSpriteChange = false },
-            new ButtonConfig { button = orderNoteButton, ignoreSpriteChange = false },
-
-            new ButtonConfig { button = coffeeButton, ignoreSpriteChange = false },
-            new ButtonConfig { button = milkButton, ignoreSpriteChange = true },
-            new ButtonConfig { button = waterButton, ignoreSpriteChange = true },
-            new ButtonConfig { button = sugarButton, ignoreSpriteChange = true },
-            new ButtonConfig { button = iceButton, ignoreSpriteChange = true },
-            new ButtonConfig { button = coverButton, ignoreSpriteChange = true },
-            new ButtonConfig { button = condensedMilkButton, ignoreSpriteChange = true },
-            new ButtonConfig { button = creamButton, ignoreSpriteChange = true },
-            new ButtonConfig { button = chocolateButton, ignoreSpriteChange = true },
-            new ButtonConfig { button = whiskeyButton, ignoreSpriteChange = true },
-
-            new ButtonConfig { button = cogerTazaInicioButton, ignoreSpriteChange = true },
-            new ButtonConfig { button = cogerVasoInicioButton, ignoreSpriteChange = true },
-            new ButtonConfig { button = cogerPlatoTazaButton, ignoreSpriteChange = true },
-            new ButtonConfig { button = molerButton, ignoreSpriteChange = false },
-            new ButtonConfig { button = filtroButton, ignoreSpriteChange = true },
-            new ButtonConfig { button = filtroCafeteraButton, ignoreSpriteChange = true },
-            new ButtonConfig { button = echarCafeButton, ignoreSpriteChange = false },
-            new ButtonConfig { button = pararEcharCafeButton, ignoreSpriteChange = false },
-            new ButtonConfig { button = calentarButton, ignoreSpriteChange = false },
-            new ButtonConfig { button = espumadorButton, ignoreSpriteChange = true },
-            new ButtonConfig { button = cogerTazaLecheButton, ignoreSpriteChange = true },
-            new ButtonConfig { button = papeleraButton, ignoreSpriteChange = true },
-
-            new ButtonConfig { button = bakeryButton, ignoreSpriteChange = false },
-            new ButtonConfig { button = returnBakeryButton, ignoreSpriteChange = false },
-            new ButtonConfig { button = cogerPlatoInicioButton, ignoreSpriteChange = true },
-            new ButtonConfig { button = cogerBolsaLlevarInicioButton, ignoreSpriteChange = true },
-            new ButtonConfig { button = cogerBChocolateButton, ignoreSpriteChange = true },
-            new ButtonConfig { button = cogerBZanahoriaButton, ignoreSpriteChange = true },
-            new ButtonConfig { button = cogerBMantequillaButton, ignoreSpriteChange = true },
-            new ButtonConfig { button = cogerBRedVelvetButton, ignoreSpriteChange = true },
-            new ButtonConfig { button = cogerGChocolateButton, ignoreSpriteChange = true },
-            new ButtonConfig { button = cogerGChocolateBlButton, ignoreSpriteChange = true },
-            new ButtonConfig { button = cogerGMantequillaButton, ignoreSpriteChange = true },
-            new ButtonConfig { button = cogerMArandanosButton, ignoreSpriteChange = true },
-            new ButtonConfig { button = cogerMCerezaButton, ignoreSpriteChange = true },
-            new ButtonConfig { button = cogerMPistachoButton, ignoreSpriteChange = true },
-            new ButtonConfig { button = cogerMDulceLecheButton, ignoreSpriteChange = true },
-            new ButtonConfig { button = hornoButton, ignoreSpriteChange = true },
-            new ButtonConfig { button = hornearButton, ignoreSpriteChange = false },
-            new ButtonConfig { button = stopHorneadoButton, ignoreSpriteChange = true },
-        };
-    }
     private void Start()
     {
         RefreshButtons();
@@ -192,23 +128,11 @@ public class ButtonUnlockManager : MonoBehaviour
     {
         if (button == null) return;
         else button.interactable = true;
-
-        var config = System.Array.Find(allButtons, b => b.button == button);
-        if (config != null && !config.ignoreSpriteChange && activeSprite != null)
-        {
-            button.image.sprite = activeSprite;
-        }
     }
 
     public void DisableButton(Button button)
     {
         if (button == null) return;
         else button.interactable = false;
-
-        var config = System.Array.Find(allButtons, b => b.button == button);
-        if (config != null && !config.ignoreSpriteChange && defaultSprite != null)
-        {
-            button.image.sprite = defaultSprite;
-        }
     }
 }

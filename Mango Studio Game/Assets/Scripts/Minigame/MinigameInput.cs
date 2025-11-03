@@ -24,12 +24,14 @@ public class MinigameInput : MonoBehaviour
     public bool coffeeDone = false;
 
     [Header("Mecánica echar café")]
-    public Slider serveCoffeeSlider;
-    public float sliderSpeed = 0.8f;
-    public float currentSlideServedCoffee = 0f;
-    public bool isSlidingServeCoffee = false;
+    public RectTransform needle;
+    public float rotationSpeed = 150f;
+    public float maxAngle = 180f;
+    public float currentAngle = 0f;
+    public bool isServing = false;
     public bool movingRight = true;
     public bool coffeeServed = false;
+    private float normalizedPrecision = 0f;
 
     [Header("Mecánica moler café")]
     [SerializeField] private GameObject molerPanel;
@@ -74,6 +76,7 @@ public class MinigameInput : MonoBehaviour
     public GameObject TazaLeche; 
     public GameObject PlatoTaza;
     public GameObject Filtro;
+    public GameObject Espumador;
 
     public Transform puntoCafetera;
     public Transform puntoEspumador;
@@ -87,6 +90,14 @@ public class MinigameInput : MonoBehaviour
     public Sprite vasoSinCafe;
     public Sprite tazaSinCafe;
     public Sprite tazaConCafe;
+    public Sprite espumadorNormal;
+    public Sprite espumadorShort;
+    public Sprite boton1_N;
+    public Sprite boton1_P;
+    public Sprite boton2_N;
+    public Sprite boton2_P;
+    public Sprite boton3_N;
+    public Sprite boton3_P;
     #endregion
 
     public void Start()
@@ -105,21 +116,18 @@ public class MinigameInput : MonoBehaviour
         HandleMoler();
         HandleHeating();
 
-        if (isSlidingServeCoffee && !coffeeServed) MoveSliderServedCoffee();
+        if (isServing && !coffeeServed) MoveNeedle();
 
         CheckButtons();
     }
     public void ResetCafe()
     {
-        buttonManager.coffeeButton.gameObject.SetActive(true);
         buttonManager.filtroCafeteraButton.gameObject.SetActive(false);
         buttonManager.filtroButton.gameObject.SetActive(false);
 
         buttonManager.molerButton.gameObject.SetActive(true);
-        buttonManager.echarCafeButton.gameObject.SetActive(true);
         buttonManager.cogerTazaLecheButton.gameObject.SetActive(true);
         buttonManager.milkButton.gameObject.SetActive(true);
-        buttonManager.calentarButton.gameObject.SetActive(true);
 
         buttonManager.EnableButton(buttonManager.cogerTazaInicioButton);
         buttonManager.EnableButton(buttonManager.cogerVasoInicioButton);
@@ -146,15 +154,10 @@ public class MinigameInput : MonoBehaviour
         Vaso.SetActive(false);
         PlatoTaza.SetActive(false);
         TazaLeche.SetActive(false);
+        UpdateStartSprites();
 
-        Image taza = Taza.GetComponent<Image>();
-        taza.sprite = tazaSinCafe;
-
-        Image vaso = Vaso.GetComponent<Image>();
-        vaso.sprite = vasoSinCafe;
-
-        currentSlideTime = currentSlideServedCoffee = currentHeat = currentMolido = 0f;
-        isSliding = isSlidingServeCoffee = movingRight = coffeeDone = coffeeServed = cupServed = milkServed = heatedMilk = isHeating = isMoliendo = false;
+        currentSlideTime = currentHeat = currentMolido = currentAngle = 0f;
+        isSliding = isServing = movingRight = coffeeDone = coffeeServed = cupServed = milkServed = heatedMilk = isHeating = isMoliendo = false;
         tazaIsInCafetera = tazaIsInPlato = vasoIsInCafetera = vasoIsInTable = platoTazaIsInTable = tazaMilkIsInEspumador = filtroIsInCafetera = false;
         countSugar = countIce = countCover = countWater = countMilk = countCondensedMilk = countCream = countChocolate = countWhiskey = 0;
 
@@ -164,14 +167,25 @@ public class MinigameInput : MonoBehaviour
             coffeeSlider.maxValue = maxAmount;
             coffeeSlider.value = 0f;
         }
-
-        if (serveCoffeeSlider != null)
-        {
-            serveCoffeeSlider.minValue = 0f;
-            serveCoffeeSlider.maxValue = 1f;
-            serveCoffeeSlider.value = 0f;
-        }
     }
+    private void UpdateStartSprites()
+    {
+        Image taza = Taza.GetComponent<Image>();
+        taza.sprite = tazaSinCafe;
+
+        Image vaso = Vaso.GetComponent<Image>();
+        vaso.sprite = vasoSinCafe;
+
+        Image echarCafeBut = buttonManager.echarCafeButton.GetComponent<Image>();
+        echarCafeBut.sprite = boton1_N;
+
+        Image pararEcharCafeBut = buttonManager.pararEcharCafeButton.GetComponent<Image>();
+        pararEcharCafeBut.sprite = boton2_N;
+
+        Image pararCalentarLecheBut = buttonManager.calentarButton.GetComponent<Image>();
+        pararCalentarLecheBut.sprite = boton3_N;
+    }
+
     private void HandleCoffeeSlider()
     {
         // Movimiento slider cantidad cafe
@@ -538,7 +552,6 @@ public class MinigameInput : MonoBehaviour
             isSliding = false;
             coffeeDone = true;
 
-            buttonManager.coffeeButton.gameObject.SetActive(false);
             buttonManager.DisableButton(buttonManager.coffeeButton);
             buttonManager.EnableButton(buttonManager.molerButton);
 
@@ -617,23 +630,23 @@ public class MinigameInput : MonoBehaviour
 
         if (tazaIsInCafetera == true || vasoIsInCafetera == true && coffeeServed == false)
         {
-            buttonManager.echarCafeButton.gameObject.SetActive(true);
             buttonManager.EnableButton(buttonManager.echarCafeButton);
         }
     }
     public void StartServingCoffee()
     {
         if (coffeeServed) return;
+
         bool recipienteEnCafetera = tazaIsInCafetera || vasoIsInCafetera;
+        if (!recipienteEnCafetera || !filtroIsInCafetera) return;
 
-        if (recipienteEnCafetera && filtroIsInCafetera != false && coffeeServed == false)
-        {
-            Debug.Log($"[Cliente {order.currentOrder.orderId}] Preparacion: Echando cafe...");
+        Debug.Log($"[Cliente {order.currentOrder.orderId}] Preparacion: Echando cafe...");
 
-        }
-
-        isSlidingServeCoffee = true;
+        isServing = true;
         movingRight = true;
+
+        Image echarCafeBut = buttonManager.echarCafeButton.GetComponent<Image>();
+        echarCafeBut.sprite = boton1_P;
 
         buttonManager.DisableButton(buttonManager.echarCafeButton);
         buttonManager.DisableButton(buttonManager.filtroCafeteraButton);
@@ -645,53 +658,48 @@ public class MinigameInput : MonoBehaviour
         buttonManager.DisableButton(buttonManager.chocolateButton);
 
         buttonManager.EnableButton(buttonManager.pararEcharCafeButton);
-
-        buttonManager.echarCafeButton.gameObject.SetActive(false);
-        buttonManager.calentarButton.gameObject.SetActive(false);
-        buttonManager.pararEcharCafeButton.gameObject.SetActive(true);
     }
 
-    public void MoveSliderServedCoffee()
+    public void MoveNeedle()
     {
-        float value = serveCoffeeSlider.value;
-        float step = sliderSpeed * Time.deltaTime;
+        float step = rotationSpeed * Time.deltaTime;
 
         if (movingRight)
         {
-            value += step;
-            if (value >= 1f)
+            currentAngle += step;
+            if (currentAngle >= maxAngle)
             {
-                value = 1f;
+                currentAngle = maxAngle;
                 movingRight = false;
             }
         }
         else
         {
-            value -= step;
-            if (value <= 0f)
+            currentAngle -= step;
+            if (currentAngle <= 0f)
             {
-                value = 0f;
+                currentAngle = 0f;
                 movingRight = true;
             }
         }
 
-        serveCoffeeSlider.value = value;
-        currentSlideServedCoffee = value;
+        needle.localEulerAngles = new Vector3(0,0, -currentAngle);
+        normalizedPrecision = currentAngle / maxAngle;
     }
 
     public void StopServingCoffee()
     {
-        if (!isSlidingServeCoffee || coffeeServed) return;
+        if (!isServing || coffeeServed) return;
 
-        isSlidingServeCoffee = false;
+        isServing = false;
         coffeeServed = true;
 
         buttonManager.DisableButton(buttonManager.pararEcharCafeButton);
 
         if (order != null && order.currentOrder != null)
         {
-            order.currentOrder.coffeeServedPrecision = currentSlideServedCoffee;
-            Debug.Log($"[Cliente {order.currentOrder.orderId}] Echar cafe detenido en: {currentSlideServedCoffee}");
+            order.currentOrder.coffeeServedPrecision = normalizedPrecision;
+            Debug.Log($"[Cliente {order.currentOrder.orderId}] Echar cafe detenido en: {normalizedPrecision}");
         }
 
         buttonManager.EnableButton(buttonManager.sugarButton);
@@ -700,8 +708,9 @@ public class MinigameInput : MonoBehaviour
         buttonManager.EnableButton(buttonManager.whiskeyButton);
 
         buttonManager.DisableButton(buttonManager.pararEcharCafeButton);
-        buttonManager.pararEcharCafeButton.gameObject.SetActive(false);
-        buttonManager.filtroCafeteraButton.gameObject.SetActive(false);
+
+        Image pararEcharCafeBut = buttonManager.pararEcharCafeButton.GetComponent<Image>();
+        pararEcharCafeBut.sprite = boton2_P;
 
         if (tazaIsInCafetera)
         {
@@ -769,6 +778,9 @@ public class MinigameInput : MonoBehaviour
 
             buttonManager.EnableButton(buttonManager.calentarButton);
 
+            Image espumador = Espumador.GetComponent<Image>();
+            espumador.sprite = espumadorShort;
+
             cursorManager.UpdateCursorTazaMilk(true);
             Debug.Log($"Taza con leche colocada en espumador: {tazaMilkIsInEspumador}");
 
@@ -783,6 +795,9 @@ public class MinigameInput : MonoBehaviour
 
             tazaMilkInHand = true;
             tazaMilkIsInEspumador = false;
+
+            Image espumador = Espumador.GetComponent<Image>();
+            espumador.sprite = espumadorNormal;
 
             cursorManager.UpdateCursorTazaMilk(false);
         }
@@ -814,8 +829,10 @@ public class MinigameInput : MonoBehaviour
             heatedMilk = true;
 
             heatPanel.SetActive(false);
-            buttonManager.calentarButton.gameObject.SetActive(false);
             buttonManager.DisableButton(buttonManager.calentarButton);
+
+            Image pararCalentarLecheBut = buttonManager.calentarButton.GetComponent<Image>();
+            pararCalentarLecheBut.sprite = boton3_P;
 
             Debug.Log($"[Cliente {order.currentOrder.orderId}] Leche calentada");
         }
