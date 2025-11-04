@@ -9,14 +9,12 @@ public class CardPackManager : MonoBehaviour
     public GameObject packPanel; // Panel 
     public RectTransform packRect; // Sobre
     public Image cardImage; // Imagen de la carta
-    public Image packImage; // Imagen de la carta
+    public Image packImage; // Imagen del sobre
     public TextMeshProUGUI cardText; // Texto de la carta
     public Button openButton; // Boton de abrir sobre
     public Button closeButton; // Boton de cerrar panel
-
-    [Header("Colores rarezas de sobres")]
-    public Color basicPackColor; 
-    public Color premiumPackColor; 
+    public Sprite basicPackSprite; // Sprite sobre basico
+    public Sprite premiumPackSprite; // Sprite sobre premium
 
     [Header("Colores rarezas de carta")]
     public Color basicColor;       
@@ -64,11 +62,11 @@ public class CardPackManager : MonoBehaviour
 
         if (packType == "basic")
         {
-            packImage.color = basicPackColor;
+            packImage.sprite = basicPackSprite;
         }
         else if (packType == "premium")
         {
-            packImage.color = premiumPackColor;
+            packImage.sprite = premiumPackSprite;
         }
         Debug.Log("Tipo de sobre abierto: " + packType);
     }

@@ -17,11 +17,15 @@ public class MinigameInput : MonoBehaviour
 
     [Header("Mecánica cantidad café")]
     public UnityEngine.UI.Slider coffeeSlider; //la barrita que se mueve
+    public Image coffeeSliderFillImage;
     public float slideSpeed = 0.8f;
     public float maxAmount = 4.0f;
     float currentSlideTime = 0f;
     bool isSliding = false;
     public bool coffeeDone = false;
+    public Color coffeeFillColor;
+    public Vector2 leverUpOffSet = Vector2.zero;
+    public Vector2 leverDownOffSet = new (0, 500f);
 
     [Header("Mecánica echar café")]
     public RectTransform needle;
@@ -35,6 +39,7 @@ public class MinigameInput : MonoBehaviour
 
     [Header("Mecánica moler café")]
     [SerializeField] private GameObject molerPanel;
+    [SerializeField] private GameObject palancaDown;
     [SerializeField] private Image molerFillImage;
     [SerializeField] private float molerFillSpeed = 0.5f;
     [SerializeField] private float maxFillMoler = 1f;
@@ -98,6 +103,8 @@ public class MinigameInput : MonoBehaviour
     public Sprite boton2_P;
     public Sprite boton3_N;
     public Sprite boton3_P;
+    public Sprite botonCantidadCafe_N;
+    public Sprite botonCantidadCafe_P;
     #endregion
 
     public void Start()
@@ -125,15 +132,14 @@ public class MinigameInput : MonoBehaviour
         buttonManager.filtroCafeteraButton.gameObject.SetActive(false);
         buttonManager.filtroButton.gameObject.SetActive(false);
 
-        buttonManager.molerButton.gameObject.SetActive(true);
         buttonManager.cogerTazaLecheButton.gameObject.SetActive(true);
         buttonManager.milkButton.gameObject.SetActive(true);
 
         buttonManager.EnableButton(buttonManager.cogerTazaInicioButton);
         buttonManager.EnableButton(buttonManager.cogerVasoInicioButton);
         buttonManager.EnableButton(buttonManager.cogerPlatoTazaButton);
+        buttonManager.EnableButton(buttonManager.coffeeButton);
 
-        buttonManager.DisableButton(buttonManager.coffeeButton);
         buttonManager.DisableButton(buttonManager.cogerTazaLecheButton);
         buttonManager.DisableButton(buttonManager.molerButton);
         buttonManager.DisableButton(buttonManager.filtroCafeteraButton);
@@ -154,7 +160,11 @@ public class MinigameInput : MonoBehaviour
         Vaso.SetActive(false);
         PlatoTaza.SetActive(false);
         TazaLeche.SetActive(false);
+        Filtro.SetActive(false);
         UpdateStartSprites();
+
+        buttonManager.molerButton.gameObject.SetActive(true);
+        palancaDown.SetActive(false);
 
         currentSlideTime = currentHeat = currentMolido = currentAngle = 0f;
         isSliding = isServing = movingRight = coffeeDone = coffeeServed = cupServed = milkServed = heatedMilk = isHeating = isMoliendo = false;
@@ -176,6 +186,9 @@ public class MinigameInput : MonoBehaviour
         Image vaso = Vaso.GetComponent<Image>();
         vaso.sprite = vasoSinCafe;
 
+        Image cantidadCafeBut = buttonManager.coffeeButton.GetComponent<Image>();
+        cantidadCafeBut.sprite = botonCantidadCafe_N;
+
         Image echarCafeBut = buttonManager.echarCafeButton.GetComponent<Image>();
         echarCafeBut.sprite = boton1_N;
 
@@ -195,7 +208,7 @@ public class MinigameInput : MonoBehaviour
 
             // El slider se actualiza con el tiempo de deslizamiento
             coffeeSlider.value = currentSlideTime;
-
+            coffeeSliderFillImage.color = coffeeFillColor;
 
             if (currentSlideTime > maxAmount)
             {
@@ -292,8 +305,7 @@ public class MinigameInput : MonoBehaviour
             buttonManager.EnableButton(buttonManager.returnBakeryButton);
 
         if (tazaIsInCafetera || vasoIsInCafetera)
-            buttonManager.EnableButton(buttonManager.coffeeButton);
-            buttonManager.EnableButton(buttonManager.papeleraButton);
+            //buttonManager.EnableButton(buttonManager.papeleraButton);
 
         if (tazaInHand || vasoInHand || TengoOtroObjetoEnLaMano())
         {
@@ -566,6 +578,9 @@ public class MinigameInput : MonoBehaviour
                 Debug.LogWarning($"[Cliente {order.currentOrder.orderId}] Preparacion: Cafe detenido en: {currentSlideTime:F2}, pero no se pudo guardar porque no hay un pedido activo.");
             }
 
+            Image cantidadCafeBut = buttonManager.coffeeButton.GetComponent<Image>();
+            cantidadCafeBut.sprite = botonCantidadCafe_P;
+
             if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 8)
                 FindFirstObjectByType<TutorialManager>().CompleteCurrentStep();
         }
@@ -591,10 +606,12 @@ public class MinigameInput : MonoBehaviour
             molerPanel.SetActive(false);
 
             Debug.Log($"[Cliente {order.currentOrder.orderId}] Cafe molido");
-            buttonManager.molerButton.gameObject.SetActive(false);
             buttonManager.DisableButton(buttonManager.molerButton);
             buttonManager.filtroButton.gameObject.SetActive(true);
             buttonManager.EnableButton(buttonManager.filtroButton);
+
+            buttonManager.molerButton.gameObject.SetActive(false);
+            palancaDown.SetActive(true);
 
             if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 9)
                 FindFirstObjectByType<TutorialManager>().CompleteCurrentStep();
