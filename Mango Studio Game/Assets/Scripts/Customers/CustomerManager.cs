@@ -6,21 +6,39 @@ public class CustomerManager : MonoBehaviour
     public GameObject spawn;
     public GameObject customer;
     private float nextSpawn;
-    public int minTime = 5, maxTime = 10;
+    public float minTime = 5, maxTime = 10;
+    public float minMinTime = 1, minMaxTime = 2;
     public int clients = 0;
     public int maxClients = 7;
     public GameObject orderButton;
     public GameObject orderingCustomer;
     public Queue<CustomerController> customers;
+    TimeManager timeManager;
+    public float timeDecay = 1f;
 
     void Awake()
     {
         customers = new Queue<CustomerController>();
+        timeManager = FindFirstObjectByType<TimeManager>();
+
     }
 
     void Start()
     {
-        nextSpawn = Random.Range(minTime / 2, maxTime / 2);
+        minTime -= timeDecay * (timeManager.currentDay - 1);
+        maxTime -= timeDecay * (timeManager.currentDay - 1);
+
+        if (minTime<minMinTime)
+        {
+            minTime = minMinTime;
+        }
+
+        if (minTime < minMinTime)
+        {
+            maxTime = minMaxTime;
+        }
+
+        nextSpawn = Random.Range(minTime / 4, maxTime / 4);
     }
 
     void Update()

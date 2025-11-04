@@ -17,12 +17,12 @@ public class TimeManager : MonoBehaviour
 
     [Header("Configuración del Tiempo")]
     [SerializeField] private float secondsPerGameMinute;
+    [SerializeField] private float timeDecay;
     [SerializeField] private int startHour;
     [SerializeField] private int endHour;
     [SerializeField] private int endMinutes;
 
     [Header("Configuración de facturas")]
-    //SerializeField] private int requiredBase;
     [SerializeField] private float requiredIncrement;
 
 
@@ -109,6 +109,7 @@ public class TimeManager : MonoBehaviour
         
         // Se aumenta el dia y se guarda en el progreso del jugador
         currentDay++;
+        secondsPerGameMinute += timeDecay * (currentDay - 1);
         playerDataManager.NextDay();
 
         // Se actualiza el tiempo y las variables
