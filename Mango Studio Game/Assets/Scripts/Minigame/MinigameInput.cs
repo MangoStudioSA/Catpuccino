@@ -24,8 +24,6 @@ public class MinigameInput : MonoBehaviour
     bool isSliding = false;
     public bool coffeeDone = false;
     public Color coffeeFillColor;
-    public Vector2 leverUpOffSet = Vector2.zero;
-    public Vector2 leverDownOffSet = new (0, 500f);
 
     [Header("Mecánica echar café")]
     public RectTransform needle;
@@ -119,13 +117,12 @@ public class MinigameInput : MonoBehaviour
 
     public void Update()
     {
+        CheckButtons();
         HandleCoffeeSlider();
         HandleMoler();
         HandleHeating();
 
         if (isServing && !coffeeServed) MoveNeedle();
-
-        CheckButtons();
     }
     public void ResetCafe()
     {
@@ -138,8 +135,9 @@ public class MinigameInput : MonoBehaviour
         buttonManager.EnableButton(buttonManager.cogerTazaInicioButton);
         buttonManager.EnableButton(buttonManager.cogerVasoInicioButton);
         buttonManager.EnableButton(buttonManager.cogerPlatoTazaButton);
-        buttonManager.EnableButton(buttonManager.coffeeButton);
 
+        buttonManager.EnableButton(buttonManager.coffeeButton);
+        buttonManager.DisableButton(buttonManager.submitOrderButton);
         buttonManager.DisableButton(buttonManager.cogerTazaLecheButton);
         buttonManager.DisableButton(buttonManager.molerButton);
         buttonManager.DisableButton(buttonManager.filtroCafeteraButton);
@@ -379,10 +377,6 @@ public class MinigameInput : MonoBehaviour
 
             cursorManager.UpdateCursorTaza(false);
         }
-        else
-        {
-            Debug.Log("No hay ninguna taza en la cafetera");
-        }
         if (filtroIsInCafetera == true && coffeeServed == false)
         {
             buttonManager.EnableButton(buttonManager.echarCafeButton);
@@ -392,10 +386,10 @@ public class MinigameInput : MonoBehaviour
     }
     public void ToggleTazaPlato()
     {
-        if (TengoOtroObjetoEnLaMano() || filtroInHand || tazaMilkInHand)
+        if (TengoOtroObjetoEnLaMano() || tazaMilkInHand)
             return;
 
-        if (!tazaInHand)
+        if (!tazaInHand && !tazaIsInPlato)
             return;
 
         if (!platoTazaIsInTable)
@@ -425,10 +419,6 @@ public class MinigameInput : MonoBehaviour
             cupServed = false;
 
             cursorManager.UpdateCursorTaza(false);
-        }
-        else
-        {
-            Debug.Log("No hay ninguna taza en el plato");
         }
     }
     public void ToggleVasoCafetera()
@@ -466,10 +456,6 @@ public class MinigameInput : MonoBehaviour
             vasoIsInCafetera = false;
 
             cursorManager.UpdateCursorVaso(false);
-        }
-        else
-        {
-            Debug.Log("No hay ningun vaso en la cafetera");
         }
         if (filtroIsInCafetera == true && coffeeServed == false)
         {
@@ -510,14 +496,6 @@ public class MinigameInput : MonoBehaviour
             cupServed = false;
 
             cursorManager.UpdateCursorVaso(false);
-        }
-        else
-        {
-            Debug.Log("No hay ningun vaso en la cafetera");
-        }
-        if (filtroIsInCafetera == true && coffeeServed == false)
-        {
-            buttonManager.EnableButton(buttonManager.echarCafeButton);
         }
     }
     public void PlacePlatoTazaMesa()

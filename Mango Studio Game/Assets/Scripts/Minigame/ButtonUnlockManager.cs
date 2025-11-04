@@ -3,10 +3,6 @@ using UnityEngine.UI;
 
 public class ButtonUnlockManager : MonoBehaviour
 {
-    [Header("Sprites botones")]
-    [SerializeField] private Sprite defaultSprite;
-    [SerializeField] private Sprite activeSprite;
-
     [Header("Botones de interacciones")]
     [SerializeField] public Button endDeliveryButton;
     [SerializeField] public Button gameButton;
@@ -99,7 +95,6 @@ public class ButtonUnlockManager : MonoBehaviour
         pararEcharCafeButton.interactable = false;
         calentarButton.interactable = false;
         cogerTazaLecheButton.interactable = false;
-        submitOrderButton.interactable = false;
 
         sugarButton.interactable = false;
         iceButton.interactable = false;

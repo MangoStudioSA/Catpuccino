@@ -1064,8 +1064,6 @@ MonoBehaviour:
   maxAmount: 4
   coffeeDone: 0
   coffeeFillColor: {r: 0.43137258, g: 0.27058825, b: 0.21568629, a: 1}
-  leverUpOffSet: {x: 0, y: 0}
-  leverDownOffSet: {x: 0, y: -20}
   needle: {fileID: 1422528249}
   rotationSpeed: 150
   maxAngle: 180
@@ -1294,11 +1292,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85fe928d2fedb2748bed0e9fef2167c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultSprite: {fileID: 0}
-  activeSprite: {fileID: 21300000, guid: a43e21c56bb91664999e3a5963b683b9, type: 3}
   endDeliveryButton: {fileID: 49673518}
   gameButton: {fileID: 41301284}
-  submitOrderButton: {fileID: 1838202980}
+  submitOrderButton: {fileID: 0}
   recipesBookButton: {fileID: 1694360623}
   orderNoteButton: {fileID: 405058592}
   coffeeButton: {fileID: 21858912}
@@ -6069,7 +6065,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: -1357573665, guid: e288ad6c858bce44d98d91c579e9587e, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -9436,10 +9432,10 @@ RectTransform:
   - {fileID: 427748804}
   m_Father: {fileID: 86830683}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -334.242, y: 98.94397}
-  m_SizeDelta: {x: 102, y: 44}
+  m_AnchorMin: {x: 0.31712502, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.6043704}
+  m_AnchoredPosition: {x: -157.742, y: 42.44397}
+  m_SizeDelta: {x: -251, y: -69}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &558733945
 MonoBehaviour:
@@ -26850,14 +26846,14 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1817987057}
+  - {fileID: 1422528249}
   - {fileID: 330642388}
   - {fileID: 1275036456}
   - {fileID: 386902212}
   - {fileID: 1645141595}
   - {fileID: 2016690275}
   - {fileID: 1217273031}
-  - {fileID: 1817987057}
-  - {fileID: 1422528249}
   m_Father: {fileID: 153319689}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -29988,7 +29984,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: -710495507, guid: e288ad6c858bce44d98d91c579e9587e, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -30040,7 +30036,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.80825007, y: 0.123}
   m_AnchorMax: {x: 0.93700004, y: 0.2541111}
-  m_AnchoredPosition: {x: -2.71875, y: 2.9794922}
+  m_AnchoredPosition: {x: -6, y: 2.9794922}
   m_SizeDelta: {x: -2.428833, y: -1.8399963}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2023830125

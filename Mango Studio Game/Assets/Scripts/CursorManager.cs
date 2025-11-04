@@ -82,7 +82,7 @@ public class CursorManager : MonoBehaviour
     // Gestionar coger el vaso del estante
     public void TakeVasoFromShelf()
     {
-        if (!miniGameInput.vasoInHand && !miniGameInput.vasoIsInCafetera && !miniGameInput.tazaInHand || !miniGameInput.platoTazaInHand)
+        if (!miniGameInput.vasoInHand && !miniGameInput.vasoIsInCafetera && !miniGameInput.tazaInHand && !miniGameInput.platoTazaInHand)
         {
             miniGameInput.vasoInHand = true;
             Cursor.SetCursor(vasoCursorTexture, hotSpotVaso, CursorMode.Auto);
