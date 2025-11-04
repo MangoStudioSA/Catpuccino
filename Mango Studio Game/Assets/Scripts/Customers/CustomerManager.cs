@@ -6,7 +6,8 @@ public class CustomerManager : MonoBehaviour
     public GameObject spawn;
     public GameObject customer;
     private float nextSpawn;
-    public float minTime = 5, maxTime = 10;
+    public float minTimeBase = 10, maxTimeBase = 20;
+    public float minTime = 0, maxTime = 0;
     public float minMinTime = 1, minMaxTime = 2;
     public int clients = 0;
     public int maxClients = 7;
@@ -15,6 +16,7 @@ public class CustomerManager : MonoBehaviour
     public Queue<CustomerController> customers;
     TimeManager timeManager;
     public float timeDecay = 1f;
+    private bool startedDecay = false;
 
     void Awake()
     {
@@ -25,19 +27,6 @@ public class CustomerManager : MonoBehaviour
 
     void Start()
     {
-        minTime -= timeDecay * (timeManager.currentDay - 1);
-        maxTime -= timeDecay * (timeManager.currentDay - 1);
-
-        if (minTime<minMinTime)
-        {
-            minTime = minMinTime;
-        }
-
-        if (minTime < minMinTime)
-        {
-            maxTime = minMaxTime;
-        }
-
         nextSpawn = Random.Range(minTime / 4, maxTime / 4);
     }
 
@@ -56,6 +45,19 @@ public class CustomerManager : MonoBehaviour
     public void ResetForNewDay()
     {
         Debug.Log("Reiniciando clientes para el nuevo día.");
+
+        minTime = minTimeBase - (timeDecay * timeManager.currentDay);
+        maxTime = maxTimeBase - (timeDecay * timeManager.currentDay); ;
+
+        if (minTime < minMinTime)
+        {
+            minTime = minMinTime;
+        }
+
+        if (minTime < minMinTime)
+        {
+            maxTime = minMaxTime;
+        }
 
         foreach (CustomerController customer in customers)
         {
@@ -77,5 +79,7 @@ public class CustomerManager : MonoBehaviour
         {
             orderButton.SetActive(false);
         }
+
+        startedDecay = false;
     }
 }
