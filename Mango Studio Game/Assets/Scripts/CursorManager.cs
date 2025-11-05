@@ -76,6 +76,11 @@ public class CursorManager : MonoBehaviour
         {
             miniGameInput.tazaInHand = true;
             Cursor.SetCursor(tazaCursorTexture, hotSpotTaza, CursorMode.Auto);
+        } 
+        else if (miniGameInput.tazaInHand)
+        {
+            miniGameInput.tazaInHand = false;
+            Cursor.SetCursor(defaultCursorTexture, hotSpotDefault, CursorMode.Auto);
         }
     }
 
@@ -86,6 +91,11 @@ public class CursorManager : MonoBehaviour
         {
             miniGameInput.vasoInHand = true;
             Cursor.SetCursor(vasoCursorTexture, hotSpotVaso, CursorMode.Auto);
+        } 
+        else if (miniGameInput.vasoInHand)
+        {
+            miniGameInput.vasoInHand = false;
+            Cursor.SetCursor(defaultCursorTexture, hotSpotDefault, CursorMode.Auto);
         }
     }
 
@@ -110,6 +120,11 @@ public class CursorManager : MonoBehaviour
         {
             miniGameInput.platoTazaInHand = true;
             Cursor.SetCursor(platoCursorTexture, hotSpotPlato, CursorMode.Auto);
+        }
+        else if (miniGameInput.platoTazaInHand)
+        {
+            miniGameInput.platoTazaInHand = false;
+            Cursor.SetCursor(defaultCursorTexture, hotSpotDefault, CursorMode.Auto);
         }
     }
 

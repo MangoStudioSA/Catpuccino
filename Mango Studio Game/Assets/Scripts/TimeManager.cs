@@ -43,6 +43,7 @@ public class TimeManager : MonoBehaviour
     public CoffeeUnlockerManager coffeeUnlockerManager;
     public HUDManager HUDmanager;
     public PlayerDataManager playerDataManager;
+    private TutorialManager tutorialManager;
 
     private int requiredMoney = 0;
     private int premiumCoins = 0;
@@ -72,6 +73,7 @@ public class TimeManager : MonoBehaviour
         customerManager = FindFirstObjectByType<CustomerManager>();
         gameManager = FindFirstObjectByType<GameManager>();
         sceneUIManager = FindFirstObjectByType<SceneUIManager>();
+        tutorialManager = FindFirstObjectByType<TutorialManager>();
         StartNewDay();
     }
 
@@ -79,7 +81,10 @@ public class TimeManager : MonoBehaviour
     {
         if (!IsOpen) return;
 
-        currentTimeInSeconds += (60 / secondsPerGameMinute) * Time.deltaTime;
+        if (!tutorialManager.isRunningT1 && !tutorialManager.isRunningT2 && !tutorialManager.isRunningT3)
+        {
+            currentTimeInSeconds += (60 / secondsPerGameMinute) * Time.deltaTime;
+        }
 
         float currentHour = GetCurrentHour();
         float currentMinute = GetCurrentMinute();
@@ -207,7 +212,33 @@ public class TimeManager : MonoBehaviour
         {
             int hours = Mathf.FloorToInt(GetCurrentHour());
             int minutes = Mathf.FloorToInt(GetCurrentMinute());
-            timeText.text = $"{hours:D2}:{minutes:D2}h";
+
+            if (minutes>=50)
+            {
+                minutes = 50;
+            }
+            else if (minutes>=40)
+            {
+                minutes = 40;
+            } 
+            else if (minutes>=30)
+            {
+                minutes = 30;
+            }
+            else if (minutes >= 20)
+            {
+                minutes = 20;
+            }
+            else if (minutes >= 10)
+            {
+                minutes = 10;
+            }
+            else
+            {
+                minutes = 0;
+            }
+
+                timeText.text = $"{hours:D2}:{minutes:D2}h";
         }
     }
 
