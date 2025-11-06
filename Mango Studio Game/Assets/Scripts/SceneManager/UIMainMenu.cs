@@ -6,7 +6,9 @@ public class UIMainMenu : MonoBehaviour
     [SerializeField] GameObject mainMenuPanel;
     [SerializeField] GameObject settingsPanel;
     [SerializeField] GameObject contactPanel;
+    [SerializeField] GameObject slotsPanel;
     private CanvasGroup mainMenuCanvasGroup;
+    private SaveDataManager saveDataManager;
 
     private void Start()
     {
@@ -14,6 +16,7 @@ public class UIMainMenu : MonoBehaviour
         Cursor.visible = true;
 
         mainMenuCanvasGroup = mainMenuPanel.GetComponent<CanvasGroup>();
+        saveDataManager = FindFirstObjectByType<SaveDataManager>();
     }
 
     public void OpenSettings()
@@ -22,6 +25,16 @@ public class UIMainMenu : MonoBehaviour
         mainMenuPanel.SetActive(true);
         mainMenuCanvasGroup.interactable = false;
         mainMenuCanvasGroup.blocksRaycasts = false;
+        //SoundMaster.Instance.PlaySound_Menu();
+    }
+
+    public void OpenSlots()
+    {
+        slotsPanel.SetActive(true);
+        mainMenuPanel.SetActive(true);
+        mainMenuCanvasGroup.interactable = false;
+        mainMenuCanvasGroup.blocksRaycasts = false;
+        saveDataManager.CheckButtons();
         //SoundMaster.Instance.PlaySound_Menu();
     }
 
@@ -45,6 +58,12 @@ public class UIMainMenu : MonoBehaviour
         if (contactPanel.activeSelf)
         {
             contactPanel.SetActive(false);
+            mainMenuCanvasGroup.interactable = true;
+            mainMenuCanvasGroup.blocksRaycasts = true;
+        }
+        if (slotsPanel.activeSelf)
+        {
+            slotsPanel.SetActive(false);
             mainMenuCanvasGroup.interactable = true;
             mainMenuCanvasGroup.blocksRaycasts = true;
         }

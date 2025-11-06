@@ -44,6 +44,7 @@ public class TimeManager : MonoBehaviour
     public HUDManager HUDmanager;
     public PlayerDataManager playerDataManager;
     private TutorialManager tutorialManager;
+    private SaveDataManager saveDataManager;
 
     private int requiredMoney = 0;
     private int premiumCoins = 0;
@@ -74,6 +75,7 @@ public class TimeManager : MonoBehaviour
         gameManager = FindFirstObjectByType<GameManager>();
         sceneUIManager = FindFirstObjectByType<SceneUIManager>();
         tutorialManager = FindFirstObjectByType<TutorialManager>();
+        saveDataManager = FindFirstObjectByType<SaveDataManager>();
         StartNewDay();
     }
 
@@ -115,6 +117,11 @@ public class TimeManager : MonoBehaviour
         
         // Se aumenta el dia y se guarda en el progreso del jugador
         currentDay++;
+        if (currentDay>1)
+        {
+            saveDataManager.currentDay = currentDay;
+            saveDataManager.SaveGame();
+        }
         secondsPerGameMinute = secondsPerGameMinuteBase + timeDecay * (currentDay - 1);
         playerDataManager.NextDay();
 
