@@ -599,9 +599,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentSlot: 0
   currentDay: 0
-  slot1Button: {fileID: 0}
-  slot2Button: {fileID: 0}
-  slot3Button: {fileID: 0}
+  slot1Button: {fileID: 1429127638}
+  slot2Button: {fileID: 1574294947}
+  slot3Button: {fileID: 91571736}
 --- !u!4 &96181604
 Transform:
   m_ObjectHideFlags: 0
