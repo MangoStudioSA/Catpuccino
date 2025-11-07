@@ -14,6 +14,7 @@ public class MinigameInput : MonoBehaviour
     public GameObject coffeBar; //panel que contiene la barra
     public ButtonUnlockManager buttonManager;
     public CursorManager cursorManager;
+    public GameProgressManager progressManager;
 
     [Header("Mecánica cantidad café")]
     public UnityEngine.UI.Slider coffeeSlider; //la barrita que se mueve
@@ -87,12 +88,7 @@ public class MinigameInput : MonoBehaviour
     public Transform puntoTazaPlato;
     public Transform puntoFiltroCafetera;
 
-    [Header("Sprites")]
-    public Sprite vasoConTapa;
-    public Sprite vasoConCafe;
-    public Sprite vasoSinCafe;
-    public Sprite tazaSinCafe;
-    public Sprite tazaConCafe;
+    [Header("Sprites objetos")]
     public Sprite espumadorNormal;
     public Sprite espumadorShort;
     public Sprite boton1_N;
@@ -103,6 +99,59 @@ public class MinigameInput : MonoBehaviour
     public Sprite boton3_P;
     public Sprite botonCantidadCafe_N;
     public Sprite botonCantidadCafe_P;
+
+    [Header("Sprites tazas y vasos")]
+    public Sprite vasoConTapa;
+    public Sprite vasoSinTapa;
+    public Sprite tazaSinCafe;
+
+    [Header("Sprites mecánicas tazas")]
+    public Sprite tazaNWater;
+    public Sprite tazaNMilk;
+    public Sprite tazaNWhiskey;
+    public Sprite tazaNChocolate;
+
+    [Header("Sprites cafés tazas")]
+    public Sprite tazaNEspresso;
+    public Sprite tazaNAmericanoLungo;
+    public Sprite tazaNMocaIrishLatteCapucino;
+    public Sprite tazaNMachiatoBombon;
+    public Sprite tazaNVienes;
+    public Sprite tazaNFrappe;
+
+    [Header("Sprites cafés tazas + dibujo")]
+    public Sprite tazaNMocaIrishLatteCapucinoD;
+    public Sprite tazaNMachiatoBombonD;
+    public Sprite tazaNVienesD;
+
+    [Header("Sprites cafés tazas + plato")]
+    public Sprite tazaNEspressoP;
+    public Sprite tazaNAmericanoLungoP;
+    public Sprite tazaNMocaIrishLatteCapucinoP;
+    public Sprite tazaNMachiatoBombonP;
+    public Sprite tazaNVienesP;
+    public Sprite tazaNFrappeP;
+
+    [Header("Sprites cafés tazas + dibujo + plato")]
+    public Sprite tazaNMocaIrishLatteCapucinoDP;
+    public Sprite tazaNMachiatoBombonDP;
+    public Sprite tazaNVienesDP;
+
+    [Header("Sprites cafés vasos")]
+    public Sprite vasoNEspresso;
+    public Sprite vasoNAmericanoLungo;
+    public Sprite vasoNMocaIrishLatteCapucino;
+    public Sprite vasoNMachiatoBombon;
+    public Sprite vasoNVienes;
+    public Sprite vasoNFrappe;
+
+    [Header("Sprites cafés vasos + dibujo")]
+    public Sprite vasoNMocaIrishLatteCapucinoD;
+    public Sprite vasoNMachiatoBombonD;
+    public Sprite vasoNVienesD;
+
+    public Sprite currentSprite;
+
     #endregion
 
     public void Start()
@@ -129,9 +178,12 @@ public class MinigameInput : MonoBehaviour
         buttonManager.filtroCafeteraButton.gameObject.SetActive(false);
         buttonManager.filtroButton.gameObject.SetActive(false);
 
-        buttonManager.cogerTazaLecheButton.gameObject.SetActive(true);
-        buttonManager.milkButton.gameObject.SetActive(true);
-
+        if (progressManager.milkEnabled)
+        {
+            buttonManager.cogerTazaLecheButton.gameObject.SetActive(true);
+            buttonManager.milkButton.gameObject.SetActive(true);
+        }
+        
         buttonManager.EnableButton(buttonManager.cogerTazaInicioButton);
         buttonManager.EnableButton(buttonManager.cogerVasoInicioButton);
         buttonManager.EnableButton(buttonManager.cogerPlatoTazaButton);
@@ -164,6 +216,7 @@ public class MinigameInput : MonoBehaviour
         buttonManager.molerButton.gameObject.SetActive(true);
         palancaDown.SetActive(false);
 
+        currentSprite = null;
         currentSlideTime = currentHeat = currentMolido = currentAngle = 0f;
         isSliding = isServing = movingRight = coffeeDone = coffeeServed = cupServed = milkServed = heatedMilk = isHeating = isMoliendo = false;
         tazaIsInCafetera = tazaIsInPlato = vasoIsInCafetera = vasoIsInTable = platoTazaIsInTable = tazaMilkIsInEspumador = filtroIsInCafetera = false;
@@ -182,7 +235,7 @@ public class MinigameInput : MonoBehaviour
         taza.sprite = tazaSinCafe;
 
         Image vaso = Vaso.GetComponent<Image>();
-        vaso.sprite = vasoSinCafe;
+        vaso.sprite = vasoSinTapa;
 
         Image cantidadCafeBut = buttonManager.coffeeButton.GetComponent<Image>();
         cantidadCafeBut.sprite = botonCantidadCafe_N;
@@ -303,7 +356,7 @@ public class MinigameInput : MonoBehaviour
             buttonManager.EnableButton(buttonManager.returnBakeryButton);
 
         if (tazaIsInCafetera || vasoIsInCafetera)
-            //buttonManager.EnableButton(buttonManager.papeleraButton);
+            buttonManager.EnableButton(buttonManager.papeleraButton);
 
         if (tazaInHand || vasoInHand || TengoOtroObjetoEnLaMano())
         {
@@ -405,10 +458,15 @@ public class MinigameInput : MonoBehaviour
             tazaIsInPlato = true;
             cupServed = true;
 
+            Sprite finalPlateSprite = CheckFinalCupPlate();
+            Image taza = Taza.GetComponent<Image>();
+            taza.sprite = finalPlateSprite;
+
+            PlatoTaza.gameObject.SetActive(false);
+
             cursorManager.UpdateCursorTaza(true);
             DisableMechanics();
             Debug.Log($"Taza colocada: {tazaIsInPlato}");
-
         }
         else if (tazaIsInPlato && !tazaInHand)
         {
@@ -418,6 +476,11 @@ public class MinigameInput : MonoBehaviour
             tazaIsInPlato = false;
             cupServed = false;
 
+            Sprite finalCupSprite = CheckFinalCup();
+            Image taza = Taza.GetComponent<Image>();
+            taza.sprite = finalCupSprite;
+
+            PlatoTaza.gameObject.SetActive(true);
             cursorManager.UpdateCursorTaza(false);
         }
     }
@@ -709,17 +772,110 @@ public class MinigameInput : MonoBehaviour
 
         if (tazaIsInCafetera)
         {
+            currentSprite = DetermineCoffeeTazaSprite();
             Image taza = Taza.GetComponent<Image>();
-            taza.sprite = tazaConCafe;
+            taza.sprite = currentSprite;
         }
         else if (vasoIsInCafetera)
         {
+            currentSprite = DetermineCoffeeVasoSprite();
             Image vaso = Vaso.GetComponent<Image>();
-            vaso.sprite = vasoConCafe;
+            vaso.sprite = currentSprite;
         }
 
         if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 12)
             FindFirstObjectByType<TutorialManager>().CompleteCurrentStep();
+    }
+
+    private Sprite DetermineCoffeeTazaSprite()
+    {
+        if (order.currentOrder.coffeePrecision >= 0f && order.currentOrder.coffeePrecision <= 1.5 && !milkServed && countWater == 0 && countWhiskey == 0 && countCondensedMilk == 0 && countCream == 0 && countChocolate == 0)
+            return tazaNEspresso;
+        if (order.currentOrder.coffeePrecision >= 3f && !milkServed && countWater == 0 && countWhiskey == 0 && countCondensedMilk == 0 && countCream == 0 && countChocolate == 0)
+            return tazaNAmericanoLungo;
+        if (countWater == 1)
+            return tazaNAmericanoLungo;
+        if (milkServed && !heatedMilk)
+            return tazaNMachiatoBombon;
+        if (milkServed && heatedMilk)
+            return tazaNMocaIrishLatteCapucino;
+        if (milkServed && heatedMilk && countCondensedMilk == 1)
+            return tazaNMachiatoBombon;
+        if (milkServed && heatedMilk && countChocolate == 1)
+            return tazaNMocaIrishLatteCapucino;
+        if (milkServed && heatedMilk && countWhiskey == 1)
+            return tazaNMocaIrishLatteCapucino;
+        if (countCream == 1)
+            return tazaNVienes;
+        if (countCream == 1 && countIce == 1)
+            return tazaNFrappe;
+        else
+            return tazaNEspresso;
+    }
+    private Sprite DetermineCoffeeVasoSprite()
+    {
+        if (order.currentOrder.coffeePrecision >= 0f && order.currentOrder.coffeePrecision <= 1.5 && !milkServed && countWater == 0 && countWhiskey == 0 && countCondensedMilk == 0 && countCream == 0 && countChocolate == 0)
+            return vasoNEspresso;
+        if (order.currentOrder.coffeePrecision >= 3f && !milkServed && countWater == 0 && countWhiskey == 0 && countCondensedMilk == 0 && countCream == 0 && countChocolate == 0)
+            return vasoNAmericanoLungo;
+        if (countWater == 1)
+            return vasoNAmericanoLungo;
+        if (milkServed && !heatedMilk)
+            return vasoNMachiatoBombon;
+        if (milkServed && heatedMilk)
+            return vasoNMocaIrishLatteCapucino;
+        if (milkServed && heatedMilk && countCondensedMilk == 1)
+            return vasoNMachiatoBombon;
+        if (milkServed && heatedMilk && countChocolate == 1)
+            return vasoNMocaIrishLatteCapucino;
+        if (milkServed && heatedMilk && countWhiskey == 1)
+            return vasoNMocaIrishLatteCapucino;
+        if (countCream == 1)
+            return vasoNVienes;
+        if (countCream == 1 && countIce == 1)
+            return vasoNFrappe;
+        else
+            return vasoNEspresso;
+    }
+
+    private Sprite CheckFinalCupPlate()
+    {
+        Sprite finalSprite;
+
+        if (currentSprite == tazaNEspresso)
+            return finalSprite = tazaNEspressoP;
+        if (currentSprite == tazaNAmericanoLungo)
+            return finalSprite = tazaNAmericanoLungoP;
+        if (currentSprite == tazaNMachiatoBombon)
+            return finalSprite = tazaNMachiatoBombonP;
+        if (currentSprite == tazaNMocaIrishLatteCapucino)
+            return finalSprite = tazaNMocaIrishLatteCapucinoP;
+        if (currentSprite == tazaNVienes)
+            return finalSprite = tazaNVienesP;
+        if (currentSprite == tazaNFrappe)
+            return finalSprite = tazaNFrappeP;
+        else
+            return finalSprite = tazaNAmericanoLungoP;
+    }
+
+    private Sprite CheckFinalCup()
+    {
+        Sprite finalSprite;
+
+        if (currentSprite == tazaNEspressoP)
+            return finalSprite = tazaNEspresso;
+        if (currentSprite == tazaNAmericanoLungoP)
+            return finalSprite = tazaNAmericanoLungo;
+        if (currentSprite == tazaNMachiatoBombonP)
+            return finalSprite = tazaNMachiatoBombon;
+        if (currentSprite == tazaNMocaIrishLatteCapucinoP)
+            return finalSprite = tazaNMocaIrishLatteCapucino;
+        if (currentSprite == tazaNVienesP)
+            return finalSprite = tazaNVienes;
+        if (currentSprite == tazaNFrappeP)
+            return finalSprite = tazaNFrappe;
+        else
+            return finalSprite = tazaNAmericanoLungo;
     }
     #endregion
 
@@ -748,6 +904,12 @@ public class MinigameInput : MonoBehaviour
             }
             milkServed = true;
             buttonManager.cogerTazaLecheButton.gameObject.SetActive(false);
+
+            if (tazaIsInCafetera)
+            {
+                Image taza = Taza.GetComponent<Image>();
+                taza.sprite = tazaNMilk;
+            }
         }
     }
     public void ToggleTazaLecheEspumador()
@@ -821,7 +983,6 @@ public class MinigameInput : MonoBehaviour
         if (isHeating)
         {
             isHeating = false;
-            heatedMilk = true;
 
             heatPanel.SetActive(false);
             buttonManager.DisableButton(buttonManager.calentarButton);
@@ -848,17 +1009,25 @@ public class MinigameInput : MonoBehaviour
                 {
                     order.currentOrder.heatedMilkPrecision = 1;
                     Debug.Log("Leche caliente echada");
+                    heatedMilk = true;
                 }
                 else
                 {
                     order.currentOrder.heatedMilkPrecision = 2;
                     Debug.Log("Leche quemada echada");
+                    heatedMilk = true;
                 }
             }
             milkServed = true;
             TazaLeche.SetActive(false);
             tazaMilkInHand = false;
             cursorManager.UpdateCursorTazaMilk(true);
+
+            if (tazaIsInCafetera)
+            {
+                Image taza = Taza.GetComponent<Image>();
+                taza.sprite = tazaNMilk;
+            }
         }
     }
     #endregion
@@ -885,6 +1054,12 @@ public class MinigameInput : MonoBehaviour
                 countWater += 1; //Se incrementa el contador de agua
                 order.currentOrder.waterPrecision = countWater; // Se guarda el resultado obtenido en la precision del jugador
                 Debug.Log($"[Cliente {order.currentOrder.orderId}] Has echado agua.");
+            }
+
+            if (tazaIsInCafetera)
+            {
+                Image taza = Taza.GetComponent<Image>();
+                taza.sprite = tazaNWater;
             }
         }
     }
@@ -913,6 +1088,11 @@ public class MinigameInput : MonoBehaviour
                 order.currentOrder.condensedMilkPrecision = countCondensedMilk; // Se guarda el resultado obtenido en la precision del jugador
                 Debug.Log($"[Cliente {order.currentOrder.orderId}] Has echado leche condensada.");
             }
+            if (tazaIsInCafetera)
+            {
+                Image taza = Taza.GetComponent<Image>();
+                taza.sprite = tazaNMilk;
+            }
         }
     }
     #endregion
@@ -939,6 +1119,11 @@ public class MinigameInput : MonoBehaviour
                 countCream += 1; //Se incrementa el contador de crema
                 order.currentOrder.creamPrecision = countCream; // Se guarda el resultado obtenido en la precision del jugador
                 Debug.Log($"[Cliente {order.currentOrder.orderId}] Has echado crema.");
+            }
+            if (tazaIsInCafetera)
+            {
+                Image taza = Taza.GetComponent<Image>();
+                taza.sprite = tazaNMilk;
             }
         }
     }
@@ -967,6 +1152,11 @@ public class MinigameInput : MonoBehaviour
                 order.currentOrder.chocolatePrecision = countChocolate; // Se guarda el resultado obtenido en la precision del jugador
                 Debug.Log($"[Cliente {order.currentOrder.orderId}] Has echado chocolate.");
             }
+            if (tazaIsInCafetera)
+            {
+                Image taza = Taza.GetComponent<Image>();
+                taza.sprite = tazaNChocolate;
+            }
         }
     }
     #endregion
@@ -993,6 +1183,11 @@ public class MinigameInput : MonoBehaviour
                 countWhiskey += 1; //Se incrementa el contador de hielo
                 order.currentOrder.whiskeyPrecision = countWhiskey; // Se guarda el resultado obtenido en la precision del jugador
                 Debug.Log($"[Cliente {order.currentOrder.orderId}] Has echado whiskey.");
+            }
+            if (tazaIsInCafetera)
+            {
+                Image taza = Taza.GetComponent<Image>();
+                taza.sprite = tazaNWhiskey;
             }
         }
     }

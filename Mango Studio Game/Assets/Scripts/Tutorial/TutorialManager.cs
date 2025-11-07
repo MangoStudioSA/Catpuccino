@@ -120,7 +120,7 @@ public class TutorialManager : MonoBehaviour
             steps.Add(new TutorialStep
             {
                 message = "Coloca una taza para poder echar el café. Si se trata de un pedido para llevar coloca un vaso.",
-                position = new Vector2(-723f, 110f),
+                position = new Vector2(-723f, -110f),
                 autoAdvance = true,
                 autoDelay = 5f
             });
@@ -136,7 +136,7 @@ public class TutorialManager : MonoBehaviour
             steps.Add(new TutorialStep
             {
                 message = "Si es para llevar, al finalizar deberás clicar sobre la tapa y colocarla en el vaso.",
-                position = new Vector2(-654f, 225f),
+                position = new Vector2(-654f, -325f),
                 autoAdvance = true,
                 autoDelay = 5f
             });
@@ -155,7 +155,7 @@ public class TutorialManager : MonoBehaviour
             steps.Add(new TutorialStep
             {
                 message = "Para saber cómo preparar los cafés haz clic en el libro de recetas.",
-                position = new Vector2(-685f, 325f),
+                position = new Vector2(-685f, 225f),
                 autoAdvance = false,
                 onStepStart = () =>
                 {
@@ -211,7 +211,6 @@ public class TutorialManager : MonoBehaviour
                 autoAdvance = false,
                 onStepStart = () =>
                 {
-                    buttonManager.EnableButton(buttonManager.echarCafeButton);
                 }
             });
             // Paso 13
