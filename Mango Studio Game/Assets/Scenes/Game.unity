@@ -1165,6 +1165,7 @@ MonoBehaviour:
   vasoNMachiatoBombonD: {fileID: -1547928453, guid: 2b927bda68822ec4aa3a8f7cd037d8af, type: 3}
   vasoNVienesD: {fileID: -1315450945, guid: 2b927bda68822ec4aa3a8f7cd037d8af, type: 3}
   currentSprite: {fileID: 0}
+  baseCupSprite: {fileID: 0}
 --- !u!4 &50023189
 Transform:
   m_ObjectHideFlags: 0
@@ -36330,7 +36331,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1692941315
 RectTransform:
   m_ObjectHideFlags: 0
@@ -40593,7 +40594,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1957982743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43381,15 +43382,6 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 409527322}
-  - {fileID: 1205143836}
-  - {fileID: 567051564}
-  - {fileID: 1976100354}
-  - {fileID: 1155155598}
-  - {fileID: 1962994465}
-  - {fileID: 82270508}
-  - {fileID: 726219182}
-  - {fileID: 461767902}
   - {fileID: 230416458}
   - {fileID: 1071502799}
   - {fileID: 2032705005}
@@ -43400,6 +43392,15 @@ RectTransform:
   - {fileID: 270205275}
   - {fileID: 1071443433}
   - {fileID: 1338571649}
+  - {fileID: 409527322}
+  - {fileID: 1205143836}
+  - {fileID: 567051564}
+  - {fileID: 1976100354}
+  - {fileID: 1155155598}
+  - {fileID: 1962994465}
+  - {fileID: 82270508}
+  - {fileID: 726219182}
+  - {fileID: 461767902}
   - {fileID: 1957982745}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
