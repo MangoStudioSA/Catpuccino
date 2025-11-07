@@ -89,14 +89,16 @@ public class PlayerDataManager : MonoBehaviour
         return false;
     }
 
-    public void AddCard(string cardName)
+    public void AddCard(Sprite cardSprite)
     {
-        if (!data.unlockedCards.Contains(cardName))
+        string cardID = cardSprite.name;
+
+        if (!data.unlockedCards.Contains(cardID))
         {
-            data.unlockedCards.Add(cardName);
+            data.unlockedCards.Add(cardID);
             data.SyncListFromSet();
             SaveData();
-            Debug.Log($"Carta añadida: {cardName}");
+            Debug.Log($"Carta añadida: {cardID}");
         }
     }
 

@@ -10,6 +10,8 @@ public class ShopManager : MonoBehaviour
     [SerializeField] private MessagePopUp message;
     [SerializeField] private MessagePopUp messageBuyBP;
     [SerializeField] private MessagePopUp messageBuyPP;
+    [SerializeField] private MessagePopUp messageNotEnoughBMoney;
+    [SerializeField] private MessagePopUp messageNotEnoughPMoney;
 
     [Header("Botones")]
     public Button basicPackButton;
@@ -24,11 +26,13 @@ public class ShopManager : MonoBehaviour
     public Button buyPack4Button;
     public Button acceptBuyBasicPackButton;
     public Button acceptBuyPremiumPackButton;
+    public Button returnNotEnoughBMoney;
+    public Button returnNotEnoughPMoney;
 
     [Header("Costes de los sobres")]
     public int basicPackCost = 70;
-    public int premiumPackCostBC = 120;
-    public int premiumPackCostPC = 220;
+    public int premiumPackCostBC = 220;
+    public int premiumPackCostPC = 120;
 
     [Header("Panel UI")]
     public GameObject coinsShopPanel;
@@ -36,6 +40,8 @@ public class ShopManager : MonoBehaviour
     public GameObject collectionPanel;
     public GameObject buyBasicPackMsgPanel;
     public GameObject buyPremiumPackMsgPanel;
+    public GameObject notEnoughBMoneyMsgPanel;
+    public GameObject notEnoughPMoneyMsgPanel;
 
     [Header("Referencias")]
     public CardPackManager cardPackManager;
@@ -57,6 +63,9 @@ public class ShopManager : MonoBehaviour
 
         acceptBuyBasicPackButton.onClick.AddListener(OnFinalBuyBasicPackClicked);
         acceptBuyPremiumPackButton.onClick.AddListener(OnFinalBuyPremiumPackClicked);
+
+        returnNotEnoughBMoney.onClick.AddListener(ReturnNotEnoughBasicMoney);
+        returnNotEnoughPMoney.onClick.AddListener(ReturnNotEnoughPremiumMoney);
 
         coinsShopPanel.SetActive(false); 
     }
@@ -118,8 +127,28 @@ public class ShopManager : MonoBehaviour
 
     public void OnFinalBuyPremiumPackClicked()
     {
-        BuyPremiumPack();
+        BuyPremiumPackPC();
         buyPremiumPackMsgPanel.SetActive(false);
+    }
+
+    public void NotEnoughBasicMoney()
+    {
+        messageNotEnoughBMoney.Show("No tienes suficientes monedas de café para comprar este sobre."); // Mensaje cuando el jugador intenta comprar un sobre básico y no tiene suficiente dinero
+    }
+
+    public void NotEnoughPremiumMoney()
+    {
+        messageNotEnoughPMoney.Show("No tienes suficientes monedas de café/croquetas doradas para comprar este sobre"); // Mensaje cuando el jugador intenta comprar un sobre básico y no tiene suficiente dinero
+    }
+
+    public void ReturnNotEnoughBasicMoney()
+    {
+        notEnoughBMoneyMsgPanel.SetActive(false);
+    }
+
+    public void ReturnNotEnoughPremiumMoney()
+    {
+        notEnoughPMoneyMsgPanel.SetActive(false);
     }
 
     // Interaccion con el boton de comprar un sobre basico
@@ -133,22 +162,57 @@ public class ShopManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("No tienes suficientes monedas para el sobre básico.");
+            NotEnoughBasicMoney();
         }
     }
-    // Interaccion con el boton de comprar un sobre premium
-    public void BuyPremiumPack()
+    // Interaccion con el boton de comprar un sobre premium con monedas premium
+    public void BuyPremiumPackPC()
     {
-        if (PlayerDataManager.instance.SpendPremiumCoins(premiumPackCostBC) || PlayerDataManager.instance.SpendPremiumCoins(premiumPackCostPC))
-        {
-            Debug.Log("Sobre premium abierto");
-            UpdateUI();
+        var player = PlayerDataManager.instance;
+        var data = player.data;
 
+        bool paid = false;
+
+        if (player.SpendPremiumCoins(120))
+        {
+            paid = true;
+            Debug.Log("Pagado con croquetas doradas");
+        }
+        
+        if (paid)
+        {
+            UpdateUI();
             cardPackManager.PreparePack("premium");
+            Debug.Log("Sobre premium abierto");
         }
         else
         {
-            Debug.LogWarning("No tienes suficientes monedas para el sobre premium.");
+            BuyPremiumPackBC();        
+        }
+    }
+    // Interaccion con el boton de comprar un sobre premium con monedas basicas
+    public void BuyPremiumPackBC()
+    {
+        var player = PlayerDataManager.instance;
+        var data = player.data;
+
+        bool paid = false;
+
+        if (player.SpendBasicCoins(220))
+        {
+            paid = true;
+            Debug.Log("Pagado con monedas de cafe");
+        }
+
+        if (paid)
+        {
+            UpdateUI();
+            cardPackManager.PreparePack("premium");
+            Debug.Log("Sobre premium abierto");
+        }
+        else
+        {
+            NotEnoughPremiumMoney();
         }
     }
 }

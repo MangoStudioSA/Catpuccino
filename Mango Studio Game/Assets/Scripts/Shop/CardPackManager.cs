@@ -10,17 +10,16 @@ public class CardPackManager : MonoBehaviour
     public RectTransform packRect; // Sobre
     public Image cardImage; // Imagen de la carta
     public Image packImage; // Imagen del sobre
-    public TextMeshProUGUI cardText; // Texto de la carta
     public Button openButton; // Boton de abrir sobre
     public Button closeButton; // Boton de cerrar panel
     public Sprite basicPackSprite; // Sprite sobre basico
     public Sprite premiumPackSprite; // Sprite sobre premium
 
-    [Header("Colores rarezas de carta")]
-    public Color basicColor;       
-    public Color intermediateColor;
-    public Color rareColor;        
-    public Color legendaryColor;   
+    [Header("Sprites por rareza")]
+    public Sprite[] basicCards;       
+    public Sprite[] intermediateCards;
+    public Sprite[] rareCards;        
+    public Sprite[] legendaryCards;   
 
     [Header("Configuración animación")]
     public float dropDuration = 2f; // Duracion del movimiento
@@ -42,7 +41,6 @@ public class CardPackManager : MonoBehaviour
         packRect.anchoredPosition = Vector2.zero;
         isOpening = false;
         pendindPackType = "";
-        cardText.text = "";
         closeButton.interactable = false;
     }
 
@@ -81,14 +79,14 @@ public class CardPackManager : MonoBehaviour
             openButton.gameObject.SetActive(false);
 
         CardRarity rarity = DeterminateRarity(pendindPackType);
-        string cardName = GenerateCardName(rarity);
+        Sprite cardSprite = GetRandomCardSprite(rarity);
 
-        StartCoroutine(OpenPackAnimation(rarity, cardName));
+        StartCoroutine(OpenPackAnimation(cardSprite));
 
-        PlayerDataManager.instance.AddCard(cardName);
+        PlayerDataManager.instance.AddCard(cardSprite);
     }
 
-    private IEnumerator OpenPackAnimation(CardRarity rarity, string cardName)
+    private IEnumerator OpenPackAnimation(Sprite cardSprite)
     {
         // Resetear la carta y determinar su rareza y nombre
         isOpening = true;
@@ -97,7 +95,6 @@ public class CardPackManager : MonoBehaviour
         // Reiniciar posicion carta
         packRect.anchoredPosition = new Vector2(0, 200f);
         cardImage.gameObject.SetActive(false);
-        cardText.text = "";
 
         // Animación caida de sobre
         Vector2 startPos = packRect.anchoredPosition;
@@ -114,24 +111,8 @@ public class CardPackManager : MonoBehaviour
         }
 
         // Mostrar la carta y su color
+        cardImage.sprite = cardSprite;
         cardImage.gameObject.SetActive(true);
-        cardText.text = cardName;
-
-        switch (rarity)
-        {
-            case CardRarity.Basic: cardImage.color = basicColor; break;
-            case CardRarity.Intermediate: cardImage.color = intermediateColor; break;
-            case CardRarity.Rare: cardImage.color = rareColor; break;
-            case CardRarity.Legendary: cardImage.color = legendaryColor; break;
-        }
-
-        // Fade in carta - se empieza con alpha en 0
-        Color imgColor = cardImage.color;
-        Color textColor = cardText.color;
-        imgColor.a = 0f;
-        textColor.a = 0f;
-        cardImage.color = imgColor;
-        cardText.color = textColor;
 
         float fadeDuration = 1.2f;
         float fadeElapsed = 0f;
@@ -141,20 +122,17 @@ public class CardPackManager : MonoBehaviour
             fadeElapsed += Time.deltaTime;
             float alpha = Mathf.Clamp01(fadeElapsed / fadeDuration);
 
-            imgColor.a = alpha;
-            textColor.a = alpha;
-
-            cardImage.color = imgColor;
-            cardText.color = textColor;
-
+            cardImage.color = new Color (1,1,1, alpha);
             yield return null;
         }
 
         yield return new WaitForSeconds(1.25f);
+
         isOpening = false;
         closeButton.gameObject.SetActive(true);
         closeButton.interactable = true;
-        PlayerDataManager.instance.AddCard(cardName);
+
+        PlayerDataManager.instance.AddCard(cardSprite);
 
         var collection = FindFirstObjectByType<CardCollectionManager>();
         if (collection != null)
@@ -179,23 +157,24 @@ public class CardPackManager : MonoBehaviour
         }
     }
 
-    private string GenerateCardName(CardRarity rarity)
+    private Sprite GetRandomCardSprite(CardRarity rarity)
     {
-        // Se asignan los nombres de las cartas con sus rarezas
-        string[] basicNames = { "Latte cat", "Espresso cat", "Lungo cat", "Capuccino cat", "Americano cat" };
-        string[] interNames = { "Bombón cat", "Macchiatto cat", "Frappé cat" };
-        string[] rareNames = { "Irish cat", "Vienés cat" };
-        string[] legNames = { "Mocca cat" };
+        Sprite[] sourceArray = null;
 
-        // Se genera una carta aleatoria de la rareza seleccionada
         switch (rarity)
         {
-            case CardRarity.Basic: return basicNames[Random.Range(0, basicNames.Length)];
-            case CardRarity.Intermediate: return interNames[Random.Range(0, interNames.Length)];
-            case CardRarity.Rare: return rareNames[Random.Range(0, rareNames.Length)];
-            case CardRarity.Legendary: return legNames[Random.Range(0, legNames.Length)];
-            default: return string.Empty;
+            case CardRarity.Basic: sourceArray = basicCards; break;
+            case CardRarity.Intermediate: sourceArray = intermediateCards; break;
+            case CardRarity.Rare: sourceArray = rareCards; break;
+            case CardRarity.Legendary: sourceArray = legendaryCards; break;
         }
+
+        if (sourceArray == null || sourceArray.Length == 0)
+        {
+            Debug.LogWarning("No hay sprite asignados para la rareza: " + rarity);
+            return null;
+        }
+        return sourceArray[Random.Range(0, sourceArray.Length)];
     }
 
 }

@@ -131,11 +131,11 @@ public class TimeManager : MonoBehaviour
         isDayEnding = false;
         
         // Asignar monedas basicas y premium
-        basicCoins += 1000;
+        basicCoins += 220;
         playerDataManager.AddBasicCoins(basicCoins);
         HUDManager.Instance.UpdateBasicCoins(basicCoins);
 
-        premiumCoins += 1000;
+        premiumCoins += 120;
         playerDataManager.AddPremiumCoins(premiumCoins);
         HUDManager.Instance.UpdatePremiumCoins(premiumCoins);
 
