@@ -39,7 +39,7 @@ public class InfoUI : MonoBehaviour
         float elapsed = 0f;
         while (elapsed < slideDuration)
         {
-            elapsed += Time.deltaTime;
+            elapsed += Time.unscaledDeltaTime;
             float t = Mathf.Clamp01(elapsed / slideDuration);
             t = Mathf.SmoothStep(0f, 1f, t);
             noteInfo.anchoredPosition = Vector2.Lerp(start, end, t);

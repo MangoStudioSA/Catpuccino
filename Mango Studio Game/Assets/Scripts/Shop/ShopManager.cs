@@ -73,7 +73,7 @@ public class ShopManager : MonoBehaviour
     public void UpdateUI()
     {
         var data = PlayerDataManager.instance.data;
-        basicCoinsText.text = $"{data.basicCoins}$";
+        basicCoinsText.text = $"{data.basicCoins}";
         premiumCoinsText.text = $"{data.premiumCoins}";
     }
 

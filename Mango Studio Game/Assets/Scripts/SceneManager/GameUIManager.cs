@@ -5,6 +5,7 @@ public class GameUIManager : MonoBehaviour
     [SerializeField] GameObject gamePanel;
     [SerializeField] GameObject pausePanel;
     [SerializeField] GameObject optionsPanel;
+    [SerializeField] GameObject shopPanel;
     [SerializeField] GameObject dialoguePanel;
     [SerializeField] GameObject endOfDayPanel;
     private CanvasGroup gameCanvasGroup;
@@ -13,9 +14,15 @@ public class GameUIManager : MonoBehaviour
 
     public void Start()
     {
+        if (optionsPanel == null)
+        {
+            Debug.LogError("optionsPanel no está asignado en: " + gameObject.name);
+            return;
+        }
         gameCanvasGroup = gamePanel.GetComponent<CanvasGroup>();
         pausePanel.SetActive(false);
         optionsPanel.SetActive(false);
+        shopPanel.SetActive(false);
         Time.timeScale = 1.0f;
     }
 
@@ -44,6 +51,21 @@ public class GameUIManager : MonoBehaviour
     {
         optionsPanel.SetActive(false);
         pausePanel.SetActive(true);
+    }
+
+    public void OpenShopMenu()
+    {
+        shopPanel.SetActive(true); // Activar UI menu tienda desde el juego
+        gameCanvasGroup.interactable = false;
+        gameCanvasGroup.blocksRaycasts = false;
+        Time.timeScale = 0.0f;
+    }
+    public void CloseShopMenu()
+    {
+        shopPanel.SetActive(false); // Desactivar UI menu tienda desde el juego
+        gameCanvasGroup.interactable = true;
+        gameCanvasGroup.blocksRaycasts = true;
+        Time.timeScale = 0.0f;
     }
 
     public void OpenDialogue()

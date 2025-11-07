@@ -22,8 +22,8 @@ public class CardPackManager : MonoBehaviour
     public Sprite[] legendaryCards;   
 
     [Header("Configuración animación")]
-    public float dropDuration = 2f; // Duracion del movimiento
-    public float packMoveDistance = 1200f; // Distancia que baja el sobre
+    public float dropDuration = 1.5f; // Duracion del movimiento
+    public float packMoveDistance = 1300f; // Distancia que baja el sobre
 
     private bool isOpening = false;
     private string pendindPackType = ""; // Guarda el tipo de sobre que se va a abrir
@@ -73,6 +73,7 @@ public class CardPackManager : MonoBehaviour
     public void OpenPack()
     {
         if (isOpening || string.IsNullOrEmpty(pendindPackType)) return;
+        Debug.Log("Openpack llamado");
 
         isOpening = true;
         if (openButton != null)
@@ -81,6 +82,9 @@ public class CardPackManager : MonoBehaviour
         CardRarity rarity = DeterminateRarity(pendindPackType);
         Sprite cardSprite = GetRandomCardSprite(rarity);
 
+        if (cardSprite == null)
+            Debug.Log("No se encontro sprite");
+
         StartCoroutine(OpenPackAnimation(cardSprite));
 
         PlayerDataManager.instance.AddCard(cardSprite);
@@ -88,6 +92,7 @@ public class CardPackManager : MonoBehaviour
 
     private IEnumerator OpenPackAnimation(Sprite cardSprite)
     {
+        Debug.Log("iniciando animacion");
         // Resetear la carta y determinar su rareza y nombre
         isOpening = true;
         openButton.gameObject.SetActive(false);
@@ -104,7 +109,7 @@ public class CardPackManager : MonoBehaviour
         // Animacion de caida del sobre
         while (elapsed < dropDuration)
         {
-            elapsed += Time.deltaTime;
+            elapsed += Time.unscaledDeltaTime;
             float t = Mathf.Clamp01(elapsed / dropDuration);
             packRect.anchoredPosition = Vector2.Lerp(startPos, targetPos, t);
             yield return null;
@@ -119,14 +124,14 @@ public class CardPackManager : MonoBehaviour
 
         while (fadeElapsed < fadeDuration)
         {
-            fadeElapsed += Time.deltaTime;
+            fadeElapsed += Time.unscaledDeltaTime;
             float alpha = Mathf.Clamp01(fadeElapsed / fadeDuration);
 
             cardImage.color = new Color (1,1,1, alpha);
             yield return null;
         }
 
-        yield return new WaitForSeconds(1.25f);
+        yield return new WaitForSecondsRealtime(1.25f);
 
         isOpening = false;
         closeButton.gameObject.SetActive(true);
@@ -137,6 +142,7 @@ public class CardPackManager : MonoBehaviour
         var collection = FindFirstObjectByType<CardCollectionManager>();
         if (collection != null)
             collection.GenerateCollection();
+        Debug.Log("animacion completada");
     }
 
     private CardRarity DeterminateRarity(string packType)
