@@ -461,6 +461,7 @@ public class MinigameInput : MonoBehaviour
             Sprite finalPlateSprite = CheckFinalCupPlate();
             Image taza = Taza.GetComponent<Image>();
             taza.sprite = finalPlateSprite;
+            currentSprite = finalPlateSprite;
 
             PlatoTaza.gameObject.SetActive(false);
 
@@ -479,6 +480,7 @@ public class MinigameInput : MonoBehaviour
             Sprite finalCupSprite = CheckFinalCup();
             Image taza = Taza.GetComponent<Image>();
             taza.sprite = finalCupSprite;
+            currentSprite = finalCupSprite;
 
             PlatoTaza.gameObject.SetActive(true);
             cursorManager.UpdateCursorTaza(false);
