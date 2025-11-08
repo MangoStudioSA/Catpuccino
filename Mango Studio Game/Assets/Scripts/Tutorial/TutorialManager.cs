@@ -59,7 +59,7 @@ public class TutorialManager : MonoBehaviour
 
         switch (day)
         {
-            case 4:
+            case 1:
                 SetupDay1Tutorial();
                 StartTutorial1();
                 isRunningT1 = true;
@@ -294,7 +294,7 @@ public class TutorialManager : MonoBehaviour
             // Paso 22
             steps.Add(new TutorialStep
             {
-                message = "Como recompensa, se te ingresarán 100$ para ayudarte a pasar el primer día. ¡Disfruta de Catpuccino!",
+                message = "Como recompensa, se te ingresarán 100$ para ayudarte a pasar el primer día y 50 monedas de café. ¡Disfruta de Catpuccino!",
                 position = new Vector2(0f, 0f),
                 autoAdvance = true,
                 autoDelay = 5f
