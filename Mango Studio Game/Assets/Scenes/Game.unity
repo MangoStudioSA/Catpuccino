@@ -480,7 +480,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.7664582, y: 0.9331481}
   m_AnchorMax: {x: 0.8688751, y: 0.9794073}
-  m_AnchoredPosition: {x: 0, y: -1.3001099}
+  m_AnchoredPosition: {x: 0, y: -1.3000488}
   m_SizeDelta: {x: 4, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &26241491
@@ -1133,10 +1133,15 @@ MonoBehaviour:
   vasoConTapa: {fileID: 884330594, guid: 2b927bda68822ec4aa3a8f7cd037d8af, type: 3}
   vasoSinTapa: {fileID: -647785046, guid: 2b927bda68822ec4aa3a8f7cd037d8af, type: 3}
   tazaSinCafe: {fileID: -1835136027, guid: 201f287702e250b428b779d463de5863, type: 3}
+  tazaSinCafeP: {fileID: 1701029948, guid: 20fb181bcd7dd094595b2d7c4a402c65, type: 3}
   tazaNWater: {fileID: 2038445535, guid: 201f287702e250b428b779d463de5863, type: 3}
   tazaNMilk: {fileID: -1183329603, guid: 201f287702e250b428b779d463de5863, type: 3}
   tazaNWhiskey: {fileID: -307402140, guid: 201f287702e250b428b779d463de5863, type: 3}
   tazaNChocolate: {fileID: 1431501896, guid: 201f287702e250b428b779d463de5863, type: 3}
+  tazaNWaterP: {fileID: -1024205456, guid: 20fb181bcd7dd094595b2d7c4a402c65, type: 3}
+  tazaNMilkP: {fileID: 1342986890, guid: 20fb181bcd7dd094595b2d7c4a402c65, type: 3}
+  tazaNWhiskeyP: {fileID: 2045534027, guid: 20fb181bcd7dd094595b2d7c4a402c65, type: 3}
+  tazaNChocolateP: {fileID: 2131798070, guid: 20fb181bcd7dd094595b2d7c4a402c65, type: 3}
   tazaNEspresso: {fileID: 733939883, guid: 201f287702e250b428b779d463de5863, type: 3}
   tazaNAmericanoLungo: {fileID: 1232495608, guid: 201f287702e250b428b779d463de5863, type: 3}
   tazaNMocaIrishLatteCapucino: {fileID: 1500889245, guid: 201f287702e250b428b779d463de5863, type: 3}
@@ -2155,11 +2160,15 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ad76791700ab15b4695c7e4413b07c10, type: 3}
   - {fileID: 21300000, guid: 80e479fd3ea0f1845bfb6868506e99b8, type: 3}
   - {fileID: 21300000, guid: 6ac2bd90e08544944b660bca4cfa1e22, type: 3}
+  - {fileID: 21300000, guid: 9ad6fa353f3784c44bf6059e5305b19a, type: 3}
+  - {fileID: 21300000, guid: 2979e65be0beeee419b4ad9b56000ab5, type: 3}
   rareCards:
   - {fileID: 21300000, guid: 7b7034c27714c324cb48acc1b315f28f, type: 3}
   - {fileID: 21300000, guid: 2ec77caf832f2b542bdd7e86df65d52e, type: 3}
+  - {fileID: 21300000, guid: d7dfc57aeccbd70419889552896aa780, type: 3}
   legendaryCards:
   - {fileID: 21300000, guid: e34ba2366df48a04c865bcdee87b983c, type: 3}
+  - {fileID: 21300000, guid: 5733cd402f4f44d4880c355a034407ba, type: 3}
   dropDuration: 1.5
   packMoveDistance: 1200
 --- !u!114 &82270510
@@ -2808,6 +2817,106 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 98089538}
   m_CullTransparentMesh: 1
+--- !u!1 &129718431
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 129718433}
+  - component: {fileID: 129718432}
+  m_Layer: 0
+  m_Name: SkinManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &129718432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 129718431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7097ac4ddb7ea314ab365b10e20297f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skinsCups:
+  - skinName: Default
+    isUnlocked: 1
+    tazaEspresso: {fileID: 733939883, guid: 201f287702e250b428b779d463de5863, type: 3}
+    tazaAmericanoLungo: {fileID: 1232495608, guid: 201f287702e250b428b779d463de5863, type: 3}
+    tazaMocaIrishLatteCapucino: {fileID: 1500889245, guid: 201f287702e250b428b779d463de5863, type: 3}
+    tazaMachiatoBombon: {fileID: -1865598279, guid: 201f287702e250b428b779d463de5863, type: 3}
+    tazaVienes: {fileID: 43330235, guid: 201f287702e250b428b779d463de5863, type: 3}
+    tazaFrappe: {fileID: -1494053487, guid: 201f287702e250b428b779d463de5863, type: 3}
+    tazaEspressoP: {fileID: -1073616951, guid: 20fb181bcd7dd094595b2d7c4a402c65, type: 3}
+    tazaAmericanoLungoP: {fileID: 353575500, guid: 20fb181bcd7dd094595b2d7c4a402c65, type: 3}
+    tazaMocaIrishLatteCapucinoP: {fileID: -163495531, guid: 20fb181bcd7dd094595b2d7c4a402c65, type: 3}
+    tazaMachiatoBombonP: {fileID: 823452004, guid: 20fb181bcd7dd094595b2d7c4a402c65, type: 3}
+    tazaVienesP: {fileID: 1809922038, guid: 20fb181bcd7dd094595b2d7c4a402c65, type: 3}
+    tazaFrappeP: {fileID: -1179351341, guid: 20fb181bcd7dd094595b2d7c4a402c65, type: 3}
+    tazaSinCafe: {fileID: 1598334309, guid: 87d48dae7136c8f49b760e3c2e1426e8, type: 3}
+    tazaSinCafeP: {fileID: 1701029948, guid: 20fb181bcd7dd094595b2d7c4a402c65, type: 3}
+  - skinName: PremiumTaza
+    isUnlocked: 0
+    tazaEspresso: {fileID: 1830461587, guid: 87d48dae7136c8f49b760e3c2e1426e8, type: 3}
+    tazaAmericanoLungo: {fileID: -1192538593, guid: 87d48dae7136c8f49b760e3c2e1426e8, type: 3}
+    tazaMocaIrishLatteCapucino: {fileID: -913977904, guid: 87d48dae7136c8f49b760e3c2e1426e8, type: 3}
+    tazaMachiatoBombon: {fileID: -441627303, guid: 87d48dae7136c8f49b760e3c2e1426e8, type: 3}
+    tazaVienes: {fileID: 1617675630, guid: 87d48dae7136c8f49b760e3c2e1426e8, type: 3}
+    tazaFrappe: {fileID: 720304330, guid: 87d48dae7136c8f49b760e3c2e1426e8, type: 3}
+    tazaEspressoP: {fileID: 1170187954, guid: 9256d17a05eb88f48b6f53b57d5659bb, type: 3}
+    tazaAmericanoLungoP: {fileID: -986950368, guid: 9256d17a05eb88f48b6f53b57d5659bb, type: 3}
+    tazaMocaIrishLatteCapucinoP: {fileID: -1111524489, guid: 9256d17a05eb88f48b6f53b57d5659bb, type: 3}
+    tazaMachiatoBombonP: {fileID: -830783142, guid: 9256d17a05eb88f48b6f53b57d5659bb, type: 3}
+    tazaVienesP: {fileID: -1930223006, guid: 9256d17a05eb88f48b6f53b57d5659bb, type: 3}
+    tazaFrappeP: {fileID: -1508795458, guid: 9256d17a05eb88f48b6f53b57d5659bb, type: 3}
+    tazaSinCafe: {fileID: 1598334309, guid: 87d48dae7136c8f49b760e3c2e1426e8, type: 3}
+    tazaSinCafeP: {fileID: -1376484295, guid: 9256d17a05eb88f48b6f53b57d5659bb, type: 3}
+  skinsVaso:
+  - skinName: Default
+    isUnlocked: 1
+    vasoEspresso: {fileID: -1133698446, guid: 2b927bda68822ec4aa3a8f7cd037d8af, type: 3}
+    vasoAmericanoLungo: {fileID: 1769788772, guid: 2b927bda68822ec4aa3a8f7cd037d8af, type: 3}
+    vasoMocaIrishLatteCapucino: {fileID: 637303276, guid: 2b927bda68822ec4aa3a8f7cd037d8af, type: 3}
+    vasoMachiatoBombon: {fileID: 2039060911, guid: 2b927bda68822ec4aa3a8f7cd037d8af, type: 3}
+    vasoVienes: {fileID: -1304742774, guid: 2b927bda68822ec4aa3a8f7cd037d8af, type: 3}
+    vasoFrappe: {fileID: 771037991, guid: 2b927bda68822ec4aa3a8f7cd037d8af, type: 3}
+    vasoConTapa: {fileID: 884330594, guid: 2b927bda68822ec4aa3a8f7cd037d8af, type: 3}
+    vasoSinTapa: {fileID: -647785046, guid: 2b927bda68822ec4aa3a8f7cd037d8af, type: 3}
+  - skinName: PremiumVaso
+    isUnlocked: 0
+    vasoEspresso: {fileID: -509740443, guid: 1d6911d1c7d2bd24b9181db69d4aac5e, type: 3}
+    vasoAmericanoLungo: {fileID: 774804656, guid: 1d6911d1c7d2bd24b9181db69d4aac5e, type: 3}
+    vasoMocaIrishLatteCapucino: {fileID: -2093461431, guid: 1d6911d1c7d2bd24b9181db69d4aac5e, type: 3}
+    vasoMachiatoBombon: {fileID: 1877289809, guid: 1d6911d1c7d2bd24b9181db69d4aac5e, type: 3}
+    vasoVienes: {fileID: -2075157723, guid: 1d6911d1c7d2bd24b9181db69d4aac5e, type: 3}
+    vasoFrappe: {fileID: -856158141, guid: 1d6911d1c7d2bd24b9181db69d4aac5e, type: 3}
+    vasoConTapa: {fileID: -995673930, guid: 1d6911d1c7d2bd24b9181db69d4aac5e, type: 3}
+    vasoSinTapa: {fileID: 335790042, guid: 1d6911d1c7d2bd24b9181db69d4aac5e, type: 3}
+  activeSkinCupName: Default
+  activeSkinVasoName: Default
+--- !u!4 &129718433
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 129718431}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3.243468, y: 7.2453613, z: -6.646677}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &130301195
 GameObject:
   m_ObjectHideFlags: 0
@@ -3101,7 +3210,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.88400006, y: 0.92600006}
   m_AnchorMax: {x: 0.98952085, y: 0.98311096}
-  m_AnchoredPosition: {x: 0.49993896, y: 0.4628296}
+  m_AnchoredPosition: {x: 0.5, y: 0.46289062}
   m_SizeDelta: {x: -1.0000153, y: 1.6999207}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &144064985
@@ -6378,7 +6487,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.8544792, y: 0.81648153}
   m_AnchorMax: {x: 0.92972916, y: 0.947}
-  m_AnchoredPosition: {x: -0.15942383, y: -0.20977783}
+  m_AnchoredPosition: {x: -0.15942383, y: -0.2097168}
   m_SizeDelta: {x: 0, y: 0.6500244}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &346478215
@@ -6764,7 +6873,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.54129165, y: 0.32037038}
   m_AnchorMax: {x: 0.595, y: 0.40762967}
-  m_AnchoredPosition: {x: -10.7661, y: -9.684601}
+  m_AnchoredPosition: {x: -10.766113, y: -9.68457}
   m_SizeDelta: {x: 208.5742, y: 31.2492}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &371112195
@@ -7154,7 +7263,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.7807674, y: 0}
   m_AnchorMax: {x: 1, y: 0.6895556}
-  m_AnchoredPosition: {x: 38.06311, y: -32.04358}
+  m_AnchoredPosition: {x: 38.06299, y: -32.04358}
   m_SizeDelta: {x: 80.890015, y: 55.21997}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &392624317
@@ -7367,7 +7476,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.06931915, y: 0.3}
   m_AnchorMax: {x: 0.42400002, y: 0.67676926}
-  m_AnchoredPosition: {x: -0.953949, y: -0.80249023}
+  m_AnchoredPosition: {x: -0.9539795, y: -0.80249023}
   m_SizeDelta: {x: 0, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &399354128
@@ -8784,7 +8893,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.43256253, y: 0.83462965}
   m_AnchorMax: {x: 0.568, y: 0.91855556}
-  m_AnchoredPosition: {x: -0.5, y: -6.623596}
+  m_AnchoredPosition: {x: -0.5, y: -6.623535}
   m_SizeDelta: {x: -7.8880005, y: 5.967102}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!1 &422460056
@@ -10559,7 +10668,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0.13956252, y: 0.24570373}
-  m_AnchoredPosition: {x: 0.41967773, y: -0.08001709}
+  m_AnchoredPosition: {x: 0.41992188, y: -0.080078125}
   m_SizeDelta: {x: -158.272, y: -155.3706}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!1 &488129222
@@ -11537,7 +11646,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.06931915, y: 0.3}
   m_AnchorMax: {x: 0.42400002, y: 0.67676926}
-  m_AnchoredPosition: {x: -0.953949, y: -0.80249023}
+  m_AnchoredPosition: {x: -0.9539795, y: -0.80249023}
   m_SizeDelta: {x: 0, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &516812959
@@ -12451,7 +12560,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.3014792, y: 0.56962955}
   m_AnchorMax: {x: 0.35300002, y: 0.61270374}
-  m_AnchoredPosition: {x: -1.2420044, y: 0.44396973}
+  m_AnchoredPosition: {x: -1.2420654, y: 0.44396973}
   m_SizeDelta: {x: 2, y: -3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &558733945
@@ -12885,7 +12994,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.697, y: 0.2987778}
   m_AnchorMax: {x: 0.7835209, y: 0.446}
-  m_AnchoredPosition: {x: -0.100097656, y: -1.4732361}
+  m_AnchoredPosition: {x: -0.100097656, y: -1.4732666}
   m_SizeDelta: {x: -0.92560005, y: -2.1860008}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &590982255
@@ -15253,7 +15362,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0.16667175, y: -0.16666794}
+  m_AnchoredPosition: {x: 0.16668701, y: -0.16666794}
   m_SizeDelta: {x: 10.3334, y: 5.0001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &708218194
@@ -16167,7 +16276,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.3925626, y: 0}
   m_AnchorMax: {x: 0.60700005, y: 0.074}
-  m_AnchoredPosition: {x: -0.040161133, y: -0.08001709}
+  m_AnchoredPosition: {x: -0.040161133, y: -0.080078125}
   m_SizeDelta: {x: -239.29, y: -46}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &742553718
@@ -16583,7 +16692,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000061035156, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -0.00012207, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &771731247
@@ -16658,7 +16767,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5523749, y: 0.9331481}
   m_AnchorMax: {x: 0.757, y: 0.9794073}
-  m_AnchoredPosition: {x: 0, y: -1.3201294}
+  m_AnchoredPosition: {x: 0, y: -1.3200684}
   m_SizeDelta: {x: 0, y: -0.040000916}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &781681151
@@ -18085,7 +18194,7 @@ MonoBehaviour:
   endHour: 20
   endMinutes: 0
   requiredIncrement: 1.25
-  currentDay: 0
+  currentDay: 4
   coffeeRecipesManager: {fileID: 50023198}
   coffeeUnlockerManager: {fileID: 50023193}
   HUDmanager: {fileID: 960583782}
@@ -22684,7 +22793,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.16156007, y: 0.5565927}
   m_AnchorMax: {x: 0.22100002, y: 0.73600006}
-  m_AnchoredPosition: {x: -0.9732666, y: -0.82724}
+  m_AnchoredPosition: {x: -0.9733887, y: -0.82724}
   m_SizeDelta: {x: 0.8044014, y: 0.91000366}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1086673708
@@ -25369,7 +25478,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.25500003, y: 0.92600006}
   m_AnchorMax: {x: 0.37300003, y: 0.9747777}
-  m_AnchoredPosition: {x: -156.88004, y: 1.914856}
+  m_AnchoredPosition: {x: -156.87988, y: 1.9147949}
   m_SizeDelta: {x: -2.6879272, y: -3.5703087}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1193703492
@@ -25747,7 +25856,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.030520022, y: 0.56029636}
   m_AnchorMax: {x: 0.125, y: 0.67622226}
-  m_AnchoredPosition: {x: 0.6143799, y: 0.09063721}
+  m_AnchoredPosition: {x: 0.6147461, y: 0.09063721}
   m_SizeDelta: {x: -1.1506004, y: -0.5383911}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1210999608
@@ -26797,7 +26906,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.619, y: 0.39218524}
   m_AnchorMax: {x: 0.67200005, y: 0.48718524}
-  m_AnchoredPosition: {x: -13.8707, y: 19.9619}
+  m_AnchoredPosition: {x: -13.870728, y: 19.961914}
   m_SizeDelta: {x: -25.9778, y: 42.5663}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1272839812
@@ -28219,7 +28328,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.8895209, y: 0.8247048}
   m_AnchorMax: {x: 0.9912917, y: 0.984262}
-  m_AnchoredPosition: {x: 0.737854, y: 2.3883667}
+  m_AnchoredPosition: {x: 0.73779297, y: 2.3884277}
   m_SizeDelta: {x: 4.5002995, y: 4.250601}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1335296505
@@ -30981,7 +31090,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.08147917, y: 0.9297037}
   m_AnchorMax: {x: 0.18900001, y: 0.9747777}
-  m_AnchoredPosition: {x: -103.660034, y: 0.19989014}
+  m_AnchoredPosition: {x: -103.65991, y: 0.19995117}
   m_SizeDelta: {x: 0.9999008, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1463844633
@@ -31319,7 +31428,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75}
-  m_AnchoredPosition: {x: -4.6666718, y: 0}
+  m_AnchoredPosition: {x: -4.666687, y: 0}
   m_SizeDelta: {x: -20.6667, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1479630374
@@ -32480,7 +32589,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.34675, y: 0.79155546}
   m_AnchorMax: {x: 0.6417292, y: 0.9934814}
-  m_AnchoredPosition: {x: -0.076293945, y: -49.820007}
+  m_AnchoredPosition: {x: -0.076293945, y: -49.819946}
   m_SizeDelta: {x: -0.81199646, y: -102.187}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1529277298
@@ -32888,7 +32997,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0.0066375732, y: -0.16666603}
+  m_AnchoredPosition: {x: 0.006652832, y: -0.16666412}
   m_SizeDelta: {x: 9.3334, y: 5.3334}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1545673403
@@ -33521,7 +33630,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.86035424, y: 0.18151851}
   m_AnchorMax: {x: 0.9132293, y: 0.27714816}
-  m_AnchoredPosition: {x: -11.017029, y: -22.623718}
+  m_AnchoredPosition: {x: -11.01709, y: -22.623657}
   m_SizeDelta: {x: 154.48, y: 43.8849}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1576612041
@@ -33666,7 +33775,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.23656252, y: 0.10555556}
   m_AnchorMax: {x: 0.4405001, y: 0.19562966}
-  m_AnchoredPosition: {x: -0.50006104, y: 1.5}
+  m_AnchoredPosition: {x: -0.5, y: 1.5}
   m_SizeDelta: {x: -6, y: -1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1591804265
@@ -34168,7 +34277,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.19000001, y: 0.7921482}
   m_AnchorMax: {x: 0.81433326, y: 0.8487408}
-  m_AnchoredPosition: {x: -3.1201782, y: 8.599426}
+  m_AnchoredPosition: {x: -3.1202393, y: 8.599487}
   m_SizeDelta: {x: 4.1879883, y: 25.813}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1605317280
@@ -35232,7 +35341,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.043520022, y: 0.291}
   m_AnchorMax: {x: 0.111562505, y: 0.354}
-  m_AnchoredPosition: {x: -0.40881348, y: -0.04937744}
+  m_AnchoredPosition: {x: -0.4086914, y: -0.049438477}
   m_SizeDelta: {x: -2.120102, y: -2.850998}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1656632135
@@ -36462,7 +36571,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.7833705}
   m_AnchorMax: {x: 0.12652084, y: 1}
-  m_AnchoredPosition: {x: -1.9000244, y: -1.5298767}
+  m_AnchoredPosition: {x: -1.8999023, y: -1.5299072}
   m_SizeDelta: {x: -1.4799042, y: -3.1889992}
   m_Pivot: {x: 0.5, y: 0.67286897}
 --- !u!114 &1694360623
@@ -39981,7 +40090,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.06931915, y: 0.3}
   m_AnchorMax: {x: 0.42400002, y: 0.67676926}
-  m_AnchoredPosition: {x: -0.953949, y: -0.80249023}
+  m_AnchoredPosition: {x: -0.9539795, y: -0.80249023}
   m_SizeDelta: {x: 0, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1918643454
@@ -40273,7 +40382,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.855, y: 0.16048151}
   m_AnchorMax: {x: 0.9075625, y: 0.25300002}
-  m_AnchoredPosition: {x: -0.43762207, y: -2.4345093}
+  m_AnchoredPosition: {x: -0.4375, y: -2.4344482}
   m_SizeDelta: {x: 155.076, y: 34.3785}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1946061795
@@ -40831,11 +40940,15 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ad76791700ab15b4695c7e4413b07c10, type: 3}
   - {fileID: 21300000, guid: 80e479fd3ea0f1845bfb6868506e99b8, type: 3}
   - {fileID: 21300000, guid: 6ac2bd90e08544944b660bca4cfa1e22, type: 3}
+  - {fileID: 21300000, guid: 9ad6fa353f3784c44bf6059e5305b19a, type: 3}
+  - {fileID: 21300000, guid: 2979e65be0beeee419b4ad9b56000ab5, type: 3}
   rareCards:
   - {fileID: 21300000, guid: 2ec77caf832f2b542bdd7e86df65d52e, type: 3}
   - {fileID: 21300000, guid: 7b7034c27714c324cb48acc1b315f28f, type: 3}
+  - {fileID: 21300000, guid: d7dfc57aeccbd70419889552896aa780, type: 3}
   legendaryCards:
   - {fileID: 21300000, guid: e34ba2366df48a04c865bcdee87b983c, type: 3}
+  - {fileID: 21300000, guid: 5733cd402f4f44d4880c355a034407ba, type: 3}
   lockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
 --- !u!114 &1962994463
 MonoBehaviour:
@@ -41173,7 +41286,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5434168, y: 0.19562966}
   m_AnchorMax: {x: 0.7633125, y: 0.76022226}
-  m_AnchoredPosition: {x: 3.9429321, y: 1.1150208}
+  m_AnchoredPosition: {x: 3.9429321, y: 1.1149902}
   m_SizeDelta: {x: -2.9000244, y: -0.32998657}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1989823182
@@ -42163,7 +42276,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.09887501, y: 0.09922223}
   m_AnchorMax: {x: 0.901, y: 0.9054074}
-  m_AnchoredPosition: {x: 0.11895752, y: -2.4990234}
+  m_AnchoredPosition: {x: 0.118896484, y: -2.4990234}
   m_SizeDelta: {x: 859.92, y: 479.32}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2032158547
@@ -44266,6 +44379,7 @@ SceneRoots:
   - {fileID: 841635552}
   - {fileID: 316105912}
   - {fileID: 2072732762}
+  - {fileID: 129718433}
   - {fileID: 960583783}
   - {fileID: 138900462}
   - {fileID: 1772513142}

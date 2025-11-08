@@ -104,12 +104,17 @@ public class MinigameInput : MonoBehaviour
     public Sprite vasoConTapa;
     public Sprite vasoSinTapa;
     public Sprite tazaSinCafe;
+    public Sprite tazaSinCafeP;
 
     [Header("Sprites mecánicas tazas")]
     public Sprite tazaNWater;
     public Sprite tazaNMilk;
     public Sprite tazaNWhiskey;
     public Sprite tazaNChocolate;
+    public Sprite tazaNWaterP;
+    public Sprite tazaNMilkP;
+    public Sprite tazaNWhiskeyP;
+    public Sprite tazaNChocolateP;
 
     [Header("Sprites cafés tazas")]
     public Sprite tazaNEspresso;
@@ -417,6 +422,9 @@ public class MinigameInput : MonoBehaviour
             tazaInHand = false;
             tazaIsInCafetera = true;
 
+            if (coffeeServed)
+                UpdateCupSprite(false);
+
             buttonManager.EnableButton(buttonManager.waterButton);
             buttonManager.EnableButton(buttonManager.milkButton);
             buttonManager.EnableButton(buttonManager.cogerTazaLecheButton);
@@ -465,11 +473,12 @@ public class MinigameInput : MonoBehaviour
             tazaIsInPlato = true;
             cupServed = true;
 
-            Sprite finalPlateSprite = CheckFinalCupPlate();
+            /*Sprite finalPlateSprite = CheckFinalCupPlate();
             Image taza = Taza.GetComponent<Image>();
-            taza.sprite = finalPlateSprite;
+            taza.sprite = finalPlateSprite;*/
+            UpdateCupSprite(true);
 
-            currentSprite = finalPlateSprite;
+            //currentSprite = finalPlateSprite;
 
             PlatoTaza.gameObject.SetActive(false);
 
@@ -485,9 +494,10 @@ public class MinigameInput : MonoBehaviour
             tazaIsInPlato = false;
             cupServed = false;
 
-            Image taza = Taza.GetComponent<Image>();
+            /*Image taza = Taza.GetComponent<Image>();
             taza.sprite = baseCupSprite;
-            currentSprite = baseCupSprite;
+            currentSprite = baseCupSprite;*/
+            UpdateCupSprite(false);
 
             PlatoTaza.gameObject.SetActive(true);
             cursorManager.UpdateCursorTaza(false);
@@ -804,6 +814,114 @@ public class MinigameInput : MonoBehaviour
             FindFirstObjectByType<TutorialManager>().CompleteCurrentStep();
     }
 
+    private void UpdateCupSprite(bool inPlato)
+    {
+        Image taza = Taza.GetComponent<Image>();
+        bool cupEmpty = !coffeeServed && !milkServed && countWater == 0 && countMilk == 0
+            && countCream == 0 && countWhiskey == 0 && countChocolate == 0 && countCondensedMilk == 0;
+
+        if (cupEmpty)
+        {
+            if (inPlato)
+            {
+                taza.sprite = tazaSinCafeP;
+                currentSprite = tazaSinCafeP;
+                baseCupSprite = tazaSinCafeP;
+                return;
+            }
+            else
+            {
+                taza.sprite = tazaSinCafe;
+                currentSprite = tazaSinCafe;
+                baseCupSprite = tazaSinCafe;
+                return;
+            }
+        }
+        else if (countWater != 0 && !coffeeServed)
+        {
+            if (inPlato)
+            {
+                taza.sprite = tazaNWaterP;
+                currentSprite = tazaNWaterP;
+                baseCupSprite = tazaNWaterP;
+                return;
+            }
+            else
+            {
+                taza.sprite = tazaNWater;
+                currentSprite = tazaNWater;
+                baseCupSprite = tazaNWater;
+                return;
+            }
+        }
+        else if (countMilk != 0 || countCondensedMilk != 0 || countCream != 0 && !coffeeServed)
+        {
+            if (inPlato)
+            {
+                taza.sprite = tazaNMilkP;
+                currentSprite = tazaNMilkP;
+                baseCupSprite = tazaNMilkP;
+                return;
+            }
+            else
+            {
+                taza.sprite = tazaNMilk;
+                currentSprite = tazaNMilk;
+                baseCupSprite = tazaNMilk;
+                return;
+            }
+        }
+        else if (countChocolate != 0 && !coffeeServed)
+        {
+            if (inPlato)
+            {
+                taza.sprite = tazaNChocolateP;
+                currentSprite = tazaNChocolateP;
+                baseCupSprite = tazaNChocolateP;
+                return;
+            }
+            else
+            {
+                taza.sprite = tazaNChocolate;
+                currentSprite = tazaNChocolate;
+                baseCupSprite = tazaNChocolate;
+                return;
+            }
+        }
+        else if (countWhiskey != 0 && !coffeeServed)
+        {
+            if (inPlato)
+            {
+                taza.sprite = tazaNWhiskeyP;
+                currentSprite = tazaNWhiskeyP;
+                baseCupSprite = tazaNWhiskeyP;
+                return;
+            }
+            else
+            {
+                taza.sprite = tazaNWhiskey;
+                currentSprite = tazaNWhiskey;
+                baseCupSprite = tazaNWhiskey;
+                return;
+            }
+        }
+
+        CoffeeType type = DetermineCoffeeType();
+
+        if (inPlato)
+        {
+            taza.sprite = GetBaseCoffeeSprite(type, true);
+            taza.sprite = CheckFinalCupPlate();
+            currentSprite = taza.sprite;
+        }
+        else
+        {
+            baseCupSprite = GetBaseCoffeeSprite(type, true);
+            taza.sprite = baseCupSprite;
+            currentSprite = baseCupSprite;
+        }
+    }
+
     // Vincular la preparacion realizada con el tipo de cafe asociado
     private CoffeeType DetermineCoffeeType()
     {
@@ -836,7 +954,7 @@ public class MinigameInput : MonoBehaviour
             return CoffeeType.vienes;
         }
 
-        return CoffeeType.espresso;
+        return CoffeeType.lungo;
     } 
     
     // Devolver el sprite segun el cafe y si es taza o vaso
@@ -856,7 +974,7 @@ public class MinigameInput : MonoBehaviour
             case CoffeeType.vienes: return isCup ? tazaNVienes : vasoNVienes;
             case CoffeeType.frappe: return isCup ? tazaNFrappe : vasoNFrappe;
         }
-        return isCup ? tazaNEspresso : vasoNEspresso;
+        return isCup ? tazaSinCafe : vasoSinTapa;
     }
 
     private Sprite AddSpritesDecorations(CoffeeType type, bool isCup, Sprite baseSprite)
@@ -908,7 +1026,7 @@ public class MinigameInput : MonoBehaviour
         if (currentSprite == tazaNFrappe)
             return finalSprite = tazaNFrappeP;
         
-        return finalSprite = tazaNAmericanoLungoP;
+        return finalSprite = tazaSinCafeP;
     }
     #endregion
 

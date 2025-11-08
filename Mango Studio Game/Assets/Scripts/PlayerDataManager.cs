@@ -102,6 +102,11 @@ public class PlayerDataManager : MonoBehaviour
         }
     }
 
+    public bool HasCard(string cardName)
+    {
+        return unlockedCards.Contains(cardName);
+    }
+
     public HashSet<string> GetUnlockedCards()
     {
         return new HashSet<string>(data.unlockedCards);

@@ -18,11 +18,27 @@ public class CardCollectionManager : MonoBehaviour
     [Header("Color cartas bloqueadas")]
     public Color lockedColor = Color.gray;                     // Cartas bloqueadas
 
+   
     void OnEnable()
     {
         GenerateCollection();
     }
 
+    public void HasUnlockedSkins()
+    {
+        bool gotVasoCards = PlayerDataManager.instance.HasCard("CartaSkinVaso1") && PlayerDataManager.instance.HasCard("CartaSkinVaso2");
+        bool gotTazaCard = PlayerDataManager.instance.HasCard("CartaSkinTaza");
+
+        if (gotTazaCard)
+        {
+            SkinManager.instance.UnlockCupSkin("PremiumTaza");
+        }
+
+        if (gotVasoCards)
+        {
+            SkinManager.instance.UnlockVasoSkin("PremiumVaso");
+        }
+    }
 
     public void GenerateCollection()
     {
