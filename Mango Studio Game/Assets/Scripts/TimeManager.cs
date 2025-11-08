@@ -105,6 +105,7 @@ public class TimeManager : MonoBehaviour
         if (gameManager.monedas <= requiredMoney && currentDay != 0)
         {
             sceneUIManager.EndGameMenu();
+            return;
         }
 
         // Llamamos a la función de reinicio ANTES de hacer cualquier otra cosa
@@ -114,14 +115,25 @@ public class TimeManager : MonoBehaviour
         }
 
         playerDataManager.ResetPlayerData(); // Esta puesta para las pruebas, hay que quitarla
-        
+
         // Se aumenta el dia y se guarda en el progreso del jugador
+
         currentDay++;
-        if (currentDay>1)
+
+        // Restar dinero de facturas
+        gameManager.monedas -= requiredMoney;
+        HUDManager.Instance.UpdateMonedas(gameManager.monedas);
+
+        if (currentDay > 1)
         {
             saveDataManager.currentDay = currentDay;
+            saveDataManager.money = gameManager.monedas;
             saveDataManager.SaveGame();
         }
+
+        currentDay = saveDataManager.LoadDay();
+        gameManager.monedas = saveDataManager.LoadMoney();
+        HUDManager.Instance.UpdateMonedas(gameManager.monedas);
         secondsPerGameMinute = secondsPerGameMinuteBase + timeDecay * (currentDay - 1);
         playerDataManager.NextDay();
 
@@ -138,10 +150,6 @@ public class TimeManager : MonoBehaviour
         premiumCoins += 120;
         playerDataManager.AddPremiumCoins(premiumCoins);
         HUDManager.Instance.UpdatePremiumCoins(premiumCoins);
-
-        // Restar dinero de facturas
-        gameManager.monedas -= requiredMoney;
-        HUDManager.Instance.UpdateMonedas(gameManager.monedas);
 
         // Actualizar mecanicas y elementos disponibles para el dia actual
         GameProgressManager.Instance.UpdateMechanicsForDay(currentDay);

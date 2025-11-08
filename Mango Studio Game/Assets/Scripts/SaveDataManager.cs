@@ -1,4 +1,5 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +9,7 @@ public class SaveDataManager : MonoBehaviour
 
     public int currentSlot = 1;
     public int currentDay = 1;
+    public int money = 0;
 
     public Button slot1Button;
     public Button slot2Button;
@@ -40,6 +42,14 @@ public class SaveDataManager : MonoBehaviour
 
     public void CheckButtons()
     {
+        slot1Button = GameObject.FindGameObjectWithTag("slot1").GetComponent<Button>();
+        slot2Button = GameObject.FindGameObjectWithTag("slot2").GetComponent<Button>();
+        slot3Button = GameObject.FindGameObjectWithTag("slot3").GetComponent<Button>();
+
+        slot1Button.onClick.AddListener(Slot1);
+        slot2Button.onClick.AddListener(Slot2);
+        slot3Button.onClick.AddListener(Slot3);
+
         if (PlayerPrefs.HasKey("Slot1_Day"))
         {
             slot1Button.GetComponentInChildren<TextMeshProUGUI>().text = "Partida 1 (Día " + PlayerPrefs.GetInt("Slot1_Day") + ")";
@@ -62,16 +72,77 @@ public class SaveDataManager : MonoBehaviour
         {
             case 1:
                 PlayerPrefs.SetInt("Slot1_Day", currentDay);
+                PlayerPrefs.SetInt("Slot1_Money", money);
                 break;
 
             case 2:
                 PlayerPrefs.SetInt("Slot2_Day", currentDay);
+                PlayerPrefs.SetInt("Slot2_Money", money);
                 break;
 
             case 3:
                 PlayerPrefs.SetInt("Slot3_Day", currentDay);
+                PlayerPrefs.SetInt("Slot3_Money", money);
                 break;
         }
+    }
+
+    public int LoadDay()
+    {
+        switch (currentSlot)
+        {
+            case 1:
+                if (PlayerPrefs.HasKey("Slot1_Day"))
+                {
+                    return PlayerPrefs.GetInt("Slot1_Day");
+                }
+                break;
+
+            case 2:
+                if (PlayerPrefs.HasKey("Slot2_Day"))
+                {
+                    return PlayerPrefs.GetInt("Slot2_Day");
+                }
+                break;
+
+            case 3:
+                if (PlayerPrefs.HasKey("Slot3_Day"))
+                {
+                    return PlayerPrefs.GetInt("Slot3_Day");
+                }
+                break;
+        }
+
+        return 0;
+    }
+
+    public int LoadMoney()
+    {
+        switch (currentSlot)
+        {
+            case 1:
+                if (PlayerPrefs.HasKey("Slot1_Money"))
+                {
+                    return PlayerPrefs.GetInt("Slot1_Money");
+                }
+                break;
+
+            case 2:
+                if (PlayerPrefs.HasKey("Slot2_Money"))
+                {
+                    return PlayerPrefs.GetInt("Slot2_Money");
+                }
+                break;
+
+            case 3:
+                if (PlayerPrefs.HasKey("Slot3_Money"))
+                {
+                    return PlayerPrefs.GetInt("Slot3_Money");
+                }
+                break;
+        }
+
+        return 0;
     }
 
     public void LoadGame(int slot)
