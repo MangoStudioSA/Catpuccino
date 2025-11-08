@@ -122,7 +122,7 @@ public class TutorialManager : MonoBehaviour
                 message = "Coloca una taza para poder echar el café. Si se trata de un pedido para llevar coloca un vaso.",
                 position = new Vector2(-723f, -110f),
                 autoAdvance = true,
-                autoDelay = 5f
+                autoDelay = 8f
             });
             // Paso 4
             steps.Add(new TutorialStep
@@ -130,7 +130,7 @@ public class TutorialManager : MonoBehaviour
                 message = "Si es para tomar, deberás clicar sobre un plato y colocarlo en la zona de entrega.",
                 position = new Vector2(575f, -125f),
                 autoAdvance = true,
-                autoDelay = 5f
+                autoDelay = 8f
             });
             // Paso 5
             steps.Add(new TutorialStep
@@ -138,7 +138,7 @@ public class TutorialManager : MonoBehaviour
                 message = "Si es para llevar, al finalizar deberás clicar sobre la tapa y colocarla en el vaso.",
                 position = new Vector2(-654f, -325f),
                 autoAdvance = true,
-                autoDelay = 5f
+                autoDelay = 8f
             });
             // Paso 6
             steps.Add(new TutorialStep
@@ -253,7 +253,6 @@ public class TutorialManager : MonoBehaviour
                 autoAdvance = false,
                 onStepStart = () =>
                 {
-                    buttonManager.EnableButton(buttonManager.submitOrderButton);
                 }
             });
             // Paso 18

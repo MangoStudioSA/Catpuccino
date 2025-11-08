@@ -346,8 +346,10 @@ public class MinigameInput : MonoBehaviour
             buttonManager.EnableButton(buttonManager.endDeliveryButton);
         else if (tutorialManager.isRunningT1)
             buttonManager.DisableButton(buttonManager.endDeliveryButton);
+        else
+            buttonManager.EnableButton(buttonManager.endDeliveryButton);
 
-        if (tutorialManager.isRunningT1 && cupServed)
+        if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 17)
             buttonManager.EnableButton(buttonManager.submitOrderButton);
         else if (tutorialManager.isRunningT1)
             buttonManager.DisableButton(buttonManager.submitOrderButton);
