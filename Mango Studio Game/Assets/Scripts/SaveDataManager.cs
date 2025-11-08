@@ -113,7 +113,7 @@ public class SaveDataManager : MonoBehaviour
                 break;
         }
 
-        return 0;
+        return 1;
     }
 
     public int LoadMoney()
