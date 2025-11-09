@@ -7,8 +7,8 @@ public class SoundsMaster : MonoBehaviour
 {
     public static SoundsMaster Instance;
 
-    AudioSource audioSource_SFX;
-    AudioSource audioSource_SoundTrack;
+    [SerializeField] private AudioSource audioSource_SFX;
+    [SerializeField] private AudioSource audioSource_SoundTrack;
     string loadedScene;
     [SerializeField] AudioClip sfx_menu;
     [SerializeField] AudioClip sfx_game;
@@ -21,6 +21,7 @@ public class SoundsMaster : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject); //Se añade al método DontDestroyOnLoad para que se preserve en las escenas y así se pueda usar el método donde se necesite
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else
         {
@@ -28,56 +29,55 @@ public class SoundsMaster : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        string checkScene;
-        checkScene = SceneManager.GetActiveScene().name;
-        if(loadedScene != checkScene)
-        {
-            loadedScene = checkScene;
-            if (loadedScene == "MainMenu")
-            {
-                FindAudioSources();
-                audioSource_SoundTrack.clip = sfx_menu;
-                audioSource_SoundTrack.Play();
-            }
-            else if (loadedScene == "Game")
-            {
-                FindAudioSources();
-                audioSource_SoundTrack.clip = sfx_game;
-                audioSource_SoundTrack.Play();
-            }
-        }
-    }
-
     private void Start()
     {
-        FindAudioSources();
         loadedScene = SceneManager.GetActiveScene().name;
         if (loadedScene == "MainMenu")
         {
-            FindAudioSources();
-            audioSource_SoundTrack.clip = sfx_menu;
-            audioSource_SoundTrack.Play();
+            PlayMusic(sfx_menu);
         }
         else if (loadedScene == "Game")
         {
-            FindAudioSources();
-            audioSource_SoundTrack.clip = sfx_game;
-            audioSource_SoundTrack.Play();
+            PlayMusic(sfx_game);
         }
     }
 
-    void FindAudioSources()
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        audioSource_SFX = FindFirstObjectByType<SFXSource>().GetComponent<AudioSource>();
-        audioSource_SoundTrack = FindFirstObjectByType<SoundTrackSource>().GetComponent<AudioSource>();
+        string newScene = scene.name;
+        if (loadedScene == newScene) return; // Evitar recargar si es la misma escena
+
+        loadedScene = newScene;
+
+        if (loadedScene == "MainMenu")
+        {
+            PlayMusic(sfx_menu);
+        }
+        else if (loadedScene == "Game")
+        {
+            PlayMusic(sfx_game);
+        }
+    }
+
+    void PlayMusic(AudioClip clip)
+    {
+        if (audioSource_SoundTrack.clip == clip) return; // Ya está sonando
+
+        audioSource_SoundTrack.Stop();
+        audioSource_SoundTrack.clip = clip;
+        audioSource_SoundTrack.Play();
     }
 
     void PlaySound(AudioClip clip)
     {
-        FindAudioSources();
-        audioSource_SFX.PlayOneShot(clip);
+        if (clip != null)
+        {
+            audioSource_SFX.PlayOneShot(clip);
+        }
+        else
+        {
+            Debug.LogWarning("Se intentó reproducir un AudioClip nulo.");
+        }
     }
 
     public void PlaySound_Menu()
@@ -103,5 +103,13 @@ public class SoundsMaster : MonoBehaviour
     public void PlaySound_CoffeeMachine()
     {
         PlaySound(sfx_clickCoffeeMachine);
+    }
+
+    private void OnDestroy()
+    {
+        if (Instance == this)
+        {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+        }
     }
 }
