@@ -56,7 +56,7 @@ public class MinigameInput : MonoBehaviour
 
     [Header("Variables café")]
     int countSugar = 0; 
-    int countIce = 0;
+    public int countIce = 0;
     int countCover = 0;
     int countWater = 0;
     int countMilk = 0;
@@ -81,12 +81,17 @@ public class MinigameInput : MonoBehaviour
     public GameObject PlatoTaza;
     public GameObject Filtro;
     public GameObject Espumador;
+    public GameObject Balda;
 
     public Transform puntoCafetera;
     public Transform puntoEspumador;
     public Transform puntoMesa;
     public Transform puntoTazaPlato;
     public Transform puntoFiltroCafetera;
+
+    [Header("Sprites mecánicas")]
+    public Sprite creamWithSpoon;
+    public Sprite creamWithoutSpoon;
 
     [Header("Sprites objetos")]
     public Sprite espumadorNormal;
@@ -183,12 +188,6 @@ public class MinigameInput : MonoBehaviour
         buttonManager.filtroCafeteraButton.gameObject.SetActive(false);
         buttonManager.filtroButton.gameObject.SetActive(false);
 
-        if (progressManager.milkEnabled)
-        {
-            buttonManager.cogerTazaLecheButton.gameObject.SetActive(true);
-            buttonManager.milkButton.gameObject.SetActive(true);
-        }
-        
         buttonManager.EnableButton(buttonManager.cogerTazaInicioButton);
         buttonManager.EnableButton(buttonManager.cogerVasoInicioButton);
         buttonManager.EnableButton(buttonManager.cogerPlatoTazaButton);
@@ -342,6 +341,24 @@ public class MinigameInput : MonoBehaviour
     }
     public void CheckButtons()
     {
+        if (progressManager.milkEnabled)
+        {
+            buttonManager.milkButton.gameObject.SetActive(true);
+        }
+        else if (progressManager.heatedMilkEnabled)
+        {
+            buttonManager.cogerTazaLecheButton.image.enabled = true;
+            buttonManager.cogerTazaLecheButton.gameObject.SetActive(true);
+        }
+        else if (progressManager.condensedMilkEnabled)
+        {
+            Balda.SetActive(true);
+        }
+        else
+        {
+            Balda.SetActive(false);
+        }
+
         if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 20 && cupServed)
             buttonManager.EnableButton(buttonManager.endDeliveryButton);
         else if (tutorialManager.isRunningT1)
@@ -1040,10 +1057,12 @@ public class MinigameInput : MonoBehaviour
         if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand)
         {
             milkInHand = true;
+            buttonManager.milkButton.image.enabled = false;
         }
         else if (milkInHand == true)
         {
             milkInHand = false;
+            buttonManager.milkButton.image.enabled = true;
         }
     }
     public void EcharLecheFria()
@@ -1194,10 +1213,12 @@ public class MinigameInput : MonoBehaviour
         if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand)
         {
             waterInHand = true;
+            buttonManager.waterButton.image.enabled = false;
         }
         else if (waterInHand == true)
         {
             waterInHand = false;
+            buttonManager.waterButton.image.enabled = true;
         }
     }
     public void EcharAgua()
@@ -1228,10 +1249,12 @@ public class MinigameInput : MonoBehaviour
         if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand)
         {
             condensedMilkInHand = true;
+            buttonManager.condensedMilkButton.image.enabled = false;
         }
         else if (condensedMilkInHand == true)
         {
             condensedMilkInHand = false;
+            buttonManager.condensedMilkButton.image.enabled = true;
         }
     }
     public void EcharLecheCondensada()
@@ -1261,10 +1284,12 @@ public class MinigameInput : MonoBehaviour
         if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand)
         {
             creamInHand = true;
+            buttonManager.creamButton.image.sprite = creamWithoutSpoon;
         }
         else if (creamInHand == true)
         {
             creamInHand = false;
+            buttonManager.creamButton.image.sprite = creamWithSpoon; 
         }
     }
     public void EcharCrema()
@@ -1294,10 +1319,12 @@ public class MinigameInput : MonoBehaviour
         if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand)
         {
             chocolateInHand = true;
+            buttonManager.chocolateButton.image.enabled = false;
         }
         else if (chocolateInHand == true)
         {
             chocolateInHand = false;
+            buttonManager.chocolateButton.image.enabled = true;
         }
     }
     public void EcharChocolate()
@@ -1327,10 +1354,12 @@ public class MinigameInput : MonoBehaviour
         if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand)
         {
             whiskeyInHand = true;
+            buttonManager.whiskeyButton.image.enabled = false;
         }
         else if (whiskeyInHand == true)
         {
             whiskeyInHand = false;
+            buttonManager.whiskeyButton.image.enabled = true;
         }
     }
     public void EcharWhiskey()
@@ -1405,6 +1434,7 @@ public class MinigameInput : MonoBehaviour
                 order.currentOrder.icePrecision = countIce; // Se guarda el resultado obtenido en la precision del jugador
                 Debug.Log($"[Cliente {order.currentOrder.orderId}] Has echado hielo.");
                 PopUpMechanicsMsg.Instance.ShowMessage("+Hielo");
+                cursorManager.ChangeHieloSpoon();
             }
         }
     }

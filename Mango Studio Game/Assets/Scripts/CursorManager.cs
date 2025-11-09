@@ -20,6 +20,7 @@ public class CursorManager : MonoBehaviour
     [SerializeField] Texture2D cremaCursorTexture;
     [SerializeField] Texture2D chocolateCursorTexture;
     [SerializeField] Texture2D whiskeyCursorTexture;
+    [SerializeField] Texture2D hieloCucharaVaciaCursorTexture;
 
     [Header("Texturas cursores comida")]
     [SerializeField] Texture2D platoCursorTexture;
@@ -107,6 +108,7 @@ public class CursorManager : MonoBehaviour
         {
             miniGameInput.tazaMilkInHand = true;
             Cursor.SetCursor(tazaLecheCursorTexture, hotSpotTazaLeche, CursorMode.Auto);
+            miniGameInput.buttonManager.cogerTazaLecheButton.image.enabled = false;
         }
     }
 
@@ -403,6 +405,14 @@ public class CursorManager : MonoBehaviour
         if (!miniGameInput.TengoOtroObjetoEnLaMano())
         {
             Cursor.SetCursor(defaultCursorTexture, hotSpotDefault, CursorMode.Auto);
+        }
+    }
+
+    public void ChangeHieloSpoon()
+    {
+        if (miniGameInput.iceInHand && miniGameInput.countIce > 0)
+        {
+            Cursor.SetCursor(hieloCucharaVaciaCursorTexture, hotSpotHieloCuchara, CursorMode.Auto);
         }
     }
 

@@ -202,7 +202,7 @@ public class TimeManager : MonoBehaviour
             int c = UnityEngine.Random.Range(t / 8, t / 2);
             t -= c;
 
-            requiredText.text = "Los gastos de hoy son\n\nLuz y electricidad: " + l + "$\nAgua: " + a + "$\nCafé y suministros: " + c + "$\nMantenimiento: " + t + "$\nTOTAL: " + requiredMoney + "$";
+            requiredText.text = "Los gastos de hoy son:\n - Luz y electricidad: " + l + "$\n - Agua: " + a + "$\n- Café y suministros: " + c + "$\n- Mantenimiento: " + t + "$\nTOTAL: " + requiredMoney + "$";
         }
 
         if (gameManager.monedas >= requiredMoney)
