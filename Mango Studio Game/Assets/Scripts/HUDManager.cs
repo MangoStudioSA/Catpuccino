@@ -33,6 +33,18 @@ public class HUDManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI basicCoinsTxt;
     [SerializeField] private TextMeshProUGUI premiumCoinsTxt;
 
+    private IEnumerator Start()
+    {
+        // Espera un frame para asegurar que PlayerDataManager y los textos estén inicializados
+        yield return null;
+
+        if (PlayerDataManager.instance != null)
+        {
+            UpdateBasicCoins(PlayerDataManager.instance.data.basicCoins);
+            UpdatePremiumCoins(PlayerDataManager.instance.data.premiumCoins);
+        }
+    }
+
     void Awake()
     {
         if (Instance != null) { Destroy(gameObject); } else { Instance = this; }
@@ -53,6 +65,15 @@ public class HUDManager : MonoBehaviour
         unlockedCanvasGroup.interactable = false;
         unlockedCanvasGroup.blocksRaycasts = false;
         unlockedCanvas.SetActive(false);
+
+        UpdateUI();
+    }
+
+    public void UpdateUI()
+    {
+        var data = PlayerDataManager.instance.data;
+        basicCoinsTxt.text = $"{data.basicCoins}";
+        premiumCoinsTxt.text = $"{data.premiumCoins}";
     }
 
     #region Elementos principales juego

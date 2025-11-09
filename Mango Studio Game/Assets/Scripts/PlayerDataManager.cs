@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -9,8 +10,6 @@ public class PlayerDataManager : MonoBehaviour
     public static PlayerDataManager instance;
     public PlayerData data = new();
     private string savePath;
-
-    private List<string> unlockedCards = new();
 
     private void Awake()
     {
@@ -25,20 +24,21 @@ public class PlayerDataManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        Debug.Log("PlayerDataManager Awake. Coins: " + data.basicCoins + "/" + data.premiumCoins);
     }
 
     // Funcion para añadir monedas premium
     public void AddPremiumCoins(int amount)
     {
         data.premiumCoins += amount;
-        HUDManager.Instance.UpdateBasicCoins(data.premiumCoins);
+        HUDManager.Instance.UpdatePremiumCoins(data.premiumCoins);
         SaveData();
     }
     // Funcion para añadir monedas basicas
     public void AddBasicCoins(int amount)
     {
         data.basicCoins += amount;
-        HUDManager.Instance.UpdatePremiumCoins(data.basicCoins);
+        HUDManager.Instance.UpdateBasicCoins(data.basicCoins);
         SaveData();
     }
     // Funcion para gastar monedas basicas
@@ -83,7 +83,7 @@ public class PlayerDataManager : MonoBehaviour
 
     public bool HasCard(string cardName)
     {
-        return unlockedCards.Contains(cardName);
+        return data.unlockedCards.Contains(cardName);
     }
     // Funcion para obtener las cartas desbloqueadas
     public HashSet<string> GetUnlockedCards()
@@ -136,7 +136,7 @@ public class PlayerDataManager : MonoBehaviour
         // Se intenta desde playerprefs
         if (!loaded && PlayerPrefs.HasKey("PlayerDataBackUp"))
         {
-            string json = PlayerPrefs.GetString("PlayerDataBackup");
+            string json = PlayerPrefs.GetString("PlayerDataBackUp");
             data = JsonUtility.FromJson<PlayerData>(json);
             loaded = true;
             Debug.Log("Datos cargados desde PlayerPrefs (respaldo).");

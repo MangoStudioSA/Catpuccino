@@ -62,7 +62,7 @@ public class TutorialManager : MonoBehaviour
 
         switch (day)
         {
-            case 5:
+            case 1:
                 SetupDay1Tutorial();
                 StartTutorial1();
                 isRunningT1 = true;
@@ -368,7 +368,6 @@ public class TutorialManager : MonoBehaviour
         tutorialPanel.gameObject.SetActive(false);
         GameManager.Instance.AnadirMonedas(100);
         PlayerDataManager.instance.AddBasicCoins(20);
-        HUDManager.Instance.UpdateBasicCoins(20);
         Debug.Log("Tutorial completado");
     }
     #endregion

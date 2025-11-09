@@ -7,8 +7,6 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] public int monedas; // Inicio monedas
 
-    public PlayerDataManager playerDataManager;
-
     private int totalSatisfactionScore = 0;
     private int customersRated = 0;
     private int servedCustomers = 0;

@@ -6426,7 +6426,6 @@ GameObject:
   - component: {fileID: 342197117}
   - component: {fileID: 342197119}
   - component: {fileID: 342197120}
-  - component: {fileID: 342197121}
   - component: {fileID: 342197122}
   - component: {fileID: 342197123}
   m_Layer: 0
@@ -6502,24 +6501,6 @@ MonoBehaviour:
   gameManager: {fileID: 50023191}
   tutorialManager: {fileID: 841635553}
   miniGameInput: {fileID: 50023188}
---- !u!114 &342197121
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 342197116}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc956012293f8b341aa44494389011b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  optionsGamePanel: {fileID: 2032705002}
-  roomPanel: {fileID: 230416457}
-  dialoguePanel: {fileID: 995759339}
-  gameUIManager: {fileID: 0}
-  tutorialManager: {fileID: 841635553}
-  customerOrderGenerator: {fileID: 2111219102}
 --- !u!114 &342197122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18325,7 +18306,7 @@ MonoBehaviour:
   coffeeRecipesManager: {fileID: 50023198}
   coffeeUnlockerManager: {fileID: 50023193}
   HUDmanager: {fileID: 960583782}
-  playerDataManager: {fileID: 2072732763}
+  playerDataManager: {fileID: 0}
 --- !u!4 &863263443
 Transform:
   m_ObjectHideFlags: 0
@@ -42711,9 +42692,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2072732762}
   - component: {fileID: 2072732761}
-  - component: {fileID: 2072732763}
   m_Layer: 0
-  m_Name: GamePlayerManager
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42747,22 +42727,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2072732763
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2072732760}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13b638cdfa96db64bb1ce75043fa14af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  data:
-    basicCoins: 0
-    premiumCoins: 0
-    unlockedCardsList: []
 --- !u!1 &2077449452
 GameObject:
   m_ObjectHideFlags: 0
