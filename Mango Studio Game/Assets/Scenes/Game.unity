@@ -18321,7 +18321,7 @@ MonoBehaviour:
   endHour: 20
   endMinutes: 0
   requiredIncrement: 1.25
-  currentDay: 4
+  currentDay: 0
   coffeeRecipesManager: {fileID: 50023198}
   coffeeUnlockerManager: {fileID: 50023193}
   HUDmanager: {fileID: 960583782}
@@ -42731,8 +42731,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2134fdf4500373a41a4c508b731ddabc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monedas: 15000
-  playerDataManager: {fileID: 2072732763}
+  monedas: 0
 --- !u!4 &2072732762
 Transform:
   m_ObjectHideFlags: 0
@@ -42761,12 +42760,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-    currentDay: 0
-    money: 0
     basicCoins: 0
     premiumCoins: 0
-    totalCustomersServed: 0
-    customersSatisfaction: 0
     unlockedCardsList: []
 --- !u!1 &2077449452
 GameObject:

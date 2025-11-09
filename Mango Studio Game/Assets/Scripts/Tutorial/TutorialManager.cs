@@ -62,7 +62,7 @@ public class TutorialManager : MonoBehaviour
 
         switch (day)
         {
-            case 5:
+            case 1:
                 SetupDay1Tutorial();
                 StartTutorial1();
                 isRunningT1 = true;

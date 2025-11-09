@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 // Clase encargada de gestionar los paneles del menu principal
 public class UIMainMenu : MonoBehaviour
@@ -10,6 +11,7 @@ public class UIMainMenu : MonoBehaviour
     [SerializeField] GameObject slotsPanel;
     private CanvasGroup mainMenuCanvasGroup;
     private SaveDataManager saveDataManager;
+    SceneLoader loader;
 
     private void Start()
     {
@@ -18,6 +20,10 @@ public class UIMainMenu : MonoBehaviour
 
         mainMenuCanvasGroup = mainMenuPanel.GetComponent<CanvasGroup>();
         saveDataManager = FindFirstObjectByType<SaveDataManager>();
+        loader = FindFirstObjectByType<SceneLoader>();
+
+        loader.playButton = GameObject.FindGameObjectWithTag("play").GetComponent<Button>();
+        loader.playButton.onClick.AddListener(loader.LoadGame);
     }
 
     public void OpenSettings()

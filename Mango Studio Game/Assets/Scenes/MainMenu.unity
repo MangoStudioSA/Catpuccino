@@ -1784,7 +1784,7 @@ GameObject:
   - component: {fileID: 312687325}
   m_Layer: 5
   m_Name: Play_Button
-  m_TagString: Untagged
+  m_TagString: play
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5958,11 +5958,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc956012293f8b341aa44494389011b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  optionsGamePanel: {fileID: 0}
-  roomPanel: {fileID: 0}
-  dialoguePanel: {fileID: 0}
-  tutorialManager: {fileID: 0}
-  customerOrderGenerator: {fileID: 0}
 --- !u!114 &1428847413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5975,6 +5970,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bd92c0e0b1421d44a0e5e49c0c1a3dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playButton: {fileID: 0}
 --- !u!1 &1429127636
 GameObject:
   m_ObjectHideFlags: 0

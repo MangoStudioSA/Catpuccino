@@ -1,11 +1,14 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 // Script principal encargado de gestionar los cambios de escena
 public class SceneLoader : MonoBehaviour
 {
     [Header("SceneLoader")]
     public static SceneLoader Instance; // Instancia del SceneLoader en la escena
+
+    public Button playButton;
     void Awake()
     {
         if (Instance == null) // Patron Singleton para mantener la informacion entre escenas
