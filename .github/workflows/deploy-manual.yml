@@ -17,6 +17,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Check disk space before cleanup
+        run: df -h
+        
       - name: Free up disk space
         run: |
           sudo rm -rf /usr/share/dotnet
