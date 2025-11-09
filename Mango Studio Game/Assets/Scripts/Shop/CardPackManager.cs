@@ -141,8 +141,8 @@ public class CardPackManager : MonoBehaviour
         PlayerDataManager.instance.AddCard(cardSprite);
 
         var collection = FindFirstObjectByType<CardCollectionManager>();
-        if (collection != null)
-            collection.GenerateCollection();
+        /*if (collection != null)
+            collection.GenerateCollection();*/
         Debug.Log("animacion completada");
     }
 

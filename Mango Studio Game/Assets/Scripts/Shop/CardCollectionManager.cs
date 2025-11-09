@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -7,84 +8,128 @@ using UnityEngine.UI;
 public class CardCollectionManager : MonoBehaviour
 {
     [Header("Referencias")]
-    public Transform contentParent;
-    public GameObject cardPrefab;   // Prefab de una carta
+    public List<GameObject> pages;
+    public Animator bookAnimator;
+    public GameObject bookPagesContainer;
 
-    [Header("Sprites por rareza")]
-    public Sprite[] basicCards;
-    public Sprite[] intermediateCards;
-    public Sprite[] rareCards;
-    public Sprite[] legendaryCards;
+    private int currentPage = 0;
+    private HashSet<string> unlockedCards;
+    private bool isTurningPage = false;
 
-    [Header("Color cartas bloqueadas")]
-    public Color lockedColor = Color.gray; // Cartas bloqueadas
+    void Awake()
+    {
+        if (bookAnimator != null)
+            bookAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
+    }
 
-   
     void OnEnable()
     {
-        GenerateCollection();
+        //UpdateCardsOnPage();
+        StartCoroutine(OpenBookAndShowFirstPage());
     }
-
-    // Todavia no se usa (skins)
-    public void HasUnlockedSkins()
+    private IEnumerator OpenBookAndShowFirstPage()
     {
-        bool gotVasoCards = PlayerDataManager.instance.HasCard("CartaSkinVaso1") && PlayerDataManager.instance.HasCard("CartaSkinVaso2");
-        bool gotTazaCard = PlayerDataManager.instance.HasCard("CartaSkinTaza");
+        // Oculta las páginas mientras el libro se abre
+        bookPagesContainer.SetActive(false);
 
-        if (gotTazaCard)
-        {
-            SkinManager.instance.UnlockCupSkin("PremiumTaza");
-        }
+        // Forzar animación manualmente
+        if (bookAnimator != null)
+            bookAnimator.SetTrigger("OpenBook");
 
-        if (gotVasoCards)
-        {
-            SkinManager.instance.UnlockVasoSkin("PremiumVaso");
-        }
-    }
+        // Espera la duración de la animación (ajusta según tu clip)
+        yield return new WaitForSecondsRealtime(1.55f);
 
-    public void GenerateCollection()
+        // Carga datos del jugador y muestra la primera página
+        unlockedCards = PlayerDataManager.instance?.GetUnlockedCards() ?? new HashSet<string>();
+        ShowPage(0);
+
+        // Muestra las páginas ahora que el libro está abierto
+        bookPagesContainer.SetActive(true);
+    }    
+
+    public void ShowPage(int pageIndex)
     {
-        // Limpiar si ya existían
-        foreach (Transform child in contentParent)
+        for (int i = 0; i < pages.Count; i++)
+            pages[i].SetActive(i == pageIndex);
+
+        // Muestra solo la seleccionada
+        currentPage = Mathf.Clamp(pageIndex, 0, pages.Count - 1);
+        pages[currentPage].SetActive(true);
+
+        UpdateCardsOnPage();
+    }
+    public void NextPage()
+    {
+        if (isTurningPage || currentPage >= pages.Count - 1)
+            return;
+
+        StartCoroutine(PageTurnRoutine(currentPage + 1, "NextPage"));
+    }
+
+    public void PreviousPage()
+    {
+        if (isTurningPage || currentPage <= 0)
+            return;
+
+        StartCoroutine(PageTurnRoutine(currentPage - 1, "PreviousPage"));
+    }
+
+    private IEnumerator PageTurnRoutine(int newPageIndex, string trigger)
+    {
+        isTurningPage = true;
+
+        // Oculta temporalmente las páginas
+        bookPagesContainer.SetActive(false);
+
+        // Reproduce la animación
+        if (bookAnimator != null)
+            bookAnimator.SetTrigger(trigger);
+
+        // Espera la duración de la animación (ajusta según el clip)
+        yield return new WaitForSecondsRealtime(0.7f);
+
+        // Muestra la nueva página
+        ShowPage(newPageIndex);
+
+        // Vuelve a activar las páginas
+        bookPagesContainer.SetActive(true);
+
+        isTurningPage = false;
+    }
+
+
+    public void OnPageTurnFinished()
+    {
+        ShowPage(currentPage + 1); 
+    }
+
+    private void UpdateCardsOnPage()
+    {
+        var current = pages[currentPage];
+
+        foreach (var card in current.GetComponentsInChildren<Image>())
         {
-            Destroy(child.gameObject);
-        }
-
-        HashSet<string> unlockedCards = null;
-
-        // Se comprueba si el jugador tiene cartas desbloqueadas
-        if (PlayerDataManager.instance != null && PlayerDataManager.instance.GetUnlockedCards() != null)
-        {
-            unlockedCards = PlayerDataManager.instance.GetUnlockedCards();
-        }
-        else
-        {
-            unlockedCards= new HashSet<string>();
-        }
-
-        // Cargar todas las cartas 
-        List<Sprite> allCards = new();
-        allCards.AddRange(basicCards);
-        allCards.AddRange(intermediateCards);
-        allCards.AddRange(rareCards);
-        allCards.AddRange(legendaryCards);
-
-        foreach (var sprite in allCards)
-        {
-            GameObject newCard = Instantiate(cardPrefab, contentParent);
-            Image cardImage = newCard.GetComponentInChildren<Image>();
-
-            bool isUnlocked = unlockedCards.Contains(sprite.name);
-
-            if (isUnlocked)
+            if (card.CompareTag("Card"))
             {
-                cardImage.sprite = sprite; // Las cartas que no se han conseguido se muestran
-                cardImage.color = Color.white;
-            }
-            else
-            {
-                cardImage.color = lockedColor; // Las cartas que no se han conseguido se muestran en gris
+                bool unlocked = unlockedCards.Contains(card.name);
+
+                if (unlocked)
+                {
+                    // Cargar sprite de carta real
+                    Sprite unlockedSprite = Resources.Load<Sprite>($"cards/{card.name}");
+                    if (unlockedSprite != null)
+                        card.sprite = unlockedSprite;
+
+                    card.color = Color.white;
+                }
+                else
+                {
+                    // Mostrar gris o silueta vacía
+                    card.sprite = null;
+                    card.color = new Color(1, 1, 1, 0);
+                }
             }
         }
     }
+
 }
