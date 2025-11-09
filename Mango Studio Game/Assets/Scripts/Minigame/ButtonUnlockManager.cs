@@ -6,6 +6,7 @@ public class ButtonUnlockManager : MonoBehaviour
     [Header("Botones de interacciones")]
     [SerializeField] public Button endDeliveryButton;
     [SerializeField] public Button gameButton;
+    [SerializeField] public Button shopButton;
     [SerializeField] public Button submitOrderButton;
     [SerializeField] public Button recipesBookButton;
     [SerializeField] public Button orderNoteButton;

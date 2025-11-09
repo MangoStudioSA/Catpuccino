@@ -342,23 +342,33 @@ public class MinigameInput : MonoBehaviour
     }
     public void CheckButtons()
     {
-        if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 20)
+        if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 20 && cupServed)
             buttonManager.EnableButton(buttonManager.endDeliveryButton);
         else if (tutorialManager.isRunningT1)
             buttonManager.DisableButton(buttonManager.endDeliveryButton);
         else
             buttonManager.EnableButton(buttonManager.endDeliveryButton);
 
+        if (tutorialManager.isRunningT1)
+            buttonManager.DisableButton(buttonManager.shopButton);
+        else
+            buttonManager.EnableButton(buttonManager.shopButton);
+
         if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 17)
             buttonManager.EnableButton(buttonManager.submitOrderButton);
         else if (tutorialManager.isRunningT1)
             buttonManager.DisableButton(buttonManager.submitOrderButton);
 
-        if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 21 || tutorialManager.currentStep == 22)
+        if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 21 || tutorialManager.currentStep == 22 || tutorialManager.currentStep == 23)
             buttonManager.DisableButton(buttonManager.gameButton);
         else
             buttonManager.EnableButton(buttonManager.gameButton);
 
+        if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 12)
+            buttonManager.EnableButton(buttonManager.echarCafeButton);
+        else if (tutorialManager.isRunningT1 && tutorialManager.currentStep < 12)
+            buttonManager.DisableButton(buttonManager.echarCafeButton);
+            
         if (tutorialManager.isRunningT2 && tutorialManager.currentStep == 0)
             buttonManager.DisableButton(buttonManager.bakeryButton);
         else
@@ -369,7 +379,9 @@ public class MinigameInput : MonoBehaviour
         else if (tutorialManager.isRunningT2 && tutorialManager.currentStep == 9)
             buttonManager.EnableButton(buttonManager.returnBakeryButton);
 
-        if (tazaIsInCafetera || vasoIsInCafetera)
+        if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 15)
+            buttonManager.EnableButton(buttonManager.papeleraButton);
+        else if ((tazaIsInCafetera || vasoIsInCafetera) && !tutorialManager.isRunningT1)
             buttonManager.EnableButton(buttonManager.papeleraButton);
 
         if (tazaInHand || vasoInHand || TengoOtroObjetoEnLaMano())
@@ -409,7 +421,7 @@ public class MinigameInput : MonoBehaviour
    
     public void ToggleTazaCafetera()
     {
-        if (TengoOtroObjetoEnLaMano() || tazaMilkInHand || filtroInHand)
+        if (TengoOtroObjetoEnLaMano() || tazaMilkInHand || filtroInHand || platoTazaInHand)
             return;
 
         if (!tazaInHand && !tazaIsInCafetera)
@@ -436,7 +448,6 @@ public class MinigameInput : MonoBehaviour
 
             cursorManager.UpdateCursorTaza(true);
             Debug.Log($"Taza colocada: {tazaIsInCafetera}");
-
         }
         else if (tazaIsInCafetera && !tazaInHand)
         {
@@ -475,13 +486,7 @@ public class MinigameInput : MonoBehaviour
             tazaIsInPlato = true;
             cupServed = true;
 
-            /*Sprite finalPlateSprite = CheckFinalCupPlate();
-            Image taza = Taza.GetComponent<Image>();
-            taza.sprite = finalPlateSprite;*/
             UpdateCupSprite(true);
-
-            //currentSprite = finalPlateSprite;
-
             PlatoTaza.gameObject.SetActive(false);
 
             cursorManager.UpdateCursorTaza(true);
@@ -496,11 +501,7 @@ public class MinigameInput : MonoBehaviour
             tazaIsInPlato = false;
             cupServed = false;
 
-            /*Image taza = Taza.GetComponent<Image>();
-            taza.sprite = baseCupSprite;
-            currentSprite = baseCupSprite;*/
             UpdateCupSprite(false);
-
             PlatoTaza.gameObject.SetActive(true);
             cursorManager.UpdateCursorTaza(false);
             EnableMechanics();
@@ -816,6 +817,7 @@ public class MinigameInput : MonoBehaviour
             FindFirstObjectByType<TutorialManager>().CompleteCurrentStep();
     }
 
+    // Actualizar el sprite de cafe/ingrediente actual
     private void UpdateCupSprite(bool inPlato)
     {
         Image taza = Taza.GetComponent<Image>();
@@ -1054,6 +1056,7 @@ public class MinigameInput : MonoBehaviour
                 countMilk += 1; //Se incrementa el contador de leche
                 order.currentOrder.milkPrecision = countMilk; // Se guarda el resultado obtenido en la precision del jugador
                 Debug.Log($"[Cliente {order.currentOrder.orderId}] Cantidad de leche: " + countMilk);
+                PopUpMechanicsMsg.Instance.ShowMessage($"+{countMilk} Leche");
             }
             milkServed = true;
             buttonManager.cogerTazaLecheButton.gameObject.SetActive(false);
@@ -1207,6 +1210,7 @@ public class MinigameInput : MonoBehaviour
                 countWater += 1; //Se incrementa el contador de agua
                 order.currentOrder.waterPrecision = countWater; // Se guarda el resultado obtenido en la precision del jugador
                 Debug.Log($"[Cliente {order.currentOrder.orderId}] Has echado agua.");
+                PopUpMechanicsMsg.Instance.ShowMessage("+ Agua");
             }
 
             if (tazaIsInCafetera)
@@ -1240,6 +1244,7 @@ public class MinigameInput : MonoBehaviour
                 countCondensedMilk += 1; //Se incrementa el contador de leche condensada
                 order.currentOrder.condensedMilkPrecision = countCondensedMilk; // Se guarda el resultado obtenido en la precision del jugador
                 Debug.Log($"[Cliente {order.currentOrder.orderId}] Has echado leche condensada.");
+                PopUpMechanicsMsg.Instance.ShowMessage("+Leche Condensada");
             }
             if (tazaIsInCafetera)
             {
@@ -1272,6 +1277,7 @@ public class MinigameInput : MonoBehaviour
                 countCream += 1; //Se incrementa el contador de crema
                 order.currentOrder.creamPrecision = countCream; // Se guarda el resultado obtenido en la precision del jugador
                 Debug.Log($"[Cliente {order.currentOrder.orderId}] Has echado crema.");
+                PopUpMechanicsMsg.Instance.ShowMessage("+ Crema");
             }
             if (tazaIsInCafetera)
             {
@@ -1304,6 +1310,7 @@ public class MinigameInput : MonoBehaviour
                 countChocolate += 1; //Se incrementa el contador de chocolate
                 order.currentOrder.chocolatePrecision = countChocolate; // Se guarda el resultado obtenido en la precision del jugador
                 Debug.Log($"[Cliente {order.currentOrder.orderId}] Has echado chocolate.");
+                PopUpMechanicsMsg.Instance.ShowMessage("+ Chocolate");
             }
             if (tazaIsInCafetera)
             {
@@ -1336,6 +1343,7 @@ public class MinigameInput : MonoBehaviour
                 countWhiskey += 1; //Se incrementa el contador de hielo
                 order.currentOrder.whiskeyPrecision = countWhiskey; // Se guarda el resultado obtenido en la precision del jugador
                 Debug.Log($"[Cliente {order.currentOrder.orderId}] Has echado whiskey.");
+                PopUpMechanicsMsg.Instance.ShowMessage("+ Whiskey");
             }
             if (tazaIsInCafetera)
             {
@@ -1368,6 +1376,7 @@ public class MinigameInput : MonoBehaviour
                 countSugar += 1; //Se incrementa el contador de hielo
                 order.currentOrder.sugarPrecision = countSugar; // Se guarda el resultado obtenido en la precision del jugador
                 Debug.Log($"[Cliente {order.currentOrder.orderId}] Cantidad de azucar: " + countSugar);
+                PopUpMechanicsMsg.Instance.ShowMessage($"+{countSugar} Azúcar");
             }
         }
     }
@@ -1395,6 +1404,7 @@ public class MinigameInput : MonoBehaviour
                 countIce += 1; //Se incrementa el contador de hielo
                 order.currentOrder.icePrecision = countIce; // Se guarda el resultado obtenido en la precision del jugador
                 Debug.Log($"[Cliente {order.currentOrder.orderId}] Has echado hielo.");
+                PopUpMechanicsMsg.Instance.ShowMessage("+Hielo");
             }
         }
     }

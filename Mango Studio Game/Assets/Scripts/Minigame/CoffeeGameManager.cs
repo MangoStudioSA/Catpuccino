@@ -56,11 +56,13 @@ public class CoffeeGameManager : MonoBehaviour
         if (tip > 0) 
         {
             gameManager.AnadirMonedas(tip);
-            earnedTipTxt.text = $"¡El cliente ha dejado una propina de {tip}$!";
+            //earnedTipTxt.text = $"¡El cliente ha dejado una propina de {tip}$!";
+            PopUpMechanicsMsg.Instance.ShowMessage($"Propina recibida: {tip}", new Vector3(371, 14, 0), 5f);
         }
         else 
         {
-            earnedTipTxt.text = "El cliente no ha dejado propina.";
+            //earnedTipTxt.text = "El cliente no ha dejado propina.";
+            PopUpMechanicsMsg.Instance.ShowMessage("El cliente no ha dejado propina.", new Vector3(371, 14, 0), 5f);
         }
 
         string feedback = GenerateFeedbackText(
@@ -73,10 +75,9 @@ public class CoffeeGameManager : MonoBehaviour
         );
 
         orderFeedbackTxt.text = feedback;
-        earnedMoneyTxt.text = $"¡Has ganado {result.moneyEarned}$!";
-        servedCustomersTxt.text = customersServed == 1
-            ? "¡Ya has servido a 1 cliente en la jornada de hoy!"
-            : $"¡Ya has servido a {customersServed} clientes en la jornada de hoy!";
+        //earnedMoneyTxt.text = $"¡Has ganado {result.moneyEarned}$!";
+        PopUpMechanicsMsg.Instance.ShowMessage($"+{result.moneyEarned}$", new Vector3(371,-101,0), 5f);
+        servedCustomersTxt.text = $"Clientes servidos en la jornada de hoy: {customersServed}";
         scoreTxt.text = $"Puntuación total: {result.score}/100"; 
     }
 

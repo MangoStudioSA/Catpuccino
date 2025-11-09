@@ -34,11 +34,13 @@ public class PlayerDataManager : MonoBehaviour
     public void AddPremiumCoins(int amount)
     {
         data.premiumCoins += amount;
+        HUDManager.Instance.UpdateBasicCoins(data.premiumCoins);
         SaveData();
     }
     public void AddBasicCoins(int amount)
     {
         data.basicCoins += amount;
+        HUDManager.Instance.UpdatePremiumCoins(data.basicCoins);
         SaveData();
     }
     public void AddServedCustomers(int amount)
@@ -71,6 +73,7 @@ public class PlayerDataManager : MonoBehaviour
         {
             data.basicCoins -= amount;
             SaveData();
+            HUDManager.Instance.UpdateBasicCoins(data.basicCoins);
             return true;
         }
         Debug.LogWarning("No hay suficientes monedas del café.");
@@ -83,6 +86,7 @@ public class PlayerDataManager : MonoBehaviour
         {
             data.premiumCoins -= amount;
             SaveData();
+            HUDManager.Instance.UpdatePremiumCoins(data.premiumCoins);
             return true;
         }
         Debug.LogWarning("No hay suficientes croquetas doradas.");

@@ -206,7 +206,7 @@ public class TutorialManager : MonoBehaviour
             // Paso 12
             steps.Add(new TutorialStep
             {
-                message = "¡Ya puedes clicar para echar el café! ¡Presiona el botón cuando el marcador esté cerca de la zona marcada!",
+                message = "¡Ya puedes clicar para echar el café! ¡Presiona el botón superior y, cuando el marcador esté cerca de la zona marcada, clica en el inferior para pararlo!",
                 position = new Vector2(-390f, 180f),
                 autoAdvance = false,
                 onStepStart = () =>
@@ -259,7 +259,7 @@ public class TutorialManager : MonoBehaviour
             steps.Add(new TutorialStep
             {
                 message = "El cliente expondrá su valoración y pagará en función de la puntuación que hayas obtenido al preparar su comanda.",
-                position = new Vector2(-480f, -160f),
+                position = new Vector2(-600f, -60f),
                 autoAdvance = true,
                 autoDelay = 5f
             });
@@ -267,7 +267,7 @@ public class TutorialManager : MonoBehaviour
             steps.Add(new TutorialStep
             {
                 message = "¡Si la puntuación es alta te dará una propina!",
-                position = new Vector2(350f, 375f),
+                position = new Vector2(350f, 175f),
                 autoAdvance = true,
                 autoDelay = 5f
             });
@@ -288,15 +288,23 @@ public class TutorialManager : MonoBehaviour
                 message = "¡Ya has atendido a tu primer cliente! Sigue atendiendo más para poder pagar las facturas al final del día. ¡La cafetería cierra a las 20:00pm!",
                 position = new Vector2(0f, 0f),
                 autoAdvance = true,
-                autoDelay = 5f
+                autoDelay = 7f
             });
             // Paso 22
             steps.Add(new TutorialStep
             {
-                message = "Como recompensa, se te ingresarán 100$ para ayudarte a pasar el primer día y 50 monedas de café. ¡Disfruta de Catpuccino!",
+                message = "¡Si visitas la tienda y compras sobres de cartas, podrás tener los gatos que desbloquees en la cafetería!",
                 position = new Vector2(0f, 0f),
                 autoAdvance = true,
-                autoDelay = 5f
+                autoDelay = 7f
+            });
+            // Paso 23
+            steps.Add(new TutorialStep
+            {
+                message = "Como recompensa, se te ingresarán 100$ para ayudarte a pasar el primer día y 20 monedas de café. ¡Disfruta de Catpuccino!",
+                position = new Vector2(0f, 0f),
+                autoAdvance = true,
+                autoDelay = 7f
             });
         }
     }
@@ -356,6 +364,8 @@ public class TutorialManager : MonoBehaviour
         isRunningT1 = false;
         tutorialPanel.gameObject.SetActive(false);
         GameManager.Instance.AnadirMonedas(100);
+        PlayerDataManager.instance.AddBasicCoins(20);
+        HUDManager.Instance.UpdateBasicCoins(20);
         Debug.Log("Tutorial completado");
     }
     #endregion
