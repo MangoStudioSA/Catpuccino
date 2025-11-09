@@ -123,11 +123,20 @@ public class TimeManager : MonoBehaviour
         {
             saveDataManager.currentDay = currentDay;
             saveDataManager.money = GameManager.Instance.monedas;
+            saveDataManager.rated = GameManager.Instance.customersRated;
+            saveDataManager.score = GameManager.Instance.totalSatisfactionScore;
             saveDataManager.SaveGame();
         }
 
         currentDay = saveDataManager.LoadDay();
         GameManager.Instance.monedas = saveDataManager.LoadMoney();
+        GameManager.Instance.customersRated = saveDataManager.LoadRated();
+        GameManager.Instance.totalSatisfactionScore = saveDataManager.LoadScore();
+        if (GameManager.Instance.customersRated > 0)
+        {
+            float averageSatisfaction = ((float)GameManager.Instance.totalSatisfactionScore / GameManager.Instance.customersRated);
+            HUDManager.Instance.UpdateSatisfaccion(averageSatisfaction);
+        } 
         HUDManager.Instance.UpdateMonedas(GameManager.Instance.monedas);
         secondsPerGameMinute = secondsPerGameMinuteBase + timeDecay * (currentDay - 1);
 

@@ -10,6 +10,8 @@ public class SaveDataManager : MonoBehaviour
     public int currentSlot = 1;
     public int currentDay = 1;
     public int money = 0;
+    public int rated = 0;
+    public int score = 0;
 
     public Button slot1Button;
     public Button slot2Button;
@@ -96,16 +98,22 @@ public class SaveDataManager : MonoBehaviour
             case 1:
                 PlayerPrefs.SetInt("Slot1_Day", currentDay);
                 PlayerPrefs.SetInt("Slot1_Money", money);
+                PlayerPrefs.SetInt("Slot1_Rated", rated);
+                PlayerPrefs.SetInt("Slot1_Score", score);
                 break;
 
             case 2:
                 PlayerPrefs.SetInt("Slot2_Day", currentDay);
                 PlayerPrefs.SetInt("Slot2_Money", money);
+                PlayerPrefs.SetInt("Slot2_Rated", rated);
+                PlayerPrefs.SetInt("Slot2_Score", score);
                 break;
 
             case 3:
                 PlayerPrefs.SetInt("Slot3_Day", currentDay);
                 PlayerPrefs.SetInt("Slot3_Money", money);
+                PlayerPrefs.SetInt("Slot3_Rated", rated);
+                PlayerPrefs.SetInt("Slot3_Score", score);
                 break;
         }
     }
@@ -161,6 +169,64 @@ public class SaveDataManager : MonoBehaviour
                 if (PlayerPrefs.HasKey("Slot3_Money"))
                 {
                     return PlayerPrefs.GetInt("Slot3_Money");
+                }
+                break;
+        }
+
+        return 0;
+    }
+
+    public int LoadScore()
+    {
+        switch (currentSlot)
+        {
+            case 1:
+                if (PlayerPrefs.HasKey("Slot1_Score"))
+                {
+                    return PlayerPrefs.GetInt("Slot1_Score");
+                }
+                break;
+
+            case 2:
+                if (PlayerPrefs.HasKey("Slot2_Score"))
+                {
+                    return PlayerPrefs.GetInt("Slot2_Score");
+                }
+                break;
+
+            case 3:
+                if (PlayerPrefs.HasKey("Slot3_Score"))
+                {
+                    return PlayerPrefs.GetInt("Slot3_Score");
+                }
+                break;
+        }
+
+        return 0;
+    }
+
+    public int LoadRated()
+    {
+        switch (currentSlot)
+        {
+            case 1:
+                if (PlayerPrefs.HasKey("Slot1_Rated"))
+                {
+                    return PlayerPrefs.GetInt("Slot1_Rated");
+                }
+                break;
+
+            case 2:
+                if (PlayerPrefs.HasKey("Slot2_Rated"))
+                {
+                    return PlayerPrefs.GetInt("Slot2_Rated");
+                }
+                break;
+
+            case 3:
+                if (PlayerPrefs.HasKey("Slot3_Rated"))
+                {
+                    return PlayerPrefs.GetInt("Slot3_Rated");
                 }
                 break;
         }

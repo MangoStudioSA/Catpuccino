@@ -600,6 +600,8 @@ MonoBehaviour:
   currentSlot: 0
   currentDay: 0
   money: 0
+  rated: 0
+  score: 0
   slot1Button: {fileID: 1429127638}
   slot2Button: {fileID: 1574294947}
   slot3Button: {fileID: 91571736}
@@ -4750,7 +4752,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1037686610
 RectTransform:
   m_ObjectHideFlags: 0
