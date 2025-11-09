@@ -1,7 +1,9 @@
 using UnityEngine;
 
+// Clase encargada de gestionar los paneles dentro del minijuego
 public class UICoffeeStation : MonoBehaviour
 {
+    [Header("Referencias")]
     public GameObject preparationPanel;
     public GameObject deliveryPanel;
     public GameObject bakeryPanel;
@@ -9,7 +11,6 @@ public class UICoffeeStation : MonoBehaviour
 
     public CoffeeGameManager gameManager;
     public TutorialManager tutorialManager;
-
     public MinigameInput miniGameInput;
 
     private void Start()
@@ -22,6 +23,7 @@ public class UICoffeeStation : MonoBehaviour
         recipesPanel.SetActive(false);
     }
 
+    // Mostrar panel de recetas
     public void ShowRecipesPanel()
     {
         preparationPanel.SetActive(false);
@@ -31,6 +33,8 @@ public class UICoffeeStation : MonoBehaviour
         if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 7)
             tutorialManager.tutorialPanel.gameObject.SetActive(false);
     }
+
+    // Cerrar panel de recetas
     public void CloseRecipesPanel()
     {
         recipesPanel.SetActive(false);
@@ -44,6 +48,7 @@ public class UICoffeeStation : MonoBehaviour
         }
     }
 
+    // Mostrar panel de reposteria
     public void ShowBakeryPanel()
     {
         preparationPanel.SetActive(false);
@@ -53,6 +58,7 @@ public class UICoffeeStation : MonoBehaviour
             FindFirstObjectByType<TutorialManager>().CompleteCurrentStep2();
     }
 
+    // Cerrar panel de reposteria
     public void ReturnBakeryPanel()
     {
         bakeryPanel.SetActive(false);
@@ -62,6 +68,7 @@ public class UICoffeeStation : MonoBehaviour
             FindFirstObjectByType<TutorialManager>().CompleteCurrentStep2();
     }
 
+    // Mostrar panel de feedback del cliente
     public void SubmitOrderUI()
     {
 

@@ -13,11 +13,6 @@ public class SceneUIManager : MonoBehaviour
         SceneLoader.Instance.LoadNewGame();
     }
 
-    public void ShopScene() // Llama a la funcion de cargar la tienda del sceneloader de la escena
-    {
-        SceneLoader.Instance.LoadShop(); 
-    }
-
     public void EndGameMenu() // Llama a la funcion de cargar menu game over del sceneloader de la escena
     {
         SceneLoader.Instance.LoadGameOver();

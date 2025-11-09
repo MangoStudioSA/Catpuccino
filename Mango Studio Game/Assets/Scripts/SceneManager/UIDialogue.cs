@@ -1,8 +1,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+// Clase encargada de gestionar el menu de dialogo
 public class UIDialogue : MonoBehaviour
 {
+    [Header("Referencias")]
     public GameObject dialoguePanel;
     public GameObject preparationPanel;
     public GameObject deliveryPanel;
@@ -25,6 +27,7 @@ public class UIDialogue : MonoBehaviour
         gameUI = GameObject.FindFirstObjectByType<GameUIManager>();
     }
 
+    // Funcion encargada de activar el menu del minijuego
     public void StartPreparation()
     {
         //inicializacion del pedido
@@ -53,6 +56,7 @@ public class UIDialogue : MonoBehaviour
 
     }
 
+    // Funcion encargada de cerrar el panel de feedback del cliente
     public void EndDelivery()
     {
         deliveryPanel.SetActive(false);

@@ -94,7 +94,6 @@ public class MinigameInput : MonoBehaviour
     public Sprite creamWithoutSpoon;
     public Sprite filtroImg;
     public Sprite filtroCafeteraImg;
-    public Sprite filtroCafeteraCortadoImg;
 
     [Header("Sprites objetos")]
     public Sprite espumadorNormal;
@@ -245,7 +244,7 @@ public class MinigameInput : MonoBehaviour
         vaso.sprite = vasoSinTapa;
 
         Image filtro = Filtro.GetComponent<Image>();
-        filtro.sprite = filtroCafeteraImg;
+        filtro.sprite = filtroImg;
 
         Image cantidadCafeBut = buttonManager.coffeeButton.GetComponent<Image>();
         cantidadCafeBut.sprite = botonCantidadCafe_N;
@@ -757,8 +756,6 @@ public class MinigameInput : MonoBehaviour
 
         Image echarCafeBut = buttonManager.echarCafeButton.GetComponent<Image>();
         echarCafeBut.sprite = boton1_P;
-        Image filtro = Filtro.GetComponent<Image>();
-        filtro.sprite = filtroCafeteraCortadoImg;
 
         buttonManager.DisableButton(buttonManager.echarCafeButton);
         buttonManager.DisableButton(buttonManager.filtroCafeteraButton);

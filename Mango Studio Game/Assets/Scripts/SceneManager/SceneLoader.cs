@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Script encargado de realizar los cambios entre escenas
+// Script principal encargado de gestionar los cambios de escena
 public class SceneLoader : MonoBehaviour
 {
     [Header("SceneLoader")]
@@ -33,12 +33,6 @@ public class SceneLoader : MonoBehaviour
     {
         PlayerDataManager.instance.ResetPlayerData();
         SceneManager.LoadScene("Game"); // Cargar escena juego
-    }
-
-    public void LoadShop()
-    {
-        SceneManager.LoadScene("Shop"); // Cargar escena tienda
-        Debug.Log("Cargando tienda");
     }
 
     public void LoadGameOver()

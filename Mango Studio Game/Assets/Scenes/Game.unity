@@ -817,8 +817,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 342197121}
-        m_TargetAssemblyTypeName: UILoader, Assembly-CSharp
+      - m_Target: {fileID: 342197123}
+        m_TargetAssemblyTypeName: GameUIManager, Assembly-CSharp
         m_MethodName: OpenDialogue
         m_Mode: 1
         m_Arguments:
@@ -1138,8 +1138,7 @@ MonoBehaviour:
   creamWithSpoon: {fileID: 21300000, guid: ce485aa0c7b9b314dae8c4a0986636f3, type: 3}
   creamWithoutSpoon: {fileID: 21300000, guid: 1604b00999e07634780567e5acdc473b, type: 3}
   filtroImg: {fileID: 186981477, guid: e288ad6c858bce44d98d91c579e9587e, type: 3}
-  filtroCafeteraImg: {fileID: -211697323, guid: e288ad6c858bce44d98d91c579e9587e, type: 3}
-  filtroCafeteraCortadoImg: {fileID: 21300000, guid: e77149933f9fe82499a28cfd541b000e, type: 3}
+  filtroCafeteraImg: {fileID: 21300000, guid: e77149933f9fe82499a28cfd541b000e, type: 3}
   espumadorNormal: {fileID: 21300000, guid: eebad3d770648484eac8e0cfcab6ba40, type: 3}
   espumadorShort: {fileID: 21300000, guid: d3b63304d2c8c9c4580e1a64af238495, type: 3}
   boton1_N: {fileID: 21300000, guid: e15654a559b26a247a63583aac61780b, type: 3}
@@ -6518,6 +6517,7 @@ MonoBehaviour:
   optionsGamePanel: {fileID: 2032705002}
   roomPanel: {fileID: 230416457}
   dialoguePanel: {fileID: 995759339}
+  gameUIManager: {fileID: 0}
   tutorialManager: {fileID: 841635553}
   customerOrderGenerator: {fileID: 2111219102}
 --- !u!114 &342197122
@@ -6587,7 +6587,9 @@ MonoBehaviour:
   shopPanel: {fileID: 409527321}
   dialoguePanel: {fileID: 995759339}
   endOfDayPanel: {fileID: 1071443432}
+  tutorialManager: {fileID: 841635553}
   orderScreen: 0
+  customerOrderGenerator: {fileID: 2111219102}
 --- !u!1 &346478213
 GameObject:
   m_ObjectHideFlags: 0
@@ -7020,10 +7022,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 211593602}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.54129165, y: 0.32037038}
-  m_AnchorMax: {x: 0.595, y: 0.40762967}
-  m_AnchoredPosition: {x: -10.766113, y: -9.68457}
-  m_SizeDelta: {x: 208.5742, y: 31.2492}
+  m_AnchorMin: {x: 0.5146437, y: 0.328}
+  m_AnchorMax: {x: 0.588, y: 0.44269776}
+  m_AnchoredPosition: {x: -0.8391113, y: -1.2505798}
+  m_SizeDelta: {x: -0.4257965, y: 2.2491999}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &371112195
 GameObject:
@@ -15634,10 +15636,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 211593602}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.49323323, y: 0.41877332}
-  m_AnchorMax: {x: 0.619, y: 0.51515114}
-  m_AnchoredPosition: {x: -0.22109985, y: -3.0776367}
-  m_SizeDelta: {x: -8.002502, y: -3}
+  m_AnchorMin: {x: 0.5, y: 0.41784889}
+  m_AnchorMax: {x: 0.62264365, y: 0.5123778}
+  m_AnchoredPosition: {x: -2.2290344, y: -1.0776367}
+  m_SizeDelta: {x: -2.0025024, y: -1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &724225676
 GameObject:
@@ -22634,7 +22636,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1071502799
 RectTransform:
   m_ObjectHideFlags: 0
@@ -40731,7 +40733,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1957982743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43568,7 +43570,9 @@ MonoBehaviour:
   shopPanel: {fileID: 409527321}
   dialoguePanel: {fileID: 995759339}
   endOfDayPanel: {fileID: 1071443432}
+  tutorialManager: {fileID: 0}
   orderScreen: 0
+  customerOrderGenerator: {fileID: 0}
 --- !u!1 &2100299597
 GameObject:
   m_ObjectHideFlags: 0

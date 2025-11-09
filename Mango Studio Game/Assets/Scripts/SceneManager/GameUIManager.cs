@@ -1,7 +1,9 @@
 using UnityEngine;
 
+// Encargada de gestionar los paneles de los menus de la escena del juego
 public class GameUIManager : MonoBehaviour
 {
+    [Header("Paneles escena Game")]
     [SerializeField] GameObject gamePanel;
     [SerializeField] GameObject pausePanel;
     [SerializeField] GameObject optionsPanel;
@@ -9,16 +11,14 @@ public class GameUIManager : MonoBehaviour
     [SerializeField] GameObject dialoguePanel;
     [SerializeField] GameObject endOfDayPanel;
     private CanvasGroup gameCanvasGroup;
+    public TutorialManager tutorialManager;
 
     public bool orderScreen = false;
+    // Referencia al script que genera los pedidos del cliente
+    [SerializeField] private CustomerOrder customerOrderGenerator;
 
     public void Start()
     {
-        if (optionsPanel == null)
-        {
-            Debug.LogError("optionsPanel no está asignado en: " + gameObject.name);
-            return;
-        }
         gameCanvasGroup = gamePanel.GetComponent<CanvasGroup>();
         pausePanel.SetActive(false);
         optionsPanel.SetActive(false);
@@ -26,19 +26,14 @@ public class GameUIManager : MonoBehaviour
         Time.timeScale = 1.0f;
     }
 
+    // Menu de pausa
     public void OpenPauseMenu()
     {
-        pausePanel.SetActive(true); // Activar UI menu opciones desde el juego
+        pausePanel.SetActive(true); // Activar UI menu pausa desde el juego
         gameCanvasGroup.interactable = false;
         gameCanvasGroup.blocksRaycasts = false;
         Time.timeScale = 0.0f;
     }
-    public void OpenGameOptions()
-    {
-        optionsPanel.SetActive(true); // Activar UI menu opciones desde el juego
-        pausePanel.SetActive(false);
-    }
-
     public void ClosePauseMenu()
     {
         pausePanel.SetActive(false);
@@ -47,12 +42,19 @@ public class GameUIManager : MonoBehaviour
         Time.timeScale = 1.0f;
     }
 
+    // Menu de opciones (desde el juego)
+    public void OpenGameOptions()
+    {
+        optionsPanel.SetActive(true); // Activar UI menu opciones desde el juego
+        pausePanel.SetActive(false);
+    }
     public void CloseGameOptions()
     {
         optionsPanel.SetActive(false);
         pausePanel.SetActive(true);
     }
 
+    // Menu de la tienda
     public void OpenShopMenu()
     {
         shopPanel.SetActive(true); // Activar UI menu tienda desde el juego
@@ -68,19 +70,24 @@ public class GameUIManager : MonoBehaviour
         Time.timeScale = 0.0f;
     }
 
+    // Mostrar panel dialogo con el cliente
     public void OpenDialogue()
     {
-        dialoguePanel.SetActive(true); // Activar UI menu opciones
-        gameCanvasGroup.interactable = false;
-        gameCanvasGroup.blocksRaycasts = false;
-    }
+        // Se genera un nuevo pedido aleatorio 
+        if (customerOrderGenerator != null)
+        {
+            customerOrderGenerator.GenRandomOrder();
+        }
 
-    public void CloseDialogue()
-    {
-        dialoguePanel.SetActive(false); // Desactivar UI menu opciones
-        gameCanvasGroup.interactable = true;
-        gameCanvasGroup.blocksRaycasts = true;
-    }
+        gameCanvasGroup.gameObject.SetActive(false);
+        dialoguePanel.SetActive(true);
+        orderScreen = true;
+
+        if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 1)
+            FindFirstObjectByType<TutorialManager>().CompleteCurrentStep();
+    }  
+
+    // Menu del final del dia
     public void ShowEndOfDayPanel()
     {
         endOfDayPanel.SetActive(true);
@@ -88,12 +95,14 @@ public class GameUIManager : MonoBehaviour
         gamePanel.SetActive(false);
     }
 
+    // Menu juego
     public void ShowGamePanel()
     {
         endOfDayPanel.SetActive(false);
         gamePanel.SetActive(true);
     }
 
+    // Funcion para cambiar de dia 
     public void OnNextDayButtonPressed()
     {
         // Llama al TimeManager para que inicie el nuevo día
