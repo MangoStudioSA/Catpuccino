@@ -92,6 +92,9 @@ public class MinigameInput : MonoBehaviour
     [Header("Sprites mecánicas")]
     public Sprite creamWithSpoon;
     public Sprite creamWithoutSpoon;
+    public Sprite filtroImg;
+    public Sprite filtroCafeteraImg;
+    public Sprite filtroCafeteraCortadoImg;
 
     [Header("Sprites objetos")]
     public Sprite espumadorNormal;
@@ -240,6 +243,9 @@ public class MinigameInput : MonoBehaviour
 
         Image vaso = Vaso.GetComponent<Image>();
         vaso.sprite = vasoSinTapa;
+
+        Image filtro = Filtro.GetComponent<Image>();
+        filtro.sprite = filtroCafeteraImg;
 
         Image cantidadCafeBut = buttonManager.coffeeButton.GetComponent<Image>();
         cantidadCafeBut.sprite = botonCantidadCafe_N;
@@ -541,6 +547,8 @@ public class MinigameInput : MonoBehaviour
             vasoInHand = false;
             vasoIsInCafetera = true;
 
+            buttonManager.DisableButton(buttonManager.cogerPlatoTazaButton);
+
             buttonManager.EnableButton(buttonManager.waterButton);
             buttonManager.EnableButton(buttonManager.milkButton);
             buttonManager.EnableButton(buttonManager.cogerTazaLecheButton);
@@ -624,6 +632,7 @@ public class MinigameInput : MonoBehaviour
 
             cursorManager.UpdateCursorPlato(true);
             buttonManager.DisableButton(buttonManager.cogerPlatoTazaButton);
+            buttonManager.DisableButton(buttonManager.cogerVasoInicioButton);
             Debug.Log($"Plato colocado: {platoTazaIsInTable}");
         }
     }
@@ -722,6 +731,8 @@ public class MinigameInput : MonoBehaviour
             // Poner en la mesa
             Filtro.SetActive(true);
             Filtro.transform.position = puntoFiltroCafetera.position;
+            Image filtro = Filtro.GetComponent<Image>();
+            filtro.sprite = filtroCafeteraImg;
 
             if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 10)
                 FindFirstObjectByType<TutorialManager>().CompleteCurrentStep();
@@ -746,6 +757,8 @@ public class MinigameInput : MonoBehaviour
 
         Image echarCafeBut = buttonManager.echarCafeButton.GetComponent<Image>();
         echarCafeBut.sprite = boton1_P;
+        Image filtro = Filtro.GetComponent<Image>();
+        filtro.sprite = filtroCafeteraCortadoImg;
 
         buttonManager.DisableButton(buttonManager.echarCafeButton);
         buttonManager.DisableButton(buttonManager.filtroCafeteraButton);

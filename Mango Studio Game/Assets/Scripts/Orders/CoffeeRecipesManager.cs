@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Clase utilizada para mostrar las recetas en el recetario 
 public class CoffeeRecipesManager : MonoBehaviour
 {
     [Header("Cafes + recetas")]
@@ -9,6 +10,7 @@ public class CoffeeRecipesManager : MonoBehaviour
 
     private Dictionary<CoffeeType, GameObject> coffeeUIDict;
 
+    // Se inicializan las recetas para cada cafe
     private void Awake()
     {
         coffeeUIDict = new Dictionary<CoffeeType, GameObject>();
@@ -20,12 +22,14 @@ public class CoffeeRecipesManager : MonoBehaviour
         }
     }
 
+    // Se comprueba que cafes estan disponibles para mostrar su receta
     public void UnlockCoffeRecipePanel(CoffeeType coffeeType)
     {
         if (coffeeUIDict.ContainsKey(coffeeType))
             coffeeUIDict[coffeeType].SetActive(true);
     }
 
+    // Se accede a las recetas que se han desbloqueado en el dia actual en CoffeUnlockerManager
     public void UnlockRecipesForDay(int currentDay, CoffeeUnlockerManager coffeeUnlockerManager)
     {
         CoffeeType[] newRecipeUnlocked = coffeeUnlockerManager.GetAvailableCoffees(currentDay);

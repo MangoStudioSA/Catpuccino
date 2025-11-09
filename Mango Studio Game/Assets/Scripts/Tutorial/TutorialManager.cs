@@ -4,8 +4,10 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine.Events;
 
+// Clase para gestionar los tutoriales
 public class TutorialManager : MonoBehaviour
 {
+    // Se crea una clase basica para los componentes del tutorial
     [System.Serializable]
     public class TutorialStep
     {
@@ -53,13 +55,14 @@ public class TutorialManager : MonoBehaviour
         HandleDayStarted(currentDay);
     }
 
+    // Referencias a los dias que se muestra cada tutorial
     private void HandleDayStarted (int day)
     {
         Debug.Log($"[TutorialManager] HandleDayStarted: {day}");
 
         switch (day)
         {
-            case 1:
+            case 5:
                 SetupDay1Tutorial();
                 StartTutorial1();
                 isRunningT1 = true;
@@ -673,6 +676,7 @@ public class TutorialManager : MonoBehaviour
         onFinish?.Invoke();
     }
 
+    // Animacion de rebote del mensaje
     private IEnumerator BouncePanelLoop()
     {
         Vector3 originalScale = Vector3.one;

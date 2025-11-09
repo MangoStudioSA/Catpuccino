@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+// Gestionar abrir sobre
 public class CardPackManager : MonoBehaviour
 {
     [Header("Referencias UI")]
@@ -145,6 +146,7 @@ public class CardPackManager : MonoBehaviour
         Debug.Log("animacion completada");
     }
 
+    // Se determina la rareza de la carta dependiendo del sobre abierto
     private CardRarity DeterminateRarity(string packType)
     {
         float roll = Random.value;
@@ -163,6 +165,7 @@ public class CardPackManager : MonoBehaviour
         }
     }
 
+    // Se genera un sprite random de la rareza indicada
     private Sprite GetRandomCardSprite(CardRarity rarity)
     {
         Sprite[] sourceArray = null;

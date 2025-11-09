@@ -709,7 +709,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5471698, g: 0.401489, b: 0.15589178, a: 0.8627451}
+  m_Color: {r: 0.5803922, g: 0.5176471, b: 0.4431373, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1137,6 +1137,9 @@ MonoBehaviour:
   puntoFiltroCafetera: {fileID: 722471628}
   creamWithSpoon: {fileID: 21300000, guid: ce485aa0c7b9b314dae8c4a0986636f3, type: 3}
   creamWithoutSpoon: {fileID: 21300000, guid: 1604b00999e07634780567e5acdc473b, type: 3}
+  filtroImg: {fileID: 186981477, guid: e288ad6c858bce44d98d91c579e9587e, type: 3}
+  filtroCafeteraImg: {fileID: -211697323, guid: e288ad6c858bce44d98d91c579e9587e, type: 3}
+  filtroCafeteraCortadoImg: {fileID: 21300000, guid: e77149933f9fe82499a28cfd541b000e, type: 3}
   espumadorNormal: {fileID: 21300000, guid: eebad3d770648484eac8e0cfcab6ba40, type: 3}
   espumadorShort: {fileID: 21300000, guid: d3b63304d2c8c9c4580e1a64af238495, type: 3}
   boton1_N: {fileID: 21300000, guid: e15654a559b26a247a63583aac61780b, type: 3}
@@ -6520,7 +6523,7 @@ MonoBehaviour:
   defaultCursorTexture: {fileID: 2800000, guid: 0874ee6948f6c514abc1c88940ff5b47, type: 3}
   tazaCursorTexture: {fileID: 2800000, guid: 82b521f1000922f4997ef8fdf204f7c5, type: 3}
   vasoCursorTexture: {fileID: 2800000, guid: bb9266dc99cdfef4986d7784c6eba869, type: 3}
-  filtroCursorTexture: {fileID: 2800000, guid: ff0240af43ab6cc48aacf2fbfe3a9ea6, type: 3}
+  filtroCursorTexture: {fileID: 2800000, guid: e804b22a309379e4aab301ebf5aa3323, type: 3}
   cucharaCursorTexture: {fileID: 2800000, guid: 505cc78c317be7c40b620b7cfa6f9141, type: 3}
   hieloCucharaCursorTexture: {fileID: 2800000, guid: 5d735398a85557242a9e75205fef777f, type: 3}
   tapaCursorTexture: {fileID: 2800000, guid: d91a1575464ba39438ee0b13bf0f845b, type: 3}
@@ -15570,10 +15573,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 211593602}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.54129165, y: 0.4232963}
-  m_AnchorMax: {x: 0.595, y: 0.5176296}
-  m_AnchoredPosition: {x: -22.7211, y: 1.8400269}
-  m_SizeDelta: {x: 128.9975, y: -1}
+  m_AnchorMin: {x: 0.49323323, y: 0.41877332}
+  m_AnchorMax: {x: 0.619, y: 0.51515114}
+  m_AnchoredPosition: {x: -0.22109985, y: -3.0776367}
+  m_SizeDelta: {x: -8.002502, y: -3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &724225676
 GameObject:

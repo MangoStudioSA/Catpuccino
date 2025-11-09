@@ -2,6 +2,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 
+// Clase encargada de mostrar los requisitos del pedido actual en forma de nota 
 public class OrderNoteUI : MonoBehaviour
 {
     [SerializeField] private RectTransform notePanelOrder;
@@ -26,12 +27,13 @@ public class OrderNoteUI : MonoBehaviour
         notePanelOrder.gameObject.SetActive(false);
         isVisible = false;
     }
+    // Accede al pedido actual
     public void SetCurrentOrder(Order order)
     {
         currentOrder = order;
         UpdateNoteText(order);
     }
-
+    // Activa/desactiva el panel
     public void ToggleNote()
     {
         if (currentOrder == null) return; 
@@ -50,6 +52,7 @@ public class OrderNoteUI : MonoBehaviour
     {
         notePanelOrder.gameObject.SetActive(false);
     }
+    // Actualiza el texto segun el pedido actual
     private void UpdateNoteText(Order order)
     {
         if (order == null)
@@ -76,7 +79,7 @@ public class OrderNoteUI : MonoBehaviour
 
         noteTxt.text = note;
     }
-
+    // Animacion de deslizar la nota 
     private IEnumerator SlideNote (bool show)
     {
         Vector2 start = notePanelOrder.anchoredPosition;

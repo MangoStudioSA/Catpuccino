@@ -3,8 +3,10 @@ using UnityEngine;
 using UnityEngine.SocialPlatforms;
 using UnityEngine.SocialPlatforms.Impl;
 
+// Clase encargada de evaluar el resultado de la preparacion del pedido actual
 public class OrderEvaluation : MonoBehaviour
 {
+    // Se asignan las puntuaciones maximas
     private const int MAX_SCORE_COFFEE = 25;
     private const int MAX_SCORE_SERVEDCOFFEE = 25;
     private const int MAX_SCORE_SUGAR = 5;
@@ -37,6 +39,8 @@ public class OrderEvaluation : MonoBehaviour
         lastBadCookStateRaw = false;
         lastWrongFoodType = false;
     }
+
+    // Funcion principal encargada de evaluar
     public EvaluationResult Evaluate(Order npcOrder, Order playerOrder)
     {
         EvaluationResult result = new EvaluationResult();
@@ -50,7 +54,7 @@ public class OrderEvaluation : MonoBehaviour
         if (progress.coffeeEnabled)
         {
             //EVALUACION DE LA CANTIDAD DE CAFE SELECCIONADA (PRECISION SLIDER)
-            //evalua la precision y redondea la puntiacion a un entero
+            //evalua la precision y redondea la puntuacion a un entero
             float coffeeScore = EvaluateCoffePrecision(npcOrder, playerOrder);
             totalScore += Mathf.RoundToInt(coffeeScore);
             maxPossibleScore += MAX_SCORE_COFFEE;
@@ -61,7 +65,7 @@ public class OrderEvaluation : MonoBehaviour
         if (progress.coffeeEnabled)
         {
             //EVALUACION DE ECHAR EL CAFE (PRECISION SLIDER)
-            //evalua la precision y redondea la puntiacion a un entero
+            //evalua la precision y redondea la puntuacion a un entero
             float coffeeServingScore = EvaluateCoffeServingPrecision(npcOrder, playerOrder);
             totalScore += Mathf.RoundToInt(coffeeServingScore);
             maxPossibleScore += MAX_SCORE_SERVEDCOFFEE;
@@ -91,7 +95,7 @@ public class OrderEvaluation : MonoBehaviour
         // MECANICA LECHE CALIENTE
         if (progress.heatedMilkEnabled)
         {
-            //EVALUACION DE LA LECHE CALIENTE (BOOL)
+            //EVALUACION DE LA LECHE CALIENTE (VALOR EXACTO)
             int heatedMilkScore = EvaluateHeatedMilkPrecision(npcOrder, playerOrder);
             totalScore += heatedMilkScore;
             maxPossibleScore += MAX_SCORE_HEATEDMILK;
@@ -166,6 +170,7 @@ public class OrderEvaluation : MonoBehaviour
             totalScore += typeScore;
             maxPossibleScore += MAX_SCORE_COVER;
 
+            // Comprueba si la comida esta desbloqueada
             if (progress.cakesEnabled && npcOrder.foodOrder.category != FoodCategory.no)
             {
                 int typeOrderFoodScore = EvaluateTypeOrderFoodPrecision(npcOrder, playerOrder);
@@ -196,13 +201,13 @@ public class OrderEvaluation : MonoBehaviour
             Debug.Log($"[Cliente {playerOrder.orderId}] Puntuación del Horneado: {cookStateScore}/{MAX_SCORE_COOKSTATE} pts");
         }
 
+        // Se calcula el dinero a ingresar y la puntuacion 
         float percentScore = (float) totalScore / maxPossibleScore;
-
         float baseCoffeePrice = CoffeePriceManager.Instance.GetBaseCoffeePrice(playerOrder.coffeeType);
         float baseFoodPrice = FoodPriceManager.Instance.GetBaseFoodPrice(playerOrder.foodOrder.category);
         float totalBasePrice = baseCoffeePrice + baseFoodPrice;
-        result.moneyEarned = Mathf.RoundToInt(totalBasePrice * percentScore);
 
+        result.moneyEarned = Mathf.RoundToInt(totalBasePrice * percentScore);
         result.score = Mathf.RoundToInt(percentScore * 100f);
 
         // Debug del puntaje TOTAL
@@ -212,9 +217,9 @@ public class OrderEvaluation : MonoBehaviour
         Debug.Log($"------------------------------------");
 
         return result; // Se devuelve la puntuacion y los ingresos del jugador
-
     }
 
+    #region Funciones individuales para evaluar cada mecanica
     public float EvaluateCoffePrecision (Order npcOrder, Order playerOrder)
     {
         //el objetivo es el valor ideal (1.0, 2.0, 3.0)
@@ -584,4 +589,5 @@ public class OrderEvaluation : MonoBehaviour
 
         return cookStateScore; // Se devuelve la puntuacion total del tipo de comida
     }
+    #endregion
 }

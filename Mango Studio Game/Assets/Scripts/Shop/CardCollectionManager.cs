@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+// Gestionar el album de cartas
 public class CardCollectionManager : MonoBehaviour
 {
     [Header("Referencias")]
@@ -16,7 +17,7 @@ public class CardCollectionManager : MonoBehaviour
     public Sprite[] legendaryCards;
 
     [Header("Color cartas bloqueadas")]
-    public Color lockedColor = Color.gray;                     // Cartas bloqueadas
+    public Color lockedColor = Color.gray; // Cartas bloqueadas
 
    
     void OnEnable()
@@ -24,6 +25,7 @@ public class CardCollectionManager : MonoBehaviour
         GenerateCollection();
     }
 
+    // Todavia no se usa (skins)
     public void HasUnlockedSkins()
     {
         bool gotVasoCards = PlayerDataManager.instance.HasCard("CartaSkinVaso1") && PlayerDataManager.instance.HasCard("CartaSkinVaso2");
@@ -50,6 +52,7 @@ public class CardCollectionManager : MonoBehaviour
 
         HashSet<string> unlockedCards = null;
 
+        // Se comprueba si el jugador tiene cartas desbloqueadas
         if (PlayerDataManager.instance != null && PlayerDataManager.instance.GetUnlockedCards() != null)
         {
             unlockedCards = PlayerDataManager.instance.GetUnlockedCards();
@@ -75,12 +78,12 @@ public class CardCollectionManager : MonoBehaviour
 
             if (isUnlocked)
             {
-                cardImage.sprite = sprite;
+                cardImage.sprite = sprite; // Las cartas que no se han conseguido se muestran
                 cardImage.color = Color.white;
             }
             else
             {
-                cardImage.color = lockedColor;
+                cardImage.color = lockedColor; // Las cartas que no se han conseguido se muestran en gris
             }
         }
     }

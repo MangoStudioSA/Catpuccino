@@ -1,11 +1,13 @@
 using UnityEngine;
 
+// Clase principal para construir los pedidos
 [System.Serializable]
 public class Order
 {
     public int orderId;
     public static int nextId = 1;
 
+    // Referencias a clases utilizadas
     public CoffeeType coffeeType; 
     public SugarAmount sugarAm;
     public IceAmount iceAm;
@@ -20,7 +22,7 @@ public class Order
 
     // valor de precisión que el jugador debe alcanzar (0.5)
     public float coffeeServedTarget;
-    // guarda el valor del slider (0.0 a 4.0)
+    // guarda el valor del slider (0.0 a 1.0)
     public float coffeeServedPrecision;
 
     // valor exacto de leche que el jugador debe echar (0-nada, 1-poco, 2-mucha)
@@ -28,7 +30,7 @@ public class Order
     // guarda el valor de la leche echada por el jugador (0 a 1)
     public int milkPrecision;
 
-    // booleano de cómo se necesita la leche (false-fria, true-caliente)
+    // valor exacto de cómo se necesita la leche (0-fria, 1-caliente, 2-quemada)
     public int heatedMilkTarget;
     // guarda el valor de como ha preparado la leche el jugador
     public int heatedMilkPrecision;
@@ -437,9 +439,8 @@ public class Order
 }
 
 public enum CoffeeType { espresso, lungo, americano, macchiatto, latte, capuccino, bombon, vienes, frappe, mocca, irish } // Se crean los tipos de cafe
-//public enum CoffeeAmount { corto, medio, largo } // Se crean 3 cantidades para los cafes
 public enum MilkAmount { nada, poco, mucha } // Se crean 3 cantidades de leche
-public enum HeatMilk { fria, caliente, quemada } // Se crean 2 tipos de leche
+public enum HeatMilk { fria, caliente, quemada } // Se crean 3 tipos de estados de la leche
 public enum WaterAmount { no, si } // Se crean 2 cantidades de agua
 public enum CondensedMilkAmount { no, si } // Se crean 2 cantidades de leche condensada
 public enum CreamAmount { no, si } // Se crean 2 cantidades de crema

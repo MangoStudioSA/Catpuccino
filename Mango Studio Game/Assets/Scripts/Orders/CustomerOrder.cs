@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 
+// Clase encargada de generar el pedido del cliente
 public class CustomerOrder : MonoBehaviour
 {
     [Header("Referencias")]
@@ -17,6 +18,7 @@ public class CustomerOrder : MonoBehaviour
     [Range(0f, 1f), Tooltip("Probabilidad de que el cliente pida comida")]
     [SerializeField] private float foodRequestChance = 0.8f;
 
+    // Funcion para generar un pedido aleatorio
     public void GenRandomOrder()
     {
         if (timeManager == null || coffeeUnlocker == null)
@@ -28,6 +30,7 @@ public class CustomerOrder : MonoBehaviour
         int currentDay = timeManager.currentDay;
 
         foodOrder = null;
+        // Si se han desbloqueado las comidas, se genera una al azar del tipo desbloqueado
         if (foodUnlocker != null && Random.value < foodRequestChance)
         {
             FoodCategory randomCategory = foodUnlocker.GetRandomAvailableFood(currentDay);
@@ -46,6 +49,7 @@ public class CustomerOrder : MonoBehaviour
         if (orderTxt != null) orderTxt.text = BuildOrderText(currentOrder);
     }
 
+    // Funcion encargada de generar el texto mostrado del cliente para el pedido
     private string BuildOrderText(Order order)
     {
         if (order == null) return "Error: pedido no generado";
