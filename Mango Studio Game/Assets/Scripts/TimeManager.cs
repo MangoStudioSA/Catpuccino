@@ -36,7 +36,6 @@ public class TimeManager : MonoBehaviour
 
     private GameUIManager gameUIManager;
     private CustomerManager customerManager;
-    private GameManager gameManager;
     private SceneUIManager sceneUIManager;
     private ButtonUnlockManager buttonUnlockManager;
     public CoffeeRecipesManager coffeeRecipesManager;
@@ -72,7 +71,6 @@ public class TimeManager : MonoBehaviour
     {
         gameUIManager = FindFirstObjectByType<GameUIManager>();
         customerManager = FindFirstObjectByType<CustomerManager>();
-        gameManager = FindFirstObjectByType<GameManager>();
         sceneUIManager = FindFirstObjectByType<SceneUIManager>();
         tutorialManager = FindFirstObjectByType<TutorialManager>();
         saveDataManager = FindFirstObjectByType<SaveDataManager>();
@@ -102,7 +100,7 @@ public class TimeManager : MonoBehaviour
 
     public void StartNewDay()
     {
-        if (gameManager.monedas <= requiredMoney && currentDay != 0)
+        if (GameManager.Instance.monedas <= requiredMoney && currentDay != 0)
         {
             sceneUIManager.EndGameMenu();
             return;
@@ -118,19 +116,19 @@ public class TimeManager : MonoBehaviour
         currentDay++;
 
         // Restar dinero de facturas
-        gameManager.monedas -= requiredMoney;
-        HUDManager.Instance.UpdateMonedas(gameManager.monedas);
+        GameManager.Instance.monedas -= requiredMoney;
+        HUDManager.Instance.UpdateMonedas(GameManager.Instance.monedas);
 
         if (currentDay > 1)
         {
             saveDataManager.currentDay = currentDay;
-            saveDataManager.money = gameManager.monedas;
+            saveDataManager.money = GameManager.Instance.monedas;
             saveDataManager.SaveGame();
         }
 
         currentDay = saveDataManager.LoadDay();
-        gameManager.monedas = saveDataManager.LoadMoney();
-        HUDManager.Instance.UpdateMonedas(gameManager.monedas);
+        GameManager.Instance.monedas = saveDataManager.LoadMoney();
+        HUDManager.Instance.UpdateMonedas(GameManager.Instance.monedas);
         secondsPerGameMinute = secondsPerGameMinuteBase + timeDecay * (currentDay - 1);
 
         // Se actualiza el tiempo y las variables
@@ -201,14 +199,14 @@ public class TimeManager : MonoBehaviour
             requiredText.text = "Los gastos de hoy son:\n - Luz y electricidad: " + l + "$\n - Agua: " + a + "$\n- Café y suministros: " + c + "$\n- Mantenimiento: " + t + "$\nTOTAL: " + requiredMoney + "$";
         }
 
-        if (gameManager.monedas >= requiredMoney)
+        if (GameManager.Instance.monedas >= requiredMoney)
         {
-            earnedText.text = "Hoy has ganado " + gameManager.monedas + "$, tienes suficiente para pagar las facturas pendientes";
+            earnedText.text = "Hoy has ganado " + GameManager.Instance.monedas + "$, tienes suficiente para pagar las facturas pendientes";
             endButtonText.text = "Siguiente día";
         }
         else
         {
-            earnedText.text = "Hoy has ganado " + gameManager.monedas + "$, no tienes suficiente para pagar las facturas pendientes";
+            earnedText.text = "Hoy has ganado " + GameManager.Instance.monedas + "$, no tienes suficiente para pagar las facturas pendientes";
             endButtonText.text = "Finalizar partida";
         }
 
