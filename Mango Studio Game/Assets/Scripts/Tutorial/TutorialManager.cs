@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -66,19 +66,19 @@ public class TutorialManager : MonoBehaviour
                 SetupDay1Tutorial();
                 StartTutorial1();
                 isRunningT1 = true;
-                Debug.Log("Comenzando tutorial día 1");
+                Debug.Log("Comenzando tutorial dÃ­a 1");
                 break;
 
             case 2:
                 SetupDay2Tutorial();
                 isRunningT2 = true;
-                Debug.Log("Comenzando tutorial día 2");
+                Debug.Log("Comenzando tutorial dÃ­a 2");
                 break;
 
             case 3:
                 SetupDay3Tutorial();
                 isRunningT3 = true;
-                Debug.Log("Comenzando tutorial día 3");
+                Debug.Log("Comenzando tutorial dÃ­a 3");
                 break;
 
             default:
@@ -94,7 +94,7 @@ public class TutorialManager : MonoBehaviour
             // Paso 0
             steps.Add(new TutorialStep
             {
-                message = "¡Bienvenido/a a Catpuccino! Tu primer día en la cafetería ha comenzado.",
+                message = "Â¡Bienvenido/a a Catpuccino! Tu primer dÃ­a en la cafeterÃ­a ha comenzado.",
                 position = new Vector2(0f, 0f),
                 autoAdvance = true,
                 autoDelay = 6f
@@ -112,7 +112,7 @@ public class TutorialManager : MonoBehaviour
             // Paso 2
             steps.Add(new TutorialStep
             {
-                message = "¡Ya sabes que quiere el cliente! ¡Manos a la obra, haz clic en \"Aceptar pedido\"!",
+                message = "Â¡Ya sabes que quiere el cliente! Â¡Manos a la obra, haz clic en \"Aceptar pedido\"!",
                 position = new Vector2(400f, -91f),
                 autoAdvance = false,
                 onStepStart = () =>
@@ -122,7 +122,7 @@ public class TutorialManager : MonoBehaviour
             // Paso 3
             steps.Add(new TutorialStep
             {
-                message = "Coloca una taza para poder echar el café. Si se trata de un pedido para llevar coloca un vaso.",
+                message = "Coloca una taza para poder echar el cafÃ©. Si se trata de un pedido para llevar coloca un vaso.",
                 position = new Vector2(-723f, -110f),
                 autoAdvance = true,
                 autoDelay = 8f
@@ -130,7 +130,7 @@ public class TutorialManager : MonoBehaviour
             // Paso 4
             steps.Add(new TutorialStep
             {
-                message = "Si es para tomar, deberás clicar sobre un plato y colocarlo en la zona de entrega.",
+                message = "Si es para tomar, deberÃ¡s clicar sobre un plato y colocarlo en la zona de entrega.",
                 position = new Vector2(575f, -125f),
                 autoAdvance = true,
                 autoDelay = 8f
@@ -138,7 +138,7 @@ public class TutorialManager : MonoBehaviour
             // Paso 5
             steps.Add(new TutorialStep
             {
-                message = "Si es para llevar, al finalizar deberás clicar sobre la tapa y colocarla en el vaso.",
+                message = "Si es para llevar, al finalizar deberÃ¡s clicar sobre la tapa y colocarla en el vaso.",
                 position = new Vector2(-654f, -325f),
                 autoAdvance = true,
                 autoDelay = 8f
@@ -157,7 +157,7 @@ public class TutorialManager : MonoBehaviour
             // Paso 7
             steps.Add(new TutorialStep
             {
-                message = "Para saber cómo preparar los cafés haz clic en el libro de recetas.",
+                message = "Para saber cÃ³mo preparar los cafÃ©s haz clic en el libro de recetas.",
                 position = new Vector2(-685f, 225f),
                 autoAdvance = false,
                 onStepStart = () =>
@@ -168,7 +168,7 @@ public class TutorialManager : MonoBehaviour
             // Paso 8
             steps.Add(new TutorialStep
             {
-                message = "Ahora que ya sabes cómo preparar el café, mantén presionado el botón para seleccionar la cantidad de café correspondiente.",
+                message = "Ahora que ya sabes cÃ³mo preparar el cafÃ©, mantÃ©n presionado el botÃ³n para seleccionar la cantidad de cafÃ© correspondiente.",
                 position = new Vector2(-380f, -120f),
                 autoAdvance = false,
                 onStepStart = () =>
@@ -179,7 +179,7 @@ public class TutorialManager : MonoBehaviour
             // Paso 9
             steps.Add(new TutorialStep
             {
-                message = "¡Mantén presionada la palanca para moler el café!",
+                message = "Â¡MantÃ©n presionada la palanca para moler el cafÃ©!",
                 position = new Vector2(160f, 114f),
                 autoAdvance = false,
                 onStepStart = () =>
@@ -190,7 +190,7 @@ public class TutorialManager : MonoBehaviour
             // Paso 10
             steps.Add(new TutorialStep
             {
-                message = "Una vez molido el café, mueve el filtro a la cafetera clicando sobre él.",
+                message = "Una vez molido el cafÃ©, mueve el filtro a la cafetera clicando sobre Ã©l.",
                 position = new Vector2(-157f, -231f),
                 autoAdvance = false,
                 onStepStart = () =>
@@ -201,7 +201,7 @@ public class TutorialManager : MonoBehaviour
             // Paso 11
             steps.Add(new TutorialStep
             {
-                message = "Comprueba si el café se prepara con agua. Si es así, clica sobre ella e interactúa con el recipiente.",
+                message = "Comprueba si el cafÃ© se prepara con agua. Si es asÃ­, clica sobre ella e interactÃºa con el recipiente.",
                 position = new Vector2(30f, -390f),
                 autoAdvance = true,
                 autoDelay = 5f
@@ -209,7 +209,7 @@ public class TutorialManager : MonoBehaviour
             // Paso 12
             steps.Add(new TutorialStep
             {
-                message = "¡Ya puedes clicar para echar el café! ¡Presiona el botón superior y, cuando el marcador esté cerca de la zona marcada, clica en el inferior para pararlo!",
+                message = "Â¡Ya puedes clicar para echar el cafÃ©! Â¡Presiona el botÃ³n superior y, cuando el marcador estÃ© cerca de la zona marcada, clica en el inferior para pararlo!",
                 position = new Vector2(-390f, 180f),
                 autoAdvance = false,
                 onStepStart = () =>
@@ -219,7 +219,7 @@ public class TutorialManager : MonoBehaviour
             // Paso 13
             steps.Add(new TutorialStep
             {
-                message = "Ahora puedes echar el azúcar y los hielos clicando sobre ellos e interactuando con el recipiente mediante clic.",
+                message = "Ahora puedes echar el azÃºcar y los hielos clicando sobre ellos e interactuando con el recipiente mediante clic.",
                 position = new Vector2(30f, -390f),
                 autoAdvance = true,
                 autoDelay = 5f
@@ -227,7 +227,7 @@ public class TutorialManager : MonoBehaviour
             // Paso 14
             steps.Add(new TutorialStep
             {
-                message = "¡Ten cuidado con el orden! ¡Algunos elementos se bloquearan a medida que realices acciones!",
+                message = "Â¡Ten cuidado con el orden! Â¡Algunos elementos se bloquearan a medida que realices acciones!",
                 position = new Vector2(30f, -390f),
                 autoAdvance = true,
                 autoDelay = 4f
@@ -235,7 +235,7 @@ public class TutorialManager : MonoBehaviour
             // Paso 15
             steps.Add(new TutorialStep
             {
-                message = "¡Si te equivocas con la preparación puedes empezar de 0 clicando sobre la basura!",
+                message = "Â¡Si te equivocas con la preparaciÃ³n puedes empezar de 0 clicando sobre la basura!",
                 position = new Vector2(-200f, 100f),
                 autoAdvance = true,
                 autoDelay = 4f
@@ -243,7 +243,7 @@ public class TutorialManager : MonoBehaviour
             // Paso 16
             steps.Add(new TutorialStep
             {
-                message = "Cuando tengas todo listo, coloca el vaso sobre la mesa. Si se trata de una taza, colócala sobre el plato.",
+                message = "Cuando tengas todo listo, coloca el vaso sobre la mesa. Si se trata de una taza, colÃ³cala sobre el plato.",
                 position = new Vector2(600f, -100f),
                 autoAdvance = true,
                 autoDelay = 4f
@@ -261,7 +261,7 @@ public class TutorialManager : MonoBehaviour
             // Paso 18
             steps.Add(new TutorialStep
             {
-                message = "El cliente expondrá su valoración y pagará en función de la puntuación que hayas obtenido al preparar su comanda.",
+                message = "El cliente expondrÃ¡ su valoraciÃ³n y pagarÃ¡ en funciÃ³n de la puntuaciÃ³n que hayas obtenido al preparar su comanda.",
                 position = new Vector2(-600f, -60f),
                 autoAdvance = true,
                 autoDelay = 5f
@@ -269,7 +269,7 @@ public class TutorialManager : MonoBehaviour
             // Paso 19
             steps.Add(new TutorialStep
             {
-                message = "¡Si la puntuación es alta te dará una propina!",
+                message = "Â¡Si la puntuaciÃ³n es alta te darÃ¡ una propina!",
                 position = new Vector2(350f, 175f),
                 autoAdvance = true,
                 autoDelay = 5f
@@ -277,7 +277,7 @@ public class TutorialManager : MonoBehaviour
             // Paso 20
             steps.Add(new TutorialStep
             {
-                message = "Haz clic en \"Finalizar\" para volver a la cafetería.",
+                message = "Haz clic en \"Finalizar\" para volver a la cafeterÃ­a.",
                 position = new Vector2(-80f, -275f),
                 autoAdvance = false,
                 onStepStart = () =>
@@ -288,7 +288,7 @@ public class TutorialManager : MonoBehaviour
             // Paso 21
             steps.Add(new TutorialStep
             {
-                message = "¡Ya has atendido a tu primer cliente! Sigue atendiendo más para poder pagar las facturas al final del día. ¡La cafetería cierra a las 20:00pm!",
+                message = "Â¡Ya has atendido a tu primer cliente! Sigue atendiendo mÃ¡s para poder pagar las facturas al final del dÃ­a. Â¡La cafeterÃ­a cierra a las 20:00pm!",
                 position = new Vector2(0f, 0f),
                 autoAdvance = true,
                 autoDelay = 7f
@@ -296,7 +296,7 @@ public class TutorialManager : MonoBehaviour
             // Paso 22
             steps.Add(new TutorialStep
             {
-                message = "¡Si visitas la tienda y compras sobres de cartas, podrás tener los gatos que desbloquees en la cafetería!",
+                message = "Â¡Si visitas la tienda y compras sobres de cartas, podrÃ¡s tener los gatos que desbloquees en la cafeterÃ­a!",
                 position = new Vector2(0f, 0f),
                 autoAdvance = true,
                 autoDelay = 7f
@@ -304,7 +304,7 @@ public class TutorialManager : MonoBehaviour
             // Paso 23
             steps.Add(new TutorialStep
             {
-                message = "Como recompensa, se te ingresarán 100$ para ayudarte a pasar el primer día y 20 monedas de café. ¡Disfruta de Catpuccino!",
+                message = "Como recompensa, se te ingresarÃ¡n 100$ para ayudarte a pasar el primer dÃ­a y 20 monedas de cafÃ©. Â¡Disfruta de Catpuccino!",
                 position = new Vector2(0f, 0f),
                 autoAdvance = true,
                 autoDelay = 7f
@@ -380,7 +380,7 @@ public class TutorialManager : MonoBehaviour
             // Paso 0
             steps.Add(new TutorialStep
             {
-                message = "¡Cada día desbloquearás nuevas recetas e ingredientes! Interactúa con ellos haciendo clic.",
+                message = "Â¡Cada dÃ­a desbloquearÃ¡s nuevas recetas e ingredientes! InteractÃºa con ellos haciendo clic.",
                 position = new Vector2(245f, -390f),
                 autoAdvance = true,
                 autoDelay = 5f
@@ -388,7 +388,7 @@ public class TutorialManager : MonoBehaviour
             // Paso 1
             steps.Add(new TutorialStep
             {
-                message = "¡Ahora puedes visitar la zona de pastelería! Haz clic sobre el bótón para ir.",
+                message = "Â¡Ahora puedes visitar la zona de pastelerÃ­a! Haz clic sobre el bÃ³tÃ³n para ir.",
                 position = new Vector2(50f, 290f),
                 autoAdvance = false,
                 onStepStart = () =>
@@ -399,7 +399,7 @@ public class TutorialManager : MonoBehaviour
             // Paso 2
             steps.Add(new TutorialStep
             {
-                message = "Comienza poniendo un plato o una bolsa para llevar en la encimera según el tipo de pedido.",
+                message = "Comienza poniendo un plato o una bolsa para llevar en la encimera segÃºn el tipo de pedido.",
                 position = new Vector2(-600f, 60f),
                 autoAdvance = false,
                 onStepStart = () =>
@@ -429,7 +429,7 @@ public class TutorialManager : MonoBehaviour
             // Paso 5
             steps.Add(new TutorialStep
             {
-                message = "¡Pulsa el botón para hornearlo!",
+                message = "Â¡Pulsa el botÃ³n para hornearlo!",
                 position = new Vector2(-160f, -360f),
                 autoAdvance = false,
                 onStepStart = () =>
@@ -439,7 +439,7 @@ public class TutorialManager : MonoBehaviour
             // Paso 6
             steps.Add(new TutorialStep
             {
-                message = "Vigila el tiempo de horneado. ¡Si lo paras antes quedará crudo! ¡Si te pasas se quemará!",
+                message = "Vigila el tiempo de horneado. Â¡Si lo paras antes quedarÃ¡ crudo! Â¡Si te pasas se quemarÃ¡!",
                 position = new Vector2(-146f, 306f),
                 autoAdvance = true,
                 autoDelay = 4f
@@ -457,7 +457,7 @@ public class TutorialManager : MonoBehaviour
             // Paso 8
             steps.Add(new TutorialStep
             {
-                message = "Si el cliente no había pedido comida, puedes comenzar de 0 clicando sobre la basura.",
+                message = "Si el cliente no habÃ­a pedido comida, puedes comenzar de 0 clicando sobre la basura.",
                 position = new Vector2(-600f, 60f),
                 autoAdvance = true,
                 autoDelay = 4f
@@ -465,7 +465,7 @@ public class TutorialManager : MonoBehaviour
             // Paso 9
             steps.Add(new TutorialStep
             {
-                message = "¡Ya has finalizado la preparación del dulce! Vuelve a la zona de los cafés para continuar la comanda.",
+                message = "Â¡Ya has finalizado la preparaciÃ³n del dulce! Vuelve a la zona de los cafÃ©s para continuar la comanda.",
                 position = new Vector2(280f, 221f),
                 autoAdvance = false,
                 onStepStart = () =>
@@ -543,7 +543,7 @@ public class TutorialManager : MonoBehaviour
             // Paso 0
             steps.Add(new TutorialStep
             {
-                message = "¡Hoy has desbloqueado la opción de calentar la leche!",
+                message = "Â¡Hoy has desbloqueado la opciÃ³n de calentar la leche!",
                 position = new Vector2(0f, 0f),
                 autoAdvance = true,
                 autoDelay = 5f
@@ -551,7 +551,7 @@ public class TutorialManager : MonoBehaviour
             // Paso 1
             steps.Add(new TutorialStep
             {
-                message = "Clica sobre la taza de leche y colócala en el espumador.",
+                message = "Clica sobre la taza de leche y colÃ³cala en el espumador.",
                 position = new Vector2(-140f, -170f),
                 autoAdvance = false,
                 onStepStart = () =>
@@ -573,7 +573,7 @@ public class TutorialManager : MonoBehaviour
             // Paso 3
             steps.Add(new TutorialStep
             {
-                message = "¡Ten cuidado de no pasarte calentando la leche ni de dejarla fría!",
+                message = "Â¡Ten cuidado de no pasarte calentando la leche ni de dejarla frÃ­a!",
                 position = new Vector2(581f, 54f),
                 autoAdvance = true,
                 autoDelay = 4f
@@ -581,7 +581,7 @@ public class TutorialManager : MonoBehaviour
             // Paso 4
             steps.Add(new TutorialStep
             {
-                message = "¡Ahora puedes echarle la leche caliente a tus cafés!",
+                message = "Â¡Ahora puedes echarle la leche caliente a tus cafÃ©s!",
                 position = new Vector2(581f, 54f),
                 autoAdvance = true,
                 autoDelay = 4f

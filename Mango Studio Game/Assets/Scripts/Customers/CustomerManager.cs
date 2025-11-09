@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections.Generic;
 
 public class CustomerManager : MonoBehaviour
@@ -44,7 +44,7 @@ public class CustomerManager : MonoBehaviour
 
     public void ResetForNewDay()
     {
-        Debug.Log("Reiniciando clientes para el nuevo d�a.");
+        Debug.Log("Reiniciando clientes para el nuevo día.");
 
         minTime = minTimeBase - (timeDecay * timeManager.currentDay);
         maxTime = maxTimeBase - (timeDecay * timeManager.currentDay); ;

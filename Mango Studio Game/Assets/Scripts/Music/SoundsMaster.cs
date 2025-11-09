@@ -1,4 +1,4 @@
-using System.Collections;
+Ôªøusing System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -20,7 +20,7 @@ public class SoundsMaster : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); //Se aÒade al mÈtodo DontDestroyOnLoad para que se preserve en las escenas y asÌ se pueda usar el mÈtodo donde se necesite
+            DontDestroyOnLoad(gameObject); //Se a√±ade al m√©todo DontDestroyOnLoad para que se preserve en las escenas y as√≠ se pueda usar el m√©todo donde se necesite
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else
@@ -61,7 +61,7 @@ public class SoundsMaster : MonoBehaviour
 
     void PlayMusic(AudioClip clip)
     {
-        if (audioSource_SoundTrack.clip == clip) return; // Ya est· sonando
+        if (audioSource_SoundTrack.clip == clip) return; // Ya est√° sonando
 
         audioSource_SoundTrack.Stop();
         audioSource_SoundTrack.clip = clip;
@@ -76,7 +76,7 @@ public class SoundsMaster : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Se intentÛ reproducir un AudioClip nulo.");
+            Debug.LogWarning("Se intent√≥ reproducir un AudioClip nulo.");
         }
     }
 

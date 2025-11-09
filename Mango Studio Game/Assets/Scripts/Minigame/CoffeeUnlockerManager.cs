@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections.Generic;
 
 public class CoffeeUnlockerManager : MonoBehaviour
@@ -47,7 +47,7 @@ public class CoffeeUnlockerManager : MonoBehaviour
         return available.ToArray();
     }
 
-    // Se crea un array con los tipos de cafes desbloqueados ese d�a
+    // Se crea un array con los tipos de cafes desbloqueados ese día
     public CoffeeType[] GetUnlockedCoffees(int currentDay)
     {
         int day = Mathf.Clamp(currentDay, 1, coffeeUnlocks.Count);

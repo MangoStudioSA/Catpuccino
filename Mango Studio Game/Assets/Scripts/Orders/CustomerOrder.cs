@@ -1,4 +1,4 @@
-using UnityEngine;
+Ôªøusing UnityEngine;
 using TMPro;
 
 // Clase encargada de generar el pedido del cliente
@@ -56,9 +56,9 @@ public class CustomerOrder : MonoBehaviour
 
         string sugarText = order.sugarAm switch
         {
-            SugarAmount.nada => "sin az˙car",
-            SugarAmount.poco => "con poco az˙car",
-            _ => "con mucho az˙car"
+            SugarAmount.nada => "sin az√∫car",
+            SugarAmount.poco => "con poco az√∫car",
+            _ => "con mucho az√∫car"
         };
         string iceText = order.iceAm switch
         {

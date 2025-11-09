@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 using UnityEngine.Assertions.Must;
 using UnityEngine.UI;
@@ -66,7 +66,7 @@ public class CursorManager : MonoBehaviour
         }
         else
         {
-            Debug.LogError("ERROR: No se ha asignado una textura para el cursor. Se usar� el cursor por defecto.");
+            Debug.LogError("ERROR: No se ha asignado una textura para el cursor. Se usará el cursor por defecto.");
         }
     }
 

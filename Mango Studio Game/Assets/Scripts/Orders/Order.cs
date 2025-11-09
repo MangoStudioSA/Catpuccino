@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 // Clase principal para construir los pedidos
 [System.Serializable]
@@ -15,12 +15,12 @@ public class Order
 
     public FoodOrder foodOrder;
 
-    // valor de precisión que el jugador debe alcanzar (1.0, 2.0, o 3.0)
+    // valor de precisiÃ³n que el jugador debe alcanzar (1.0, 2.0, o 3.0)
     public float coffeeTarget;
     // guarda el valor del slider (0.0 a 4.0)
     public float coffeePrecision;
 
-    // valor de precisión que el jugador debe alcanzar (0.5)
+    // valor de precisiÃ³n que el jugador debe alcanzar (0.5)
     public float coffeeServedTarget;
     // guarda el valor del slider (0.0 a 1.0)
     public float coffeeServedPrecision;
@@ -30,7 +30,7 @@ public class Order
     // guarda el valor de la leche echada por el jugador (0 a 1)
     public int milkPrecision;
 
-    // valor exacto de cómo se necesita la leche (0-fria, 1-caliente, 2-quemada)
+    // valor exacto de cÃ³mo se necesita la leche (0-fria, 1-caliente, 2-quemada)
     public int heatedMilkTarget;
     // guarda el valor de como ha preparado la leche el jugador
     public int heatedMilkPrecision;
