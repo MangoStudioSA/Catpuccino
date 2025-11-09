@@ -51,7 +51,7 @@ public class CoffeeGameManager : MonoBehaviour
         {
             GameManager.Instance.AnadirMonedas(tip);
             //earnedTipTxt.text = $"¡El cliente ha dejado una propina de {tip}$!";
-            PopUpMechanicsMsg.Instance.ShowMessage($"Propina recibida: {tip}", new Vector3(300, -87, 0), 5f);
+            PopUpMechanicsMsg.Instance.ShowMessage($"Propina recibida: {tip}$", new Vector3(300, -87, 0), 5f);
         }
         else 
         {
