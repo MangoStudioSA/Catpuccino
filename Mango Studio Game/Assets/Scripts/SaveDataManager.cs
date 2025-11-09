@@ -15,6 +15,10 @@ public class SaveDataManager : MonoBehaviour
     public Button slot2Button;
     public Button slot3Button;
 
+    public GameObject del1Button;
+    public GameObject del2Button;
+    public GameObject del3Button;
+
     SceneLoader sceneLoader;
 
     void Awake()
@@ -46,6 +50,10 @@ public class SaveDataManager : MonoBehaviour
         slot2Button = GameObject.FindGameObjectWithTag("slot2").GetComponent<Button>();
         slot3Button = GameObject.FindGameObjectWithTag("slot3").GetComponent<Button>();
 
+        del1Button = GameObject.FindGameObjectWithTag("del1");
+        del2Button = GameObject.FindGameObjectWithTag("del2");
+        del3Button = GameObject.FindGameObjectWithTag("del3");
+
         slot1Button.onClick.AddListener(Slot1);
         slot2Button.onClick.AddListener(Slot2);
         slot3Button.onClick.AddListener(Slot3);
@@ -53,16 +61,31 @@ public class SaveDataManager : MonoBehaviour
         if (PlayerPrefs.HasKey("Slot1_Day"))
         {
             slot1Button.GetComponentInChildren<TextMeshProUGUI>().text = "Partida 1 (Día " + PlayerPrefs.GetInt("Slot1_Day") + ")";
+            del1Button.GetComponent<Button>().onClick.AddListener(Del1);
+        }
+        else
+        {
+            del1Button.SetActive(false);
         }
 
         if (PlayerPrefs.HasKey("Slot2_Day"))
         {
             slot2Button.GetComponentInChildren<TextMeshProUGUI>().text = "Partida 2 (Día " + PlayerPrefs.GetInt("Slot2_Day") + ")";
+            del2Button.GetComponent<Button>().onClick.AddListener(Del2);
+        }
+        else
+        {
+            del2Button.SetActive(false);
         }
 
         if (PlayerPrefs.HasKey("Slot3_Day"))
         {
             slot3Button.GetComponentInChildren<TextMeshProUGUI>().text = "Partida 3 (Día " + PlayerPrefs.GetInt("Slot3_Day") + ")";
+            del3Button.GetComponent<Button>().onClick.AddListener(Del3);
+        }
+        else
+        {
+            del3Button.SetActive(false);
         }
     }
 
@@ -152,6 +175,33 @@ public class SaveDataManager : MonoBehaviour
         sceneLoader.LoadGame();
     }
 
+    public void DelGame(int slot)
+    {
+        switch (slot)
+        {
+            case 1:
+                PlayerPrefs.DeleteKey("Slot1_Day");
+                PlayerPrefs.DeleteKey("Slot1_Money");
+                del1Button.SetActive(false);
+                slot1Button.GetComponentInChildren<TextMeshProUGUI>().text = "Nueva partida";
+                break;
+
+            case 2:
+                PlayerPrefs.DeleteKey("Slot2_Day");
+                PlayerPrefs.DeleteKey("Slot2_Money");
+                del2Button.SetActive(false);
+                slot2Button.GetComponentInChildren<TextMeshProUGUI>().text = "Nueva partida";
+                break;
+
+            case 3:
+                PlayerPrefs.DeleteKey("Slot3_Day");
+                PlayerPrefs.DeleteKey("Slot3_Money");
+                del3Button.SetActive(false);
+                slot3Button.GetComponentInChildren<TextMeshProUGUI>().text = "Nueva partida";
+                break;
+        }
+    }
+
     public void Slot1()
     {
         LoadGame(1);
@@ -165,5 +215,20 @@ public class SaveDataManager : MonoBehaviour
     public void Slot3()
     {
         LoadGame(3);
+    }
+
+    public void Del1()
+    {
+        DelGame(1);
+    }
+
+    public void Del2()
+    {
+        DelGame(2);
+    }
+
+    public void Del3()
+    {
+        DelGame(3);
     }
 }

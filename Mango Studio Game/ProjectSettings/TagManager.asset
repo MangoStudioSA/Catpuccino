@@ -10,6 +10,9 @@ TagManager:
   - slot2
   - slot3
   - play
+  - del1
+  - del2
+  - del3
   layers:
   - Default
   - TransparentFX

@@ -14,7 +14,6 @@ public class CoffeeGameManager : MonoBehaviour
     public CustomerOrder npc;
     public PlayerOrder player;
     public OrderEvaluation evaluation;
-    [SerializeField] private GameManager gameManager;
 
     [Header("UI Texts")]
     public TextMeshProUGUI orderFeedbackTxt;
@@ -26,11 +25,6 @@ public class CoffeeGameManager : MonoBehaviour
     private int totalScore = 0;
     private int customersServed = 0;
 
-    private void Awake()
-    {
-        if (gameManager == null)
-            gameManager = FindFirstObjectByType<GameManager>();
-    }
     public void SubmitOrder()
     {
         // Se calcula la puntuacion del pedido comparando lo que se pedia con el resultado del jugador
@@ -46,16 +40,16 @@ public class CoffeeGameManager : MonoBehaviour
         totalScore += result.score;
         customersServed++;
         // Añade el dinero y la puntuacion para calcular la satisfaccion media
-        gameManager.AnadirMonedas(result.moneyEarned);
-        gameManager.AddServedCustomers(customersServed);
-        gameManager.AddSatisfactionPoint(result.score);
+        GameManager.Instance.AnadirMonedas(result.moneyEarned);
+        GameManager.Instance.AddServedCustomers(customersServed);
+        GameManager.Instance.AddSatisfactionPoint(result.score);
 
         // Se calcula la propina obtenida
         int tip = CalculateTip(result.score);
         // Se mostrara un feedback distinto en funcion de la puntuacion obtenida
         if (tip > 0) 
         {
-            gameManager.AnadirMonedas(tip);
+            GameManager.Instance.AnadirMonedas(tip);
             //earnedTipTxt.text = $"¡El cliente ha dejado una propina de {tip}$!";
             PopUpMechanicsMsg.Instance.ShowMessage($"Propina recibida: {tip}", new Vector3(300, -87, 0), 5f);
         }
