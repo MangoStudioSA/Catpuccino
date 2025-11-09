@@ -114,10 +114,7 @@ public class TimeManager : MonoBehaviour
             customerManager.ResetForNewDay();
         }
 
-        playerDataManager.ResetPlayerData(); // Esta puesta para las pruebas, hay que quitarla
-
         // Se aumenta el dia y se guarda en el progreso del jugador
-
         currentDay++;
 
         // Restar dinero de facturas
@@ -135,7 +132,6 @@ public class TimeManager : MonoBehaviour
         gameManager.monedas = saveDataManager.LoadMoney();
         HUDManager.Instance.UpdateMonedas(gameManager.monedas);
         secondsPerGameMinute = secondsPerGameMinuteBase + timeDecay * (currentDay - 1);
-        playerDataManager.NextDay();
 
         // Se actualiza el tiempo y las variables
         currentTimeInSeconds = startHour * 3600;

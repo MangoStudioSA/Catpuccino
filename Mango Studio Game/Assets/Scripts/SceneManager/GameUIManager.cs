@@ -67,7 +67,7 @@ public class GameUIManager : MonoBehaviour
         shopPanel.SetActive(false); // Desactivar UI menu tienda desde el juego
         gameCanvasGroup.interactable = true;
         gameCanvasGroup.blocksRaycasts = true;
-        Time.timeScale = 0.0f;
+        Time.timeScale = 1.0f;
     }
 
     // Mostrar panel dialogo con el cliente

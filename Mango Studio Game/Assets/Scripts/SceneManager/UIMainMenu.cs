@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// Clase encargada de gestionar los paneles del menu principal
 public class UIMainMenu : MonoBehaviour
 {
     [SerializeField] GameObject mainMenuPanel;
@@ -25,7 +26,6 @@ public class UIMainMenu : MonoBehaviour
         mainMenuPanel.SetActive(true);
         mainMenuCanvasGroup.interactable = false;
         mainMenuCanvasGroup.blocksRaycasts = false;
-        //SoundMaster.Instance.PlaySound_Menu();
     }
 
     public void OpenSlots()
@@ -35,7 +35,6 @@ public class UIMainMenu : MonoBehaviour
         mainMenuCanvasGroup.interactable = false;
         mainMenuCanvasGroup.blocksRaycasts = false;
         saveDataManager.CheckButtons();
-        //SoundMaster.Instance.PlaySound_Menu();
     }
 
     public void OpenContact()
@@ -44,7 +43,6 @@ public class UIMainMenu : MonoBehaviour
         mainMenuPanel.SetActive(true);
         mainMenuCanvasGroup.interactable = false;
         mainMenuCanvasGroup.blocksRaycasts = false;
-        //SoundMaster.Instance.PlaySound_Menu();
     }
 
     public void VolverMenuPrincipal()
@@ -75,6 +73,7 @@ public class UIMainMenu : MonoBehaviour
         Debug.Log("Saliendo del juego");
     }
 
+    // Funcion para reproducir sonido 
     public void OnMouseEnterSound()
     {
         SoundsMaster.Instance.PlaySound_ClickMenu();

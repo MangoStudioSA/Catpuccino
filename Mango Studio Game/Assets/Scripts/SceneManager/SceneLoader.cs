@@ -31,7 +31,6 @@ public class SceneLoader : MonoBehaviour
 
     public void LoadNewGame()
     {
-        PlayerDataManager.instance.ResetPlayerData();
         SceneManager.LoadScene("Game"); // Cargar escena juego
     }
 

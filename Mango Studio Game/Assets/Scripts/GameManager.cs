@@ -22,21 +22,18 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         HUDManager.Instance.UpdateMonedas(monedas);
-        playerDataManager.AddMoney(monedas);
     }
 
     public void AnadirMonedas(int cantidad)
     {
         monedas += cantidad;
         HUDManager.Instance.UpdateMonedas(monedas);
-        playerDataManager.AddMoney(monedas);
         Debug.Log("Total de monedas ahora: " + monedas);
     }
 
     public void AddServedCustomers(int cantidad)
     {
         servedCustomers = cantidad;
-        playerDataManager.AddServedCustomers(cantidad);
         Debug.Log("Total de clientes servidos ahora: " + cantidad);
     }
 
@@ -50,7 +47,6 @@ public class GameManager : MonoBehaviour
 
         // Le pasamos la nueva media al HUD para que la muestre
         HUDManager.Instance.UpdateSatisfaccion(averageSatisfaction);
-        playerDataManager.AddSatisfaction(averageSatisfaction);
         Debug.Log($"Satisfacción media ahora: {averageSatisfaction:F1}%");
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
+// Gestion del guardado de monedas de la tienda y de las cartas
 public class PlayerDataManager : MonoBehaviour
 {
     public static PlayerDataManager instance;
@@ -26,47 +27,21 @@ public class PlayerDataManager : MonoBehaviour
         }
     }
 
-    public void AddMoney(int amount)
-    {
-        data.money += amount;
-        SaveData();
-    }
+    // Funcion para añadir monedas premium
     public void AddPremiumCoins(int amount)
     {
         data.premiumCoins += amount;
         HUDManager.Instance.UpdateBasicCoins(data.premiumCoins);
         SaveData();
     }
+    // Funcion para añadir monedas basicas
     public void AddBasicCoins(int amount)
     {
         data.basicCoins += amount;
         HUDManager.Instance.UpdatePremiumCoins(data.basicCoins);
         SaveData();
     }
-    public void AddServedCustomers(int amount)
-    {
-        data.totalCustomersServed = amount;
-        SaveData();
-    }
-    public void AddSatisfaction(float amount)
-    {
-        data.customersSatisfaction += amount;
-        SaveData();
-    }
-
-    public bool SpendMoney(int amount)
-    {
-        if (data.money >= amount)
-        {
-            data.money -= amount;
-            SaveData();
-            return true;
-        }
-
-        Debug.LogWarning("No hay suficiente dinero");
-        return false;
-    }
-
+    // Funcion para gastar monedas basicas
     public bool SpendBasicCoins(int amount)
     {
         if (data.basicCoins >= amount)
@@ -79,7 +54,7 @@ public class PlayerDataManager : MonoBehaviour
         Debug.LogWarning("No hay suficientes monedas del café.");
         return false;
     }
-
+    // Funcion para gastar monedas premium
     public bool SpendPremiumCoins(int amount)
     {
         if (data.premiumCoins >= amount)
@@ -92,7 +67,7 @@ public class PlayerDataManager : MonoBehaviour
         Debug.LogWarning("No hay suficientes croquetas doradas.");
         return false;
     }
-
+    // Funcion para añadir cartas
     public void AddCard(Sprite cardSprite)
     {
         string cardID = cardSprite.name;
@@ -110,62 +85,69 @@ public class PlayerDataManager : MonoBehaviour
     {
         return unlockedCards.Contains(cardName);
     }
-
+    // Funcion para obtener las cartas desbloqueadas
     public HashSet<string> GetUnlockedCards()
     {
         return new HashSet<string>(data.unlockedCards);
     }
-
-    public void NextDay()
-    {
-        data.currentDay++;
-        SaveData();
-    }
-
-    public void ResetPlayerData()
-    {
-        data = new PlayerData
-        {
-            basicCoins = 0,
-            money = 0,
-            currentDay = 0
-        };
-        SaveData();
-        Debug.Log("Datos reiniciados");
-    }
-
+    // Funcion para guardar los datos
     public void SaveData()
     {
         if (data == null) return;
 
         data.SyncListFromSet();
-
         string json = JsonUtility.ToJson(data, true);
-        File.WriteAllText(savePath, json);
-        Debug.Log("Datos guardados en: " + savePath);
-    }
 
+        try
+        {
+            File.WriteAllText(savePath, json);
+            Debug.Log("Datos guardados en archivo: " + savePath);
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogWarning("Error guardando en archivo:" + e.Message);
+        }
+
+        PlayerPrefs.SetString("PlayerDataBackUp", json);
+        PlayerPrefs.Save();
+        Debug.Log("Copia de respaldo guardado en PlayerPrefs");
+    }
+    // Funcion para cargar los datos
     public void LoadData()
     {
+        bool loaded = false;
+
+        // Se carga desde archivo JSOn
         if (File.Exists(savePath))
         {
-            string json = File.ReadAllText(savePath);
-            data = JsonUtility.FromJson<PlayerData>(json);
-
-            Debug.Log("Datos cargados correctamente");
+            try
+            {
+                string json = File.ReadAllText(savePath);
+                data = JsonUtility.FromJson<PlayerData>(json);
+                loaded = true;
+                Debug.Log("Datos cargados desde archivo JSON.");
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogWarning("Error cargando archivo JSON: " + e.Message);
+            }
         }
-        else
+
+        // Se intenta desde playerprefs
+        if (!loaded && PlayerPrefs.HasKey("PlayerDataBackUp"))
         {
-            data = new PlayerData(0, 0);
+            string json = PlayerPrefs.GetString("PlayerDataBackup");
+            data = JsonUtility.FromJson<PlayerData>(json);
+            loaded = true;
+            Debug.Log("Datos cargados desde PlayerPrefs (respaldo).");
             SaveData();
         }
-
+        
+        if (!loaded)
+        {
+            data = new PlayerData();
+            SaveData();
+        }
         data.InitializeUnlockedCards();
-    }
-
-    public void ResetData()
-    {
-        data = new PlayerData(0, 0);
-        SaveData();
     }
 }
