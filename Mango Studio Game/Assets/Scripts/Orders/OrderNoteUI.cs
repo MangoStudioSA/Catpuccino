@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -63,8 +63,8 @@ public class OrderNoteUI : MonoBehaviour
 
         string note = "";
 
-        note += $"- Café: {order.coffeeType}.\n";
-        note += $"- Azúcar: {order.sugarAm}.\n";
+        note += $"- CafÃ©: {order.coffeeType}.\n";
+        note += $"- AzÃºcar: {order.sugarAm}.\n";
         note += $"- Hielo: {(order.iceAm == IceAmount.no ? "sin hielo" : "con hielo")}.\n";
         note += $"- Tipo de pedido: para {order.orderType}.\n";
 
