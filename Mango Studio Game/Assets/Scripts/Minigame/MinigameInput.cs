@@ -364,7 +364,7 @@ public class MinigameInput : MonoBehaviour
             Balda.SetActive(false);
         }
 
-        if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 20 && cupServed)
+        if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 20)
             buttonManager.EnableButton(buttonManager.endDeliveryButton);
         else if (tutorialManager.isRunningT1)
             buttonManager.DisableButton(buttonManager.endDeliveryButton);
@@ -376,7 +376,7 @@ public class MinigameInput : MonoBehaviour
         else
             buttonManager.EnableButton(buttonManager.shopButton);
 
-        if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 17)
+        if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 17 && cupServed)
             buttonManager.EnableButton(buttonManager.submitOrderButton);
         else if (tutorialManager.isRunningT1)
             buttonManager.DisableButton(buttonManager.submitOrderButton);
@@ -385,6 +385,11 @@ public class MinigameInput : MonoBehaviour
             buttonManager.DisableButton(buttonManager.gameButton);
         else
             buttonManager.EnableButton(buttonManager.gameButton);
+
+        if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 8)
+            buttonManager.EnableButton(buttonManager.coffeeButton);
+        else if (tutorialManager.isRunningT1 && tutorialManager.currentStep < 8)
+            buttonManager.DisableButton(buttonManager.coffeeButton);
 
         if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 12)
             buttonManager.EnableButton(buttonManager.echarCafeButton);

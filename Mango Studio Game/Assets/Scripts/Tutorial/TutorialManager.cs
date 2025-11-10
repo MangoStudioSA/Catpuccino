@@ -62,7 +62,7 @@ public class TutorialManager : MonoBehaviour
 
         switch (day)
         {
-            case 5:
+            case 1:
                 SetupDay1Tutorial();
                 StartTutorial1();
                 isRunningT1 = true;
@@ -296,12 +296,20 @@ public class TutorialManager : MonoBehaviour
             // Paso 22
             steps.Add(new TutorialStep
             {
-                message = "¡Si visitas la tienda y compras sobres de cartas, podrás tener los gatos que desbloquees en la cafetería!",
-                position = new Vector2(0f, 0f),
+                message = "Al cerrar, siempre ganarás 50 monedas de café, que podrás gastar en los sobres de la tienda.",
+                position = new Vector2(-596f, 350f),
                 autoAdvance = true,
                 autoDelay = 7f
             });
             // Paso 23
+            steps.Add(new TutorialStep
+            {
+                message = "¡Si compras sobres de cartas, podrás tener los gatos que desbloquees acompañándote en la cafetería!",
+                position = new Vector2(0f, 0f),
+                autoAdvance = true,
+                autoDelay = 7f
+            });
+            // Paso 24
             steps.Add(new TutorialStep
             {
                 message = "Como recompensa, se te ingresarán 100$ para ayudarte a pasar el primer día y 20 monedas de café. ¡Disfruta de Catpuccino!",

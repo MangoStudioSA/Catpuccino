@@ -210,6 +210,7 @@ public class TimeManager : MonoBehaviour
 
         if (GameManager.Instance.monedas >= requiredMoney)
         {
+            PlayerDataManager.instance.AddBasicCoins(50);
             earnedText.text = "Hoy has ganado " + GameManager.Instance.monedas + "$, tienes suficiente para pagar las facturas pendientes";
             endButtonText.text = "Siguiente día";
         }
