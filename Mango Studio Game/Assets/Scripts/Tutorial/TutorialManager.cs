@@ -62,7 +62,7 @@ public class TutorialManager : MonoBehaviour
 
         switch (day)
         {
-            case 1:
+            case 5:
                 SetupDay1Tutorial();
                 StartTutorial1();
                 isRunningT1 = true;
@@ -262,7 +262,7 @@ public class TutorialManager : MonoBehaviour
             steps.Add(new TutorialStep
             {
                 message = "El cliente expondrá su valoración y pagará en función de la puntuación que hayas obtenido al preparar su comanda.",
-                position = new Vector2(-600f, -60f),
+                position = new Vector2(350f, 175f),
                 autoAdvance = true,
                 autoDelay = 5f
             });
@@ -278,7 +278,7 @@ public class TutorialManager : MonoBehaviour
             steps.Add(new TutorialStep
             {
                 message = "Haz clic en \"Finalizar\" para volver a la cafetería.",
-                position = new Vector2(-80f, -275f),
+                position = new Vector2(350f, 175f),
                 autoAdvance = false,
                 onStepStart = () =>
                 {
@@ -381,7 +381,7 @@ public class TutorialManager : MonoBehaviour
             steps.Add(new TutorialStep
             {
                 message = "¡Cada día desbloquearás nuevas recetas e ingredientes! Interactúa con ellos haciendo clic.",
-                position = new Vector2(245f, -390f),
+                position = new Vector2(45f, 45f),
                 autoAdvance = true,
                 autoDelay = 5f
             });
@@ -393,7 +393,6 @@ public class TutorialManager : MonoBehaviour
                 autoAdvance = false,
                 onStepStart = () =>
                 {
-                    buttonManager.EnableButton(buttonManager.bakeryButton);
                 }
             });
             // Paso 2
@@ -466,7 +465,7 @@ public class TutorialManager : MonoBehaviour
             steps.Add(new TutorialStep
             {
                 message = "¡Ya has finalizado la preparación del dulce! Vuelve a la zona de los cafés para continuar la comanda.",
-                position = new Vector2(280f, 221f),
+                position = new Vector2(280f, 361f),
                 autoAdvance = false,
                 onStepStart = () =>
                 {

@@ -93,7 +93,6 @@ public class CardPackManager : MonoBehaviour
 
     private IEnumerator OpenPackAnimation(Sprite cardSprite)
     {
-        Debug.Log("iniciando animacion");
         // Resetear la carta y determinar su rareza y nombre
         isOpening = true;
         openButton.gameObject.SetActive(false);
@@ -143,7 +142,6 @@ public class CardPackManager : MonoBehaviour
         var collection = FindFirstObjectByType<CardCollectionManager>();
         /*if (collection != null)
             collection.GenerateCollection();*/
-        Debug.Log("animacion completada");
     }
 
     // Se determina la rareza de la carta dependiendo del sobre abierto

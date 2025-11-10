@@ -597,7 +597,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 913f382c760b4814abcf37de077d0520, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentSlot: 0
+  currentSlot: 1
   currentDay: 0
   money: 0
   rated: 0

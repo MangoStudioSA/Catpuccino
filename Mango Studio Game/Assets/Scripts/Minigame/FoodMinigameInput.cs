@@ -56,6 +56,12 @@ public class FoodMinigameInput : MonoBehaviour
     private CookState currentCookState;
     private GameObject foodInPlatoObj = null, foodInHornoObj = null, foodInBolsaLlevarObj = null;
 
+    [Header("Sprites objetos")]
+    public Sprite botonH_N;
+    public Sprite botonH_P;
+    public Sprite botonPH_N;
+    public Sprite botonPH_P;
+
     void Start()
     {
         order = FindFirstObjectByType<PlayerOrder>();
@@ -76,7 +82,6 @@ public class FoodMinigameInput : MonoBehaviour
             buttonManager.hornoButton.gameObject.SetActive(true);
             buttonManager.EnableButton(buttonManager.hornoButton);
         }
-
         CheckButtons(); 
     }
 
@@ -87,18 +92,12 @@ public class FoodMinigameInput : MonoBehaviour
         buttonManager.EnableButton(buttonManager.cogerBolsaLlevarInicioButton);
         buttonManager.EnableButton(buttonManager.bakeryButton);
         buttonManager.EnableButton(buttonManager.returnBakeryButton);
-
         buttonManager.DisableButton(buttonManager.hornoButton);
-
-        buttonManager.stopHorneadoButton.gameObject.SetActive(false);
-        buttonManager.hornearButton.gameObject.SetActive(true);
-        bakeSlider.gameObject.SetActive(false);
-
-        //platoInHand = false;
+        buttonManager.DisableButton(buttonManager.stopHorneadoButton);
+        
         platoIsInEncimera = foodIsInHorno = foodIsInPlato = foodIsInBolsaLlevar = carryBagIsInEncimera = false;
         foodServed = foodBaked = isBaking = false;
         countFoodCover = 0;
-        //foodInHand = false;
 
         foodCategoryInHand = FoodCategory.no;
         foodTypeInHand = -1;
@@ -111,6 +110,8 @@ public class FoodMinigameInput : MonoBehaviour
 
         Plato.SetActive(false);
         BolsaLlevar.SetActive(false);
+        bakeSlider.gameObject.SetActive(false);
+        UpdateStartSprites();
 
         if (foodInPlatoObj != null)
         {
@@ -163,21 +164,53 @@ public class FoodMinigameInput : MonoBehaviour
             }
         }
     }
-    
+
+    // Funcion para resetear los sprites
+    private void UpdateStartSprites()
+    {
+        Image hornearBut = buttonManager.hornearButton.GetComponent<Image>();
+        hornearBut.sprite = botonH_N;
+
+        Image pararHorneadoBut = buttonManager.stopHorneadoButton.GetComponent<Image>();
+        pararHorneadoBut.sprite = botonPH_N;
+    }
+
+    // Funcion para comprobar que botones activar/desactivar
     public void CheckButtons()
     {
-        if (platoInHand || foodInHand)
-        {
-            buttonManager.DisableButton(buttonManager.returnBakeryButton);
-        }
-        else if (!tutorialManager.isRunningT2)
-        {
+        if (tutorialManager.isRunningT2 && tutorialManager.currentStep == 9)
             buttonManager.EnableButton(buttonManager.returnBakeryButton);
-        }
-        if (foodBaked)
-        {
+        else if (tutorialManager.isRunningT2 && tutorialManager.currentStep != 9)
+            buttonManager.DisableButton(buttonManager.returnBakeryButton);
+
+        if (tutorialManager.isRunningT2 && tutorialManager.currentStep == 5)
+            buttonManager.EnableButton(buttonManager.hornearButton);
+        else if (tutorialManager.isRunningT2 && tutorialManager.currentStep != 5)
             buttonManager.DisableButton(buttonManager.hornearButton);
-        }
+
+        /*if (tutorialManager.isRunningT2 && tutorialManager.currentStep == 6 && tutorialManager.currentStep == 7)
+            buttonManager.EnableButton(buttonManager.stopHorneadoButton);
+        else if (tutorialManager.isRunningT2 && tutorialManager.currentStep != 6 && tutorialManager.currentStep != 7)
+            buttonManager.DisableButton(buttonManager.stopHorneadoButton);*/
+
+        if (foodIsInHorno && !tutorialManager.isRunningT2)
+            buttonManager.EnableButton(buttonManager.hornearButton);
+        else if (isBaking && !tutorialManager.isRunningT2)
+            buttonManager.DisableButton(buttonManager.hornearButton);
+
+        /*if (isBaking && !tutorialManager.isRunningT2)
+            buttonManager.EnableButton(buttonManager.stopHorneadoButton);
+        else if (foodBaked && !tutorialManager.isRunningT2)
+            buttonManager.DisableButton(buttonManager.stopHorneadoButton);*/
+
+        if (platoInHand || foodInHand)
+            buttonManager.DisableButton(buttonManager.returnBakeryButton);
+        
+        else if (!tutorialManager.isRunningT2)
+            buttonManager.EnableButton(buttonManager.returnBakeryButton);
+        
+        if (foodBaked)
+            buttonManager.DisableButton(buttonManager.hornearButton);  
     }
 
     // Funcion para colocar el plato en la encima
@@ -202,6 +235,7 @@ public class FoodMinigameInput : MonoBehaviour
         if (tutorialManager.isRunningT2 && tutorialManager.currentStep == 2)
             FindFirstObjectByType<TutorialManager>().CompleteCurrentStep2();
     }
+    
     // Funcion para colocar la bolsa para llevar en la encima
     public void PlaceCarryBagEncimera()
     {
@@ -221,6 +255,7 @@ public class FoodMinigameInput : MonoBehaviour
         
         ActualizarBotonCogerComida();
     }
+    
     // Funcion para interactuar con la comida en el plato 
     public void ToggleFoodPlato()
     {
@@ -286,6 +321,7 @@ public class FoodMinigameInput : MonoBehaviour
         }
         ActualizarBotonCogerComida();
     }
+    
     // Funcion para interactuar con la comida en la bolsa para llevar 
     public void ToggleFoodCarryBag()
     {
@@ -331,6 +367,7 @@ public class FoodMinigameInput : MonoBehaviour
         }
         ActualizarBotonCogerComida();
     }
+    
     // Funcion para interactuar con la comida en el horno 
     public void ToggleFoodHorno()
     {
@@ -353,7 +390,6 @@ public class FoodMinigameInput : MonoBehaviour
             foodInHand = false;
 
             cursorManager.UpdateCursorFood(true, foodCategoryInHand, foodTypeInHand);
-            buttonManager.EnableButton(buttonManager.hornearButton);
 
             //  Se resetea la categoria y el tipo de comida de la mano 
             foodCategoryInHand = FoodCategory.no;
@@ -381,6 +417,7 @@ public class FoodMinigameInput : MonoBehaviour
         }
         ActualizarBotonCogerComida();
     }
+    
     // Funcion para hornear la comida 
     public void StartHorneado()
     {
@@ -390,12 +427,15 @@ public class FoodMinigameInput : MonoBehaviour
 
         horneadoCoroutine = StartCoroutine(HornearCoroutine());
         isBaking = true;
-        buttonManager.stopHorneadoButton.gameObject.SetActive(true);
-        buttonManager.hornearButton.gameObject.SetActive(false);
+
+        buttonManager.EnableButton(buttonManager.stopHorneadoButton);
+        Image hornearBut = buttonManager.hornearButton.GetComponent<Image>();
+        hornearBut.sprite = botonH_P;
 
         if (tutorialManager.isRunningT2 && tutorialManager.currentStep == 5)
             FindFirstObjectByType<TutorialManager>().CompleteCurrentStep2();
     }
+    
     // Corrutina para hornear la comida
     private IEnumerator HornearCoroutine()
     {
@@ -411,14 +451,13 @@ public class FoodMinigameInput : MonoBehaviour
             UpdateBakingBarColor(bakeSlider.value);
             yield return null;
         }
-
-        currentCookState = CookState.quemado;
-        bakeSlider.gameObject.SetActive(false);
-        buttonManager.DisableButton(buttonManager.hornearButton);
-        buttonManager.stopHorneadoButton.gameObject.SetActive(false);
-        Debug.Log("Se ha pasado el tiempo: comida quemada");
         isBaking = false;
+        currentCookState = CookState.quemado;
+
+        bakeSlider.gameObject.SetActive(false);
+        Debug.Log("Se ha pasado el tiempo: comida quemada");
     }
+    
     // Funcion para actualizar el slider del horneado
     private void UpdateBakingBarColor(float value)
     {
@@ -429,6 +468,7 @@ public class FoodMinigameInput : MonoBehaviour
 
         fillBakeImage.color = newColor;
     }
+    
     // Funcion para parar el horneado
     public void StopHorneado()
     {
@@ -443,13 +483,14 @@ public class FoodMinigameInput : MonoBehaviour
 
         float progress = bakeSlider.value;
         bakeSlider.gameObject.SetActive(false);
+        buttonManager.DisableButton(buttonManager.stopHorneadoButton);
 
         if (progress < 0.40f) currentCookState = CookState.crudo;
         else if (progress <= 0.70f) currentCookState = CookState.horneado;
         else currentCookState = CookState.quemado;
 
         Debug.Log($"Horneado detenido: {currentCookState}");
-        buttonManager.DisableButton(buttonManager.hornearButton);
-        buttonManager.stopHorneadoButton.gameObject.SetActive(false);
+        Image stopHornearBut = buttonManager.stopHorneadoButton.GetComponent<Image>();
+        stopHornearBut.sprite = botonPH_P;
     }
 }

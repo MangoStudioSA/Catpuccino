@@ -393,36 +393,34 @@ public class MinigameInput : MonoBehaviour
             
         if (tutorialManager.isRunningT2 && tutorialManager.currentStep == 0)
             buttonManager.DisableButton(buttonManager.bakeryButton);
-        else
+        else if (tutorialManager.isRunningT2 && tutorialManager.currentStep != 0)
             buttonManager.EnableButton(buttonManager.bakeryButton);
-
-        if (tutorialManager.isRunningT2 && tutorialManager.currentStep != 9)
-            buttonManager.DisableButton(buttonManager.returnBakeryButton);
-        else if (tutorialManager.isRunningT2 && tutorialManager.currentStep == 9)
-            buttonManager.EnableButton(buttonManager.returnBakeryButton);
-
+        
         if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 15)
             buttonManager.EnableButton(buttonManager.papeleraButton);
         else if ((tazaIsInCafetera || vasoIsInCafetera) && !tutorialManager.isRunningT1)
             buttonManager.EnableButton(buttonManager.papeleraButton);
 
-        if (tazaInHand || vasoInHand || TengoOtroObjetoEnLaMano())
+        if (!tutorialManager.isRunningT2)
         {
-            buttonManager.DisableButton(buttonManager.submitOrderButton);
-            buttonManager.DisableButton(buttonManager.bakeryButton);
-            buttonManager.DisableButton(buttonManager.recipesBookButton);
-            buttonManager.DisableButton(buttonManager.orderNoteButton);
-            buttonManager.DisableButton(buttonManager.papeleraButton);
-        }
-        else if (cupServed || vasoIsInTable)
-        {
-            buttonManager.EnableButton(buttonManager.submitOrderButton);
-        }
-        else
-        {
-            buttonManager.EnableButton(buttonManager.bakeryButton);
-            buttonManager.EnableButton(buttonManager.recipesBookButton);
-            buttonManager.EnableButton(buttonManager.orderNoteButton);
+            if (tazaInHand || vasoInHand || TengoOtroObjetoEnLaMano())
+            {
+                buttonManager.DisableButton(buttonManager.submitOrderButton);
+                buttonManager.DisableButton(buttonManager.bakeryButton);
+                buttonManager.DisableButton(buttonManager.recipesBookButton);
+                buttonManager.DisableButton(buttonManager.orderNoteButton);
+                buttonManager.DisableButton(buttonManager.papeleraButton);
+            }
+            else if (cupServed || vasoIsInTable)
+            {
+                buttonManager.EnableButton(buttonManager.submitOrderButton);
+            }
+            else
+            {
+                buttonManager.EnableButton(buttonManager.bakeryButton);
+                buttonManager.EnableButton(buttonManager.recipesBookButton);
+                buttonManager.EnableButton(buttonManager.orderNoteButton);
+            }
         }
     }
     
