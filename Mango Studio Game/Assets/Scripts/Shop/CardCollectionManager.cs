@@ -37,7 +37,7 @@ public class CardCollectionManager : MonoBehaviour
             bookAnimator.SetTrigger("OpenBook");
 
         // Espera la duración de la animación (ajusta según tu clip)
-        yield return new WaitForSecondsRealtime(1.55f);
+        yield return new WaitForSecondsRealtime(1.57f);
 
         // Carga datos del jugador y muestra la primera página
         unlockedCards = PlayerDataManager.instance?.GetUnlockedCards() ?? new HashSet<string>();
