@@ -649,7 +649,7 @@ public class TutorialManager : MonoBehaviour
 
     public void EndTutorialT3()
     {
-        isRunningT2 = false;
+        isRunningT3 = false;
         tutorialPanel.gameObject.SetActive(false);
         Debug.Log("Tutorial 3 completado");
     }

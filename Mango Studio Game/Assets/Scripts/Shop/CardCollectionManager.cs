@@ -10,7 +10,9 @@ public class CardCollectionManager : MonoBehaviour
     [Header("Referencias")]
     public List<GameObject> pages;
     public Animator bookAnimator;
+    public Animator clipsAnimator;
     public GameObject bookPagesContainer;
+    public GameObject clipsContainer;
 
     private int currentPage = 0;
     private HashSet<string> unlockedCards;
@@ -20,32 +22,32 @@ public class CardCollectionManager : MonoBehaviour
     {
         if (bookAnimator != null)
             bookAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
+
+        clipsAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
     }
 
     void OnEnable()
     {
-        //UpdateCardsOnPage();
         StartCoroutine(OpenBookAndShowFirstPage());
     }
     private IEnumerator OpenBookAndShowFirstPage()
     {
-        // Oculta las páginas mientras el libro se abre
+        // Oculta las paginas mientras esta la animacion
         bookPagesContainer.SetActive(false);
+        CanvasGroup clipsCG = clipsAnimator.GetComponent<CanvasGroup>();
+        if (clipsCG != null) clipsCG.alpha = 0;
 
-        // Forzar animación manualmente
         if (bookAnimator != null)
             bookAnimator.SetTrigger("OpenBook");
 
-        // Espera la duración de la animación (ajusta según tu clip)
         yield return new WaitForSecondsRealtime(1.57f);
 
-        // Carga datos del jugador y muestra la primera página
+        // Carga las cartas desbloqueadas y las muestra
         unlockedCards = PlayerDataManager.instance?.GetUnlockedCards() ?? new HashSet<string>();
         ShowPage(0);
-
-        // Muestra las páginas ahora que el libro está abierto
         bookPagesContainer.SetActive(true);
-    }    
+        if (clipsCG != null) clipsCG.alpha = 1;
+    }
 
     public void ShowPage(int pageIndex)
     {
@@ -78,29 +80,55 @@ public class CardCollectionManager : MonoBehaviour
     {
         isTurningPage = true;
 
-        // Oculta temporalmente las páginas
+        // Oculta las paginas
         bookPagesContainer.SetActive(false);
+        CanvasGroup clipsCG = clipsAnimator.GetComponent<CanvasGroup>();
+        if (clipsCG != null) clipsCG.alpha = 0;
 
-        // Reproduce la animación
+        // Animacion
         if (bookAnimator != null)
             bookAnimator.SetTrigger(trigger);
-
-        // Espera la duración de la animación (ajusta según el clip)
         yield return new WaitForSecondsRealtime(0.7f);
 
-        // Muestra la nueva página
+        // Muestra la nueva pagina
         ShowPage(newPageIndex);
-
-        // Vuelve a activar las páginas
         bookPagesContainer.SetActive(true);
+        if (clipsCG != null) clipsCG.alpha = 1;
 
         isTurningPage = false;
     }
-
-
-    public void OnPageTurnFinished()
+    public void GoToTazasPage()
     {
-        ShowPage(currentPage + 1); 
+        if (isTurningPage) return;
+        StartCoroutine(PlayCategoryAnimation("MoveTazas", 3)); // Pagina envases
+    }
+
+    public void GoToGatosPage()
+    {
+        if (isTurningPage) return;
+        StartCoroutine(PlayCategoryAnimation("MoveGatos", 0)); // 1 pagina gatos
+    }
+
+    private IEnumerator PlayCategoryAnimation(string trigger, int targetPage)
+    {
+        isTurningPage = true;
+
+        // Oculta las paginas y el bookanimator mientras se reproduce la animacion
+        CanvasGroup bookCG = bookAnimator.GetComponent<CanvasGroup>();
+        if (bookCG != null) bookCG.alpha = 0;
+        bookPagesContainer.SetActive(true);
+
+        // Animacion
+        if (clipsAnimator != null)
+            clipsAnimator.SetTrigger(trigger);
+        yield return new WaitForSecondsRealtime(1f);
+
+        // Muestra la pagina correspondiente
+        ShowPage(targetPage);
+        bookPagesContainer.SetActive(true);
+        if (bookCG != null) bookCG.alpha = 1;
+
+        isTurningPage = false;
     }
 
     private void UpdateCardsOnPage()
@@ -115,7 +143,7 @@ public class CardCollectionManager : MonoBehaviour
 
                 if (unlocked)
                 {
-                    // Cargar sprite de carta real
+                    // Cargar sprite carta 
                     Sprite unlockedSprite = Resources.Load<Sprite>($"cards/{card.name}");
                     if (unlockedSprite != null)
                         card.sprite = unlockedSprite;
@@ -124,7 +152,7 @@ public class CardCollectionManager : MonoBehaviour
                 }
                 else
                 {
-                    // Mostrar gris o silueta vacía
+                    // Mostrar sprite vacio si no esta desbloqueada
                     card.sprite = null;
                     card.color = new Color(1, 1, 1, 0);
                 }

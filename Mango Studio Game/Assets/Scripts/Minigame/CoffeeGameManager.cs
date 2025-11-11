@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using TMPro;
 
 [System.Serializable]
@@ -39,7 +39,7 @@ public class CoffeeGameManager : MonoBehaviour
         // Se suma la puntuacion obtenida a la total y se suma 1 al numero de clientes atendidos
         totalScore += result.score;
         customersServed++;
-        // Añade el dinero y la puntuacion para calcular la satisfaccion media
+        // AÃ±ade el dinero y la puntuacion para calcular la satisfaccion media
         GameManager.Instance.AnadirMonedas(result.moneyEarned);
         GameManager.Instance.AddServedCustomers(customersServed);
         GameManager.Instance.AddSatisfactionPoint(result.score);
@@ -50,7 +50,7 @@ public class CoffeeGameManager : MonoBehaviour
         if (tip > 0) 
         {
             GameManager.Instance.AnadirMonedas(tip);
-            //earnedTipTxt.text = $"¡El cliente ha dejado una propina de {tip}$!";
+            //earnedTipTxt.text = $"Â¡El cliente ha dejado una propina de {tip}$!";
             PopUpMechanicsMsg.Instance.ShowMessage($"Propina recibida: {tip}$", new Vector3(300, -87, 0), 5f);
         }
         else 
@@ -69,10 +69,10 @@ public class CoffeeGameManager : MonoBehaviour
         );
 
         orderFeedbackTxt.text = feedback;
-        //earnedMoneyTxt.text = $"¡Has ganado {result.moneyEarned}$!";
+        //earnedMoneyTxt.text = $"Â¡Has ganado {result.moneyEarned}$!";
         PopUpMechanicsMsg.Instance.ShowMessage($"+{result.moneyEarned}$", new Vector3(-427,-50,0), 6f);
         servedCustomersTxt.text = $"Clientes servidos en la jornada de hoy: {customersServed}";
-        scoreTxt.text = $"Puntuación total: {result.score}/100"; 
+        scoreTxt.text = $"PuntuaciÃ³n total: {result.score}/100"; 
     }
 
     // Funcion para calcular la propina
@@ -86,17 +86,17 @@ public class CoffeeGameManager : MonoBehaviour
     private string GenerateFeedbackText(int score, bool isOrderWithFood, bool playerForgotFood, bool wrongFoodType, bool badCookStateRaw, bool badCookStateBurned)
     {
         string feedback = "";
-        if (score <= 40) feedback = "Este café no es lo que había pedido...";
-        else if (score <= 80) feedback = "El café no está mal.";
-        else feedback = "¡Me encanta! ¡Es justo el café que había pedido!";
+        if (score <= 40) feedback = "Este cafÃ© no es lo que habÃ­a pedido...";
+        else if (score <= 80) feedback = "El cafÃ© no estÃ¡ mal.";
+        else feedback = "Â¡Me encanta! Â¡Es justo el cafÃ© que habÃ­a pedido!";
 
         if (isOrderWithFood)
         {
             if (playerForgotFood) feedback += " Te has olvidado de preparar la comida...";
-            else if (wrongFoodType) feedback += " Esta comida no es la que había pedido... ¿Te has equivocado de plato?";
-            else if (badCookStateRaw) feedback += " Esta comida está cruda... ¡Así no se puede comer!";
-            else if (badCookStateBurned) feedback += " La comida está quemada... ¡Así no se puede comer!";
-            else feedback += " La comida está bien preparada.";
+            else if (wrongFoodType) feedback += " Esta comida no es la que habÃ­a pedido... Â¿Te has equivocado de plato?";
+            else if (badCookStateRaw) feedback += " Esta comida estÃ¡ cruda... Â¡AsÃ­ no se puede comer!";
+            else if (badCookStateBurned) feedback += " La comida estÃ¡ quemada... Â¡AsÃ­ no se puede comer!";
+            else feedback += " La comida estÃ¡ bien preparada.";
         }
         else
         {

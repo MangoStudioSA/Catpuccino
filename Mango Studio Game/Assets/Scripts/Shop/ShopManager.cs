@@ -1,4 +1,4 @@
-using TMPro;
+ï»¿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -111,17 +111,17 @@ public class ShopManager : MonoBehaviour
     #region Funciones botones
     public void OnBuyPackCoinsClicked()
     {
-        message.Show("Aún no puedes realizar esta acción. Requiere dinero real."); // Mensaje cuando el jugador intenta comprar monedas premium
+        message.Show("AÃºn no puedes realizar esta acciÃ³n. Requiere dinero real."); // Mensaje cuando el jugador intenta comprar monedas premium
     }
 
     public void OnBuyBasicPackClicked()
     {
-        messageBuyBP.Show("Si compras este sobre gastarás 70 monedas de café. ¿Deseas continuar y abrirlo?"); // Mensaje cuando el jugador intenta comprar un sobre básico
+        messageBuyBP.Show("Si compras este sobre gastarÃ¡s 70 monedas de cafÃ©. Â¿Deseas continuar y abrirlo?"); // Mensaje cuando el jugador intenta comprar un sobre bÃ¡sico
     }
 
     public void OnBuyPremiumPackClicked()
     {
-        messageBuyPP.Show("Si compras este sobre gastarás 120 croquetas doradas o 220 monedas de café. ¿Deseas continuar y abrirlo?"); // Mensaje cuando el jugador intenta comprar un sobre premium
+        messageBuyPP.Show("Si compras este sobre gastarÃ¡s 120 croquetas doradas o 220 monedas de cafÃ©. Â¿Deseas continuar y abrirlo?"); // Mensaje cuando el jugador intenta comprar un sobre premium
     }
 
     public void OnFinalBuyBasicPackClicked()
@@ -138,12 +138,12 @@ public class ShopManager : MonoBehaviour
 
     public void NotEnoughBasicMoney()
     {
-        messageNotEnoughBMoney.Show("No tienes suficientes monedas de café para comprar este sobre."); // Mensaje cuando el jugador intenta comprar un sobre básico y no tiene suficiente dinero
+        messageNotEnoughBMoney.Show("No tienes suficientes monedas de cafÃ© para comprar este sobre."); // Mensaje cuando el jugador intenta comprar un sobre bÃ¡sico y no tiene suficiente dinero
     }
 
     public void NotEnoughPremiumMoney()
     {
-        messageNotEnoughPMoney.Show("No tienes suficientes monedas de café/croquetas doradas para comprar este sobre"); // Mensaje cuando el jugador intenta comprar un sobre premium y no tiene suficiente dinero
+        messageNotEnoughPMoney.Show("No tienes suficientes monedas de cafÃ©/croquetas doradas para comprar este sobre"); // Mensaje cuando el jugador intenta comprar un sobre premium y no tiene suficiente dinero
     }
 
     public void ReturnNotEnoughBasicMoney()
@@ -162,7 +162,7 @@ public class ShopManager : MonoBehaviour
     {
         if (PlayerDataManager.instance.SpendBasicCoins(basicPackCost))
         {
-            Debug.Log("Sobre básico abierto");
+            Debug.Log("Sobre bÃ¡sico abierto");
             UpdateUI();
             cardPackManager.PreparePack("basic");
         }

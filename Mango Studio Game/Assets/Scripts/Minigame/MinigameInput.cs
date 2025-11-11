@@ -1,4 +1,4 @@
-using System;
+Ôªøusing System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Jobs;
@@ -16,7 +16,7 @@ public class MinigameInput : MonoBehaviour
     public CursorManager cursorManager;
     public GameProgressManager progressManager;
 
-    [Header("Mec·nica cantidad cafÈ")]
+    [Header("Mec√°nica cantidad caf√©")]
     public UnityEngine.UI.Slider coffeeSlider; //la barrita que se mueve
     public Image coffeeSliderFillImage;
     public float slideSpeed = 0.8f;
@@ -26,7 +26,7 @@ public class MinigameInput : MonoBehaviour
     public bool coffeeDone = false;
     public Color coffeeFillColor;
 
-    [Header("Mec·nica echar cafÈ")]
+    [Header("Mec√°nica echar caf√©")]
     public RectTransform needle;
     public float rotationSpeed = 150f;
     public float maxAngle = 180f;
@@ -36,7 +36,7 @@ public class MinigameInput : MonoBehaviour
     public bool coffeeServed = false;
     private float normalizedPrecision = 0f;
 
-    [Header("Mec·nica moler cafÈ")]
+    [Header("Mec√°nica moler caf√©")]
     [SerializeField] private GameObject molerPanel;
     [SerializeField] private GameObject palancaDown;
     [SerializeField] private Image molerFillImage;
@@ -45,7 +45,7 @@ public class MinigameInput : MonoBehaviour
     [SerializeField] private float currentMolido = 0f;
     [SerializeField] private bool isMoliendo = false;
 
-    [Header("Mec·nica espumador")]
+    [Header("Mec√°nica espumador")]
     [SerializeField] private GameObject heatPanel;
     [SerializeField] private Image curvedFillImage;
     [SerializeField] private float fillSpeed = 0.5f;
@@ -54,7 +54,7 @@ public class MinigameInput : MonoBehaviour
     [SerializeField] public bool heatedMilk = false;
 
 
-    [Header("Variables cafÈ")]
+    [Header("Variables caf√©")]
     int countSugar = 0; 
     public int countIce = 0;
     int countCover = 0;
@@ -89,7 +89,7 @@ public class MinigameInput : MonoBehaviour
     public Transform puntoTazaPlato;
     public Transform puntoFiltroCafetera;
 
-    [Header("Sprites mec·nicas")]
+    [Header("Sprites mec√°nicas")]
     public Sprite creamWithSpoon;
     public Sprite creamWithoutSpoon;
     public Sprite filtroImg;
@@ -113,7 +113,7 @@ public class MinigameInput : MonoBehaviour
     public Sprite tazaSinCafe;
     public Sprite tazaSinCafeP;
 
-    [Header("Sprites mec·nicas tazas")]
+    [Header("Sprites mec√°nicas tazas")]
     public Sprite tazaNWater;
     public Sprite tazaNMilk;
     public Sprite tazaNWhiskey;
@@ -123,7 +123,7 @@ public class MinigameInput : MonoBehaviour
     public Sprite tazaNWhiskeyP;
     public Sprite tazaNChocolateP;
 
-    [Header("Sprites cafÈs tazas")]
+    [Header("Sprites caf√©s tazas")]
     public Sprite tazaNEspresso;
     public Sprite tazaNAmericanoLungo;
     public Sprite tazaNMocaIrishLatteCapucino;
@@ -131,12 +131,12 @@ public class MinigameInput : MonoBehaviour
     public Sprite tazaNVienes;
     public Sprite tazaNFrappe;
 
-    [Header("Sprites cafÈs tazas + dibujo")]
+    [Header("Sprites caf√©s tazas + dibujo")]
     public Sprite tazaNMocaIrishLatteCapucinoD;
     public Sprite tazaNMachiatoBombonD;
     public Sprite tazaNVienesD;
 
-    [Header("Sprites cafÈs tazas + plato")]
+    [Header("Sprites caf√©s tazas + plato")]
     public Sprite tazaNEspressoP;
     public Sprite tazaNAmericanoLungoP;
     public Sprite tazaNMocaIrishLatteCapucinoP;
@@ -144,12 +144,12 @@ public class MinigameInput : MonoBehaviour
     public Sprite tazaNVienesP;
     public Sprite tazaNFrappeP;
 
-    [Header("Sprites cafÈs tazas + dibujo + plato")]
+    [Header("Sprites caf√©s tazas + dibujo + plato")]
     public Sprite tazaNMocaIrishLatteCapucinoDP;
     public Sprite tazaNMachiatoBombonDP;
     public Sprite tazaNVienesDP;
 
-    [Header("Sprites cafÈs vasos")]
+    [Header("Sprites caf√©s vasos")]
     public Sprite vasoNEspresso;
     public Sprite vasoNAmericanoLungo;
     public Sprite vasoNMocaIrishLatteCapucino;
@@ -157,7 +157,7 @@ public class MinigameInput : MonoBehaviour
     public Sprite vasoNVienes;
     public Sprite vasoNFrappe;
 
-    [Header("Sprites cafÈs vasos + dibujo")]
+    [Header("Sprites caf√©s vasos + dibujo")]
     public Sprite vasoNMocaIrishLatteCapucinoD;
     public Sprite vasoNMachiatoBombonD;
     public Sprite vasoNVienesD;
@@ -1418,7 +1418,7 @@ public class MinigameInput : MonoBehaviour
                 countSugar += 1; //Se incrementa el contador de hielo
                 order.currentOrder.sugarPrecision = countSugar; // Se guarda el resultado obtenido en la precision del jugador
                 Debug.Log($"[Cliente {order.currentOrder.orderId}] Cantidad de azucar: " + countSugar);
-                PopUpMechanicsMsg.Instance.ShowMessage($"+{countSugar} Az˙car");
+                PopUpMechanicsMsg.Instance.ShowMessage($"+{countSugar} Az√∫car");
             }
         }
     }

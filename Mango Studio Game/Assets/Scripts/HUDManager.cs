@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using TMPro;
 using System.Collections;
 
@@ -35,7 +35,7 @@ public class HUDManager : MonoBehaviour
 
     private IEnumerator Start()
     {
-        // Espera un frame para asegurar que PlayerDataManager y los textos estén inicializados
+        // Espera un frame para asegurar que PlayerDataManager y los textos estÃ©n inicializados
         yield return null;
 
         if (PlayerDataManager.instance != null)
@@ -85,8 +85,8 @@ public class HUDManager : MonoBehaviour
     // Actualizar satisfaccion clientes en la UI
     public void UpdateSatisfaccion(float cantidad)
     {
-        // "F0" formatea el número para que no tenga decimales
-        textoSatisfaccion.text = $"Satisfacción: {cantidad:F0}%";
+        // "F0" formatea el nÃºmero para que no tenga decimales
+        textoSatisfaccion.text = $"SatisfacciÃ³n: {cantidad:F0}%";
     }
     // Actualizar monedas basicas en la UI
     public void UpdateBasicCoins(int cantidad)
@@ -108,12 +108,12 @@ public class HUDManager : MonoBehaviour
         CoffeeType[] unlockedCoffees = coffeeUnlockManager.GetUnlockedCoffees(day);
         FoodCategory[] unlockedFood = foodUnlockerManager.GetUnlockedFood(day);
 
-        string message = "¡Has desbloqueado nuevos cafés y/o postres! \n";
+        string message = "Â¡Has desbloqueado nuevos cafÃ©s y/o postres! \n";
 
         if (unlockedCoffees.Length > 0)
         {
             string unlockedCoffeesList = string.Join(", ", unlockedCoffees); // Se separa cada cafe por ","
-            message += $"Cafés de tipo {unlockedCoffeesList}. \n";
+            message += $"CafÃ©s de tipo {unlockedCoffeesList}. \n";
         }
         else
         {
@@ -204,7 +204,7 @@ public class HUDManager : MonoBehaviour
         if (availableCoffees.Length > 0)
         {
             string coffeesList = string.Join(", ", availableCoffees); // Se separa cada cafe por ","
-            message += $"Cafés: {coffeesList}. \n";
+            message += $"CafÃ©s: {coffeesList}. \n";
         }
         else
         {
