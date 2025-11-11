@@ -6,13 +6,18 @@ using UnityEngine;
 public class OrderNoteUI : MonoBehaviour
 {
     [SerializeField] private RectTransform notePanelOrder;
+    [SerializeField] private RectTransform notePanelOrderB;
     [SerializeField] private TextMeshProUGUI noteTxt;
+    [SerializeField] private TextMeshProUGUI noteTxtB;
     [SerializeField] private float slideDuration = 0.5f;
     
     public CustomerOrder npc;
 
-    private Vector2 hiddenPos;
-    private Vector2 visiblePos;
+    private Vector2 visiblePosA, hiddenPosA;
+    private Vector2 visiblePosB, hiddenPosB;
+
+    private Coroutine slideCoroutineA;
+    private Coroutine slideCoroutineB;
 
     private bool isVisible = false;
     private Order currentOrder;
@@ -20,11 +25,19 @@ public class OrderNoteUI : MonoBehaviour
 
     private void Awake()
     {
-        visiblePos = notePanelOrder.anchoredPosition;
-
-        hiddenPos = new Vector2(visiblePos.x, visiblePos.y + notePanelOrder.rect.height);
-        notePanelOrder.anchoredPosition = hiddenPos;
+        visiblePosA = notePanelOrder.anchoredPosition;
+        hiddenPosA = new Vector2(visiblePosA.x, visiblePosA.y + notePanelOrder.rect.height);
+        notePanelOrder.anchoredPosition = hiddenPosA;
         notePanelOrder.gameObject.SetActive(false);
+
+        if (notePanelOrderB != null)
+        {
+            visiblePosB = notePanelOrderB.anchoredPosition;
+            hiddenPosB = new Vector2(visiblePosB.x, visiblePosB.y + notePanelOrderB.rect.height);
+            notePanelOrderB.anchoredPosition = hiddenPosB;
+            notePanelOrderB.gameObject.SetActive(false);
+        }
+
         isVisible = false;
     }
     // Accede al pedido actual
@@ -42,8 +55,15 @@ public class OrderNoteUI : MonoBehaviour
         notePanelOrder.gameObject.SetActive(true);
         UpdateNoteText(currentOrder);
 
-        StopAllCoroutines();
-        StartCoroutine(SlideNote(isVisible));
+        if (slideCoroutineA != null) StopCoroutine(slideCoroutineA);
+        slideCoroutineA = StartCoroutine(SlideNote(isVisible, notePanelOrder, visiblePosA, hiddenPosA));
+
+        if (notePanelOrderB != null)
+        {
+            notePanelOrderB.gameObject.SetActive(true);
+            if (slideCoroutineB != null) StopCoroutine(slideCoroutineB);
+            slideCoroutineB = StartCoroutine(SlideNote(isVisible, notePanelOrderB, visiblePosB, hiddenPosB));
+        }
 
         if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 6)
             FindFirstObjectByType<TutorialManager>().CompleteCurrentStep();        
@@ -51,6 +71,8 @@ public class OrderNoteUI : MonoBehaviour
     public void ResetNote()
     {
         notePanelOrder.gameObject.SetActive(false);
+        if (notePanelOrderB != null)
+            notePanelOrderB.gameObject.SetActive(false);
     }
     // Actualiza el texto segun el pedido actual
     private void UpdateNoteText(Order order)
@@ -58,6 +80,7 @@ public class OrderNoteUI : MonoBehaviour
         if (order == null)
         {
             noteTxt.text = "";
+            if (noteTxtB != null) noteTxtB.text = "";
             return;
         }
 
@@ -78,26 +101,26 @@ public class OrderNoteUI : MonoBehaviour
         }
 
         noteTxt.text = note;
+        if (noteTxtB != null) noteTxtB.text = note;
     }
     // Animacion de deslizar la nota 
-    private IEnumerator SlideNote (bool show)
+    private IEnumerator SlideNote(bool show, RectTransform panel, Vector2 visiblePos, Vector2 hiddenPos)
     {
-        Vector2 start = notePanelOrder.anchoredPosition;
+        Vector2 start = panel.anchoredPosition;
         Vector2 end = show ? visiblePos : hiddenPos;
 
         float elapsed = 0f;
         while (elapsed < slideDuration)
         {
             elapsed += Time.deltaTime;
-            float t = Mathf.Clamp01(elapsed / slideDuration);
-            t = Mathf.SmoothStep(0f, 1f, t);
-            notePanelOrder.anchoredPosition = Vector2.Lerp(start, end, t);
+            float t = Mathf.SmoothStep(0f, 1f, elapsed / slideDuration);
+            panel.anchoredPosition = Vector2.Lerp(start, end, t);
             yield return null;
         }
 
-        notePanelOrder.anchoredPosition = end;
+        panel.anchoredPosition = end;
 
         if (!show)
-            notePanelOrder.gameObject.SetActive(false);
+            panel.gameObject.SetActive(false);
     }
 }

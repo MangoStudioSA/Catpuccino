@@ -15,6 +15,7 @@ public class MinigameInput : MonoBehaviour
     public ButtonUnlockManager buttonManager;
     public CursorManager cursorManager;
     public GameProgressManager progressManager;
+    public FoodMinigameInput foodMinigameInput;
 
     [Header("Mecánica cantidad café")]
     public UnityEngine.UI.Slider coffeeSlider; //la barrita que se mueve
@@ -65,6 +66,7 @@ public class MinigameInput : MonoBehaviour
     int countChocolate = 0;
     int countWhiskey = 0;
     public bool milkServed = false;
+    public bool cMilkServed = false;
     public bool cupServed = false;
 
     public bool filtroInHand = false, cucharaInHand = false, tazaInHand = false, vasoInHand = false, platoTazaInHand = false, tazaMilkInHand = false, iceInHand = false, coverInHand = false, 
@@ -224,7 +226,7 @@ public class MinigameInput : MonoBehaviour
 
         currentSprite = baseCupSprite = null;
         currentSlideTime = currentHeat = currentMolido = currentAngle = 0f;
-        isSliding = isServing = movingRight = coffeeDone = coffeeServed = cupServed = milkServed = heatedMilk = isHeating = isMoliendo = false;
+        isSliding = isServing = movingRight = coffeeDone = coffeeServed = cupServed = milkServed = cMilkServed = heatedMilk = isHeating = isMoliendo = false;
         tazaIsInCafetera = tazaIsInPlato = vasoIsInCafetera = vasoIsInTable = platoTazaIsInTable = tazaMilkIsInEspumador = filtroIsInCafetera = false;
         countSugar = countIce = countCover = countWater = countMilk = countCondensedMilk = countCream = countChocolate = countWhiskey = 0;
 
@@ -346,16 +348,7 @@ public class MinigameInput : MonoBehaviour
     }
     public void CheckButtons()
     {
-        if (progressManager.milkEnabled)
-        {
-            buttonManager.milkButton.gameObject.SetActive(true);
-        }
-        else if (progressManager.heatedMilkEnabled)
-        {
-            buttonManager.cogerTazaLecheButton.image.enabled = true;
-            buttonManager.cogerTazaLecheButton.gameObject.SetActive(true);
-        }
-        else if (progressManager.condensedMilkEnabled)
+        if (progressManager.condensedMilkEnabled)
         {
             Balda.SetActive(true);
         }
@@ -381,7 +374,8 @@ public class MinigameInput : MonoBehaviour
         else if (tutorialManager.isRunningT1)
             buttonManager.DisableButton(buttonManager.submitOrderButton);
 
-        if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 21 || tutorialManager.currentStep == 22 || tutorialManager.currentStep == 23)
+        if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 21 || tutorialManager.currentStep == 22 
+            || tutorialManager.currentStep == 23 || tutorialManager.currentStep == 24)
             buttonManager.DisableButton(buttonManager.gameButton);
         else
             buttonManager.EnableButton(buttonManager.gameButton);
@@ -427,8 +421,15 @@ public class MinigameInput : MonoBehaviour
                 buttonManager.EnableButton(buttonManager.orderNoteButton);
             }
         }
+
+        if (cMilkServed)
+            buttonManager.DisableButton(buttonManager.cogerTazaLecheButton);
+        
+        if (milkServed)
+            buttonManager.DisableButton(buttonManager.calentarButton);
+            buttonManager.DisableButton(buttonManager.calentarButton);
     }
-    
+
     #region Mecanicas cafe
     public void ActualizarBotonCogerEnvase()
     {
@@ -617,7 +618,7 @@ public class MinigameInput : MonoBehaviour
         if (platoTazaIsInTable)
             return;
 
-        if (TengoOtroObjetoEnLaMano())
+        if (TengoOtroObjetoEnLaMano() || tazaMilkInHand)
             return;
 
         if (!platoTazaInHand && !platoTazaIsInTable)
@@ -1067,6 +1068,8 @@ public class MinigameInput : MonoBehaviour
     #region Mecanicas leche
     public void CogerLeche()
     {
+        if (tazaMilkInHand) return;
+
         if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand)
         {
             milkInHand = true;
@@ -1091,7 +1094,9 @@ public class MinigameInput : MonoBehaviour
                 PopUpMechanicsMsg.Instance.ShowMessage($"+{countMilk} Leche");
             }
             milkServed = true;
-            buttonManager.cogerTazaLecheButton.gameObject.SetActive(false);
+            cMilkServed = true;
+            //buttonManager.cogerTazaLecheButton.gameObject.SetActive(false);
+            //buttonManager.DisableButton(buttonManager.cogerTazaLecheButton);
 
             if (tazaIsInCafetera)
             {
@@ -1116,11 +1121,8 @@ public class MinigameInput : MonoBehaviour
             tazaMilkInHand = false;
             tazaMilkIsInEspumador = true;
 
-            buttonManager.DisableButton(buttonManager.waterButton);
-            buttonManager.milkButton.gameObject.SetActive(false);
-            buttonManager.DisableButton(buttonManager.milkButton);
-            buttonManager.DisableButton(buttonManager.cogerTazaLecheButton);
-
+            //buttonManager.milkButton.gameObject.SetActive(false);
+            //buttonManager.DisableButton(buttonManager.cogerTazaLecheButton);
             buttonManager.EnableButton(buttonManager.calentarButton);
 
             Image espumador = Espumador.GetComponent<Image>();
@@ -1190,32 +1192,30 @@ public class MinigameInput : MonoBehaviour
             {
                 if (currentHeat < 0.4f)
                 {
-                    countMilk += 1;
-                    order.currentOrder.milkPrecision = countMilk;
                     order.currentOrder.heatedMilkPrecision = 0;
                     Debug.Log("Leche fria echada");
                 }
                 else if (currentHeat < 0.8f)
                 { 
-                    countMilk += 1;
-                    order.currentOrder.milkPrecision = countMilk;
                     order.currentOrder.heatedMilkPrecision = 1;
                     Debug.Log("Leche caliente echada");
                     heatedMilk = true;
                 }
                 else
                 {
-                    countMilk += 1;
-                    order.currentOrder.milkPrecision = countMilk;
                     order.currentOrder.heatedMilkPrecision = 2;
                     Debug.Log("Leche quemada echada");
                     heatedMilk = true;
                 }
             }
+            countMilk += 1;
+            order.currentOrder.milkPrecision = countMilk;
             milkServed = true;
-            TazaLeche.SetActive(false);
-            tazaMilkInHand = false;
-            cursorManager.UpdateCursorTazaMilk(true);
+            //TazaLeche.SetActive(false);
+            //tazaMilkInHand = false;
+            //cursorManager.UpdateCursorTazaMilk(true);
+            buttonManager.DisableButton(buttonManager.waterButton);
+            buttonManager.DisableButton(buttonManager.milkButton);
 
             if (tazaIsInCafetera)
             {
@@ -1229,7 +1229,9 @@ public class MinigameInput : MonoBehaviour
     #region Mecanica agua
     public void CogerAgua()
     {
-        if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand)
+        if (tazaMilkInHand) return;
+
+        if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand && !tazaMilkInHand)
         {
             waterInHand = true;
             buttonManager.waterButton.image.enabled = false;
@@ -1265,7 +1267,9 @@ public class MinigameInput : MonoBehaviour
     #region Mecanica leche condensada
     public void CogerLecheCondensada()
     {
-        if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand)
+        if (tazaMilkInHand) return;
+
+        if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand && !tazaMilkInHand)
         {
             condensedMilkInHand = true;
             buttonManager.condensedMilkButton.image.enabled = false;
@@ -1300,7 +1304,9 @@ public class MinigameInput : MonoBehaviour
     #region Mecanica crema
     public void CogerCrema()
     {
-        if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand)
+        if (tazaMilkInHand) return;
+
+        if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand && !tazaMilkInHand)
         {
             creamInHand = true;
             buttonManager.creamButton.image.sprite = creamWithoutSpoon;
@@ -1335,7 +1341,9 @@ public class MinigameInput : MonoBehaviour
     #region Mecanica chocolate
     public void CogerChocolate()
     {
-        if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand)
+        if (tazaMilkInHand) return;
+
+        if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand && !tazaMilkInHand)
         {
             chocolateInHand = true;
             buttonManager.chocolateButton.image.enabled = false;
@@ -1370,7 +1378,9 @@ public class MinigameInput : MonoBehaviour
     #region Mecanica whiskey
     public void CogerWhiskey()
     {
-        if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand)
+        if (tazaMilkInHand) return;
+
+        if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand && !tazaMilkInHand)
         {
             whiskeyInHand = true;
             buttonManager.whiskeyButton.image.enabled = false;

@@ -107,8 +107,15 @@ public class CursorManager : MonoBehaviour
         if (!miniGameInput.tazaMilkInHand && !miniGameInput.TengoOtroObjetoEnLaMano())
         {
             miniGameInput.tazaMilkInHand = true;
-            Cursor.SetCursor(tazaLecheCursorTexture, hotSpotTazaLeche, CursorMode.Auto);
             miniGameInput.buttonManager.cogerTazaLecheButton.image.enabled = false;
+            Cursor.SetCursor(tazaLecheCursorTexture, hotSpotTazaLeche, CursorMode.Auto);
+            //miniGameInput.buttonManager.cogerTazaLecheButton.image.enabled = false;
+        }
+        else if (miniGameInput.tazaMilkInHand)
+        {
+            miniGameInput.tazaMilkInHand = false;
+            miniGameInput.buttonManager.cogerTazaLecheButton.image.enabled = true;
+            Cursor.SetCursor(defaultCursorTexture, hotSpotDefault, CursorMode.Auto);
         }
     }
 
@@ -313,12 +320,12 @@ public class CursorManager : MonoBehaviour
     public void TakeMilk()
     {
         if (miniGameInput.milkInHand && !miniGameInput.waterInHand && !miniGameInput.coverInHand && !miniGameInput.cucharaInHand && !miniGameInput.iceInHand 
-            && !miniGameInput.condensedMilkInHand && !miniGameInput.creamInHand && !miniGameInput.chocolateInHand && !miniGameInput.whiskeyInHand)
+            && !miniGameInput.condensedMilkInHand && !miniGameInput.creamInHand && !miniGameInput.chocolateInHand && !miniGameInput.whiskeyInHand && !miniGameInput.tazaMilkInHand)
         {
             Cursor.SetCursor(lecheCursorTexture, hotSpotLeche, CursorMode.Auto);
         }
 
-        if (!miniGameInput.TengoOtroObjetoEnLaMano())
+        if (!miniGameInput.TengoOtroObjetoEnLaMano() && !miniGameInput.tazaMilkInHand)
         {
             Cursor.SetCursor(defaultCursorTexture, hotSpotDefault, CursorMode.Auto);
         }
@@ -327,12 +334,12 @@ public class CursorManager : MonoBehaviour
     public void TakeWater()
     {
         if (miniGameInput.waterInHand && !miniGameInput.coverInHand && !miniGameInput.cucharaInHand && !miniGameInput.iceInHand && !miniGameInput.milkInHand 
-            && !miniGameInput.condensedMilkInHand && !miniGameInput.creamInHand && !miniGameInput.chocolateInHand && !miniGameInput.whiskeyInHand)
+            && !miniGameInput.condensedMilkInHand && !miniGameInput.creamInHand && !miniGameInput.chocolateInHand && !miniGameInput.whiskeyInHand && !miniGameInput.tazaMilkInHand)
         {
             Cursor.SetCursor(aguaCursorTexture, hotSpotAgua, CursorMode.Auto);
         }
 
-        if (!miniGameInput.TengoOtroObjetoEnLaMano())
+        if (!miniGameInput.TengoOtroObjetoEnLaMano() && !miniGameInput.tazaMilkInHand)
         {
             Cursor.SetCursor(defaultCursorTexture, hotSpotDefault, CursorMode.Auto);
         }
@@ -341,12 +348,12 @@ public class CursorManager : MonoBehaviour
     public void TakeCondensedMilk()
     {
         if (miniGameInput.condensedMilkInHand && !miniGameInput.waterInHand && !miniGameInput.coverInHand && !miniGameInput.cucharaInHand && !miniGameInput.iceInHand 
-            && !miniGameInput.milkInHand && !miniGameInput.creamInHand && !miniGameInput.chocolateInHand && !miniGameInput.whiskeyInHand)
+            && !miniGameInput.milkInHand && !miniGameInput.creamInHand && !miniGameInput.chocolateInHand && !miniGameInput.whiskeyInHand && !miniGameInput.tazaMilkInHand)
         {
             Cursor.SetCursor(lecheCondensadaCursorTexture, hotSpotLecheCondensada, CursorMode.Auto);
         }
 
-        if (!miniGameInput.TengoOtroObjetoEnLaMano())
+        if (!miniGameInput.TengoOtroObjetoEnLaMano() && !miniGameInput.tazaMilkInHand)
         {
             Cursor.SetCursor(defaultCursorTexture, hotSpotDefault, CursorMode.Auto);
         }
@@ -355,12 +362,12 @@ public class CursorManager : MonoBehaviour
     public void TakeCream()
     {
         if (miniGameInput.creamInHand && !miniGameInput.waterInHand && !miniGameInput.coverInHand && !miniGameInput.cucharaInHand && !miniGameInput.iceInHand
-            && !miniGameInput.milkInHand && !miniGameInput.condensedMilkInHand && !miniGameInput.chocolateInHand && !miniGameInput.whiskeyInHand)
+            && !miniGameInput.milkInHand && !miniGameInput.condensedMilkInHand && !miniGameInput.chocolateInHand && !miniGameInput.whiskeyInHand && !miniGameInput.tazaMilkInHand)
         {
             Cursor.SetCursor(cremaCursorTexture, hotSpotCrema, CursorMode.Auto);
         }
 
-        if (!miniGameInput.TengoOtroObjetoEnLaMano())
+        if (!miniGameInput.TengoOtroObjetoEnLaMano() && !miniGameInput.tazaMilkInHand)
         {
             Cursor.SetCursor(defaultCursorTexture, hotSpotDefault, CursorMode.Auto);
         }
@@ -369,12 +376,12 @@ public class CursorManager : MonoBehaviour
     public void TakeChocolate()
     {
         if (miniGameInput.chocolateInHand && !miniGameInput.waterInHand && !miniGameInput.coverInHand && !miniGameInput.cucharaInHand && !miniGameInput.iceInHand 
-            && !miniGameInput.milkInHand && !miniGameInput.condensedMilkInHand && !miniGameInput.creamInHand && !miniGameInput.whiskeyInHand)
+            && !miniGameInput.milkInHand && !miniGameInput.condensedMilkInHand && !miniGameInput.creamInHand && !miniGameInput.whiskeyInHand && !miniGameInput.tazaMilkInHand)
         {
             Cursor.SetCursor(chocolateCursorTexture, hotSpotChocolate, CursorMode.Auto);
         }
 
-        if (!miniGameInput.TengoOtroObjetoEnLaMano())
+        if (!miniGameInput.TengoOtroObjetoEnLaMano() && !miniGameInput.tazaMilkInHand)
         {
             Cursor.SetCursor(defaultCursorTexture, hotSpotDefault, CursorMode.Auto);
         }
@@ -383,12 +390,12 @@ public class CursorManager : MonoBehaviour
     public void TakeWhiskey()
     {
         if (miniGameInput.whiskeyInHand && !miniGameInput.waterInHand && !miniGameInput.coverInHand && !miniGameInput.cucharaInHand && !miniGameInput.iceInHand 
-            && !miniGameInput.milkInHand && !miniGameInput.condensedMilkInHand && !miniGameInput.creamInHand && !miniGameInput.chocolateInHand)
+            && !miniGameInput.milkInHand && !miniGameInput.condensedMilkInHand && !miniGameInput.creamInHand && !miniGameInput.chocolateInHand && !miniGameInput.tazaMilkInHand)
         {
             Cursor.SetCursor(whiskeyCursorTexture, hotSpotWhiskey, CursorMode.Auto);
         }
 
-        if (!miniGameInput.TengoOtroObjetoEnLaMano())
+        if (!miniGameInput.TengoOtroObjetoEnLaMano() && !miniGameInput.tazaMilkInHand)
         {
             Cursor.SetCursor(defaultCursorTexture, hotSpotDefault, CursorMode.Auto);
         }

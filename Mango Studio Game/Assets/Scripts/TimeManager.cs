@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using TMPro;
 using System.Collections;
 using UnityEngine.UI;
@@ -15,7 +15,7 @@ public class TimeManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI earnedText;
     [SerializeField] private TextMeshProUGUI endButtonText;
 
-    [Header("Configuración del Tiempo")]
+    [Header("ConfiguraciÃ³n del Tiempo")]
     [SerializeField] private float secondsPerGameMinute;
     [SerializeField] private float secondsPerGameMinuteBase;
     [SerializeField] private float timeDecay;
@@ -23,7 +23,7 @@ public class TimeManager : MonoBehaviour
     [SerializeField] private int endHour;
     [SerializeField] private int endMinutes;
 
-    [Header("Configuración de facturas")]
+    [Header("ConfiguraciÃ³n de facturas")]
     [SerializeField] private float requiredIncrement;
 
 
@@ -32,7 +32,7 @@ public class TimeManager : MonoBehaviour
     public event Action<int> onDayStarted;
 
     public bool IsOpen { get; private set; }
-    private bool isDayEnding = false; // Flag para evitar que la corrutina se lance múltiples veces
+    private bool isDayEnding = false; // Flag para evitar que la corrutina se lance mÃºltiples veces
 
     private GameUIManager gameUIManager;
     private CustomerManager customerManager;
@@ -89,7 +89,7 @@ public class TimeManager : MonoBehaviour
         float currentHour = GetCurrentHour();
         float currentMinute = GetCurrentMinute();
 
-        // Si se cumple la hora de cierre Y el proceso de fin de día no ha empezado ya
+        // Si se cumple la hora de cierre Y el proceso de fin de dÃ­a no ha empezado ya
         if (!isDayEnding && (currentHour > endHour || (currentHour == endHour && currentMinute >= endMinutes)) && gameUIManager.orderScreen == false)
         {
             StartCoroutine(EndDaySequence());
@@ -106,7 +106,7 @@ public class TimeManager : MonoBehaviour
             return;
         }
 
-        // Llamamos a la función de reinicio ANTES de hacer cualquier otra cosa
+        // Llamamos a la funciÃ³n de reinicio ANTES de hacer cualquier otra cosa
         if (customerManager != null)
         {
             customerManager.ResetForNewDay();
@@ -173,7 +173,7 @@ public class TimeManager : MonoBehaviour
         }
 
         // Se muestra el dia actual
-        currentDayText.text = $"Día {currentDay:F0}"; 
+        currentDayText.text = $"DÃ­a {currentDay:F0}"; 
         if (HUDManager.Instance != null)
         {
             HUDManager.Instance.ShowAvailableElements();
@@ -183,16 +183,16 @@ public class TimeManager : MonoBehaviour
         // Se resetea la pizarra con la carta del dia
         HUDmanager.ResetNote(); 
             
-        Debug.Log($"--- DÍA {currentDay} --- \nLa cafetería ha abierto.");
+        Debug.Log($"--- DÃA {currentDay} --- \nLa cafeterÃ­a ha abierto.");
         onDayStarted?.Invoke(currentDay);
     }
 
 
     private IEnumerator EndDaySequence()
     {
-        isDayEnding = true; // Marcamos que el fin de día ha comenzado
+        isDayEnding = true; // Marcamos que el fin de dÃ­a ha comenzado
         IsOpen = false;
-        Debug.Log("¡Hora de cerrar! Mostrando resumen del día.");
+        Debug.Log("Â¡Hora de cerrar! Mostrando resumen del dÃ­a.");
 
         if (gameUIManager != null)
         {
@@ -205,14 +205,14 @@ public class TimeManager : MonoBehaviour
             int c = UnityEngine.Random.Range(t / 8, t / 2);
             t -= c;
 
-            requiredText.text = "Los gastos de hoy son:\n - Luz y electricidad: " + l + "$\n - Agua: " + a + "$\n- Café y suministros: " + c + "$\n- Mantenimiento: " + t + "$\nTOTAL: " + requiredMoney + "$";
+            requiredText.text = "Los gastos de hoy son:\n - Luz y electricidad: " + l + "$\n - Agua: " + a + "$\n- CafÃ© y suministros: " + c + "$\n- Mantenimiento: " + t + "$\nTOTAL: " + requiredMoney + "$";
         }
 
         if (GameManager.Instance.monedas >= requiredMoney)
         {
             PlayerDataManager.instance.AddBasicCoins(50);
             earnedText.text = "Hoy has ganado " + GameManager.Instance.monedas + "$, tienes suficiente para pagar las facturas pendientes";
-            endButtonText.text = "Siguiente día";
+            endButtonText.text = "Siguiente dÃ­a";
         }
         else
         {
@@ -220,7 +220,7 @@ public class TimeManager : MonoBehaviour
             endButtonText.text = "Finalizar partida";
         }
 
-        // La corrutina ahora simplemente termina aquí.
+        // La corrutina ahora simplemente termina aquÃ­.
         // Ya no espera ni llama a StartNewDay().
         yield return null;
     }

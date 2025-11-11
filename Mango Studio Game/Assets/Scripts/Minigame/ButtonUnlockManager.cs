@@ -10,6 +10,7 @@ public class ButtonUnlockManager : MonoBehaviour
     [SerializeField] public Button submitOrderButton;
     [SerializeField] public Button recipesBookButton;
     [SerializeField] public Button orderNoteButton;
+    [SerializeField] public Button orderNoteBButton;
 
     [Header("Botones de las mecanicas")]
     [SerializeField] public Button coffeeButton;
