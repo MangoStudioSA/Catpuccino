@@ -80,7 +80,7 @@ public class CoffeeRecipesManager : MonoBehaviour
         if (bookAnimator != null)
             bookAnimator.SetTrigger(trigger);
 
-        yield return new WaitForSecondsRealtime(0.f);
+        yield return new WaitForSecondsRealtime(0.8f);
 
         // Muestra la nueva página
         ShowPage(newPageIndex);
