@@ -1,41 +1,117 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 // Clase utilizada para mostrar las recetas en el recetario 
 public class CoffeeRecipesManager : MonoBehaviour
 {
-    [Header("Cafes + recetas")]
-    public CoffeeType[] coffeeTypes;
-    public GameObject[] coffeeRecipesPanels;
 
-    private Dictionary<CoffeeType, GameObject> coffeeUIDict;
+    [Header("Referencias")]
+    public List<GameObject> pages;            // Páginas del libro
+    public Animator bookAnimator;             // Animador del libro
+    public GameObject bookPagesContainer;     // Contenedor de páginas
 
-    // Se inicializan las recetas para cada cafe
-    private void Awake()
+    [Header("Coffee Unlocker")]
+    public CoffeeUnlockerManager coffeeUnlocker;
+
+    private int currentPage = 0;
+    private bool isTurningPage = false;
+
+    void Awake()
     {
-        coffeeUIDict = new Dictionary<CoffeeType, GameObject>();
-
-        for (int i = 0; i < coffeeTypes.Length; i++)
-        {
-            coffeeUIDict[coffeeTypes[i]] = coffeeRecipesPanels[i];
-            coffeeRecipesPanels[i].SetActive(false);
-        }
+        if (bookAnimator != null)
+            bookAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
     }
 
-    // Se comprueba que cafes estan disponibles para mostrar su receta
-    public void UnlockCoffeRecipePanel(CoffeeType coffeeType)
+    void OnEnable()
     {
-        if (coffeeUIDict.ContainsKey(coffeeType))
-            coffeeUIDict[coffeeType].SetActive(true);
+        StartCoroutine(OpenBookAndShowFirstPage());
     }
 
-    // Se accede a las recetas que se han desbloqueado en el dia actual en CoffeUnlockerManager
-    public void UnlockRecipesForDay(int currentDay, CoffeeUnlockerManager coffeeUnlockerManager)
+    private IEnumerator OpenBookAndShowFirstPage()
     {
-        CoffeeType[] newRecipeUnlocked = coffeeUnlockerManager.GetAvailableCoffees(currentDay);
-        foreach (var coffee in newRecipeUnlocked)
+        // Oculta las páginas mientras está la animación
+        bookPagesContainer.SetActive(false);
+
+        // Animación de abrir libro
+        if (bookAnimator != null)
+            bookAnimator.SetTrigger("OpenBook");
+
+        yield return new WaitForSecondsRealtime(1.4f);
+
+        // Muestra la primera página
+        ShowPage(0);
+        bookPagesContainer.SetActive(true);
+    }
+
+    public void ShowPage(int pageIndex)
+    {
+        currentPage = Mathf.Clamp(pageIndex, 0, pages.Count - 1);
+
+        // Activa solo la página actual
+        for (int i = 0; i < pages.Count; i++)
+            pages[i].SetActive(i == currentPage);
+
+        UpdateRecipesOnPage();
+    }
+
+    public void NextPage()
+    {
+        if (isTurningPage || currentPage >= pages.Count - 1) return;
+        StartCoroutine(PageTurnRoutine(currentPage + 1, "NextPage"));
+    }
+
+    public void PreviousPage()
+    {
+        if (isTurningPage || currentPage <= 0) return;
+        StartCoroutine(PageTurnRoutine(currentPage - 1, "PreviousPage"));
+    }
+
+    private IEnumerator PageTurnRoutine(int newPageIndex, string trigger)
+    {
+        isTurningPage = true;
+
+        // Oculta las páginas
+        bookPagesContainer.SetActive(false);
+
+        // Reproduce animación de pasar página
+        if (bookAnimator != null)
+            bookAnimator.SetTrigger(trigger);
+
+        yield return new WaitForSecondsRealtime(0.f);
+
+        // Muestra la nueva página
+        ShowPage(newPageIndex);
+        bookPagesContainer.SetActive(true);
+
+        isTurningPage = false;
+    }
+
+    private void UpdateRecipesOnPage()
+    {
+        int currentDay = TimeManager.Instance.currentDay;
+        CoffeeType[] unlockedCoffees = coffeeUnlocker.GetAvailableCoffees(currentDay); // Todas las desbloqueadas hasta el día actual
+
+        GameObject current = pages[currentPage];
+
+        RecipeSlot[] slots = current.GetComponentsInChildren<RecipeSlot>();
+
+        foreach (var slotData in slots)
         {
-            UnlockCoffeRecipePanel (coffee);
+            Image img = slotData.GetComponent<Image>();
+            if (img == null) continue;
+
+            bool unlocked = System.Array.Exists(unlockedCoffees, ct => ct == slotData.coffeeType);
+
+            img.sprite = slotData.coffeeSprite;
+
+            if (unlocked)
+                img.color = Color.white;             // visible
+            else
+                img.color = new Color(1, 1, 1, 0.1f);  // bloqueado / atenuado
         }
     }
 }
+

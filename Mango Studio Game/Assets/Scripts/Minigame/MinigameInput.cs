@@ -128,7 +128,8 @@ public class MinigameInput : MonoBehaviour
     [Header("Sprites cafés tazas")]
     public Sprite tazaNEspresso;
     public Sprite tazaNAmericanoLungo;
-    public Sprite tazaNMocaIrishLatteCapucino;
+    public Sprite tazaNMocaIrishLatte;
+    public Sprite tazaNCappuccino;
     public Sprite tazaNMachiatoBombon;
     public Sprite tazaNVienes;
     public Sprite tazaNFrappe;
@@ -141,26 +142,28 @@ public class MinigameInput : MonoBehaviour
     [Header("Sprites cafés tazas + plato")]
     public Sprite tazaNEspressoP;
     public Sprite tazaNAmericanoLungoP;
-    public Sprite tazaNMocaIrishLatteCapucinoP;
+    public Sprite tazaNMocaIrishLatteP;
+    public Sprite tazaNCappuccinoP;
     public Sprite tazaNMachiatoBombonP;
     public Sprite tazaNVienesP;
     public Sprite tazaNFrappeP;
 
     [Header("Sprites cafés tazas + dibujo + plato")]
-    public Sprite tazaNMocaIrishLatteCapucinoDP;
+    public Sprite tazaNMocaIrishLatteDP;
     public Sprite tazaNMachiatoBombonDP;
     public Sprite tazaNVienesDP;
 
     [Header("Sprites cafés vasos")]
     public Sprite vasoNEspresso;
     public Sprite vasoNAmericanoLungo;
-    public Sprite vasoNMocaIrishLatteCapucino;
+    public Sprite vasoNMocaIrishLatte;
+    public Sprite vasoNCappuccino;
     public Sprite vasoNMachiatoBombon;
     public Sprite vasoNVienes;
     public Sprite vasoNFrappe;
 
     [Header("Sprites cafés vasos + dibujo")]
-    public Sprite vasoNMocaIrishLatteCapucinoD;
+    public Sprite vasoNMocaIrishLatteD;
     public Sprite vasoNMachiatoBombonD;
     public Sprite vasoNVienesD;
 
@@ -1023,10 +1026,10 @@ public class MinigameInput : MonoBehaviour
             case CoffeeType.espresso: return isCup ? tazaNEspresso : vasoNEspresso;
             case CoffeeType.lungo: return isCup ? tazaNAmericanoLungo : vasoNAmericanoLungo;
             case CoffeeType.americano: return isCup ? tazaNAmericanoLungo : vasoNAmericanoLungo;
-            case CoffeeType.latte: return isCup ? tazaNMocaIrishLatteCapucino : vasoNMocaIrishLatteCapucino;
-            case CoffeeType.capuccino: return isCup ? tazaNMocaIrishLatteCapucino : vasoNMocaIrishLatteCapucino;
-            case CoffeeType.irish: return isCup ? tazaNMocaIrishLatteCapucino : vasoNMocaIrishLatteCapucino;
-            case CoffeeType.mocca: return isCup ? tazaNMocaIrishLatteCapucino : vasoNMocaIrishLatteCapucino;
+            case CoffeeType.latte: return isCup ? tazaNMocaIrishLatte : vasoNMocaIrishLatte;
+            case CoffeeType.capuccino: return isCup ? tazaNCappuccino : vasoNCappuccino;
+            case CoffeeType.irish: return isCup ? tazaNMocaIrishLatte : vasoNMocaIrishLatte;
+            case CoffeeType.mocca: return isCup ? tazaNMocaIrishLatte : vasoNMocaIrishLatte;
             case CoffeeType.macchiatto: return isCup ? tazaNMachiatoBombon : vasoNMachiatoBombon;
             case CoffeeType.bombon: return isCup ? tazaNMachiatoBombon : vasoNMachiatoBombon;
             case CoffeeType.vienes: return isCup ? tazaNVienes : vasoNVienes;
@@ -1048,8 +1051,10 @@ public class MinigameInput : MonoBehaviour
                     return tazaNEspressoP;
                 if (type == CoffeeType.lungo || type == CoffeeType.americano)
                     return tazaNAmericanoLungoP;
-                if (type == CoffeeType.mocca || type == CoffeeType.irish || type == CoffeeType.latte || type == CoffeeType.capuccino)
-                    return tazaNMocaIrishLatteCapucinoP;
+                if (type == CoffeeType.mocca || type == CoffeeType.irish || type == CoffeeType.latte)
+                    return tazaNMocaIrishLatteP;
+                if (type == CoffeeType.capuccino)
+                    return tazaNCappuccinoP;
                 if (type == CoffeeType.macchiatto || type == CoffeeType.bombon)
                     return tazaNMachiatoBombonP;
                 if (type == CoffeeType.vienes)
@@ -1077,8 +1082,10 @@ public class MinigameInput : MonoBehaviour
             return finalSprite = tazaNAmericanoLungoP;
         if (currentSprite == tazaNMachiatoBombon)
             return finalSprite = tazaNMachiatoBombonP;
-        if (currentSprite == tazaNMocaIrishLatteCapucino)
-            return finalSprite = tazaNMocaIrishLatteCapucinoP;
+        if (currentSprite == tazaNMocaIrishLatte)
+            return finalSprite = tazaNMocaIrishLatteP;
+        if (currentSprite == tazaNCappuccino)
+            return finalSprite = tazaNCappuccinoP;
         if (currentSprite == tazaNVienes)
             return finalSprite = tazaNVienesP;
         if (currentSprite == tazaNFrappe)

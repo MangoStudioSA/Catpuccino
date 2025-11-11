@@ -3,6 +3,10 @@ using System.Collections.Generic;
 
 public class CoffeeUnlockerManager : MonoBehaviour
 {
+    [Header("Cafes + recetas")]
+    public CoffeeType[] coffeeTypes;
+    public GameObject[] coffeeRecipesPanels;
+
     // Se crea un diccionario relacionando el dia del juego con los cafes que se desbloquean 
     private Dictionary<int, CoffeeType[]> coffeeUnlocks = new()
     {
@@ -53,5 +57,4 @@ public class CoffeeUnlockerManager : MonoBehaviour
         int day = Mathf.Clamp(currentDay, 1, coffeeUnlocks.Count);
         return coffeeUnlocks[day];
     }
-
 }

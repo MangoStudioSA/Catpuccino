@@ -30,7 +30,7 @@ public class CoffeeFoodManager : MonoBehaviour
         else Destroy(gameObject);
     }
 
-    // Funcion para activaar/desactivar el sprite del cafe
+    // Funcion para activar/desactivar el sprite del cafe
     public void ToggleCafe(bool preparar, Image contenedor, Sprite sprite)
     {
         if (!preparar)
@@ -117,39 +117,4 @@ public class CoffeeFoodManager : MonoBehaviour
             plato_FoodPanel.gameObject.SetActive(false);
         }
     }
-
-    
-    /*public void ActualizarVisual()
-    {
-        // Café
-        if (cafeContenedorActivo)
-        {
-            cafeContenedorActivo.gameObject.SetActive(true);
-            if (cafeSpriteActual) cafeContenedorActivo.sprite = cafeSpriteActual;
-
-            // Activar el otro panel
-            if (cafeContenedorActivo == taza_CoffeePanel) taza_FoodPanel.gameObject.SetActive(true);
-            if (cafeContenedorActivo == taza_FoodPanel) taza_CoffeePanel.gameObject.SetActive(true);
-            if (cafeContenedorActivo == vaso_CoffeePanel) vaso_FoodPanel.gameObject.SetActive(true);
-            if (cafeContenedorActivo == vaso_FoodPanel) vaso_CoffeePanel.gameObject.SetActive(true);
-        }
-
-        // Comida
-        if (comidaContenedorActivo)
-        {
-            comidaContenedorActivo.gameObject.SetActive(true);
-            if (comidaContenedorActivo == plato_CoffeePanel || comidaContenedorActivo == plato_FoodPanel)
-            {
-                if (comidaSpriteActual) comidaContenedorActivo.sprite = comidaSpriteActual;
-                plato_CoffeePanel.gameObject.SetActive(true);
-                plato_FoodPanel.gameObject.SetActive(true);
-            }
-            else if (comidaContenedorActivo == bolsa_CoffeePanel || comidaContenedorActivo == bolsa_FoodPanel)
-            {
-                bolsa_CoffeePanel.gameObject.SetActive(true);
-                bolsa_FoodPanel.gameObject.SetActive(true);
-            }
-        }
-    }*/
-
 }

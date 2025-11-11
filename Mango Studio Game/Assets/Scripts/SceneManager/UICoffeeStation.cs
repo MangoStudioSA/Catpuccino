@@ -12,6 +12,9 @@ public class UICoffeeStation : MonoBehaviour
     public CoffeeGameManager gameManager;
     public TutorialManager tutorialManager;
     public MinigameInput miniGameInput;
+    public CoffeeRecipesManager recipesManager;
+    public CoffeeUnlockerManager unlockerManager;
+    public TimeManager timeManager;
 
     private void Start()
     {
@@ -29,7 +32,7 @@ public class UICoffeeStation : MonoBehaviour
         preparationPanel.SetActive(false);
         recipesPanel.SetActive(true);
         Time.timeScale = 0.0f;
-        
+
         if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 7)
             tutorialManager.tutorialPanel.gameObject.SetActive(false);
     }
