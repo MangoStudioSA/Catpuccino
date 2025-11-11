@@ -187,6 +187,8 @@ public class MinigameInput : MonoBehaviour
 
         if (isServing && !coffeeServed) MoveNeedle();
     }
+
+    #region Funciones auxiliares
     public void ResetCafe()
     {
         buttonManager.filtroCafeteraButton.gameObject.SetActive(false);
@@ -413,12 +415,13 @@ public class MinigameInput : MonoBehaviour
             else if (cupServed || vasoIsInTable)
             {
                 buttonManager.EnableButton(buttonManager.submitOrderButton);
+                buttonManager.EnableButton(buttonManager.bakeryButton);
             }
             else
             {
-                buttonManager.EnableButton(buttonManager.bakeryButton);
                 buttonManager.EnableButton(buttonManager.recipesBookButton);
                 buttonManager.EnableButton(buttonManager.orderNoteButton);
+                buttonManager.EnableButton(buttonManager.bakeryButton);
             }
         }
 
@@ -429,8 +432,9 @@ public class MinigameInput : MonoBehaviour
             buttonManager.DisableButton(buttonManager.calentarButton);
             buttonManager.DisableButton(buttonManager.calentarButton);
     }
+    #endregion
 
-    #region Mecanicas cafe
+    #region Envases
     public void ActualizarBotonCogerEnvase()
     {
         if (tazaInHand || tazaIsInCafetera || vasoInHand || vasoIsInCafetera)
@@ -465,12 +469,15 @@ public class MinigameInput : MonoBehaviour
             if (coffeeServed)
                 UpdateCupSprite(false);
 
-            buttonManager.EnableButton(buttonManager.waterButton);
-            buttonManager.EnableButton(buttonManager.milkButton);
-            buttonManager.EnableButton(buttonManager.cogerTazaLecheButton);
-            buttonManager.EnableButton(buttonManager.condensedMilkButton);
-            buttonManager.EnableButton(buttonManager.creamButton);
-            buttonManager.EnableButton(buttonManager.chocolateButton);
+            if (!coffeeServed)
+            {
+                buttonManager.EnableButton(buttonManager.waterButton);
+                buttonManager.EnableButton(buttonManager.milkButton);
+                buttonManager.EnableButton(buttonManager.cogerTazaLecheButton);
+                buttonManager.EnableButton(buttonManager.condensedMilkButton);
+                buttonManager.EnableButton(buttonManager.creamButton);
+                buttonManager.EnableButton(buttonManager.chocolateButton);
+            }
 
             cursorManager.UpdateCursorTaza(true);
             Debug.Log($"Taza colocada: {tazaIsInCafetera}");
@@ -515,6 +522,9 @@ public class MinigameInput : MonoBehaviour
             UpdateCupSprite(true);
             PlatoTaza.gameObject.SetActive(false);
 
+            // Se asocia a la bandeja
+            CoffeeFoodManager.Instance.ToggleCafe(true, Taza.GetComponent<Image>(), Taza.GetComponent<Image>().sprite);
+
             cursorManager.UpdateCursorTaza(true);
             DisableMechanics();
             Debug.Log($"Taza colocada: {tazaIsInPlato}");
@@ -530,6 +540,9 @@ public class MinigameInput : MonoBehaviour
             UpdateCupSprite(false);
             PlatoTaza.gameObject.SetActive(true);
             cursorManager.UpdateCursorTaza(false);
+
+            // Se quita de la bandeja
+            CoffeeFoodManager.Instance.ToggleCafe(false, null, null);
             EnableMechanics();
         }
     }
@@ -552,12 +565,15 @@ public class MinigameInput : MonoBehaviour
 
             buttonManager.DisableButton(buttonManager.cogerPlatoTazaButton);
 
-            buttonManager.EnableButton(buttonManager.waterButton);
-            buttonManager.EnableButton(buttonManager.milkButton);
-            buttonManager.EnableButton(buttonManager.cogerTazaLecheButton);
-            buttonManager.EnableButton(buttonManager.condensedMilkButton);
-            buttonManager.EnableButton(buttonManager.creamButton);
-            buttonManager.EnableButton(buttonManager.chocolateButton);
+            if (!coffeeServed)
+            {
+                buttonManager.EnableButton(buttonManager.waterButton);
+                buttonManager.EnableButton(buttonManager.milkButton);
+                buttonManager.EnableButton(buttonManager.cogerTazaLecheButton);
+                buttonManager.EnableButton(buttonManager.condensedMilkButton);
+                buttonManager.EnableButton(buttonManager.creamButton);
+                buttonManager.EnableButton(buttonManager.chocolateButton);
+            }
 
             cursorManager.UpdateCursorVaso(true);
             Debug.Log($"Vaso colocado: {vasoIsInCafetera}");
@@ -596,6 +612,8 @@ public class MinigameInput : MonoBehaviour
             vasoIsInTable = true;
             cupServed = true;
 
+            // Se deja en la bandeja
+            CoffeeFoodManager.Instance.ToggleCafe(true, Vaso.GetComponent<Image>(), Vaso.GetComponent<Image>().sprite);
             cursorManager.UpdateCursorVaso(true);
 
             DisableMechanics();
@@ -608,6 +626,9 @@ public class MinigameInput : MonoBehaviour
             vasoInHand = true;
             vasoIsInTable = false;
             cupServed = false;
+
+            // Se quita de la bandeja
+            CoffeeFoodManager.Instance.ToggleCafe(false, null, null);
 
             EnableMechanics();
             cursorManager.UpdateCursorVaso(false);
@@ -639,6 +660,8 @@ public class MinigameInput : MonoBehaviour
             Debug.Log($"Plato colocado: {platoTazaIsInTable}");
         }
     }
+#endregion
+    #region Mecanicas cafe
     public void StartCoffee()
     {
         if  (!isSliding && !coffeeDone)
