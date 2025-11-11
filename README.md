@@ -77,6 +77,16 @@ Queremos incorporar un tipo de gacha, donde existen 2 tipos de sobres:
 | Moneda premium   | Dinero real                               | Pack 1: 0,99 € (100)  <br> Pack 2: 4,99 € (550)  <br> Pack 3: 9,99 € (1200)  <br> Pack 4: 19,99 € (2500) | Moneda premium para sobres, acelerar progresos y cosméticos | Tienda online        |
 
 
+### 2.3 Misión mensual en colaboración con Starbucks
+
+Como parte de la estrategia de engagement y fidelización de los jugadores, se propone la implementación de una misión trimestral en colaboración con Starbucks. Esta dinámica busca generar expectación entre los participantes y convertir cada edición en un evento esperado dentro de la comunidad. Fomentando a su vez la participación activa dentro del juego, así como la interacción con la marca en redes sociales.
+
+Durante el periodo establecido, los jugadores deberán acumular la mayor cantidad de puntos posibles, manteniendo un alto nivel de satisfacción media en sus partidas. Al finalizar la misión, los participantes deberán compartir su logro en las historias de Intagram u otras redes sociales como Twitter o Tiktok, utilizando el hashtag oficial de la campaña #StarWithCatpuccino.
+
+El tiempo de publicación comienza el 1 del mes correspondiente y acaba el plazo el 30/31 de cada mes, en el 1 del mes siguiente se recopilarán todas las participaciones, se realiza un sorteo y ambas empresas publican sus resultados por todas las redes sociales. Se seleccionará a los cinco jugadores con mejor puntuación, quienes recibirán un descuento exclusivo en Starbucks de un 20% de descuento en todos los cafes de la primera semana después del sorteo, como recompensa por su desempeño y participación.
+
+Esta iniciativa no solo incentiva la competitividad y el compromiso dentro del juego, sino que también refuerza la presencia de Starbucks en el entorno digital, asociando su imagen a valores de comunidad, diversión y experiencia compartida. De este modo, el descuento incentiva a los jugadores a incrementar su consumo de productos, impulsados tanto por el atractivo de la oferta como por su disponibilidad limitada en el tiempo. Esta estrategia fomenta una mayor frecuencia de consumo, ya que los usuarios buscan aprovechar el beneficio antes de que expire, generando así un aumento en las visitas y en la fidelización hacia la marca.
+
 ## 3. Planificación y costes
 
 ### 3.1	El equipo humano
