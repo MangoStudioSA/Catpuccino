@@ -111,7 +111,7 @@ public class ShopManager : MonoBehaviour
     #region Funciones botones
     public void OnBuyPackCoinsClicked()
     {
-        message.Show("Aún no puedes realizar esta acción. Requiere dinero real."); // Mensaje cuando el jugador intenta comprar monedas premium
+        message.Show("Funcionalidad en desarrollo."); // Mensaje cuando el jugador intenta comprar monedas premium
     }
 
     public void OnBuyBasicPackClicked()

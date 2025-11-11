@@ -1190,17 +1190,23 @@ public class MinigameInput : MonoBehaviour
             {
                 if (currentHeat < 0.4f)
                 {
+                    countMilk += 1;
+                    order.currentOrder.milkPrecision = countMilk;
                     order.currentOrder.heatedMilkPrecision = 0;
                     Debug.Log("Leche fria echada");
                 }
                 else if (currentHeat < 0.8f)
-                {
+                { 
+                    countMilk += 1;
+                    order.currentOrder.milkPrecision = countMilk;
                     order.currentOrder.heatedMilkPrecision = 1;
                     Debug.Log("Leche caliente echada");
                     heatedMilk = true;
                 }
                 else
                 {
+                    countMilk += 1;
+                    order.currentOrder.milkPrecision = countMilk;
                     order.currentOrder.heatedMilkPrecision = 2;
                     Debug.Log("Leche quemada echada");
                     heatedMilk = true;
