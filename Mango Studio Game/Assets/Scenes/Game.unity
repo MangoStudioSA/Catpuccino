@@ -7104,6 +7104,7 @@ MonoBehaviour:
   playerOrder: {fileID: 50023190}
   acceptButton: {fileID: 1610250849}
   tutorialManager: {fileID: 841635553}
+  popUpMechanicsMsg: {fileID: 50023201}
 --- !u!114 &342197120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7123,9 +7124,9 @@ MonoBehaviour:
   gameManager: {fileID: 50023191}
   tutorialManager: {fileID: 841635553}
   miniGameInput: {fileID: 50023188}
-  recipesManager: {fileID: 0}
-  unlockerManager: {fileID: 0}
-  timeManager: {fileID: 0}
+  recipesManager: {fileID: 1692941318}
+  unlockerManager: {fileID: 50023193}
+  timeManager: {fileID: 863263442}
 --- !u!114 &342197122
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -18,6 +18,7 @@ public class UIDialogue : MonoBehaviour
 
     GameUIManager gameUI;
     public TutorialManager tutorialManager;
+    public PopUpMechanicsMsg popUpMechanicsMsg;
 
     void Start()
     {
@@ -66,6 +67,7 @@ public class UIDialogue : MonoBehaviour
         manager.customers.Dequeue();
         Destroy(manager.orderingCustomer);
         gameUI.orderScreen = false;
+        popUpMechanicsMsg.DestroyAllPopUps();
 
         if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 20)
             FindFirstObjectByType<TutorialManager>().CompleteCurrentStep();
