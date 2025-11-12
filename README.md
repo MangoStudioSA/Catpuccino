@@ -13,29 +13,29 @@
 ## Version 1.0 - Fase Beta
 ---
 ## 0. Diferencias con la fase anterior
-Implementar el tutorial ingame
-Actualizar pagina web y GDD
-2 personajes ( concept, modedelado 3D, uno de ellos 2D)
-Gato (modelado 3D y animación de caminar)
-Añadir nuevo contenido para RRSS
-Implementar la puntación media pantalla final
-Actualizar las mecanicas basicas
-Añadir nuevas mecanicas (Comanda)
-Diseño y implementación de todas las interfaces 
-Aumentado la complicación ingame
-Implementar y crear la mayor parte de Props del juego, completando todos los props de creación de café
-2 animaciones de interfaz (album y recetario)
-Arreglar bugs y errores esteticos de programación (bandeja sea persisitente si estas en la cafeteria/estación de comida)
-Concept y comienzo con el diseño de estación de comida
-Modelado y concept interior final
-Diseño de todas las cartas ingame
-Modelos 3D (maquina de gacha, cafetera)
-Implementar tienda
-Implementar gacha 
-Diseños 2d (monedas de pago y monedas normales)
-Actualizar el diagrama de estados
-Modificar cursores (taza con cafe,agua, etc)
-Implementar skins de los basos y taza
+- Implementar el tutorial ingame
+- Actualizar pagina web y GDD
+- 2 personajes ( concept, modedelado 3D, uno de ellos 2D)
+- Gato (modelado 3D y animación de caminar)
+- Añadir nuevo contenido para RRSS
+- Implementar la puntación media pantalla final
+- Actualizar las mecanicas basicas
+- Añadir nuevas mecanicas (Comanda)
+- Diseño y implementación de todas las interfaces 
+- Aumentado la complicación ingame
+- Implementar y crear la mayor parte de Props del juego, completando todos los props de creación de café
+- 2 animaciones de interfaz (album y recetario)
+- Arreglar bugs y errores esteticos de programación (bandeja sea persisitente si estas en la cafeteria/estación de comida)
+- Concept y comienzo con el diseño de estación de comida
+- Modelado y concept interior final
+- Diseño de todas las cartas ingame
+- Modelos 3D (maquina de gacha, cafetera)
+- Implementar tienda
+- Implementar gacha 
+- Diseños 2d (monedas de pago y monedas normales)
+- Actualizar el diagrama de estados
+- Modificar cursores (taza con cafe,agua, etc)
+- Implementar skins de los basos y taza
 
 
 
