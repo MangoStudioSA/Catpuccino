@@ -2,6 +2,7 @@ using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UnityEngine;
 
 // Gestion del guardado de monedas de la tienda y de las cartas
@@ -88,7 +89,16 @@ public class PlayerDataManager : MonoBehaviour
     // Funcion para obtener las cartas desbloqueadas
     public HashSet<string> GetUnlockedCards()
     {
-        return new HashSet<string>(data.unlockedCards);
+        if (data?.unlockedCards == null)
+            return new HashSet<string>();
+
+        // Se comprueba que los nombres esten bien
+        return new HashSet<string>(
+            data.unlockedCards
+                .Where(c => !string.IsNullOrWhiteSpace(c)) // Ignora entradas vacias/nulas
+                .Select(c => c.Trim())
+                .Distinct()                                // Evita duplicados
+        );
     }
     // Funcion para guardar los datos
     public void SaveData()

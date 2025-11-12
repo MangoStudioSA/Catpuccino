@@ -149,6 +149,7 @@ public class CardCollectionManager : MonoBehaviour
                         card.sprite = unlockedSprite;
 
                     card.color = Color.white;
+                    Debug.Log($"Card name: {card.name}, unlocked: {unlockedCards.Contains(card.name)}");
                 }
                 else
                 {
@@ -159,5 +160,4 @@ public class CardCollectionManager : MonoBehaviour
             }
         }
     }
-
 }
