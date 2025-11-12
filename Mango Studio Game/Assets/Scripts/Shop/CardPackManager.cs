@@ -140,8 +140,6 @@ public class CardPackManager : MonoBehaviour
         PlayerDataManager.instance.AddCard(cardSprite);
 
         var collection = FindFirstObjectByType<CardCollectionManager>();
-        /*if (collection != null)
-            collection.GenerateCollection();*/
     }
 
     // Se determina la rareza de la carta dependiendo del sobre abierto

@@ -26,6 +26,9 @@ public class PlayerDataManager : MonoBehaviour
             Destroy(gameObject);
         }
         Debug.Log("PlayerDataManager Awake. Coins: " + data.basicCoins + "/" + data.premiumCoins);
+
+        //RemoveUnlockedCard("CartaLatteArt");
+        //AddLockedCard("CartaLatteArt");
     }
 
     // Funcion para añadir monedas premium
@@ -159,5 +162,35 @@ public class PlayerDataManager : MonoBehaviour
             SaveData();
         }
         data.InitializeUnlockedCards();
+    }
+
+    // Borrar una carta
+    public void RemoveUnlockedCard(string cardName)
+    {
+        if (data == null || data.unlockedCards == null) return;
+
+        if (data.unlockedCards.Remove(cardName))
+        {
+            data.SyncListFromSet();
+            SaveData();
+            Debug.Log($"Carta '{cardName}' eliminada correctamente.");
+        }
+        else
+        {
+            Debug.LogWarning($"Carta '{cardName}' no estaba desbloqueada.");
+        }
+    }
+
+    // Añadir una carta
+    public void AddLockedCard(string cardName)
+    {
+        if (data == null || data.unlockedCards == null) return;
+
+        if (data.unlockedCards.Add(cardName))
+        {
+            data.SyncListFromSet();
+            SaveData();
+            Debug.Log($"Carta '{cardName}' añadida correctamente.");
+        }
     }
 }

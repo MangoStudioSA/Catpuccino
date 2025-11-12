@@ -1593,7 +1593,7 @@ MonoBehaviour:
   tazaNMachiatoBombon: {fileID: -1865598279, guid: 201f287702e250b428b779d463de5863, type: 3}
   tazaNVienes: {fileID: 43330235, guid: 201f287702e250b428b779d463de5863, type: 3}
   tazaNFrappe: {fileID: -1494053487, guid: 201f287702e250b428b779d463de5863, type: 3}
-  tazaNMocaIrishLatteCapucinoD: {fileID: 1724386385, guid: 201f287702e250b428b779d463de5863, type: 3}
+  tazaNMocaIrishLatteD: {fileID: 1724386385, guid: 201f287702e250b428b779d463de5863, type: 3}
   tazaNMachiatoBombonD: {fileID: 1704320403, guid: 201f287702e250b428b779d463de5863, type: 3}
   tazaNVienesD: {fileID: -261441985, guid: 201f287702e250b428b779d463de5863, type: 3}
   tazaNEspressoP: {fileID: -1073616951, guid: 20fb181bcd7dd094595b2d7c4a402c65, type: 3}
@@ -1603,7 +1603,7 @@ MonoBehaviour:
   tazaNMachiatoBombonP: {fileID: 823452004, guid: 20fb181bcd7dd094595b2d7c4a402c65, type: 3}
   tazaNVienesP: {fileID: 1809922038, guid: 20fb181bcd7dd094595b2d7c4a402c65, type: 3}
   tazaNFrappeP: {fileID: -1179351341, guid: 20fb181bcd7dd094595b2d7c4a402c65, type: 3}
-  tazaNMocaIrishLatteDP: {fileID: 1724386385, guid: 201f287702e250b428b779d463de5863, type: 3}
+  tazaNMocaIrishLatteDP: {fileID: 160523140, guid: 20fb181bcd7dd094595b2d7c4a402c65, type: 3}
   tazaNMachiatoBombonDP: {fileID: 1635689714, guid: 20fb181bcd7dd094595b2d7c4a402c65, type: 3}
   tazaNVienesDP: {fileID: 1388377415, guid: 20fb181bcd7dd094595b2d7c4a402c65, type: 3}
   vasoNEspresso: {fileID: -1133698446, guid: 2b927bda68822ec4aa3a8f7cd037d8af, type: 3}

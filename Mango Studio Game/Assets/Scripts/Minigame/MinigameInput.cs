@@ -135,7 +135,7 @@ public class MinigameInput : MonoBehaviour
     public Sprite tazaNFrappe;
 
     [Header("Sprites cafés tazas + dibujo")]
-    public Sprite tazaNMocaIrishLatteCapucinoD;
+    public Sprite tazaNMocaIrishLatteD;
     public Sprite tazaNMachiatoBombonD;
     public Sprite tazaNVienesD;
 
@@ -881,106 +881,48 @@ public class MinigameInput : MonoBehaviour
         bool cupEmpty = !coffeeServed && !milkServed && countWater == 0 && countMilk == 0
             && countCream == 0 && countWhiskey == 0 && countChocolate == 0 && countCondensedMilk == 0;
 
+        Sprite newBaseSprite = null;
+
         if (cupEmpty)
         {
-            if (inPlato)
-            {
-                taza.sprite = tazaSinCafeP;
-                currentSprite = tazaSinCafeP;
-                baseCupSprite = tazaSinCafeP;
-                return;
-            }
-            else
-            {
-                taza.sprite = tazaSinCafe;
-                currentSprite = tazaSinCafe;
-                baseCupSprite = tazaSinCafe;
-                return;
-            }
+            newBaseSprite = inPlato ? tazaSinCafeP : tazaSinCafe;
         }
+        // Agua sin cafe
         else if (countWater != 0 && !coffeeServed)
         {
-            if (inPlato)
-            {
-                taza.sprite = tazaNWaterP;
-                currentSprite = tazaNWaterP;
-                baseCupSprite = tazaNWaterP;
-                return;
-            }
-            else
-            {
-                taza.sprite = tazaNWater;
-                currentSprite = tazaNWater;
-                baseCupSprite = tazaNWater;
-                return;
-            }
+            newBaseSprite = inPlato ? tazaNWaterP : tazaNWater;
         }
-        else if (countMilk != 0 || countCondensedMilk != 0 || countCream != 0 && !coffeeServed)
+        // Leche / crema / leche condensada sin cafe
+        else if ((countMilk != 0 || countCondensedMilk != 0 || countCream != 0) && !coffeeServed)
         {
-            if (inPlato)
-            {
-                taza.sprite = tazaNMilkP;
-                currentSprite = tazaNMilkP;
-                baseCupSprite = tazaNMilkP;
-                return;
-            }
-            else
-            {
-                taza.sprite = tazaNMilk;
-                currentSprite = tazaNMilk;
-                baseCupSprite = tazaNMilk;
-                return;
-            }
+            newBaseSprite = inPlato ? tazaNMilkP : tazaNMilk;
         }
+        // Chocolate
         else if (countChocolate != 0 && !coffeeServed)
         {
-            if (inPlato)
-            {
-                taza.sprite = tazaNChocolateP;
-                currentSprite = tazaNChocolateP;
-                baseCupSprite = tazaNChocolateP;
-                return;
-            }
-            else
-            {
-                taza.sprite = tazaNChocolate;
-                currentSprite = tazaNChocolate;
-                baseCupSprite = tazaNChocolate;
-                return;
-            }
+            newBaseSprite = inPlato ? tazaNChocolateP : tazaNChocolate;
         }
+        // Whiskey
         else if (countWhiskey != 0 && !coffeeServed)
         {
-            if (inPlato)
-            {
-                taza.sprite = tazaNWhiskeyP;
-                currentSprite = tazaNWhiskeyP;
-                baseCupSprite = tazaNWhiskeyP;
-                return;
-            }
-            else
-            {
-                taza.sprite = tazaNWhiskey;
-                currentSprite = tazaNWhiskey;
-                baseCupSprite = tazaNWhiskey;
-                return;
-            }
+            newBaseSprite = inPlato ? tazaNWhiskeyP : tazaNWhiskey;
         }
-
-        CoffeeType type = DetermineCoffeeType();
-
-        if (inPlato)
-        {
-            taza.sprite = GetBaseCoffeeSprite(type, true);
-            taza.sprite = CheckFinalCupPlate();
-            currentSprite = taza.sprite;
-        }
+        // Cafe preparado
         else
         {
-            baseCupSprite = GetBaseCoffeeSprite(type, true);
-            taza.sprite = baseCupSprite;
-            currentSprite = baseCupSprite;
+            CoffeeType type = DetermineCoffeeType();
+            bool hasLatteArtCard = PlayerDataManager.instance.HasCard("CartaLatteArt");
+
+            newBaseSprite = GetBaseCoffeeSprite(type, true);
+            if (inPlato)
+                newBaseSprite = CheckFinalCupPlate(newBaseSprite, hasLatteArtCard);
         }
+
+        taza.sprite = newBaseSprite;
+        currentSprite = newBaseSprite;
+
+        if (!inPlato)
+            baseCupSprite = newBaseSprite;
     }
 
     // Vincular la preparacion realizada con el tipo de cafe asociado
@@ -1021,77 +963,55 @@ public class MinigameInput : MonoBehaviour
     // Devolver el sprite segun el cafe y si es taza o vaso
     private Sprite GetBaseCoffeeSprite(CoffeeType type, bool isCup)
     {
+        bool hasLatteArtCard = PlayerDataManager.instance.HasCard("CartaLatteArt");
         switch(type)
         {
             case CoffeeType.espresso: return isCup ? tazaNEspresso : vasoNEspresso;
             case CoffeeType.lungo: return isCup ? tazaNAmericanoLungo : vasoNAmericanoLungo;
             case CoffeeType.americano: return isCup ? tazaNAmericanoLungo : vasoNAmericanoLungo;
-            case CoffeeType.latte: return isCup ? tazaNMocaIrishLatte : vasoNMocaIrishLatte;
+            case CoffeeType.latte: 
+                return isCup ? (hasLatteArtCard ? tazaNMocaIrishLatteD : tazaNMocaIrishLatte)
+                             : (hasLatteArtCard ? vasoNMocaIrishLatteD : vasoNMocaIrishLatte);
             case CoffeeType.capuccino: return isCup ? tazaNCappuccino : vasoNCappuccino;
-            case CoffeeType.irish: return isCup ? tazaNMocaIrishLatte : vasoNMocaIrishLatte;
-            case CoffeeType.mocca: return isCup ? tazaNMocaIrishLatte : vasoNMocaIrishLatte;
-            case CoffeeType.macchiatto: return isCup ? tazaNMachiatoBombon : vasoNMachiatoBombon;
-            case CoffeeType.bombon: return isCup ? tazaNMachiatoBombon : vasoNMachiatoBombon;
-            case CoffeeType.vienes: return isCup ? tazaNVienes : vasoNVienes;
+            case CoffeeType.irish:
+                return isCup ? (hasLatteArtCard ? tazaNMocaIrishLatteD : tazaNMocaIrishLatte)
+                             : (hasLatteArtCard ? vasoNMocaIrishLatteD : vasoNMocaIrishLatte);
+            case CoffeeType.mocca:
+                return isCup ? (hasLatteArtCard ? tazaNMocaIrishLatteD : tazaNMocaIrishLatte)
+                             : (hasLatteArtCard ? vasoNMocaIrishLatteD : vasoNMocaIrishLatte);
+            case CoffeeType.macchiatto:
+                return isCup ? (hasLatteArtCard ? tazaNMachiatoBombonD : tazaNMachiatoBombon)
+                             : (hasLatteArtCard ? vasoNMachiatoBombonD : vasoNMachiatoBombon);
+            case CoffeeType.bombon:
+                return isCup ? (hasLatteArtCard ? tazaNMachiatoBombonD : tazaNMachiatoBombon)
+                             : (hasLatteArtCard ? vasoNMachiatoBombonD : vasoNMachiatoBombon);
+            case CoffeeType.vienes:
+                return isCup ? (hasLatteArtCard ? tazaNVienesD : tazaNVienes)
+                             : (hasLatteArtCard ? vasoNVienesD : vasoNVienes);
             case CoffeeType.frappe: return isCup ? tazaNFrappe : vasoNFrappe;
         }
         return isCup ? tazaSinCafe : vasoSinTapa;
     }
 
-    private Sprite AddSpritesDecorations(CoffeeType type, bool isCup, Sprite baseSprite)
-    {
-        //bool hasDrawing = milkServed || countWhiskey > 1 || countChocolate > 0;
-        bool hasPlate = true;
-
-        if (hasPlate)
-        {
-            if (isCup)
-            {
-                if (type == CoffeeType.espresso)
-                    return tazaNEspressoP;
-                if (type == CoffeeType.lungo || type == CoffeeType.americano)
-                    return tazaNAmericanoLungoP;
-                if (type == CoffeeType.mocca || type == CoffeeType.irish || type == CoffeeType.latte)
-                    return tazaNMocaIrishLatteP;
-                if (type == CoffeeType.capuccino)
-                    return tazaNCappuccinoP;
-                if (type == CoffeeType.macchiatto || type == CoffeeType.bombon)
-                    return tazaNMachiatoBombonP;
-                if (type == CoffeeType.vienes)
-                    return tazaNVienesP;
-                if (type == CoffeeType.frappe)
-                    return tazaNFrappeP;
-            }
-            else
-            {
-                return vasoConTapa;
-            }
-        }
-
-        return baseSprite;
-    }
-
     // Vincular el sprite actual de la taza con su plato
-    private Sprite CheckFinalCupPlate()
+    private Sprite CheckFinalCupPlate(Sprite sprite, bool hasLatteArtCard)
     {
-        Sprite finalSprite;
-
         if (currentSprite == tazaNEspresso)
-            return finalSprite = tazaNEspressoP;
+            return tazaNEspressoP;
         if (currentSprite == tazaNAmericanoLungo)
-            return finalSprite = tazaNAmericanoLungoP;
-        if (currentSprite == tazaNMachiatoBombon)
-            return finalSprite = tazaNMachiatoBombonP;
-        if (currentSprite == tazaNMocaIrishLatte)
-            return finalSprite = tazaNMocaIrishLatteP;
+            return tazaNAmericanoLungoP;
+        if (currentSprite == tazaNMachiatoBombon || currentSprite == tazaNMachiatoBombonD)
+            return hasLatteArtCard ? tazaNMachiatoBombonDP : tazaNMachiatoBombonP;
+        if (currentSprite == tazaNMocaIrishLatte || currentSprite == tazaNMocaIrishLatteD)
+            return hasLatteArtCard ? tazaNMocaIrishLatteDP : tazaNMocaIrishLatteP;
         if (currentSprite == tazaNCappuccino)
-            return finalSprite = tazaNCappuccinoP;
-        if (currentSprite == tazaNVienes)
-            return finalSprite = tazaNVienesP;
+            return tazaNCappuccinoP;
+        if (currentSprite == tazaNVienes || currentSprite == tazaNVienesD)
+            return hasLatteArtCard ? tazaNVienesDP : tazaNVienesP;
         if (currentSprite == tazaNFrappe)
-            return finalSprite = tazaNFrappeP;
+            return tazaNFrappeP;
         
-        return finalSprite = tazaSinCafeP;
+        return tazaSinCafeP;
     }
     #endregion
 
