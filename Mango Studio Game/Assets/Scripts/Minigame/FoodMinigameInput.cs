@@ -139,7 +139,13 @@ public class FoodMinigameInput : MonoBehaviour
         buttonManager.EnableButton(buttonManager.returnBakeryButton);
         buttonManager.DisableButton(buttonManager.hornoButton);
         buttonManager.DisableButton(buttonManager.stopHorneadoButton);
-        
+
+        platoInHand = false;
+        carryBagInHand = false;
+        foodInHand = false;
+
+        currentCookState = CookState.no;
+
         platoIsInEncimera = foodIsInHorno = foodIsInPlato = foodIsInBolsaLlevar = carryBagIsInEncimera = false;
         foodServed = foodBaked = isBaking = false;
         countFoodCover = 0;

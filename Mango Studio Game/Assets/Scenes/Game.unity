@@ -7095,6 +7095,8 @@ MonoBehaviour:
   roomPanel: {fileID: 230416457}
   npcOrder: {fileID: 2111219102}
   playerOrder: {fileID: 50023190}
+  minigameInput: {fileID: 50023188}
+  foodMinigameInput: {fileID: 50023200}
   acceptButton: {fileID: 1610250849}
   tutorialManager: {fileID: 841635553}
   popUpMechanicsMsg: {fileID: 50023201}
@@ -18693,6 +18695,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22e2bd2d2f88f844ea2e9424f8929d0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DEBUG_MODE_ENABLED: 1
+  DEBUG_START_DAY: 6
   currentDayText: {fileID: 1820587161}
   timeText: {fileID: 144064985}
   requiredText: {fileID: 643905293}

@@ -14,6 +14,9 @@ public class UIDialogue : MonoBehaviour
     public CustomerOrder npcOrder;
     public PlayerOrder playerOrder;
 
+    public MinigameInput minigameInput;
+    public FoodMinigameInput foodMinigameInput;
+
     public Button acceptButton;
 
     GameUIManager gameUI;
@@ -40,6 +43,23 @@ public class UIDialogue : MonoBehaviour
         else
         {
             Debug.LogError("Falta la referencia de npcOrder o playerOrder, o el NPC aún no ha generado un pedido.");
+        }
+
+        if (minigameInput != null)
+        {
+            minigameInput.ResetCafe();
+        }
+        else
+        {
+            Debug.LogError("ya sabes que");
+        }
+        if (foodMinigameInput != null)
+        {
+            foodMinigameInput.ResetFoodState();
+        }
+        else
+        {
+            Debug.LogError("ya sabes que, pero de la comida");
         }
 
         //transicion de la ui
