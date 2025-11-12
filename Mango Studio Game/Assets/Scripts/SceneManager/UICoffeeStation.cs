@@ -12,6 +12,7 @@ public class UICoffeeStation : MonoBehaviour
     public CoffeeGameManager gameManager;
     public TutorialManager tutorialManager;
     public MinigameInput miniGameInput;
+    public FoodMinigameInput foodMinigameInput;
     public CoffeeRecipesManager recipesManager;
     public CoffeeUnlockerManager unlockerManager;
     public TimeManager timeManager;
@@ -80,6 +81,7 @@ public class UICoffeeStation : MonoBehaviour
             gameManager.SubmitOrder();
             preparationPanel.SetActive(false);
             deliveryPanel.SetActive(true);
+            //foodMinigameInput.ResetVisualFood();
 
             if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 17)
                 FindFirstObjectByType<TutorialManager>().CompleteCurrentStep();

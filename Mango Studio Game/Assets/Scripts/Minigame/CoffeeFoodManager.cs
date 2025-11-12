@@ -4,7 +4,7 @@ using UnityEngine.UI;
 // Clase encargada de hacer que se muestren las preparaciones en la bandeja del minijuego
 public class CoffeeFoodManager : MonoBehaviour
 {
-    public static CoffeeFoodManager Instance;
+    /*public static CoffeeFoodManager Instance;
 
     [Header("Cafes")]
     public Image taza_CoffeePanel;
@@ -116,5 +116,5 @@ public class CoffeeFoodManager : MonoBehaviour
             plato_CoffeePanel.gameObject.SetActive(false);
             plato_FoodPanel.gameObject.SetActive(false);
         }
-    }
+    }*/
 }

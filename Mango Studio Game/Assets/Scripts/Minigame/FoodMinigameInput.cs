@@ -85,6 +85,50 @@ public class FoodMinigameInput : MonoBehaviour
         }
         CheckButtons(); 
     }
+    /*public void ResetVisualFood()
+    {
+        // Limpiar objetos visibles
+        if (foodInPlatoObj != null)
+        {
+            foodInPlatoObj.SetActive(false);
+            foodInPlatoObj = null;
+        }
+
+        if (foodInHornoObj != null)
+        {
+            foodInHornoObj.SetActive(false);
+            foodInHornoObj = null;
+        }
+
+        if (foodInBolsaLlevarObj != null)
+        {
+            foodInBolsaLlevarObj.SetActive(false);
+            foodInBolsaLlevarObj = null;
+        }
+
+        Plato.SetActive(false);
+        BolsaLlevar.SetActive(false);
+        bakeSlider.gameObject.SetActive(false);
+
+        // Reset estados de jugador/objetos
+        platoInHand = false;
+        carryBagInHand = false;
+        foodInHand = false;
+
+        platoIsInEncimera = false;
+        carryBagIsInEncimera = false;
+        foodIsInPlato = false;
+        foodIsInBolsaLlevar = false;
+        foodIsInHorno = false;
+
+        // Reset categorías en mano
+        foodCategoryInHand = FoodCategory.no;
+        foodTypeInHand = -1;
+
+        ActualizarBotonCogerComida();
+        UpdateStartSprites();
+    }*/
+
 
     // Funcion para resetear variables de la comida
     public void ResetFoodState()
@@ -103,7 +147,7 @@ public class FoodMinigameInput : MonoBehaviour
         foodCategoryInHand = FoodCategory.no;
         foodTypeInHand = -1;
         foodCategoryInPlato = FoodCategory.no;
-        foodTypeInHorno = -1;
+        foodTypeInPlato = -1;
         foodCategoryInCarryBag = FoodCategory.no;
         foodTypeInCarryBag = -1;
         foodCategoryInHorno = FoodCategory.no;
@@ -128,13 +172,14 @@ public class FoodMinigameInput : MonoBehaviour
 
         if (foodInBolsaLlevarObj != null)
         {
+            foodInBolsaLlevarObj.SetActive(false);
             foodInBolsaLlevarObj = null;
         }
     }
     // Funcion para comprobar si se puede coger comida
     public void ActualizarBotonCogerComida()
     {
-        bool canTakeFood = carryBagIsInEncimera || platoIsInEncimera && !foodInHand && !foodIsInPlato && !foodServed && !foodIsInHorno;
+        bool canTakeFood = (carryBagIsInEncimera || platoIsInEncimera) && !foodInHand && !foodIsInPlato && !foodServed && !foodIsInHorno;
 
         Button[] botonesComida =
         {
@@ -278,10 +323,10 @@ public class FoodMinigameInput : MonoBehaviour
             foodObj.transform.position = puntoComida.position;
             foodInPlatoObj = foodObj;
 
-            var sprite = foodObj.GetComponent<Image>()?.sprite;
+            //var sprite = foodObj.GetComponent<Image>()?.sprite;
 
             // Se asocia a la bandeja
-            CoffeeFoodManager.Instance.ToggleComida(true, Plato.GetComponent<Image>(), sprite);
+            //CoffeeFoodManager.Instance.ToggleComida(true, Plato.GetComponent<Image>(), sprite);
 
             //  Se asocia la categoria y el tipo de comida de la mano al plato
             foodCategoryInPlato = foodCategoryInHand;
@@ -324,7 +369,7 @@ public class FoodMinigameInput : MonoBehaviour
             foodTypeInPlato = -1;
 
             // Se quita de la bandeja
-            CoffeeFoodManager.Instance.ToggleComida(false, null, null);
+            //CoffeeFoodManager.Instance.ToggleComida(false, null, null);
 
             cursorManager.UpdateCursorFood(false, foodCategoryInHand, foodTypeInHand);
         }
@@ -355,7 +400,7 @@ public class FoodMinigameInput : MonoBehaviour
             foodInHand = false;
 
             // Se asocia a la bandeja
-            CoffeeFoodManager.Instance.ToggleComida(true, BolsaLlevar.GetComponent<Image>(), BolsaLlevar.GetComponent<Image>().sprite);
+            //CoffeeFoodManager.Instance.ToggleComida(true, BolsaLlevar.GetComponent<Image>(), BolsaLlevar.GetComponent<Image>().sprite);
 
             cursorManager.UpdateCursorFood(true, foodCategoryInHand, foodTypeInHand);
 

@@ -57,6 +57,7 @@ public class ButtonUnlockManager : MonoBehaviour
     [SerializeField] public Button hornoButton;
     [SerializeField] public Button hornearButton;
     [SerializeField] public Button stopHorneadoButton;
+    [SerializeField] public Button papeleraRButton;
 
     private void Start()
     {
