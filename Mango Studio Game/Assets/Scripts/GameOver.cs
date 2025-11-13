@@ -5,6 +5,7 @@ public class GameOver : MonoBehaviour
 {
     SaveDataManager dataManager;
     public TextMeshProUGUI text;
+    public TextMeshProUGUI text2;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -18,11 +19,22 @@ public class GameOver : MonoBehaviour
         }
 
         text.text = averageSatisfaction + " / 100";
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (averageSatisfaction > 75)
+        {
+            text2.text = "SIGUE ASÍ!!";
+        }
+        else if (averageSatisfaction > 50)
+        {
+            text2.text = "NO ESTA MAL :)";
+        }
+        else if (averageSatisfaction > 25)
+        {
+            text2.text = "MEJORABLE...";
+        }
+        else
+        {
+            text2.text = ":((";
+        }
     }
 }
