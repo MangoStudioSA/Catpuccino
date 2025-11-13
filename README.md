@@ -331,7 +331,7 @@ Las referencias principales para el 2D son *Buena Pizza, Gran Pizza* y *Little C
 ![Props tazas](https://github.com/MangoStudioSA/Catpuccino/blob/d73edd6ff94114cca9a8751dac0d0536c4a05147/PhotosGDD/props.png)
 
 ### 6.8 Cartas y sobres de cartas
-
+![Cartas y sobres de cartas](https://github.com/MangoStudioSA/Catpuccino/blob/94eed32a71679b0de7f116218af42cba7f10aa56/PhotosGDD/cartas.png)
 
 
 ## 7. Sonido
