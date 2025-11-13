@@ -18695,8 +18695,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22e2bd2d2f88f844ea2e9424f8929d0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DEBUG_MODE_ENABLED: 1
-  DEBUG_START_DAY: 6
   currentDayText: {fileID: 1820587161}
   timeText: {fileID: 144064985}
   requiredText: {fileID: 643905293}
@@ -42952,7 +42950,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1957982743
 MonoBehaviour:
   m_ObjectHideFlags: 0

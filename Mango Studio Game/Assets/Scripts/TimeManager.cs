@@ -102,6 +102,8 @@ public class TimeManager : MonoBehaviour
     {
         if (GameManager.Instance.monedas <= requiredMoney && currentDay != 0)
         {
+            saveDataManager.rated = GameManager.Instance.customersRated;
+            saveDataManager.score = GameManager.Instance.totalSatisfactionScore;
             sceneUIManager.EndGameMenu();
             return;
         }
