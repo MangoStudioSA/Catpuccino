@@ -131,7 +131,7 @@ A continuación se muestra la estimación general de fases del proyecto:
 - **Fase Beta** → 1 mes y medio → Implementación de assets propios, base del método de monetización, mecánicas finales y corrección de bugs más importantes.
 - **Fase Release** → 2 meses y medio → Versión final del videojuego.
 
-Dentro de la fase actual (la fase alfa), se han desglosado las tareas y asignado a cada una su tiempos estimado, junto a sus respectivos responsables:
+Dentro de la fase actual (la fase beta), se han desglosado las tareas y asignado a cada una su tiempos estimado, junto a sus respectivos responsables:
 
 ![Planificacion 1](https://github.com/MangoStudioSA/Catpuccino/blob/cef01d2def3f46c0ef8bde4d7b0ace0628ab2a8c/PhotosGDD/Planificacion%201.png)
 ![Planificacion 2](https://github.com/MangoStudioSA/Catpuccino/blob/18780670bb9e7ab196550aeb57017209ed34464c/PhotosGDD/Planificacion2.png)
@@ -139,79 +139,126 @@ Dentro de la fase actual (la fase alfa), se han desglosado las tareas y asignado
 
 ## 4. Tutorial, mecánicas elementos de Juego
 
-Los clientes entrarán a la cafetería y se podrán atender haciendo clic sobre el botón con tick verde que aparece sobre su cabeza.
+### 4.1 Tutorial de los minijuegos
+Los clientes entrarán a la cafetería y, cuando lleguen al mostrador aparecerá un botón flotante sobre su cabeza sobre el que clicar.
+Tutorial del minijuego de preparación del café:
 
-Tutorial minijuego inicial básico:
-
-- Se hace clic en la taza y se coloca en la cafetera haciendo clic.
-- Se presiona sobre el botón "*Café*" hasta la cantidad indicada.
-- Se hace clic sobre el filtro y se coloca en la cafetera haciendo clic.
-- Se hace clic sobre el botón "*Echar*".
+- Los requisitos del pedido se pueden comprobar desplegando una nota clicando sobre el botón superior derecho.
+- Se puede comprobar la receta del café actual haciendo clic en el botón superior izquierdo (libro de recetas).
+- Se hace clic en la taza o en el vaso y se coloca en la cafetera haciendo clic.
+    - Si se coloca una taza, habrá que colocar un plato en la bandeja, sino, no se podrá mover la taza a dicha bandeja.
+- Se hace clic sobre el botón de la molinillo y se mantiene presionado hasta la cantidad solicitada.
+- Se hace clic sobre la palanca y se mantiene presionada hasta que el semicirculo que sale por pantalla se complete y la palanca baje visualmente.
+- Se hace clic sobre el filtro y se mueve a la cafetera haciendo clic.
+- Se comprueba si hay que interactuar con algún ingrediente (ya que muchos de ellos se ocultarán al echar el café).
+- Se hace clic sobre el botón izquierdo superior para comenzar con el proceso de echar el café:
+    - Aparecerá una aguja en el centro de la cafetera rotando de izquierda a derecha. 
+    - Objetivo: clicar sobre el botón inferior izquierdo de la cafetera con precisión cuando la aguja se encuentre en el centro.
 
 A continuación, si el cliente ha solicitado azúcar, hielo o un pedido para llevar se tendrá que realizar lo siguiente:
 
-- Se hace clic sobre la azucarera y se clica sobre la taza tantas veces como cucharadas de azúcar se hayan solicitado.
-- Se hace clic sobre la hielera y se clica sobre la taza tantas veces como número de hielos se hayan solicitado.
-- Se hace clic sobre la tapa y se clica sobre la taza.
+- Se hace clic sobre la azucarera y se clica sobre la taza una vez (si el cliente ha solicitado poco azúcar) o dos veces (si el cliente ha solicitado mucho azúcar).
+- Se hace clic sobre la hielera y se clica sobre la taza.
+- Se hace clic sobre la tapa y se clica sobre el vaso.
 
-Por último, se hace clic en el botón "*Entregar pedido*". 
+*Si en algún momento se desea comenzar desde 0, se puede hacer clic sobre la papelera.
 
-Se  mostrará una reacción por parte del cliente en función de la puntuació obtenida del minijuego. Además, si el jugador ha obtenido entre 45 y 50 puntos, obtendrá una propina. Cuando acabe el día a las 20:00 se tendrán que pagar las facturas correspondientes y, si el jugador no tiene suficiente dinero, el juego finalizará. Por el contrario, si el jugador ha ingresado el dinero suficiente, podrá avanzar al siguiente día.
+A partir del día 2 se desbloquea la zona de repostería.
+Tutorial del minijuego de preparación de la comida:
+
+- Los requisitos del pedido se pueden comprobar desplegando una nota clicando sobre el botón superior derecho.
+- Primero, se hace clic sobre el plato o sobre la bolsa de llevar y se coloca en la bandeja.
+- Posteriormente, se clica sobre el tipo de comida solicitado y se mueve al hornillo:
+    - Para hornearlo hay que hacer clic sobre el botón superior derecho.
+    - Al pulsarlo, aparecerá una barra que cambiará de color a media que pasan los segundos.
+    - Cuando la barra llege a la zona comprendida entre el 50% y 75% se podrá parar mediante clic en el botón inferior derecho.
+    - Si se para antes de tiempo se quedará crudo, mientras que si se  deja más tiempo del debido se quemará. Ambas repercutirán de forma negativa a la puntuación del jugador.
+- Una vez horneada, se clica sobre la comida y se mueve al plato o a la bolsa de llevar.
+
+El pedido se entrega desde la pantalla de preparación de cafés pulsando el botón "*Entregar*".
+
+Se  mostrará una reacción por parte del cliente en función de la puntuació obtenida del minijuego. Además, si el jugador ha obtenido entre 92 y 100 puntos, obtendrá una propina. Cuando acabe el día, a las 20:00pm, se tendrán que pagar las facturas correspondientes y, si el jugador no tiene suficiente dinero, el juego finalizará. Por el contrario, si el jugador ha ingresado el dinero suficiente, podrá avanzar al siguiente día.
 
 
-### 4.1	Descripción detallada del concepto de juego
-En Catpuccino, el jugador se encargará de trabajar en una cafetería de gatos. Para esto, es necesario atender a los clientes, preparar su pedido y entregárselo en el menor tiempo posible. 
+### 4.2	Descripción detallada del concepto de juego
+En Catpuccino, el jugador se encargará de trabajar en una cafetería de gatos. Para esto, es necesario atender a los clientes, preparar su pedido con la mejor precisión y menor tiempo posible.
 
-Los clientes irán llegando al local para realizar sus pedidos, y aunque es importante la rapidez, también es importante preparar bien los pedidos, ya que si no, la satisfacción de los clientes será menor, y no se recibirán propinas.
+El objetivo principal es obtener los ingresos necesarios para lograr pasar de día e ir desbloqueando nuevos ingredientes. A su vez, se debe tratar de obtener el mayor porcentaje de satisfacción posible. Dicha satisfacción se trata de la media de puntuaciones obtenidas a lo largo de los días que el jugador ha trabajado en la cafetería.
 
-### 4.2	Descripción detallada de las mecánicas de juego
+### 4.3	Descripción detallada de las mecánicas de juego
 El gameplay principal del juego se divide en tres etapas:
-- **Atender a los clientes** → Poco a poco, los clientes irán entrando al local, poniéndose a la cola (si tienen a otro cliente por delante). Al llegar al mostrador, esperarán a que el jugador les atienda. Al ser atendidos, aparecerá una caja de diálogo en la que el jugador puede visualizar los detalles del pedido y aceptarlo, pasando a la siguiente pantalla.
 
-- **Preparar pedidos** → Para preparar el pedido del cliente, el jugador tendrá que moler el café (teniendo en cuenta cómo lo ha solicitado el cliente), y preparar la taza antes de echarlo. Además, es necesario echar las cucharadas de azúcar correspondientes antes de entregar el pedido. En un futuro, se añadirá más variedad a los pedidos para dotar al juego de una mayor complejidad.
+- **Atender a los clientes** → Poco a poco, los clientes irán entrando al local y poniéndose en la cola (si tienen a otro cliente por delante). Al llegar al mostrador, esperarán a que el jugador les atienda. Al ser atendidos, aparecerá una caja de diálogo en la que el jugador puede visualizar los detalles del pedido y aceptarlo, pasando a la siguiente pantalla.
 
-- **Entregar pedidos** → Una vez entregado el pedido, el cliente indicará su satisfacción. Si el pedido entregado cuadra con lo que quería el cliente, estará satisfecho y el jugador recibirá una propina adicional. En el caso de que el pedido esté mal preparado, el cliente indicará su frustración, dejando menos dinero (y reduciendo el porcentaje de satisfacción de los clientes).
+- **Preparar el pedido** → Para preparar el pedido del cliente, el jugador tendrá que moler el café (teniendo en cuenta cómo lo ha solicitado el cliente), y preparar el envase correcto antes de echarlo. Además, la complejidad de preparación aumentará de forma progresiva, desbloqueando nuevos ingredientes cada día. De esta forma, el jugador deberá tratar de recordar las recetas de los distintos cafés que haya disponibles dicho día, pese a que podrá comprobarlas accediendo al recetario.
+
+- **Entregar el pedido** → Una vez entregado el pedido, el cliente indicará su satisfacción. Si el pedido entregado cuadra con lo que quería el cliente, estará satisfecho y el jugador recibirá una propina adicional. En el caso de que el pedido esté mal preparado, el cliente indicará su frustración, dejando menos dinero (y reduciendo el porcentaje de satisfacción de los clientes).
 
 Al finalizar la jornada, es necesario pagar las facturas correspondientes para mantener en funcionamiento el local (alquiler del local, costes de producción, publicidad…). Si el jugador ha conseguido suficientes beneficios para cubrir estos gastos, se podrá pasar al siguiente día de trabajo (continúa la partida), pero si el dinero ganado no es suficiente, finaliza la partida.
 
-### 4.3	Controles
-Para mejorar la sencillez y accesibilidad del juego, todas las interacciones se realizan mediante interfaces gráficas, es decir, usando el click izquierdo del ratón para interactuar con los distintos botones/objetos del juego. 
+### 4.4	Controles
+Para mejorar la sencillez y accesibilidad del juego, todas las interacciones se realizan mediante interfaces gráficas, es decir, usando el click izquierdo del ratón para interactuar con los distintos botones u objetos del juego. 
 
-Además, esta decisión facilitará el trabajo a la hora de adaptar el juego para dispositivos móviles (solo es necesario cambiar los clicks por toques a la pantalla).
+Además, esta implementación está pensada para facilitar el trabajo a la hora de adaptar el juego para dispositivos móviles (solo es necesario cambiar los clicks por toques a la pantalla).
 
-### 4.4	Niveles y misiones
+### 4.5	Niveles y misiones
 Aunque en Catpuccino no haya niveles como tal, el juego se basa en jornadas/días de trabajo. Para poder pasar al siguiente día, se debe acumular un mínimo de dinero (puntos) durante el día, ya que al finalizar la jornada, el jugador deberá pagar ciertas facturas para cubrir los gastos de gestión del local.
 
-Cada día/jornada, estos gastos mínimos irán aumentando para aumentar la dificultad del juego. También aumentarán otros factores como la cantidad de clientes o la complejidad de sus pedidos. 
+Cada día/jornada, estos gastos mínimos irán aumentando para aumentar la dificultad del juego. También aumentarán otros factores como la cantidad de clientes o la complejidad de sus pedidos. Además, la rapidez del paso del tiempo irá decreciendo a lo largo de los días.
 
-El objetivo (misión) del juego es lograr aguantar el máximo de días posible, es decir, la partida no tiene un final definido. No es posible pasar al siguiente día de trabajo sin tener suficiente dinero para cubrir las facturas, en este caso, se alcanzará la pantalla de fin de juego.
+El objetivo (misión) del juego es lograr aguantar el máximo de días posible, es decir, la partida no tiene un final definido. No es posible pasar al siguiente día de trabajo sin tener suficiente dinero para cubrir las facturas, en este caso, se alcanzará la pantalla de fin de juego. Se puede repetir el día tantas veces como el jugador quiera, ya que, cuando la cafetería cierra y el jugador paga las facturas, los datos se guardan. 
 
-### 4.5	Objetos
-Durante la preparación de pedidos, el jugador deberá interactuar con varios objetos para montar el café del cliente. Entre ellos están:
+### 4.6	Objetos y elementos
+Durante la preparación de pedidos, el jugador deberá interactuar con varios objetos para llevar a cabo la preparación el café del cliente. Entre ellos se ecuentran:
 
-- **Taza/vaso** → Tazas para cafés y vasos para smoothies. Según el pedido del cliente se deberá escoger el recipiente adecuado. Además existen diferentes tamaños de bebida (pequeño, mediano y grande).
+- **Taza/vaso** → Taza para pedidos para tomar y vasos para pedidos para llevar. Según el pedido del cliente se deberá escoger el recipiente adecuado junto con su combinación, ya que si se trata de un pedido para tomar el jugador deberá colocar previamente un plato.
 
-- **Molinillo de café** → Para moler la cantidad de café que desea el cliente. Los cafés pueden ser cortos, medios o largos. El jugador deberá mantener el click izquierdo y llenar la barra de café hasta el punto correcto.
+- **Molinillo de café** → Encargado de moler la cantidad de café que desea el cliente. Los cafés pueden ser cortos, medios o largos. El jugador deberá mantener el click izquierdo y llenar la barra de café hasta el punto correcto.
 
-- **Prensa** → Sirve para terminar de preparar el café molido antes de meterlo en la cafetera.
+- **Prensa** → Sirve para terminar de preparar el café molido antes de meterlo en la cafetera interactuando con la palanca del molinillo.
 
-- **Cafetera** → El último paso de preparación para echar el café terminado en la taza hacienco clic en la cafetera.
+- **Cafetera** → Realiza la preparación del café, echándolo sobre el envase posicionado en ella. Aparece una aguja con movimiento horizontal de izquiera a derecha para indicar la precisión del jugador.
 
-- **Azucarero** → Se pueden añadir las cucharadas de azúcar deseadas, para darle el toque de dulzura que desee el cliente. Esto se hará haciendo clic en la azucarera y clicando sobre la taza las veces que sea necesario.
+- **Azucarero** → Se pueden añadir las cucharadas de azúcar deseadas, para darle el toque de dulzura que desee el cliente. Esto se hará haciendo clic en la azucarera y clicando sobre la taza una o dos veces.
 
-- **Hielera** → Se puede añadir la cantidad de hielos que el cliente desee para regular la temperatura de bebidas frías. Esto se hará haciendo clic en la azucarera y clicando sobre la taza las veces que sea necesario.
+- **Hielera** → Se pueden añadir hielos para regular la temperatura de bebidas frías. Esto se realizará mediante clic en la hielera y clicando sobre el recipiente.
 
-- **Tapa de vaso** → Si se trata de un pedido para llevar, el jugador tendrá que finalizar el pedido poniéndole la tapa al vaso mediante clics. 
+- **Tapa de vaso** → Si se trata de un pedido para llevar, el jugador tendrá que finalizar el pedido poniéndole la tapa al vaso mediante clic. 
 
-- **Jarra de leche** → En ciertos pedidos los clientes solicitarán cafés latte, por lo que el jugador deberá interactuar con la jarra de leche y echarla en el vaso siguiendo un patrón con el clic del ratón.
+- **Brick de leche** → A partir del día dos, estará disponible para añadir poca o mucha cantidad en el café.
 
-- **Batidora** → En niveles más avanzados existirá la posibilidad de preparar batidos interactuando con la batidora. Para ello, se seleccionará el sabor indicado (vainilla, chocolate o fresa) y se juntará en la batidora con la leche. A su vez, podrán prepararse zumos o "*smoothies*" utilizando la misma mecánica, introduciendo la fruta (fresa, plátano o mango) en la batidora y clicando para mezclar.
+- **Espumador y jarra de leche** → A partir del día 3, se podrá calentar la jarra de leche para añadirla al café.
+
+- **Leche condensada** → A partir del día 5, se podrá añadir al café.
+
+- **Crema** → A partir del día 5, se podrá añadir al café.
+
+- **Sirope de chocolate** → A partir del día 7, se podrá añadir al café.
+
+- **Botella de whiskey** → A partir del día 7, se podrá añadir al café.
+
+- **Plato o bolsa** → Plato para pedidos para tomar y bolsa para pedidos para llevar.
 
 - **Galletas, cupcakes y bizcochos** → Además de pedir una bebida, los clientes podrán elegir un acompañamiento entre distintos tipos de:
-    - **Galletas:** con pepitas de chocolate o chocolate blanco.
-    - **Cupcakes:** de chocolate o de zanahoria.
-    - **Bizcochos o tartas:** de queso, chocolate o limón.
+    - **Galletas:** De mantequilla, con pepitas de chocolate o chocolate blanco.
+    - **Cupcakes:** De pistacho, arándanos, cereza o dulce de leche.
+    - **Bizcochos o tartas:** De red velvet, chocolate, mantequilla o de zanahoria.
 
+- **Hornillo** → Su función es manejar los estados de la comida, haciendola pasar de cruda a horneada y, si no se mueve en el debido momento, de horneada a quemada.
+
+Tipos de cafés desbloqueados según el día en el que se encuentre el jugador:
+
+- **Día uno:** Cafés de tipo espresso, lungo y americano.
+- **Día dos:** Cafés de tipo macchiato.
+- **Día tres:** Cafés de tipo latte y cappuccino.
+- **Día cinco:** Cafés de tipo bombón, frappé y vienés.
+- **Día siete:** Cafés de tipo irish y mocca.
+
+Tipos de comidas desbloqueadas según el día en el que se encuentre el jugador:
+
+- **Día dos:** Bizcochos.
+- **Día cuatro:** Galletas.
+- **Día seis:** Cupcakes.
 
 ## 5. Trasfondo
 
