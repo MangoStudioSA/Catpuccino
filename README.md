@@ -260,6 +260,17 @@ Tipos de comidas desbloqueadas según el día en el que se encuentre el jugador:
 - **Día cuatro:** Galletas.
 - **Día seis:** Cupcakes.
 
+### 4.7 Elementos desbloqueables por obtención de cartas
+
+Con la implementación de la tienda y los sobres de cartas, se han implementado nuevas mecánicas que solo estarán disponibles si se tiene la carta asociada a ellas.
+Se encuentr*an implementadas o en proceso de implementación las siguientes mecánicas:
+
+- **Dibujos "*latte art*" de cafés:** Se desbloquean cuando se obtiene la carta de rareza épica "*Latte Art*". Esta mecánica consta de la modificacion de los sprites de los cafés *macchiato, mocca, irish, latte* y *vienés*. Cuando se obtenga esta carta, al preparar cualquiera de los cafés mencionados el sprite del café contará con un dibujo estilo *latte art* propio de las cafeterías. Por último, otorgará un 20% más de propina cuando se haga uso de ellos en la preparación de dichos cafés.
+
+- **Skins de vaso y de tapa de vaso:** Se desbloquean cuando se obtiene las cartas de rareza intermedia "*Skin Vaso*". Esta mecánica consta de la modificacion de los sprites de los vasos y sus tapas por otro más especial. Su uso otorgará un 10% más de propina cuando se haga uso de ellos en la preparación de los cafés.
+
+- **Skins de taza y de plato:** Se desbloquean cuando se obtiene la carta de rareza legendaria "*Skin Taza*". Esta mecánica consta de la modificacion de los sprites de las tazas y sus platos a juego por otro más especial. Su uso otorgará un 25% más de propina cuando se haga uso de ellos en la preparación de los cafés.
+
 ## 5. Trasfondo
 
 ### 5.1	Descripción detallada de la historia y la trama
@@ -319,6 +330,7 @@ Las referencias principales para el 2D son *Buena Pizza, Gran Pizza* y *Little C
 ![Boceto minijuego](https://github.com/MangoStudioSA/Catpuccino/blob/d73edd6ff94114cca9a8751dac0d0536c4a05147/PhotosGDD/minijuegoBOCETO.png)
 ![Props tazas](https://github.com/MangoStudioSA/Catpuccino/blob/d73edd6ff94114cca9a8751dac0d0536c4a05147/PhotosGDD/props.png)
 
+### 6.8 Cartas y sobres de cartas
 
 
 
