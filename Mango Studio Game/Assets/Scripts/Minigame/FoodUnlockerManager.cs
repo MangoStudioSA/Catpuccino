@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class FoodUnlockerManager : MonoBehaviour
 {
     // Se crea un diccionario relacionando el dia del juego con las comidas que se desbloquean 
-    private Dictionary<int, FoodCategory[]> foodUnlocks = new Dictionary<int, FoodCategory[]>()
+    private Dictionary<int, FoodCategory[]> foodUnlocks = new()
     {
         {1, new FoodCategory[] {  } },
         {2, new FoodCategory[] { FoodCategory.bizcocho } },

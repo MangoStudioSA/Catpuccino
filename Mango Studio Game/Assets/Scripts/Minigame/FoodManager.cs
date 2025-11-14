@@ -1,27 +1,73 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
+
+[System.Serializable]
+public class FoodObjects
+{
+    public FoodCategory category;
+    public int type; // Indice del tipo dentro de la categoría
+    public GameObject[] foodInstances; // GameObjects visibles 
+    [HideInInspector] public int currentIndex = 0; // Siguiente disponible
+
+    public bool IsDepleted()
+    {
+        return currentIndex >= foodInstances.Length;
+    }
+
+    // Reiniciar el stock visual
+    public void Reset()
+    {
+        foreach (var obj in foodInstances)
+            obj.SetActive(true);
+        currentIndex = 0;
+    }
+}
 
 public class FoodManager : MonoBehaviour
 {
-    [Header("GameObjects comida")]
-    private Dictionary<CakeType, GameObject> cakes = new Dictionary<CakeType, GameObject>();
-    private Dictionary<CookieType, GameObject> cookies = new Dictionary<CookieType, GameObject>();
-    private Dictionary<MufflinType, GameObject> mufflins = new Dictionary<MufflinType, GameObject>();
+    #region Variables
+    // Diccionarios gameobjects comida
+    private Dictionary<CakeType, GameObject> cakes = new();
+    private Dictionary<CookieType, GameObject> cookies = new();
+    private Dictionary<MufflinType, GameObject> mufflins = new();
 
-    public GameObject BZanahoria, BMantequilla, BChocolate, BRedVelvet;
-    public GameObject GChocolate, GChocolateB, GMantequilla;
-    public GameObject MArandano, MCereza, MPistacho, MDulceLeche;
+    // Diccionarios cursores comida
+    private Dictionary<CakeType, Texture2D> cakeCursors = new();
+    private Dictionary<CookieType, Texture2D> cookiesCursors = new();
+    private Dictionary<MufflinType, Texture2D> mufflinsCursors = new();
+
+    [Header("GameObjects comida")]
+    public GameObject BZanahoria;
+    public GameObject BMantequilla;
+    public GameObject BChocolate;
+    public GameObject BRedVelvet;
+    public GameObject GChocolate;
+    public GameObject GChocolateB;
+    public GameObject GMantequilla;
+    public GameObject MArandano;
+    public GameObject MCereza;
+    public GameObject MPistacho;
+    public GameObject MDulceLeche;
 
     [Header("Cursores comida")]
-    private Dictionary<CakeType, Texture2D> cakeCursors = new Dictionary<CakeType, Texture2D>();
-    private Dictionary<CookieType, Texture2D> cookiesCursors = new Dictionary<CookieType, Texture2D>();
-    private Dictionary<MufflinType, Texture2D> mufflinsCursors = new Dictionary<MufflinType, Texture2D>();
+    public Texture2D BZanahoriaCursor;
+    public Texture2D BMantequillaCursor;
+    public Texture2D BChocolateCursor;
+    public Texture2D BRedVelvetCursor;
+    public Texture2D GChocolateCursor;
+    public Texture2D GChocolateBCursor;
+    public Texture2D GMantequillaCursor;
+    public Texture2D MArandanoCursor;
+    public Texture2D MCerezaCursor;
+    public Texture2D MPistachoCursor;
+    public Texture2D MDulceLecheCursor;
 
-    public Texture2D BZanahoriaCursor, BMantequillaCursor, BChocolateCursor, BRedVelvetCursor;
-    public Texture2D GChocolateCursor, GChocolateBCursor, GMantequillaCursor;
-    public Texture2D MArandanoCursor, MCerezaCursor, MPistachoCursor, MDulceLecheCursor;
+    [Header("Stocks comida")]
+    public FoodObjects[] foodStocks;
 
-
+#endregion
     private void Awake()
     {
         // GameObjects
@@ -93,5 +139,43 @@ public class FoodManager : MonoBehaviour
                 break;
         }
         return null;
+    }
+
+    public bool TakeFood(FoodCategory category, int type)
+    {
+        FoodObjects food = System.Array.Find(foodStocks, f => f.category == category && f.type == type);
+        if (food == null) return false;
+
+        if (food.currentIndex >= food.foodInstances.Length)
+            return false; // ya no quedan objetos disponibles
+
+        // Ocultar el siguiente objeto disponible
+        food.foodInstances[food.currentIndex].SetActive(false);
+        food.currentIndex++;
+
+        return true;
+    }
+
+    public void ResetFoodVisualIfDepleted(FoodCategory category)
+    {
+        FoodObjects stock = System.Array.Find(foodStocks, f => f.category == category);
+        if (stock == null) return;
+
+        if (!stock.IsDepleted()) return; // no reiniciar si todavía hay objetos
+
+        foreach (var obj in stock.foodInstances)
+            obj.SetActive(true); // volver a mostrar todos
+        stock.currentIndex = 0;
+    }
+
+    public void ResetDepletedFood()
+    {
+        foreach (var stock in foodStocks)
+        {
+            if (stock.IsDepleted())
+            {
+                stock.Reset(); // Solo reinicia los que estaban completamente agotados
+            }
+        }
     }
 }

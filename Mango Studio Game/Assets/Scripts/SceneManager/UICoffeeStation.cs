@@ -1,3 +1,4 @@
+using UnityEditor.EditorTools;
 using UnityEngine;
 
 // Clase encargada de gestionar los paneles dentro del minijuego
@@ -13,6 +14,7 @@ public class UICoffeeStation : MonoBehaviour
     public TutorialManager tutorialManager;
     public MinigameInput miniGameInput;
     public FoodMinigameInput foodMinigameInput;
+    public FoodManager foodManager;
     public CoffeeRecipesManager recipesManager;
     public CoffeeUnlockerManager unlockerManager;
     public TimeManager timeManager;
@@ -81,7 +83,8 @@ public class UICoffeeStation : MonoBehaviour
             gameManager.SubmitOrder();
             preparationPanel.SetActive(false);
             deliveryPanel.SetActive(true);
-            //foodMinigameInput.ResetVisualFood();
+            //foodManager.ResetFoodVisualIfDepleted(FoodCategory.mufflin);
+            foodManager.ResetDepletedFood();
 
             if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 17)
                 FindFirstObjectByType<TutorialManager>().CompleteCurrentStep();

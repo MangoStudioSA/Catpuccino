@@ -19,6 +19,7 @@ public class FoodMinigameInput : MonoBehaviour
 
     [Header("Objetos fisicos")]
     public GameObject Plato;
+    public GameObject PlatoSinComida;
     public GameObject BolsaLlevar;
     public GameObject BolsaLlevarBandeja;
 
@@ -121,6 +122,7 @@ public class FoodMinigameInput : MonoBehaviour
         foodTypeInHorno = -1;
 
         Plato.SetActive(false);
+        PlatoSinComida.SetActive(false);
         BolsaLlevar.SetActive(false);
         bakeSlider.gameObject.SetActive(false);
         UpdateStartSprites();
@@ -295,8 +297,12 @@ public class FoodMinigameInput : MonoBehaviour
             foodObj.SetActive(true);
             foodObj.transform.position = puntoComida.position;
             foodInPlatoObj = foodObj;
+            foodObj.GetComponent<Image>().enabled = false;
 
             var sprite = foodObj.GetComponent<Image>()?.sprite;
+
+            PlatoSinComida.SetActive(false);
+            PlatoSinComida.transform.position = puntoEncimera.position;
 
             //  Se asocia la categoria y el tipo de comida de la mano al plato
             foodCategoryInPlato = foodCategoryInHand;
@@ -329,6 +335,7 @@ public class FoodMinigameInput : MonoBehaviour
         }
         else if (foodIsInPlato)
         {
+            PlatoSinComida.SetActive(true);
             foodInPlatoObj.SetActive(false);
             foodIsInPlato = false;
             foodInHand = true;

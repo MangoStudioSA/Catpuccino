@@ -69,7 +69,7 @@ public class CursorManager : MonoBehaviour
             Debug.LogError("ERROR: No se ha asignado una textura para el cursor. Se usará el cursor por defecto.");
         }
     }
-
+    #region Take envases
     // Gestionar coger la taza del estante
     public void TakeTazaFromShelf()
     {
@@ -172,7 +172,9 @@ public class CursorManager : MonoBehaviour
             Cursor.SetCursor(defaultCursorTexture, hotSpotDefault, CursorMode.Auto);
         }
     }
+    #endregion
 
+    #region Take comidas
     // El boton llamara a una de las 3 funciones segun el tipo de comida que se trate (asociado al index del tipo de cada una)
     public void TakeCakeByInt(int index)
     {
@@ -200,6 +202,8 @@ public class CursorManager : MonoBehaviour
         foodMinigameInput.foodTypeInHand = (int)type;
         foodMinigameInput.ActualizarBotonCogerComida();
 
+        foodManager.TakeFood(category, (int)type);
+
         Texture2D cursor = foodManager.GetFoodCursor(category, type);
         Cursor.SetCursor(cursor, Vector2.zero, CursorMode.Auto);
         Debug.Log($"Comina en mano: {category}{type}");
@@ -207,6 +211,7 @@ public class CursorManager : MonoBehaviour
         if (tutorialManager.isRunningT2 && tutorialManager.currentStep == 3)
             FindFirstObjectByType<TutorialManager>().CompleteCurrentStep2();
     }
+    #endregion
 
     // Gestionar cursor comida
     public void UpdateCursorFood(bool dejandoComida, FoodCategory category, object type)
