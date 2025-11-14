@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+// Clase encargada de gestionar el pedido de comida 
 [System.Serializable]
 public class FoodOrder
 {
@@ -17,6 +18,7 @@ public class FoodOrder
     public CookState targetCookState;
     public CookState precisionCookState;
 
+    // Funcion que genera aleatoriamente el pedido con la comida
     public FoodOrder(FoodCategory category)
     {
         this.category = category;
@@ -48,6 +50,7 @@ public class FoodOrder
         }
     }
 
+    // Funciones encargadas de vincular la precision del jugador para el tipo de comida y horneado
     public void SetFoodPrecision(FoodCategory category, int type)
     {
         foodPrecisionCategory = category;
@@ -61,6 +64,7 @@ public class FoodOrder
         Debug.Log($"Estado de coccion asignado: {state}");
     }
 
+    // Funciones encargadas de generar el pedido por texto 
     public string GetFoodDescription()
     {
         if (category == FoodCategory.no)
@@ -131,6 +135,7 @@ public class FoodOrder
     }
 }
 
+// Declaracion de categorias de comidas y sus tipos
 public enum FoodCategory { no, bizcocho, galleta, mufflin }
 public enum CakeType { ninguno, chocolate, mantequilla, zanahoria,RedVelvet}
 public enum CookieType { ninguno, chocolate,blanco, mantequilla }

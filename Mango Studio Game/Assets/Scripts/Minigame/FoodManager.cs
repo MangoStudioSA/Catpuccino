@@ -170,7 +170,7 @@ public class FoodManager : MonoBehaviour
         {
             if (stock.IsDepleted())
             {
-                stock.Reset(); // Solo reinicia los que estaban completamente agotados
+                stock.Reset(); // Solo reinicia los que estan completamente agotados
             }
         }
     }

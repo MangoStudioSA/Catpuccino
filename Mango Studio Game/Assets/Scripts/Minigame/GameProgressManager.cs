@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// Clase encargada de gestionar el desbloqueo de mecanicas por dia
 public class GameProgressManager : MonoBehaviour
 {
     public static GameProgressManager Instance;
@@ -33,6 +34,7 @@ public class GameProgressManager : MonoBehaviour
     public bool cookiesEnabled;
     public bool mufflinsEnabled;
 
+    // Funcion principal
     public void UpdateMechanicsForDay(int day)
     {
         switch (day)

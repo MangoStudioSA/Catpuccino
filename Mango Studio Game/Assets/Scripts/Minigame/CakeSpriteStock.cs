@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class CakeSpriteStock
 {
     public CakeType cakeType;
-    public Image image; // Imagen a modificar
+    public Image image;
     public Sprite[] stages; // Lista de sprites: 0-Completo ... vacio
     [HideInInspector] public int currentStage = 0;
 
