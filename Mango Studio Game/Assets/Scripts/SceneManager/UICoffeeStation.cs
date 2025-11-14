@@ -83,7 +83,6 @@ public class UICoffeeStation : MonoBehaviour
             gameManager.SubmitOrder();
             preparationPanel.SetActive(false);
             deliveryPanel.SetActive(true);
-            //foodManager.ResetFoodVisualIfDepleted(FoodCategory.mufflin);
             foodManager.ResetDepletedFood();
 
             if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 17)

@@ -177,7 +177,8 @@ public class MinigameInput : MonoBehaviour
 
         orderNoteUI.ResetNote();
         ResetCafe();
-        
+
+        CoffeeFoodManager.Instance.ResetPanels();
         ActualizarBotonCogerEnvase();
     }
 
@@ -225,7 +226,6 @@ public class MinigameInput : MonoBehaviour
         TazaLeche.SetActive(false);
         Filtro.SetActive(false);
         UpdateStartSprites();
-        CoffeeFoodManager.Instance.ResetPanels();
 
         buttonManager.molerButton.gameObject.SetActive(true);
         palancaDown.SetActive(false);
@@ -936,13 +936,13 @@ public class MinigameInput : MonoBehaviour
             if (order.currentOrder.coffeePrecision >= 3f) return CoffeeType.lungo;
         }
 
-        if (countWater != 0) return CoffeeType.americano;
-        
+        if (countWater != 0 && !milkServed) return CoffeeType.americano;
+
+        if (countCondensedMilk > 0 && !milkServed) return CoffeeType.bombon;
+
         if (milkServed)
         {
-            if (!heatedMilk) return CoffeeType.macchiatto;
-
-            if (countCondensedMilk > 0) return CoffeeType.bombon;
+            if (!heatedMilk) return CoffeeType.macchiatto;    
 
             if (countChocolate > 0) return CoffeeType.mocca;
 
@@ -952,12 +952,8 @@ public class MinigameInput : MonoBehaviour
 
             return CoffeeType.capuccino;
         }
-        if (countCream > 0)
-        {
-            if (countIce > 0) return CoffeeType.frappe;
-
-            return CoffeeType.vienes;
-        }
+        if (countCream > 0) return CoffeeType.vienes;
+        if (countIce > 0 && countCream > 0) return CoffeeType.frappe;
 
         return CoffeeType.lungo;
     } 
@@ -1415,6 +1411,28 @@ public class MinigameInput : MonoBehaviour
                 Debug.Log($"[Cliente {order.currentOrder.orderId}] Has echado hielo.");
                 PopUpMechanicsMsg.Instance.ShowMessage("+Hielo");
                 cursorManager.ChangeHieloSpoon();
+
+                if (countCream > 0 && coffeeServed)
+                {
+                    CoffeeType currentType = CoffeeType.frappe;
+                    if (tazaIsInCafetera)
+                    {
+                        bool isCup = true;
+                        baseCupSprite = GetBaseCoffeeSprite(currentType, isCup);
+                        currentSprite = baseCupSprite;
+
+                        Image taza = Taza.GetComponent<Image>();
+                        taza.sprite = currentSprite;
+                    }
+                    else if (vasoIsInCafetera)
+                    {
+                        bool isCup = false;
+                        currentSprite = GetBaseCoffeeSprite(currentType, isCup);
+
+                        Image vaso = Vaso.GetComponent<Image>();
+                        vaso.sprite = currentSprite;
+                    }
+                }    
             }
         }
     }

@@ -156,18 +156,6 @@ public class FoodManager : MonoBehaviour
         return true;
     }
 
-    public void ResetFoodVisualIfDepleted(FoodCategory category)
-    {
-        FoodObjects stock = System.Array.Find(foodStocks, f => f.category == category);
-        if (stock == null) return;
-
-        if (!stock.IsDepleted()) return; // no reiniciar si todavía hay objetos
-
-        foreach (var obj in stock.foodInstances)
-            obj.SetActive(true); // volver a mostrar todos
-        stock.currentIndex = 0;
-    }
-
     public void ResetDepletedFood()
     {
         foreach (var stock in foodStocks)
