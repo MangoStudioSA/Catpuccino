@@ -664,6 +664,7 @@ public class MinigameInput : MonoBehaviour
         }
     }
 #endregion
+
     #region Mecanicas cafe
     public void StartCoffee()
     {
@@ -1045,8 +1046,6 @@ public class MinigameInput : MonoBehaviour
             }
             milkServed = true;
             cMilkServed = true;
-            //buttonManager.cogerTazaLecheButton.gameObject.SetActive(false);
-            //buttonManager.DisableButton(buttonManager.cogerTazaLecheButton);
 
             if (tazaIsInCafetera)
             {
@@ -1071,8 +1070,6 @@ public class MinigameInput : MonoBehaviour
             tazaMilkInHand = false;
             tazaMilkIsInEspumador = true;
 
-            //buttonManager.milkButton.gameObject.SetActive(false);
-            //buttonManager.DisableButton(buttonManager.cogerTazaLecheButton);
             buttonManager.EnableButton(buttonManager.calentarButton);
 
             Image espumador = Espumador.GetComponent<Image>();
@@ -1142,35 +1139,38 @@ public class MinigameInput : MonoBehaviour
             {
                 if (currentHeat < 0.4f)
                 {
+                    countMilk += 1;
+                    order.currentOrder.milkPrecision = countMilk;
                     order.currentOrder.heatedMilkPrecision = 0;
                     Debug.Log("Leche fria echada");
                 }
                 else if (currentHeat < 0.8f)
-                { 
+                {
+                    countMilk += 1;
+                    order.currentOrder.milkPrecision = countMilk;
                     order.currentOrder.heatedMilkPrecision = 1;
                     Debug.Log("Leche caliente echada");
-                    heatedMilk = true;
                 }
                 else
                 {
+                    countMilk += 1;
+                    order.currentOrder.milkPrecision = countMilk;
                     order.currentOrder.heatedMilkPrecision = 2;
                     Debug.Log("Leche quemada echada");
-                    heatedMilk = true;
                 }
-            }
-            countMilk += 1;
-            order.currentOrder.milkPrecision = countMilk;
-            milkServed = true;
-            //TazaLeche.SetActive(false);
-            //tazaMilkInHand = false;
-            //cursorManager.UpdateCursorTazaMilk(true);
-            buttonManager.DisableButton(buttonManager.waterButton);
-            buttonManager.DisableButton(buttonManager.milkButton);
 
-            if (tazaIsInCafetera)
-            {
-                Image taza = Taza.GetComponent<Image>();
-                taza.sprite = tazaNMilk;
+                milkServed = true;
+                heatedMilk = true;
+
+                PopUpMechanicsMsg.Instance.ShowMessage($"+{countMilk} Leche");
+                buttonManager.DisableButton(buttonManager.waterButton);
+                buttonManager.DisableButton(buttonManager.milkButton);
+
+                if (tazaIsInCafetera)
+                {
+                    Image taza = Taza.GetComponent<Image>();
+                    taza.sprite = tazaNMilk;
+                }
             }
         }
     }
@@ -1197,7 +1197,7 @@ public class MinigameInput : MonoBehaviour
         //Si se tiene el agua en la mano y el cafe no esta servido entonces se puede echar 
         if (waterInHand == true && coffeeServed == false)
         {
-            if (countWater <= 1)
+            if (countWater < 1)
             {
                 countWater += 1; //Se incrementa el contador de agua
                 order.currentOrder.waterPrecision = countWater; // Se guarda el resultado obtenido en la precision del jugador
@@ -1235,7 +1235,7 @@ public class MinigameInput : MonoBehaviour
         //Si se tiene la leche condensada en la mano y el cafe no esta servido entonces se puede echar 
         if (condensedMilkInHand == true && coffeeServed == false)
         {
-            if (countCondensedMilk <= 1)
+            if (countCondensedMilk < 1)
             {
                 countCondensedMilk += 1; //Se incrementa el contador de leche condensada
                 order.currentOrder.condensedMilkPrecision = countCondensedMilk; // Se guarda el resultado obtenido en la precision del jugador
@@ -1272,7 +1272,7 @@ public class MinigameInput : MonoBehaviour
         //Si se tiene la crema en la mano y el cafe no esta servido entonces se puede echar
         if (creamInHand == true && coffeeServed == false)
         {
-            if (countCream <= 1)
+            if (countCream < 1)
             {
                 countCream += 1; //Se incrementa el contador de crema
                 order.currentOrder.creamPrecision = countCream; // Se guarda el resultado obtenido en la precision del jugador
@@ -1309,7 +1309,7 @@ public class MinigameInput : MonoBehaviour
         //Si se tiene el chocolate en la mano y el cafe no esta servido entonces se puede echar
         if (chocolateInHand == true && coffeeServed == false)
         {
-            if (countChocolate <= 3)
+            if (countChocolate < 1)
             {
                 countChocolate += 1; //Se incrementa el contador de chocolate
                 order.currentOrder.chocolatePrecision = countChocolate; // Se guarda el resultado obtenido en la precision del jugador
@@ -1346,7 +1346,7 @@ public class MinigameInput : MonoBehaviour
         //Si se tiene el whiskey en la mano y el cafe esta servido entonces se puede echar
         if (whiskeyInHand == true && coffeeServed == true)
         {
-            if (countWhiskey <= 1)
+            if (countWhiskey < 1)
             {
                 countWhiskey += 1; //Se incrementa el contador de hielo
                 order.currentOrder.whiskeyPrecision = countWhiskey; // Se guarda el resultado obtenido en la precision del jugador
@@ -1407,7 +1407,7 @@ public class MinigameInput : MonoBehaviour
         //Si se tiene la cuchara de hielo en la mano y el cafe esta servido entonces se puede echar
         if (iceInHand == true && coffeeServed == true)
         {
-            if (countIce <= 1)
+            if (countIce < 1)
             {
                 countIce += 1; //Se incrementa el contador de hielo
                 order.currentOrder.icePrecision = countIce; // Se guarda el resultado obtenido en la precision del jugador
@@ -1436,7 +1436,7 @@ public class MinigameInput : MonoBehaviour
         //Si se tiene la tapa en la mano y el cafe esta servido entonces se puede poner
         if (coverInHand == true && coffeeServed == true && vasoIsInCafetera)
         {
-            if (countCover <= 1)
+            if (countCover < 1)
             {
                 countCover += 1; //Se incrementa el contador de hielo
                 order.currentOrder.typePrecision = countCover; // Se guarda el resultado obtenido en la precision del jugador

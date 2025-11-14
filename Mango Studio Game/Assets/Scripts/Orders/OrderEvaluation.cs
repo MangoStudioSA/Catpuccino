@@ -206,8 +206,16 @@ public class OrderEvaluation : MonoBehaviour
         float baseCoffeePrice = CoffeePriceManager.Instance.GetBaseCoffeePrice(playerOrder.coffeeType);
         float baseFoodPrice = FoodPriceManager.Instance.GetBaseFoodPrice(playerOrder.foodOrder.category);
         float totalBasePrice = baseCoffeePrice + baseFoodPrice;
+        float money = totalBasePrice * percentScore;
 
-        result.moneyEarned = Mathf.RoundToInt(totalBasePrice * percentScore);
+        // Bonus carta latte art
+        if (PlayerDataManager.instance.HasLatteArtBonus(npcOrder.coffeeType) && ((percentScore*100f) >= 75))
+        {
+            money *= 1.2f;
+            Debug.Log("Latte Art bonus aplicado (+20%)");
+        }
+
+        result.moneyEarned = Mathf.RoundToInt(money);
         result.score = Mathf.RoundToInt(percentScore * 100f);
 
         // Debug del puntaje TOTAL

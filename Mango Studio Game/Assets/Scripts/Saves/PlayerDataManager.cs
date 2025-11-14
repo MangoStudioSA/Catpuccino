@@ -164,6 +164,21 @@ public class PlayerDataManager : MonoBehaviour
         data.InitializeUnlockedCards();
     }
 
+    // Comprueba si el jugador tiene la carta latte art y si el cafe es valido para aplicar el bonus
+    public bool HasLatteArtBonus(CoffeeType coffeeType)
+    {
+        if (!HasCard("CartaLatteArt")) return false;
+
+        // Lista de cafes compatibles con Latte Art
+        CoffeeType[] validCoffees = { CoffeeType.vienes, CoffeeType.mocca, CoffeeType.irish, CoffeeType.latte, CoffeeType.macchiatto };
+
+        foreach (CoffeeType valid in validCoffees)
+        {
+            if (coffeeType == valid) return true;
+        }
+        return false;
+    }
+
     // Borrar una carta
     public void RemoveUnlockedCard(string cardName)
     {

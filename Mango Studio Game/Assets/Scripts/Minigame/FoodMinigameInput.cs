@@ -85,50 +85,6 @@ public class FoodMinigameInput : MonoBehaviour
         }
         CheckButtons(); 
     }
-    /*public void ResetVisualFood()
-    {
-        // Limpiar objetos visibles
-        if (foodInPlatoObj != null)
-        {
-            foodInPlatoObj.SetActive(false);
-            foodInPlatoObj = null;
-        }
-
-        if (foodInHornoObj != null)
-        {
-            foodInHornoObj.SetActive(false);
-            foodInHornoObj = null;
-        }
-
-        if (foodInBolsaLlevarObj != null)
-        {
-            foodInBolsaLlevarObj.SetActive(false);
-            foodInBolsaLlevarObj = null;
-        }
-
-        Plato.SetActive(false);
-        BolsaLlevar.SetActive(false);
-        bakeSlider.gameObject.SetActive(false);
-
-        // Reset estados de jugador/objetos
-        platoInHand = false;
-        carryBagInHand = false;
-        foodInHand = false;
-
-        platoIsInEncimera = false;
-        carryBagIsInEncimera = false;
-        foodIsInPlato = false;
-        foodIsInBolsaLlevar = false;
-        foodIsInHorno = false;
-
-        // Reset categorías en mano
-        foodCategoryInHand = FoodCategory.no;
-        foodTypeInHand = -1;
-
-        ActualizarBotonCogerComida();
-        UpdateStartSprites();
-    }*/
-
 
     // Funcion para resetear variables de la comida
     public void ResetFoodState()
@@ -245,22 +201,24 @@ public class FoodMinigameInput : MonoBehaviour
         else if (isBaking && !tutorialManager.isRunningT2)
             buttonManager.DisableButton(buttonManager.hornearButton);
 
-        if (foodInHand || platoInHand || carryBagInHand)
+        if (tutorialManager.isRunningT2 && tutorialManager.currentStep == 8)
+            buttonManager.EnableButton(buttonManager.papeleraRButton);
+        else if (tutorialManager.isRunningT2)
+            buttonManager.DisableButton(buttonManager.papeleraRButton);
+
+        if ((foodInHand || platoInHand || carryBagInHand) && !tutorialManager.isRunningT2)
         {
             buttonManager.DisableButton(buttonManager.orderNoteBButton);
-            buttonManager.DisableButton(buttonManager.papeleraButton);
+            buttonManager.DisableButton(buttonManager.papeleraRButton);
+            buttonManager.DisableButton(buttonManager.returnBakeryButton);
         }
-        else
+        else if ((foodIsInBolsaLlevar || foodIsInPlato || foodIsInHorno || platoIsInEncimera || carryBagIsInEncimera) && !tutorialManager.isRunningT2)
         {
             buttonManager.EnableButton(buttonManager.orderNoteBButton);
+            buttonManager.EnableButton(buttonManager.papeleraRButton);
+            buttonManager.EnableButton(buttonManager.returnBakeryButton);
         }
 
-        if (platoInHand || foodInHand)
-            buttonManager.DisableButton(buttonManager.returnBakeryButton);
-
-        else if (!tutorialManager.isRunningT2)
-            buttonManager.EnableButton(buttonManager.returnBakeryButton);
-        
         if (foodBaked)
             buttonManager.DisableButton(buttonManager.hornearButton);  
     }
