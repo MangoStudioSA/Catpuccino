@@ -1,4 +1,3 @@
-using UnityEditor.EditorTools;
 using UnityEngine;
 
 // Clase encargada de gestionar los paneles dentro del minijuego
