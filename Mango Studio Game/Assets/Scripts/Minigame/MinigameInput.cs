@@ -524,7 +524,7 @@ public class MinigameInput : MonoBehaviour
             cupServed = true;
 
             UpdateCupSprite(true);
-            PlatoTaza.gameObject.SetActive(false);
+            PlatoTaza.SetActive(false);
 
             // Se asocia a la bandeja
             CoffeeFoodManager.Instance.ToggleCafe(true, Taza.GetComponent<Image>(), Taza.GetComponent<Image>().sprite);
@@ -542,7 +542,7 @@ public class MinigameInput : MonoBehaviour
             cupServed = false;
 
             UpdateCupSprite(false);
-            PlatoTaza.gameObject.SetActive(true);
+            PlatoTaza.SetActive(true);
             cursorManager.UpdateCursorTaza(false);
 
             // Se quita de la bandeja
@@ -952,7 +952,7 @@ public class MinigameInput : MonoBehaviour
 
             return CoffeeType.capuccino;
         }
-        if (countCream > 0) return CoffeeType.vienes;
+        if (countCream > 0 && countIce <= 0) return CoffeeType.vienes;
         if (countIce > 0 && countCream > 0) return CoffeeType.frappe;
 
         return CoffeeType.lungo;

@@ -3,6 +3,7 @@ using System.Linq;
 using UnityEngine;
 using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
+// Clase encargada del stock de galletas y mufflins
 [System.Serializable]
 public class FoodObjects
 {
@@ -25,6 +26,7 @@ public class FoodObjects
     }
 }
 
+// Clase encargada de gestionar la comida y sus cursores
 public class FoodManager : MonoBehaviour
 {
     #region Variables
@@ -69,8 +71,8 @@ public class FoodManager : MonoBehaviour
 
     [Header("Stocks de bizcochos")]
     public CakeSpriteStock[] cakeSpriteStocks;
-
     #endregion
+
     private void Awake()
     {
         // GameObjects
@@ -104,6 +106,7 @@ public class FoodManager : MonoBehaviour
         mufflinsCursors.Add(MufflinType.dulceLeche, MDulceLecheCursor);
     }
 
+    // Coger gameobjects
     public GameObject GetFoodObject(FoodCategory category, object type)
     {
         switch (category)
@@ -122,6 +125,7 @@ public class FoodManager : MonoBehaviour
         }
     }
 
+    // Asociar cursores
     public Texture2D GetFoodCursor(FoodCategory category, object type)
     {
         switch (category)
@@ -144,6 +148,7 @@ public class FoodManager : MonoBehaviour
         return null;
     }
 
+    // Restar stock galletas/mufflins
     public bool TakeFood(FoodCategory category, int type)
     {
         FoodObjects food = System.Array.Find(foodStocks, f => f.category == category && f.type == type);
@@ -159,6 +164,7 @@ public class FoodManager : MonoBehaviour
         return true;
     }
 
+    // Resetear stock galletas/mufflins
     public void ResetDepletedFood()
     {
         foreach (var stock in foodStocks)
@@ -170,6 +176,7 @@ public class FoodManager : MonoBehaviour
         }
     }
 
+    // Restar stock bizcochos
     public bool TakeCakeSlice(CakeType type)
     {
         CakeSpriteStock stock =
@@ -180,6 +187,7 @@ public class FoodManager : MonoBehaviour
         return stock.ConsumeStage();
     }
 
+    // Resetear stock bizcochos
     public void ResetDepletedCakes()
     {
         foreach (var stock in cakeSpriteStocks)

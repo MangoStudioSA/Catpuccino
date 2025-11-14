@@ -67,6 +67,24 @@ public class FoodMinigameInput : MonoBehaviour
 
     [Header("Sprites envases")]
     public Sprite platoSinComida;
+
+    [Header("Sprites bizcochos")]
+    public Sprite BZanahoriaP;
+    public Sprite BChocolateP;
+    public Sprite BRedVelvetP;
+    public Sprite BMantequillaP;
+
+    [Header("Sprites galletas")]
+    public Sprite GChocolateP;
+    public Sprite GChocolateBP;
+    public Sprite GMantequillaP;
+
+    [Header("Sprites mufflins")]
+    public Sprite MArandanosP;
+    public Sprite MCerezaP;
+    public Sprite MPistachoP;
+    public Sprite MDulceLecheP;
+
     #endregion 
 
     void Start()
@@ -194,6 +212,42 @@ public class FoodMinigameInput : MonoBehaviour
         plato.sprite = platoSinComida;
     }
 
+    private Sprite GetFoodSpriteWithPlate(FoodCategory category, int type)
+    {
+        switch (category)
+        {
+            case FoodCategory.bizcocho:
+                switch ((CakeType)type)
+                {
+                    case CakeType.zanahoria: return BZanahoriaP;
+                    case CakeType.mantequilla: return BMantequillaP;
+                    case CakeType.chocolate: return BChocolateP;
+                    case CakeType.RedVelvet: return BRedVelvetP;
+                }
+                break;
+
+            case FoodCategory.galleta:
+                switch ((CookieType)type)
+                {
+                    case CookieType.chocolate: return GChocolateP;
+                    case CookieType.blanco: return GChocolateBP;
+                    case CookieType.mantequilla: return GMantequillaP;
+                }
+                break;
+
+            case FoodCategory.mufflin:
+                switch ((MufflinType)type)
+                {
+                    case MufflinType.cereza: return MCerezaP;
+                    case MufflinType.arandanos: return MArandanosP;
+                    case MufflinType.pistacho: return MPistachoP;
+                    case MufflinType.dulceLeche: return MDulceLecheP;
+                }
+                break;
+        }
+        return null;
+    }
+
     // Funcion para comprobar que botones activar/desactivar
     public void CheckButtons()
     {
@@ -288,15 +342,18 @@ public class FoodMinigameInput : MonoBehaviour
         if (foodInHand)
         {
             GameObject foodObj = foodManager.GetFoodObject(foodCategoryInHand, foodTypeInHand);
-            if (foodObj == null)
-            {
-                Debug.LogWarning("[FoodMiniGameInput] No se encontro el objeto de comida correspondiente");
-                return;
-            }
+            if (foodObj == null) return;
+
             // Se activa y posiciona la comida
             foodObj.SetActive(true);
             foodObj.transform.position = puntoComida.position;
             foodInPlatoObj = foodObj;
+
+            // Se asocia la imagen
+            Image img = foodObj.GetComponent<Image>();
+            if (img != null) 
+                img.sprite = GetFoodSpriteWithPlate(foodCategoryInHand, foodTypeInHand);
+            
             foodObj.GetComponent<Image>().enabled = false;
 
             var sprite = foodObj.GetComponent<Image>()?.sprite;
@@ -314,6 +371,7 @@ public class FoodMinigameInput : MonoBehaviour
 
             cursorManager.UpdateCursorFood(true, foodCategoryInHand, foodTypeInHand);
 
+            // Precision comida
             if (order.currentOrder.foodOrder != null)
             {
                 order.currentOrder.foodOrder.SetFoodPrecision(foodCategoryInPlato, foodTypeInPlato);
@@ -335,6 +393,11 @@ public class FoodMinigameInput : MonoBehaviour
         }
         else if (foodIsInPlato)
         {
+            Image img = foodInPlatoObj.GetComponent<Image>();
+            if (img != null)
+                img.sprite = foodManager.GetFoodObject(foodCategoryInPlato, foodTypeInPlato)
+                                        .GetComponent<Image>().sprite;
+
             PlatoSinComida.SetActive(true);
             foodInPlatoObj.SetActive(false);
             foodIsInPlato = false;
@@ -451,6 +514,14 @@ public class FoodMinigameInput : MonoBehaviour
             //  Se asocia la categoria y el tipo de comida de la mano al horno
             foodCategoryInHorno = foodCategoryInHand;
             foodTypeInHorno = foodTypeInHand;
+
+            // Se muestra la imagen
+            Image img = foodObj.GetComponent<Image>();
+            if (img != null)
+            {
+                img.enabled = true;
+                img.sprite = GetFoodSpriteWithPlate(foodCategoryInHand, foodTypeInHand);
+            }
 
             foodIsInHorno = true;
             foodInHand = false;
