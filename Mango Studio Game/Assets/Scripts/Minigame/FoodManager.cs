@@ -64,10 +64,13 @@ public class FoodManager : MonoBehaviour
     public Texture2D MPistachoCursor;
     public Texture2D MDulceLecheCursor;
 
-    [Header("Stocks comida")]
+    [Header("Stocks de galletas y mufflins")]
     public FoodObjects[] foodStocks;
 
-#endregion
+    [Header("Stocks de bizcochos")]
+    public CakeSpriteStock[] cakeSpriteStocks;
+
+    #endregion
     private void Awake()
     {
         // GameObjects
@@ -164,6 +167,25 @@ public class FoodManager : MonoBehaviour
             {
                 stock.Reset(); // Solo reinicia los que estaban completamente agotados
             }
+        }
+    }
+
+    public bool TakeCakeSlice(CakeType type)
+    {
+        CakeSpriteStock stock =
+            System.Array.Find(cakeSpriteStocks, f => f.cakeType == type);
+
+        if (stock == null) return false;
+
+        return stock.ConsumeStage();
+    }
+
+    public void ResetDepletedCakes()
+    {
+        foreach (var stock in cakeSpriteStocks)
+        {
+            if (stock.IsDepleted())
+                stock.Reset();
         }
     }
 }

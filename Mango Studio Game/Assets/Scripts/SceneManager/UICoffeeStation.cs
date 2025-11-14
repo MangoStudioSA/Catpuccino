@@ -83,7 +83,9 @@ public class UICoffeeStation : MonoBehaviour
             gameManager.SubmitOrder();
             preparationPanel.SetActive(false);
             deliveryPanel.SetActive(true);
+
             foodManager.ResetDepletedFood();
+            foodManager.ResetDepletedCakes();
 
             if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 17)
                 FindFirstObjectByType<TutorialManager>().CompleteCurrentStep();

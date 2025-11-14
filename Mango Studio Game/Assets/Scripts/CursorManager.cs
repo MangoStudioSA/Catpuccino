@@ -202,7 +202,11 @@ public class CursorManager : MonoBehaviour
         foodMinigameInput.foodTypeInHand = (int)type;
         foodMinigameInput.ActualizarBotonCogerComida();
 
-        foodManager.TakeFood(category, (int)type);
+        if (category == FoodCategory.mufflin || category == FoodCategory.galleta)
+            foodManager.TakeFood(category, (int)type);
+
+        if (category == FoodCategory.bizcocho)
+            foodManager.TakeCakeSlice((CakeType)type);
 
         Texture2D cursor = foodManager.GetFoodCursor(category, type);
         Cursor.SetCursor(cursor, Vector2.zero, CursorMode.Auto);
