@@ -1914,17 +1914,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   order: {fileID: 0}
   foodManager: {fileID: 50023197}
-  foodOrder:
-    category: 0
-    cakeType: 0
-    cookieType: 0
-    mufflinType: 0
-    foodTargetCategory: 0
-    foodTargetType: 0
-    foodPrecisionCategory: 0
-    foodPrecisionType: 0
-    targetCookState: 0
-    precisionCookState: 0
   tutorialManager: {fileID: 841635553}
   buttonManager: {fileID: 50023195}
   cursorManager: {fileID: 342197122}
@@ -1932,6 +1921,7 @@ MonoBehaviour:
   fillBakeImage: {fileID: 1090232296}
   Plato: {fileID: 1786740808}
   BolsaLlevar: {fileID: 935583402}
+  BolsaLlevarBandeja: {fileID: 1310215598}
   puntoEncimera: {fileID: 1955836105}
   puntoComida: {fileID: 1048102190}
   puntoHorno: {fileID: 591006215}
@@ -1960,6 +1950,7 @@ MonoBehaviour:
   botonH_P: {fileID: 761929660, guid: 1ce395fc4a1cc454c85499e1e33c3e7e, type: 3}
   botonPH_N: {fileID: 304915697, guid: 1ce395fc4a1cc454c85499e1e33c3e7e, type: 3}
   botonPH_P: {fileID: 761929660, guid: 1ce395fc4a1cc454c85499e1e33c3e7e, type: 3}
+  platoSinComida: {fileID: 21300000, guid: f43a1263f42f52548b40c60bcd8984d1, type: 3}
 --- !u!114 &50023201
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1987,6 +1978,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da5bf29e8a9a53748b127df20ee989b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  taza_CoffeePanel: {fileID: 386902213}
+  taza_FoodPanel: {fileID: 2137433135}
+  vaso_CoffeePanel: {fileID: 2016690276}
+  vaso_FoodPanel: {fileID: 148133999}
+  plato_CoffeePanel: {fileID: 228307302}
+  plato_FoodPanel: {fileID: 1786740810}
+  bolsa_CoffeePanel: {fileID: 1692446719}
+  bolsa_FoodPanel: {fileID: 1310215600}
 --- !u!1 &55580695
 GameObject:
   m_ObjectHideFlags: 0
@@ -3296,7 +3295,7 @@ GameObject:
   - component: {fileID: 98089539}
   - component: {fileID: 98089541}
   - component: {fileID: 98089540}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: BRedVelvet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3940,7 +3939,7 @@ GameObject:
   - component: {fileID: 148133998}
   - component: {fileID: 148134000}
   - component: {fileID: 148133999}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: CafeBVaso
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5171,7 +5170,7 @@ GameObject:
   - component: {fileID: 228307301}
   - component: {fileID: 228307303}
   - component: {fileID: 228307302}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: ComidaCPlato
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6226,7 +6225,7 @@ GameObject:
   - component: {fileID: 309942768}
   - component: {fileID: 309942770}
   - component: {fileID: 309942769}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: BZanahoria
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6888,7 +6887,7 @@ GameObject:
   - component: {fileID: 330642388}
   - component: {fileID: 330642390}
   - component: {fileID: 330642389}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: ZonaEntrega
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7917,7 +7916,7 @@ GameObject:
   - component: {fileID: 386902212}
   - component: {fileID: 386902214}
   - component: {fileID: 386902213}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: TazaTomarBasica
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13971,7 +13970,7 @@ GameObject:
   - component: {fileID: 619921039}
   - component: {fileID: 619921041}
   - component: {fileID: 619921040}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: GMantequilla
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15655,7 +15654,7 @@ GameObject:
   - component: {fileID: 708130279}
   - component: {fileID: 708130281}
   - component: {fileID: 708130280}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: BChocolate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17610,7 +17609,7 @@ GameObject:
   - component: {fileID: 801309281}
   - component: {fileID: 801309283}
   - component: {fileID: 801309282}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: BMantequilla
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18411,7 +18410,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 848366282}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: Imagenes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18446,6 +18445,7 @@ RectTransform:
   - {fileID: 1032402578}
   - {fileID: 1560350578}
   - {fileID: 1392499143}
+  - {fileID: 1310215599}
   m_Father: {fileID: 270205275}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -20349,7 +20349,7 @@ GameObject:
   - component: {fileID: 935583403}
   - component: {fileID: 935583405}
   - component: {fileID: 935583404}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: BolsaLlevar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22577,7 +22577,7 @@ GameObject:
   - component: {fileID: 1032402578}
   - component: {fileID: 1032402580}
   - component: {fileID: 1032402579}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: MPistacho
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26897,7 +26897,7 @@ GameObject:
   - component: {fileID: 1217273031}
   - component: {fileID: 1217273033}
   - component: {fileID: 1217273032}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: Filtro
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27984,7 +27984,7 @@ GameObject:
   - component: {fileID: 1275036456}
   - component: {fileID: 1275036458}
   - component: {fileID: 1275036457}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: PlatoTaza
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28991,6 +28991,81 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1308387452}
   m_CullTransparentMesh: 1
+--- !u!1 &1310215598
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1310215599}
+  - component: {fileID: 1310215601}
+  - component: {fileID: 1310215600}
+  m_Layer: 2
+  m_Name: BolsaLlevarBandeja
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1310215599
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1310215598}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 848366282}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.85435236, y: 0.04277521}
+  m_AnchorMax: {x: 0.9391266, y: 0.24152453}
+  m_AnchoredPosition: {x: -1.3393555, y: -2.0897217}
+  m_SizeDelta: {x: -12, y: -7}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1310215600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1310215598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 6bc8439d71cdd2d43a2813bc12667703, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1310215601
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1310215598}
+  m_CullTransparentMesh: 1
 --- !u!1 &1324809002
 GameObject:
   m_ObjectHideFlags: 0
@@ -29842,7 +29917,7 @@ GameObject:
   - component: {fileID: 1354414400}
   - component: {fileID: 1354414402}
   - component: {fileID: 1354414401}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: GChocolate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30903,7 +30978,7 @@ GameObject:
   - component: {fileID: 1392499143}
   - component: {fileID: 1392499145}
   - component: {fileID: 1392499144}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: MDulceL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31477,7 +31552,7 @@ GameObject:
   - component: {fileID: 1422528249}
   - component: {fileID: 1422528251}
   - component: {fileID: 1422528250}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: AgujaEcharCafe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33095,7 +33170,7 @@ GameObject:
   - component: {fileID: 1492751191}
   - component: {fileID: 1492751193}
   - component: {fileID: 1492751192}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: ZonaEntrega
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34607,7 +34682,7 @@ GameObject:
   - component: {fileID: 1560350578}
   - component: {fileID: 1560350580}
   - component: {fileID: 1560350579}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: MArandano
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34682,7 +34757,7 @@ GameObject:
   - component: {fileID: 1564548821}
   - component: {fileID: 1564548823}
   - component: {fileID: 1564548822}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: MCereza
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36585,7 +36660,7 @@ GameObject:
   - component: {fileID: 1645141595}
   - component: {fileID: 1645141597}
   - component: {fileID: 1645141596}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: TazaLeche
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37830,7 +37905,7 @@ GameObject:
   - component: {fileID: 1692446718}
   - component: {fileID: 1692446720}
   - component: {fileID: 1692446719}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: ComidaCBolsa
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39650,7 +39725,7 @@ GameObject:
   - component: {fileID: 1786740809}
   - component: {fileID: 1786740811}
   - component: {fileID: 1786740810}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: Plato
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39996,7 +40071,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1805872226}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: Imagenes_Objetos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40329,7 +40404,7 @@ GameObject:
   - component: {fileID: 1817987057}
   - component: {fileID: 1817987059}
   - component: {fileID: 1817987058}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: PalancaDownImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42026,7 +42101,7 @@ GameObject:
   - component: {fileID: 1901911380}
   - component: {fileID: 1901911382}
   - component: {fileID: 1901911381}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: GChocolateB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44119,7 +44194,7 @@ GameObject:
   - component: {fileID: 2016690275}
   - component: {fileID: 2016690277}
   - component: {fileID: 2016690276}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: VasoLlevar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46328,7 +46403,7 @@ GameObject:
   - component: {fileID: 2137433134}
   - component: {fileID: 2137433136}
   - component: {fileID: 2137433135}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: CafeBTaza
   m_TagString: Untagged
   m_Icon: {fileID: 0}

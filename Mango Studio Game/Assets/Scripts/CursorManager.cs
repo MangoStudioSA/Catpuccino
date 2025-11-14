@@ -148,6 +148,11 @@ public class CursorManager : MonoBehaviour
             foodMinigameInput.platoInHand = true;
             Cursor.SetCursor(platoCursorTexture, hotSpotPlato, CursorMode.Auto);
         }
+        else if (foodMinigameInput.platoInHand)
+        {
+            foodMinigameInput.platoInHand = false;
+            Cursor.SetCursor(defaultCursorTexture, hotSpotDefault, CursorMode.Auto);
+        }
     }
 
     // Gestionar coger la bolsa para llevar del estante
@@ -160,6 +165,11 @@ public class CursorManager : MonoBehaviour
         {
             foodMinigameInput.carryBagInHand = true;
             Cursor.SetCursor(bolsaLlevarCursorTexture, hotSpotBolsaLlevar, CursorMode.Auto);
+        }
+        else if (foodMinigameInput.carryBagInHand)
+        {
+            foodMinigameInput.carryBagInHand = false;
+            Cursor.SetCursor(defaultCursorTexture, hotSpotDefault, CursorMode.Auto);
         }
     }
 

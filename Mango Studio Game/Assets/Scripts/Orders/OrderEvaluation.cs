@@ -31,7 +31,7 @@ public class OrderEvaluation : MonoBehaviour
     public bool lastBadCookStateBurned = false;
     public bool lastBadCookStateRaw = false;
 
-    public void Start()
+    public void ResetFoodBools()
     {
         isOrderWithFood = false;
         playerForgotFood = false;
@@ -44,6 +44,7 @@ public class OrderEvaluation : MonoBehaviour
     public EvaluationResult Evaluate(Order npcOrder, Order playerOrder)
     {
         EvaluationResult result = new EvaluationResult();
+        ResetFoodBools();
 
         int totalScore = 0; // Inicializa la puntuacion del jugador en 0
         int maxPossibleScore = 0;

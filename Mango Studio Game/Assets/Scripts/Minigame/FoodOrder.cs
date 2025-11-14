@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 [System.Serializable]
 public class FoodOrder
@@ -43,6 +43,7 @@ public class FoodOrder
                 break;
             default:
                 foodTargetType = -1;
+                targetCookState = CookState.no;
                 break;
         }
     }
@@ -64,7 +65,7 @@ public class FoodOrder
     {
         if (category == FoodCategory.no)
         {
-            return "No quiero comida.";
+            return " No quiero comida.";
         }
 
         string tipo = "";
@@ -87,20 +88,22 @@ public class FoodOrder
         }
 
         if (string.IsNullOrEmpty(nombre) || nombre == "no")
-            return "No quiero comida.";
+            return " No quiero comida.";
 
         // Se corrigen nombres espaciados
         nombre = nombre.Replace("RedVelvet", "Red Velvet")
+                        .Replace("blanco", "chocolate blanco")
+                        .Replace("arandanos", "arándanos")
                         .Replace("dulceLeche", "dulce de leche");
 
-        return $" Tambi�n, quiero {tipo} de {nombre.ToLower()}.";
+        return $" También, quiero {tipo} de {nombre.ToLower()}.";
     }
 
     public string GetSimpleFoodDescription()
     {
         if (category == FoodCategory.no)
         {
-            return "Sin comida.";
+            return " Sin comida.";
         }
 
         string nombre = "";
@@ -121,7 +124,7 @@ public class FoodOrder
         // Se corrigen nombres 
         nombre = nombre.Replace("RedVelvet", "Red Velvet")
                         .Replace("blanco", "chocolate blanco")
-                        .Replace("arandanos", "ar�ndanos")
+                        .Replace("arandanos", "arándanos")
                         .Replace("dulceLeche", "dulce de leche");
 
         return $"{category} de {nombre}.";

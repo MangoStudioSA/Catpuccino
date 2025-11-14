@@ -74,8 +74,8 @@ public class MinigameInput : MonoBehaviour
     
     public bool tazaIsInCafetera = false, tazaIsInPlato = false, vasoIsInCafetera = false, vasoIsInTable = false, platoTazaIsInTable = false, tazaMilkIsInEspumador = false,
         vasoTapaPuesta = false, filtroIsInCafetera = false;
-
-
+    #endregion
+    #region Sprites
     [Header("Objetos fisicos")]
     public GameObject Taza;
     public GameObject Vaso;
@@ -225,6 +225,7 @@ public class MinigameInput : MonoBehaviour
         TazaLeche.SetActive(false);
         Filtro.SetActive(false);
         UpdateStartSprites();
+        CoffeeFoodManager.Instance.ResetPanels();
 
         buttonManager.molerButton.gameObject.SetActive(true);
         palancaDown.SetActive(false);
@@ -526,7 +527,7 @@ public class MinigameInput : MonoBehaviour
             PlatoTaza.gameObject.SetActive(false);
 
             // Se asocia a la bandeja
-            //CoffeeFoodManager.Instance.ToggleCafe(true, Taza.GetComponent<Image>(), Taza.GetComponent<Image>().sprite);
+            CoffeeFoodManager.Instance.ToggleCafe(true, Taza.GetComponent<Image>(), Taza.GetComponent<Image>().sprite);
 
             cursorManager.UpdateCursorTaza(true);
             DisableMechanics();
@@ -545,7 +546,7 @@ public class MinigameInput : MonoBehaviour
             cursorManager.UpdateCursorTaza(false);
 
             // Se quita de la bandeja
-            //CoffeeFoodManager.Instance.ToggleCafe(false, null, null);
+            CoffeeFoodManager.Instance.ToggleCafe(false, null, null);
             EnableMechanics();
         }
     }
@@ -616,7 +617,7 @@ public class MinigameInput : MonoBehaviour
             cupServed = true;
 
             // Se deja en la bandeja
-            //CoffeeFoodManager.Instance.ToggleCafe(true, Vaso.GetComponent<Image>(), Vaso.GetComponent<Image>().sprite);
+            CoffeeFoodManager.Instance.ToggleCafe(true, Vaso.GetComponent<Image>(), Vaso.GetComponent<Image>().sprite);
             cursorManager.UpdateCursorVaso(true);
 
             DisableMechanics();
@@ -631,7 +632,7 @@ public class MinigameInput : MonoBehaviour
             cupServed = false;
 
             // Se quita de la bandeja
-            //CoffeeFoodManager.Instance.ToggleCafe(false, null, null);
+            CoffeeFoodManager.Instance.ToggleCafe(false, null, null);
 
             EnableMechanics();
             cursorManager.UpdateCursorVaso(false);
