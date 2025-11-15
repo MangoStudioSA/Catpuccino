@@ -415,7 +415,7 @@ public class TutorialManager : MonoBehaviour
             // Paso 3
             steps.Add(new TutorialStep
             {
-                message = "Ahora, selecciona el tipo de bizcocho correspondiente (si no ha solicitado ninguno, escoge al azar.",
+                message = "Ahora, selecciona el tipo de bizcocho correspondiente (si no ha solicitado ninguno, escoge al azar).",
                 position = new Vector2(340f, 10f),
                 autoAdvance = false,
                 onStepStart = () =>

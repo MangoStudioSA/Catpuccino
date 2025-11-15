@@ -13,31 +13,40 @@
 ## Version 1.0 - Fase Beta
 ---
 ## 0. Diferencias con la fase anterior
-- Implementar el tutorial ingame
-- Actualizar pagina web y GDD
-- 2 personajes ( concept, modedelado 3D, uno de ellos 2D)
+- Tutorial ingame implementado para los 3 primeros días.
+- Página web actualizada.
+- 3 clientes (concept, modedelado 3D, uno de ellos 2D)
 - Gato (modelado 3D y animación de caminar)
-- Añadir nuevo contenido para RRSS
-- Implementar la puntación media pantalla final
-- Actualizar las mecanicas basicas
-- Añadir nuevas mecanicas (Comanda)
-- Diseño y implementación de todas las interfaces 
-- Aumentado la complicación ingame
-- Implementar y crear la mayor parte de Props del juego, completando todos los props de creación de café
-- 2 animaciones de interfaz (album y recetario)
-- Arreglar bugs y errores esteticos de programación (bandeja sea persisitente si estas en la cafeteria/estación de comida)
-- Concept y comienzo con el diseño de estación de comida
-- Modelado y concept interior final
-- Diseño de todas las cartas ingame
-- Modelos 3D (maquina de gacha, cafetera)
-- Implementar tienda
-- Implementar gacha 
-- Diseños 2d (monedas de pago y monedas normales)
-- Actualizar el diagrama de estados
-- Modificar cursores (taza con cafe,agua, etc)
-- Implementar skins de los basos y taza
-
-
+- Nuevo contenido en RRSS.
+- Puntación media en pantalla final.
+- Mecánicas básicas actualizadas (pedidos para llevar).
+- Desbloqueo de cafés y comidas por día (en total 7 días).
+- Implementación de mensaje diario de elementos desbloqueados.
+- Implementación de una pizarra desplegable en la que comprobar la carta disponible del día.
+- Nuevas mecánicas de cafés implementadas: tipos de cafés (11), crema, leche condensada, whiskey, chocolate, leche, calentar leche...
+- Nuevas mecánicas de comida implementadas: bizcochos, galletas, mufflins, horno...
+- Diseño e implementación de todas las interfaces y botones.
+- Implementación de una bandeja persistente entre panel de preparación de cafés y de comidas.
+- Implementación de comprobar los requisitos de la orden mediante una nota desplegable en ambos paneles.
+- Aumentado la complicación ingame e implementación de sistema de facturas que aumenta gradualmente con los días.
+- El tiempo ingame disminuye de forma más lenta con el transcurso de los días.
+- Diseñados e implementados los "*props*" del juego (todos los tipos de cafés, comidas, sus mecánicas y los envases).
+- Implementadas 3 animaciones de interfaz (album, tienda y recetario).
+- Implementación de la tienda de temática gacha, así como de los 2 tipos de sobres y tienda de monedas premium.
+- Diseño e implemenación de cartas funcionales de distintas rarezas.
+- Implementación del álbum de cromos.
+- Arreglados bugs y errores estéticos de programación.
+- Concept final del diseño de estación de comida.
+- Modelado y concept interior final.
+- Modelos 3D (maquina de gacha, cafetera y elementos del escenario)
+- Diseños 2D (monedas de pago y monedas normales)
+- Diagrama de estados actualizado.
+- Cursores modificados (taza con cafe,agua, etc).
+- Implementada la funcionalidad de la carta "*Latte Art*".
+- Implementado el guardado de datos por partidas, creando la posibilidad de tener 3 partidas comenzadas y la opción de eliminar la que se desee.
+- Implementado el guardado de monedas de la tienda y colección de cartas vinculado al navegador en lugar de a la partida concreta.
+- Creación e implementación de música propia.
+- Implementación de sonidos en algunos botones.
 
 ## 1. Introducción
 

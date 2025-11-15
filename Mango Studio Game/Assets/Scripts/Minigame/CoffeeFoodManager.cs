@@ -126,4 +126,16 @@ public class CoffeeFoodManager : MonoBehaviour
         // Desactivar comida
         ToggleComida(false, null, null);
     }
+
+    public void ResetCoffeePanel()
+    {
+        // Desactivar cafes
+        ToggleCafe(false, null, null);
+    }
+
+    public void ResetFoodPanel()
+    { 
+        // Desactivar comida
+        ToggleComida(false, null, null);
+    }
 }

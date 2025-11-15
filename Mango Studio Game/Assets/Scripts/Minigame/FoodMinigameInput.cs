@@ -145,6 +145,7 @@ public class FoodMinigameInput : MonoBehaviour
         BolsaLlevar.SetActive(false);
         bakeSlider.gameObject.SetActive(false);
         UpdateStartSprites();
+        CoffeeFoodManager.Instance.ResetFoodPanel();
 
         if (foodInPlatoObj != null)
         {

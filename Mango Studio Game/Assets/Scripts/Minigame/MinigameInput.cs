@@ -219,6 +219,7 @@ public class MinigameInput : MonoBehaviour
 
         heatPanel.SetActive(false);
         molerPanel.SetActive(false);
+        CoffeeFoodManager.Instance.ResetCoffeePanel();
 
         Taza.SetActive(false);
         Vaso.SetActive(false);
