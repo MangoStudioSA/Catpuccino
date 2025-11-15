@@ -6,12 +6,15 @@ public class CustomerController : MonoBehaviour
     public Vector3 direction = Vector3.forward;
     public bool atCounter = false, atQueue = false;
     CustomerManager manager;
+    public int model = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         manager = GameObject.FindWithTag("CustomerManager").GetComponent<CustomerManager>();
         manager.customers.Enqueue(this);
+        model = Random.Range(0, (int)transform.childCount);
+        transform.GetChild(model).gameObject.SetActive(true);
     }
 
     // Update is called once per frame

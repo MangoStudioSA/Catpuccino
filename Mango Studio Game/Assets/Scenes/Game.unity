@@ -3384,7 +3384,7 @@ MonoBehaviour:
   minMinTime: 2
   minMaxTime: 4
   clients: 0
-  maxClients: 3
+  maxClients: 4
   orderButton: {fileID: 48577134}
   orderingCustomer: {fileID: 0}
   timeDecay: 2
@@ -8318,7 +8318,6 @@ MonoBehaviour:
   dialoguePanel: {fileID: 995759339}
   endOfDayPanel: {fileID: 1071443432}
   tutorialManager: {fileID: 841635553}
-  shopManager: {fileID: 0}
   orderScreen: 0
   customerOrderGenerator: {fileID: 2111219102}
 --- !u!1 &346478213
@@ -50196,7 +50195,6 @@ MonoBehaviour:
   dialoguePanel: {fileID: 995759339}
   endOfDayPanel: {fileID: 1071443432}
   tutorialManager: {fileID: 0}
-  shopManager: {fileID: 0}
   orderScreen: 0
   customerOrderGenerator: {fileID: 0}
 --- !u!1 &2100299597
