@@ -372,7 +372,7 @@ public class TutorialManager : MonoBehaviour
     {
         isRunningT1 = false;
         tutorialPanel.gameObject.SetActive(false);
-        GameManager.Instance.AnadirMonedas(100);
+        GameManager.Instance.AnadirMonedas(220);
         PlayerDataManager.instance.AddBasicCoins(20);
         Debug.Log("Tutorial completado");
     }
