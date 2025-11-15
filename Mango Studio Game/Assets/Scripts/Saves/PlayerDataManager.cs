@@ -44,7 +44,6 @@ public class PlayerDataManager : MonoBehaviour
     {
         data.basicCoins += amount;
         HUDManager.Instance.UpdateBasicCoins(data.basicCoins);
-        shopManager.UpdateUI();
         SaveData();
     }
     // Funcion para gastar monedas basicas
