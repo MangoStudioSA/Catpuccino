@@ -1,4 +1,4 @@
-using TMPro;
+ï»¿using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -62,7 +62,7 @@ public class SaveDataManager : MonoBehaviour
 
         if (PlayerPrefs.HasKey("Slot1_Day"))
         {
-            slot1Button.GetComponentInChildren<TextMeshProUGUI>().text = "Partida 1 (Día " + PlayerPrefs.GetInt("Slot1_Day") + ")";
+            slot1Button.GetComponentInChildren<TextMeshProUGUI>().text = "Partida 1 (DÃ­a " + PlayerPrefs.GetInt("Slot1_Day") + ")";
             del1Button.GetComponent<Button>().onClick.AddListener(Del1);
         }
         else
@@ -72,7 +72,7 @@ public class SaveDataManager : MonoBehaviour
 
         if (PlayerPrefs.HasKey("Slot2_Day"))
         {
-            slot2Button.GetComponentInChildren<TextMeshProUGUI>().text = "Partida 2 (Día " + PlayerPrefs.GetInt("Slot2_Day") + ")";
+            slot2Button.GetComponentInChildren<TextMeshProUGUI>().text = "Partida 2 (DÃ­a " + PlayerPrefs.GetInt("Slot2_Day") + ")";
             del2Button.GetComponent<Button>().onClick.AddListener(Del2);
         }
         else
@@ -82,7 +82,7 @@ public class SaveDataManager : MonoBehaviour
 
         if (PlayerPrefs.HasKey("Slot3_Day"))
         {
-            slot3Button.GetComponentInChildren<TextMeshProUGUI>().text = "Partida 3 (Día " + PlayerPrefs.GetInt("Slot3_Day") + ")";
+            slot3Button.GetComponentInChildren<TextMeshProUGUI>().text = "Partida 3 (DÃ­a " + PlayerPrefs.GetInt("Slot3_Day") + ")";
             del3Button.GetComponent<Button>().onClick.AddListener(Del3);
         }
         else

@@ -310,7 +310,7 @@ public class TutorialManager : MonoBehaviour
             // Paso 24
             steps.Add(new TutorialStep
             {
-                message = "Como recompensa, se te ingresarán 100$ para ayudarte a pasar el primer día y 20 monedas de café. ¡Disfruta de Catpuccino!",
+                message = "Como recompensa, se te ingresarán 220$ para ayudarte a pasar el primer día y 20 monedas de café. ¡Disfruta de Catpuccino!",
                 position = new Vector2(0f, 0f),
                 autoAdvance = true,
                 autoDelay = 7f

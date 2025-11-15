@@ -18,7 +18,7 @@ public class GameOver : MonoBehaviour
             averageSatisfaction = ((float)dataManager.score / dataManager.rated);
         }
 
-        text.text = averageSatisfaction + " / 100";
+        text.text = $"{averageSatisfaction:F2} / 100";
 
         if (averageSatisfaction > 75)
         {

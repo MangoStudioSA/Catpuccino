@@ -50,10 +50,10 @@ public class TimeManager : MonoBehaviour
     private int basicCoins = 0;
 
     // Variables para las facturas
-    private float averageCoffeePrice = 3f;
-    private float averageFoodPrice = 4f;
+    private float averageCoffeePrice = 1f;
+    private float averageFoodPrice = 2f;
 
-    private int customersPerDay = 15;
+    private int customersPerDay = 5;
 
     void Awake()
     {
@@ -163,9 +163,9 @@ public class TimeManager : MonoBehaviour
         // Calculo facturas
         float dailyIncome = (averageCoffeePrice + averageFoodPrice) * customersPerDay;
         float difficultyFactor = 1f + (currentDay - 1) * requiredIncrement;
-        int randomVariation = (int)UnityEngine.Random.Range(-10f, 20f);
+        int randomVariation = (int)UnityEngine.Random.Range(-10f, 10f);
 
-        //requiredMoney = requiredBase + (currentDay - 1) * requiredIncrement + (int)Random.Range(-50, 50);
+        //requiredMoney = requiredBase + (currentDay - 1) * requiredIncrement + (int)Random.Range(-10, 10);
         requiredMoney = Mathf.RoundToInt(dailyIncome * difficultyFactor) + randomVariation;
 
         if (gameUIManager != null)

@@ -48,11 +48,16 @@ public class ShopManager : MonoBehaviour
 
     [Header("Referencias")]
     public CardPackManager cardPackManager;
+    public static ShopManager Instance;
 
     private void OnEnable()
     {
         if (PlayerDataManager.instance != null)
             UpdateUI();
+    }
+    void Awake()
+    {
+        if (Instance != null) { Destroy(gameObject); } else { Instance = this; }
     }
 
     // Se vinculan los botones con sus acciones
