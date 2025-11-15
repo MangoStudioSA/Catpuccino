@@ -41,6 +41,7 @@
 - Modelos 3D (maquina de gacha, cafetera y elementos del escenario)
 - Diseños 2D (monedas de pago y monedas normales)
 - Diagrama de estados actualizado.
+- Implementación de una fuente de texto personalizada.
 - Cursores modificados (taza con cafe,agua, etc).
 - Implementada la funcionalidad de la carta "*Latte Art*".
 - Implementado el guardado de datos por partidas, creando la posibilidad de tener 3 partidas comenzadas y la opción de eliminar la que se desee.
@@ -381,7 +382,7 @@ A continuación se muestran imágenes de la base para el diseño de cada una de 
 
 
 ### 8.2 Diagrama de flujo
-![Diagrama de flujo](https://github.com/MangoStudioSA/Catpuccino/blob/64dfdf535d3d2620bf3c7a313a3b5422ea3f72de/PhotosGDD/Diagrama%20de%20flujo.png)
+![Diagrama de flujo beta](https://github.com/MangoStudioSA/Catpuccino/blob/59c751fd00869fc76fd09a048ff4afaea7bff875/PhotosGDD/Diagrama%20de%20flujo%20beta.png)
 
 ## 9. Hoja de ruta del desarrollo
 
