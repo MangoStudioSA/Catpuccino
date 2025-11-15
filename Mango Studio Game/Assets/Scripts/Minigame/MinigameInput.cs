@@ -1365,7 +1365,7 @@ public class MinigameInput : MonoBehaviour
     #region Mecanica azucar
     public void CogerAzucar()
     {
-        if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand)
+        if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand && countCover < 0)
         {
             cucharaInHand = true;
         }
@@ -1393,7 +1393,7 @@ public class MinigameInput : MonoBehaviour
     #region Mecanica hielo
     public void CogerHielo()
     {
-        if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand)
+        if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand && countCover < 0)
         {
             iceInHand = true;
         }

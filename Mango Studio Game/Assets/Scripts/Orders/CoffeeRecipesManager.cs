@@ -110,7 +110,7 @@ public class CoffeeRecipesManager : MonoBehaviour
             if (unlocked)
                 img.color = Color.white;             // visible
             else
-                img.color = new Color(1, 1, 1, 0.1f);  // bloqueado / atenuado
+                img.color = new Color(1, 1, 1, 0f);  // bloqueado
         }
     }
 }

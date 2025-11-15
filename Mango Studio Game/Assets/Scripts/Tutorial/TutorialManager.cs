@@ -281,7 +281,6 @@ public class TutorialManager : MonoBehaviour
                 autoAdvance = false,
                 onStepStart = () =>
                 {
-                    buttonManager.EnableButton(buttonManager.endDeliveryButton);
                 }
             });
             // Paso 21

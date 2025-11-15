@@ -1,4 +1,4 @@
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 
 public class GameOver : MonoBehaviour
@@ -22,11 +22,11 @@ public class GameOver : MonoBehaviour
 
         if (averageSatisfaction > 75)
         {
-            text2.text = "SIGUE AS�!!";
+            text2.text = "SIGUE ASÍ!!";
         }
         else if (averageSatisfaction > 50)
         {
-            text2.text = "NO ESTA MAL :)";
+            text2.text = "NO ESTÁ MAL :)";
         }
         else if (averageSatisfaction > 25)
         {
