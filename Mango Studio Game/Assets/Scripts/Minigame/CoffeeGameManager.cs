@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class EvaluationResult
@@ -8,12 +9,19 @@ public class EvaluationResult
     public int moneyEarned;
 }
 
+[System.Serializable]
+public class FeedBackSprites
+{
+    public Sprite[] feedBackS;
+}
+
 public class CoffeeGameManager : MonoBehaviour
 {
     [Header("Referencias")]
     public CustomerOrder npc;
     public PlayerOrder player;
     public OrderEvaluation evaluation;
+    public CustomerManager customerManager;
 
     [Header("UI Texts")]
     public TextMeshProUGUI orderFeedbackTxt;
@@ -22,8 +30,21 @@ public class CoffeeGameManager : MonoBehaviour
     public TextMeshProUGUI earnedTipTxt;
     public TextMeshProUGUI scoreTxt;
 
+    [Header("Sprites clientes")]
+    public Image clientImage;
+    public Sprite[] clienteSprites;
+
+    [Header("Sprites feedback clientes")]
+    public Image clientFeedbackImage;
+    public FeedBackSprites[] feedbakClientSprites;
+
     private int totalScore = 0;
     private int customersServed = 0;
+
+    private void Awake()
+    {
+        customerManager = FindFirstObjectByType<CustomerManager>();
+    }
 
     public void SubmitOrder()
     {
@@ -59,6 +80,14 @@ public class CoffeeGameManager : MonoBehaviour
             PopUpMechanicsMsg.Instance.ShowMessage("El cliente no ha dejado propina.", new Vector3(300, -87, 0), 6f);
         }
 
+        if (customerManager.orderingCustomer != null)
+        {
+            CustomerController currentCustomer = customerManager.orderingCustomer.GetComponent<CustomerController>();
+            int tipoCliente = currentCustomer.model;
+            int tipoFeedback = CalculateFeedbackSprite(result.score);
+            MostrarFeedback(tipoCliente, tipoFeedback);
+        }
+
         string feedback = GenerateFeedbackText(
             result.score,
             evaluation.isOrderWithFood,
@@ -82,6 +111,7 @@ public class CoffeeGameManager : MonoBehaviour
         if (score <= 92) return 1;
         else return 2;
     }
+
     // Funcion para generar el texto en funcion de la puntuacion obtenida
     private string GenerateFeedbackText(int score, bool isOrderWithFood, bool playerForgotFood, bool wrongFoodType, bool badCookStateRaw, bool badCookStateBurned)
     {
@@ -103,6 +133,44 @@ public class CoffeeGameManager : MonoBehaviour
             feedback += "";
         }
         return feedback;
+    }
+
+    // Funcion para mostrar el sprite del cliente actual 
+    public void MostrarCliente(int tipoCliente)
+    {
+        if (tipoCliente < 0 || tipoCliente >= clienteSprites.Length)
+        {
+            clientImage.gameObject.SetActive(false); 
+            return;
+        }
+
+        clientImage.sprite = clienteSprites[tipoCliente];
+        clientImage.gameObject.SetActive(true);
+    }
+
+    // Funcion para mostrar el sprite del cliente actual segun la puntuacion obtenido
+    public void MostrarFeedback(int tipoCliente, int tipoFeedback)
+    {
+        if (tipoCliente < 0 || tipoCliente >= feedbakClientSprites.Length ||
+           tipoFeedback < 0 || tipoFeedback >= feedbakClientSprites[tipoCliente].feedBackS.Length)
+        {
+            clientFeedbackImage.gameObject.SetActive(false);
+            return;
+        }
+
+        clientFeedbackImage.sprite = feedbakClientSprites[tipoCliente].feedBackS[tipoFeedback];
+        clientFeedbackImage.gameObject.SetActive(true);
+    }
+
+    // Funcion para asignar el sprite segun la puntuacion obtenida
+    public int CalculateFeedbackSprite(int score)
+    {
+        if (score < 40)
+            return 1;
+        else if (score > 40 && score < 80)
+            return 0;
+        else
+            return 2;
     }
 
 }

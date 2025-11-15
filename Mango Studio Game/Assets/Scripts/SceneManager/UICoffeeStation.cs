@@ -11,6 +11,7 @@ public class UICoffeeStation : MonoBehaviour
 
     public CoffeeGameManager gameManager;
     public TutorialManager tutorialManager;
+    public OrderNoteUI orderNoteUI;
     public MinigameInput miniGameInput;
     public FoodMinigameInput foodMinigameInput;
     public FoodManager foodManager;
@@ -86,6 +87,8 @@ public class UICoffeeStation : MonoBehaviour
             gameManager.SubmitOrder();
             preparationPanel.SetActive(false);
             deliveryPanel.SetActive(true);
+
+            orderNoteUI.isVisible = false;
 
             foodManager.ResetDepletedFood();
             foodManager.ResetDepletedCakes();

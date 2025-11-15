@@ -202,8 +202,11 @@ public class MinigameInput : MonoBehaviour
         buttonManager.EnableButton(buttonManager.cogerVasoInicioButton);
         buttonManager.EnableButton(buttonManager.cogerPlatoTazaButton);
 
-        buttonManager.EnableButton(buttonManager.coffeeButton);
-        buttonManager.DisableButton(buttonManager.submitOrderButton);
+        if (!tutorialManager.isRunningT1)
+        {
+            buttonManager.EnableButton(buttonManager.coffeeButton);
+            buttonManager.DisableButton(buttonManager.submitOrderButton);
+        }
         buttonManager.DisableButton(buttonManager.cogerTazaLecheButton);
         buttonManager.DisableButton(buttonManager.molerButton);
         buttonManager.DisableButton(buttonManager.filtroCafeteraButton);
@@ -359,11 +362,6 @@ public class MinigameInput : MonoBehaviour
         else
             Balda.SetActive(false);
 
-        if (tutorialManager.isRunningT1 && tutorialManager.currentStep < 8)
-            buttonManager.DisableButton(buttonManager.coffeeButton);
-        else if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 8)
-            buttonManager.EnableButton(buttonManager.coffeeButton);
-
         if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 20)
             buttonManager.EnableButton(buttonManager.endDeliveryButton);
         else if (tutorialManager.isRunningT1)
@@ -381,8 +379,8 @@ public class MinigameInput : MonoBehaviour
         else if (tutorialManager.isRunningT1)
             buttonManager.DisableButton(buttonManager.submitOrderButton);
 
-        if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 21 || tutorialManager.currentStep == 22 
-            || tutorialManager.currentStep == 23 || tutorialManager.currentStep == 24)
+        if (tutorialManager.isRunningT1 && (tutorialManager.currentStep == 21 || tutorialManager.currentStep == 22 
+            || tutorialManager.currentStep == 23 || tutorialManager.currentStep == 24))
             buttonManager.DisableButton(buttonManager.gameButton);
         else
             buttonManager.EnableButton(buttonManager.gameButton);
@@ -407,7 +405,7 @@ public class MinigameInput : MonoBehaviour
         else if ((tazaIsInCafetera || vasoIsInCafetera) && !tutorialManager.isRunningT1)
             buttonManager.EnableButton(buttonManager.papeleraButton);
 
-        if (!tutorialManager.isRunningT2)
+        if (!tutorialManager.isRunningT2 && !tutorialManager.isRunningT1)
         {
             if (tazaInHand || vasoInHand || TengoOtroObjetoEnLaMano())
             {
@@ -434,8 +432,10 @@ public class MinigameInput : MonoBehaviour
             buttonManager.DisableButton(buttonManager.cogerTazaLecheButton);
         
         if (milkServed)
+        {
             buttonManager.DisableButton(buttonManager.calentarButton);
             buttonManager.DisableButton(buttonManager.calentarButton);
+        }
     }
     #endregion
 

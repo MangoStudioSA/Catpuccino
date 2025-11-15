@@ -19,7 +19,7 @@ public class OrderNoteUI : MonoBehaviour
     private Coroutine slideCoroutineA;
     private Coroutine slideCoroutineB;
 
-    private bool isVisible = false;
+    public bool isVisible = false;
     private Order currentOrder;
     public TutorialManager tutorialManager;
 

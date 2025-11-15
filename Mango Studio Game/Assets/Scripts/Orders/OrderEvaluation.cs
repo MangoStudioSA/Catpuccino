@@ -31,6 +31,8 @@ public class OrderEvaluation : MonoBehaviour
     public bool lastBadCookStateBurned = false;
     public bool lastBadCookStateRaw = false;
 
+    public CustomerController customerController;
+
     public void ResetFoodBools()
     {
         isOrderWithFood = false;
@@ -599,4 +601,15 @@ public class OrderEvaluation : MonoBehaviour
         return cookStateScore; // Se devuelve la puntuacion total del tipo de comida
     }
     #endregion
+
+    public int CalculateFeedbackSprite(int score)
+    {
+        if (score < 40)
+            return  1;
+        else if (score > 40 && score < 80)
+            return 0;
+        else 
+            return 2;
+    }
+
 }

@@ -53,7 +53,7 @@ public class TimeManager : MonoBehaviour
     private float averageCoffeePrice = 1f;
     private float averageFoodPrice = 2f;
 
-    private int customersPerDay = 5;
+    private int customersPerDay = 10;
 
     void Awake()
     {

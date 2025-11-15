@@ -5,7 +5,7 @@ public class CustomerController : MonoBehaviour
     public float speed = 5f;
     public Vector3 direction = Vector3.forward;
     public bool atCounter = false, atQueue = false;
-    CustomerManager manager;
+    public CustomerManager manager;
     public int model = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -38,6 +38,12 @@ public class CustomerController : MonoBehaviour
             manager.orderButton.SetActive(true);
             atCounter = true;
             manager.orderingCustomer = this.gameObject;
+
+            CoffeeGameManager coffeManager = FindFirstObjectByType<CoffeeGameManager>();
+            if (coffeManager != null)
+            {
+                coffeManager.MostrarCliente(model);
+            }
         }
         else
         {
@@ -51,6 +57,12 @@ public class CustomerController : MonoBehaviour
         {
             atCounter = false;
             manager.orderingCustomer = null;
+
+            CoffeeGameManager coffeManager = FindFirstObjectByType<CoffeeGameManager>();
+            if (coffeManager != null)
+            {
+                coffeManager.MostrarCliente(-1);
+            }
         }
         else
         {
