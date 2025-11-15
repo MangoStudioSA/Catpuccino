@@ -92,8 +92,11 @@ public class ButtonUnlockManager : MonoBehaviour
         cogerMDulceLecheButton.gameObject.SetActive(progress.mufflinsEnabled);
 
         // Inicialmente se desactiva la interactividad de los botones
+        submitOrderButton.interactable = false;
+
         filtroButton.interactable = false;
         filtroCafeteraButton.interactable = false;
+        coffeeButton.interactable = false;
         echarCafeButton.interactable = false;
         pararEcharCafeButton.interactable = false;
         calentarButton.interactable = false;

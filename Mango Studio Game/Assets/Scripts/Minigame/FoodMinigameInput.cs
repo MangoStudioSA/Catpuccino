@@ -329,6 +329,9 @@ public class FoodMinigameInput : MonoBehaviour
         buttonManager.DisableButton(buttonManager.cogerPlatoInicioButton);
         
         ActualizarBotonCogerComida();
+
+        if (tutorialManager.isRunningT2 && tutorialManager.currentStep == 2)
+            FindFirstObjectByType<TutorialManager>().CompleteCurrentStep2();
     }
     
     // Funcion para interactuar con la comida en el plato 

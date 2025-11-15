@@ -202,11 +202,8 @@ public class MinigameInput : MonoBehaviour
         buttonManager.EnableButton(buttonManager.cogerVasoInicioButton);
         buttonManager.EnableButton(buttonManager.cogerPlatoTazaButton);
 
-        if (!tutorialManager.isRunningT1)
-        {
-            buttonManager.EnableButton(buttonManager.coffeeButton);
-            buttonManager.DisableButton(buttonManager.submitOrderButton);
-        }
+        buttonManager.DisableButton(buttonManager.coffeeButton);
+        buttonManager.DisableButton(buttonManager.submitOrderButton);
         buttonManager.DisableButton(buttonManager.cogerTazaLecheButton);
         buttonManager.DisableButton(buttonManager.molerButton);
         buttonManager.DisableButton(buttonManager.filtroCafeteraButton);
@@ -357,12 +354,69 @@ public class MinigameInput : MonoBehaviour
     }
     public void CheckButtons()
     {
-        if (progressManager.condensedMilkEnabled)
-            Balda.SetActive(true);
-        else
-            Balda.SetActive(false);
+        Balda.SetActive(progressManager.condensedMilkEnabled);
 
-        if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 20)
+
+        if (tutorialManager.isRunningT1)
+        {
+            buttonManager.DisableButton(buttonManager.shopButton);
+
+            int step = tutorialManager.currentStep;
+
+            if (step == 12) buttonManager.EnableButton(buttonManager.echarCafeButton);
+            if (step == 15) buttonManager.EnableButton(buttonManager.papeleraButton);
+            if (step == 17 && cupServed) buttonManager.EnableButton(buttonManager.submitOrderButton);
+            else    buttonManager.DisableButton(buttonManager.submitOrderButton);
+            if (step == 20) buttonManager.EnableButton(buttonManager.endDeliveryButton);
+            else    buttonManager.DisableButton(buttonManager.endDeliveryButton);
+            if (step >= 21 && step <= 24) buttonManager.DisableButton(buttonManager.gameButton);
+        }
+        else
+        {
+            buttonManager.EnableButton(buttonManager.endDeliveryButton);
+            buttonManager.EnableButton(buttonManager.shopButton);
+            buttonManager.EnableButton(buttonManager.gameButton);
+
+            if (tazaIsInCafetera || vasoIsInCafetera)
+                buttonManager.EnableButton(buttonManager.papeleraButton);
+        }
+
+        if (tutorialManager.isRunningT2 && tutorialManager.currentStep == 0)
+            buttonManager.DisableButton(buttonManager.bakeryButton);
+        else
+            buttonManager.EnableButton(buttonManager.bakeryButton);
+
+        if (!tutorialManager.isRunningT1 && !tutorialManager.isRunningT2)
+        {
+            if (tazaInHand || vasoInHand || TengoOtroObjetoEnLaMano())
+            {
+                buttonManager.DisableButton(buttonManager.submitOrderButton);
+                buttonManager.DisableButton(buttonManager.bakeryButton);
+                buttonManager.DisableButton(buttonManager.recipesBookButton);
+                buttonManager.DisableButton(buttonManager.orderNoteButton);
+                buttonManager.DisableButton(buttonManager.papeleraButton);
+            }
+            else if (cupServed || vasoIsInTable)
+            {
+                buttonManager.EnableButton(buttonManager.submitOrderButton);
+                buttonManager.EnableButton(buttonManager.bakeryButton);
+            }
+            else
+            {
+                buttonManager.EnableButton(buttonManager.recipesBookButton);
+                buttonManager.EnableButton(buttonManager.orderNoteButton);
+                buttonManager.EnableButton(buttonManager.bakeryButton);
+            }
+        }
+
+        if (cMilkServed)
+            buttonManager.DisableButton(buttonManager.cogerTazaLecheButton);
+
+        if (milkServed)
+            buttonManager.DisableButton(buttonManager.calentarButton);
+        
+
+        /*if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 20)
             buttonManager.EnableButton(buttonManager.endDeliveryButton);
         else if (tutorialManager.isRunningT1)
             buttonManager.DisableButton(buttonManager.endDeliveryButton);
@@ -426,16 +480,9 @@ public class MinigameInput : MonoBehaviour
                 buttonManager.EnableButton(buttonManager.orderNoteButton);
                 buttonManager.EnableButton(buttonManager.bakeryButton);
             }
-        }
+        }*/
 
-        if (cMilkServed)
-            buttonManager.DisableButton(buttonManager.cogerTazaLecheButton);
         
-        if (milkServed)
-        {
-            buttonManager.DisableButton(buttonManager.calentarButton);
-            buttonManager.DisableButton(buttonManager.calentarButton);
-        }
     }
     #endregion
 
@@ -473,6 +520,9 @@ public class MinigameInput : MonoBehaviour
 
             if (coffeeServed)
                 UpdateCupSprite(false);
+
+            if (!tutorialManager.isRunningT1)
+                buttonManager.EnableButton(buttonManager.coffeeButton);
 
             if (!coffeeServed)
             {
@@ -569,6 +619,9 @@ public class MinigameInput : MonoBehaviour
             vasoIsInCafetera = true;
 
             buttonManager.DisableButton(buttonManager.cogerPlatoTazaButton);
+
+            if (!tutorialManager.isRunningT1)
+                buttonManager.EnableButton(buttonManager.coffeeButton);
 
             if (!coffeeServed)
             {
@@ -670,6 +723,8 @@ public class MinigameInput : MonoBehaviour
     #region Mecanicas cafe
     public void StartCoffee()
     {
+        if (tutorialManager.isRunningT1 && tutorialManager.currentStep != 8) return;
+
         if  (!isSliding && !coffeeDone)
         {
             //reiniciamos la pos de la barra
@@ -710,6 +765,8 @@ public class MinigameInput : MonoBehaviour
     }
     public void StartMoler()
     {
+        if (tutorialManager.isRunningT1 && tutorialManager.currentStep != 9) return;
+
         if (!isMoliendo)
         {
             currentMolido = 0f;
@@ -777,6 +834,7 @@ public class MinigameInput : MonoBehaviour
     }
     public void StartServingCoffee()
     {
+        if (tutorialManager.isRunningT1 && tutorialManager.currentStep != 12) return;
         if (coffeeServed) return;
 
         bool recipienteEnCafetera = tazaIsInCafetera || vasoIsInCafetera;

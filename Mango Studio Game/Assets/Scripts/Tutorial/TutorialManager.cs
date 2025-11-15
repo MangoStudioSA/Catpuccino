@@ -173,6 +173,7 @@ public class TutorialManager : MonoBehaviour
                 autoAdvance = false,
                 onStepStart = () =>
                 {
+                    buttonManager.EnableButton(buttonManager.coffeeButton);
                 }
             });
             // Paso 9
@@ -395,7 +396,7 @@ public class TutorialManager : MonoBehaviour
             steps.Add(new TutorialStep
             {
                 message = "¡Ahora puedes visitar la zona de pastelería! Haz clic sobre el bótón para ir.",
-                position = new Vector2(50f, 290f),
+                position = new Vector2(50f, 320f),
                 autoAdvance = false,
                 onStepStart = () =>
                 {
@@ -405,7 +406,7 @@ public class TutorialManager : MonoBehaviour
             steps.Add(new TutorialStep
             {
                 message = "Comienza poniendo un plato o una bolsa para llevar en la encimera según el tipo de pedido.",
-                position = new Vector2(-600f, 60f),
+                position = new Vector2(150f, -370f),
                 autoAdvance = false,
                 onStepStart = () =>
                 {
@@ -414,8 +415,8 @@ public class TutorialManager : MonoBehaviour
             // Paso 3
             steps.Add(new TutorialStep
             {
-                message = "Ahora, selecciona el tipo de bizcocho correspondiente.",
-                position = new Vector2(460f, 100f),
+                message = "Ahora, selecciona el tipo de bizcocho correspondiente (si no ha solicitado ninguno, escoge al azar.",
+                position = new Vector2(340f, 10f),
                 autoAdvance = false,
                 onStepStart = () =>
                 {
@@ -425,7 +426,7 @@ public class TutorialManager : MonoBehaviour
             steps.Add(new TutorialStep
             {
                 message = "Mediante clic, coloca el bizcocho en el horno.",
-                position = new Vector2(-186f, 195f),
+                position = new Vector2(130f, -160f),
                 autoAdvance = false,
                 onStepStart = () =>
                 {
@@ -435,7 +436,7 @@ public class TutorialManager : MonoBehaviour
             steps.Add(new TutorialStep
             {
                 message = "¡Pulsa el botón para hornearlo!",
-                position = new Vector2(-160f, -360f),
+                position = new Vector2(130f, -160f),
                 autoAdvance = false,
                 onStepStart = () =>
                 {
@@ -445,7 +446,7 @@ public class TutorialManager : MonoBehaviour
             steps.Add(new TutorialStep
             {
                 message = "Vigila el tiempo de horneado. ¡Si lo paras antes quedará crudo! ¡Si te pasas se quemará!",
-                position = new Vector2(-146f, 306f),
+                position = new Vector2(450f, 206f),
                 autoAdvance = true,
                 autoDelay = 4f
             });
@@ -453,7 +454,7 @@ public class TutorialManager : MonoBehaviour
             steps.Add(new TutorialStep
             {
                 message = "Una vez finalice el horneado. Mueve el bizcocho al recipiente mediante clic.",
-                position = new Vector2(-680f, 100f),
+                position = new Vector2(150f, -370f),
                 autoAdvance = false,
                 onStepStart = () =>
                 {
@@ -463,7 +464,7 @@ public class TutorialManager : MonoBehaviour
             steps.Add(new TutorialStep
             {
                 message = "Si el cliente no había pedido comida, puedes comenzar de 0 clicando sobre la basura.",
-                position = new Vector2(-600f, 60f),
+                position = new Vector2(-450f, -380f),
                 autoAdvance = true,
                 autoDelay = 4f
             });

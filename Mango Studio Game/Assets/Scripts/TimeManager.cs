@@ -45,13 +45,12 @@ public class TimeManager : MonoBehaviour
     private TutorialManager tutorialManager;
     private SaveDataManager saveDataManager;
 
-    private int requiredMoney = 0;
-    private int premiumCoins = 0;
-    private int basicCoins = 0;
-
     // Variables para las facturas
     private float averageCoffeePrice = 1f;
     private float averageFoodPrice = 2f;
+    private int requiredMoney = 0;
+    private int basicCoins = 0;
+    private int premiumCoins = 0;
 
     private int customersPerDay = 10;
 
@@ -146,15 +145,9 @@ public class TimeManager : MonoBehaviour
         currentTimeInSeconds = startHour * 3600;
         IsOpen = true;
         isDayEnding = false;
-        
-        // Asignar monedas basicas y premium
-        //basicCoins += 220;
-        playerDataManager.AddBasicCoins(basicCoins);
-        HUDManager.Instance.UpdateBasicCoins(basicCoins);
 
-        //premiumCoins += 120;
-        playerDataManager.AddPremiumCoins(premiumCoins);
-        HUDManager.Instance.UpdatePremiumCoins(premiumCoins);
+        // Asignar monedas basicas y premium
+        HUDManager.Instance.UpdateUI();
 
         // Actualizar mecanicas y elementos disponibles para el dia actual
         GameProgressManager.Instance.UpdateMechanicsForDay(currentDay);

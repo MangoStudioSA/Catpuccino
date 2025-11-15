@@ -39,6 +39,9 @@ public class FoodManager : MonoBehaviour
     private Dictionary<CookieType, Texture2D> cookiesCursors = new();
     private Dictionary<MufflinType, Texture2D> mufflinsCursors = new();
 
+    // Desbloqueo comida
+    private Dictionary<FoodCategory, bool> unlockedCategories = new();
+
     [Header("GameObjects comida")]
     public GameObject BZanahoria;
     public GameObject BMantequilla;
@@ -103,6 +106,33 @@ public class FoodManager : MonoBehaviour
         mufflinsCursors.Add(MufflinType.pistacho, MPistachoCursor);
         mufflinsCursors.Add(MufflinType.arandanos, MArandanoCursor);
         mufflinsCursors.Add(MufflinType.dulceLeche, MDulceLecheCursor);
+    }
+
+    public void Start()
+    {
+        foreach (FoodCategory cat in System.Enum.GetValues(typeof(FoodCategory)))
+            unlockedCategories[cat] = false;
+
+        if (GameProgressManager.Instance.cakesEnabled)
+        {
+            UnlockCategory(FoodCategory.bizcocho);
+            LockCategory(FoodCategory.galleta);
+            LockCategory(FoodCategory.mufflin);
+        }
+
+        if (GameProgressManager.Instance.cakesEnabled && GameProgressManager.Instance.cookiesEnabled)
+        {
+            UnlockCategory(FoodCategory.bizcocho);
+            UnlockCategory(FoodCategory.galleta);
+            LockCategory(FoodCategory.mufflin);
+        }
+
+        if (GameProgressManager.Instance.cakesEnabled && GameProgressManager.Instance.cookiesEnabled && GameProgressManager.Instance.mufflinsEnabled)
+        {
+            UnlockCategory(FoodCategory.bizcocho);
+            UnlockCategory(FoodCategory.galleta);
+            UnlockCategory(FoodCategory.mufflin);
+        }
     }
 
     // Coger gameobjects
@@ -193,6 +223,31 @@ public class FoodManager : MonoBehaviour
         {
             if (stock.IsDepleted())
                 stock.Reset();
+        }
+    }
+
+    public void UnlockCategory(FoodCategory category)
+    {
+        unlockedCategories[category] = true;
+        UpdateCategoryVisibility(category);
+    }
+
+    public void LockCategory(FoodCategory category)
+    {
+        unlockedCategories[category] = false;
+        UpdateCategoryVisibility(category);
+    }
+
+    private void UpdateCategoryVisibility(FoodCategory category)
+    {
+        bool unlocked = unlockedCategories.ContainsKey(category) && unlockedCategories[category];
+
+        foreach (var stock in foodStocks)
+        {
+            if (stock.category != category) continue;
+
+            foreach (var obj in stock.foodInstances)
+                obj.SetActive(unlocked);
         }
     }
 }
