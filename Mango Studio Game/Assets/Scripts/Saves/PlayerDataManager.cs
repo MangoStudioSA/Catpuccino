@@ -9,6 +9,7 @@ using UnityEngine;
 public class PlayerDataManager : MonoBehaviour
 {
     public static PlayerDataManager instance;
+    public ShopManager shopManager;
     public PlayerData data = new();
     private string savePath;
 
@@ -43,6 +44,7 @@ public class PlayerDataManager : MonoBehaviour
     {
         data.basicCoins += amount;
         HUDManager.Instance.UpdateBasicCoins(data.basicCoins);
+        shopManager.UpdateUI();
         SaveData();
     }
     // Funcion para gastar monedas basicas

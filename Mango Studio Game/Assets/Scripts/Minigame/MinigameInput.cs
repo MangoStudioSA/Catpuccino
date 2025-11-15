@@ -355,13 +355,14 @@ public class MinigameInput : MonoBehaviour
     public void CheckButtons()
     {
         if (progressManager.condensedMilkEnabled)
-        {
             Balda.SetActive(true);
-        }
         else
-        {
             Balda.SetActive(false);
-        }
+
+        if (tutorialManager.isRunningT1 && tutorialManager.currentStep < 8)
+            buttonManager.DisableButton(buttonManager.coffeeButton);
+        else if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 8)
+            buttonManager.EnableButton(buttonManager.coffeeButton);
 
         if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 20)
             buttonManager.EnableButton(buttonManager.endDeliveryButton);
@@ -1069,6 +1070,7 @@ public class MinigameInput : MonoBehaviour
 
             buttonManager.EnableButton(buttonManager.calentarButton);
 
+            Espumador.SetActive(true);
             Image espumador = Espumador.GetComponent<Image>();
             espumador.sprite = espumadorShort;
 
@@ -1119,6 +1121,7 @@ public class MinigameInput : MonoBehaviour
             isHeating = false;
 
             heatPanel.SetActive(false);
+            Espumador.SetActive(false);
             buttonManager.DisableButton(buttonManager.calentarButton);
 
             Image pararCalentarLecheBut = buttonManager.calentarButton.GetComponent<Image>();

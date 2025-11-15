@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -47,6 +48,12 @@ public class ShopManager : MonoBehaviour
 
     [Header("Referencias")]
     public CardPackManager cardPackManager;
+
+    private void OnEnable()
+    {
+        if (PlayerDataManager.instance != null)
+            UpdateUI();
+    }
 
     // Se vinculan los botones con sus acciones
     private void Start()

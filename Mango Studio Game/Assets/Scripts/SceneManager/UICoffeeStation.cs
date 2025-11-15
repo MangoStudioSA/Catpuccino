@@ -37,6 +37,8 @@ public class UICoffeeStation : MonoBehaviour
 
         if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 7)
             tutorialManager.tutorialPanel.gameObject.SetActive(false);
+        if (tutorialManager.isRunningT1 || tutorialManager.isRunningT2 || tutorialManager.isRunningT3)
+            tutorialManager.tutorialPanel.gameObject.SetActive(false);
     }
 
     // Cerrar panel de recetas
@@ -51,6 +53,8 @@ public class UICoffeeStation : MonoBehaviour
             tutorialManager.tutorialPanel.gameObject.SetActive(true);
             FindFirstObjectByType<TutorialManager>().CompleteCurrentStep();
         }
+        if (tutorialManager.isRunningT1 || tutorialManager.isRunningT2 || tutorialManager.isRunningT3)
+            tutorialManager.tutorialPanel.gameObject.SetActive(true);
     }
 
     // Mostrar panel de reposteria

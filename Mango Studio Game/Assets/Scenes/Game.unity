@@ -8318,6 +8318,7 @@ MonoBehaviour:
   dialoguePanel: {fileID: 995759339}
   endOfDayPanel: {fileID: 1071443432}
   tutorialManager: {fileID: 841635553}
+  shopManager: {fileID: 0}
   orderScreen: 0
   customerOrderGenerator: {fileID: 2111219102}
 --- !u!1 &346478213
@@ -29706,10 +29707,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1805872226}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.30552083, y: 0.418}
-  m_AnchorMax: {x: 0.3604792, y: 0.5065186}
-  m_AnchoredPosition: {x: 96.97296, y: -1.2344055}
-  m_SizeDelta: {x: 2.7149963, y: -3.1345367}
+  m_AnchorMin: {x: 0.35512665, y: 0.41977778}
+  m_AnchorMax: {x: 0.41147894, y: 0.5065186}
+  m_AnchoredPosition: {x: 0.9729614, y: -2.3202875}
+  m_SizeDelta: {x: 0.71499634, y: -1.1345367}
   m_Pivot: {x: 0.49999997, y: 0.45705903}
 --- !u!114 &1217273032
 MonoBehaviour:
@@ -50195,6 +50196,7 @@ MonoBehaviour:
   dialoguePanel: {fileID: 995759339}
   endOfDayPanel: {fileID: 1071443432}
   tutorialManager: {fileID: 0}
+  shopManager: {fileID: 0}
   orderScreen: 0
   customerOrderGenerator: {fileID: 0}
 --- !u!1 &2100299597
@@ -50495,7 +50497,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2107302305
 RectTransform:
   m_ObjectHideFlags: 0
@@ -50512,7 +50514,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.6033749, y: 0.4112963}
   m_AnchorMax: {x: 0.63718754, y: 0.5074445}
-  m_AnchoredPosition: {x: 1.5, y: 1}
+  m_AnchoredPosition: {x: 2.5, y: 1}
   m_SizeDelta: {x: 1, y: -2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2107302306

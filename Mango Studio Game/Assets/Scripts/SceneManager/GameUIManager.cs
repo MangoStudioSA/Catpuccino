@@ -12,6 +12,7 @@ public class GameUIManager : MonoBehaviour
     [SerializeField] GameObject endOfDayPanel;
     private CanvasGroup gameCanvasGroup;
     public TutorialManager tutorialManager;
+    public ShopManager shopManager;
 
     public bool orderScreen = false;
     // Referencia al script que genera los pedidos del cliente
@@ -61,6 +62,8 @@ public class GameUIManager : MonoBehaviour
         gameCanvasGroup.interactable = false;
         gameCanvasGroup.blocksRaycasts = false;
         Time.timeScale = 0.0f;
+
+        shopManager.UpdateUI();
     }
     public void CloseShopMenu()
     {

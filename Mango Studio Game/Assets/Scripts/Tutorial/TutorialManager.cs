@@ -173,7 +173,6 @@ public class TutorialManager : MonoBehaviour
                 autoAdvance = false,
                 onStepStart = () =>
                 {
-                    buttonManager.EnableButton(buttonManager.coffeeButton);
                 }
             });
             // Paso 9
