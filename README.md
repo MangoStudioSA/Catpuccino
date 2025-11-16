@@ -342,8 +342,9 @@ Se han relizado todas las variaciones necesarias para los props de los cafes, ta
 ![Boceto minijuego](https://github.com/MangoStudioSA/Catpuccino/blob/d73edd6ff94114cca9a8751dac0d0536c4a05147/PhotosGDD/CAFES.png)
 
 #### 6.7.2 Postres
-
-![Boceto minijuego](https://github.com/MangoStudioSA/Catpuccino/blob/d73edd6ff94114cca9a8751dac0d0536c4a05147/PhotosGDD/CAFES.png)
+Al igual que con los cafes, para los postres se han dibujado todas las galletas, muffins y tartas necesarias junto con todas sus variaciones.
+![Boceto minijuego](https://github.com/MangoStudioSA/Catpuccino/blob/d73edd6ff94114cca9a8751dac0d0536c4a05147/PhotosGDD/TARTAS.png)
+![Boceto minijuego](https://github.com/MangoStudioSA/Catpuccino/blob/d73edd6ff94114cca9a8751dac0d0536c4a05147/PhotosGDD/MUFFINSYGALLETAS.png)
 
 #### 6.7.3 Estacion de cafetera
 Todos los objetos que se pueden observar en la siguiente imagen estan hechos por separado, esto incluye botones y otros objetos funcionales que requieren varios sprites.
