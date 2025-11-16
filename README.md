@@ -340,7 +340,18 @@ Las referencias principales para el 2D son *Buena Pizza, Gran Pizza* y *Little C
 #### 6.7.1 Cafes
 Se han relizado todas las variaciones necesarias para los props de los cafes, tanto en las tazas (para tomar aqui) como el los vasos (para llevar), ademas, se han dibujado tambien etos mismos cafes con todas las variaciones de skins existentes.
 ![Boceto minijuego](https://github.com/MangoStudioSA/Catpuccino/blob/d73edd6ff94114cca9a8751dac0d0536c4a05147/PhotosGDD/CAFES.png)
-#### 6.7.1 Estacion de cafetera
+
+#### 6.7.2 Postres
+
+![Boceto minijuego](https://github.com/MangoStudioSA/Catpuccino/blob/d73edd6ff94114cca9a8751dac0d0536c4a05147/PhotosGDD/CAFES.png)
+
+#### 6.7.3 Estacion de cafetera
+Todos los objetos que se pueden observar en la siguiente imagen estan hechos por separado, esto incluye botones y otros objetos funcionales que requieren varios sprites.
+![Boceto minijuego](https://github.com/MangoStudioSA/Catpuccino/blob/d73edd6ff94114cca9a8751dac0d0536c4a05147/PhotosGDD/REFERENCIAEstacionCafetera.png)
+
+#### 6.7.4 Estacion de Postres
+Todos los objetos que se pueden observar en la siguiente imagen estan hechos por separado, esto incluye botones y otros objetos funcionales que requieren varios sprites.
+![Boceto minijuego](https://github.com/MangoStudioSA/Catpuccino/blob/d73edd6ff94114cca9a8751dac0d0536c4a05147/PhotosGDD/REFERENCIAEstacionComida.png)
 
 ### 6.8 Cartas y sobres de cartas
 ![Cartas y sobres de cartas](https://github.com/MangoStudioSA/Catpuccino/blob/94eed32a71679b0de7f116218af42cba7f10aa56/PhotosGDD/cartas.png)
