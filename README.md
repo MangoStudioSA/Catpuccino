@@ -371,6 +371,15 @@ Para los clientes, se han realizado 3 ilustraciones para la pantalla de pedido, 
 
 ![chicaCoqueta](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/chicaCoquetaREFERENCIA.png)
 
+#### 6.8.2 Cliente 3 "Gracie"
+
+![Gracie](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Gracie.png)
+
+#### 6.8.3 Cliente 4 "Mindie"
+
+![Mindie](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Mindie.png)
+
+
 ## 7. Sonido
 El estilo musical será lo-fi chillhop con influencias de jazz suave. El objetivo de utilizar este estilo de música es reforzar la sensación de estar en un lugar cómodo y sin estrés. Los instrumentos que deberá utilizar la música serán piano, contrabajo suave, percusión ligera, guitarra acústica, toques de sintetizador lo-fi.
 
