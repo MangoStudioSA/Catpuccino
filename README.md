@@ -143,8 +143,10 @@ A continuación se muestra la estimación general de fases del proyecto:
 
 Dentro de la fase actual (la fase beta), se han desglosado las tareas y asignado a cada una su tiempos estimado, junto a sus respectivos responsables:
 
-![Planificacion 1](https://github.com/MangoStudioSA/Catpuccino/blob/cef01d2def3f46c0ef8bde4d7b0ace0628ab2a8c/PhotosGDD/Planificacion%201.png)
-![Planificacion 2](https://github.com/MangoStudioSA/Catpuccino/blob/18780670bb9e7ab196550aeb57017209ed34464c/PhotosGDD/Planificacion2.png)
+![Planificacion 1](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/ExcelBETA1.png)
+![Planificacion 2](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/ExcelBETA2.png)
+![Planificacion 3](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/ExcelBETA3.png)
+![Planificacion 4](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/ExcelBETA4.png)
 
 
 ## 4. Tutorial, mecánicas elementos de Juego
