@@ -332,9 +332,7 @@ Las referencias principales para el 2D son *Buena Pizza, Gran Pizza* y *Little C
 
 ### 6.6	Concept Art personaje principal
 ![Concept Art PJ Principal](https://github.com/MangoStudioSA/Catpuccino/blob/e921cc81d0e6f43bd58ed52fc449a0f76f782ea9/PhotosGDD/conceptPJPrincipal.png)
-
-#### 6.6.1 Arte final personaje principal
-![Arte final PJ Principal](https://github.com/MangoStudioSA/Catpuccino/blob/e921cc81d0e6f43bd58ed52fc449a0f76f782ea9/PhotosGDD/arteFinalPJPrincipal.png)
+![Arte final PJ Principal](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/EXPRESIONES.png)
 
 ### 6.7 Props
 #### 6.7.1 Cafes
@@ -362,6 +360,13 @@ Todos los objetos que se pueden observar en la siguiente imagen estan hechos por
 
 ![Cartas y sobres de cartas](https://github.com/MangoStudioSA/Catpuccino/blob/94eed32a71679b0de7f116218af42cba7f10aa56/PhotosGDD/cartas.png)
 
+### 6.8 Clientes
+Para los clientes, se han realizado 3 ilustraciones para la pantalla de pedido, una con una expresion neutra, una con una expresion enfadada o triste y otra con una expresion alegre. Ademas, se ha realizado un modelado 3d sencillo de cada cliente.
+
+#### 6.8.1 Cliente 1 "chicaEmo"
+![chicaEmo](https://github.com/MangoStudioSA/Catpuccino/blob/94eed32a71679b0de7f116218af42cba7f10aa56/PhotosGDD/cartas.png)
+#### 6.8.1 Cliente 2 "chicaCoqueta"
+![chicaCoqueta](https://github.com/MangoStudioSA/Catpuccino/blob/94eed32a71679b0de7f116218af42cba7f10aa56/PhotosGDD/cartas.png)
 
 ## 7. Sonido
 El estilo musical será lo-fi chillhop con influencias de jazz suave. El objetivo de utilizar este estilo de música es reforzar la sensación de estar en un lugar cómodo y sin estrés. Los instrumentos que deberá utilizar la música serán piano, contrabajo suave, percusión ligera, guitarra acústica, toques de sintetizador lo-fi.
