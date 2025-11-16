@@ -15,7 +15,7 @@
 ## 0. Diferencias con la fase anterior
 - Tutorial ingame implementado para los 3 primeros días.
 - Página web actualizada.
-- 3 clientes (concept, modedelado 3D, uno de ellos 2D)
+- 5 clientes (concept, modedelado 3D y 2D)
 - Gato (modelado 3D y animación de caminar)
 - Nuevo contenido en RRSS.
 - Puntación media en pantalla final.
@@ -30,13 +30,13 @@
 - Implementación de comprobar los requisitos de la orden mediante una nota desplegable en ambos paneles.
 - Aumentado la complicación ingame e implementación de sistema de facturas que aumenta gradualmente con los días.
 - El tiempo ingame disminuye de forma más lenta con el transcurso de los días.
-- Diseñados e implementados los "*props*" del juego (todos los tipos de cafés, comidas, sus mecánicas y los envases).
+- Diseñados e implementados los "*props*" del juego (todos los tipos de cafés, comidas, maquinas, sus mecánicas y los envases).
 - Implementadas 3 animaciones de interfaz (album, tienda y recetario).
 - Implementación de la tienda de temática gacha, así como de los 2 tipos de sobres y tienda de monedas premium.
 - Diseño e implemenación de cartas funcionales de distintas rarezas.
 - Implementación del álbum de cromos.
 - Arreglados bugs y errores estéticos de programación.
-- Concept final del diseño de estación de comida.
+- Arte final del diseño de estación de comida.
 - Modelado y concept interior final.
 - Modelos 3D (maquina de gacha, cafetera y elementos del escenario)
 - Diseños 2D (monedas de pago y monedas normales)
