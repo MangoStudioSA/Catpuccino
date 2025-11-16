@@ -404,19 +404,51 @@ Algunas interfaces cuentan con animaciones al clickear botones o interactuar con
 
 A continuación se muestran imágenes de del diseño de cada una de las pantallas de la interfaz, así como algunos de los botones y fondos que han sido diseñados para estas.
 
-### Interfaz
-| ![MainMenu](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/MainMenu.png) | ![Opciones](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Opciones.png) |
-|-------------------------------|-------------------------------|
-| ![Contacto](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Contacto.png) | ![Ingame](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Ingame.png) |
-| ![Pausa](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Pausa.png) | ![Pedido](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Pedido.png) |
-| ![Preparacion](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Preparacion1.0.png) | ![PanelEntrega](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/PanelEntrega.png) |
-| ![FinDia](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/FinDia.png) | ![FinJuego](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/FinJuego.png) |
+### 8.1.1 Interfaz Inicio
+![MainMenu](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/PantallaInicio.png)
+### 8.1.2 Interfaz Opciones (Inicio)
+![Opciones](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Opciones.png)
+### 8.1.3 Interfaz Contacto
+![Contactos](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Contactos.png)
+### 8.1.4 Interfaz Partidas
+![Partidas](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Partidas.png)
+### 8.1.5 Interfaz Partida
+![Game](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Game.png)
+### 8.1.6 Interfaz Pedido Cliente
+![ClientePedido](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/ClientePedido.png)
+### 8.1.7 Interfaz Cafeteria
+![Cafeteria](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Cafeteria.png)
+### 8.1.8 Interfaz Recetario
+![Recetario](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Recetario.png)
+### 8.1.9 Interfaz Pateleria
+![Bakery](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Bakery.png)
+### 8.1.10 Interfaz Pausa
+![Pausa](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Pausa.png)
+### 8.1.11 Interfaz Opciones (Partida)
+![OpcionesInGame](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/OpcionesInGame.png)
+### 8.1.12 Interfaz Entrega Pedido
+![ClienteFeedback](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/ClienteFeedback.png)
+### 8.1.13 Interfaz Tienda
+![Tienda](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Tienda.png)
+### 8.1.14 Interfaz Información
+![Informacion](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Informacion.png)
+### 8.1.15 Interfaz Album
+![Album](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Album.png)
+### 8.1.16 Interfaz Monedas Premium
+![ComprarMonedasPremium](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/ComprarMonedasPremium.png)
+### 8.1.17 Interfaz Fin del Dia
+![FinDia](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/FinDia.png)
+### 8.1.18 Interfaz Fin/Salir Partida
+![FinPartida](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/FinPartida.png)
 
-### Botones
-![BotonJugar](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/botonJugar.png)
-| ![botonMenuInicio](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/botonMenuInicio.png) | ![botonMenuInicio2](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/botonMenuInicio2.png) |
-|-------------------------------|-------------------------------|
-| ![botonPausa](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/botonPausa.png) | ![botonAjustes](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/botonAjustes.png) |
+### Botones, Fondos y Otros
+### 8.1.19 Botones
+![Botones](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Interactuables.png)
+### 8.1.20 Fondos
+![Fondos](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Fondos.png)
+### 8.1.19 Otros
+![Otros](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Otros.png)
+
 
 
 ### 8.2 Diagrama de flujo
