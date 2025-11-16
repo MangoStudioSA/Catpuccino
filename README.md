@@ -364,9 +364,12 @@ Todos los objetos que se pueden observar en la siguiente imagen estan hechos por
 Para los clientes, se han realizado 3 ilustraciones para la pantalla de pedido, una con una expresion neutra, una con una expresion enfadada o triste y otra con una expresion alegre. Ademas, se ha realizado un modelado 3d sencillo de cada cliente.
 
 #### 6.8.1 Cliente 1 "chicaEmo"
-![chicaEmo](https://github.com/MangoStudioSA/Catpuccino/blob/94eed32a71679b0de7f116218af42cba7f10aa56/PhotosGDD/cartas.png)
+
+![chicaEmo](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/chicaEmoREFERENCIA.png)
+
 #### 6.8.1 Cliente 2 "chicaCoqueta"
-![chicaCoqueta](https://github.com/MangoStudioSA/Catpuccino/blob/94eed32a71679b0de7f116218af42cba7f10aa56/PhotosGDD/cartas.png)
+
+![chicaCoqueta](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/chicaCoquetaREFERENCIA.png)
 
 ## 7. Sonido
 El estilo musical será lo-fi chillhop con influencias de jazz suave. El objetivo de utilizar este estilo de música es reforzar la sensación de estar en un lugar cómodo y sin estrés. Los instrumentos que deberá utilizar la música serán piano, contrabajo suave, percusión ligera, guitarra acústica, toques de sintetizador lo-fi.
