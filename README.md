@@ -367,17 +367,17 @@ Para los clientes, se han realizado 3 ilustraciones para la pantalla de pedido, 
 
 ![chicaEmo](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/chicaEmoREFERENCIA.png)
 
-#### 6.8.1 Cliente 2 "chicaCoqueta"
+#### 6.8.2 Cliente 2 "chicaCoqueta"
 
 ![chicaCoqueta](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/chicaCoquetaREFERENCIA.png)
 
-#### 6.8.2 Cliente 3 "Gracie"
+#### 6.8.3 Cliente 3 "Gracie"
 
-![Gracie](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Gracie.png)
+![Gracie](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/GracieFinal.png)
 
-#### 6.8.3 Cliente 4 "Mindie"
+#### 6.8.4 Cliente 4 "Mindie"
 
-![Mindie](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Mindie.png)
+![Mindie](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/MindieFinal.png)
 
 
 ## 7. Sonido
