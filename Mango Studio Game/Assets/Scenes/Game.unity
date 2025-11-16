@@ -1711,7 +1711,7 @@ MonoBehaviour:
   clientImage: {fileID: 510474126}
   clienteSprites:
   - {fileID: 21300000, guid: 4f28645121a98ac44a44f82ef9b5a172, type: 3}
-  - {fileID: 21300000, guid: 4f28645121a98ac44a44f82ef9b5a172, type: 3}
+  - {fileID: 2117634430, guid: d1fa4b2ccaf78314f8186daffea5d2cd, type: 3}
   - {fileID: 2068000113, guid: a30b1f919e2217243a5aff42cb78fa61, type: 3}
   - {fileID: 997484142, guid: 11b835e23e4115e41b742735a76a745c, type: 3}
   clientFeedbackImage: {fileID: 2118854376}
@@ -1721,9 +1721,9 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 4f28645121a98ac44a44f82ef9b5a172, type: 3}
     - {fileID: 21300000, guid: 4f28645121a98ac44a44f82ef9b5a172, type: 3}
   - feedBackS:
-    - {fileID: 21300000, guid: 4f28645121a98ac44a44f82ef9b5a172, type: 3}
-    - {fileID: 21300000, guid: 4f28645121a98ac44a44f82ef9b5a172, type: 3}
-    - {fileID: 21300000, guid: 4f28645121a98ac44a44f82ef9b5a172, type: 3}
+    - {fileID: 2117634430, guid: d1fa4b2ccaf78314f8186daffea5d2cd, type: 3}
+    - {fileID: 856118915, guid: d1fa4b2ccaf78314f8186daffea5d2cd, type: 3}
+    - {fileID: 1655880299, guid: d1fa4b2ccaf78314f8186daffea5d2cd, type: 3}
   - feedBackS:
     - {fileID: 2068000113, guid: a30b1f919e2217243a5aff42cb78fa61, type: 3}
     - {fileID: -412751438, guid: a30b1f919e2217243a5aff42cb78fa61, type: 3}
