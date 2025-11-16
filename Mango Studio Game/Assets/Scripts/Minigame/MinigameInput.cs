@@ -410,6 +410,11 @@ public class MinigameInput : MonoBehaviour
             }
         }
 
+        if (tutorialManager.isRunningT3)
+            buttonManager.DisableButton(buttonManager.bakeryButton);
+        else
+            buttonManager.EnableButton(buttonManager.bakeryButton);
+
         if (cMilkServed)
             buttonManager.DisableButton(buttonManager.cogerTazaLecheButton);
 
