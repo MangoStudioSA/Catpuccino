@@ -413,77 +413,8 @@ public class MinigameInput : MonoBehaviour
         if (cMilkServed)
             buttonManager.DisableButton(buttonManager.cogerTazaLecheButton);
 
-        if (milkServed)
+        if (heatedMilk)
             buttonManager.DisableButton(buttonManager.calentarButton);
-        
-
-        /*if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 20)
-            buttonManager.EnableButton(buttonManager.endDeliveryButton);
-        else if (tutorialManager.isRunningT1)
-            buttonManager.DisableButton(buttonManager.endDeliveryButton);
-        else
-            buttonManager.EnableButton(buttonManager.endDeliveryButton);
-
-        if (tutorialManager.isRunningT1)
-            buttonManager.DisableButton(buttonManager.shopButton);
-        else
-            buttonManager.EnableButton(buttonManager.shopButton);
-
-        if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 17 && cupServed)
-            buttonManager.EnableButton(buttonManager.submitOrderButton);
-        else if (tutorialManager.isRunningT1)
-            buttonManager.DisableButton(buttonManager.submitOrderButton);
-
-        if (tutorialManager.isRunningT1 && (tutorialManager.currentStep == 21 || tutorialManager.currentStep == 22 
-            || tutorialManager.currentStep == 23 || tutorialManager.currentStep == 24))
-            buttonManager.DisableButton(buttonManager.gameButton);
-        else
-            buttonManager.EnableButton(buttonManager.gameButton);
-
-        if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 8)
-            buttonManager.EnableButton(buttonManager.coffeeButton);
-        else if (tutorialManager.isRunningT1 && tutorialManager.currentStep < 8)
-            buttonManager.DisableButton(buttonManager.coffeeButton);
-
-        if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 12)
-            buttonManager.EnableButton(buttonManager.echarCafeButton);
-        else if (tutorialManager.isRunningT1 && tutorialManager.currentStep < 12)
-            buttonManager.DisableButton(buttonManager.echarCafeButton);
-            
-        if (tutorialManager.isRunningT2 && tutorialManager.currentStep == 0)
-            buttonManager.DisableButton(buttonManager.bakeryButton);
-        else if (tutorialManager.isRunningT2 && tutorialManager.currentStep != 0)
-            buttonManager.EnableButton(buttonManager.bakeryButton);
-        
-        if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 15)
-            buttonManager.EnableButton(buttonManager.papeleraButton);
-        else if ((tazaIsInCafetera || vasoIsInCafetera) && !tutorialManager.isRunningT1)
-            buttonManager.EnableButton(buttonManager.papeleraButton);
-
-        if (!tutorialManager.isRunningT2 && !tutorialManager.isRunningT1)
-        {
-            if (tazaInHand || vasoInHand || TengoOtroObjetoEnLaMano())
-            {
-                buttonManager.DisableButton(buttonManager.submitOrderButton);
-                buttonManager.DisableButton(buttonManager.bakeryButton);
-                buttonManager.DisableButton(buttonManager.recipesBookButton);
-                buttonManager.DisableButton(buttonManager.orderNoteButton);
-                buttonManager.DisableButton(buttonManager.papeleraButton);
-            }
-            else if (cupServed || vasoIsInTable)
-            {
-                buttonManager.EnableButton(buttonManager.submitOrderButton);
-                buttonManager.EnableButton(buttonManager.bakeryButton);
-            }
-            else
-            {
-                buttonManager.EnableButton(buttonManager.recipesBookButton);
-                buttonManager.EnableButton(buttonManager.orderNoteButton);
-                buttonManager.EnableButton(buttonManager.bakeryButton);
-            }
-        }*/
-
-        
     }
     #endregion
 
@@ -1127,7 +1058,10 @@ public class MinigameInput : MonoBehaviour
             tazaMilkInHand = false;
             tazaMilkIsInEspumador = true;
 
-            buttonManager.EnableButton(buttonManager.calentarButton);
+            if (!heatedMilk)
+            {
+                buttonManager.EnableButton(buttonManager.calentarButton);
+            }
 
             Espumador.SetActive(true);
             Image espumador = Espumador.GetComponent<Image>();
@@ -1148,6 +1082,7 @@ public class MinigameInput : MonoBehaviour
             tazaMilkInHand = true;
             tazaMilkIsInEspumador = false;
 
+            buttonManager.DisableButton(buttonManager.calentarButton);
             Image espumador = Espumador.GetComponent<Image>();
             espumador.sprite = espumadorNormal;
 
@@ -1157,6 +1092,7 @@ public class MinigameInput : MonoBehaviour
     public void StartHeating()
     {
         if (!tazaMilkIsInEspumador || TengoOtroObjetoEnLaMano()) return;
+        if (heatedMilk) return;
 
         if (!isHeating && !heatedMilk)
         {
@@ -1180,12 +1116,12 @@ public class MinigameInput : MonoBehaviour
             isHeating = false;
 
             heatPanel.SetActive(false);
-            Espumador.SetActive(false);
             buttonManager.DisableButton(buttonManager.calentarButton);
 
             Image pararCalentarLecheBut = buttonManager.calentarButton.GetComponent<Image>();
             pararCalentarLecheBut.sprite = boton3_P;
 
+            heatedMilk = true;
             Debug.Log($"[Cliente {order.currentOrder.orderId}] Leche calentada");
         }
     }
@@ -1219,7 +1155,6 @@ public class MinigameInput : MonoBehaviour
                 }
 
                 milkServed = true;
-                heatedMilk = true;
 
                 PopUpMechanicsMsg.Instance.ShowMessage($"+{countMilk} Leche");
                 buttonManager.DisableButton(buttonManager.waterButton);

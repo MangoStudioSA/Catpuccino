@@ -262,11 +262,6 @@ public class FoodMinigameInput : MonoBehaviour
         else if (tutorialManager.isRunningT2 && tutorialManager.currentStep != 5)
             buttonManager.DisableButton(buttonManager.hornearButton);
 
-        if (foodIsInHorno && !tutorialManager.isRunningT2)
-            buttonManager.EnableButton(buttonManager.hornearButton);
-        else if (isBaking && !tutorialManager.isRunningT2)
-            buttonManager.DisableButton(buttonManager.hornearButton);
-
         if (tutorialManager.isRunningT2 && tutorialManager.currentStep == 8)
             buttonManager.EnableButton(buttonManager.papeleraRButton);
         else if (tutorialManager.isRunningT2)
@@ -530,6 +525,10 @@ public class FoodMinigameInput : MonoBehaviour
             foodIsInHorno = true;
             foodInHand = false;
 
+            if (!foodBaked)
+            {
+                buttonManager.EnableButton(buttonManager.hornearButton);
+            }
             cursorManager.UpdateCursorFood(true, foodCategoryInHand, foodTypeInHand);
 
             //  Se resetea la categoria y el tipo de comida de la mano 
@@ -553,6 +552,7 @@ public class FoodMinigameInput : MonoBehaviour
             foodCategoryInHorno = FoodCategory.no;
             foodTypeInHorno = -1;
 
+            buttonManager.DisableButton(buttonManager.hornearButton);
             cursorManager.UpdateCursorFood(false, foodCategoryInHand, foodTypeInHand);
             Debug.Log($"Comida recogida del horno. Estado: {currentCookState}");
         }
@@ -570,6 +570,7 @@ public class FoodMinigameInput : MonoBehaviour
         isBaking = true;
 
         buttonManager.EnableButton(buttonManager.stopHorneadoButton);
+        buttonManager.DisableButton(buttonManager.hornearButton);
         Image hornearBut = buttonManager.hornearButton.GetComponent<Image>();
         hornearBut.sprite = botonH_P;
 
