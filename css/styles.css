@@ -10918,4 +10918,52 @@ header.masthead .bg-circle-4 {
   header.masthead .masthead-content .masthead-subheading {
     font-size: 4rem;
   }
+  
+.text-justify {
+    text-align: justify;
+}
+
+
+.catpuccino-section {
+    background-color: #f8f9fa; /* Color de fondo ligero para diferenciar la sección */
+}
+
+
+.catpuccino-carousel-container {
+    height: 400px; /* Tamaño fijo para que se vea perfectamente redondo */
+    width: 400px; /* Mismo tamaño para el círculo */
+    border-radius: 50%; /* Esto lo hace perfectamente circular */
+    overflow: hidden; /* Oculta partes de la imagen que exceden el círculo */
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15); /* Sombra suave para que resalte */
+    margin: 0 auto; /* Centra el carrusel horizontalmente */
+    position: relative; /* Necesario para posicionar el carrusel en su interior */
+}
+
+
+.catpuccino-carousel-container .carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ajusta la imagen para cubrir el contenedor */
+}
+
+
+.btn-outline-invest {
+    --bs-btn-color: #ee0979; /* Color de tu primary (rosa/magenta) */
+    --bs-btn-border-color: #ee0979;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #ee0979;
+    --bs-btn-hover-border-color: #ee0979;
+}
+.btn-outline-invest:hover {
+    color: #fff;
+    background-color: #ee0979;
+    border-color: #ee0979;
+}
+
+
+.carousel-indicators [data-bs-target] {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
 }
