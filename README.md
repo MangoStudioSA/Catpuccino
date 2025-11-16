@@ -337,8 +337,10 @@ Las referencias principales para el 2D son *Buena Pizza, Gran Pizza* y *Little C
 ![Arte final PJ Principal](https://github.com/MangoStudioSA/Catpuccino/blob/e921cc81d0e6f43bd58ed52fc449a0f76f782ea9/PhotosGDD/arteFinalPJPrincipal.png)
 
 ### 6.7 Props
-![Boceto minijuego](https://github.com/MangoStudioSA/Catpuccino/blob/d73edd6ff94114cca9a8751dac0d0536c4a05147/PhotosGDD/minijuegoBOCETO.png)
-![Props tazas](https://github.com/MangoStudioSA/Catpuccino/blob/d73edd6ff94114cca9a8751dac0d0536c4a05147/PhotosGDD/props.png)
+#### 6.7.1 Cafes
+Se han relizado todas las variaciones necesarias para los props de los cafes, tanto en las tazas (para tomar aqui) como el los vasos (para llevar), ademas, se han dibujado tambien etos mismos cafes con todas las variaciones de skins existentes.
+![Boceto minijuego](https://github.com/MangoStudioSA/Catpuccino/blob/d73edd6ff94114cca9a8751dac0d0536c4a05147/PhotosGDD/CAFES.png)
+#### 6.7.1 Estacion de cafetera
 
 ### 6.8 Cartas y sobres de cartas
 ![Cartas y sobres de cartas](https://github.com/MangoStudioSA/Catpuccino/blob/94eed32a71679b0de7f116218af42cba7f10aa56/PhotosGDD/cartas.png)
