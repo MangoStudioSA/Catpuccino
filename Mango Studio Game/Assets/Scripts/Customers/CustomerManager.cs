@@ -4,6 +4,7 @@ using System.Collections.Generic;
 public class CustomerManager : MonoBehaviour
 {
     public GameObject spawn;
+    public GameObject spawnBathroom;
     public GameObject customer;
     private float nextSpawn;
     public float minTimeBase = 10, maxTimeBase = 20;

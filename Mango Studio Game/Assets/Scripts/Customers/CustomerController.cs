@@ -12,6 +12,7 @@ public class CustomerController : MonoBehaviour
     float patience = 100f;
     public float patienceDecrease = 0.25f;
     bool patient = false;
+    bool atNormalQueue = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     //void Start()
@@ -45,6 +46,7 @@ public class CustomerController : MonoBehaviour
 
         Debug.Log("He llegado a la cola");
         manager.customers.Enqueue(this);
+        atNormalQueue = true;
         return Status.Success;
     }
 
@@ -84,13 +86,16 @@ public class CustomerController : MonoBehaviour
     public Status ResetPatience()
     {
         patience = 100f;
+        Debug.Log("Reseteo mi paciencia");
         return Status.Success;
     }
 
     public Status BathroomQueue()
     {
         manager.customers.Dequeue();
+        atNormalQueue = false;
         manager.customersBathroom.Enqueue(this);
+        Debug.Log("Cambio de cola");
         return Status.Success;
     }
 
@@ -104,6 +109,49 @@ public class CustomerController : MonoBehaviour
 
         Debug.Log("No esta llena la cola");
         return Status.Failure;
+    }
+
+    public void ChangeQueue()
+    {
+        transform.position = new Vector3(manager.spawnBathroom.transform.position.x, transform.position.y, manager.spawnBathroom.transform.position.z);
+        Debug.Log("Me voy al baño");
+    }
+
+    public Status GoToBathRoom()
+    {
+        if (!atCounter && !atQueue)
+        {
+            transform.Translate(direction.normalized * speed * Time.deltaTime);
+            return Status.Running;
+        }
+
+        Debug.Log("He llegado a la cola del baño");
+        return Status.Success;
+    }
+
+    public Status CheckPatience()
+    {
+        if (patience <= 0)
+        {
+            return Status.Success;
+        }
+
+        return Status.Failure;
+    }
+
+    public Status BathroomMyTurn()
+    {
+
+    }
+
+    public void UseBathroom()
+    {
+
+    }
+
+    public Status ReturnToQueue()
+    {
+
     }
 
     public void LeaveBathroomQueue()
@@ -138,7 +186,7 @@ public class CustomerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "CustomerManager")
+        if (other.tag == "CustomerManager" && atNormalQueue)
         {
             manager.orderButton.SetActive(true);
             atCounter = true;
