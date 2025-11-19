@@ -141,7 +141,7 @@ public class CustomerController : MonoBehaviour
 
     public Status BathroomMyTurn()
     {
-
+        return Status.Success;
     }
 
     public void UseBathroom()
@@ -151,7 +151,7 @@ public class CustomerController : MonoBehaviour
 
     public Status ReturnToQueue()
     {
-
+        return Status.Success;
     }
 
     public void LeaveBathroomQueue()
