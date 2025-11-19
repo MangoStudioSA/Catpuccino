@@ -19113,7 +19113,7 @@ MonoBehaviour:
   earnedText: {fileID: 1621369669}
   endButtonText: {fileID: 1495100694}
   secondsPerGameMinute: 0
-  secondsPerGameMinuteBase: 0.2
+  secondsPerGameMinuteBase: 5
   timeDecay: 0.1
   startHour: 7
   endHour: 20

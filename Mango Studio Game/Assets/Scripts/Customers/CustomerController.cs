@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using BehaviourAPI.Core;
+using BehaviourAPI.UnityToolkit.GUIDesigner.Runtime;
+using NUnit.Framework.Internal.Filters;
+using UnityEngine;
 
 public class CustomerController : MonoBehaviour
 {
@@ -6,27 +9,71 @@ public class CustomerController : MonoBehaviour
     public Vector3 direction = Vector3.forward;
     public bool atCounter = false, atQueue = false;
     CustomerManager manager;
+    float patience = 100f;
+    bool patient = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    //void Start()
+    //{    
+    //    manager.customers.Enqueue(this);
+    //}
+
+    void Spawn()
     {
-        manager = GameObject.FindWithTag("CustomerManager").GetComponent<CustomerManager>();
-        manager.customers.Enqueue(this);
+        if (Random.Range(0, 2) == 0)
+        {
+            patient = true;
+        }
+        else
+        {
+            patient = false;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    Status GoToQueue()
     {
         if (!atCounter && !atQueue)
         {
             transform.Translate(direction.normalized * speed * Time.deltaTime);
+            return Status.Running;
         }
 
-        if (!atCounter && manager.customers.Count > 0 && manager.customers.Peek() == this)
+        return Status.Success;
+    }
+
+    Status LineFull()
+    {
+        if (manager.customers.Count >= manager.maxClients)
         {
-            atQueue = false;
+            return Status.Success;
+        }
+        else
+        {
+            return Status.Failure;
         }
     }
+
+    void Irse()
+    {
+        manager.orderButton.SetActive(false);
+        manager.clients -= 1;
+        manager.customers.Dequeue();
+        Destroy(this);
+    }
+
+    // Update is called once per frame
+    //void Update()
+    //{
+    //    if (!atCounter && !atQueue)
+    //    {
+    //        transform.Translate(direction.normalized * speed * Time.deltaTime);
+    //    }
+
+    //    if (!atCounter && manager.customers.Count > 0 && manager.customers.Peek() == this)
+    //    {
+    //        atQueue = false;
+    //    }
+    //}
 
     private void OnTriggerEnter(Collider other)
     {
@@ -51,7 +98,7 @@ public class CustomerController : MonoBehaviour
         }
         else
         {
-            atQueue= false;
+            atQueue = false;
         }
     }
 }

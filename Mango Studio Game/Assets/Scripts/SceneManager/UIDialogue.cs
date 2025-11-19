@@ -61,10 +61,6 @@ public class UIDialogue : MonoBehaviour
     {
         deliveryPanel.SetActive(false);
         roomPanel.SetActive(true);
-        manager.orderButton.SetActive(false);
-        manager.clients -= 1;
-        manager.customers.Dequeue();
-        Destroy(manager.orderingCustomer);
         gameUI.orderScreen = false;
 
         if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 20)
