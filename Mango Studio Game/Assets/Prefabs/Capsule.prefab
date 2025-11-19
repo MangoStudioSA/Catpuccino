@@ -129,6 +129,7 @@ MonoBehaviour:
   direction: {x: -1, y: 0, z: 0}
   atCounter: 0
   atQueue: 0
+  patienceDecrease: 0.25
 --- !u!54 &4231839258988541092
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -189,6 +190,9 @@ MonoBehaviour:
         parentIds: []
         childIds:
         - 758eac51-02d4-484f-a214-3e99a7d13dd7
+        - d0d6ce81-e78e-4289-bf28-5999328ea8ff
+        - 97c714bc-40fb-4584-8d42-e616e3a5abe3
+        - 68be10a2-b148-44a7-984d-c2716f89cea0
       - name: 
         id: 758eac51-02d4-484f-a214-3e99a7d13dd7
         position: {x: -450, y: 200}
@@ -207,10 +211,10 @@ MonoBehaviour:
         node:
           rid: 5536798867620626510
         references: []
-        parentIds: []
+        parentIds:
+        - 78ed062d-4a2b-4985-b37d-fd5f24b4fc87
         childIds:
         - 429cf45e-4608-4b23-801e-ad9edf65b83c
-        - abf80326-81cd-491e-8f68-4956921ba7d5
         - 310f2091-f52d-4d60-b2b6-303b97e560b4
         - 31d959ef-395e-4a12-89e8-60abddfef4b3
         - 0a0d622b-1612-4868-9d79-dbe1b51d2c8d
@@ -220,7 +224,8 @@ MonoBehaviour:
         node:
           rid: 5536798867620626511
         references: []
-        parentIds: []
+        parentIds:
+        - 78ed062d-4a2b-4985-b37d-fd5f24b4fc87
         childIds:
         - 09b8cb82-f5bc-44fa-aa44-ac4cfe43d352
         - 833118c1-b4d2-4149-a40c-98ff8c8b7351
@@ -232,7 +237,8 @@ MonoBehaviour:
         node:
           rid: 5536798867620626512
         references: []
-        parentIds: []
+        parentIds:
+        - 78ed062d-4a2b-4985-b37d-fd5f24b4fc87
         childIds:
         - e838af65-a303-4bec-b550-5d3f7b7f4105
         - c602b861-ae81-456e-b205-7f7bb0993ccb
@@ -275,10 +281,10 @@ MonoBehaviour:
         parentIds:
         - 758eac51-02d4-484f-a214-3e99a7d13dd7
         childIds:
-        - f2c9adbc-f385-4b26-bc68-77e2a379825d
+        - a45cce35-e6ef-4f95-bf98-174bb7ca51b6
       - name: Irse
         id: f2c9adbc-f385-4b26-bc68-77e2a379825d
-        position: {x: -134, y: 587}
+        position: {x: -134, y: 668}
         node:
           rid: 5536798867620626517
         references:
@@ -288,7 +294,7 @@ MonoBehaviour:
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
-        - 5b806062-e061-4536-9486-68bf143c9708
+        - a45cce35-e6ef-4f95-bf98-174bb7ca51b6
         childIds: []
       - name: "Necesidad de ba\xF1o"
         id: 429cf45e-4608-4b23-801e-ad9edf65b83c
@@ -298,21 +304,7 @@ MonoBehaviour:
         references:
         - fieldName: Action
           value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - d0d6ce81-e78e-4289-bf28-5999328ea8ff
-        childIds: []
-      - name: Pausar Tarea actual
-        id: abf80326-81cd-491e-8f68-4956921ba7d5
-        position: {x: 450, y: 400}
-        node:
-          rid: 5536798867620626519
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
+            rid: 4779458740953546826
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
@@ -320,13 +312,13 @@ MonoBehaviour:
         childIds: []
       - name: Resetear paciencia
         id: 310f2091-f52d-4d60-b2b6-303b97e560b4
-        position: {x: 750, y: 400}
+        position: {x: 638, y: 406}
         node:
           rid: 5536798867620626520
         references:
         - fieldName: Action
           value:
-            rid: -2
+            rid: 4779458740953546827
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
@@ -340,7 +332,7 @@ MonoBehaviour:
         references:
         - fieldName: Action
           value:
-            rid: -2
+            rid: 4779458740953546828
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
@@ -387,7 +379,7 @@ MonoBehaviour:
         references:
         - fieldName: Action
           value:
-            rid: -2
+            rid: 4779458740953546831
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
@@ -402,8 +394,7 @@ MonoBehaviour:
         parentIds:
         - 68c01daa-fdf7-4c95-9ce7-207b51af5a62
         childIds:
-        - 5aec773e-bab7-4204-8820-ce7e4b6613d2
-        - a8d10316-cef9-44c5-b094-34aaf0255ad7
+        - 56b30232-9d00-4ea4-8dda-2f10db61907d
       - name: Reanudar tarea
         id: 9fd1ad12-e1d5-4cbb-9524-1ed141644ca9
         position: {x: 2362.5, y: 800}
@@ -429,33 +420,19 @@ MonoBehaviour:
         childIds:
         - 887aebb8-d60d-4dee-a99b-fd94b80b787e
         - 5676530b-2707-499b-a2e2-5804a98b4d9b
-      - name: Avanzar a salida
-        id: 5aec773e-bab7-4204-8820-ce7e4b6613d2
-        position: {x: 1200, y: 1000}
-        node:
-          rid: 5536798867620626531
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - b2959edd-ca55-430e-916e-fd700bf188ad
-        childIds: []
-      - name: irse
+      - name: Irse
         id: a8d10316-cef9-44c5-b094-34aaf0255ad7
-        position: {x: 1500, y: 1000}
+        position: {x: 1347, y: 1085}
         node:
           rid: 5536798867620626532
         references:
         - fieldName: Action
           value:
-            rid: -2
+            rid: 4779458740953546830
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
-        - b2959edd-ca55-430e-916e-fd700bf188ad
+        - 56b30232-9d00-4ea4-8dda-2f10db61907d
         childIds: []
       - name: "\xBFEsta en cola?"
         id: 887aebb8-d60d-4dee-a99b-fd94b80b787e
@@ -1182,6 +1159,26 @@ MonoBehaviour:
         parentIds:
         - f42d5342-8429-48f8-9b04-784eda940257
         childIds: []
+      - name: 
+        id: a45cce35-e6ef-4f95-bf98-174bb7ca51b6
+        position: {x: -134, y: 528}
+        node:
+          rid: 4779458740953546825
+        references: []
+        parentIds:
+        - 5b806062-e061-4536-9486-68bf143c9708
+        childIds:
+        - f2c9adbc-f385-4b26-bc68-77e2a379825d
+      - name: 
+        id: 56b30232-9d00-4ea4-8dda-2f10db61907d
+        position: {x: 1347, y: 933}
+        node:
+          rid: 4779458740953546829
+        references: []
+        parentIds:
+        - b2959edd-ca55-430e-916e-fd700bf188ad
+        childIds:
+        - a8d10316-cef9-44c5-b094-34aaf0255ad7
     pushPerceptions: []
   references:
     version: 2
@@ -1210,11 +1207,11 @@ MonoBehaviour:
       type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
       data:
         start:
-          componentName: CustomerController
-          methodName: LineFull
-        update:
           componentName: 
           methodName: 
+        update:
+          componentName: CustomerController
+          methodName: LineFull
         stop:
           componentName: 
           methodName: 
@@ -1229,10 +1226,108 @@ MonoBehaviour:
       data:
         start:
           componentName: CustomerController
-          methodName: Irse
+          methodName: LeaveQueue
         update:
           componentName: 
           methodName: 
+        stop:
+          componentName: 
+          methodName: 
+        pause:
+          componentName: 
+          methodName: 
+        unpause:
+          componentName: 
+          methodName: 
+    - rid: 4779458740953546825
+      type: {class: TimerDecoratorNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data:
+        Time: 2
+    - rid: 4779458740953546826
+      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        start:
+          componentName: 
+          methodName: 
+        update:
+          componentName: CustomerController
+          methodName: NeedBathroom
+        stop:
+          componentName: 
+          methodName: 
+        pause:
+          componentName: 
+          methodName: 
+        unpause:
+          componentName: 
+          methodName: 
+    - rid: 4779458740953546827
+      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        start:
+          componentName: 
+          methodName: 
+        update:
+          componentName: CustomerController
+          methodName: ResetPatience
+        stop:
+          componentName: 
+          methodName: 
+        pause:
+          componentName: 
+          methodName: 
+        unpause:
+          componentName: 
+          methodName: 
+    - rid: 4779458740953546828
+      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        start:
+          componentName: 
+          methodName: 
+        update:
+          componentName: CustomerController
+          methodName: BathroomQueue
+        stop:
+          componentName: 
+          methodName: 
+        pause:
+          componentName: 
+          methodName: 
+        unpause:
+          componentName: 
+          methodName: 
+    - rid: 4779458740953546829
+      type: {class: TimerDecoratorNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data:
+        Time: 2
+    - rid: 4779458740953546830
+      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        start:
+          componentName: CustomerController
+          methodName: LeaveBathroomQueue
+        update:
+          componentName: 
+          methodName: 
+        stop:
+          componentName: 
+          methodName: 
+        pause:
+          componentName: 
+          methodName: 
+        unpause:
+          componentName: 
+          methodName: 
+    - rid: 4779458740953546831
+      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        start:
+          componentName: 
+          methodName: 
+        update:
+          componentName: CustomerController
+          methodName: BathroomLineFull
         stop:
           componentName: 
           methodName: 
@@ -1281,9 +1376,6 @@ MonoBehaviour:
     - rid: 5536798867620626518
       type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data: 
-    - rid: 5536798867620626519
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
     - rid: 5536798867620626520
       type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data: 
@@ -1316,9 +1408,6 @@ MonoBehaviour:
       type: {class: SequencerNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data:
         IsRandomized: 0
-    - rid: 5536798867620626531
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
     - rid: 5536798867620626532
       type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data: 

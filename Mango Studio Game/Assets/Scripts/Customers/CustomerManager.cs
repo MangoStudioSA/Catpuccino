@@ -11,9 +11,11 @@ public class CustomerManager : MonoBehaviour
     public float minMinTime = 1, minMaxTime = 2;
     public int clients = 0;
     public int maxClients = 7;
+    public int maxClientsBathroom = 1;
     public GameObject orderButton;
     public GameObject orderingCustomer;
     public Queue<CustomerController> customers;
+    public Queue<CustomerController> customersBathroom;
     TimeManager timeManager;
     public float timeDecay = 1f;
     private bool startedDecay = false;
