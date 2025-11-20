@@ -583,7 +583,7 @@ MonoBehaviour:
         references:
         - fieldName: Action
           value:
-            rid: -2
+            rid: 5536799080365162615
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
@@ -1816,6 +1816,24 @@ MonoBehaviour:
         update:
           componentName: CustomerController
           methodName: 
+        stop:
+          componentName: 
+          methodName: 
+        pause:
+          componentName: 
+          methodName: 
+        unpause:
+          componentName: 
+          methodName: 
+    - rid: 5536799080365162615
+      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        start:
+          componentName: 
+          methodName: 
+        update:
+          componentName: CustomerController
+          methodName: WaitInQueue
         stop:
           componentName: 
           methodName: 
