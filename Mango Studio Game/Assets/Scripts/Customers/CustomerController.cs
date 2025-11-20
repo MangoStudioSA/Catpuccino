@@ -20,6 +20,7 @@ public class CustomerController : MonoBehaviour
     public float distancDetection = 10.0f;
 
     public float catNecesity = 60.0f;
+    private bool isInteracting = false;
 
     private float _timerPetting = 0f;
     public float pettingTime = 3f;
@@ -59,15 +60,26 @@ public class CustomerController : MonoBehaviour
 
     public Status GoToQueue()
     {
+        if (isInteracting) return Status.Running;
+
         if (!atCounter && !atQueue)
         {
-            transform.Translate(direction.normalized * speed * Time.deltaTime);
+            if (manager != null)
+            {
+                Vector3 objetivo = manager.transform.position;
+                objetivo.y = transform.position.y;
+                transform.LookAt(objetivo);
+            }
+
+            transform.Translate(Vector3.forward * speed * Time.deltaTime);
+
             return Status.Running;
         }
 
         Debug.Log("He llegado a la cola");
         manager.customers.Enqueue(this);
         atNormalQueue = true;
+        atQueue = true;
         return Status.Success;
     }
 
@@ -185,6 +197,8 @@ public class CustomerController : MonoBehaviour
 
     void Update()
     {
+        if (isInteracting) return;
+
         if (patient)
         {
             patience -= patienceDecrease * Time.deltaTime;
@@ -247,30 +261,31 @@ public class CustomerController : MonoBehaviour
 
     public Status GoToCat()
     {
-        Debug.Log("[2] Ejecutando GoToCat...");
-
         if (gatoObject == null)
         {
             GameObject g = GameObject.FindGameObjectWithTag("Gato");
             if (g != null) gatoObject = g.transform;
-            else { Debug.LogError("¡ERROR CRÍTICO! Gato es NULL y no encuentro tag."); return Status.Failure; }
+            else return Status.Failure;
         }
 
-        float distancia = Vector3.Distance(transform.position, gatoObject.position);
+        Vector3 miPosPlana = new Vector3(transform.position.x, 0, transform.position.z);
+        Vector3 gatoPosPlana = new Vector3(gatoObject.position.x, 0, gatoObject.position.z);
 
-        Debug.Log($"[3] Distancia al gato: {distancia}. Posición Gato: {gatoObject.position}");
+        float distanciaPlana = Vector3.Distance(miPosPlana, gatoPosPlana);
 
-        if (distancia < 0.50f)
+        Debug.Log($"[3] Distancia Plana: {distanciaPlana}. Gato: {gatoObject.position}");
+
+        if (distanciaPlana < 0.5f)
         {
-            Debug.Log("[4] Llegué");
+            Debug.Log("[4] Llegué (Ignorando altura)");
             return Status.Success;
         }
 
         Vector3 direccion = (gatoObject.position - transform.position).normalized;
         direccion.y = 0;
 
-
         transform.Translate(direccion * speed * Time.deltaTime, Space.World);
+
 
         Vector3 lookPos = new Vector3(gatoObject.position.x, transform.position.y, gatoObject.position.z);
         transform.LookAt(lookPos);
@@ -281,6 +296,7 @@ public class CustomerController : MonoBehaviour
     public void StartPetting()
     {
         _timerPetting = 0f;
+        isInteracting = true;
         Debug.Log("acariciando al gato...");
 
         // futuro: cuando tengamos animaciones
@@ -291,13 +307,16 @@ public class CustomerController : MonoBehaviour
     {
         _timerPetting += Time.deltaTime;
 
+        patience += 20f * Time.deltaTime;
+
+        if (patience > 100f) patience = 100f;
+
         if (_timerPetting < pettingTime)
         {
             return Status.Running;
         }
 
-        patience += 15f;
-        if (patience > 100f) patience = 100f;
+        patience = 100f;
 
         Debug.Log("Termino de acariciar. Paciencia: " + patience);
 
@@ -311,10 +330,9 @@ public class CustomerController : MonoBehaviour
     {
         Debug.Log("He terminado con el gato. Vuelvo a lo mío.");
 
-        if (patience < catNecesity)
-        {
-            patience = catNecesity + 5f;
-        }
+        patience = 100f;
+
+        isInteracting = false;
 
         return Status.Success;
     }
