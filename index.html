@@ -53,11 +53,11 @@
 
         /* **NUEVO** Estilo para hacer el carrusel rectangular y eliminar el recorte circular */
         .catpuccino-carousel-container {
-            /* Aseguramos que no tenga esquinas redondeadas o recortes inesperados */
-            border-radius: 0 !important; 
-            overflow: hidden; /* Importante para que la imagen no se salga del contenedor */
-            /* Si tienes una imagen de fondo, esto la haría rectangular */
-        }
+    /* ... */
+    position: relative;
+    padding-bottom: 56.25%; /* Relación de aspecto 16:9 */
+    height: 0;
+}
         
         .carousel-item img {
             border-radius: 0 !important; /* Asegura esquinas rectangulares */
