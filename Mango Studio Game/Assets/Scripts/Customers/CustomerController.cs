@@ -14,6 +14,16 @@ public class CustomerController : MonoBehaviour
     bool patient = false;
     bool atNormalQueue = false;
 
+    //gato
+    [Header("Ajustes Gato")]
+    public Transform gatoObject;
+    public float distancDetection = 5.0f;
+
+    public float catNecesity = 60f;
+
+    private float _timerPetting = 0f;   // Variable interna para contar
+    public float pettingTime = 3f;  // El tiempo que quieres que pare (3 segundos)
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     //void Start()
     //{    
@@ -209,5 +219,69 @@ public class CustomerController : MonoBehaviour
         {
             atQueue = false;
         }
+    }
+
+    public Status CheckCat()
+    {
+        float distancia = Vector3.Distance(this.transform.position, gatoObject.position);
+
+        if (distancia < distancDetection)
+        {
+            return Status.Success;
+        }
+
+        return Status.Failure; 
+    }
+
+    public Status CheckNeedToPet()
+    {
+        if (patience < catNecesity && patience > 0)
+        {
+            Debug.Log("paciencia baja, necesita acariciar al gato");
+            return Status.Success; 
+        }
+
+        return Status.Failure;
+    }
+
+    public void StartPetting()
+    {
+        _timerPetting = 0f; 
+        Debug.Log("acariciando al gato...");
+
+        // futuro: cuando tengamos animaciones
+        // animator.SetBool("IsPetting", true);
+    }
+
+    public Status PerformPetting()
+    {
+        _timerPetting += Time.deltaTime;
+
+        if (_timerPetting < pettingTime)
+        {
+            return Status.Running; 
+        }
+
+        patience += 15f;
+        if (patience > 100f) patience = 100f;
+
+        Debug.Log("Termino de acariciar. Paciencia: " + patience);
+
+        // futuro: cuando tengamos animaciones
+        // animator.SetBool("IsPetting", false);
+
+        return Status.Success;
+    }
+
+    public Status ResumeTask()
+    {
+        Debug.Log("He terminado con el gato. Vuelvo a lo mío.");
+
+        if (patience < catNecesity)
+        {
+            patience = catNecesity + 5f;
+        }
+
+        return Status.Success;
     }
 }
