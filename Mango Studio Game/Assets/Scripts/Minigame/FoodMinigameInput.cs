@@ -273,7 +273,7 @@ public class FoodMinigameInput : MonoBehaviour
             buttonManager.DisableButton(buttonManager.papeleraRButton);
             buttonManager.DisableButton(buttonManager.returnBakeryButton);
         }
-        else if ((foodIsInBolsaLlevar || foodIsInPlato || foodIsInHorno || platoIsInEncimera || carryBagIsInEncimera) && !tutorialManager.isRunningT2)
+        else if (!tutorialManager.isRunningT2)
         {
             buttonManager.EnableButton(buttonManager.orderNoteBButton);
             buttonManager.EnableButton(buttonManager.papeleraRButton);
