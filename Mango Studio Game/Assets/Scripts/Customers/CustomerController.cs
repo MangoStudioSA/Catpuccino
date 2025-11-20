@@ -25,6 +25,11 @@ public class CustomerController : MonoBehaviour
     private float _timerPetting = 0f;
     public float pettingTime = 3f;
 
+
+    [Header("Referencias Tienda")]
+    public Transform exitPoint; //meterlo en el spawn
+    public bool hasOrdered = false; 
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     //void Start()
     //{    
@@ -45,7 +50,7 @@ public class CustomerController : MonoBehaviour
         }
         else
         {
-            Debug.LogError("¡No encuentro al gato! ¿Le has puesto el Tag 'Gato'?");
+            Debug.LogError("no se encuentra gato");
         }
 
         if (Random.Range(0, 2) == 0)
@@ -66,9 +71,9 @@ public class CustomerController : MonoBehaviour
         {
             if (manager != null)
             {
-                Vector3 objetivo = manager.transform.position;
-                objetivo.y = transform.position.y;
-                transform.LookAt(objetivo);
+                Vector3 target = manager.transform.position;
+                target.y = transform.position.y;
+                transform.LookAt(target);
             }
 
             transform.Translate(Vector3.forward * speed * Time.deltaTime);
@@ -80,6 +85,7 @@ public class CustomerController : MonoBehaviour
         manager.customers.Enqueue(this);
         atNormalQueue = true;
         atQueue = true;
+
         return Status.Success;
     }
 
@@ -246,9 +252,10 @@ public class CustomerController : MonoBehaviour
         }
     }
 
+    #region rama cliente gato
     public Status CheckNeedToPet()
     {
-        Debug.Log($"Comprobando Necesidad... Paciencia: {patience}");
+        Debug.Log($"comprobando Paciencia: {patience}");
 
         if (patience < catNecesity && patience > 0)
         {
@@ -273,11 +280,11 @@ public class CustomerController : MonoBehaviour
 
         float distanciaPlana = Vector3.Distance(miPosPlana, gatoPosPlana);
 
-        Debug.Log($"[3] Distancia Plana: {distanciaPlana}. Gato: {gatoObject.position}");
+        //Debug.Log($"[3] Distancia Plana: {distanciaPlana}. Gato: {gatoObject.position}");
 
         if (distanciaPlana < 0.5f)
         {
-            Debug.Log("[4] Llegué (Ignorando altura)");
+            Debug.Log("[4] llega a gato");
             return Status.Success;
         }
 
@@ -318,7 +325,7 @@ public class CustomerController : MonoBehaviour
 
         patience = 100f;
 
-        Debug.Log("Termino de acariciar. Paciencia: " + patience);
+        Debug.Log("termino de acariciar. Paciencia: " + patience);
 
         // futuro: cuando tengamos animaciones
         // animator.SetBool("IsPetting", false);
@@ -328,7 +335,7 @@ public class CustomerController : MonoBehaviour
 
     public Status ResumeTask()
     {
-        Debug.Log("He terminado con el gato. Vuelvo a lo mío.");
+        Debug.Log("he terminado con el gato. Vuelvo a lo mío.");
 
         patience = 100f;
 
@@ -336,4 +343,97 @@ public class CustomerController : MonoBehaviour
 
         return Status.Success;
     }
+    #endregion
+
+    #region rama cola y paciencia
+    public Status CheckAtQueue()
+    {
+        if (atQueue || atCounter)
+        {
+            return Status.Success;
+        }
+        return Status.Failure;
+    }
+
+    public Status CheckPatienceDepleted()
+    {
+        if (patience <= 0)
+        {
+            Debug.Log("me voy");
+            return Status.Success; 
+        }
+        return Status.Failure; 
+    }
+
+    public Status GoToExit()
+    {
+        if (exitPoint == null)
+        {
+            GameObject salida = GameObject.FindGameObjectWithTag("Salida"); 
+            if (salida != null) exitPoint = salida.transform;
+            else return Status.Failure;
+        }
+
+        float distancia = Vector3.Distance(transform.position, exitPoint.position);
+
+        if (distancia > 1.0f)
+        {
+            Vector3 direction = (exitPoint.position - transform.position).normalized;
+            direction.y = 0;
+            transform.Translate(direction * speed * Time.deltaTime, Space.World);
+
+            Vector3 lookPos = new Vector3(exitPoint.position.x, transform.position.y, exitPoint.position.z);
+            transform.LookAt(lookPos);
+
+            return Status.Running;
+        }
+
+        return Status.Success;
+    }
+
+    public Status LeaveShop()
+    {
+        Debug.Log("cliente se va ).");
+
+        if (manager != null)
+        {
+            manager.clients--;
+
+            if (manager.orderingCustomer == this.gameObject)
+            {
+                manager.orderingCustomer = null;
+                manager.orderButton.SetActive(false);
+            }
+        }
+
+        Destroy(this.gameObject);
+        return Status.Success;
+    }
+
+    public Status CheckIsMyTurn()
+    {
+        if (atCounter)
+        {
+            return Status.Success;
+        }
+        return Status.Failure;
+    }
+
+    // NODO: "Pedir y pagar"
+    public Status OrderAndPay()
+    {
+        Debug.Log("haciendo pedido...");
+
+        hasOrdered = true;
+
+        return Status.Success;
+    }
+
+
+    // NODO: "Esperar"
+    public Status WaitInQueue()
+    {
+        return Status.Running;
+    }
+    #endregion
 }
