@@ -151,6 +151,7 @@ public class TimeManager : MonoBehaviour
 
         // Actualizar mecanicas y elementos disponibles para el dia actual
         GameProgressManager.Instance.UpdateMechanicsForDay(currentDay);
+        FindFirstObjectByType<FoodManager>().ApplyFoodUnlocks();
         buttonUnlockManager.RefreshButtons();
         
         // Calculo facturas

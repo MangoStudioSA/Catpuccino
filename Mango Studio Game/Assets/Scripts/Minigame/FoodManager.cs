@@ -23,6 +23,14 @@ public class FoodObjects
             obj.SetActive(true);
         currentIndex = 0;
     }
+
+    public void SetLocked(bool locked)
+    {
+        foreach (var obj in foodInstances)
+            obj.SetActive(!locked);
+
+        currentIndex = 0; // Siempre se reinicia si se bloquea/desbloquea
+    }
 }
 
 // Clase encargada de gestionar la comida y sus cursores
@@ -38,9 +46,6 @@ public class FoodManager : MonoBehaviour
     private Dictionary<CakeType, Texture2D> cakeCursors = new();
     private Dictionary<CookieType, Texture2D> cookiesCursors = new();
     private Dictionary<MufflinType, Texture2D> mufflinsCursors = new();
-
-    // Desbloqueo comida
-    private Dictionary<FoodCategory, bool> unlockedCategories = new();
 
     [Header("GameObjects comida")]
     public GameObject BZanahoria;
@@ -106,32 +111,10 @@ public class FoodManager : MonoBehaviour
         mufflinsCursors.Add(MufflinType.pistacho, MPistachoCursor);
         mufflinsCursors.Add(MufflinType.arandanos, MArandanoCursor);
         mufflinsCursors.Add(MufflinType.dulceLeche, MDulceLecheCursor);
-    }
 
-    public void Start()
-    {
-        foreach (FoodCategory cat in System.Enum.GetValues(typeof(FoodCategory)))
-            unlockedCategories[cat] = false;
-
-        if (GameProgressManager.Instance.cakesEnabled)
+        foreach (var stock in foodStocks)
         {
-            UnlockCategory(FoodCategory.bizcocho);
-            LockCategory(FoodCategory.galleta);
-            LockCategory(FoodCategory.mufflin);
-        }
-
-        if (GameProgressManager.Instance.cakesEnabled && GameProgressManager.Instance.cookiesEnabled)
-        {
-            UnlockCategory(FoodCategory.bizcocho);
-            UnlockCategory(FoodCategory.galleta);
-            LockCategory(FoodCategory.mufflin);
-        }
-
-        if (GameProgressManager.Instance.cakesEnabled && GameProgressManager.Instance.cookiesEnabled && GameProgressManager.Instance.mufflinsEnabled)
-        {
-            UnlockCategory(FoodCategory.bizcocho);
-            UnlockCategory(FoodCategory.galleta);
-            UnlockCategory(FoodCategory.mufflin);
+            stock.SetLocked(true);
         }
     }
 
@@ -226,7 +209,32 @@ public class FoodManager : MonoBehaviour
         }
     }
 
-    public void UnlockCategory(FoodCategory category)
+    public void ApplyFoodUnlocks()
+    {
+        if (GameProgressManager.Instance == null) return;
+
+        foreach (var stock in foodStocks)
+        {
+            bool unlocked = false;
+
+            switch (stock.category)
+            {
+                case FoodCategory.bizcocho:
+                    unlocked = GameProgressManager.Instance.cakesEnabled;
+                    break;
+                case FoodCategory.galleta:
+                    unlocked = GameProgressManager.Instance.cookiesEnabled;
+                    break;
+                case FoodCategory.mufflin:
+                    unlocked = GameProgressManager.Instance.mufflinsEnabled;
+                    break;
+            }
+
+            stock.SetLocked(!unlocked);
+        }
+    }
+
+    /*public void UnlockCategory(FoodCategory category)
     {
         unlockedCategories[category] = true;
         UpdateCategoryVisibility(category);
@@ -249,5 +257,5 @@ public class FoodManager : MonoBehaviour
             foreach (var obj in stock.foodInstances)
                 obj.SetActive(unlocked);
         }
-    }
+    }*/
 }
