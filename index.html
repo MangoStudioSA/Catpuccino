@@ -51,16 +51,27 @@
             background: linear-gradient(0deg, #ffe0b2 0%, #fff 100%);
         }
 
-        /* **NUEVO** Estilo para hacer el carrusel rectangular y eliminar el recorte circular */
+        /* Estilo para hacer el carrusel rectangular y eliminar el recorte circular */
         .catpuccino-carousel-container {
-            /* Aseguramos que no tenga esquinas redondeadas o recortes inesperados */
             border-radius: 0 !important; 
-            overflow: hidden; /* Importante para que la imagen no se salga del contenedor */
-            /* Si tienes una imagen de fondo, esto la haría rectangular */
+            overflow: hidden;
+            /* Eliminamos la altura fija o las propiedades que lo hacían cuadrado/circular */
+            
+            /* **NUEVO CSS: Forzar relación de aspecto 16:9 (más ancho que alto) */
+            position: relative;
+            padding-bottom: 56.25%; /* Esto crea la proporción 16:9 (9 / 16 = 0.5625) */
+            height: 0;
         }
         
-        .carousel-item img {
-            border-radius: 0 !important; /* Asegura esquinas rectangulares */
+        .carousel-item, .carousel-item img {
+            border-radius: 0 !important; 
+            /* Para que la imagen cubra completamente el contenedor 16:9 */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Asegura que la imagen cubra el área sin estirarse demasiado */
         }
 
         /* Custom styling para reducir el tamaño de las imágenes del equipo (Requisito 4) */
@@ -159,7 +170,7 @@
 
                 <div class="col-lg-6 order-lg-1">
                     <div class="p-5 d-flex justify-content-center">
-                        <div id="catpuccinoCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000" style="max-width: 100%;">
+                        <div id="catpuccinoCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000" style="width: 100%; max-width: 100%;"> 
 
                             <div class="carousel-indicators">
                                 <button type="button" data-bs-target="#catpuccinoCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -169,13 +180,13 @@
 
                             <div class="carousel-inner catpuccino-carousel-container">
                                 <div class="carousel-item active">
-                                    <img src="assets/img/carrusel1.png" class="d-block w-100" alt="Captura de Catpuccino 1" onerror="this.onerror=null;this.src='https://placehold.co/800x450/ff9900/ffffff?text=Catpuccino+1';">
+                                    <img src="assets/img/carrusel1.png" class="d-block" alt="Captura de Catpuccino 1" onerror="this.onerror=null;this.src='https://placehold.co/800x450/ff9900/ffffff?text=Catpuccino+1';">
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="PhotosGDD/REFERENCIAEstacionComida.png" class="d-block w-100" alt="Captura de Catpuccino 2" onerror="this.onerror=null;this.src='https://placehold.co/800x450/ff9900/ffffff?text=Catpuccino+2';">
+                                    <img src="PhotosGDD/REFERENCIAEstacionComida.png" class="d-block" alt="Captura de Catpuccino 2" onerror="this.onerror=null;this.src='https://placehold.co/800x450/ff9900/ffffff?text=Catpuccino+2';">
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="PhotosGDD/PantallaInicio.png" class="d-block w-100" alt="Cartel de Catpuccino" onerror="this.onerror=null;this.src='https://placehold.co/800x450/ff9900/ffffff?text=Catpuccino+Poster';">
+                                    <img src="PhotosGDD/PantallaInicio.png" class="d-block" alt="Cartel de Catpuccino" onerror="this.onerror=null;this.src='https://placehold.co/800x450/ff9900/ffffff?text=Catpuccino+Poster';">
                                 </div>
                             </div>
 
