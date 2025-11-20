@@ -9,7 +9,7 @@ public class CustomerController : MonoBehaviour
     public Vector3 direction = Vector3.forward;
     public bool atCounter = false, atQueue = false;
     CustomerManager manager;
-    float patience = 100f;
+    public float patience = 100f;
     public float patienceDecrease = 0.25f;
     bool patient = false;
     bool atNormalQueue = false;
@@ -17,9 +17,9 @@ public class CustomerController : MonoBehaviour
     //gato
     [Header("Ajustes Gato")]
     public Transform gatoObject;
-    public float distancDetection = 5.0f;
+    public float distancDetection = 50.0f;
 
-    public float catNecesity = 60f;
+    public float catNecesity = 90.0f;
 
     private float _timerPetting = 0f;   // Variable interna para contar
     public float pettingTime = 3f;  // El tiempo que quieres que pare (3 segundos)
@@ -35,6 +35,17 @@ public class CustomerController : MonoBehaviour
         Debug.Log("He entrado a la tienda");
 
         manager = FindFirstObjectByType<CustomerManager>();
+
+        GameObject gatoReal = GameObject.FindGameObjectWithTag("Gato");
+
+        if (gatoReal != null)
+        {
+            gatoObject = gatoReal.transform; // ¡Ahora sí apuntamos al gato vivo!
+        }
+        else
+        {
+            Debug.LogError("¡No encuentro al gato! ¿Le has puesto el Tag 'Gato'?");
+        }
 
         if (Random.Range(0, 2) == 0)
         {
