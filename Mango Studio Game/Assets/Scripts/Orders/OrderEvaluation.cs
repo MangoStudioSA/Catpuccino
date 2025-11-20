@@ -1,4 +1,5 @@
-﻿using Unity.VisualScripting;
+﻿using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SocialPlatforms;
 using UnityEngine.SocialPlatforms.Impl;
@@ -7,6 +8,7 @@ using UnityEngine.SocialPlatforms.Impl;
 public class OrderEvaluation : MonoBehaviour
 {
     // Se asignan las puntuaciones maximas
+    private const int MAX_SCORE_ORDER = 30;
     private const int MAX_SCORE_COFFEE = 25;
     private const int MAX_SCORE_SERVEDCOFFEE = 25;
     private const int MAX_SCORE_SUGAR = 5;
@@ -51,6 +53,12 @@ public class OrderEvaluation : MonoBehaviour
         int maxPossibleScore = 0;
 
         var progress = GameProgressManager.Instance;
+
+        int flowScore = EvaluateOrderSteps(npcOrder, playerOrder);
+        totalScore += flowScore;
+        maxPossibleScore += MAX_SCORE_ORDER;
+
+        Debug.Log($"[Cliente {playerOrder.orderId}] Puntuación del orden de preparación: {flowScore}/{MAX_SCORE_ORDER} pts");
 
         // MECANICA CANTIDAD CAFE
         if (progress.coffeeEnabled)
@@ -599,7 +607,38 @@ public class OrderEvaluation : MonoBehaviour
 
         return cookStateScore; // Se devuelve la puntuacion total del tipo de comida
     }
+
+    public int EvaluateOrderSteps(Order npcOrder, Order playerOrder)
+    {
+        List<OrderStep> correct = npcOrder.stepsRequired;
+        List<OrderStep> player = playerOrder.stepsPerformed;
+
+        if (correct.Count == 0 || player.Count == 0)
+            return 0;
+
+        int score = 0;
+        int stepValue = MAX_SCORE_ORDER / correct.Count;
+
+        int minSteps = Mathf.Min(correct.Count, player.Count);
+
+        for (int i = 0; i < minSteps; i++)
+        {
+            if (player[i] == correct[i])
+            {
+                score += stepValue;
+            }
+            else
+            {
+                score -= stepValue / 2; 
+            }
+        }
+
+        if (player.Count > correct.Count)
+            score -= (player.Count - correct.Count) * (stepValue / 2);
+
+        return Mathf.Clamp(score, 0, MAX_SCORE_ORDER);
+    }
     #endregion
 
-    
+
 }

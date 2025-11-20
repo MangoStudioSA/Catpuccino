@@ -45,6 +45,7 @@ public class CustomerOrder : MonoBehaviour
 
         currentOrder = new Order(coffeeType, sugar, ice, type, foodOrder); // Se genera el nuevo pedido con las cantidades generadas
         orderNoteUI.SetCurrentOrder(currentOrder);
+        currentOrder.GenerateRequiredSteps();
 
         if (orderTxt != null) orderTxt.text = BuildOrderText(currentOrder);
     }

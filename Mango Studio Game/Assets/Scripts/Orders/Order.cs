@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using NUnit.Framework;
+using System.Collections.Generic;
+using UnityEngine;
 
 // Clase principal para construir los pedidos
 [System.Serializable]
@@ -14,6 +16,9 @@ public class Order
     public OrderType orderType;
 
     public FoodOrder foodOrder;
+
+    public List<OrderStep> stepsPerformed = new();
+    public List<OrderStep> stepsRequired = new();
 
     // valor de precisión que el jugador debe alcanzar (1.0, 2.0, o 3.0)
     public float coffeeTarget;
@@ -436,8 +441,54 @@ public class Order
         }
     }
 
+    public void GenerateRequiredSteps()
+    {
+        stepsRequired = new();
+
+        // Paso 1
+        if (waterTarget == 1)
+            stepsRequired.Add(OrderStep.AddWater);
+
+        // Paso 2
+        if (condensedMilkTarget == 1)
+            stepsRequired.Add(OrderStep.AddCondensedMilk);
+
+        // Paso 3
+        if (creamTarget == 1)
+            stepsRequired.Add(OrderStep.AddCream);
+
+        // Paso 4
+        stepsRequired.Add(OrderStep.AddCoffee);
+
+        // Paso 5
+        if (milkTarget == 1)
+            stepsRequired.Add(OrderStep.AddMilk);
+
+        // Paso 6
+        if (heatedMilkTarget == 1)
+            stepsRequired.Add(OrderStep.HeatMilk);
+
+        // Paso 7
+        if (chocolateTarget == 1)
+            stepsRequired.Add(OrderStep.AddChocolate);
+
+        // Paso 8
+        if (whiskeyTarget == 1)
+            stepsRequired.Add(OrderStep.AddWhiskey);
+
+        // Paso 9
+        if (typeTarget == 1)
+            stepsRequired.Add(OrderStep.PutCover);
+    }
+
+    public void ResetSteps()
+    {
+        stepsPerformed.Clear();
+    }
+
 }
 
+public enum OrderStep { AddCoffee, AddWater, AddMilk, HeatMilk, AddCondensedMilk, AddCream, AddChocolate, AddWhiskey, PutCover }
 public enum CoffeeType { espresso, lungo, americano, macchiatto, latte, capuccino, bombon, vienes, frappe, mocca, irish } // Se crean los tipos de cafe
 public enum MilkAmount { nada, poco, mucha } // Se crean 3 cantidades de leche
 public enum HeatMilk { fria, caliente, quemada } // Se crean 3 tipos de estados de la leche
