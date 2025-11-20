@@ -195,14 +195,16 @@ public class MinigameInput : MonoBehaviour
     #region Funciones auxiliares
     public void ResetCafe()
     {
+        if (TengoOtroObjetoEnLaMano() || filtroInHand) return;
+
         buttonManager.filtroCafeteraButton.gameObject.SetActive(false);
         buttonManager.filtroButton.gameObject.SetActive(false);
 
         buttonManager.EnableButton(buttonManager.cogerTazaInicioButton);
         buttonManager.EnableButton(buttonManager.cogerVasoInicioButton);
         buttonManager.EnableButton(buttonManager.cogerPlatoTazaButton);
+        buttonManager.EnableButton(buttonManager.coffeeButton);
 
-        buttonManager.DisableButton(buttonManager.coffeeButton);
         buttonManager.DisableButton(buttonManager.submitOrderButton);
         buttonManager.DisableButton(buttonManager.cogerTazaLecheButton);
         buttonManager.DisableButton(buttonManager.molerButton);
@@ -377,9 +379,6 @@ public class MinigameInput : MonoBehaviour
             buttonManager.EnableButton(buttonManager.endDeliveryButton);
             buttonManager.EnableButton(buttonManager.shopButton);
             buttonManager.EnableButton(buttonManager.gameButton);
-
-            if (tazaIsInCafetera || vasoIsInCafetera)
-                buttonManager.EnableButton(buttonManager.papeleraButton);
         }
 
         if (tutorialManager.isRunningT2 && tutorialManager.currentStep == 0)
@@ -389,24 +388,23 @@ public class MinigameInput : MonoBehaviour
 
         if (!tutorialManager.isRunningT1 && !tutorialManager.isRunningT2)
         {
-            if (tazaInHand || vasoInHand || TengoOtroObjetoEnLaMano())
+            if (tazaInHand || vasoInHand || TengoOtroObjetoEnLaMano() || platoTazaInHand || filtroInHand)
             {
                 buttonManager.DisableButton(buttonManager.submitOrderButton);
                 buttonManager.DisableButton(buttonManager.bakeryButton);
                 buttonManager.DisableButton(buttonManager.recipesBookButton);
                 buttonManager.DisableButton(buttonManager.orderNoteButton);
+                buttonManager.DisableButton(buttonManager.bakeryButton);
                 buttonManager.DisableButton(buttonManager.papeleraButton);
-            }
-            else if (cupServed || vasoIsInTable)
-            {
-                buttonManager.EnableButton(buttonManager.submitOrderButton);
-                buttonManager.EnableButton(buttonManager.bakeryButton);
             }
             else
             {
+                buttonManager.EnableButton(buttonManager.submitOrderButton);
+                buttonManager.EnableButton(buttonManager.bakeryButton);
                 buttonManager.EnableButton(buttonManager.recipesBookButton);
                 buttonManager.EnableButton(buttonManager.orderNoteButton);
                 buttonManager.EnableButton(buttonManager.bakeryButton);
+                buttonManager.EnableButton(buttonManager.papeleraButton);
             }
         }
 

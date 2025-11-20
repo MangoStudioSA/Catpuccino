@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine.Events;
 
+
 // Clase para gestionar los tutoriales
 public class TutorialManager : MonoBehaviour
 {
@@ -34,6 +35,7 @@ public class TutorialManager : MonoBehaviour
     public bool isRunningT2 = false;
     public bool isRunningT3 = false;
 
+    public GameObject skipTutorialButton;
     public ButtonUnlockManager buttonManager;
 
     private void OnEnable()
@@ -322,6 +324,7 @@ public class TutorialManager : MonoBehaviour
     public void StartTutorial1()
     {
         currentStep = 0;
+        skipTutorialButton.SetActive(true);
         if (!gameObject.activeSelf)
             gameObject.SetActive(true);
         StartCoroutine(ShowStepT1());
@@ -373,6 +376,7 @@ public class TutorialManager : MonoBehaviour
     {
         isRunningT1 = false;
         tutorialPanel.gameObject.SetActive(false);
+        skipTutorialButton.SetActive(false);
         GameManager.Instance.AnadirMonedas(220);
         PlayerDataManager.instance.AddBasicCoins(20);
         Debug.Log("Tutorial completado");
@@ -485,6 +489,7 @@ public class TutorialManager : MonoBehaviour
     public void StartTutorial2()
     {
         currentStep = 0;
+        skipTutorialButton.SetActive(true);
         if (!gameObject.activeSelf)
             gameObject.SetActive(true);
 
@@ -537,6 +542,7 @@ public class TutorialManager : MonoBehaviour
     {
         isRunningT2 = false;
         tutorialPanel.gameObject.SetActive(false);
+        skipTutorialButton.SetActive(false);
         Debug.Log("Tutorial 2 completado");
     }
     #endregion
@@ -598,6 +604,7 @@ public class TutorialManager : MonoBehaviour
     public void StartTutorial3()
     {
         currentStep = 0;
+        skipTutorialButton.SetActive(true);
         if (!gameObject.activeSelf)
             gameObject.SetActive(true);
 
@@ -650,9 +657,27 @@ public class TutorialManager : MonoBehaviour
     {
         isRunningT3 = false;
         tutorialPanel.gameObject.SetActive(false);
+        skipTutorialButton.SetActive(false);
         Debug.Log("Tutorial 3 completado");
     }
     #endregion
+
+    // Funcion para saltar el tutorial
+    public void SkipTutorial()
+    {
+        StopAllCoroutines();
+        if (skipTutorialButton != null)
+            skipTutorialButton.SetActive(false);
+        tutorialPanel.gameObject.SetActive(false);
+        canvasGroup.alpha = 0f;
+
+        isRunningT1 = false;
+        isRunningT2 = false;
+        isRunningT3 = false;
+
+        Debug.Log("Tutorial saltado manualmente");
+    }
+
 
     // Funciones para la animacion y el fade in/out de los mensajes 
     private IEnumerator FadeInPanel()
