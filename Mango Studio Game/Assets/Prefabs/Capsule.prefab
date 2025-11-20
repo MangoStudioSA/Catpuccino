@@ -129,8 +129,9 @@ MonoBehaviour:
   direction: {x: -1, y: 0, z: 0}
   atCounter: 0
   atQueue: 0
+  patience: 100
   patienceDecrease: 0.25
-  gatoObject: {fileID: 972679412159036773, guid: 5247167fa6c3d0049afb27d7401c079d, type: 3}
+  gatoObject: {fileID: 0}
   distancDetection: 5
   catNecesity: 60
   pettingTime: 3
@@ -173,7 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7033c32493b38240a6a2c47736ac9c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  executeOnLoop: 0
+  executeOnLoop: 1
   interruptOptions: 0
   _eventHandler:
     debugStatusChanges: 0
@@ -231,8 +232,8 @@ MonoBehaviour:
         parentIds:
         - 78ed062d-4a2b-4985-b37d-fd5f24b4fc87
         childIds:
-        - 09b8cb82-f5bc-44fa-aa44-ac4cfe43d352
         - 833118c1-b4d2-4149-a40c-98ff8c8b7351
+        - 09b8cb82-f5bc-44fa-aa44-ac4cfe43d352
         - 8713da0e-a670-4a13-8fbd-0bea9c32306c
         - 8926d2ba-4c33-4c96-85a8-fa2853805d12
       - name: 
@@ -516,9 +517,9 @@ MonoBehaviour:
         parentIds:
         - 1f1112db-2127-448f-836e-bffece33bad0
         childIds: []
-      - name: "\xBFGato en rango?"
+      - name: Ir al Gato
         id: 09b8cb82-f5bc-44fa-aa44-ac4cfe43d352
-        position: {x: 1537.5, y: 400}
+        position: {x: 1872, y: 380.8}
         node:
           rid: 5536798867620626546
         references:
@@ -532,7 +533,7 @@ MonoBehaviour:
         childIds: []
       - name: "\xBFNecesidad de acariciar?"
         id: 833118c1-b4d2-4149-a40c-98ff8c8b7351
-        position: {x: 1837.5, y: 400}
+        position: {x: 1631.2, y: 372.8}
         node:
           rid: 5536798867620626547
         references:
@@ -1632,7 +1633,7 @@ MonoBehaviour:
           methodName: 
         update:
           componentName: CustomerController
-          methodName: CheckCat
+          methodName: GoToCat
         stop:
           componentName: 
           methodName: 

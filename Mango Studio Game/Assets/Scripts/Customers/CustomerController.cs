@@ -17,12 +17,12 @@ public class CustomerController : MonoBehaviour
     //gato
     [Header("Ajustes Gato")]
     public Transform gatoObject;
-    public float distancDetection = 50.0f;
+    public float distancDetection = 10.0f;
 
-    public float catNecesity = 90.0f;
+    public float catNecesity = 60.0f;
 
-    private float _timerPetting = 0f;   // Variable interna para contar
-    public float pettingTime = 3f;  // El tiempo que quieres que pare (3 segundos)
+    private float _timerPetting = 0f;
+    public float pettingTime = 3f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     //void Start()
@@ -36,11 +36,11 @@ public class CustomerController : MonoBehaviour
 
         manager = FindFirstObjectByType<CustomerManager>();
 
-        GameObject gatoReal = GameObject.FindGameObjectWithTag("Gato");
+        GameObject gato = GameObject.FindGameObjectWithTag("Gato");
 
-        if (gatoReal != null)
+        if (gato != null)
         {
-            gatoObject = gatoReal.transform; // ¡Ahora sí apuntamos al gato vivo!
+            gatoObject = gato.transform;
         }
         else
         {
@@ -232,32 +232,55 @@ public class CustomerController : MonoBehaviour
         }
     }
 
-    public Status CheckCat()
-    {
-        float distancia = Vector3.Distance(this.transform.position, gatoObject.position);
-
-        if (distancia < distancDetection)
-        {
-            return Status.Success;
-        }
-
-        return Status.Failure; 
-    }
-
     public Status CheckNeedToPet()
     {
+        Debug.Log($"Comprobando Necesidad... Paciencia: {patience}");
+
         if (patience < catNecesity && patience > 0)
         {
             Debug.Log("paciencia baja, necesita acariciar al gato");
-            return Status.Success; 
+            return Status.Success;
         }
 
         return Status.Failure;
     }
 
+    public Status GoToCat()
+    {
+        Debug.Log("[2] Ejecutando GoToCat...");
+
+        if (gatoObject == null)
+        {
+            GameObject g = GameObject.FindGameObjectWithTag("Gato");
+            if (g != null) gatoObject = g.transform;
+            else { Debug.LogError("¡ERROR CRÍTICO! Gato es NULL y no encuentro tag."); return Status.Failure; }
+        }
+
+        float distancia = Vector3.Distance(transform.position, gatoObject.position);
+
+        Debug.Log($"[3] Distancia al gato: {distancia}. Posición Gato: {gatoObject.position}");
+
+        if (distancia < 0.50f)
+        {
+            Debug.Log("[4] Llegué");
+            return Status.Success;
+        }
+
+        Vector3 direccion = (gatoObject.position - transform.position).normalized;
+        direccion.y = 0;
+
+
+        transform.Translate(direccion * speed * Time.deltaTime, Space.World);
+
+        Vector3 lookPos = new Vector3(gatoObject.position.x, transform.position.y, gatoObject.position.z);
+        transform.LookAt(lookPos);
+
+        return Status.Running;
+    }
+
     public void StartPetting()
     {
-        _timerPetting = 0f; 
+        _timerPetting = 0f;
         Debug.Log("acariciando al gato...");
 
         // futuro: cuando tengamos animaciones
@@ -270,7 +293,7 @@ public class CustomerController : MonoBehaviour
 
         if (_timerPetting < pettingTime)
         {
-            return Status.Running; 
+            return Status.Running;
         }
 
         patience += 15f;
