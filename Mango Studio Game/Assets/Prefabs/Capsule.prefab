@@ -188,19 +188,19 @@ MonoBehaviour:
       nodes:
       - name: 
         id: 78ed062d-4a2b-4985-b37d-fd5f24b4fc87
-        position: {x: 2695.3125, y: 0}
+        position: {x: 2906.25, y: 0}
         node:
           rid: 5536798867620626508
         references: []
         parentIds: []
         childIds:
+        - 97c714bc-40fb-4584-8d42-e616e3a5abe3
         - 758eac51-02d4-484f-a214-3e99a7d13dd7
         - d0d6ce81-e78e-4289-bf28-5999328ea8ff
-        - 97c714bc-40fb-4584-8d42-e616e3a5abe3
         - 68be10a2-b148-44a7-984d-c2716f89cea0
       - name: 
         id: 758eac51-02d4-484f-a214-3e99a7d13dd7
-        position: {x: -450, y: 200}
+        position: {x: 600, y: 200}
         node:
           rid: 5536798867620626509
         references: []
@@ -212,7 +212,7 @@ MonoBehaviour:
         - 5b806062-e061-4536-9486-68bf143c9708
       - name: 
         id: d0d6ce81-e78e-4289-bf28-5999328ea8ff
-        position: {x: 693.75, y: 200}
+        position: {x: 1743.75, y: 200}
         node:
           rid: 5536798867620626510
         references: []
@@ -225,7 +225,7 @@ MonoBehaviour:
         - 0a0d622b-1612-4868-9d79-dbe1b51d2c8d
       - name: 
         id: 97c714bc-40fb-4584-8d42-e616e3a5abe3
-        position: {x: 1987.5, y: 200}
+        position: {x: -450, y: 200}
         node:
           rid: 5536798867620626511
         references: []
@@ -238,7 +238,7 @@ MonoBehaviour:
         - 8926d2ba-4c33-4c96-85a8-fa2853805d12
       - name: 
         id: 68be10a2-b148-44a7-984d-c2716f89cea0
-        position: {x: 5840.625, y: 200}
+        position: {x: 6262.5, y: 200}
         node:
           rid: 5536798867620626512
         references: []
@@ -251,7 +251,7 @@ MonoBehaviour:
         - 468b7c79-ac5a-46fb-abab-b368db06c8bf
       - name: "\xBFAcaba de entrar?"
         id: cc642aa5-ff92-41f8-954e-53a43052b18c
-        position: {x: -750, y: 400}
+        position: {x: 300, y: 400}
         node:
           rid: 5536798867620626513
         references:
@@ -265,7 +265,7 @@ MonoBehaviour:
         childIds: []
       - name: "\xBFCola llena en el mostrador?"
         id: 32a4dedc-1f2d-4cc5-927f-037469ec43f9
-        position: {x: -450, y: 400}
+        position: {x: 600, y: 400}
         node:
           rid: 5536798867620626514
         references:
@@ -279,7 +279,7 @@ MonoBehaviour:
         childIds: []
       - name: 
         id: 5b806062-e061-4536-9486-68bf143c9708
-        position: {x: -150, y: 400}
+        position: {x: 900, y: 400}
         node:
           rid: 5536798867620626515
         references: []
@@ -289,7 +289,7 @@ MonoBehaviour:
         - a45cce35-e6ef-4f95-bf98-174bb7ca51b6
       - name: Irse
         id: f2c9adbc-f385-4b26-bc68-77e2a379825d
-        position: {x: -150, y: 800}
+        position: {x: 900, y: 800}
         node:
           rid: 5536798867620626517
         references:
@@ -303,7 +303,7 @@ MonoBehaviour:
         childIds: []
       - name: "Necesidad de ba\xF1o"
         id: 429cf45e-4608-4b23-801e-ad9edf65b83c
-        position: {x: 150, y: 400}
+        position: {x: 1200, y: 400}
         node:
           rid: 5536798867620626518
         references:
@@ -317,7 +317,7 @@ MonoBehaviour:
         childIds: []
       - name: Resetear paciencia
         id: 310f2091-f52d-4d60-b2b6-303b97e560b4
-        position: {x: 450, y: 400}
+        position: {x: 1500, y: 400}
         node:
           rid: 5536798867620626520
         references:
@@ -331,7 +331,7 @@ MonoBehaviour:
         childIds: []
       - name: "Avanzar a cola ba\xF1o"
         id: 31d959ef-395e-4a12-89e8-60abddfef4b3
-        position: {x: 750, y: 400}
+        position: {x: 1800, y: 400}
         node:
           rid: 5536798867620626521
         references:
@@ -345,7 +345,7 @@ MonoBehaviour:
         childIds: []
       - name: 
         id: 0a0d622b-1612-4868-9d79-dbe1b51d2c8d
-        position: {x: 1237.5, y: 400}
+        position: {x: 2287.5, y: 400}
         node:
           rid: 5536798867620626522
         references: []
@@ -356,7 +356,7 @@ MonoBehaviour:
         - dd729945-9c95-420a-923e-adad40eb11cc
       - name: 
         id: 68c01daa-fdf7-4c95-9ce7-207b51af5a62
-        position: {x: 900, y: 600}
+        position: {x: 1950, y: 600}
         node:
           rid: 5536798867620626524
         references: []
@@ -367,7 +367,7 @@ MonoBehaviour:
         - b2959edd-ca55-430e-916e-fd700bf188ad
       - name: "\xBFCola Ba\xF1o llena?"
         id: 1a8e0f7a-d87b-436e-a498-6d7335acfb99
-        position: {x: 750, y: 800}
+        position: {x: 1800, y: 800}
         node:
           rid: 5536798867620626526
         references:
@@ -381,7 +381,7 @@ MonoBehaviour:
         childIds: []
       - name: 
         id: b2959edd-ca55-430e-916e-fd700bf188ad
-        position: {x: 1050, y: 800}
+        position: {x: 2100, y: 800}
         node:
           rid: 5536798867620626527
         references: []
@@ -391,7 +391,7 @@ MonoBehaviour:
         - 56b30232-9d00-4ea4-8dda-2f10db61907d
       - name: 
         id: dd729945-9c95-420a-923e-adad40eb11cc
-        position: {x: 1575, y: 600}
+        position: {x: 2625, y: 600}
         node:
           rid: 5536798867620626530
         references: []
@@ -402,7 +402,7 @@ MonoBehaviour:
         - 5676530b-2707-499b-a2e2-5804a98b4d9b
       - name: Irse
         id: a8d10316-cef9-44c5-b094-34aaf0255ad7
-        position: {x: 1050, y: 1200}
+        position: {x: 2100, y: 1200}
         node:
           rid: 5536798867620626532
         references:
@@ -416,7 +416,7 @@ MonoBehaviour:
         childIds: []
       - name: "\xBFEsta en cola?"
         id: 887aebb8-d60d-4dee-a99b-fd94b80b787e
-        position: {x: 1350, y: 800}
+        position: {x: 2400, y: 800}
         node:
           rid: 5536798867620626533
         references:
@@ -430,7 +430,7 @@ MonoBehaviour:
         childIds: []
       - name: 
         id: 5676530b-2707-499b-a2e2-5804a98b4d9b
-        position: {x: 1800, y: 800}
+        position: {x: 2850, y: 800}
         node:
           rid: 5536798867620626535
         references: []
@@ -441,7 +441,7 @@ MonoBehaviour:
         - 452df8e5-d9c3-49de-afe7-8071dff82406
       - name: 
         id: 9aa65099-3bd1-4d52-b558-0e4e1ae6df7c
-        position: {x: 1500, y: 1000}
+        position: {x: 2550, y: 1000}
         node:
           rid: 5536798867620626537
         references: []
@@ -452,7 +452,7 @@ MonoBehaviour:
         - 1f1112db-2127-448f-836e-bffece33bad0
       - name: 
         id: 452df8e5-d9c3-49de-afe7-8071dff82406
-        position: {x: 2100, y: 1000}
+        position: {x: 3150, y: 1000}
         node:
           rid: 5536798867620626539
         references: []
@@ -463,7 +463,7 @@ MonoBehaviour:
         - cea7a535-a52b-4264-9dad-92c6828f12e2
       - name: "\xBFEs mi turno?"
         id: 3b74af82-83c2-45aa-b8b1-020fdbd25f86
-        position: {x: 1950, y: 1200}
+        position: {x: 3000, y: 1200}
         node:
           rid: 5536798867620626541
         references:
@@ -477,7 +477,7 @@ MonoBehaviour:
         childIds: []
       - name: "Usar Ba\xF1o"
         id: 8d02fc70-936d-4ff2-a25a-cab46754abf8
-        position: {x: 2250, y: 1400}
+        position: {x: 3300, y: 1400}
         node:
           rid: 5536798867620626542
         references:
@@ -491,7 +491,7 @@ MonoBehaviour:
         childIds: []
       - name: "\xBFPaciencia == 0?"
         id: 1a4d6e26-6184-499c-96aa-357f72012097
-        position: {x: 1350, y: 1200}
+        position: {x: 2400, y: 1200}
         node:
           rid: 5536798867620626543
         references:
@@ -505,7 +505,7 @@ MonoBehaviour:
         childIds: []
       - name: Irse
         id: ce20fc51-d90f-443f-ba6e-372813430048
-        position: {x: 1650, y: 1400}
+        position: {x: 2700, y: 1400}
         node:
           rid: 5536798867620626545
         references:
@@ -519,7 +519,7 @@ MonoBehaviour:
         childIds: []
       - name: Ir al Gato
         id: 09b8cb82-f5bc-44fa-aa44-ac4cfe43d352
-        position: {x: 1872, y: 380.8}
+        position: {x: -600, y: 400}
         node:
           rid: 5536798867620626546
         references:
@@ -533,7 +533,7 @@ MonoBehaviour:
         childIds: []
       - name: "\xBFNecesidad de acariciar?"
         id: 833118c1-b4d2-4149-a40c-98ff8c8b7351
-        position: {x: 1631.2, y: 372.8}
+        position: {x: -900, y: 400}
         node:
           rid: 5536798867620626547
         references:
@@ -547,7 +547,7 @@ MonoBehaviour:
         childIds: []
       - name: Acariciar gato
         id: 8713da0e-a670-4a13-8fbd-0bea9c32306c
-        position: {x: 2137.5, y: 400}
+        position: {x: -300, y: 400}
         node:
           rid: 5536798867620626548
         references:
@@ -561,7 +561,7 @@ MonoBehaviour:
         childIds: []
       - name: Reanudar tarea
         id: 8926d2ba-4c33-4c96-85a8-fa2853805d12
-        position: {x: 2437.5, y: 400}
+        position: {x: 0, y: 400}
         node:
           rid: 5536798867620626549
         references:
@@ -575,7 +575,7 @@ MonoBehaviour:
         childIds: []
       - name: Avanzar a cola mostrador
         id: 468b7c79-ac5a-46fb-abab-b368db06c8bf
-        position: {x: 8475, y: 400}
+        position: {x: 8625, y: 400}
         node:
           rid: 5536798867620626550
         references:
@@ -589,18 +589,18 @@ MonoBehaviour:
         childIds: []
       - name: 
         id: bdbf1ed8-5524-40ca-9d7b-a7a75072325b
-        position: {x: 8175, y: 400}
+        position: {x: 8325, y: 400}
         node:
           rid: 5536798867620626552
         references: []
         parentIds:
         - 68be10a2-b148-44a7-984d-c2716f89cea0
         childIds:
-        - ca803319-eb65-40c1-8664-e1e8250bda77
         - 678e41cb-43e8-49d3-9c3e-fc8b0bddda56
+        - ca803319-eb65-40c1-8664-e1e8250bda77
       - name: 
         id: e838af65-a303-4bec-b550-5d3f7b7f4105
-        position: {x: 3206.25, y: 400}
+        position: {x: 3900, y: 400}
         node:
           rid: 5536798867620626553
         references: []
@@ -611,7 +611,7 @@ MonoBehaviour:
         - 8093f992-5fe6-445e-8a5c-81c0b12d13f3
       - name: "\xBFEsta en cola?"
         id: 678e41cb-43e8-49d3-9c3e-fc8b0bddda56
-        position: {x: 8325, y: 600}
+        position: {x: 7575, y: 600}
         node:
           rid: 5536798867620626554
         references:
@@ -625,7 +625,7 @@ MonoBehaviour:
         childIds: []
       - name: 
         id: ca803319-eb65-40c1-8664-e1e8250bda77
-        position: {x: 8025, y: 600}
+        position: {x: 9075, y: 600}
         node:
           rid: 5536798867620626555
         references: []
@@ -637,7 +637,7 @@ MonoBehaviour:
         - affa7872-1eb0-4953-b9b9-4293eb5c77a2
       - name: 
         id: 1bd08602-24af-4563-8ccd-abe6d6250ea3
-        position: {x: 7500, y: 800}
+        position: {x: 8550, y: 800}
         node:
           rid: 5536798867620626556
         references: []
@@ -649,7 +649,7 @@ MonoBehaviour:
         - d521f979-4a25-4025-9bcf-faec47cdbebb
       - name: 
         id: f6ebbce2-4f2b-42ad-94c0-8910bb57dae0
-        position: {x: 8250, y: 800}
+        position: {x: 9300, y: 800}
         node:
           rid: 5536798867620626557
         references: []
@@ -660,7 +660,7 @@ MonoBehaviour:
         - c8b63e15-3339-450a-a7c0-17e64759d868
       - name: Esperar
         id: affa7872-1eb0-4953-b9b9-4293eb5c77a2
-        position: {x: 8550, y: 800}
+        position: {x: 9600, y: 800}
         node:
           rid: 5536798867620626558
         references:
@@ -674,7 +674,7 @@ MonoBehaviour:
         childIds: []
       - name: "\xBFEs mi turno?"
         id: 004c0e35-2f6a-4d16-a7be-e88a26754785
-        position: {x: 8100, y: 1000}
+        position: {x: 9150, y: 1000}
         node:
           rid: 5536798867620626559
         references:
@@ -688,7 +688,7 @@ MonoBehaviour:
         childIds: []
       - name: pedir y pagar
         id: c8b63e15-3339-450a-a7c0-17e64759d868
-        position: {x: 8400, y: 1000}
+        position: {x: 9450, y: 1000}
         node:
           rid: 5536798867620626560
         references:
@@ -702,7 +702,7 @@ MonoBehaviour:
         childIds: []
       - name: "\xBFPaciencia == 0?"
         id: 652f78af-f7ad-428a-b46e-2c7ea21f3cf2
-        position: {x: 7200, y: 1000}
+        position: {x: 8250, y: 1000}
         node:
           rid: 5536798867620626561
         references:
@@ -716,7 +716,7 @@ MonoBehaviour:
         childIds: []
       - name: Avanzar a salida
         id: c924f842-a2e7-4c80-9d47-f8f34cf8a042
-        position: {x: 7500, y: 1000}
+        position: {x: 8550, y: 1000}
         node:
           rid: 5536798867620626562
         references:
@@ -730,7 +730,7 @@ MonoBehaviour:
         childIds: []
       - name: Irse
         id: d521f979-4a25-4025-9bcf-faec47cdbebb
-        position: {x: 7800, y: 1000}
+        position: {x: 8850, y: 1000}
         node:
           rid: 5536798867620626563
         references:
@@ -744,7 +744,7 @@ MonoBehaviour:
         childIds: []
       - name: "\xBFPedido recibido?"
         id: c76a56e2-7c46-43ff-bbdc-1accc4a2bfbc
-        position: {x: 2587.5, y: 600}
+        position: {x: 2925, y: 600}
         node:
           rid: 5536798867620626564
         references:
@@ -758,7 +758,7 @@ MonoBehaviour:
         childIds: []
       - name: 
         id: 8093f992-5fe6-445e-8a5c-81c0b12d13f3
-        position: {x: 3825, y: 600}
+        position: {x: 4875, y: 600}
         node:
           rid: 5536798867620626565
         references: []
@@ -769,7 +769,7 @@ MonoBehaviour:
         - 4eed227a-b817-4707-90cc-478bd63517ea
       - name: 
         id: c602b861-ae81-456e-b205-7f7bb0993ccb
-        position: {x: 5175, y: 400}
+        position: {x: 6225, y: 400}
         node:
           rid: 5536798867620626567
         references: []
@@ -781,7 +781,7 @@ MonoBehaviour:
         - 2a0055e5-7fec-4bd2-912c-3cdb2adb6d77
       - name: "\xBFHa perdido?"
         id: 49a6f976-fdc6-4131-965e-7fff38542749
-        position: {x: 4125, y: 600}
+        position: {x: 5175, y: 600}
         node:
           rid: 5536798867620626568
         references:
@@ -795,7 +795,7 @@ MonoBehaviour:
         childIds: []
       - name: Esperar en el mostrador
         id: 026ee642-6720-4427-88fd-a04b6659b0bc
-        position: {x: 4425, y: 600}
+        position: {x: 5475, y: 600}
         node:
           rid: 5536798867620626569
         references:
@@ -809,7 +809,7 @@ MonoBehaviour:
         childIds: []
       - name: 
         id: 2a0055e5-7fec-4bd2-912c-3cdb2adb6d77
-        position: {x: 6225, y: 600}
+        position: {x: 7275, y: 600}
         node:
           rid: 5536798867620626571
         references: []
@@ -821,7 +821,7 @@ MonoBehaviour:
         - e811e725-e4e9-436c-8193-5d5c60c2f082
       - name: 
         id: 4eed227a-b817-4707-90cc-478bd63517ea
-        position: {x: 4500, y: 800}
+        position: {x: 5550, y: 800}
         node:
           rid: 5536798867620626573
         references: []
@@ -833,7 +833,7 @@ MonoBehaviour:
         - 0bc41260-d967-4500-aa93-47c34bbd3e11
       - name: 
         id: 8c7b88d2-b94a-48ce-b4f4-ae79f6cbd8f3
-        position: {x: 3150, y: 800}
+        position: {x: 4200, y: 800}
         node:
           rid: 5536798867620626574
         references: []
@@ -848,7 +848,7 @@ MonoBehaviour:
         - 87d78439-58a9-4462-8624-ab60912bebd7
       - name: "\xBFTipoPedido == llevar?"
         id: 81eced97-bf5d-49f6-9a0b-b3023c0653c4
-        position: {x: 4200, y: 1000}
+        position: {x: 5250, y: 1000}
         node:
           rid: 5536798867620626575
         references:
@@ -862,7 +862,7 @@ MonoBehaviour:
         childIds: []
       - name: Avanzar a salir
         id: 0d3a2906-e948-4b3b-9a15-e15e3bc5470a
-        position: {x: 4500, y: 1000}
+        position: {x: 5550, y: 1000}
         node:
           rid: 5536798867620626576
         references:
@@ -876,7 +876,7 @@ MonoBehaviour:
         childIds: []
       - name: Irse
         id: 0bc41260-d967-4500-aa93-47c34bbd3e11
-        position: {x: 4800, y: 1000}
+        position: {x: 5850, y: 1000}
         node:
           rid: 5536798867620626577
         references:
@@ -890,7 +890,7 @@ MonoBehaviour:
         childIds: []
       - name: "\xBFTipoPedido == tomar?"
         id: da67dd95-3c90-4dcd-844f-100b23b0c9ba
-        position: {x: 2400, y: 1000}
+        position: {x: 3450, y: 1000}
         node:
           rid: 5536798867620626578
         references:
@@ -904,7 +904,7 @@ MonoBehaviour:
         childIds: []
       - name: Buscar Asientos
         id: f139b181-dfd7-4c89-b7ac-6ed2ef71068f
-        position: {x: 2700, y: 1000}
+        position: {x: 3750, y: 1000}
         node:
           rid: 5536798867620626579
         references:
@@ -918,7 +918,7 @@ MonoBehaviour:
         childIds: []
       - name: Consumir pedido
         id: f384fe3f-743c-4153-9d70-59a9a05fb337
-        position: {x: 3000, y: 1000}
+        position: {x: 4050, y: 1000}
         node:
           rid: 5536798867620626580
         references:
@@ -932,7 +932,7 @@ MonoBehaviour:
         childIds: []
       - name: Liberar asiento
         id: c578e17a-298b-46ae-9e2b-08a5fda55f82
-        position: {x: 3300, y: 1000}
+        position: {x: 4350, y: 1000}
         node:
           rid: 5536798867620626581
         references:
@@ -946,7 +946,7 @@ MonoBehaviour:
         childIds: []
       - name: Avanzar a salida
         id: 7601e1c4-d336-484e-a4d3-d77c7144cde0
-        position: {x: 3600, y: 1000}
+        position: {x: 4650, y: 1000}
         node:
           rid: 5536798867620626582
         references:
@@ -960,7 +960,7 @@ MonoBehaviour:
         childIds: []
       - name: Irse
         id: 87d78439-58a9-4462-8624-ab60912bebd7
-        position: {x: 3900, y: 1000}
+        position: {x: 4950, y: 1000}
         node:
           rid: 5536798867620626583
         references:
@@ -974,7 +974,7 @@ MonoBehaviour:
         childIds: []
       - name: Esperar
         id: e811e725-e4e9-436c-8193-5d5c60c2f082
-        position: {x: 6900, y: 800}
+        position: {x: 7950, y: 800}
         node:
           rid: 5536798867620626584
         references:
@@ -988,7 +988,7 @@ MonoBehaviour:
         childIds: []
       - name: 
         id: 12243249-9c65-4920-a1ae-8d890305e641
-        position: {x: 5550, y: 800}
+        position: {x: 6600, y: 800}
         node:
           rid: 5536798867620626585
         references: []
@@ -1001,7 +1001,7 @@ MonoBehaviour:
         - 436597b5-1d01-4fef-aa26-bf5ffffb681a
       - name: 
         id: f42d5342-8429-48f8-9b04-784eda940257
-        position: {x: 6600, y: 800}
+        position: {x: 7650, y: 800}
         node:
           rid: 5536798867620626586
         references: []
@@ -1013,7 +1013,7 @@ MonoBehaviour:
         - 86ed8c3c-c0ca-4b41-af4c-4e260c76aaa9
       - name: "\xBFPaciencia == 0?"
         id: fbe57fb0-696c-4b56-848f-04d39ca01b92
-        position: {x: 5100, y: 1000}
+        position: {x: 6150, y: 1000}
         node:
           rid: 5536798867620626587
         references:
@@ -1027,7 +1027,7 @@ MonoBehaviour:
         childIds: []
       - name: Recoger Pedido
         id: 15016a55-030b-446f-82fa-f3482e6ae59d
-        position: {x: 5400, y: 1000}
+        position: {x: 6450, y: 1000}
         node:
           rid: 5536798867620626588
         references:
@@ -1041,7 +1041,7 @@ MonoBehaviour:
         childIds: []
       - name: Avanzar salida
         id: 13c22fcf-58d1-4100-807b-bbe878792852
-        position: {x: 5700, y: 1000}
+        position: {x: 6750, y: 1000}
         node:
           rid: 5536798867620626590
         references:
@@ -1055,7 +1055,7 @@ MonoBehaviour:
         childIds: []
       - name: Irse
         id: 436597b5-1d01-4fef-aa26-bf5ffffb681a
-        position: {x: 6000, y: 1000}
+        position: {x: 7050, y: 1000}
         node:
           rid: 5536798867620626591
         references:
@@ -1069,7 +1069,7 @@ MonoBehaviour:
         childIds: []
       - name: "\xBFPedido entregado?"
         id: cd2c4f94-ea0c-45a4-a48d-22467ab7bb3c
-        position: {x: 6300, y: 1000}
+        position: {x: 7350, y: 1000}
         node:
           rid: 5536798867620626592
         references:
@@ -1083,7 +1083,7 @@ MonoBehaviour:
         childIds: []
       - name: Recoger pedido
         id: 3806df26-0c19-430b-a271-299d9ef55c4d
-        position: {x: 6600, y: 1000}
+        position: {x: 7650, y: 1000}
         node:
           rid: 5536798867620626593
         references:
@@ -1097,7 +1097,7 @@ MonoBehaviour:
         childIds: []
       - name: Resetar paciencia
         id: 86ed8c3c-c0ca-4b41-af4c-4e260c76aaa9
-        position: {x: 6900, y: 1000}
+        position: {x: 7950, y: 1000}
         node:
           rid: 5536798867620626594
         references:
@@ -1111,7 +1111,7 @@ MonoBehaviour:
         childIds: []
       - name: 
         id: a45cce35-e6ef-4f95-bf98-174bb7ca51b6
-        position: {x: -150, y: 600}
+        position: {x: 900, y: 600}
         node:
           rid: 4779458740953546825
         references: []
@@ -1121,7 +1121,7 @@ MonoBehaviour:
         - f2c9adbc-f385-4b26-bc68-77e2a379825d
       - name: 
         id: 56b30232-9d00-4ea4-8dda-2f10db61907d
-        position: {x: 1050, y: 1000}
+        position: {x: 2100, y: 1000}
         node:
           rid: 4779458740953546829
         references: []
@@ -1131,7 +1131,7 @@ MonoBehaviour:
         - a8d10316-cef9-44c5-b094-34aaf0255ad7
       - name: 
         id: cea7a535-a52b-4264-9dad-92c6828f12e2
-        position: {x: 2250, y: 1200}
+        position: {x: 3300, y: 1200}
         node:
           rid: 4779458740953546832
         references: []
@@ -1141,7 +1141,7 @@ MonoBehaviour:
         - 8d02fc70-936d-4ff2-a25a-cab46754abf8
       - name: 
         id: 1f1112db-2127-448f-836e-bffece33bad0
-        position: {x: 1650, y: 1200}
+        position: {x: 2700, y: 1200}
         node:
           rid: 4779458740953546835
         references: []
