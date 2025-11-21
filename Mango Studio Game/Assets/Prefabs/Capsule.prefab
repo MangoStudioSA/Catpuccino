@@ -139,6 +139,9 @@ MonoBehaviour:
   maxPetting: 2
   exitPoint: {fileID: 0}
   hasOrdered: 0
+  orderIsEatIn: 0
+  receivedOrder: 0
+  eatingDuration: 5
 --- !u!54 &4231839258988541092
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -192,7 +195,7 @@ MonoBehaviour:
       nodes:
       - name: 
         id: 78ed062d-4a2b-4985-b37d-fd5f24b4fc87
-        position: {x: 675, y: 0}
+        position: {x: 712.5, y: 0}
         node:
           rid: 5536798867620626508
         references: []
@@ -346,7 +349,7 @@ MonoBehaviour:
         - f2c9adbc-f385-4b26-bc68-77e2a379825d
       - name: 
         id: 0ba67b28-b873-41bf-82e2-a2583a1cfb01
-        position: {x: 2097.6, y: 187.19998}
+        position: {x: 1725, y: 200}
         node:
           rid: 5536799097454592094
         references: []
@@ -356,7 +359,7 @@ MonoBehaviour:
         - 88eaac5c-3d73-4104-a253-fd2ee18471bd
       - name: 
         id: 88eaac5c-3d73-4104-a253-fd2ee18471bd
-        position: {x: 1947.2, y: 387.19998}
+        position: {x: 1725, y: 400}
         node:
           rid: 5536799097454592097
         references: []
@@ -367,13 +370,13 @@ MonoBehaviour:
         - 707ecdcf-ac5c-4f03-8180-e2c9e42a4907
       - name: "\xBFPedido recibido?"
         id: 3893728a-fa62-4406-9996-10e67f71abf1
-        position: {x: 1797.6, y: 587.2}
+        position: {x: 1350, y: 600}
         node:
           rid: 5536799097454592098
         references:
         - fieldName: Action
           value:
-            rid: -2
+            rid: 5536799097454592114
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
@@ -381,7 +384,7 @@ MonoBehaviour:
         childIds: []
       - name: 
         id: 707ecdcf-ac5c-4f03-8180-e2c9e42a4907
-        position: {x: 2097.6, y: 587.2}
+        position: {x: 2100, y: 600}
         node:
           rid: 5536799097454592099
         references: []
@@ -392,7 +395,7 @@ MonoBehaviour:
         - fb5ebc77-b79f-49f5-a18e-1ddd5cfbb0b5
       - name: 
         id: f597916d-5788-4dc6-95ee-18547407e6c0
-        position: {x: 1947.2, y: 787.2}
+        position: {x: 1500, y: 800}
         node:
           rid: 5536799097454592100
         references: []
@@ -407,22 +410,24 @@ MonoBehaviour:
         - 8b74d67c-3f38-480b-8c3c-97e27c8fdc8c
       - name: 
         id: fb5ebc77-b79f-49f5-a18e-1ddd5cfbb0b5
-        position: {x: 2247.2, y: 787.2}
+        position: {x: 2700, y: 800}
         node:
           rid: 5536799097454592101
         references: []
         parentIds:
         - 707ecdcf-ac5c-4f03-8180-e2c9e42a4907
-        childIds: []
+        childIds:
+        - 14a31f9a-a08c-4b7f-8be8-6a71d0628df4
+        - f824acbc-cbbc-4e7f-ac4f-266f9071d0ff
       - name: irse
         id: 8b74d67c-3f38-480b-8c3c-97e27c8fdc8c
-        position: {x: 2697.6, y: 987.2001}
+        position: {x: 2250, y: 1000}
         node:
           rid: 5536799097454592102
         references:
         - fieldName: Action
           value:
-            rid: -2
+            rid: 5536799097454592120
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
@@ -430,13 +435,13 @@ MonoBehaviour:
         childIds: []
       - name: avanzar a salida
         id: 7ea5f267-30da-4318-b431-ec5f412a8a69
-        position: {x: 2397.6, y: 987.2001}
+        position: {x: 1950, y: 1000}
         node:
           rid: 5536799097454592103
         references:
         - fieldName: Action
           value:
-            rid: -2
+            rid: 5536799097454592119
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
@@ -444,13 +449,13 @@ MonoBehaviour:
         childIds: []
       - name: Liberar asiento
         id: 24e57dba-343f-4c79-bfa2-faaacb1f90f1
-        position: {x: 2097.6, y: 987.2001}
+        position: {x: 1650, y: 1000}
         node:
           rid: 5536799097454592104
         references:
         - fieldName: Action
           value:
-            rid: -2
+            rid: 5536799097454592118
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
@@ -458,13 +463,13 @@ MonoBehaviour:
         childIds: []
       - name: Consumir pedido
         id: bc8de892-fb66-48d5-ad2c-6cf433fcda94
-        position: {x: 1797.6, y: 987.2001}
+        position: {x: 1350, y: 1000}
         node:
           rid: 5536799097454592105
         references:
         - fieldName: Action
           value:
-            rid: -2
+            rid: 5536799097454592117
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
@@ -472,13 +477,13 @@ MonoBehaviour:
         childIds: []
       - name: Buscar Asientos
         id: 83570dbf-3e2a-4f72-b7ac-b82f21d90430
-        position: {x: 1545.6, y: 995.2001}
+        position: {x: 1050, y: 1000}
         node:
           rid: 5536799097454592106
         references:
         - fieldName: Action
           value:
-            rid: -2
+            rid: 5536799097454592116
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
@@ -486,24 +491,50 @@ MonoBehaviour:
         childIds: []
       - name: "\xBFTipo pedido == tomar?"
         id: 3f075f9e-f46a-4faa-97f0-0e27579da03c
-        position: {x: 1245.6, y: 995.2001}
+        position: {x: 750, y: 1000}
         node:
           rid: 5536799097454592107
         references:
         - fieldName: Action
           value:
-            rid: -2
+            rid: 5536799097454592115
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
         - f597916d-5788-4dc6-95ee-18547407e6c0
         childIds: []
+      - name: avanzar a salida
+        id: 14a31f9a-a08c-4b7f-8be8-6a71d0628df4
+        position: {x: 2550, y: 1000}
+        node:
+          rid: 5536799097454592123
+        references:
+        - fieldName: Action
+          value:
+            rid: 5536799097454592125
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - fb5ebc77-b79f-49f5-a18e-1ddd5cfbb0b5
+        childIds: []
+      - name: irse
+        id: f824acbc-cbbc-4e7f-ac4f-266f9071d0ff
+        position: {x: 2850, y: 1000}
+        node:
+          rid: 5536799097454592124
+        references:
+        - fieldName: Action
+          value:
+            rid: 5536799097454592126
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - fb5ebc77-b79f-49f5-a18e-1ddd5cfbb0b5
+        childIds: []
     pushPerceptions: []
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
     - rid: 4779458740953546811
       type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
       data:
@@ -715,3 +746,171 @@ MonoBehaviour:
     - rid: 5536799097454592107
       type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data: 
+    - rid: 5536799097454592114
+      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        start:
+          componentName: 
+          methodName: 
+        update:
+          componentName: CustomerController
+          methodName: CheckOrderReceived
+        stop:
+          componentName: 
+          methodName: 
+        pause:
+          componentName: 
+          methodName: 
+        unpause:
+          componentName: 
+          methodName: 
+    - rid: 5536799097454592115
+      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        start:
+          componentName: 
+          methodName: 
+        update:
+          componentName: CustomerController
+          methodName: CheckOrderIsEatIn
+        stop:
+          componentName: 
+          methodName: 
+        pause:
+          componentName: 
+          methodName: 
+        unpause:
+          componentName: 
+          methodName: 
+    - rid: 5536799097454592116
+      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        start:
+          componentName: 
+          methodName: 
+        update:
+          componentName: CustomerController
+          methodName: FindAndGoToSeat
+        stop:
+          componentName: 
+          methodName: 
+        pause:
+          componentName: 
+          methodName: 
+        unpause:
+          componentName: 
+          methodName: 
+    - rid: 5536799097454592117
+      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        start:
+          componentName: CustomerController
+          methodName: StartEating
+        update:
+          componentName: CustomerController
+          methodName: EatFood
+        stop:
+          componentName: 
+          methodName: 
+        pause:
+          componentName: 
+          methodName: 
+        unpause:
+          componentName: 
+          methodName: 
+    - rid: 5536799097454592118
+      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        start:
+          componentName: 
+          methodName: 
+        update:
+          componentName: CustomerController
+          methodName: ReleaseSeat
+        stop:
+          componentName: 
+          methodName: 
+        pause:
+          componentName: 
+          methodName: 
+        unpause:
+          componentName: 
+          methodName: 
+    - rid: 5536799097454592119
+      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        start:
+          componentName: 
+          methodName: 
+        update:
+          componentName: CustomerController
+          methodName: GoToExit
+        stop:
+          componentName: 
+          methodName: 
+        pause:
+          componentName: 
+          methodName: 
+        unpause:
+          componentName: 
+          methodName: 
+    - rid: 5536799097454592120
+      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        start:
+          componentName: 
+          methodName: 
+        update:
+          componentName: CustomerController
+          methodName: LeaveShop
+        stop:
+          componentName: 
+          methodName: 
+        pause:
+          componentName: 
+          methodName: 
+        unpause:
+          componentName: 
+          methodName: 
+    - rid: 5536799097454592123
+      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data: 
+    - rid: 5536799097454592124
+      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data: 
+    - rid: 5536799097454592125
+      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        start:
+          componentName: 
+          methodName: 
+        update:
+          componentName: CustomerController
+          methodName: GoToExit
+        stop:
+          componentName: 
+          methodName: 
+        pause:
+          componentName: 
+          methodName: 
+        unpause:
+          componentName: 
+          methodName: 
+    - rid: 5536799097454592126
+      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        start:
+          componentName: 
+          methodName: 
+        update:
+          componentName: CustomerController
+          methodName: LeaveShop
+        stop:
+          componentName: 
+          methodName: 
+        pause:
+          componentName: 
+          methodName: 
+        unpause:
+          componentName: 
+          methodName: 

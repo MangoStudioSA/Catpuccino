@@ -33,7 +33,16 @@ public class CustomerController : MonoBehaviour
 
     [Header("Referencias Tienda")]
     public Transform exitPoint; //meterlo en el spawn
-    public bool hasOrdered = false; 
+    public bool hasOrdered = false;
+
+    [Header("Sistema de Comidas y Pedidos")]
+    public bool orderIsEatIn = false; // Si es para tomar o llevar
+    public bool receivedOrder = false; // Se activa cuando le das la comida
+
+    // Variables para sentarse y comer
+    private Seat currentSeat = null;  // La silla asignada
+    private float _eatingTimer = 0f;  // Cronómetro para comer
+    public float eatingDuration = 5.0f; // Tiempo que tarda en comer
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     //void Start()
@@ -66,6 +75,9 @@ public class CustomerController : MonoBehaviour
         {
             patient = false;
         }
+
+        if (Random.Range(0, 2) == 0) orderIsEatIn = true; // 50%
+        else orderIsEatIn = false; // 50%
     }
 
     public Status GoToQueue()
@@ -352,6 +364,115 @@ public class CustomerController : MonoBehaviour
 
         return Status.Success;
     }
+    #endregion
+
+    #region consumir
+    // NODO: "¿Pedido recibido?"
+    public Status CheckOrderReceived()
+    {
+        // Si ya tengo mi pedido, paso a la siguiente fase
+        if (receivedOrder)
+        {
+            return Status.Success;
+        }
+
+        // Si no, me quedo esperando en el mostrador
+        return Status.Running;
+    }
+
+    // NODO: "¿Tipo pedido == tomar?"
+    public Status CheckOrderIsEatIn()
+    {
+        if (orderIsEatIn) return Status.Success;
+        return Status.Failure; // Si es para llevar, salta a la otra rama
+    }
+
+    // NODO: "Buscar Asientos"
+    public Status FindAndGoToSeat()
+    {
+        // 1. Si no tengo silla, busco una
+        if (currentSeat == null)
+        {
+            GameObject[] asientos = GameObject.FindGameObjectsWithTag("Asiento");
+            foreach (GameObject obj in asientos)
+            {
+                Seat seat = obj.GetComponent<Seat>();
+                if (seat != null && !seat.isOccupied)
+                {
+                    currentSeat = seat;
+                    currentSeat.isOccupied = true;
+                    break;
+                }
+            }
+            if (currentSeat == null) return Status.Failure;
+        }
+
+        // 2. LÓGICA CORREGIDA: Distancia Plana (Como el gato)
+        Vector3 miPos = new Vector3(transform.position.x, 0, transform.position.z);
+        Vector3 asientoPos = new Vector3(currentSeat.transform.position.x, 0, currentSeat.transform.position.z);
+
+        float distanciaPlana = Vector3.Distance(miPos, asientoPos);
+
+        // Aumentamos un poco el margen a 0.6f por si el collider es gordo
+        if (distanciaPlana > 1.0f)
+        {
+            // Moverse
+            Vector3 target = currentSeat.transform.position;
+            target.y = transform.position.y; // Mantener altura
+            transform.LookAt(target);
+            transform.Translate(Vector3.forward * speed * Time.deltaTime);
+            return Status.Running;
+        }
+
+        // 3. AL LLEGAR: ELIMINAR TEMBLEQUE
+        // Teletransportamos al cliente al centro exacto de la silla para que quede perfecto
+        // (Ajusta la Y si se queda flotando o hundido)
+        transform.position = new Vector3(currentSeat.transform.position.x, transform.position.y, currentSeat.transform.position.z);
+        transform.rotation = currentSeat.transform.rotation; // Opcional: Que se siente con la misma rotación que la silla
+
+        // Salimos de la cola lógica
+        atQueue = false;
+        atCounter = false;
+
+        Debug.Log("Sentado en la mesa.");
+        return Status.Success;
+    }
+
+    public void StartEating()
+    {
+        _eatingTimer = 0f;
+        isInteracting = true; // Bloqueamos bajada de paciencia
+        Debug.Log("Empiezo a comer...");
+    }
+
+    // NODO: "Consumir pedido"
+    public Status EatFood()
+    {
+        // Usamos la bandera para bloquear la bajada de paciencia
+        isInteracting = true;
+        _eatingTimer += Time.deltaTime;
+
+        if (_eatingTimer < eatingDuration)
+        {
+            return Status.Running; // Ñam ñam...
+        }
+
+        Debug.Log("He terminado de comer. Estaba rico.");
+        isInteracting = false; // Ya he terminado
+        return Status.Success;
+    }
+
+    // NODO: "Liberar asiento"
+    public Status ReleaseSeat()
+    {
+        if (currentSeat != null)
+        {
+            currentSeat.isOccupied = false; // Queda libre para el siguiente
+            currentSeat = null;
+        }
+        return Status.Success;
+    }
+
     #endregion
 
     #region rama cola y paciencia

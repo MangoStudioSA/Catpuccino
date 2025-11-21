@@ -16,6 +16,7 @@ TagManager:
   - Card
   - Gato
   - Salida
+  - Asiento
   layers:
   - Default
   - TransparentFX
