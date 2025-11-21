@@ -8,6 +8,7 @@ public class CustomerOrder : MonoBehaviour
     [SerializeField] private TextMeshProUGUI orderTxt;
     [SerializeField] private CoffeeUnlockerManager coffeeUnlocker;
     [SerializeField] private FoodUnlockerManager foodUnlocker;
+    [SerializeField] private TutorialManager tutorialManager;
     [SerializeField] private TimeManager timeManager;
     [SerializeField] private OrderNoteUI orderNoteUI;
 
@@ -28,10 +29,14 @@ public class CustomerOrder : MonoBehaviour
         }
 
         int currentDay = timeManager.currentDay;
+        float currentFoodRequestChance = foodRequestChance;
+
+        if (tutorialManager.isRunningT2)
+            currentFoodRequestChance = 1f;
 
         foodOrder = null;
         // Si se han desbloqueado las comidas, se genera una al azar del tipo desbloqueado
-        if (foodUnlocker != null && Random.value < foodRequestChance)
+        if (foodUnlocker != null && Random.value < currentFoodRequestChance)
         {
             FoodCategory randomCategory = foodUnlocker.GetRandomAvailableFood(currentDay);
             if (randomCategory != FoodCategory.no)

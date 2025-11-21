@@ -51463,6 +51463,7 @@ MonoBehaviour:
   orderTxt: {fileID: 1349629253}
   coffeeUnlocker: {fileID: 50023193}
   foodUnlocker: {fileID: 50023196}
+  tutorialManager: {fileID: 841635553}
   timeManager: {fileID: 863263442}
   orderNoteUI: {fileID: 50023199}
   foodRequestChance: 0.8
