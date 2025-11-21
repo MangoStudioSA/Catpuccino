@@ -26,6 +26,7 @@ public class CustomerController : MonoBehaviour
     public float pettingTime = 3f;
 
     bool spawned = false;
+    public bool receivedOrder = false; // Se activa en UIDialogue.cs
 
 
     [Header("Referencias Tienda")]
@@ -379,16 +380,6 @@ public class CustomerController : MonoBehaviour
         return Status.Running;
     }
 
-    public Status CheckPatienceDepleted()
-    {
-        if (patience <= 0)
-        {
-            Debug.Log("me voy");
-            return Status.Success; 
-        }
-        return Status.Failure; 
-    }
-
     public Status GoToExit()
     {
         if (exitPoint == null)
@@ -444,6 +435,16 @@ public class CustomerController : MonoBehaviour
         return Status.Failure;
     }
 
+    public Status GotMyOrder()
+    {
+        if (receivedOrder)
+        {
+            return Status.Success;
+        }
+
+        return Status.Failure;
+    }
+
     // NODO: "Pedir y pagar"
     public Status OrderAndPay()
     {
@@ -454,6 +455,15 @@ public class CustomerController : MonoBehaviour
         return Status.Success;
     }
 
+    public Status OrderDone()
+    {
+        if (hasOrdered)
+        {
+            return Status.Success;
+        }
+
+        return Status.Failure;
+    }
 
     // NODO: "Esperar"
     public Status WaitInQueue()

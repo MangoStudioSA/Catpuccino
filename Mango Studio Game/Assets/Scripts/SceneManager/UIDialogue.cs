@@ -62,6 +62,7 @@ public class UIDialogue : MonoBehaviour
         deliveryPanel.SetActive(false);
         roomPanel.SetActive(true);
         gameUI.orderScreen = false;
+        manager.orderingCustomer.GetComponent<CustomerController>().receivedOrder = true;
 
         if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 20)
             FindFirstObjectByType<TutorialManager>().CompleteCurrentStep();
