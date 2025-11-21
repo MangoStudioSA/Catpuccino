@@ -59,6 +59,12 @@ public class FoodMinigameInput : MonoBehaviour
     private CookState currentCookState;
     private GameObject foodInPlatoObj = null, foodInHornoObj = null, foodInBolsaLlevarObj = null;
 
+    [Header("Objetos ingredientes")]
+    public Material defaultMaterial;
+    public Material glowMaterial;
+    public Image bolsaImage;
+    public Image platoImage;
+
     [Header("Sprites objetos")]
     public Sprite botonH_N;
     public Sprite botonH_P;
@@ -108,9 +114,14 @@ public class FoodMinigameInput : MonoBehaviour
             buttonManager.hornoButton.gameObject.SetActive(true);
             buttonManager.EnableButton(buttonManager.hornoButton);
         }
+
+        if (platoIsInEncimera) platoImage.material = defaultMaterial;
+        if (carryBagIsInEncimera) bolsaImage.material = defaultMaterial;
+
         CheckButtons(); 
     }
 
+    #region Funciones auxiliares
     // Funcion para resetear variables de la comida
     public void ResetFoodState()
     {
@@ -165,6 +176,7 @@ public class FoodMinigameInput : MonoBehaviour
             foodInBolsaLlevarObj = null;
         }
     }
+
     // Funcion para comprobar si se puede coger comida
     public void ActualizarBotonCogerComida()
     {
@@ -283,6 +295,42 @@ public class FoodMinigameInput : MonoBehaviour
         if (foodBaked)
             buttonManager.DisableButton(buttonManager.hornearButton);  
     }
+    #endregion
+
+    #region Envases
+    public void CogerPlato()
+    {
+        if (platoIsInEncimera)
+            return;
+
+        if (!platoInHand)
+        {
+            platoInHand = true;
+            platoImage.material = glowMaterial;
+        }
+        else if (platoInHand)
+        {
+            platoInHand = false;
+            platoImage.material = defaultMaterial;
+        }
+    }
+
+    public void CogerBolsaLlevar()
+    {
+        if (carryBagIsInEncimera)
+            return;
+
+        if (!carryBagInHand)
+        {
+            carryBagInHand = true;
+            bolsaImage.material = glowMaterial;
+        }
+        else if (carryBagInHand)
+        {
+            carryBagInHand = false;
+            bolsaImage.material = defaultMaterial;
+        }
+    }
 
     // Funcion para colocar el plato en la encima
     public void PlacePlatoEncimera()
@@ -296,7 +344,6 @@ public class FoodMinigameInput : MonoBehaviour
         platoInHand = false;
         platoIsInEncimera = true;
 
-        cursorManager.UpdateCursorPlato(true);
         buttonManager.EnableButton(buttonManager.hornoButton);
         buttonManager.DisableButton(buttonManager.cogerBolsaLlevarInicioButton);
         buttonManager.DisableButton(buttonManager.cogerPlatoInicioButton);
@@ -319,7 +366,6 @@ public class FoodMinigameInput : MonoBehaviour
         carryBagInHand = false;
         carryBagIsInEncimera = true;
 
-        cursorManager.UpdateCursorCarryBag(true);
         buttonManager.EnableButton(buttonManager.hornoButton);
         buttonManager.DisableButton(buttonManager.cogerBolsaLlevarInicioButton);
         buttonManager.DisableButton(buttonManager.cogerPlatoInicioButton);
@@ -329,7 +375,9 @@ public class FoodMinigameInput : MonoBehaviour
         if (tutorialManager.isRunningT2 && tutorialManager.currentStep == 2)
             FindFirstObjectByType<TutorialManager>().CompleteCurrentStep2();
     }
-    
+    #endregion
+
+    #region Interaccion envase-comida
     // Funcion para interactuar con la comida en el plato 
     public void ToggleFoodPlato()
     {
@@ -558,7 +606,9 @@ public class FoodMinigameInput : MonoBehaviour
         }
         ActualizarBotonCogerComida();
     }
-    
+    #endregion
+
+    #region Horneado
     // Funcion para hornear la comida 
     public void StartHorneado()
     {
@@ -635,4 +685,5 @@ public class FoodMinigameInput : MonoBehaviour
         Image stopHornearBut = buttonManager.stopHorneadoButton.GetComponent<Image>();
         stopHornearBut.sprite = botonPH_P;
     }
+    #endregion
 }

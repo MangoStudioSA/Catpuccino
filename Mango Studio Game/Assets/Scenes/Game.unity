@@ -1561,12 +1561,16 @@ MonoBehaviour:
   puntoFiltroCafetera: {fileID: 722471628}
   defaultMaterial: {fileID: 2100000, guid: 6e520e2e2418e3447977fe40e37ca7c1, type: 2}
   glowMaterial: {fileID: 2100000, guid: c2af7ce3b9757de4dbc308fdd63b53f4, type: 2}
+  tazaImage: {fileID: 2132560482}
+  vasoImage: {fileID: 1086673709}
+  platoTazaImage: {fileID: 2028102492}
   waterImage: {fileID: 74253030}
   milkImage: {fileID: 1639563792}
   milkCupImage: {fileID: 1946061798}
   condensedMilkImage: {fileID: 290504853}
   chocolateImage: {fileID: 1159473349}
   whiskeyImage: {fileID: 371112198}
+  coverImage: {fileID: 1656632136}
   creamWithSpoon: {fileID: 21300000, guid: ce485aa0c7b9b314dae8c4a0986636f3, type: 3}
   creamWithoutSpoon: {fileID: 21300000, guid: 1604b00999e07634780567e5acdc473b, type: 3}
   filtroImg: {fileID: 186981477, guid: e288ad6c858bce44d98d91c579e9587e, type: 3}
@@ -2119,6 +2123,10 @@ MonoBehaviour:
   foodCategoryInHorno: 0
   foodTypeInHorno: 0
   tiempoHorneado: 15
+  defaultMaterial: {fileID: 2100000, guid: 6e520e2e2418e3447977fe40e37ca7c1, type: 2}
+  glowMaterial: {fileID: 2100000, guid: c2af7ce3b9757de4dbc308fdd63b53f4, type: 2}
+  bolsaImage: {fileID: 1324809005}
+  platoImage: {fileID: 1822414050}
   botonH_N: {fileID: 304915697, guid: 1ce395fc4a1cc454c85499e1e33c3e7e, type: 3}
   botonH_P: {fileID: 761929660, guid: 1ce395fc4a1cc454c85499e1e33c3e7e, type: 3}
   botonPH_N: {fileID: 304915697, guid: 1ce395fc4a1cc454c85499e1e33c3e7e, type: 3}
@@ -2930,18 +2938,6 @@ MonoBehaviour:
       - m_Target: {fileID: 50023188}
         m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
         m_MethodName: CogerAgua
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 342197122}
-        m_TargetAssemblyTypeName: CursorManager, Assembly-CSharp
-        m_MethodName: TakeWater
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4717,6 +4713,8 @@ RectTransform:
   - {fileID: 244413809}
   - {fileID: 1443841483}
   - {fileID: 790261686}
+  - {fileID: 2132560484}
+  - {fileID: 2028102491}
   - {fileID: 1694360622}
   - {fileID: 1082078881}
   - {fileID: 1838202979}
@@ -7134,18 +7132,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 342197122}
-        m_TargetAssemblyTypeName: CursorManager, Assembly-CSharp
-        m_MethodName: TakeCondensedMilk
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &290504853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9237,18 +9223,6 @@ MonoBehaviour:
       - m_Target: {fileID: 50023188}
         m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
         m_MethodName: CogerWhiskey
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 342197122}
-        m_TargetAssemblyTypeName: CursorManager, Assembly-CSharp
-        m_MethodName: TakeWhiskey
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -26824,9 +26798,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 342197122}
-        m_TargetAssemblyTypeName: CursorManager, Assembly-CSharp
-        m_MethodName: TakeVasoFromShelf
+      - m_Target: {fileID: 50023188}
+        m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
+        m_MethodName: CogerVaso
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -28871,18 +28845,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 342197122}
-        m_TargetAssemblyTypeName: CursorManager, Assembly-CSharp
-        m_MethodName: TakeChocolate
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1159473349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30160,9 +30122,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 342197122}
-        m_TargetAssemblyTypeName: CursorManager, Assembly-CSharp
-        m_MethodName: TakeTazaFromShelf
+      - m_Target: {fileID: 50023188}
+        m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
+        m_MethodName: CogerTaza
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -33177,9 +33139,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 342197122}
-        m_TargetAssemblyTypeName: CursorManager, Assembly-CSharp
-        m_MethodName: TakeCarryBagFromShelf
+      - m_Target: {fileID: 50023200}
+        m_TargetAssemblyTypeName: FoodMinigameInput, Assembly-CSharp
+        m_MethodName: CogerBolsaLlevar
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -40741,18 +40703,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 342197122}
-        m_TargetAssemblyTypeName: CursorManager, Assembly-CSharp
-        m_MethodName: TakeMilk
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1639563792
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41486,18 +41436,6 @@ MonoBehaviour:
       - m_Target: {fileID: 50023188}
         m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
         m_MethodName: CogerTapa
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 342197122}
-        m_TargetAssemblyTypeName: CursorManager, Assembly-CSharp
-        m_MethodName: TakeCover
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -45699,9 +45637,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 342197122}
-        m_TargetAssemblyTypeName: CursorManager, Assembly-CSharp
-        m_MethodName: TakePlatoFromShelf
+      - m_Target: {fileID: 50023200}
+        m_TargetAssemblyTypeName: FoodMinigameInput, Assembly-CSharp
+        m_MethodName: CogerPlato
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -47780,9 +47718,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 342197122}
-        m_TargetAssemblyTypeName: CursorManager, Assembly-CSharp
-        m_MethodName: TakeTazaWithMilk
+      - m_Target: {fileID: 50023188}
+        m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
+        m_MethodName: CogerJarraLeche
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -47913,9 +47851,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 342197122}
-        m_TargetAssemblyTypeName: CursorManager, Assembly-CSharp
-        m_MethodName: TakePlatoCupFromShelf
+      - m_Target: {fileID: 50023188}
+        m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
+        m_MethodName: CogerPlatoTaza
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -49719,6 +49657,81 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &2028102490
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2028102491}
+  - component: {fileID: 2028102493}
+  - component: {fileID: 2028102492}
+  m_Layer: 5
+  m_Name: PlatoTaza_Prop
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2028102491
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2028102490}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 153319689}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.12325, y: 0.39840746}
+  m_AnchorMax: {x: 0.21352085, y: 0.5508891}
+  m_AnchoredPosition: {x: -1.2158203, y: -0.4133606}
+  m_SizeDelta: {x: 0.16000366, y: 1}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2028102492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2028102490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: dd70911f0f085bf4081967cace0e3238, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &2028102493
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2028102490}
+  m_CullTransparentMesh: 1
 --- !u!1 &2032158545
 GameObject:
   m_ObjectHideFlags: 0
@@ -51768,6 +51781,81 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2118854374}
   m_CullTransparentMesh: 1
+--- !u!1 &2132560481
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2132560484}
+  - component: {fileID: 2132560483}
+  - component: {fileID: 2132560482}
+  m_Layer: 5
+  m_Name: Taza_Prop
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2132560482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2132560481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 2be01c7b67cb4824d8b6e243d44c8c47, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &2132560483
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2132560481}
+  m_CullTransparentMesh: 1
+--- !u!224 &2132560484
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2132560481}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 153319689}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.027, y: 0.53629637}
+  m_AnchorMax: {x: 0.12652084, y: 0.7054445}
+  m_AnchoredPosition: {x: 0.19921875, y: -0.6123047}
+  m_SizeDelta: {x: 6.160034, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2137433133
 GameObject:
   m_ObjectHideFlags: 0

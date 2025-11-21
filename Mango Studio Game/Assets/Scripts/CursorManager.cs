@@ -55,11 +55,11 @@ public class CursorManager : MonoBehaviour
     void Start()
     {
         //ocultamos cursor por defecto
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
+        //Cursor.visible = true;
+        //Cursor.lockState = CursorLockMode.None;
 
         //aplicar cursor personalizado
-        if (defaultCursorTexture != null)
+        /*if (defaultCursorTexture != null)
         {
             Cursor.SetCursor(defaultCursorTexture, hotSpotDefault, CursorMode.Auto);
             Debug.Log("Cursor personalizado aplicado correctamente.");
@@ -67,111 +67,8 @@ public class CursorManager : MonoBehaviour
         else
         {
             Debug.LogError("ERROR: No se ha asignado una textura para el cursor. Se usará el cursor por defecto.");
-        }
-    }
-    #region Take envases
-    // Gestionar coger la taza del estante
-    public void TakeTazaFromShelf()
-    {
-        if (!miniGameInput.tazaInHand && !miniGameInput.tazaIsInCafetera && !miniGameInput.vasoInHand && !miniGameInput.platoTazaInHand && !miniGameInput.filtroInHand)
-        {
-            miniGameInput.tazaInHand = true;
-            Cursor.SetCursor(tazaCursorTexture, hotSpotTaza, CursorMode.Auto);
-        } 
-        else if (miniGameInput.tazaInHand)
-        {
-            miniGameInput.tazaInHand = false;
-            Cursor.SetCursor(defaultCursorTexture, hotSpotDefault, CursorMode.Auto);
-        }
-    }
-
-    // Gestionar coger el vaso del estante
-    public void TakeVasoFromShelf()
-    {
-        if (!miniGameInput.vasoInHand && !miniGameInput.vasoIsInCafetera && !miniGameInput.tazaInHand && !miniGameInput.platoTazaInHand && !miniGameInput.filtroInHand)
-        {
-            miniGameInput.vasoInHand = true;
-            Cursor.SetCursor(vasoCursorTexture, hotSpotVaso, CursorMode.Auto);
-        } 
-        else if (miniGameInput.vasoInHand)
-        {
-            miniGameInput.vasoInHand = false;
-            Cursor.SetCursor(defaultCursorTexture, hotSpotDefault, CursorMode.Auto);
-        }
-    }
-
-
-    // Gestionar coger la taza de leche
-    public void TakeTazaWithMilk()
-    {
-        if (!miniGameInput.tazaMilkInHand && !miniGameInput.TengoOtroObjetoEnLaMano())
-        {
-            miniGameInput.tazaMilkInHand = true;
-            miniGameInput.milkCupImage.material = miniGameInput.glowMaterial;
-            Cursor.SetCursor(tazaLecheCursorTexture, hotSpotTazaLeche, CursorMode.Auto);
-        }
-        else if (miniGameInput.tazaMilkInHand)
-        {
-            miniGameInput.tazaMilkInHand = false;
-            miniGameInput.milkCupImage.material = miniGameInput.defaultMaterial;
-            Cursor.SetCursor(defaultCursorTexture, hotSpotDefault, CursorMode.Auto);
-        }
-    }
-
-    // Gestionar coger el plato para la taza del estante
-    public void TakePlatoCupFromShelf()
-    {
-        if (miniGameInput.platoTazaIsInTable) return;
-        if (miniGameInput.TengoOtroObjetoEnLaMano() || miniGameInput.tazaInHand || miniGameInput.vasoInHand || miniGameInput.filtroInHand) return;
-
-        if (!miniGameInput.platoTazaInHand)
-        {
-            miniGameInput.platoTazaInHand = true;
-            Cursor.SetCursor(platoCursorTexture, hotSpotPlato, CursorMode.Auto);
-        }
-        else if (miniGameInput.platoTazaInHand)
-        {
-            miniGameInput.platoTazaInHand = false;
-            Cursor.SetCursor(defaultCursorTexture, hotSpotDefault, CursorMode.Auto);
-        }
-    }
-
-    // Gestionar coger el plato del estante
-    public void TakePlatoFromShelf()
-    {
-        if (foodMinigameInput.platoIsInEncimera)
-            return;
-
-        if (!foodMinigameInput.platoInHand)
-        {
-            foodMinigameInput.platoInHand = true;
-            Cursor.SetCursor(platoCursorTexture, hotSpotPlato, CursorMode.Auto);
-        }
-        else if (foodMinigameInput.platoInHand)
-        {
-            foodMinigameInput.platoInHand = false;
-            Cursor.SetCursor(defaultCursorTexture, hotSpotDefault, CursorMode.Auto);
-        }
-    }
-
-    // Gestionar coger la bolsa para llevar del estante
-    public void TakeCarryBagFromShelf()
-    {
-        if (foodMinigameInput.carryBagIsInEncimera)
-            return;
-
-        if (!foodMinigameInput.carryBagInHand)
-        {
-            foodMinigameInput.carryBagInHand = true;
-            Cursor.SetCursor(bolsaLlevarCursorTexture, hotSpotBolsaLlevar, CursorMode.Auto);
-        }
-        else if (foodMinigameInput.carryBagInHand)
-        {
-            foodMinigameInput.carryBagInHand = false;
-            Cursor.SetCursor(defaultCursorTexture, hotSpotDefault, CursorMode.Auto);
-        }
-    }
-    #endregion
+        }*/
+    }    
 
     #region Take comidas
     // El boton llamara a una de las 3 funciones segun el tipo de comida que se trate (asociado al index del tipo de cada una)
@@ -379,13 +276,13 @@ public class CursorManager : MonoBehaviour
 
     public void TakeCream()
     {
-        if (miniGameInput.creamInHand && !miniGameInput.waterInHand && !miniGameInput.coverInHand && !miniGameInput.cucharaInHand && !miniGameInput.iceInHand
+        if (miniGameInput.creamInHand && !miniGameInput.filtroInHand && !miniGameInput.waterInHand && !miniGameInput.coverInHand && !miniGameInput.cucharaInHand && !miniGameInput.iceInHand
             && !miniGameInput.milkInHand && !miniGameInput.condensedMilkInHand && !miniGameInput.chocolateInHand && !miniGameInput.whiskeyInHand && !miniGameInput.tazaMilkInHand)
         {
             Cursor.SetCursor(cremaCursorTexture, hotSpotCrema, CursorMode.Auto);
         }
 
-        if (!miniGameInput.TengoOtroObjetoEnLaMano() && !miniGameInput.tazaMilkInHand)
+        if (!miniGameInput.TengoOtroObjetoEnLaMano() && !miniGameInput.tazaMilkInHand && !miniGameInput.filtroInHand)
         {
             Cursor.SetCursor(defaultCursorTexture, hotSpotDefault, CursorMode.Auto);
         }
