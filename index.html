@@ -12,87 +12,175 @@
     <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet" />
 
-    <style>
-    .section-spacing {
-        padding-top: 6rem;
-        padding-bottom: 6rem;
-    }
+     <style>
 
-    .navbar-custom {
-        background-color: #ff9900;
-    }
-    .navbar-custom .navbar-brand, .navbar-custom .nav-link {
-        color: #ffffff !important;
-    }
+        /* Aumentar el espacio entre secciones (Requisito 1) */
 
-    .btn-primary {
-        background-color: #ffc107;
-        border-color: #ffc107;
-    }
-    .btn-primary:hover {
-        background-color: #ffa000;
-        border-color: #ffa000;
-    }
+        .section-spacing {
 
-    .btn-outline-invest {
-        color: #ffc107;
-        border-color: #ffc107;
-    }
-    .btn-outline-invest:hover {
-        color: #212529;
-        background-color: #ffc107;
-        border-color: #ffc107;
-    }
+            padding-top: 6rem;
 
-    .catpuccino-section {
-        background: linear-gradient(0deg, #ffe0b2 0%, #fff 100%);
-    }
+            padding-bottom: 6rem;
 
-    .catpuccino-carousel-container {
-        border-radius: 0 !important;
-        overflow: hidden;
-        position: relative;
-        padding-bottom: 56.25%;
-        height: 0;
-    }
-
-    .carousel-item, .carousel-item img {
-        border-radius: 0 !important;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    .team-member-img {
-        width: 100px;
-        height: 100px;
-        object-fit: cover;
-        transition: transform 0.2s;
-        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-    }
-
-    .team-member-img:hover {
-        transform: scale(1.05);
-    }
-
-    /* REGLA AÑADIDA PARA JUSTIFICAR PÁRRAFOS */
-    .text-content-mobile,
-    .modal-body p:nth-child(3) {
-        text-align: justify;
-    }
-
-    @media (max-width: 767.98px) {
-        .text-content-mobile {
-            text-align: left !important;
-        }
-        .modal-body p:nth-child(3) {
-            text-align: left !important;
         }
-    }
-</style>
+
+
+
+        /* Ajuste para el color de la navbar */
+
+        .navbar-custom {
+
+            background-color: #ff9900; /* Mango Orange */
+
+        }
+
+        .navbar-custom .navbar-brand, .navbar-custom .nav-link {
+
+            color: #ffffff !important;
+
+        }
+
+
+
+        /* Estilo para los botones principales (Mango Yellow) */
+
+        .btn-primary {
+
+            background-color: #ffc107;
+
+            border-color: #ffc107;
+
+        }
+
+        .btn-primary:hover {
+
+            background-color: #ffa000;
+
+            border-color: #ffa000;
+
+        }
+
+
+
+        /* Estilo para el botón de Inversión */
+
+        .btn-outline-invest {
+
+            color: #ffc107;
+
+            border-color: #ffc107;
+
+        }
+
+        .btn-outline-invest:hover {
+
+            color: #212529;
+
+            background-color: #ffc107;
+
+            border-color: #ffc107;
+
+        }
+
+
+
+        /* Estilo para la sección de Catpuccino con gradiente */
+
+        .catpuccino-section {
+
+            background: linear-gradient(0deg, #ffe0b2 0%, #fff 100%);
+
+        }
+
+
+
+        /* === INICIO DE CORRECCIÓN: HACER EL CARRUSEL RECTANGULAR 16:9 === */
+
+        /* Contenedor principal del carrusel: Define el ratio y elimina la redondez. */
+
+        .catpuccino-carousel-container {
+
+            border-radius: 0 !important; /* Fuerza bordes rectos en el contenedor principal */
+
+            overflow: hidden;
+
+            position: relative;
+
+            padding-bottom: 56.25%; /* Relación de aspecto 16:9 (Alto / Ancho) */
+
+            height: 0; /* Necesario para que padding-bottom funcione como relación de aspecto */
+
+        }
+
+
+
+        /* Item e Imagen: Asegura que llenen el contenedor 16:9 sin redondeos. */
+
+        .carousel-item, .carousel-item img {
+
+            border-radius: 0 !important; /* Fuerza bordes rectos en las imágenes */
+
+            position: absolute; /* Permite que la imagen se estire dentro del contenedor de relación de aspecto */
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover; /* Asegura que la imagen cubra el área sin deformarse */
+
+        }
+
+        /* === FIN DE CORRECCIÓN === */
+
+
+
+
+
+        /* Custom styling para reducir el tamaño de las imágenes del equipo (Requisito 4) */
+
+        .team-member-img {
+
+            width: 100px;
+
+            height: 100px;
+
+            object-fit: cover;
+
+            transition: transform 0.2s;
+
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+
+        }
+
+
+
+        .team-member-img:hover {
+
+            transform: scale(1.05);
+
+        }
+
+
+
+        /* Solución para textos justificados en móvil (Requisito 6) */
+
+        /* Eliminamos el text-justify en el HTML, y nos aseguramos que en móviles esté alineado a la izquierda */
+
+        @media (max-width: 767.98px) {
+
+            .text-content-mobile {
+
+                text-align: left !important;
+
+            }
+
+        }
+
+    </style>
 
     <link rel="icon" type="image/x-icon" href="assets/favicon.png" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
