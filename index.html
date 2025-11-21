@@ -11,123 +11,68 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet" />
 
     <style>
-    .section-spacing {
-        padding-top: 6rem;
-        padding-bottom: 6rem;
-    }
-    .navbar-custom {
-        background-color: #ff9900;
-    }
-    .navbar-custom .navbar-brand, .navbar-custom .nav-link {
-        color: #ffffff !important;
-    }
-    .btn-primary {
-        background-color: #ffc107;
-        border-color: #ffc107;
-    }
-    .btn-primary:hover {
-        background-color: #ffa000;
-        border-color: #ffa000;
-    }
-    .btn-outline-invest {
-        color: #ffc107;
-        border-color: #ffc107;
-    }
-    .btn-outline-invest:hover {
-        color: #212529;
-        background-color: #ffc107;
-        border-color: #ffc107;
-    }
-    .catpuccino-section {
-        background: linear-gradient(0deg, #ffe0b2 0%, #fff 100%);
-    }
-    
-    /* CÓDIGO DEL CARRUSEL RECTANGULAR Y AJUSTADO */
-    #catpuccinoCarousel {
-        position: relative;
-        width: 100%;
-        max-width: 800px; /* Ancho máximo para el carrusel */
-        margin: auto;
-        max-height: 450px; /* Altura máxima para el carrusel (ajusta este valor) */
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-    }
-
-    .catpuccino-carousel-container {
-        border-radius: 0 !important;
-        position: relative;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .carousel-item {
-        border-radius: 0 !important;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        display: flex !important;
-        justify-content: center;
-        align-items: center;
-        background-color: #fff; /* Fondo blanco si la imagen no ocupa todo el espacio */
-    }
-
-    .carousel-item img {
-        border-radius: 0 !important;
-        display: block;
-        width: 100%;
-        height: 100%; 
-        object-fit: contain; /* Muestra la imagen completa sin recorte */
-        max-width: 100%;
-        max-height: 100%;
-    }
-    
-    /* Estilos para las flechas de navegación */
-    .carousel-control-prev,
-    .carousel-control-next {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        z-index: 1;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 15%;
-        color: #fff;
-        text-align: center;
-        opacity: 0.5;
-        transition: opacity 0.15s ease;
-    }
-
-    .carousel-control-prev-icon,
-    .carousel-control-next-icon {
-        background-color: rgba(0, 0, 0, 0.3); 
-        border-radius: 50%;
-        padding: 10px;
-    }
-    /* FIN DEL CÓDIGO DEL CARRUSEL RECTANGULAR */
-
-    .team-member-img {
-        width: 100px;
-        height: 100px;
-        object-fit: cover;
-        transition: transform 0.2s;
-        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-    }
-    .team-member-img:hover {
-        transform: scale(1.05);
-    }
-    @media (max-width: 767.98px) {
-        .text-content-mobile {
-            text-align: left !important;
+        .section-spacing {
+            padding-top: 6rem;
+            padding-bottom: 6rem;
         }
-    }
-</style>
+        .navbar-custom {
+            background-color: #ff9900;
+        }
+        .navbar-custom .navbar-brand, .navbar-custom .nav-link {
+            color: #ffffff !important;
+        }
+        .btn-primary {
+            background-color: #ffc107;
+            border-color: #ffc107;
+        }
+        .btn-primary:hover {
+            background-color: #ffa000;
+            border-color: #ffa000;
+        }
+        .btn-outline-invest {
+            color: #ffc107;
+            border-color: #ffc107;
+        }
+        .btn-outline-invest:hover {
+            color: #212529;
+            background-color: #ffc107;
+            border-color: #ffc107;
+        }
+        .catpuccino-section {
+            background: linear-gradient(0deg, #ffe0b2 0%, #fff 100%);
+        }
+        .catpuccino-carousel-container {
+            border-radius: 0 !important;
+            overflow: hidden;
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+        }
+        .carousel-item, .carousel-item img {
+            border-radius: 0 !important;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .team-member-img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            transition: transform 0.2s;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        }
+        .team-member-img:hover {
+            transform: scale(1.05);
+        }
+        @media (max-width: 767.98px) {
+            .text-content-mobile {
+                text-align: left !important;
+            }
+        }
+    </style>
         
         .team-member-img {
             width: 100px;
