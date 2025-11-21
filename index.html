@@ -42,6 +42,36 @@
         background: linear-gradient(0deg, #ffe0b2 0%, #fff 100%);
     }
 
+    .carousel-catpuccino {
+        width: 600px;
+        height: 300px;
+        border-radius: 15px; /* Esquinas redondeadas */
+        overflow: hidden; /* Asegura que las imágenes se recorten con el radio */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra ligera opcional */
+    }
+
+    .carousel-catpuccino .carousel-inner, 
+    .carousel-catpuccino .carousel-item,
+    .carousel-catpuccino img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover; /* Asegura que la imagen cubra el área sin distorsionarse */
+    }
+
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        background-color: rgba(0, 0, 0, 0.4); /* Fondo oscuro para las flechas */
+        border-radius: 5px;
+    }
+
+    /* Media query para hacer el carrusel responsivo en móviles */
+    @media (max-width: 991.98px) {
+        .carousel-catpuccino {
+            width: 100%; /* Ancho completo en móviles */
+            height: 250px; /* Altura ajustada para móviles */
+            margin-bottom: 2rem; /* Espacio debajo del carrusel en móviles */
+        }
+    }
 
     .team-member-img {
         width: 100px;
@@ -143,29 +173,59 @@
             </div>
         </div>
     </section>
-    <section id="scroll" class="section-spacing catpuccino-section">
-        <div class="container px-5">
-            <div class="row gx-5 align-items-center">
-                <div class="col-lg-6 order-lg-1">
-                    <div class="p-5 d-flex justify-content-center">
-                       
+<section id="scroll" class="section-spacing catpuccino-section">
+    <div class="container px-5">
+        <div class="row gx-5 align-items-center">
+            <div class="col-lg-6 order-lg-1 order-1">
+                <div class="p-5 d-flex justify-content-lg-center justify-content-start">
+                    
+                    <div id="catpuccinoCarousel" class="carousel slide carousel-catpuccino" data-bs-ride="carousel">
+                        
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#catpuccinoCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#catpuccinoCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#catpuccinoCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                        </div>
+                        
+                        <div class="carousel-inner">
+                            <div class="carousel-item active" data-bs-interval="5000"> 
+                                <img src="assets/img/catpuccino-slide-1.jpg" class="d-block w-100" alt="Gameplay de Catpuccino 1">
+                            </div>
+                            <div class="carousel-item" data-bs-interval="5000">
+                                <img src="assets/img/catpuccino-slide-2.jpg" class="d-block w-100" alt="Gameplay de Catpuccino 2">
+                            </div>
+                            <div class="carousel-item" data-bs-interval="5000">
+                                <img src="assets/img/catpuccino-slide-3.jpg" class="d-block w-100" alt="Gameplay de Catpuccino 3">
+                            </div>
+                        </div>
+                        
+                        <button class="carousel-control-prev" type="button" data-bs-target="#catpuccinoCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Anterior</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#catpuccinoCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Siguiente</span>
+                        </button>
                     </div>
-                </div>
-                <div class="col-lg-6 order-lg-2">
-                    <div class="p-5">
-                       <h2 class="display-4">Catpuccino </h2>
-                        <p class="text-content-mobile text-justify">¡Catpuccino es la experiencia de simulación y gestión más tierna! Sumérgete en un mundo donde sirves deliciosas bebidas y postres a adorables clientes junto a felinos. Estarás en tu cafetería con un estilo encantador, descubre nuevas recetas de cafés y construye un espacio acogedor que te haga sentir en casa. ¡Un juego hecho con mucho cariño para calentar tu corazón!</p>
-                        <a class="btn btn-primary btn-xl rounded-pill mt-4 me-3" href="https://mangostudiourjc.itch.io/catpuccino" target="_blank">
-                            <i class="fab fa-itch-io me-2"></i> JUEGA LA DEMO EN ITCH.IO!
-                        </a>
-                        <a class="btn btn-outline-invest btn-xl rounded-pill mt-4" href="#contact-us">
-                            Contacta con nosotros
-                        </a>
                     </div>
+            </div>
+            
+            <div class="col-lg-6 order-lg-2 order-2">
+                <div class="p-5">
+                    <h2 class="display-4">Catpuccino</h2>
+                    <p class="text-content-mobile text-justify">¡Catpuccino es la experiencia de simulación y gestión más tierna! Sumérgete en un mundo donde sirves deliciosas bebidas y postres a adorables clientes junto a felinos. Estarás en tu cafetería con un estilo encantador, descubre nuevas recetas de cafés y construye un espacio acogedor que te haga sentir en casa. ¡Un juego hecho con mucho cariño para calentar tu corazón!</p>
+                    <a class="btn btn-primary btn-xl rounded-pill mt-4 me-3" href="https://mangostudiourjc.itch.io/catpuccino" target="_blank">
+                        <i class="fab fa-itch-io me-2"></i> JUEGA LA DEMO EN ITCH.IO!
+                    </a>
+                    <a class="btn btn-outline-invest btn-xl rounded-pill mt-4" href="#contact-us">
+                        Contacta con nosotros
+                    </a>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
     <section id="games" class="section-spacing bg-light">
         <div class="container px-5">
             <h2 class="text-center mb-5 display-4">Nuestros Juegos</h2>
