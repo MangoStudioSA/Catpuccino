@@ -16,7 +16,6 @@ public class CustomerController : MonoBehaviour
     bool patient = false;
     bool atNormalQueue = false;
 
-    //gato
     [Header("Ajustes Gato")]
     public Transform gatoObject;
     public float distancDetection = 10.0f;
@@ -30,25 +29,25 @@ public class CustomerController : MonoBehaviour
     public float timesPet = 0;
     public float maxPetting = 2;
 
+    [Header("Sistema de Baño")]
+    public bool needsBathroom = false;
+    public Transform bathroomPoint; 
+    private bool isInBathroomQueue = false;
+    private float _bathroomTimer = 0f;
+    public float bathroomDuration = 4.0f;
+
 
     [Header("Referencias Tienda")]
-    public Transform exitPoint; //meterlo en el spawn
+    public Transform exitPoint; 
     public bool hasOrdered = false;
 
     [Header("Sistema de Comidas y Pedidos")]
-    public bool orderIsEatIn = false; // Si es para tomar o llevar
-    public bool receivedOrder = false; // Se activa cuando le das la comida
+    public bool orderIsEatIn = false; 
+    public bool receivedOrder = false; 
 
-    // Variables para sentarse y comer
-    private Seat currentSeat = null;  // La silla asignada
-    private float _eatingTimer = 0f;  // Cronómetro para comer
-    public float eatingDuration = 5.0f; // Tiempo que tarda en comer
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    //void Start()
-    //{    
-    //    manager.customers.Enqueue(this);
-    //}
+    private Seat currentSeat = null;  
+    private float _eatingTimer = 0f;  
+    public float eatingDuration = 5.0f; 
 
     public void Spawn()
     {
@@ -76,8 +75,8 @@ public class CustomerController : MonoBehaviour
             patient = false;
         }
 
-        if (Random.Range(0, 2) == 0) orderIsEatIn = true; // 50%
-        else orderIsEatIn = false; // 50%
+        if (Random.Range(0, 2) == 0) orderIsEatIn = true; 
+        else orderIsEatIn = false; 
     }
 
     public Status GoToQueue()
@@ -127,15 +126,22 @@ public class CustomerController : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    public Status NeedBathromm()
+
+    #region baño
+    public Status CheckNeedBathroom()
     {
-        if (Random.Range(0f, 100f) <= 25f && !atCounter)
+        if (needsBathroom && !atCounter)
         {
-            Debug.Log("Tengo que usar el baño");
             return Status.Success;
         }
 
-        Debug.Log("No tengo que usar el baño");
+        if (!isInteracting && Random.Range(0, 2000) < 1)
+        {
+            needsBathroom = true;
+            Debug.Log("necesito ir al baño.");
+            return Status.Success;
+        }
+
         return Status.Failure;
     }
 
@@ -146,100 +152,120 @@ public class CustomerController : MonoBehaviour
         return Status.Success;
     }
 
-    public Status BathroomQueue()
+    public Status GoToBathroomQueue()
     {
-        manager.customers.Dequeue();
-        atNormalQueue = false;
-        manager.customersBathroom.Enqueue(this);
-        Debug.Log("Cambio de cola");
-        return Status.Success;
-    }
-
-    public Status BathroomLineFull()
-    {
-        if (manager.customersBathroom.Count > manager.maxClientsBathroom)
+        if (bathroomPoint == null)
         {
-            Debug.Log("Esta llena la cola del baño");
-            return Status.Success;
+            if (manager != null && manager.spawnBathroom != null)
+                bathroomPoint = manager.spawnBathroom.transform;
+            else return Status.Failure;
         }
 
-        Debug.Log("No esta llena la cola");
-        return Status.Failure;
-    }
+        if (isInBathroomQueue) return Status.Success;
 
-    public void ChangeQueue()
-    {
-        transform.position = new Vector3(manager.spawnBathroom.transform.position.x, transform.position.y, manager.spawnBathroom.transform.position.z);
-        Debug.Log("Me voy al baño");
-    }
+        Vector3 miPos = new Vector3(transform.position.x, 0, transform.position.z);
+        Vector3 banoPos = new Vector3(bathroomPoint.position.x, 0, bathroomPoint.position.z);
 
-    public Status GoToBathRoom()
-    {
-        if (!atCounter && !atQueue)
+        if (Vector3.Distance(miPos, banoPos) > 0.5f)
         {
-            transform.Translate(direction.normalized * speed * Time.deltaTime);
+            Vector3 dir = (bathroomPoint.position - transform.position).normalized;
+            dir.y = 0;
+            transform.Translate(dir * speed * Time.deltaTime, Space.World);
+
+            Vector3 lookPos = new Vector3(bathroomPoint.position.x, transform.position.y, bathroomPoint.position.z);
+            transform.LookAt(lookPos);
+
             return Status.Running;
         }
 
-        Debug.Log("He llegado a la cola del baño");
+        if (!isInBathroomQueue && manager != null)
+        {
+            manager.customersBathroom.Enqueue(this);
+            isInBathroomQueue = true;
+
+            atQueue = false;
+            atNormalQueue = false;
+        }
         return Status.Success;
     }
 
-    public Status CheckPatience()
+    public Status CheckBathroomQueueFull()
     {
-        if (patience <= 0)
+        if (manager != null)
         {
-            return Status.Success;
+            if (manager.customersBathroom.Count > manager.maxClientsBathroom)
+            {
+                Debug.Log("Cola del baño llena. Me voy.");
+                return Status.Success; 
+            }
         }
-
         return Status.Failure;
     }
 
-    public Status BathroomMyTurn()
+    public Status CheckAtBathroomQueue()
     {
+        if (isInBathroomQueue) return Status.Success;
+        return Status.Failure;
+    }
+
+    public Status CheckBathroomTurn()
+    {
+        if (manager != null && manager.customersBathroom.Count > 0)
+        {
+            if (manager.customersBathroom.Peek() == this)
+            {
+                return Status.Success;
+            }
+        }
+        return Status.Failure;
+    }
+
+    public Status UseBathroom()
+    {
+        isInteracting = true;
+
+        _bathroomTimer += Time.deltaTime;
+
+        if (_bathroomTimer < bathroomDuration)
+        {
+            return Status.Running;
+        }
+
+        Debug.Log("¡Fin del baño! Saliendo...");
+
+        needsBathroom = false;
+        _bathroomTimer = 0;
+
+        isInBathroomQueue = false;
+
+        if (manager != null && manager.customersBathroom.Count > 0)
+        {
+            if (manager.customersBathroom.Peek() == this)
+            {
+                manager.customersBathroom.Dequeue();
+            }
+        }
+
+        isInteracting = false;
+
         return Status.Success;
     }
 
-    public void UseBathroom()
-    {
-
-    }
-
-    public Status ReturnToQueue()
-    {
-        return Status.Success;
-    }
-
-    public void LeaveBathroomQueue()
-    {
-        Debug.Log("Me voy");
-        manager.customersBathroom.Dequeue();
-        Destroy(this.gameObject);
-    }
-
+    #endregion
 
     void Update()
     {
         if (isInteracting) return;
 
-        if (patient)
-        {
-            patience -= patienceDecrease * Time.deltaTime;
-        }
-        else
-        {
-            patience -= (patienceDecrease * 2) * Time.deltaTime;
-        }
+        float decrease = patient ? patienceDecrease : (patienceDecrease * 2);
+        patience -= decrease * Time.deltaTime;
+        if (patience < 0) patience = 0;
 
-        //if (!atCounter && !atQueue)
-        //{
-        //    transform.Translate(direction.normalized * speed * Time.deltaTime);
-        //}
-
-        //if (!atCounter && manager.customers.Count > 0 && manager.customers.Peek() == this)
-        //{
-        //    atQueue = false;
-        //}
+        if (!needsBathroom && !atCounter && Random.Range(0, 1000) < 1)
+        {
+            needsBathroom = true;
+            Debug.Log("necesito ir al baño");
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -299,8 +325,6 @@ public class CustomerController : MonoBehaviour
 
         float distanciaPlana = Vector3.Distance(miPosPlana, gatoPosPlana);
 
-        //Debug.Log($"[3] Distancia Plana: {distanciaPlana}. Gato: {gatoObject.position}");
-
         if (distanciaPlana < 0.5f)
         {
             Debug.Log("[4] llega a gato");
@@ -324,9 +348,6 @@ public class CustomerController : MonoBehaviour
         _timerPetting = 0f;
         isInteracting = true;
         Debug.Log("acariciando al gato...");
-
-        // futuro: cuando tengamos animaciones
-        // animator.SetBool("IsPetting", true);
     }
 
     public Status PerformPetting()
@@ -346,9 +367,6 @@ public class CustomerController : MonoBehaviour
 
         Debug.Log("termino de acariciar. Paciencia: " + patience);
 
-        // futuro: cuando tengamos animaciones
-        // animator.SetBool("IsPetting", false);
-
         return Status.Success;
     }
 
@@ -367,30 +385,24 @@ public class CustomerController : MonoBehaviour
     #endregion
 
     #region consumir
-    // NODO: "¿Pedido recibido?"
     public Status CheckOrderReceived()
     {
-        // Si ya tengo mi pedido, paso a la siguiente fase
         if (receivedOrder)
         {
             return Status.Success;
         }
 
-        // Si no, me quedo esperando en el mostrador
         return Status.Running;
     }
 
-    // NODO: "¿Tipo pedido == tomar?"
     public Status CheckOrderIsEatIn()
     {
         if (orderIsEatIn) return Status.Success;
-        return Status.Failure; // Si es para llevar, salta a la otra rama
+        return Status.Failure; 
     }
 
-    // NODO: "Buscar Asientos"
     public Status FindAndGoToSeat()
     {
-        // 1. Si no tengo silla, busco una
         if (currentSeat == null)
         {
             GameObject[] asientos = GameObject.FindGameObjectsWithTag("Asiento");
@@ -407,30 +419,23 @@ public class CustomerController : MonoBehaviour
             if (currentSeat == null) return Status.Failure;
         }
 
-        // 2. LÓGICA CORREGIDA: Distancia Plana (Como el gato)
         Vector3 miPos = new Vector3(transform.position.x, 0, transform.position.z);
         Vector3 asientoPos = new Vector3(currentSeat.transform.position.x, 0, currentSeat.transform.position.z);
 
         float distanciaPlana = Vector3.Distance(miPos, asientoPos);
 
-        // Aumentamos un poco el margen a 0.6f por si el collider es gordo
         if (distanciaPlana > 1.0f)
         {
-            // Moverse
             Vector3 target = currentSeat.transform.position;
-            target.y = transform.position.y; // Mantener altura
+            target.y = transform.position.y; 
             transform.LookAt(target);
             transform.Translate(Vector3.forward * speed * Time.deltaTime);
             return Status.Running;
         }
 
-        // 3. AL LLEGAR: ELIMINAR TEMBLEQUE
-        // Teletransportamos al cliente al centro exacto de la silla para que quede perfecto
-        // (Ajusta la Y si se queda flotando o hundido)
         transform.position = new Vector3(currentSeat.transform.position.x, transform.position.y, currentSeat.transform.position.z);
-        transform.rotation = currentSeat.transform.rotation; // Opcional: Que se siente con la misma rotación que la silla
+        transform.rotation = currentSeat.transform.rotation; 
 
-        // Salimos de la cola lógica
         atQueue = false;
         atCounter = false;
 
@@ -441,33 +446,30 @@ public class CustomerController : MonoBehaviour
     public void StartEating()
     {
         _eatingTimer = 0f;
-        isInteracting = true; // Bloqueamos bajada de paciencia
-        Debug.Log("Empiezo a comer...");
+        isInteracting = true;
+        Debug.Log("empiezo a comer...");
     }
 
-    // NODO: "Consumir pedido"
     public Status EatFood()
     {
-        // Usamos la bandera para bloquear la bajada de paciencia
         isInteracting = true;
         _eatingTimer += Time.deltaTime;
 
         if (_eatingTimer < eatingDuration)
         {
-            return Status.Running; // Ñam ñam...
+            return Status.Running;
         }
 
         Debug.Log("He terminado de comer. Estaba rico.");
-        isInteracting = false; // Ya he terminado
+        isInteracting = false; 
         return Status.Success;
     }
 
-    // NODO: "Liberar asiento"
     public Status ReleaseSeat()
     {
         if (currentSeat != null)
         {
-            currentSeat.isOccupied = false; // Queda libre para el siguiente
+            currentSeat.isOccupied = false; 
             currentSeat = null;
         }
         return Status.Success;
@@ -549,7 +551,6 @@ public class CustomerController : MonoBehaviour
         return Status.Failure;
     }
 
-    // NODO: "Pedir y pagar"
     public Status OrderAndPay()
     {
         Debug.Log("haciendo pedido...");
@@ -559,8 +560,6 @@ public class CustomerController : MonoBehaviour
         return Status.Success;
     }
 
-
-    // NODO: "Esperar"
     public Status WaitInQueue()
     {
         return Status.Running;

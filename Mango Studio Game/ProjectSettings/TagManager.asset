@@ -17,6 +17,7 @@ TagManager:
   - Gato
   - Salida
   - Asiento
+  - Banio
   layers:
   - Default
   - TransparentFX

@@ -24,6 +24,7 @@ public class CustomerManager : MonoBehaviour
     void Awake()
     {
         customers = new Queue<CustomerController>();
+        customersBathroom = new Queue<CustomerController>();
         timeManager = FindFirstObjectByType<TimeManager>();
 
     }

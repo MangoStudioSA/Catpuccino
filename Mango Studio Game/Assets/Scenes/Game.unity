@@ -3002,7 +3002,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawn: {fileID: 55580695}
-  spawnBathroom: {fileID: 600847300}
+  spawnBathroom: {fileID: 1462173928}
   customer: {fileID: 2753711945148426859, guid: 94d53b207791064409231d5f47226cb2, type: 3}
   minTimeBase: 10
   maxTimeBase: 20
@@ -6880,14 +6880,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c8e6b3a13a13c842bc85691ba90e496, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CamSpeed: 0.5
-  minX: -7
-  maxX: 7
-  minY: 5
-  maxY: 8
-  zoomSpeed: 10
-  minZoom: 25
-  maxZoom: 60
 --- !u!1 &330642387
 GameObject:
   m_ObjectHideFlags: 0
@@ -32972,6 +32964,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1460160478}
   m_CullTransparentMesh: 1
+--- !u!1 &1462173928
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1462173929}
+  m_Layer: 0
+  m_Name: Bathroom
+  m_TagString: Banio
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1462173929
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1462173928}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.2, y: 0.52568984, z: -0.89}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1463844631
 GameObject:
   m_ObjectHideFlags: 0
@@ -46821,3 +46844,4 @@ SceneRoots:
   - {fileID: 416222925}
   - {fileID: 384208256}
   - {fileID: 296337834}
+  - {fileID: 1462173929}
