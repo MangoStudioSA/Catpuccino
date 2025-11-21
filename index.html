@@ -10,77 +10,96 @@
     <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet" />
 
-    <style>
-        .section-spacing {
-            padding-top: 6rem;
-            padding-bottom: 6rem;
-        }
-        .navbar-custom {
-            background-color: #ff9900;
-        }
-        .navbar-custom .navbar-brand, .navbar-custom .nav-link {
-            color: #ffffff !important;
-        }
-        .btn-primary {
-            background-color: #ffc107;
-            border-color: #ffc107;
-        }
-        .btn-primary:hover {
-            background-color: #ffa000;
-            border-color: #ffa000;
-        }
-        .btn-outline-invest {
-            color: #ffc107;
-            border-color: #ffc107;
-        }
-        .btn-outline-invest:hover {
-            color: #212529;
-            background-color: #ffc107;
-            border-color: #ffc107;
-        }
-        .catpuccino-section {
-            background: linear-gradient(0deg, #ffe0b2 0%, #fff 100%);
-        }
-       
+   <style>
+    .section-spacing {
+        padding-top: 6rem;
+        padding-bottom: 6rem;
+    }
+    .navbar-custom {
+        background-color: #ff9900;
+    }
+    .navbar-custom .navbar-brand, .navbar-custom .nav-link {
+        color: #ffffff !important;
+    }
+    .btn-primary {
+        background-color: #ffc107;
+        border-color: #ffc107;
+    }
+    .btn-primary:hover {
+        background-color: #ffa000;
+        border-color: #ffa000;
+    }
+    .btn-outline-invest {
+        color: #ffc107;
+        border-color: #ffc107;
+    }
+    .btn-outline-invest:hover {
+        color: #212529;
+        background-color: #ffc107;
+        border-color: #ffc107;
+    }
+    .catpuccino-section {
+        background: linear-gradient(0deg, #ffe0b2 0%, #fff 100%);
+    }
 
-.catpuccino-carousel-container {
-    border-radius: 0 !important;
-    overflow: hidden;
-    position: relative;
-    padding-bottom: 0; 
-    height: auto;      
-}
+    /* 🎯 REGLAS PARA HACER EL CARRUSEL RECTANGULAR Y AJUSTADO AL CONTENIDO */
+    .catpuccino-carousel-container {
+        border-radius: 0 !important;
+        overflow: hidden;
+        position: relative;
+        padding-bottom: 0; /* ⬅️ CRUCIAL: Elimina la altura fija (truco 16:9) */
+        height: auto;      /* ⬅️ CRUCIAL: Permite que la altura la dicte el contenido (la imagen) */
+    }
 
-.carousel-item {
+    .carousel-item {
+        border-radius: 0 !important;
+        position: relative; /* ⬅️ Debe ser relative para que la imagen no colapse el contenedor */
+        width: 100%;
+        height: auto; /* La altura del item se ajusta a la imagen */
+    }
     
-    position: relative; 
-    border-radius: 0 !important;
-}
+    .carousel-item img {
+        border-radius: 0 !important;
+        position: relative; /* ⬅️ Asegura que la imagen esté en el flujo normal */
+        top: auto;
+        left: auto;
+        display: block;
+        width: 100%;
+        height: auto; /* ⬅️ La altura se calcula automáticamente para respetar la proporción de la imagen */
+        object-fit: contain; /* ⬅️ Muestra la imagen COMPLETA sin recorte */
+    }
 
-.carousel-item img {
-    border-radius: 0 !important;
-    position: relative;
-    width: 100%;
-    height: auto; 
-    object-fit: contain; 
-}
+    /* 💡 MEJORA ADICIONAL: Centrar el carrusel y establecer ancho máximo */
+    #catpuccinoCarousel {
+        max-width: 900px; /* ⬅️ Aumenta este valor si quieres que se vea MÁS grande */
+        margin: auto;
+        position: relative; /* Necesario para que las flechas se posicionen correctamente */
+    }
+    
+    /* 🎨 ESTILOS PARA QUE LAS FLECHAS SE VEAN MEJOR Y ESTÉN DENTRO */
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        background-color: rgba(0, 0, 0, 0.4); /* Fondo semi-transparente para que se vean */
+        border-radius: 50%;
+        padding: 10px;
+    }
+
+    .team-member-img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        transition: transform 0.2s;
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    }
+    .team-member-img:hover {
+        transform: scale(1.05);
+    }
+    @media (max-width: 767.98px) {
+        .text-content-mobile {
+            text-align: left !important;
         }
-        .team-member-img {
-            width: 100px;
-            height: 100px;
-            object-fit: cover;
-            transition: transform 0.2s;
-            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-        }
-        .team-member-img:hover {
-            transform: scale(1.05);
-        }
-        @media (max-width: 767.98px) {
-            .text-content-mobile {
-                text-align: left !important;
-            }
-        }
-    </style>
+    }
+</style>
         
         .team-member-img {
             width: 100px;
