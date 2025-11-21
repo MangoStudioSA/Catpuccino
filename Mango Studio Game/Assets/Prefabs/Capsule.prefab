@@ -136,6 +136,7 @@ MonoBehaviour:
   catNecesity: 60
   pettingTime: 3
   receivedOrder: 0
+  order: 0
   exitPoint: {fileID: 0}
   hasOrdered: 0
 --- !u!54 &4231839258988541092
@@ -847,7 +848,7 @@ MonoBehaviour:
         references:
         - fieldName: Action
           value:
-            rid: -2
+            rid: 4779458783614074960
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
@@ -861,7 +862,7 @@ MonoBehaviour:
         references:
         - fieldName: Action
           value:
-            rid: -2
+            rid: 4779458783614074964
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
@@ -875,7 +876,7 @@ MonoBehaviour:
         references:
         - fieldName: Action
           value:
-            rid: -2
+            rid: 4779458783614074963
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
@@ -889,7 +890,7 @@ MonoBehaviour:
         references:
         - fieldName: Action
           value:
-            rid: -2
+            rid: 4779458783614074959
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
@@ -945,7 +946,7 @@ MonoBehaviour:
         references:
         - fieldName: Action
           value:
-            rid: -2
+            rid: 4779458783614074961
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
@@ -959,7 +960,7 @@ MonoBehaviour:
         references:
         - fieldName: Action
           value:
-            rid: -2
+            rid: 4779458783614074962
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
@@ -1383,6 +1384,114 @@ MonoBehaviour:
         update:
           componentName: CustomerController
           methodName: OrderDone
+        stop:
+          componentName: 
+          methodName: 
+        pause:
+          componentName: 
+          methodName: 
+        unpause:
+          componentName: 
+          methodName: 
+    - rid: 4779458783614074959
+      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        start:
+          componentName: 
+          methodName: 
+        update:
+          componentName: CustomerController
+          methodName: NormalOrder
+        stop:
+          componentName: 
+          methodName: 
+        pause:
+          componentName: 
+          methodName: 
+        unpause:
+          componentName: 
+          methodName: 
+    - rid: 4779458783614074960
+      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        start:
+          componentName: 
+          methodName: 
+        update:
+          componentName: CustomerController
+          methodName: TakeAway
+        stop:
+          componentName: 
+          methodName: 
+        pause:
+          componentName: 
+          methodName: 
+        unpause:
+          componentName: 
+          methodName: 
+    - rid: 4779458783614074961
+      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        start:
+          componentName: 
+          methodName: 
+        update:
+          componentName: CustomerController
+          methodName: GoToExit
+        stop:
+          componentName: 
+          methodName: 
+        pause:
+          componentName: 
+          methodName: 
+        unpause:
+          componentName: 
+          methodName: 
+    - rid: 4779458783614074962
+      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        start:
+          componentName: CustomerController
+          methodName: LeaveQueue
+        update:
+          componentName: 
+          methodName: 
+        stop:
+          componentName: 
+          methodName: 
+        pause:
+          componentName: 
+          methodName: 
+        unpause:
+          componentName: 
+          methodName: 
+    - rid: 4779458783614074963
+      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        start:
+          componentName: CustomerController
+          methodName: LeaveQueue
+        update:
+          componentName: 
+          methodName: 
+        stop:
+          componentName: 
+          methodName: 
+        pause:
+          componentName: 
+          methodName: 
+        unpause:
+          componentName: 
+          methodName: 
+    - rid: 4779458783614074964
+      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        start:
+          componentName: 
+          methodName: 
+        update:
+          componentName: CustomerController
+          methodName: GoToExit
         stop:
           componentName: 
           methodName: 

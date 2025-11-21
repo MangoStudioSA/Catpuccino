@@ -10,6 +10,7 @@ public class CustomerOrder : MonoBehaviour
     [SerializeField] private FoodUnlockerManager foodUnlocker;
     [SerializeField] private TimeManager timeManager;
     [SerializeField] private OrderNoteUI orderNoteUI;
+    [SerializeField] private CustomerManager manager;
 
     [Header("Datos pedido actual")]
     public Order currentOrder { get; private set; }
@@ -47,6 +48,8 @@ public class CustomerOrder : MonoBehaviour
         orderNoteUI.SetCurrentOrder(currentOrder);
 
         if (orderTxt != null) orderTxt.text = BuildOrderText(currentOrder);
+
+        manager.orderingCustomer.GetComponent<CustomerController>().order = currentOrder.orderType;
     }
 
     // Funcion encargada de generar el texto mostrado del cliente para el pedido

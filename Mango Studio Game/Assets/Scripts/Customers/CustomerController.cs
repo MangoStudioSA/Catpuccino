@@ -27,6 +27,7 @@ public class CustomerController : MonoBehaviour
 
     bool spawned = false;
     public bool receivedOrder = false; // Se activa en UIDialogue.cs
+    public OrderType order;
 
 
     [Header("Referencias Tienda")]
@@ -413,7 +414,7 @@ public class CustomerController : MonoBehaviour
         if (manager != null)
         {
             manager.clients--;
-            manager.customersBathroom.Dequeue();
+            manager.customers.Dequeue();
 
             if (manager.orderingCustomer == this.gameObject)
             {
@@ -458,6 +459,26 @@ public class CustomerController : MonoBehaviour
     public Status OrderDone()
     {
         if (hasOrdered)
+        {
+            return Status.Success;
+        }
+
+        return Status.Failure;
+    }
+
+    public Status TakeAway()
+    {
+        if (order == OrderType.llevar)
+        {
+            return Status.Success;
+        }
+
+        return Status.Failure;
+    }
+
+    public Status NormalOrder()
+    {
+        if (order == OrderType.tomar)
         {
             return Status.Success;
         }
