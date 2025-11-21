@@ -48,13 +48,13 @@
             width: 100%;
             max-width: 1200px; /* ANCHO MÁXIMO DEL RECTÁNGULO */
             margin: auto;
-            height: 675px; /* ALTURA DEL RECTÁNGULO (1200 * 0.5625) */
+            height: 675px; /* ALTURA DEL RECTÁNGULO (1200 * 0.5625 para 16:9) */
             overflow: hidden;
-            border-radius: 1rem; /* ESQUINAS REDONDEADAS */
+            border-radius: 1rem; /* ESQUINAS REDONDEADAS DEL CONTENEDOR */
             box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
         }
         
-        /* Eliminar el padding extra del p-5 que envuelve el carrusel */
+        /* Eliminar padding del p-5 que envuelve el carrusel para que ocupe todo el espacio */
         #scroll .col-lg-6:nth-child(1) .p-5 {
             padding: 0px !important; 
             display: flex; 
@@ -79,7 +79,8 @@
             display: flex; 
             justify-content: center;
             align-items: center;
-            background-color: #f8f9fa; /* Color de fondo si la imagen no ocupa todo el espacio */
+            background-color: #f8f9fa; /* Color de fondo si la imagen no llena todo */
+            border-radius: 1rem !important; /* Asegura el redondeo del item */
         }
 
         .carousel-item img {
@@ -88,7 +89,7 @@
             height: 100%; 
             max-width: 100%; 
             object-fit: contain; /* Muestra la imagen COMPLETA sin recorte */
-            border-radius: 1rem; /* Esquinas redondeadas para la imagen, NO círculo */
+            border-radius: 1rem !important; /* Asegura el redondeo de la imagen, eliminando cualquier estilo circular */
         }
         
         /* 🎨 ESTILOS PARA QUE LAS FLECHAS SE VEAN MEJOR Y ESTÉN DENTRO Y ALINEADAS */
@@ -110,7 +111,7 @@
         .carousel-control-prev-icon,
         .carousel-control-next-icon {
             background-color: rgba(0, 0, 0, 0.5); 
-            border-radius: 50%; /* Iconos de las flechas siguen siendo redondos */
+            border-radius: 50%; 
             padding: 15px; 
             font-size: 1.5rem; 
         }
