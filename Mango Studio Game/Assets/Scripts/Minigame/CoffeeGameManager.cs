@@ -38,8 +38,8 @@ public class CoffeeGameManager : MonoBehaviour
     public Image clientFeedbackImage;
     public FeedBackSprites[] feedbakClientSprites;
 
+    public int customersServed = 0;
     private int totalScore = 0;
-    private int customersServed = 0;
 
     private void Awake()
     {

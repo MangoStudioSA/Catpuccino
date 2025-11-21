@@ -39,6 +39,7 @@ public class TimeManager : MonoBehaviour
     private SceneUIManager sceneUIManager;
     private ButtonUnlockManager buttonUnlockManager;
     public CoffeeRecipesManager coffeeRecipesManager;
+    public CoffeeGameManager coffeeGameManager;
     public CoffeeUnlockerManager coffeeUnlockerManager;
     public HUDManager HUDmanager;
     public PlayerDataManager playerDataManager;
@@ -115,6 +116,7 @@ public class TimeManager : MonoBehaviour
 
         // Se aumenta el dia y se guarda en el progreso del jugador
         currentDay++;
+        coffeeGameManager.customersServed = 0;
 
         // Restar dinero de facturas
         GameManager.Instance.monedas -= requiredMoney;

@@ -1739,6 +1739,7 @@ MonoBehaviour:
     - {fileID: 1476386083, guid: ee101e8103c22274990ac44a8ea765f6, type: 3}
     - {fileID: -1425552262, guid: ee101e8103c22274990ac44a8ea765f6, type: 3}
     - {fileID: 338649516, guid: ee101e8103c22274990ac44a8ea765f6, type: 3}
+  customersServed: 0
 --- !u!114 &50023192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20998,6 +20999,7 @@ MonoBehaviour:
   requiredIncrement: 1.25
   currentDay: 0
   coffeeRecipesManager: {fileID: 1692941318}
+  coffeeGameManager: {fileID: 50023191}
   coffeeUnlockerManager: {fileID: 50023193}
   HUDmanager: {fileID: 960583782}
   playerDataManager: {fileID: 0}
