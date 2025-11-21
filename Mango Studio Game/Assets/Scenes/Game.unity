@@ -1559,6 +1559,14 @@ MonoBehaviour:
   puntoMesa: {fileID: 1938362649}
   puntoTazaPlato: {fileID: 1573721646}
   puntoFiltroCafetera: {fileID: 722471628}
+  defaultMaterial: {fileID: 2100000, guid: 6e520e2e2418e3447977fe40e37ca7c1, type: 2}
+  glowMaterial: {fileID: 2100000, guid: c2af7ce3b9757de4dbc308fdd63b53f4, type: 2}
+  waterImage: {fileID: 74253030}
+  milkImage: {fileID: 1639563792}
+  milkCupImage: {fileID: 1946061798}
+  condensedMilkImage: {fileID: 290504853}
+  chocolateImage: {fileID: 1159473349}
+  whiskeyImage: {fileID: 371112198}
   creamWithSpoon: {fileID: 21300000, guid: ce485aa0c7b9b314dae8c4a0986636f3, type: 3}
   creamWithoutSpoon: {fileID: 21300000, guid: 1604b00999e07634780567e5acdc473b, type: 3}
   filtroImg: {fileID: 186981477, guid: e288ad6c858bce44d98d91c579e9587e, type: 3}

@@ -91,6 +91,16 @@ public class MinigameInput : MonoBehaviour
     public Transform puntoTazaPlato;
     public Transform puntoFiltroCafetera;
 
+    [Header("Objetos ingredientes")]
+    public Material defaultMaterial;
+    public Material glowMaterial;
+    public Image waterImage;
+    public Image milkImage;
+    public Image milkCupImage;
+    public Image condensedMilkImage;
+    public Image chocolateImage;
+    public Image whiskeyImage;
+
     [Header("Sprites mecánicas")]
     public Sprite creamWithSpoon;
     public Sprite creamWithoutSpoon;
@@ -999,12 +1009,12 @@ public class MinigameInput : MonoBehaviour
         if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand)
         {
             milkInHand = true;
-            buttonManager.milkButton.image.enabled = false;
+            milkImage.material = glowMaterial;
         }
         else if (milkInHand == true)
         {
             milkInHand = false;
-            buttonManager.milkButton.image.enabled = true;
+            milkImage.material = defaultMaterial;
         }
     }
     public void EcharLecheFria()
@@ -1161,12 +1171,12 @@ public class MinigameInput : MonoBehaviour
         if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand && !tazaMilkInHand)
         {
             waterInHand = true;
-            buttonManager.waterButton.image.enabled = false;
+            waterImage.material = glowMaterial;
         }
         else if (waterInHand == true)
         {
             waterInHand = false;
-            buttonManager.waterButton.image.enabled = true;
+            waterImage.material = defaultMaterial;
         }
     }
     public void EcharAgua()
@@ -1200,12 +1210,12 @@ public class MinigameInput : MonoBehaviour
         if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand && !tazaMilkInHand)
         {
             condensedMilkInHand = true;
-            buttonManager.condensedMilkButton.image.enabled = false;
+            condensedMilkImage.material = glowMaterial;
         }
         else if (condensedMilkInHand == true)
         {
             condensedMilkInHand = false;
-            buttonManager.condensedMilkButton.image.enabled = true;
+            condensedMilkImage.material = defaultMaterial;
         }
     }
     public void EcharLecheCondensada()
@@ -1274,12 +1284,12 @@ public class MinigameInput : MonoBehaviour
         if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand && !tazaMilkInHand)
         {
             chocolateInHand = true;
-            buttonManager.chocolateButton.image.enabled = false;
+            chocolateImage.material = glowMaterial;
         }
         else if (chocolateInHand == true)
         {
             chocolateInHand = false;
-            buttonManager.chocolateButton.image.enabled = true;
+            chocolateImage.material = defaultMaterial;
         }
     }
     public void EcharChocolate()
@@ -1311,12 +1321,12 @@ public class MinigameInput : MonoBehaviour
         if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand && !tazaMilkInHand)
         {
             whiskeyInHand = true;
-            buttonManager.whiskeyButton.image.enabled = false;
+            whiskeyImage.material = glowMaterial;
         }
         else if (whiskeyInHand == true)
         {
             whiskeyInHand = false;
-            buttonManager.whiskeyButton.image.enabled = true;
+            whiskeyImage.material = defaultMaterial;
         }
     }
     public void EcharWhiskey()

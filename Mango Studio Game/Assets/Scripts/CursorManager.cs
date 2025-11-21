@@ -107,14 +107,13 @@ public class CursorManager : MonoBehaviour
         if (!miniGameInput.tazaMilkInHand && !miniGameInput.TengoOtroObjetoEnLaMano())
         {
             miniGameInput.tazaMilkInHand = true;
-            miniGameInput.buttonManager.cogerTazaLecheButton.image.enabled = false;
+            miniGameInput.milkCupImage.material = miniGameInput.glowMaterial;
             Cursor.SetCursor(tazaLecheCursorTexture, hotSpotTazaLeche, CursorMode.Auto);
-            //miniGameInput.buttonManager.cogerTazaLecheButton.image.enabled = false;
         }
         else if (miniGameInput.tazaMilkInHand)
         {
             miniGameInput.tazaMilkInHand = false;
-            miniGameInput.buttonManager.cogerTazaLecheButton.image.enabled = true;
+            miniGameInput.milkCupImage.material = miniGameInput.defaultMaterial;
             Cursor.SetCursor(defaultCursorTexture, hotSpotDefault, CursorMode.Auto);
         }
     }
