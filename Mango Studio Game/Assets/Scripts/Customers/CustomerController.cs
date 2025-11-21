@@ -25,6 +25,8 @@ public class CustomerController : MonoBehaviour
     private float _timerPetting = 0f;
     public float pettingTime = 3f;
 
+    bool spawned = false;
+
 
     [Header("Referencias Tienda")]
     public Transform exitPoint; //meterlo en el spawn
@@ -65,6 +67,8 @@ public class CustomerController : MonoBehaviour
 
     public Status GoToQueue()
     {
+        if (spawned) return Status.Failure;
+
         if (isInteracting) return Status.Running;
 
         if (!atCounter && !atQueue)
@@ -86,6 +90,7 @@ public class CustomerController : MonoBehaviour
         atNormalQueue = true;
         atQueue = true;
 
+        spawned = true;
         return Status.Success;
     }
 
@@ -110,9 +115,9 @@ public class CustomerController : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    public Status NeedBathromm()
+    public Status NeedBathroom()
     {
-        if (Random.Range(0f, 100f) <= 25f && !atCounter)
+        if (Random.Range(0f, 100f) <= 25f && !atCounter && atQueue)
         {
             Debug.Log("Tengo que usar el baño");
             return Status.Success;
@@ -180,16 +185,30 @@ public class CustomerController : MonoBehaviour
 
     public Status BathroomMyTurn()
     {
-        return Status.Success;
+        if (manager.customersBathroom.Count <= 1)
+        {
+            return Status.Success;
+        }
+
+        Debug.Log("Me toca usar el baño");
+        return Status.Running;
     }
 
     public void UseBathroom()
     {
-
+        manager.customersBathroom.Dequeue();
+        transform.position = new Vector3(manager.spawnBathroom.transform.position.x, transform.position.y, manager.spawnBathroom.transform.position.z);
     }
 
     public Status ReturnToQueue()
     {
+        if (!atCounter && !atQueue)
+        {
+            transform.Translate(direction.normalized * speed * Time.deltaTime);
+            return Status.Running;
+        }
+
+        Debug.Log("He vuelto a la cola");
         return Status.Success;
     }
 
@@ -352,7 +371,7 @@ public class CustomerController : MonoBehaviour
         {
             return Status.Success;
         }
-        return Status.Failure;
+        return Status.Running;
     }
 
     public Status CheckPatienceDepleted()
@@ -398,6 +417,7 @@ public class CustomerController : MonoBehaviour
         if (manager != null)
         {
             manager.clients--;
+            manager.customersBathroom.Dequeue();
 
             if (manager.orderingCustomer == this.gameObject)
             {
