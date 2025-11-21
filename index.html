@@ -42,59 +42,81 @@
         background: linear-gradient(0deg, #ffe0b2 0%, #fff 100%);
     }
 
-    /* 🎯 REGLAS PARA HACER EL CARRUSEL RECTANGULAR GRANDE */
+    /* 🎯 REGLAS PARA HACER EL CARRUSEL RECTANGULAR GRANDE Y REDONDEADO */
     #catpuccinoCarousel {
         position: relative;
-        max-width: 1100px; /* ⬅️ AUMENTADO para que sea más ancho (ajusta si es necesario) */
+        width: 100%;
+        max-width: 1000px; /* ⬅️ AJUSTA ESTE ANCHO MÁXIMO SEGÚN QUÉ TAN GRANDE LO QUIERAS */
         margin: auto;
-        /* max-height ya no es tan necesario si la imagen dicta la altura, pero se puede añadir si quieres un límite */
+        /* Definimos la altura directamente para asegurar el rectángulo */
+        height: 562.5px; /* ⬅️ Calcula: max-width * (9/16) si tus imágenes son 16:9. (1000 * 0.5625) */
+                           /* Si tus imágenes tienen otra relación de aspecto, ajusta este valor. */
+        overflow: hidden; /* Para que el contenido que se salga se oculte */
+        border-radius: 1rem; /* ⬅️ ESQUINAS REDONDEADAS */
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15); /* Sombra para darle más profundidad */
     }
     
-    /* 🚨 CRUCIAL: ELIMINAR EL PADDING DEL CONTENEDOR DE BOOTSTRAP */
+    /* Eliminar el padding extra del p-5 que envuelve el carrusel */
     #scroll .col-lg-6:nth-child(1) .p-5 {
-        padding: 0px !important; /* ⬅️ Elimina el padding del p-5 que rodea el carrusel */
-        /* Esto hace que el carrusel use todo el espacio de la columna, alineando las flechas al borde */
+        padding: 0px !important; 
+        display: flex; /* Añadido para que el carrusel se centre si max-width es menor que la columna */
+        justify-content: center;
+        align-items: center;
+        height: 100%; /* Asegura que la columna tenga la altura del carrusel */
     }
 
-    .catpuccino-carousel-container {
-        border-radius: 0 !important;
-        overflow: hidden;
+    .carousel-inner {
         position: relative;
-        padding-bottom: 0; 
-        height: auto;      
+        width: 100%;
+        height: 100%; /* Ocupa el 100% de la altura definida en #catpuccinoCarousel */
+        border-radius: 1rem; /* ⬅️ ESQUINAS REDONDEADAS para el inner también */
     }
 
     .carousel-item {
-        border-radius: 0 !important;
-        position: relative;
+        position: absolute; /* Es crucial para que Bootstrap lo anime */
+        top: 0;
+        left: 0;
         width: 100%;
-        height: auto; 
-    }
-    
-    .carousel-item img {
-        border-radius: 0 !important;
-        position: relative;
-        top: auto;
-        left: auto;
-        display: block;
-        width: 100%;
-        height: auto; 
-        object-fit: contain; 
+        height: 100%; /* Ocupa el 100% de la altura del carousel-inner */
+        display: flex; /* Para centrar la imagen dentro del item */
+        justify-content: center;
+        align-items: center;
+        background-color: #f8f9fa; /* Color de fondo si la imagen no ocupa todo el espacio */
     }
 
-    /* 🎨 ESTILOS PARA QUE LAS FLECHAS SE VEAN MEJOR Y ESTÉN DENTRO */
-    .carousel-control-prev,
-    .carousel-control-next {
-        /* Asegura que las flechas tengan la altura de la imagen */
-        width: 5%; /* Reducimos el ancho para que la zona clicable sea menor */
-        opacity: 1.0; /* Hacemos las flechas visibles */
+    .carousel-item img {
+        display: block;
+        width: 100%;
+        height: 100%; /* La imagen intenta ocupar el 100% del item */
+        object-fit: contain; /* ⬅️ Muestra la imagen COMPLETA sin recorte */
+        border-radius: 1rem; /* ⬅️ ESQUINAS REDONDEADAS para la imagen */
     }
     
+    /* 🎨 ESTILOS PARA QUE LAS FLECHAS SE VEAN MEJOR Y ESTÉN DENTRO Y ALINEADAS */
+    .carousel-control-prev,
+    .carousel-control-next {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 8%; /* Ajusta el ancho de la zona clicable para que estén más pegadas */
+        color: #fff;
+        text-align: center;
+        opacity: 1.0; /* Hacemos las flechas completamente visibles */
+        transition: opacity 0.15s ease;
+        /* Aseguramos que no tengan un border-radius de 0 */
+        border-radius: 0; 
+    }
+
     .carousel-control-prev-icon,
     .carousel-control-next-icon {
-        background-color: rgba(0, 0, 0, 0.4);
+        background-color: rgba(0, 0, 0, 0.5); /* Fondo más oscuro para mejor visibilidad */
         border-radius: 50%;
-        padding: 10px;
+        padding: 15px; /* Iconos un poco más grandes */
+        font-size: 1.5rem; /* Ajusta el tamaño del icono si es necesario */
     }
 
     /* ... Otros estilos (team-member-img, media queries, etc.) ... */
