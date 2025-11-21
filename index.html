@@ -11,21 +11,21 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet" />
 
     <style>
-        /* Aumentar el espacio entre secciones (Requisito 1) */
+        
         .section-spacing {
             padding-top: 6rem;
             padding-bottom: 6rem;
         }
 
-        /* Ajuste para el color de la navbar */
+       
         .navbar-custom {
-            background-color: #ff9900; /* Mango Orange */
+            background-color: #ff9900; 
         }
         .navbar-custom .navbar-brand, .navbar-custom .nav-link {
             color: #ffffff !important;
         }
 
-        /* Estilo para los botones principales (Mango Yellow) */
+        
         .btn-primary {
             background-color: #ffc107;
             border-color: #ffc107;
@@ -35,7 +35,6 @@
             border-color: #ffa000;
         }
 
-        /* Estilo para el botón de Inversión */
         .btn-outline-invest {
             color: #ffc107;
             border-color: #ffc107;
@@ -46,35 +45,30 @@
             border-color: #ffc107;
         }
 
-        /* Estilo para la sección de Catpuccino con gradiente */
         .catpuccino-section {
             background: linear-gradient(0deg, #ffe0b2 0%, #fff 100%);
         }
 
-        /* === INICIO DE CORRECCIÓN: HACER EL CARRUSEL RECTANGULAR 16:9 === */
-        /* Contenedor principal del carrusel: Define el ratio y elimina la redondez. */
+
         .catpuccino-carousel-container {
-            border-radius: 0 !important; /* Fuerza bordes rectos en el contenedor principal */
+            border-radius: 0 !important; 
             overflow: hidden;
             position: relative;
-            padding-bottom: 56.25%; /* Relación de aspecto 16:9 (Alto / Ancho) */
-            height: 0; /* Necesario para que padding-bottom funcione como relación de aspecto */
+            padding-bottom: 56.25%; 
+            height: 0; 
         }
 
-        /* Item e Imagen: Asegura que llenen el contenedor 16:9 sin redondeos. */
+
         .carousel-item, .carousel-item img {
-            border-radius: 0 !important; /* Fuerza bordes rectos en las imágenes */
-            position: absolute; /* Permite que la imagen se estire dentro del contenedor de relación de aspecto */
+            border-radius: 0 !important;
+            position: absolute; 
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Asegura que la imagen cubra el área sin deformarse */
+            object-fit: cover; 
         }
-        /* === FIN DE CORRECCIÓN === */
 
-
-        /* Custom styling para reducir el tamaño de las imágenes del equipo (Requisito 4) */
         .team-member-img {
             width: 100px;
             height: 100px;
@@ -87,21 +81,16 @@
             transform: scale(1.05);
         }
 
-        /* === INICIO DE CAMBIO: Justificación de Texto (Solicitud del Usuario) === */
-        /* Aplica justificación a los principales bloques de texto en pantallas grandes */
+
         .text-content-mobile,
-        .modal-body p:nth-child(3) { /* Selecciona el tercer párrafo de los modales, que es la biografía larga */
+        .modal-body p:nth-child(3) { 
             text-align: justify;
         }
-        /* === FIN DE CAMBIO === */
 
-        /* Solución para textos justificados en móvil (Requisito 6) */
-        /* Mantiene la alineación a la izquierda en móviles para mejor legibilidad */
         @media (max-width: 767.98px) {
             .text-content-mobile {
                 text-align: left !important;
             }
-            /* También alinea a la izquierda el texto largo en los modales para móvil */
             .modal-body p:nth-child(3) {
                 text-align: left !important;
             }
