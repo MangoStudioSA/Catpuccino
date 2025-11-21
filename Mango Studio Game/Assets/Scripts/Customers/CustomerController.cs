@@ -38,8 +38,12 @@ public class CustomerController : MonoBehaviour
     //    manager.customers.Enqueue(this);
     //}
 
-    public void Spawn()
+    public Status Spawn()
     {
+        if (spawned) return Status.Failure;
+
+        spawned = true;
+
         Debug.Log("He entrado a la tienda");
 
         manager = FindFirstObjectByType<CustomerManager>();
@@ -63,12 +67,12 @@ public class CustomerController : MonoBehaviour
         {
             patient = false;
         }
+
+        return Status.Success;
     }
 
     public Status GoToQueue()
     {
-        if (spawned) return Status.Failure;
-
         if (isInteracting) return Status.Running;
 
         if (!atCounter && !atQueue)
@@ -90,7 +94,6 @@ public class CustomerController : MonoBehaviour
         atNormalQueue = true;
         atQueue = true;
 
-        spawned = true;
         return Status.Success;
     }
 
@@ -173,6 +176,17 @@ public class CustomerController : MonoBehaviour
         return Status.Success;
     }
 
+    public Status AtBathroomQueue()
+    {
+        if (atCounter || atQueue && !atNormalQueue)
+        {
+            Debug.Log("Estoy en la cola del baño");
+            return Status.Success;
+        }
+
+        return Status.Failure;
+    }
+
     public Status CheckPatience()
     {
         if (patience <= 0)
@@ -194,21 +208,12 @@ public class CustomerController : MonoBehaviour
         return Status.Running;
     }
 
-    public void UseBathroom()
+    public Status UseBathroom()
     {
         manager.customersBathroom.Dequeue();
+        manager.customers.Enqueue(this);
         transform.position = new Vector3(manager.spawnBathroom.transform.position.x, transform.position.y, manager.spawnBathroom.transform.position.z);
-    }
-
-    public Status ReturnToQueue()
-    {
-        if (!atCounter && !atQueue)
-        {
-            transform.Translate(direction.normalized * speed * Time.deltaTime);
-            return Status.Running;
-        }
-
-        Debug.Log("He vuelto a la cola");
+        Debug.Log("Vuelvo a la cola");
         return Status.Success;
     }
 
@@ -453,7 +458,7 @@ public class CustomerController : MonoBehaviour
     // NODO: "Esperar"
     public Status WaitInQueue()
     {
-        return Status.Running;
+        return Status.Success;
     }
     #endregion
 }
