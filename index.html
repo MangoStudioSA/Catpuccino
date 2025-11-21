@@ -42,47 +42,62 @@
         background: linear-gradient(0deg, #ffe0b2 0%, #fff 100%);
     }
 
-    /* 🎯 REGLAS PARA HACER EL CARRUSEL RECTANGULAR Y AJUSTADO AL CONTENIDO */
+    /* 🎯 REGLAS PARA HACER EL CARRUSEL RECTANGULAR GRANDE */
+    #catpuccinoCarousel {
+        position: relative;
+        max-width: 1100px; /* ⬅️ AUMENTADO para que sea más ancho (ajusta si es necesario) */
+        margin: auto;
+        /* max-height ya no es tan necesario si la imagen dicta la altura, pero se puede añadir si quieres un límite */
+    }
+    
+    /* 🚨 CRUCIAL: ELIMINAR EL PADDING DEL CONTENEDOR DE BOOTSTRAP */
+    #scroll .col-lg-6:nth-child(1) .p-5 {
+        padding: 0px !important; /* ⬅️ Elimina el padding del p-5 que rodea el carrusel */
+        /* Esto hace que el carrusel use todo el espacio de la columna, alineando las flechas al borde */
+    }
+
     .catpuccino-carousel-container {
         border-radius: 0 !important;
         overflow: hidden;
         position: relative;
-        padding-bottom: 0; /* ⬅️ CRUCIAL: Elimina la altura fija (truco 16:9) */
-        height: auto;      /* ⬅️ CRUCIAL: Permite que la altura la dicte el contenido (la imagen) */
+        padding-bottom: 0; 
+        height: auto;      
     }
 
     .carousel-item {
         border-radius: 0 !important;
-        position: relative; /* ⬅️ Debe ser relative para que la imagen no colapse el contenedor */
+        position: relative;
         width: 100%;
-        height: auto; /* La altura del item se ajusta a la imagen */
+        height: auto; 
     }
     
     .carousel-item img {
         border-radius: 0 !important;
-        position: relative; /* ⬅️ Asegura que la imagen esté en el flujo normal */
+        position: relative;
         top: auto;
         left: auto;
         display: block;
         width: 100%;
-        height: auto; /* ⬅️ La altura se calcula automáticamente para respetar la proporción de la imagen */
-        object-fit: contain; /* ⬅️ Muestra la imagen COMPLETA sin recorte */
+        height: auto; 
+        object-fit: contain; 
     }
 
-    /* 💡 MEJORA ADICIONAL: Centrar el carrusel y establecer ancho máximo */
-    #catpuccinoCarousel {
-        max-width: 900px; /* ⬅️ Aumenta este valor si quieres que se vea MÁS grande */
-        margin: auto;
-        position: relative; /* Necesario para que las flechas se posicionen correctamente */
+    /* 🎨 ESTILOS PARA QUE LAS FLECHAS SE VEAN MEJOR Y ESTÉN DENTRO */
+    .carousel-control-prev,
+    .carousel-control-next {
+        /* Asegura que las flechas tengan la altura de la imagen */
+        width: 5%; /* Reducimos el ancho para que la zona clicable sea menor */
+        opacity: 1.0; /* Hacemos las flechas visibles */
     }
     
-    /* 🎨 ESTILOS PARA QUE LAS FLECHAS SE VEAN MEJOR Y ESTÉN DENTRO */
     .carousel-control-prev-icon,
     .carousel-control-next-icon {
-        background-color: rgba(0, 0, 0, 0.4); /* Fondo semi-transparente para que se vean */
+        background-color: rgba(0, 0, 0, 0.4);
         border-radius: 50%;
         padding: 10px;
     }
+
+    /* ... Otros estilos (team-member-img, media queries, etc.) ... */
 
     .team-member-img {
         width: 100px;
