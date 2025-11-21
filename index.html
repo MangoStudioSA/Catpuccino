@@ -10,134 +10,112 @@
     <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet" />
 
-   <style>
-    .section-spacing {
-        padding-top: 6rem;
-        padding-bottom: 6rem;
-    }
-    .navbar-custom {
-        background-color: #ff9900;
-    }
-    .navbar-custom .navbar-brand, .navbar-custom .nav-link {
-        color: #ffffff !important;
-    }
-    .btn-primary {
-        background-color: #ffc107;
-        border-color: #ffc107;
-    }
-    .btn-primary:hover {
-        background-color: #ffa000;
-        border-color: #ffa000;
-    }
-    .btn-outline-invest {
-        color: #ffc107;
-        border-color: #ffc107;
-    }
-    .btn-outline-invest:hover {
-        color: #212529;
-        background-color: #ffc107;
-        border-color: #ffc107;
-    }
-    .catpuccino-section {
-        background: linear-gradient(0deg, #ffe0b2 0%, #fff 100%);
-    }
-
-    /* 🎯 REGLAS PARA HACER EL CARRUSEL RECTANGULAR GRANDE Y REDONDEADO */
-    #catpuccinoCarousel {
-        position: relative;
-        width: 100%;
-        max-width: 1200px; /* ⬅️ AJUSTA ESTE ANCHO MÁXIMO SEGÚN QUÉ TAN GRANDE LO QUIERAS */
-        margin: auto;
-        /* Definimos la altura directamente para asegurar el rectángulo */
-        height: 675px; /* ⬅️ Calcula: max-width * (9/16) si tus imágenes son 16:9. (1000 * 0.5625) */
-                           /* Si tus imágenes tienen otra relación de aspecto, ajusta este valor. */
-        overflow: hidden; /* Para que el contenido que se salga se oculte */
-        border-radius: 1rem; /* ⬅️ ESQUINAS REDONDEADAS */
-        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15); /* Sombra para darle más profundidad */
-    }
-    
-    /* Eliminar el padding extra del p-5 que envuelve el carrusel */
-    #scroll .col-lg-6:nth-child(1) .p-5 {
-        padding: 0px !important; 
-        display: flex; /* Añadido para que el carrusel se centre si max-width es menor que la columna */
-        justify-content: center;
-        align-items: center;
-        height: 100%; /* Asegura que la columna tenga la altura del carrusel */
-    }
-
-    .carousel-inner {
-        position: relative;
-        width: 100%;
-        height: 100%; /* Ocupa el 100% de la altura definida en #catpuccinoCarousel */
-        border-radius: 1rem; /* ⬅️ ESQUINAS REDONDEADAS para el inner también */
-    }
-
-    .carousel-item {
-        position: absolute; /* Es crucial para que Bootstrap lo anime */
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%; /* Ocupa el 100% de la altura del carousel-inner */
-        display: flex; /* Para centrar la imagen dentro del item */
-        justify-content: center;
-        align-items: center;
-        background-color: #f8f9fa; /* Color de fondo si la imagen no ocupa todo el espacio */
-    }
-
-    .carousel-item img {
-        display: block;
-        width: 100%;
-        height: 100%; /* La imagen intenta ocupar el 100% del item */
-        object-fit: contain; /* ⬅️ Muestra la imagen COMPLETA sin recorte */
-        border-radius: 1rem; /* ⬅️ ESQUINAS REDONDEADAS para la imagen */
-    }
-    
-    /* 🎨 ESTILOS PARA QUE LAS FLECHAS SE VEAN MEJOR Y ESTÉN DENTRO Y ALINEADAS */
-    .carousel-control-prev,
-    .carousel-control-next {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        z-index: 1;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 8%; /* Ajusta el ancho de la zona clicable para que estén más pegadas */
-        color: #fff;
-        text-align: center;
-        opacity: 1.0; /* Hacemos las flechas completamente visibles */
-        transition: opacity 0.15s ease;
-        /* Aseguramos que no tengan un border-radius de 0 */
-        border-radius: 0; 
-    }
-
-    .carousel-control-prev-icon,
-    .carousel-control-next-icon {
-        background-color: rgba(0, 0, 0, 0.5); /* Fondo más oscuro para mejor visibilidad */
-        border-radius: 50%;
-        padding: 15px; /* Iconos un poco más grandes */
-        font-size: 1.5rem; /* Ajusta el tamaño del icono si es necesario */
-    }
-
-    /* ... Otros estilos (team-member-img, media queries, etc.) ... */
-
-    .team-member-img {
-        width: 100px;
-        height: 100px;
-        object-fit: cover;
-        transition: transform 0.2s;
-        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-    }
-    .team-member-img:hover {
-        transform: scale(1.05);
-    }
-    @media (max-width: 767.98px) {
-        .text-content-mobile {
-            text-align: left !important;
+    <style>
+        .section-spacing {
+            padding-top: 6rem;
+            padding-bottom: 6rem;
         }
-    }
-</style>
+        .navbar-custom {
+            background-color: #ff9900;
+        }
+        .navbar-custom .navbar-brand, .navbar-custom .nav-link {
+            color: #ffffff !important;
+        }
+        .btn-primary {
+            background-color: #ffc107;
+            border-color: #ffc107;
+        }
+        .btn-primary:hover {
+            background-color: #ffa000;
+            border-color: #ffa000;
+        }
+        .btn-outline-invest {
+            color: #ffc107;
+            border-color: #ffc107;
+        }
+        .btn-outline-invest:hover {
+            color: #212529;
+            background-color: #ffc107;
+            border-color: #ffc107;
+        }
+        .catpuccino-section {
+            background: linear-gradient(0deg, #ffe0b2 0%, #fff 100%);
+        }
+
+        /* 🎯 REGLAS PARA HACER EL CARRUSEL RECTANGULAR GRANDE Y REDONDEADO (16:9) */
+        #catpuccinoCarousel {
+            position: relative;
+            width: 100%;
+            max-width: 1200px; /* ANCHO MÁXIMO DEL RECTÁNGULO */
+            margin: auto;
+            height: 675px; /* ALTURA DEL RECTÁNGULO (1200 * 0.5625) */
+            overflow: hidden;
+            border-radius: 1rem; /* ESQUINAS REDONDEADAS */
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        }
         
+        /* Eliminar el padding extra del p-5 que envuelve el carrusel */
+        #scroll .col-lg-6:nth-child(1) .p-5 {
+            padding: 0px !important; 
+            display: flex; 
+            justify-content: center;
+            align-items: center;
+            height: 100%; 
+        }
+
+        .carousel-inner {
+            position: relative;
+            width: 100%;
+            height: 100%; 
+            border-radius: 1rem; 
+        }
+
+        .carousel-item {
+            position: absolute; 
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%; 
+            display: flex; 
+            justify-content: center;
+            align-items: center;
+            background-color: #f8f9fa; /* Color de fondo si la imagen no ocupa todo el espacio */
+        }
+
+        .carousel-item img {
+            display: block;
+            width: 100%;
+            height: 100%; 
+            max-width: 100%; 
+            object-fit: contain; /* Muestra la imagen COMPLETA sin recorte */
+            border-radius: 1rem; /* Esquinas redondeadas para la imagen, NO círculo */
+        }
+        
+        /* 🎨 ESTILOS PARA QUE LAS FLECHAS SE VEAN MEJOR Y ESTÉN DENTRO Y ALINEADAS */
+        .carousel-control-prev,
+        .carousel-control-next {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 8%;
+            color: #fff;
+            opacity: 1.0; 
+            border-radius: 0; 
+        }
+
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            background-color: rgba(0, 0, 0, 0.5); 
+            border-radius: 50%; /* Iconos de las flechas siguen siendo redondos */
+            padding: 15px; 
+            font-size: 1.5rem; 
+        }
+
+        /* ESTILOS DE MIEMBROS DEL EQUIPO */
         .team-member-img {
             width: 100px;
             height: 100px;
@@ -154,10 +132,6 @@
             }
         }
     </style>
-    <link rel="icon" type="image/x-icon" href="assets/favicon.png" />
-    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet" />
     <link href="css/styles.css" rel="stylesheet" />
 </head>
 <body id="page-top">
@@ -234,15 +208,14 @@
                             </div>
                             <div class="carousel-inner catpuccino-carousel-container">
                                 <div class="carousel-item active">
-    <img src="assets/img/imageCarrusel.png" class="d-block" alt="Captura de Catpuccino 1" onerror="this.onerror=null;this.src='https://placehold.co/800x450/ff9900/ffffff?text=Catpuccino+1';">
-</div>
-<div class="carousel-item">
-    <img src="PhotosGDD/REFERENCIAEstacionComida.png" class="d-block" alt="Captura de Catpuccino 2" onerror="this.onerror=null;this.src='https://placehold.co/800x450/ff9900/ffffff?text=Catpuccino+2';">
-</div>
-<div class="carousel-item">
-    <img src="PhotosGDD/PantallaInicio.png" class="d-block" alt="Cartel de Catpuccino" onerror="this.onerror=null;this.src='https://placehold.co/800x450/ff9900/ffffff?text=Catpuccino+Poster';">
-</div>
-
+                                    <img src="assets/img/imageCarrusel.png" class="d-block" alt="Captura de Catpuccino 1" onerror="this.onerror=null;this.src='https://placehold.co/800x450/ff9900/ffffff?text=Catpuccino+1';">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="PhotosGDD/REFERENCIAEstacionComida.png" class="d-block" alt="Captura de Catpuccino 2" onerror="this.onerror=null;this.src='https://placehold.co/800x450/ff9900/ffffff?text=Catpuccino+2';">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="PhotosGDD/PantallaInicio.png" class="d-block" alt="Cartel de Catpuccino" onerror="this.onerror=null;this.src='https://placehold.co/800x450/ff9900/ffffff?text=Catpuccino+Poster';">
+                                </div>
                             </div>
                             <button class="carousel-control-prev" type="button" data-bs-target="#catpuccinoCarousel" data-bs-slide="prev">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
