@@ -1,448 +1,903 @@
 <!DOCTYPE html>
+
 <html lang="es">
+
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>Mango Studio</title>
-    <link rel="icon" type="image/x-icon" href="assets/favicon.png" />
-    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet" />
 
-    <style>
-        .section-spacing {
-            padding-top: 6rem;
-            padding-bottom: 6rem;
-        }
+    <meta charset="utf-8" />
 
-        .navbar-custom {
-            background-color: #ff9900;
-        }
-        .navbar-custom .navbar-brand, .navbar-custom .nav-link {
-            color: #ffffff !important;
-        }
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-        .btn-primary {
-            background-color: #ffc107;
-            border-color: #ffc107;
-        }
-        .btn-primary:hover {
-            background-color: #ffa000;
-            border-color: #ffa000;
-        }
+    <title>Mango Studio</title>
 
-        .btn-outline-invest {
-            color: #ffc107;
-            border-color: #ffc107;
-        }
-        .btn-outline-invest:hover {
-            color: #212529;
-            background-color: #ffc107;
-            border-color: #ffc107;
-        }
+    <link rel="icon" type="image/x-icon" href="assets/favicon.png" />
 
-        .catpuccino-section {
-            background: linear-gradient(0deg, #ffe0b2 0%, #fff 100%);
-        }
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 
-        .catpuccino-carousel-container {
-            border-radius: 0 !important;
-            overflow: hidden;
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-        }
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-        .carousel-item, .carousel-item img {
-            border-radius: 0 !important;
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet" />
 
-        .team-member-img {
-            width: 100px;
-            height: 100px;
-            object-fit: cover;
-            transition: transform 0.2s;
-            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-        }
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet" />
 
-        .team-member-img:hover {
-            transform: scale(1.05);
-        }
 
-        /* Regla de justificación para párrafos largos */
-        .text-content-mobile,
-        .modal-body p:nth-child(3) {
-            text-align: justify;
-        }
 
-        @media (max-width: 767.98px) {
-            .text-content-mobile {
-                text-align: left !important;
-            }
-            .modal-body p:nth-child(3) {
+    <style>
+
+        /* Aumentar el espacio entre secciones (Requisito 1) */
+
+        .section-spacing {
+
+            padding-top: 6rem;
+
+            padding-bottom: 6rem;
+
+        }
+
+
+
+        /* Ajuste para el color de la navbar */
+
+        .navbar-custom {
+
+            background-color: #ff9900; /* Mango Orange */
+
+        }
+
+        .navbar-custom .navbar-brand, .navbar-custom .nav-link {
+
+            color: #ffffff !important;
+
+        }
+
+
+
+        /* Estilo para los botones principales (Mango Yellow) */
+
+        .btn-primary {
+
+            background-color: #ffc107;
+
+            border-color: #ffc107;
+
+        }
+
+        .btn-primary:hover {
+
+            background-color: #ffa000;
+
+            border-color: #ffa000;
+
+        }
+
+
+
+        /* Estilo para el botón de Inversión */
+
+        .btn-outline-invest {
+
+            color: #ffc107;
+
+            border-color: #ffc107;
+
+        }
+
+        .btn-outline-invest:hover {
+
+            color: #212529;
+
+            background-color: #ffc107;
+
+            border-color: #ffc107;
+
+        }
+
+
+
+        /* Estilo para la sección de Catpuccino con gradiente */
+
+        .catpuccino-section {
+
+            background: linear-gradient(0deg, #ffe0b2 0%, #fff 100%);
+
+        }
+
+
+
+        /* === INICIO DE CORRECCIÓN: HACER EL CARRUSEL RECTANGULAR 16:9 === */
+
+        /* Contenedor principal del carrusel: Define el ratio y elimina la redondez. */
+
+        .catpuccino-carousel-container {
+
+            border-radius: 0 !important; /* Fuerza bordes rectos en el contenedor principal */
+
+            overflow: hidden;
+
+            position: relative;
+
+            padding-bottom: 56.25%; /* Relación de aspecto 16:9 (Alto / Ancho) */
+
+            height: 0; /* Necesario para que padding-bottom funcione como relación de aspecto */
+
+        }
+
+
+
+        /* Item e Imagen: Asegura que llenen el contenedor 16:9 sin redondeos. */
+
+        .carousel-item, .carousel-item img {
+
+            border-radius: 0 !important; /* Fuerza bordes rectos en las imágenes */
+
+            position: absolute; /* Permite que la imagen se estire dentro del contenedor de relación de aspecto */
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover; /* Asegura que la imagen cubra el área sin deformarse */
+
+        }
+
+        /* === FIN DE CORRECCIÓN === */
+
+
+
+
+
+        /* Custom styling para reducir el tamaño de las imágenes del equipo (Requisito 4) */
+
+        .team-member-img {
+
+            width: 100px;
+
+            height: 100px;
+
+            object-fit: cover;
+
+            transition: transform 0.2s;
+
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+
+        }
+
+
+
+        .team-member-img:hover {
+
+            transform: scale(1.05);
+
+        }
+
+
+
+        /* Solución para textos justificados en móvil (Requisito 6) */
+
+        /* Eliminamos el text-justify en el HTML, y nos aseguramos que en móviles esté alineado a la izquierda */
+
+        @media (max-width: 767.98px) {
+
+            .text-content-mobile {
+
                 text-align: left !important;
+
             }
-        }
-    </style>
-    <link rel="icon" type="image/x-icon" href="assets/favicon.png" />
-    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet" />
-    <link href="css/styles.css" rel="stylesheet" />
+
+        }
+
+    </style>
+
+    <link rel="icon" type="image/x-icon" href="assets/favicon.png" />
+
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet" />
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet" />
+
+    <link href="css/styles.css" rel="stylesheet" />
+
 </head>
+
 <body id="page-top">
-    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
-        <div class="container px-5">
-            <a class="navbar-brand" href="#page-top">Mango Studio</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-               <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="https://instagram.com/mangostudiourjc" target="_blank" aria-label="Instagram">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="https://x.com/mangostudiourjc" target="_blank" aria-label="X">
-                            <i class="fab fa-twitter"></i> 
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="https://youtube.com/@mangostudiourjc" target="_blank" aria-label="YouTube">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="https://tiktok.com/@mangostudiourjc" target="_blank" aria-label="TikTok">
-                            <i class="fab fa-tiktok"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="https://mangostudiourjc.itch.io" target="_blank" aria-label="Itch.io">
-                            <i class="fab fa-itch-io"></i>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <header class="masthead text-center text-white">
-        <div class="masthead-content">
-            <div class="container px-5">
-                <h1 class="masthead-heading mb-0">Mango Studio</h1>
-                <h2 class="masthead-subheading mb-0">Mango twist: the flavor of your next level!</h2>
-                <a class="btn btn-primary btn-xl rounded-pill mt-5" href="#scroll">Learn more</a>
-            </div>
-        </div>
-        <div class="bg-circle-1 bg-circle"></div>
-    </header>
 
-    <section id="about" class="section-spacing">
-        <div class="container px-5">
-            <div class="row gx-5 align-items-center">
-                <div class="col-lg-6 order-lg-2">
-                    <div class="p-5"><img class="img-fluid rounded-circle" src="assets/img/01.jpg" alt="Imagen del equipo o logo" /></div>
-                </div>
-                <div class="col-lg-6 order-lg-1">
-                    <div class="p-5">
-                        <h2 class="display-4">Quienes somos</h2>
-                        <p class="text-content-mobile">En Mango Studio, somos un equipo formado por seis estudiantes de Diseño y Desarrollo de Videojuegos. Después de mucho trabajo y dedicación, estamos orgullosos de presentar nuestro nuevo proyecto: Catpuccino. ¡Un juego hecho con mucho entusiasmo y por supuesto un toque dulce! Con Catpuccino, buscamos ofrecer una experiencia única, cozy y divertida para todos. ¡Nos encanta lo que hacemos y esperamos que nos acompañeis en este viaje!</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
 
-    <section id="scroll" class="section-spacing catpuccino-section">
-        <div class="container px-5">
-            <div class="row gx-5 align-items-center">
+        <div class="container px-5">
 
-                <div class="col-lg-6 order-lg-1">
-                    <div class="p-5 d-flex justify-content-center">
-                        <div id="catpuccinoCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000" style="width: 100%; max-width: 100%;">
+            <a class="navbar-brand" href="#page-top">Mango Studio</a>
 
-                            <div class="carousel-indicators">
-                                <button type="button" data-bs-target="#catpuccinoCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                                <button type="button" data-bs-target="#catpuccinoCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                                <button type="button" data-bs-target="#catpuccinoCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                            </div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
 
-                            <div class="carousel-inner catpuccino-carousel-container">
-                                <div class="carousel-item active">
-                                    <img src="assets/img/carrusel1.png" class="d-block" alt="Captura de Catpuccino 1" onerror="this.onerror=null;this.src='https://placehold.co/800x450/ff9900/ffffff?text=Catpuccino+1';">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="PhotosGDD/REFERENCIAEstacionComida.png" class="d-block" alt="Captura de Catpuccino 2" onerror="this.onerror=null;this.src='https://placehold.co/800x450/ff9900/ffffff?text=Catpuccino+2';">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="PhotosGDD/PantallaInicio.png" class="d-block" alt="Cartel de Catpuccino" onerror="this.onerror=null;this.src='https://placehold.co/800x450/ff9900/ffffff?text=Catpuccino+Poster';">
-                                </div>
-                            </div>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
 
-                            <button class="carousel-control-prev" type="button" data-bs-target="#catpuccinoCarousel" data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Anterior</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#catpuccinoCarousel" data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Siguiente</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
+               <ul class="navbar-nav ms-auto">
 
-                <div class="col-lg-6 order-lg-2">
-                    <div class="p-5">
-                       <h2 class="display-4">Catpuccino </h2>
-                        <p class="text-content-mobile">¡Catpuccino es la experiencia de simulación y gestión más tierna! Sumérgete en un mundo donde sirves deliciosas bebidas y postres a adorables clientes junto a felinos. Estarás en tu cafetería con un estilo encantador, descubre nuevas recetas de cafés y construye un espacio acogedor que te haga sentir en casa. ¡Un juego hecho con mucho cariño para calentar tu corazón!</p>
-                        <a class="btn btn-primary btn-xl rounded-pill mt-4 me-3" href="https://mangostudiourjc.itch.io/catpuccino" target="_blank">
-                            <i class="fab fa-itch-io me-2"></i> JUEGA LA DEMO EN ITCH.IO!
-                        </a>
-                        <a class="btn btn-outline-invest btn-xl rounded-pill mt-4" href="#contact-us">
-                            Contacta con nosotros
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+                    <li class="nav-item">
 
-    <section id="games" class="section-spacing bg-light">
-        <div class="container px-5">
-            <h2 class="text-center mb-5 display-4">Nuestros Juegos</h2>
-            <div class="row justify-content-center">
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <a href="https://mangostudiourjc.itch.io/catpuccino" target="_blank" class="text-decoration-none text-dark">
-                        <div class="card shadow-sm h-100 rounded-lg">
-                            <img src="assets/img/cartelFINAL.png" class="card-img-top rounded-t" alt="Catpuccino" onerror="this.onerror=null;this.src='https://placehold.co/600x400/ffc107/212529?text=Catpuccino';">
-                            <div class="card-body text-center">
-                                <h5 class="card-title fw-bold">Catpuccino</h5>
-                                <p class="card-text">¿Ya has visto la demo? ¡Disponible en un futuro!</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <a href="https://drive.google.com/file/d/1wTb5Bw5j7bLPUMFiHEw1gab3hCIc4n1L/view?usp=drive_link" target="_blank" class="text-decoration-none text-dark">
-                        <div class="card shadow-sm h-100 rounded-lg">
-                            <img src="assets/Música.png" class="card-img-top rounded-t" alt="Music Trivia" onerror="this.onerror=null;this.src='https://placehold.co/600x400/212529/ffc107?text=Music+Trivia';">
-                            <div class="card-body text-center">
-                                <h5 class="card-title fw-bold">Music Trivia</h5>
-                                <p class="card-text">Demuestra cuanto sabes de musica con nuestra app, Music Trivia</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
+                        <a class="nav-link" href="https://instagram.com/mangostudiourjc" target="_blank" aria-label="Instagram">
 
-    <section id="team" class="section-spacing">
-        <div class="container px-5">
-            <h2 class="display-4 text-center">¡Conoce a nuestro equipo!</h2>
-            <p class="text-center lead mb-5 text-muted">
-                Pincha en las imágenes de los integrantes si quieres saber más sobre ellos.
-            </p>
-            <div class="row justify-content-center">
-                <div class="col-6 col-md-4 col-lg-2 mb-4">
-                    <div class="text-center">
-                        <a href="#" data-bs-toggle="modal" data-bs-target="#teamMember1Modal">
-                            <img class="img-fluid rounded-circle mb-3 team-member-img" src="assets/img/member1.PNG" alt="Angela" onerror="this.onerror=null;this.src='https://placehold.co/100x100/ffc107/212529?text=A';"/>
-                        </a>
-                        <h5 class="fw-bold">Ángela</h5>
-                    </div>
-                </div>
-                <div class="col-6 col-md-4 col-lg-2 mb-4">
-                    <div class="text-center">
-                        <a href="#" data-bs-toggle="modal" data-bs-target="#teamMember2Modal">
-                            <img class="img-fluid rounded-circle mb-3 team-member-img" src="assets/img/member2.jpg" alt="Laura" onerror="this.onerror=null;this.src='https://placehold.co/100x100/ffc107/212529?text=L';"/>
-                        </a>
-                        <h5 class="fw-bold">Laura</h5>
-                    </div>
-                </div>
-                <div class="col-6 col-md-4 col-lg-2 mb-4">
-                    <div class="text-center">
-                        <a href="#" data-bs-toggle="modal" data-bs-target="#teamMember3Modal">
-                            <img class="img-fluid rounded-circle mb-3 team-member-img" src="assets/img/member3.jpg" alt="Alberto" onerror="this.onerror=null;this.src='https://placehold.co/100x100/ffc107/212529?text=Al';"/>
-                        </a>
-                        <h5 class="fw-bold">Alberto</h5>
-                    </div>
-                </div>
-                <div class="col-6 col-md-4 col-lg-2 mb-4">
-                    <div class="text-center">
-                        <a href="#" data-bs-toggle="modal" data-bs-target="#teamMember4Modal">
-                            <img class="img-fluid rounded-circle mb-3 team-member-img" src="assets/img/member4.jpg" alt="Garazi" onerror="this.onerror=null;this.src='https://placehold.co/100x100/ffc107/212529?text=G';"/>
-                        </a>
-                        <h5 class="fw-bold">Garazi</h5>
-                    </div>
-                </div>
-                <div class="col-6 col-md-4 col-lg-2 mb-4">
-                    <div class="text-center">
-                        <a href="#" data-bs-toggle="modal" data-bs-target="#teamMember5Modal">
-                            <img class="img-fluid rounded-circle mb-3 team-member-img" src="assets/img/member5.jpg" alt="Cristina" onerror="this.onerror=null;this.src='https://placehold.co/100x100/ffc107/212529?text=C';"/>
-                        </a>
-                        <h5 class="fw-bold">Cristina</h5>
-                    </div>
-                </div>
-                <div class="col-6 col-md-4 col-lg-2 mb-4">
-                    <div class="text-center">
-                        <a href="#" data-bs-toggle="modal" data-bs-target="#teamMember6Modal">
-                            <img class="img-fluid rounded-circle mb-3 team-member-img" src="assets/img/member6.jpg" alt="Pablo" onerror="this.onerror=null;this.src='https://placehold.co/100x100/ffc107/212529?text=P';"/>
-                        </a>
-                        <h5 class="fw-bold">Pablo</h5>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+                            <i class="fab fa-instagram"></i>
 
-    <section id="contact-us" class="section-spacing bg-light">
-        <div class="container px-5 text-center">
-            <h2 class="display-4">Contacta con nosotros</h2>
-            <p class="lead mb-4">
-                ¿Quieres colaborar con nosotros o simplemente hacernos sugerencias? No dudes en contactarnos, estamos encantados de saber tu opinión. ¡Síguenos en nuestras redes sociales para estar al día de las novedades!
-            </p>
-            <a class="btn btn-primary btn-xl rounded-pill" href="mailto:mangostudio.sa@gmail.com">
-                <i class="fas fa-envelope me-2"></i> Contáctanos por Correo
-            </a>
-        </div>
-    </section>
+                        </a>
 
-    <div class="modal fade" id="teamMember1Modal" tabindex="-1" aria-labelledby="teamMember1ModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="teamMember1ModalLabel">Ángela</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-center">
-                    <img class="img-fluid rounded-circle mb-3" src="assets/img/member1.PNG" alt="Angela" style="max-width: 150px;" onerror="this.onerror=null;this.src='https://placehold.co/150x150/ffc107/212529?text=A';"/>
-                    <p><strong>Rol en el equipo:</strong> Artista 3D, 2D y animación</p>
-                    <p>Hola!! Soy Ángela. Me dedico a desarrollar videojuegos y me encanta crear mundos que enganchen y dedico todas mis fuerzas a cada proyecto. Mi juego favorito es Stardew Valley, así que sí, adoro los juegos tranquilos y con ese progreso que te atrapa sin darte cuenta. Si desaparezco, probablemente estoy arrasando en la mina.</p>
-                    <div class="social-links mt-3 d-flex justify-content-center">
-                        <a class="nav-link mx-2" href="https://instagram.com/deex.ddv" target="_blank" aria-label="Instagram">
-                            <i class="fab fa-instagram fa-2x"></i>
-                        </a>
-                        <a class="nav-link mx-2" href="https://angelasdiaz.itch.io" target="_blank" aria-label="Itch.io">
-                            <i class="fab fa-itch-io fa-2x"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="teamMember2Modal" tabindex="-1" aria-labelledby="teamMember2ModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="teamMember2ModalLabel">Laura</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-center">
-                    <img class="img-fluid rounded-circle mb-3" src="assets/img/member2.jpg" alt="Laura" style="max-width: 150px;" onerror="this.onerror=null;this.src='https://placehold.co/150x150/ffc107/212529?text=L';"/>
-                    <p><strong>Rol en el equipo:</strong> Artista 3D, 2D y música</p>
-                    <p>Soy Laura, me apasiona crear mundos y personajes, pero disfruto especialmente creando entornos que me permitan contar historias desde otra perspectiva. En mi tiempo libre me gusta leer libros y jugar videojuegos, siempre con ganas de sumergirme en una nueva historia. El juego al que siempre vuelvo una y otra vez es Life is strange 2!</p>
-                    <div class="social-links mt-3 d-flex justify-content-center">
-                        <a class="nav-link mx-2" href="https://instagram.com/beepbeepmoons" target="_blank" aria-label="Instagram">
-                            <i class="fab fa-instagram fa-2x"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="teamMember3Modal" tabindex="-1" aria-labelledby="teamMember3ModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="teamMember3ModalLabel">Alberto</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-center">
-                    <img class="img-fluid rounded-circle mb-3" src="assets/img/member3.jpg" alt="Alberto" style="max-width: 150px;" onerror="this.onerror=null;this.src='https://placehold.co/150x150/ffc107/212529?text=Al';"/>
-                    <p><strong>Rol en el equipo:</strong> Artista 2D, diseñador y animador de UI</p>
-                    <p>¡Hola! Soy Alberto, artista 2D y diseñador de interfaces en Mango Studio. Mi trabajo es dar vida a nuestros juegos con animación y arte, y asegurarme de que tu experiencia de juego sea fluida y clara a través de un diseño de interfaz intuitivo. Como gran aficionado tanto a las historias profundas como a la adrenalina del multijugador, me esfuerzo por crear elementos visuales que conecten con el jugador al instante.</p>
-                    <div class="social-links mt-3 d-flex justify-content-center">
-                        <a class="nav-link mx-2" href="https://instagram.com/albeertolgc_" target="_blank" aria-label="Instagram">
-                            <i class="fab fa-instagram fa-2x"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="teamMember4Modal" tabindex="-1" aria-labelledby="teamMember4ModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="teamMember4ModalLabel">Garazi</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-center">
-                    <img class="img-fluid rounded-circle mb-3" src="assets/img/member4.jpg" alt="Garazi" style="max-width: 150px;" onerror="this.onerror=null;this.src='https://placehold.co/150x150/ffc107/212529?text=G';"/>
-                    <p><strong>Rol en el equipo:</strong> Artista 2D y game designer</p>
-                    <p>Hola soy Garazi, aunque todo el mundo me llama Gara, llevo desde que tengo uso de razón dibujando y es lo que quiero seguir haciendo el resto de mi vida, por ello y por mi amor por los videojuegos, ahora soy artista 2d para videojuegos, hago desde personajes y escenarios hasta props e interfaces. Mi objetivo ahora es ofrecer experiencias atractivas e inmersivas a través de mi arte.</p>
-                    <div class="social-links mt-3 d-flex justify-content-center">
-                        <a class="nav-link mx-2" href="https://instagram.com/garalart_" target="_blank" aria-label="Instagram">
-                            <i class="fab fa-instagram fa-2x"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="teamMember5Modal" tabindex="-1" aria-labelledby="teamMember5ModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="teamMember5ModalLabel">Cristina</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-center">
-                    <img class="img-fluid rounded-circle mb-3" src="assets/img/member5.jpg" alt="Cristina" style="max-width: 150px;" onerror="this.onerror=null;this.src='https://placehold.co/150x150/ffc107/212529?text=C';"/>
-                    <p><strong>Rol en el equipo:</strong> Programadora y game designer</p>
-                    <p>Soy Cristina, una persona creativa y apasionada por los videojuegos, especialmente por experiencias como Los Sims 4. Me encanta desarrollar mis propios juegos y dar vida a nuevas ideas. Además, no puedo vivir sin música: me inspira, me acompaña y es parte fundamental de mi día a día.</p>
-                    <div class="social-links mt-3 d-flex justify-content-center">
-                        <a class="nav-link mx-2" href="https://instagram.com/crisstinagl_" target="_blank" aria-label="Instagram">
-                            <i class="fab fa-instagram fa-2x"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="teamMember6Modal" tabindex="-1" aria-labelledby="teamMember6ModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="teamMember6ModalLabel">Pablo</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-center">
-                    <img class="img-fluid rounded-circle mb-3" src="assets/img/member6.jpg" alt="Pablo" style="max-width: 150px;" onerror="this.onerror=null;this.src='https://placehold.co/150x150/ffc107/212529?text=P';"/>
-                    <p><strong>Rol en el equipo:</strong> Programador</p>
-                    <div class="social-links mt-3 d-flex justify-content-center">
-                        <a class="nav-link mx-2" href="https://instagram.com/pabloo.247" target="_blank" aria-label="Instagram">
-                            <i class="fab fa-instagram fa-2x"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                    </li>
+
+                    <li class="nav-item">
+
+                        <a class="nav-link" href="https://x.com/mangostudiourjc" target="_blank" aria-label="X">
+
+                            <i class="fab fa-twitter"></i> 
+
+                        </a>
+
+                    </li>
+
+                    <li class="nav-item">
+
+                        <a class="nav-link" href="https://youtube.com/@mangostudiourjc" target="_blank" aria-label="YouTube">
+
+                            <i class="fab fa-youtube"></i>
+
+                        </a>
+
+                    </li>
+
+                    <li class="nav-item">
+
+                        <a class="nav-link" href="https://tiktok.com/@mangostudiourjc" target="_blank" aria-label="TikTok">
+
+                            <i class="fab fa-tiktok"></i>
+
+                        </a>
+
+                    </li>
+
+                    <li class="nav-item">
+
+                        <a class="nav-link" href="https://mangostudiourjc.itch.io" target="_blank" aria-label="Itch.io">
+
+                            <i class="fab fa-itch-io"></i>
+
+                        </a>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+    <header class="masthead text-center text-white">
+
+        <div class="masthead-content">
+
+            <div class="container px-5">
+
+                <h1 class="masthead-heading mb-0">Mango Studio</h1>
+
+                <h2 class="masthead-subheading mb-0">Mango twist: the flavor of your next level!</h2>
+
+                <a class="btn btn-primary btn-xl rounded-pill mt-5" href="#scroll">Learn more</a>
+
+            </div>
+
+        </div>
+
+        <div class="bg-circle-1 bg-circle"></div>
+
+    </header>
 
 
-    <footer class="py-5 bg-black">
-        <div class="container px-5"><p class="m-0 text-center text-white small">Mango Studio</p></div>
-    </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <section id="about" class="section-spacing">
+
+        <div class="container px-5">
+
+            <div class="row gx-5 align-items-center">
+
+                <div class="col-lg-6 order-lg-2">
+
+                    <div class="p-5"><img class="img-fluid rounded-circle" src="assets/img/01.jpg" alt="Imagen del equipo o logo" /></div>
+
+                </div>
+
+                <div class="col-lg-6 order-lg-1">
+
+                    <div class="p-5">
+
+                        <h2 class="display-4">Quienes somos</h2>
+
+                        <p class="text-content-mobile">En Mango Studio, somos un equipo formado por seis estudiantes de Diseño y Desarrollo de Videojuegos. Después de mucho trabajo y dedicación, estamos orgullosos de presentar nuestro nuevo proyecto: Catpuccino. ¡Un juego hecho con mucho entusiasmo y por supuesto un toque dulce! Con Catpuccino, buscamos ofrecer una experiencia única, cozy y divertida para todos. ¡Nos encanta lo que hacemos y esperamos que nos acompañeis en este viaje!</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <section id="scroll" class="section-spacing catpuccino-section">
+
+        <div class="container px-5">
+
+            <div class="row gx-5 align-items-center">
+
+
+
+                <div class="col-lg-6 order-lg-1">
+
+                    <div class="p-5 d-flex justify-content-center">
+
+                        <div id="catpuccinoCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000" style="width: 100%; max-width: 100%;">
+
+
+
+                            <div class="carousel-indicators">
+
+                                <button type="button" data-bs-target="#catpuccinoCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+
+                                <button type="button" data-bs-target="#catpuccinoCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+
+                                <button type="button" data-bs-target="#catpuccinoCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+
+                            </div>
+
+
+
+                            <div class="carousel-inner catpuccino-carousel-container">
+
+                                <div class="carousel-item active">
+
+                                    <img src="assets/img/carrusel1.png" class="d-block" alt="Captura de Catpuccino 1" onerror="this.onerror=null;this.src='https://placehold.co/800x450/ff9900/ffffff?text=Catpuccino+1';">
+
+                                </div>
+
+                                <div class="carousel-item">
+
+                                    <img src="PhotosGDD/REFERENCIAEstacionComida.png" class="d-block" alt="Captura de Catpuccino 2" onerror="this.onerror=null;this.src='https://placehold.co/800x450/ff9900/ffffff?text=Catpuccino+2';">
+
+                                </div>
+
+                                <div class="carousel-item">
+
+                                    <img src="PhotosGDD/PantallaInicio.png" class="d-block" alt="Cartel de Catpuccino" onerror="this.onerror=null;this.src='https://placehold.co/800x450/ff9900/ffffff?text=Catpuccino+Poster';">
+
+                                </div>
+
+                            </div>
+
+
+
+                            <button class="carousel-control-prev" type="button" data-bs-target="#catpuccinoCarousel" data-bs-slide="prev">
+
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+
+                                <span class="visually-hidden">Anterior</span>
+
+                            </button>
+
+                            <button class="carousel-control-next" type="button" data-bs-target="#catpuccinoCarousel" data-bs-slide="next">
+
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+
+                                <span class="visually-hidden">Siguiente</span>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="col-lg-6 order-lg-2">
+
+                    <div class="p-5">
+
+                       <h2 class="display-4">Catpuccino </h2>
+
+                        <p class="text-content-mobile">¡Catpuccino es la experiencia de simulación y gestión más tierna! Sumérgete en un mundo donde sirves deliciosas bebidas y postres a adorables clientes junto a felinos. Estarás en tu cafetería con un estilo encantador, descubre nuevas recetas de cafés y construye un espacio acogedor que te haga sentir en casa. ¡Un juego hecho con mucho cariño para calentar tu corazón!</p>
+
+                        <a class="btn btn-primary btn-xl rounded-pill mt-4 me-3" href="https://mangostudiourjc.itch.io/catpuccino" target="_blank">
+
+                            <i class="fab fa-itch-io me-2"></i> JUEGA LA DEMO EN ITCH.IO!
+
+                        </a>
+
+                        <a class="btn btn-outline-invest btn-xl rounded-pill mt-4" href="#contact-us">
+
+                            Contacta con nosotros
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <section id="games" class="section-spacing bg-light">
+
+        <div class="container px-5">
+
+            <h2 class="text-center mb-5 display-4">Nuestros Juegos</h2>
+
+            <div class="row justify-content-center">
+
+                <div class="col-md-6 col-lg-4 mb-4">
+
+                    <a href="https://mangostudiourjc.itch.io/catpuccino" target="_blank" class="text-decoration-none text-dark">
+
+                        <div class="card shadow-sm h-100 rounded-lg">
+
+                            <img src="assets/img/cartelFINAL.png" class="card-img-top rounded-t" alt="Catpuccino" onerror="this.onerror=null;this.src='https://placehold.co/600x400/ffc107/212529?text=Catpuccino';">
+
+                            <div class="card-body text-center">
+
+                                <h5 class="card-title fw-bold">Catpuccino</h5>
+
+                                <p class="card-text">¿Ya has visto la demo? ¡Disponible en un futuro!</p>
+
+                            </div>
+
+                        </div>
+
+                    </a>
+
+                </div>
+
+                <div class="col-md-6 col-lg-4 mb-4">
+
+                    <a href="https://drive.google.com/file/d/1wTb5Bw5j7bLPUMFiHEw1gab3hCIc4n1L/view?usp=drive_link" target="_blank" class="text-decoration-none text-dark">
+
+                        <div class="card shadow-sm h-100 rounded-lg">
+
+                            <img src="assets/music.png" class="card-img-top rounded-t" alt="Music Trivia" onerror="this.onerror=null;this.src='https://placehold.co/600x400/212529/ffc107?text=Music+Trivia';">
+
+                            <div class="card-body text-center">
+
+                                <h5 class="card-title fw-bold">Music Trivia</h5>
+
+                                <p class="card-text">Demuestra cuanto sabes de musica con nuestra app, Music Trivia</p>
+
+                            </div>
+
+                        </div>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <section id="team" class="section-spacing">
+
+        <div class="container px-5">
+
+            <h2 class="display-4 text-center">¡Conoce a nuestro equipo!</h2>
+
+            <p class="text-center lead mb-5 text-muted">
+
+                Pincha en las imágenes de los integrantes si quieres saber más sobre ellos.
+
+            </p>
+
+            <div class="row justify-content-center">
+
+                <div class="col-6 col-md-4 col-lg-2 mb-4">
+
+                    <div class="text-center">
+
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#teamMember1Modal">
+
+                            <img class="img-fluid rounded-circle mb-3 team-member-img" src="assets/img/member1.PNG" alt="Angela" onerror="this.onerror=null;this.src='https://placehold.co/100x100/ffc107/212529?text=A';"/>
+
+                        </a>
+
+                        <h5 class="fw-bold">Ángela</h5>
+
+                    </div>
+
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-2 mb-4">
+
+                    <div class="text-center">
+
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#teamMember2Modal">
+
+                            <img class="img-fluid rounded-circle mb-3 team-member-img" src="assets/img/member2.jpg" alt="Laura" onerror="this.onerror=null;this.src='https://placehold.co/100x100/ffc107/212529?text=L';"/>
+
+                        </a>
+
+                        <h5 class="fw-bold">Laura</h5>
+
+                    </div>
+
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-2 mb-4">
+
+                    <div class="text-center">
+
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#teamMember3Modal">
+
+                            <img class="img-fluid rounded-circle mb-3 team-member-img" src="assets/img/member3.jpg" alt="Alberto" onerror="this.onerror=null;this.src='https://placehold.co/100x100/ffc107/212529?text=Al';"/>
+
+                        </a>
+
+                        <h5 class="fw-bold">Alberto</h5>
+
+                    </div>
+
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-2 mb-4">
+
+                    <div class="text-center">
+
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#teamMember4Modal">
+
+                            <img class="img-fluid rounded-circle mb-3 team-member-img" src="assets/img/member4.jpg" alt="Garazi" onerror="this.onerror=null;this.src='https://placehold.co/100x100/ffc107/212529?text=G';"/>
+
+                        </a>
+
+                        <h5 class="fw-bold">Garazi</h5>
+
+                    </div>
+
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-2 mb-4">
+
+                    <div class="text-center">
+
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#teamMember5Modal">
+
+                            <img class="img-fluid rounded-circle mb-3 team-member-img" src="assets/img/member5.jpg" alt="Cristina" onerror="this.onerror=null;this.src='https://placehold.co/100x100/ffc107/212529?text=C';"/>
+
+                        </a>
+
+                        <h5 class="fw-bold">Cristina</h5>
+
+                    </div>
+
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-2 mb-4">
+
+                    <div class="text-center">
+
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#teamMember6Modal">
+
+                            <img class="img-fluid rounded-circle mb-3 team-member-img" src="assets/img/member6.jpg" alt="Pablo" onerror="this.onerror=null;this.src='https://placehold.co/100x100/ffc107/212529?text=P';"/>
+
+                        </a>
+
+                        <h5 class="fw-bold">Pablo</h5>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <section id="contact-us" class="section-spacing bg-light">
+
+        <div class="container px-5 text-center">
+
+            <h2 class="display-4">Contacta con nosotros</h2>
+
+            <p class="lead mb-4">
+
+                ¿Quieres colaborar con nosotros o simplemente hacernos sugerencias? No dudes en contactarnos, estamos encantados de saber tu opinión. ¡Síguenos en nuestras redes sociales para estar al día de las novedades!
+
+            </p>
+
+            <a class="btn btn-primary btn-xl rounded-pill" href="mailto:mangostudio.sa@gmail.com">
+
+                <i class="fas fa-envelope me-2"></i> Contáctanos por Correo
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+
+    <div class="modal fade" id="teamMember1Modal" tabindex="-1" aria-labelledby="teamMember1ModalLabel" aria-hidden="true">
+
+        <div class="modal-dialog modal-dialog-centered">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <h5 class="modal-title" id="teamMember1ModalLabel">Ángela</h5>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                </div>
+
+                <div class="modal-body text-center">
+
+                    <img class="img-fluid rounded-circle mb-3" src="assets/img/member1.PNG" alt="Angela" style="max-width: 150px;" onerror="this.onerror=null;this.src='https://placehold.co/150x150/ffc107/212529?text=A';"/>
+
+                    <p><strong>Rol en el equipo:</strong> Artista 3D, 2D y animación</p>
+
+                    <p>Hola!! Soy Ángela. Me dedico a desarrollar videojuegos y me encanta crear mundos que enganchen y dedico todas mis fuerzas a cada proyecto. Mi juego favorito es Stardew Valley, así que sí, adoro los juegos tranquilos y con ese progreso que te atrapa sin darte cuenta. Si desaparezco, probablemente estoy arrasando en la mina.</p>
+
+                    <div class="social-links mt-3 d-flex justify-content-center">
+
+                        <a class="nav-link mx-2" href="https://instagram.com/deex.ddv" target="_blank" aria-label="Instagram">
+
+                            <i class="fab fa-instagram fa-2x"></i>
+
+                        </a>
+
+                        <a class="nav-link mx-2" href="https://angelasdiaz.itch.io" target="_blank" aria-label="Itch.io">
+
+                            <i class="fab fa-itch-io fa-2x"></i>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="modal fade" id="teamMember2Modal" tabindex="-1" aria-labelledby="teamMember2ModalLabel" aria-hidden="true">
+
+        <div class="modal-dialog modal-dialog-centered">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <h5 class="modal-title" id="teamMember2ModalLabel">Laura</h5>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                </div>
+
+                <div class="modal-body text-center">
+
+                    <img class="img-fluid rounded-circle mb-3" src="assets/img/member2.jpg" alt="Laura" style="max-width: 150px;" onerror="this.onerror=null;this.src='https://placehold.co/150x150/ffc107/212529?text=L';"/>
+
+                    <p><strong>Rol en el equipo:</strong> Artista 3D, 2D y música</p>
+
+                    <p>Soy Laura, me apasiona crear mundos y personajes, pero disfruto especialmente creando entornos que me permitan contar historias desde otra perspectiva. En mi tiempo libre me gusta leer libros y jugar videojuegos, siempre con ganas de sumergirme en una nueva historia. El juego al que siempre vuelvo una y otra vez es Life is strange 2!</p>
+
+                    <div class="social-links mt-3 d-flex justify-content-center">
+
+                        <a class="nav-link mx-2" href="https://instagram.com/beepbeepmoons" target="_blank" aria-label="Instagram">
+
+                            <i class="fab fa-instagram fa-2x"></i>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="modal fade" id="teamMember3Modal" tabindex="-1" aria-labelledby="teamMember3ModalLabel" aria-hidden="true">
+
+        <div class="modal-dialog modal-dialog-centered">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <h5 class="modal-title" id="teamMember3ModalLabel">Alberto</h5>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                </div>
+
+                <div class="modal-body text-center">
+
+                    <img class="img-fluid rounded-circle mb-3" src="assets/img/member3.jpg" alt="Alberto" style="max-width: 150px;" onerror="this.onerror=null;this.src='https://placehold.co/150x150/ffc107/212529?text=Al';"/>
+
+                    <p><strong>Rol en el equipo:</strong> Artista 2D, diseñador y animador de UI</p>
+
+                    <p>¡Hola! Soy Alberto, artista 2D y diseñador de interfaces en Mango Studio. Mi trabajo es dar vida a nuestros juegos con animación y arte, y asegurarme de que tu experiencia de juego sea fluida y clara a través de un diseño de interfaz intuitivo. Como gran aficionado tanto a las historias profundas como a la adrenalina del multijugador, me esfuerzo por crear elementos visuales que conecten con el jugador al instante.</p>
+
+                    <div class="social-links mt-3 d-flex justify-content-center">
+
+                        <a class="nav-link mx-2" href="https://instagram.com/albeertolgc_" target="_blank" aria-label="Instagram">
+
+                            <i class="fab fa-instagram fa-2x"></i>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="modal fade" id="teamMember4Modal" tabindex="-1" aria-labelledby="teamMember4ModalLabel" aria-hidden="true">
+
+        <div class="modal-dialog modal-dialog-centered">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <h5 class="modal-title" id="teamMember4ModalLabel">Garazi</h5>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                </div>
+
+                <div class="modal-body text-center">
+
+                    <img class="img-fluid rounded-circle mb-3" src="assets/img/member4.jpg" alt="Garazi" style="max-width: 150px;" onerror="this.onerror=null;this.src='https://placehold.co/150x150/ffc107/212529?text=G';"/>
+
+                    <p><strong>Rol en el equipo:</strong> Artista 2D y game designer</p>
+
+                    <p>Hola soy Garazi, aunque todo el mundo me llama Gara, llevo desde que tengo uso de razón dibujando y es lo que quiero seguir haciendo el resto de mi vida, por ello y por mi amor por los videojuegos, ahora soy artista 2d para videojuegos, hago desde personajes y escenarios hasta props e interfaces. Mi objetivo ahora es ofrecer experiencias atractivas e inmersivas a través de mi arte.</p>
+
+                    <div class="social-links mt-3 d-flex justify-content-center">
+
+                        <a class="nav-link mx-2" href="https://instagram.com/garalart_" target="_blank" aria-label="Instagram">
+
+                            <i class="fab fa-instagram fa-2x"></i>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="modal fade" id="teamMember5Modal" tabindex="-1" aria-labelledby="teamMember5ModalLabel" aria-hidden="true">
+
+        <div class="modal-dialog modal-dialog-centered">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <h5 class="modal-title" id="teamMember5ModalLabel">Cristina</h5>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                </div>
+
+                <div class="modal-body text-center">
+
+                    <img class="img-fluid rounded-circle mb-3" src="assets/img/member5.jpg" alt="Cristina" style="max-width: 150px;" onerror="this.onerror=null;this.src='https://placehold.co/150x150/ffc107/212529?text=C';"/>
+
+                    <p><strong>Rol en el equipo:</strong> Programadora y game designer</p>
+
+                    <p>Soy Cristina, una persona creativa y apasionada por los videojuegos, especialmente por experiencias como Los Sims 4. Me encanta desarrollar mis propios juegos y dar vida a nuevas ideas. Además, no puedo vivir sin música: me inspira, me acompaña y es parte fundamental de mi día a día.</p>
+
+                    <div class="social-links mt-3 d-flex justify-content-center">
+
+                        <a class="nav-link mx-2" href="https://instagram.com/crisstinagl_" target="_blank" aria-label="Instagram">
+
+                            <i class="fab fa-instagram fa-2x"></i>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="modal fade" id="teamMember6Modal" tabindex="-1" aria-labelledby="teamMember6ModalLabel" aria-hidden="true">
+
+        <div class="modal-dialog modal-dialog-centered">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <h5 class="modal-title" id="teamMember6ModalLabel">Pablo</h5>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                </div>
+
+                <div class="modal-body text-center">
+
+                    <img class="img-fluid rounded-circle mb-3" src="assets/img/member6.jpg" alt="Pablo" style="max-width: 150px;" onerror="this.onerror=null;this.src='https://placehold.co/150x150/ffc107/212529?text=P';"/>
+
+                    <p><strong>Rol en el equipo:</strong> Programador</p>
+
+                    <div class="social-links mt-3 d-flex justify-content-center">
+
+                        <a class="nav-link mx-2" href="https://instagram.com/pabloo.247" target="_blank" aria-label="Instagram">
+
+                            <i class="fab fa-instagram fa-2x"></i>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+
+    <footer class="py-5 bg-black">
+
+        <div class="container px-5"><p class="m-0 text-center text-white small">Mango Studio</p></div>
+
+    </footer>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
+
 </html>
