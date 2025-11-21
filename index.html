@@ -41,26 +41,79 @@
             background: linear-gradient(0deg, #ffe0b2 0%, #fff 100%);
         }
         
-        /* CÓDIGO DEL CARRUSEL MODIFICADO PARA SER RECTANGULAR Y MOSTRAR IMAGEN COMPLETA */
-        .catpuccino-carousel-container {
-            border-radius: 0 !important;
-            overflow: hidden;
-            position: relative;
-            padding-bottom: 0;
-            height: auto;
-        }
-        .carousel-item {
-            border-radius: 0 !important;
-            position: relative;
-        }
-        .carousel-item img {
-            border-radius: 0 !important;
-            display: block;
-            width: 100%;
-            height: auto;
-            object-fit: contain; /* Esto asegura que la imagen se vea completa sin recortar */
-        }
-        /* FIN DE CÓDIGO DEL CARRUSEL MODIFICADO */
+        <style>
+    /* ... tus estilos existentes ... */
+
+    /* CÓDIGO DEL CARRUSEL MODIFICADO */
+    #catpuccinoCarousel {
+        position: relative; /* Es crucial para que las flechas se posicionen respecto a este */
+        width: 100%;
+        max-width: 800px; /* Puedes ajustar esto al ancho máximo deseado */
+        margin: auto; /* Para centrar el carrusel si el ancho es menor al contenedor */
+        max-height: 450px; /* Establece una altura máxima, ajusta según la relación de tus imágenes */
+        overflow: hidden; /* Asegura que no se desborde si algo fuera más grande */
+        display: flex; /* Para ayudar con el centrado vertical del contenido si es necesario */
+        align-items: center; /* Centra verticalmente el contenido */
+    }
+
+    .catpuccino-carousel-container {
+        border-radius: 0 !important;
+        position: relative;
+        width: 100%;
+        height: 100%; /* El contenedor interno ocupa el 100% del carrusel principal */
+        display: flex; /* Para alinear bien las imágenes */
+        justify-content: center; /* Centrar horizontalmente las imágenes */
+        align-items: center; /* Centrar verticalmente las imágenes */
+    }
+
+    .carousel-item {
+        border-radius: 0 !important;
+        position: absolute; /* Es necesario que Bootstrap lo use así para animaciones */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex !important; /* Asegura que el contenido flex dentro funcione */
+        justify-content: center; /* Centra la imagen dentro del item */
+        align-items: center; /* Centra la imagen dentro del item */
+        background-color: #fff; /* Opcional: un color de fondo si la imagen no llena todo */
+    }
+
+    .carousel-item img {
+        border-radius: 0 !important;
+        display: block;
+        width: 100%;
+        height: 100%; /* La imagen ocupa el 100% de la altura de su contenedor */
+        object-fit: contain; /* ¡Importante! Asegura que la imagen se vea completa sin recorte */
+        max-width: 100%;
+        max-height: 100%;
+    }
+    
+    /* Asegurar que las flechas de navegación estén dentro y centradas */
+    .carousel-control-prev,
+    .carousel-control-next {
+        position: absolute; /* Esto es por defecto en Bootstrap, pero lo confirmamos */
+        top: 0;
+        bottom: 0;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 15%; /* Ajusta el ancho de la zona clicable */
+        color: #fff;
+        text-align: center;
+        opacity: 0.5;
+        transition: opacity 0.15s ease;
+    }
+
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        background-color: rgba(0, 0, 0, 0.3); /* Un poco de fondo para que se vean mejor */
+        border-radius: 50%;
+        padding: 10px;
+    }
+
+</style>
         
         .team-member-img {
             width: 100px;
