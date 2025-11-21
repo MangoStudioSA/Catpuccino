@@ -24,7 +24,6 @@
 
     <style>
 
-        /* Aumentar el espacio entre secciones (Requisito 1) */
 
         .section-spacing {
 
@@ -36,11 +35,10 @@
 
 
 
-        /* Ajuste para el color de la navbar */
 
         .navbar-custom {
 
-            background-color: #ff9900; /* Mango Orange */
+            background-color: #ff9900;
 
         }
 
@@ -52,7 +50,7 @@
 
 
 
-        /* Estilo para los botones principales (Mango Yellow) */
+       
 
         .btn-primary {
 
@@ -72,7 +70,6 @@
 
 
 
-        /* Estilo para el botón de Inversión */
 
         .btn-outline-invest {
 
@@ -94,7 +91,6 @@
 
 
 
-        /* Estilo para la sección de Catpuccino con gradiente */
 
         .catpuccino-section {
 
@@ -104,33 +100,29 @@
 
 
 
-        /* === INICIO DE CORRECCIÓN: HACER EL CARRUSEL RECTANGULAR 16:9 === */
 
-        /* Contenedor principal del carrusel: Define el ratio y elimina la redondez. */
 
         .catpuccino-carousel-container {
 
-            border-radius: 0 !important; /* Fuerza bordes rectos en el contenedor principal */
+            border-radius: 0 !important; 
 
             overflow: hidden;
 
             position: relative;
 
-            padding-bottom: 56.25%; /* Relación de aspecto 16:9 (Alto / Ancho) */
+            padding-bottom: 56.25%; 
 
-            height: 0; /* Necesario para que padding-bottom funcione como relación de aspecto */
+            height: 0; 
 
         }
 
 
 
-        /* Item e Imagen: Asegura que llenen el contenedor 16:9 sin redondeos. */
-
         .carousel-item, .carousel-item img {
 
-            border-radius: 0 !important; /* Fuerza bordes rectos en las imágenes */
+            border-radius: 0 !important; 
 
-            position: absolute; /* Permite que la imagen se estire dentro del contenedor de relación de aspecto */
+            position: absolute; 
 
             top: 0;
 
@@ -140,17 +132,10 @@
 
             height: 100%;
 
-            object-fit: cover; /* Asegura que la imagen cubra el área sin deformarse */
+            object-fit: cover; 
 
         }
 
-        /* === FIN DE CORRECCIÓN === */
-
-
-
-
-
-        /* Custom styling para reducir el tamaño de las imágenes del equipo (Requisito 4) */
 
         .team-member-img {
 
@@ -176,9 +161,6 @@
 
 
 
-        /* Solución para textos justificados en móvil (Requisito 6) */
-
-        /* Eliminamos el text-justify en el HTML, y nos aseguramos que en móviles esté alineado a la izquierda */
 
         @media (max-width: 767.98px) {
 
