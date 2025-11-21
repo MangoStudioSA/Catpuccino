@@ -1,7 +1,9 @@
 ﻿using BehaviourAPI.Core;
 using BehaviourAPI.UnityToolkit.GUIDesigner.Runtime;
 using NUnit.Framework.Internal.Filters;
+using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class CustomerController : MonoBehaviour
 {
@@ -24,6 +26,9 @@ public class CustomerController : MonoBehaviour
 
     private float _timerPetting = 0f;
     public float pettingTime = 3f;
+
+    public float timesPet = 0;
+    public float maxPetting = 2;
 
 
     [Header("Referencias Tienda")]
@@ -255,6 +260,8 @@ public class CustomerController : MonoBehaviour
     #region rama cliente gato
     public Status CheckNeedToPet()
     {
+        if (timesPet >= maxPetting) return Status.Failure;
+
         Debug.Log($"comprobando Paciencia: {patience}");
 
         if (patience < catNecesity && patience > 0)
@@ -336,6 +343,8 @@ public class CustomerController : MonoBehaviour
     public Status ResumeTask()
     {
         Debug.Log("he terminado con el gato. Vuelvo a lo mío.");
+
+        timesPet++;
 
         patience = 100f;
 
