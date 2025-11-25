@@ -53,7 +53,7 @@ public class FoodMinigameInput : MonoBehaviour
     public int foodTypeInHorno;
 
     [Header("Horneados")]
-    public float tiempoHorneado = 15f;
+    public float tiempoHorneado;
 
     private Coroutine horneadoCoroutine;
     private CookState currentCookState;
