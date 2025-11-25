@@ -236,6 +236,7 @@ public class MinigameInput : MonoBehaviour
         buttonManager.DisableButton(buttonManager.pararEcharCafeButton);
         DisableMechanics();
 
+        Espumador.SetActive(progressManager.heatedMilkEnabled);
         heatPanel.SetActive(false);
         molerPanel.SetActive(false);
         CoffeeFoodManager.Instance.ResetCoffeePanel();
@@ -384,7 +385,6 @@ public class MinigameInput : MonoBehaviour
     {
         Balda.SetActive(progressManager.condensedMilkEnabled);
 
-
         if (tutorialManager.isRunningT1)
         {
             buttonManager.DisableButton(buttonManager.shopButton);
@@ -527,6 +527,8 @@ public class MinigameInput : MonoBehaviour
             
             EnableMechanics();
 
+            if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 3)
+                FindFirstObjectByType<TutorialManager>().CompleteCurrentStep();
             //cursorManager.UpdateCursorTaza(true);
         }
         else if (tazaIsInCafetera && !tazaInHand)
@@ -617,6 +619,8 @@ public class MinigameInput : MonoBehaviour
             EnableMechanics();
             buttonManager.EnableButton(buttonManager.coverButton);
 
+            if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 3)
+                FindFirstObjectByType<TutorialManager>().CompleteCurrentStep();
             //cursorManager.UpdateCursorVaso(true);
         }
         else if (vasoIsInCafetera && !vasoInHand)
@@ -1118,7 +1122,6 @@ public class MinigameInput : MonoBehaviour
                 buttonManager.EnableButton(buttonManager.calentarButton);
             }
 
-            Espumador.SetActive(true);
             Image espumador = Espumador.GetComponent<Image>();
             espumador.sprite = espumadorShort;
 
