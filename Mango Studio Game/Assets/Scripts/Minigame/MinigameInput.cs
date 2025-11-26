@@ -84,6 +84,7 @@ public class MinigameInput : MonoBehaviour
     public GameObject Filtro;
     public GameObject Espumador;
     public GameObject Balda;
+    public GameObject Estante;
 
     public Transform puntoCafetera;
     public Transform puntoEspumador;
@@ -92,12 +93,19 @@ public class MinigameInput : MonoBehaviour
     public Transform puntoMesaVaso;
     public Transform puntoFiltroCafetera;
 
+    [Header("GameObjects estante")]
+    public GameObject estanteBase;
+    public GameObject estanteTazaPremium;
+    public GameObject estanteVasoPremium;
+    public GameObject estantePremium;
+
     [Header("Objetos ingredientes")]
     public Material defaultMaterial;
     public Material glowMaterial;
     public Image tazaImage;
     public Image vasoImage;
     public Image platoTazaImage;
+    public Image platoTazaPImage;
     public Image waterImage;
     public Image milkImage;
     public Image milkCupImage;
@@ -105,6 +113,7 @@ public class MinigameInput : MonoBehaviour
     public Image chocolateImage;
     public Image whiskeyImage;
     public Image coverImage;
+    public Image coverPImage;
 
     [Header("Sprites mecánicas")]
     public Sprite creamWithSpoon;
@@ -196,6 +205,7 @@ public class MinigameInput : MonoBehaviour
 
         CoffeeFoodManager.Instance.ResetPanels();
         ActualizarBotonCogerEnvase();
+        UpdateEstanteSprite();
     }
 
     public void Update()
@@ -287,6 +297,35 @@ public class MinigameInput : MonoBehaviour
 
         Image pararCalentarLecheBut = buttonManager.calentarButton.GetComponent<Image>();
         pararCalentarLecheBut.sprite = boton3_N;
+    }
+
+    private void UpdateEstanteSprite()
+    {
+        bool hasPremiumCupCard = PlayerDataManager.instance.HasCard("CartaSkinTaza");
+        bool hasPremiumVaseCard = (PlayerDataManager.instance.HasCard("CartaSkinVaso1") && PlayerDataManager.instance.HasCard("CartaSkinVaso2"));
+
+        if (hasPremiumCupCard && hasPremiumVaseCard)
+        {
+            estantePremium.SetActive(true);
+            platoTazaPImage.gameObject.SetActive(true);
+            coverPImage.gameObject.SetActive(true);
+        }
+        else if (hasPremiumCupCard && !hasPremiumVaseCard)
+        {
+            estanteTazaPremium.SetActive(true);
+            platoTazaPImage.gameObject.SetActive(true);
+        }
+        else if (!hasPremiumCupCard && hasPremiumVaseCard)
+        {
+            estanteVasoPremium.SetActive(true);
+            coverPImage.gameObject.SetActive(true);
+        }
+        else
+        {
+            estanteBase.SetActive(true);
+            platoTazaPImage.gameObject.SetActive(false);
+            coverPImage.gameObject.SetActive(false);
+        }
     }
 
     private void HandleCoffeeSlider()
@@ -1513,6 +1552,12 @@ public class MinigameInput : MonoBehaviour
             Image vaso = Vaso.GetComponent<Image>();
             vaso.sprite = vasoConTapa;
 
+            if (vasoIsInTable)
+            {
+                // Se actualiza en la bandeja
+                CoffeeFoodManager.Instance.ToggleCafe(true, Vaso.GetComponent<Image>(), Vaso.GetComponent<Image>().sprite);
+            }
+
             order.currentOrder.stepsPerformed.Add(OrderStep.PutCover);
             buttonManager.DisableButton(buttonManager.coverButton);
             cursorManager.SetDefaultCursor();
@@ -1524,6 +1569,7 @@ public class MinigameInput : MonoBehaviour
     #region Sonidos
     public void BotonDownMachine()
     {
+        if (coffeeDone) { return; }
         SoundsMaster.Instance.PlaySound_CoffeeMachine();
     }
 
