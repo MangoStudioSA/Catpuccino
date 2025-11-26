@@ -300,7 +300,7 @@ public class TutorialManager : MonoBehaviour
             // Paso 14
             steps.Add(new TutorialStep
             {
-                message = "¡Ten cuidado con el orden! ¡En el futuro, algunos elementos se bloquearan a medida que realices acciones!",
+                message = "¡Ten cuidado con la preparación! ¡Comprueba en el recetario en qué orden echar los ingredientes o perderás puntos!",
                 position = new Vector2(30f, -390f),
                 autoAdvance = true,
                 glowMaterial = glowMaterial,

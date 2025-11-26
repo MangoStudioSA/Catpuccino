@@ -89,6 +89,7 @@ public class MinigameInput : MonoBehaviour
     public Transform puntoEspumador;
     public Transform puntoMesa;
     public Transform puntoTazaPlato;
+    public Transform puntoMesaVaso;
     public Transform puntoFiltroCafetera;
 
     [Header("Objetos ingredientes")]
@@ -204,10 +205,10 @@ public class MinigameInput : MonoBehaviour
         HandleMoler();
         HandleHeating();
 
-        if (tazaIsInCafetera) tazaImage.material = defaultMaterial;
-        if (vasoIsInCafetera) vasoImage.material = defaultMaterial;
+        if (tazaIsInCafetera || tazaIsInPlato) tazaImage.material = defaultMaterial;
+        if (vasoIsInCafetera || vasoIsInTable) vasoImage.material = defaultMaterial;
         if (platoTazaIsInTable) platoTazaImage.material = defaultMaterial;
-        if (countCover > 0) coverImage.material = defaultMaterial;
+        if (countCover > 0 && !coverInHand) coverImage.material = defaultMaterial;
 
         if (isServing && !coffeeServed) MoveNeedle();
     }
@@ -617,7 +618,6 @@ public class MinigameInput : MonoBehaviour
                 buttonManager.EnableButton(buttonManager.coffeeButton);
 
             EnableMechanics();
-            buttonManager.EnableButton(buttonManager.coverButton);
 
             if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 3)
                 FindFirstObjectByType<TutorialManager>().CompleteCurrentStep();
@@ -654,7 +654,7 @@ public class MinigameInput : MonoBehaviour
         {
             // Poner en la cafetera
             Vaso.SetActive(true);
-            Vaso.transform.position = puntoMesa.position;
+            Vaso.transform.position = puntoMesaVaso.position;
 
             vasoInHand = false;
             vasoIsInTable = true;
@@ -885,6 +885,7 @@ public class MinigameInput : MonoBehaviour
 
         buttonManager.EnableButton(buttonManager.sugarButton);
         buttonManager.EnableButton(buttonManager.iceButton);
+        buttonManager.EnableButton(buttonManager.coverButton);
 
         Image pararEcharCafeBut = buttonManager.pararEcharCafeButton.GetComponent<Image>();
         pararEcharCafeBut.sprite = boton2_P;
