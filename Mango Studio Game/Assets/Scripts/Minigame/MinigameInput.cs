@@ -102,8 +102,11 @@ public class MinigameInput : MonoBehaviour
     [Header("Objetos ingredientes")]
     public Material defaultMaterial;
     public Material glowMaterial;
-    public Image tazaImage;
+    public Image tazasImage;
+    public Image tazaBImage;
+    public Image tazaPImage;
     public Image vasoImage;
+    public Image vasoPImage;
     public Image platoTazaImage;
     public Image platoTazaPImage;
     public Image waterImage;
@@ -215,7 +218,7 @@ public class MinigameInput : MonoBehaviour
         HandleMoler();
         HandleHeating();
 
-        if (tazaIsInCafetera || tazaIsInPlato) tazaImage.material = defaultMaterial;
+        if (tazaIsInCafetera || tazaIsInPlato) tazasImage.material = defaultMaterial;
         if (vasoIsInCafetera || vasoIsInTable) vasoImage.material = defaultMaterial;
         if (platoTazaIsInTable) platoTazaImage.material = defaultMaterial;
         if (countCover > 0 && !coverInHand) coverImage.material = defaultMaterial;
@@ -307,24 +310,43 @@ public class MinigameInput : MonoBehaviour
         if (hasPremiumCupCard && hasPremiumVaseCard)
         {
             estantePremium.SetActive(true);
+            vasoPImage.gameObject.SetActive(true);
+            tazaBImage.gameObject.SetActive(true);
+            tazaPImage.gameObject.SetActive(true);
             platoTazaPImage.gameObject.SetActive(true);
             coverPImage.gameObject.SetActive(true);
+
+            tazasImage.gameObject.SetActive(false);
         }
         else if (hasPremiumCupCard && !hasPremiumVaseCard)
         {
             estanteTazaPremium.SetActive(true);
             platoTazaPImage.gameObject.SetActive(true);
+            tazaBImage.gameObject.SetActive(true);
+            tazaPImage.gameObject.SetActive(true);
+
+            tazasImage.gameObject.SetActive(false);
         }
         else if (!hasPremiumCupCard && hasPremiumVaseCard)
         {
             estanteVasoPremium.SetActive(true);
             coverPImage.gameObject.SetActive(true);
+            vasoPImage.gameObject.SetActive(true);
+            tazasImage.gameObject.SetActive(true);
+
+            tazaPImage.gameObject.SetActive(false);
+            tazaBImage.gameObject.SetActive(false);
         }
         else
         {
             estanteBase.SetActive(true);
+            tazasImage.gameObject.SetActive(true);
+
             platoTazaPImage.gameObject.SetActive(false);
             coverPImage.gameObject.SetActive(false);
+            vasoPImage.gameObject.SetActive(false);
+            tazaPImage.gameObject.SetActive(false);
+            tazaBImage.gameObject.SetActive(false);
         }
     }
 
@@ -492,14 +514,14 @@ public class MinigameInput : MonoBehaviour
         if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand && !filtroInHand && !platoTazaInHand && !tazaMilkInHand)
         {
             tazaInHand = true;
-            tazaImage.material = glowMaterial;
+            tazasImage.material = glowMaterial;
 
             DragController.Instance.StartDragging(tazaSinCafe);
         }
         else if (tazaInHand == true)
         {
             tazaInHand = false;
-            tazaImage.material = defaultMaterial;
+            tazasImage.material = defaultMaterial;
 
             DragController.Instance.StopDragging();
         }

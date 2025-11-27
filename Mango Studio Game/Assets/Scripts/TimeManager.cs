@@ -50,8 +50,8 @@ public class TimeManager : MonoBehaviour
     private float averageCoffeePrice = 1f;
     private float averageFoodPrice = 2f;
     private int requiredMoney = 0;
-    private int basicCoins = 0;
-    private int premiumCoins = 0;
+    //private int basicCoins = 0;
+    //private int premiumCoins = 0;
 
     private int customersPerDay = 10;
 

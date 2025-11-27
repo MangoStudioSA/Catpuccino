@@ -30,8 +30,8 @@ public class PlayerDataManager : MonoBehaviour
 
         //RemoveUnlockedCard("CartaLatteArt");
         //AddLockedCard("CartaLatteArt");
-        //RemoveUnlockedCard("CartaSkinVaso2");
-        //AddLockedCard("CartaSkinVaso1");
+        RemoveUnlockedCard("CartaSkinVaso2");
+        //AddLockedCard("CartaSkinTaza");
     }
 
     // Funcion para añadir monedas premium
