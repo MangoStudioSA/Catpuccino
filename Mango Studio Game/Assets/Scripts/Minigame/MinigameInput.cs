@@ -493,11 +493,15 @@ public class MinigameInput : MonoBehaviour
         {
             tazaInHand = true;
             tazaImage.material = glowMaterial;
+
+            DragController.Instance.StartDragging(tazaSinCafe);
         }
         else if (tazaInHand == true)
         {
             tazaInHand = false;
             tazaImage.material = defaultMaterial;
+
+            DragController.Instance.StopDragging();
         }
     }
 
@@ -507,11 +511,16 @@ public class MinigameInput : MonoBehaviour
         {
             platoTazaInHand = true;
             platoTazaImage.material = glowMaterial;
+
+            Sprite platoTaza = PlatoTaza.GetComponent<Image>().sprite;
+            DragController.Instance.StartDragging(platoTaza);
         }
         else if (platoTazaInHand == true)
         {
             platoTazaInHand = false;
             platoTazaImage.material = defaultMaterial;
+
+            DragController.Instance.StopDragging();
         }
     }
 
@@ -521,11 +530,15 @@ public class MinigameInput : MonoBehaviour
         {
             vasoInHand = true;
             vasoImage.material = glowMaterial;
+
+            DragController.Instance.StartDragging(vasoSinTapa);
         }
         else if (vasoInHand == true)
         {
             vasoInHand = false;
             vasoImage.material = defaultMaterial;
+
+            DragController.Instance.StopDragging();
         }
     }
 
@@ -559,6 +572,8 @@ public class MinigameInput : MonoBehaviour
             tazaInHand = false;
             tazaIsInCafetera = true;
 
+            DragController.Instance.StopDragging();
+
             if (coffeeServed)
                 UpdateCupSprite(false);
 
@@ -578,6 +593,7 @@ public class MinigameInput : MonoBehaviour
             tazaInHand = true;
             tazaIsInCafetera = false;
 
+            DragController.Instance.StartDragging(currentSprite != null ? currentSprite : tazaSinCafe);
             //cursorManager.UpdateCursorTaza(false);
 
             DisableMechanics();
@@ -613,6 +629,7 @@ public class MinigameInput : MonoBehaviour
             UpdateCupSprite(true);
             PlatoTaza.SetActive(false);
 
+            DragController.Instance.StopDragging();
             // Se asocia a la bandeja
             CoffeeFoodManager.Instance.ToggleCafe(true, Taza.GetComponent<Image>(), Taza.GetComponent<Image>().sprite);
 
@@ -628,6 +645,7 @@ public class MinigameInput : MonoBehaviour
 
             UpdateCupSprite(false);
             PlatoTaza.SetActive(true);
+            DragController.Instance.StartDragging(currentSprite != null ? currentSprite : tazaSinCafe);
             //cursorManager.UpdateCursorTaza(false);
 
             // Se quita de la bandeja
@@ -651,6 +669,8 @@ public class MinigameInput : MonoBehaviour
             vasoInHand = false;
             vasoIsInCafetera = true;
 
+            DragController.Instance.StopDragging();
+
             buttonManager.DisableButton(buttonManager.cogerPlatoTazaButton);
 
             if (!tutorialManager.isRunningT1)
@@ -669,6 +689,8 @@ public class MinigameInput : MonoBehaviour
             vasoInHand = true;
             vasoIsInCafetera = false;
 
+            Sprite vasoImg = Vaso.GetComponent<Sprite>();
+            DragController.Instance.StartDragging(currentSprite != null ? currentSprite : vasoSinTapa);
             //cursorManager.UpdateCursorVaso(false);
             buttonManager.DisableButton(buttonManager.coverButton);
 
@@ -699,6 +721,7 @@ public class MinigameInput : MonoBehaviour
             vasoIsInTable = true;
             cupServed = true;
 
+            DragController.Instance.StopDragging();
             // Se deja en la bandeja
             CoffeeFoodManager.Instance.ToggleCafe(true, Vaso.GetComponent<Image>(), Vaso.GetComponent<Image>().sprite);
             //cursorManager.UpdateCursorVaso(true);
@@ -713,6 +736,8 @@ public class MinigameInput : MonoBehaviour
             cupServed = false;
 
             buttonManager.DisableButton(buttonManager.coverButton);
+            Sprite vasoImg = Vaso.GetComponent<Sprite>();
+            DragController.Instance.StartDragging(currentSprite != null ? currentSprite : vasoSinTapa);
 
             // Se quita de la bandeja
             CoffeeFoodManager.Instance.ToggleCafe(false, null, null);
@@ -739,6 +764,8 @@ public class MinigameInput : MonoBehaviour
             platoTazaInHand = false;
             platoTazaIsInTable = true;
 
+            DragController.Instance.StopDragging();
+
             cursorManager.UpdateCursorPlato(true);
             buttonManager.DisableButton(buttonManager.cogerPlatoTazaButton);
             buttonManager.DisableButton(buttonManager.cogerVasoInicioButton);
@@ -750,6 +777,7 @@ public class MinigameInput : MonoBehaviour
     public void StartCoffee()
     {
         if (tutorialManager.isRunningT1 && tutorialManager.currentStep != 8) return;
+        if (TengoOtroObjetoEnLaMano() || vasoInHand || tazaInHand || platoTazaInHand || tazaMilkInHand) return;
 
         if  (!isSliding && !coffeeDone)
         {
@@ -792,6 +820,7 @@ public class MinigameInput : MonoBehaviour
     public void StartMoler()
     {
         if (tutorialManager.isRunningT1 && tutorialManager.currentStep != 9) return;
+        if (TengoOtroObjetoEnLaMano() || vasoInHand || tazaInHand || platoTazaInHand || tazaMilkInHand) return;
 
         if (!isMoliendo)
         {
@@ -825,11 +854,14 @@ public class MinigameInput : MonoBehaviour
     }
     public void TakeFiltro()
     {
-        if (TengoOtroObjetoEnLaMano() || tazaInHand || vasoInHand || tazaMilkInHand) return;
+        if (TengoOtroObjetoEnLaMano() || tazaInHand || vasoInHand || platoTazaInHand || tazaMilkInHand) return;
 
         if (!filtroIsInCafetera)
         {
             filtroInHand = true;
+
+            DragController.Instance.StartDragging(filtroImg);
+
             buttonManager.DisableButton(buttonManager.filtroButton);
             buttonManager.EnableButton(buttonManager.filtroCafeteraButton);
             buttonManager.filtroButton.gameObject.SetActive(false);
@@ -849,6 +881,7 @@ public class MinigameInput : MonoBehaviour
             Image filtro = Filtro.GetComponent<Image>();
             filtro.sprite = filtroCafeteraImg;
 
+            DragController.Instance.StopDragging();
             buttonManager.DisableButton(buttonManager.filtroCafeteraButton);
 
             if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 10)
@@ -864,6 +897,7 @@ public class MinigameInput : MonoBehaviour
     {
         if (tutorialManager.isRunningT1 && tutorialManager.currentStep != 12) return;
         if (coffeeServed) return;
+        if (TengoOtroObjetoEnLaMano() || tazaInHand || vasoInHand || platoTazaInHand || tazaMilkInHand) return;
 
         bool recipienteEnCafetera = tazaIsInCafetera || vasoIsInCafetera;
         if (!recipienteEnCafetera || !filtroIsInCafetera) return;
@@ -1124,8 +1158,8 @@ public class MinigameInput : MonoBehaviour
 
             if (tazaIsInCafetera)
             {
-                Image taza = Taza.GetComponent<Image>();
-                taza.sprite = tazaNMilk;
+                UpdateCupSprite(false);
+                currentSprite = Taza.GetComponent<Image>().sprite;
             }
         }
     }
@@ -1255,8 +1289,8 @@ public class MinigameInput : MonoBehaviour
 
                 if (tazaIsInCafetera)
                 {
-                    Image taza = Taza.GetComponent<Image>();
-                    taza.sprite = tazaNMilk;
+                    UpdateCupSprite(false);
+                    currentSprite = Taza.GetComponent<Image>().sprite;
                 }
             }
         }
@@ -1294,8 +1328,8 @@ public class MinigameInput : MonoBehaviour
 
             if (tazaIsInCafetera)
             {
-                Image taza = Taza.GetComponent<Image>();
-                taza.sprite = tazaNWater;
+                UpdateCupSprite(false);
+                currentSprite = Taza.GetComponent<Image>().sprite;
             }
         }
     }
@@ -1331,8 +1365,8 @@ public class MinigameInput : MonoBehaviour
             order.currentOrder.stepsPerformed.Add(OrderStep.AddCondensedMilk);
             if (tazaIsInCafetera)
             {
-                Image taza = Taza.GetComponent<Image>();
-                taza.sprite = tazaNMilk;
+                UpdateCupSprite(false);
+                currentSprite = Taza.GetComponent<Image>().sprite;
             }
         }
     }
@@ -1368,8 +1402,8 @@ public class MinigameInput : MonoBehaviour
             order.currentOrder.stepsPerformed.Add(OrderStep.AddCream);
             if (tazaIsInCafetera)
             {
-                Image taza = Taza.GetComponent<Image>();
-                taza.sprite = tazaNMilk;
+                UpdateCupSprite(false);
+                currentSprite = Taza.GetComponent<Image>().sprite;
             }
         }
     }
@@ -1405,8 +1439,8 @@ public class MinigameInput : MonoBehaviour
             order.currentOrder.stepsPerformed.Add(OrderStep.AddChocolate);
             if (tazaIsInCafetera)
             {
-                Image taza = Taza.GetComponent<Image>();
-                taza.sprite = tazaNChocolate;
+                UpdateCupSprite(false);
+                currentSprite = Taza.GetComponent<Image>().sprite;
             }
         }
     }
@@ -1442,8 +1476,8 @@ public class MinigameInput : MonoBehaviour
             order.currentOrder.stepsPerformed.Add(OrderStep.AddWhiskey);
             if (tazaIsInCafetera)
             {
-                Image taza = Taza.GetComponent<Image>();
-                taza.sprite = tazaNWhiskey;
+                UpdateCupSprite(false);
+                currentSprite = Taza.GetComponent<Image>().sprite;
             }
         }
     }
@@ -1553,6 +1587,7 @@ public class MinigameInput : MonoBehaviour
             }
             Image vaso = Vaso.GetComponent<Image>();
             vaso.sprite = vasoConTapa;
+            currentSprite = vasoConTapa;
 
             if (vasoIsInTable)
             {

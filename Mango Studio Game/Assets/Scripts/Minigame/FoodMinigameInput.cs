@@ -312,11 +312,16 @@ public class FoodMinigameInput : MonoBehaviour
         {
             platoInHand = true;
             platoImage.material = glowMaterial;
+
+            Sprite plato = Plato.GetComponent<Image>().sprite;
+            DragController.Instance.StartDragging(plato);
         }
         else if (platoInHand)
         {
             platoInHand = false;
             platoImage.material = defaultMaterial;
+
+            DragController.Instance.StopDragging();
         }
     }
 
@@ -329,11 +334,16 @@ public class FoodMinigameInput : MonoBehaviour
         {
             carryBagInHand = true;
             bolsaImage.material = glowMaterial;
+
+            Sprite bolsaLlevar = BolsaLlevar.GetComponent<Image>().sprite;
+            DragController.Instance.StartDragging(bolsaLlevar);
         }
         else if (carryBagInHand)
         {
             carryBagInHand = false;
             bolsaImage.material = defaultMaterial;
+
+            DragController.Instance.StopDragging();
         }
     }
 
@@ -352,7 +362,8 @@ public class FoodMinigameInput : MonoBehaviour
         buttonManager.EnableButton(buttonManager.hornoButton);
         buttonManager.DisableButton(buttonManager.cogerBolsaLlevarInicioButton);
         buttonManager.DisableButton(buttonManager.cogerPlatoInicioButton);
-        
+
+        DragController.Instance.StopDragging();
         ActualizarBotonCogerComida();
 
         if (tutorialManager.isRunningT2 && tutorialManager.currentStep == 2)
@@ -374,7 +385,8 @@ public class FoodMinigameInput : MonoBehaviour
         buttonManager.EnableButton(buttonManager.hornoButton);
         buttonManager.DisableButton(buttonManager.cogerBolsaLlevarInicioButton);
         buttonManager.DisableButton(buttonManager.cogerPlatoInicioButton);
-        
+
+        DragController.Instance.StopDragging();
         ActualizarBotonCogerComida();
 
         if (tutorialManager.isRunningT2 && tutorialManager.currentStep == 2)
