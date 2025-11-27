@@ -557,12 +557,13 @@ public class OrderEvaluation : MonoBehaviour
         {
             typeFoodScore = MAX_SCORE_FOODTYPE;
         }
-        else if (playerCategory != targetCategory && playerType != targetType)
+        else if ((playerCategory != targetCategory && playerType != targetType) || (playerCategory == targetCategory && playerType != targetType) 
+            || (playerCategory != targetCategory && playerType == targetType)) // Si el jugador ha preparado una categoria/tipo distinto se restan 10 puntos
         {
             typeFoodScore = -10;
             lastWrongFoodType = true;
         }
-        else
+        else // Si el jugador se ha olvidado de preparar la comida se restan 15 puntos
         {
             typeFoodScore = -15;
             playerForgotFood = true;
@@ -587,19 +588,19 @@ public class OrderEvaluation : MonoBehaviour
         {
             cookStateScore = MAX_SCORE_COOKSTATE;
         }
-        else if (playerState == CookState.no)
+        else if (playerState == CookState.no) // Si el jugador se ha olvidado de preparar la comida se restan 15 puntos
         {
             cookStateScore = -15;
             playerForgotFood = true;
         }
-        else if (playerState == CookState.crudo)
+        else if (playerState == CookState.crudo) // Si el jugador ha dejado la comida cruda se restan 10 puntos
         {
-            cookStateScore = -15;
+            cookStateScore = -10;
             lastBadCookStateRaw = true;
         }
-        else if (playerState == CookState.quemado)
+        else if (playerState == CookState.quemado) // Si el jugador ha quemado la comida se restan 10 puntos
         {
-            cookStateScore = -15;
+            cookStateScore = -10;
             lastBadCookStateBurned = true;
         }
 

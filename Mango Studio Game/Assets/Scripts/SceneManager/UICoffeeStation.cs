@@ -32,7 +32,6 @@ public class UICoffeeStation : MonoBehaviour
     // Mostrar panel de recetas
     public void ShowRecipesPanel()
     {
-        preparationPanel.SetActive(false);
         recipesPanel.SetActive(true);
         Time.timeScale = 0.0f;
 
@@ -46,7 +45,6 @@ public class UICoffeeStation : MonoBehaviour
     public void CloseRecipesPanel()
     {
         recipesPanel.SetActive(false);
-        preparationPanel.SetActive(true);
         Time.timeScale = 1.0f;
 
         if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 7)

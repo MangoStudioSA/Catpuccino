@@ -849,6 +849,8 @@ public class MinigameInput : MonoBehaviour
             Image filtro = Filtro.GetComponent<Image>();
             filtro.sprite = filtroCafeteraImg;
 
+            buttonManager.DisableButton(buttonManager.filtroCafeteraButton);
+
             if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 10)
                 FindFirstObjectByType<TutorialManager>().CompleteCurrentStep();
         }

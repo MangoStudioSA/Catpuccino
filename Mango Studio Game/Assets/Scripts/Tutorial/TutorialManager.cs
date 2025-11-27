@@ -147,7 +147,7 @@ public class TutorialManager : MonoBehaviour
             // Paso 3
             steps.Add(new TutorialStep
             {
-                message = "Coloca una taza para poder echar el café. Si se trata de un pedido para llevar coloca un vaso.",
+                message = "Coloca una taza en la cafetera. Si se trata de un pedido para llevar coloca un vaso.",
                 position = new Vector2(-723f, -110f),
                 autoAdvance = false,
                 glowMaterial = glowMaterial,
@@ -159,7 +159,7 @@ public class TutorialManager : MonoBehaviour
             // Paso 4
             steps.Add(new TutorialStep
             {
-                message = "Si es para tomar, deberás clicar sobre un plato y colocarlo en la zona de entrega.",
+                message = "Si es para tomar, deberás clicar sobre un plato y colocarlo en la bandeja.",
                 position = new Vector2(575f, -125f),
                 autoAdvance = true,
                 glowMaterial = glowMaterial,
@@ -533,7 +533,7 @@ public class TutorialManager : MonoBehaviour
             // Paso 2
             steps.Add(new TutorialStep
             {
-                message = "Comienza poniendo un plato o una bolsa para llevar en la encimera según el tipo de pedido.",
+                message = "Comienza poniendo un plato o una bolsa para llevar en la bandeja según el tipo de pedido.",
                 position = new Vector2(150f, -370f),
                 autoAdvance = false,
                 glowMaterial = glowMaterial,
@@ -546,7 +546,7 @@ public class TutorialManager : MonoBehaviour
             // Paso 3
             steps.Add(new TutorialStep
             {
-                message = "Ahora, selecciona el tipo de bizcocho correspondiente (si no ha solicitado ninguno, escoge al azar).",
+                message = "Ahora, selecciona el tipo de bizcocho correspondiente. Si no sabes identificarlo, comprueba los nombres en el libro de recetas.",
                 position = new Vector2(340f, 10f),
                 autoAdvance = false,
                 glowMaterial = glowMaterial,
@@ -556,6 +556,7 @@ public class TutorialManager : MonoBehaviour
                     BZanahoriaImage.gameObject,
                     BMantequillaImage.gameObject,
                     BRedVelvetImage.gameObject,
+                    buttonManager.recipesBookBButton.gameObject,
                 },
             });
             // Paso 4
@@ -897,6 +898,8 @@ public class TutorialManager : MonoBehaviour
     public void SkipTutorial()
     {
         StopAllCoroutines();
+        ClearAllGlow();
+
         if (skipTutorialButton != null)
             skipTutorialButton.SetActive(false);
         tutorialPanel.gameObject.SetActive(false);
@@ -915,6 +918,29 @@ public class TutorialManager : MonoBehaviour
         Debug.Log("Tutorial saltado manualmente");
     }
 
+    // Funcion encargada de eliminar el efecto glow si se salta el tutorial
+    public void ClearAllGlow()
+    {
+        // Recorre todos los pasos
+        foreach (var step in steps)
+        {
+            if (step.highlightObjects == null || step.originalMaterials == null)
+                continue;
+
+            // Para cada uno, reestablece el material predeterminado
+            for (int i = 0; i < step.highlightObjects.Count; i++)
+            {
+                GameObject obj = step.highlightObjects[i];
+                if (obj == null) continue;
+
+                var img = obj.GetComponent<UnityEngine.UI.Image>();
+                if (img != null && step.originalMaterials.Count > i && step.originalMaterials[i] != null)
+                {
+                    img.material = step.originalMaterials[i];
+                }
+            }
+        }
+    }
 
     // Funciones para la animacion y el fade in/out de los mensajes 
     private IEnumerator FadeInPanel()
