@@ -25407,10 +25407,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1071443433}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -1120, y: -630}
+  m_SizeDelta: {x: 800, y: 450}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &998293349
 MonoBehaviour:
@@ -26908,7 +26908,7 @@ GameObject:
   - component: {fileID: 1071443435}
   - component: {fileID: 1071443434}
   m_Layer: 5
-  m_Name: DiasGame
+  m_Name: FinalDiaMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32228,67 +32228,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1274049854}
   m_CullTransparentMesh: 1
---- !u!1001 &1274979043
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 1194ead425ecff14299245d4bd98a529, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 1194ead425ecff14299245d4bd98a529, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 1194ead425ecff14299245d4bd98a529, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 1.02
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 1194ead425ecff14299245d4bd98a529, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 1194ead425ecff14299245d4bd98a529, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 1194ead425ecff14299245d4bd98a529, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 1194ead425ecff14299245d4bd98a529, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 1194ead425ecff14299245d4bd98a529, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 1194ead425ecff14299245d4bd98a529, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 1194ead425ecff14299245d4bd98a529, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 1194ead425ecff14299245d4bd98a529, type: 3}
-      propertyPath: m_Name
-      value: escenarioPrueba
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 1194ead425ecff14299245d4bd98a529, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 1194ead425ecff14299245d4bd98a529, type: 3}
 --- !u!1 &1275036455
 GameObject:
   m_ObjectHideFlags: 0
@@ -37089,10 +37028,10 @@ RectTransform:
   - {fileID: 870554153}
   m_Father: {fileID: 726219182}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.111816406, y: 0.0078125}
-  m_SizeDelta: {x: 479.90002, y: 270.34}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 2399.9, y: 1350.34}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1452085779
 MonoBehaviour:
@@ -37116,7 +37055,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 432cd8903d8e72e4e9fdeab6ba479aea, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -53378,7 +53317,6 @@ SceneRoots:
   - {fileID: 1345220538}
   - {fileID: 50023189}
   - {fileID: 545326587}
-  - {fileID: 1274979043}
   - {fileID: 841635552}
   - {fileID: 316105912}
   - {fileID: 2072732762}

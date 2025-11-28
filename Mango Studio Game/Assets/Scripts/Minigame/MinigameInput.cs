@@ -1635,6 +1635,7 @@ public class MinigameInput : MonoBehaviour
             Image vaso = Vaso.GetComponent<Image>();
             vaso.sprite = vasoConTapa;
             currentSprite = vasoConTapa;
+            DragController.Instance.StopDragging();
 
             if (vasoIsInTable)
             {
