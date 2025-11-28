@@ -942,7 +942,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -319.5, y: -295.47995}
+  m_AnchoredPosition: {x: -319, y: -295}
   m_SizeDelta: {x: 343, y: 590.9599}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &33306566
@@ -1604,7 +1604,6 @@ MonoBehaviour:
   order: {fileID: 0}
   orderNoteUI: {fileID: 50023199}
   tutorialManager: {fileID: 841635553}
-  coffeBar: {fileID: 0}
   buttonManager: {fileID: 50023195}
   cursorManager: {fileID: 342197122}
   progressManager: {fileID: 50023194}
@@ -1701,6 +1700,7 @@ MonoBehaviour:
   creamWithoutSpoon: {fileID: 21300000, guid: 1604b00999e07634780567e5acdc473b, type: 3}
   filtroImg: {fileID: 186981477, guid: e288ad6c858bce44d98d91c579e9587e, type: 3}
   filtroCafeteraImg: {fileID: 21300000, guid: e77149933f9fe82499a28cfd541b000e, type: 3}
+  coverImg: {fileID: 1641428177, guid: e288ad6c858bce44d98d91c579e9587e, type: 3}
   espumadorNormal: {fileID: 21300000, guid: eebad3d770648484eac8e0cfcab6ba40, type: 3}
   espumadorShort: {fileID: 21300000, guid: d3b63304d2c8c9c4580e1a64af238495, type: 3}
   boton1_N: {fileID: 21300000, guid: e15654a559b26a247a63583aac61780b, type: 3}
@@ -8896,38 +8896,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultCursorTexture: {fileID: 2800000, guid: 0874ee6948f6c514abc1c88940ff5b47, type: 3}
-  tazaCursorTexture: {fileID: 2800000, guid: 82b521f1000922f4997ef8fdf204f7c5, type: 3}
-  vasoCursorTexture: {fileID: 2800000, guid: bb9266dc99cdfef4986d7784c6eba869, type: 3}
-  filtroCursorTexture: {fileID: 2800000, guid: e804b22a309379e4aab301ebf5aa3323, type: 3}
   cucharaCursorTexture: {fileID: 2800000, guid: 505cc78c317be7c40b620b7cfa6f9141, type: 3}
-  hieloCucharaCursorTexture: {fileID: 2800000, guid: 5d735398a85557242a9e75205fef777f, type: 3}
-  tapaCursorTexture: {fileID: 2800000, guid: d91a1575464ba39438ee0b13bf0f845b, type: 3}
-  aguaCursorTexture: {fileID: 2800000, guid: e1c2ba59677eee144b5f38699708f77c, type: 3}
-  lecheCursorTexture: {fileID: 2800000, guid: 3b11b98ffb502684b86b0c17d82dc0e9, type: 3}
-  tazaLecheCursorTexture: {fileID: 2800000, guid: 578917262b7622941be686c6e07f2a37, type: 3}
-  lecheCondensadaCursorTexture: {fileID: 2800000, guid: 3204c86236986bb40af9c323f1023662, type: 3}
   cremaCursorTexture: {fileID: 2800000, guid: 95c0a38e6ee3af94db24b44930d00838, type: 3}
-  chocolateCursorTexture: {fileID: 2800000, guid: 7ccc538df2725da4abb9e5aa328acbf4, type: 3}
-  whiskeyCursorTexture: {fileID: 2800000, guid: 938a36990a7355545942810f279f13d6, type: 3}
+  hieloCucharaCursorTexture: {fileID: 2800000, guid: 5d735398a85557242a9e75205fef777f, type: 3}
   hieloCucharaVaciaCursorTexture: {fileID: 2800000, guid: cb9ae15f6110dfe46a0ce58c6f18fb9e, type: 3}
-  platoCursorTexture: {fileID: 2800000, guid: 36d48c7470dffb446a696742d84ca490, type: 3}
-  bolsaLlevarCursorTexture: {fileID: 2800000, guid: 85197d6cd1471ce4c976b16c905b4a68, type: 3}
   hotSpotDefault: {x: 0, y: 0}
-  hotSpotTaza: {x: 0, y: 0}
-  hotSpotVaso: {x: 0, y: 0}
-  hotSpotFiltro: {x: 0, y: 0}
   hotSpotCuchara: {x: 0, y: 106}
   hotSpotHieloCuchara: {x: 0, y: 0}
-  hotSpotTapaCuchara: {x: 0, y: 0}
-  hotSpotAgua: {x: 0, y: 0}
-  hotSpotLeche: {x: 0, y: 0}
-  hotSpotTazaLeche: {x: 0, y: 0}
-  hotSpotLecheCondensada: {x: 0, y: 0}
   hotSpotCrema: {x: 0, y: 0}
-  hotSpotChocolate: {x: 0, y: 0}
-  hotSpotWhiskey: {x: 0, y: 0}
-  hotSpotPlato: {x: 0, y: 0}
-  hotSpotBolsaLlevar: {x: 0, y: 0}
   miniGameInput: {fileID: 50023188}
   foodManager: {fileID: 50023197}
   tutorialManager: {fileID: 841635553}
@@ -10236,7 +10212,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -316.66003, y: -41.61255}
+  m_AnchoredPosition: {x: -316, y: -41}
   m_SizeDelta: {x: 383.32, y: 103.225}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &405058592
@@ -14391,7 +14367,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -158.73969, y: -174.33243}
+  m_AnchoredPosition: {x: -137.40265, y: -183.92603}
   m_SizeDelta: {x: 132.056, y: 120.882996}
   m_Pivot: {x: 0.46865252, y: 0.50000006}
 --- !u!114 &528060067
@@ -19598,7 +19574,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -234.5, y: -291.97995}
+  m_AnchoredPosition: {x: -319, y: -295}
   m_SizeDelta: {x: 343, y: 583.9599}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &780939501
@@ -25433,7 +25409,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000061035156, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -1120, y: -630}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &998293349
@@ -33170,7 +33146,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 218.5, y: -62.5}
+  m_AnchoredPosition: {x: 120, y: -63}
   m_SizeDelta: {x: 240.5201, y: 230.811}
   m_Pivot: {x: 0.5, y: 0.67286897}
 --- !u!114 &1300218827
@@ -34083,7 +34059,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -234, y: -38.5}
+  m_AnchoredPosition: {x: -316, y: -41}
   m_SizeDelta: {x: 383.32, y: 103.22499}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1333060178
@@ -43950,7 +43926,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 120.76005, y: -75.50544}
+  m_AnchoredPosition: {x: 120, y: -75}
   m_SizeDelta: {x: 241.5201, y: 230.811}
   m_Pivot: {x: 0.5, y: 0.67286897}
 --- !u!114 &1694360623

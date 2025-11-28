@@ -11,7 +11,6 @@ public class MinigameInput : MonoBehaviour
     public PlayerOrder order;
     public OrderNoteUI orderNoteUI;
     public TutorialManager tutorialManager;
-    public GameObject coffeBar; //panel que contiene la barra
     public ButtonUnlockManager buttonManager;
     public CursorManager cursorManager;
     public GameProgressManager progressManager;
@@ -75,6 +74,7 @@ public class MinigameInput : MonoBehaviour
     public bool tazaIsInCafetera = false, tazaIsInPlato = false, vasoIsInCafetera = false, vasoIsInTable = false, platoTazaIsInTable = false, tazaMilkIsInEspumador = false,
         vasoTapaPuesta = false, filtroIsInCafetera = false;
     #endregion
+
     #region Sprites
     [Header("Objetos fisicos")]
     public GameObject Taza;
@@ -86,6 +86,7 @@ public class MinigameInput : MonoBehaviour
     public GameObject Balda;
     public GameObject Estante;
 
+    [Header("Puntos transform")]
     public Transform puntoCafeteraTaza;
     public Transform puntoCafeteraVaso;
     public Transform puntoEspumador;
@@ -124,6 +125,7 @@ public class MinigameInput : MonoBehaviour
     public Sprite creamWithoutSpoon;
     public Sprite filtroImg;
     public Sprite filtroCafeteraImg;
+    public Sprite coverImg;
 
     [Header("Sprites objetos")]
     public Sprite espumadorNormal;
@@ -609,7 +611,6 @@ public class MinigameInput : MonoBehaviour
 
             if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 3)
                 FindFirstObjectByType<TutorialManager>().CompleteCurrentStep();
-            //cursorManager.UpdateCursorTaza(true);
         }
         else if (tazaIsInCafetera && !tazaInHand)
         {
@@ -619,8 +620,6 @@ public class MinigameInput : MonoBehaviour
             tazaIsInCafetera = false;
 
             DragController.Instance.StartDragging(currentSprite != null ? currentSprite : tazaSinCafe);
-            //cursorManager.UpdateCursorTaza(false);
-
             DisableMechanics();
         }
         if (filtroIsInCafetera == true && coffeeServed == false)
@@ -657,8 +656,6 @@ public class MinigameInput : MonoBehaviour
             DragController.Instance.StopDragging();
             // Se asocia a la bandeja
             CoffeeFoodManager.Instance.ToggleCafe(true, Taza.GetComponent<Image>(), Taza.GetComponent<Image>().sprite);
-
-            //cursorManager.UpdateCursorTaza(true);
         }
         else if (tazaIsInPlato && !tazaInHand)
         {
@@ -671,7 +668,6 @@ public class MinigameInput : MonoBehaviour
             UpdateCupSprite(false);
             PlatoTaza.SetActive(true);
             DragController.Instance.StartDragging(currentSprite != null ? currentSprite : tazaSinCafe);
-            //cursorManager.UpdateCursorTaza(false);
 
             // Se quita de la bandeja
             CoffeeFoodManager.Instance.ToggleCafe(false, null, null);
@@ -706,7 +702,6 @@ public class MinigameInput : MonoBehaviour
 
             if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 3)
                 FindFirstObjectByType<TutorialManager>().CompleteCurrentStep();
-            //cursorManager.UpdateCursorVaso(true);
         }
         else if (vasoIsInCafetera && !vasoInHand)
         {
@@ -717,9 +712,8 @@ public class MinigameInput : MonoBehaviour
 
             Sprite vasoImg = Vaso.GetComponent<Sprite>();
             DragController.Instance.StartDragging(currentSprite != null ? currentSprite : vasoSinTapa);
-            //cursorManager.UpdateCursorVaso(false);
+            
             buttonManager.DisableButton(buttonManager.coverButton);
-
             DisableMechanics();
         }
         if (filtroIsInCafetera == true && coffeeServed == false)
@@ -750,7 +744,6 @@ public class MinigameInput : MonoBehaviour
             DragController.Instance.StopDragging();
             // Se deja en la bandeja
             CoffeeFoodManager.Instance.ToggleCafe(true, Vaso.GetComponent<Image>(), Vaso.GetComponent<Image>().sprite);
-            //cursorManager.UpdateCursorVaso(true);
             buttonManager.EnableButton(buttonManager.coverButton);
         }
         else if (vasoIsInTable && !vasoInHand)
@@ -767,7 +760,6 @@ public class MinigameInput : MonoBehaviour
 
             // Se quita de la bandeja
             CoffeeFoodManager.Instance.ToggleCafe(false, null, null);
-            //cursorManager.UpdateCursorVaso(false);
         }
     }
     public void PlacePlatoTazaMesa()
@@ -792,7 +784,6 @@ public class MinigameInput : MonoBehaviour
 
             DragController.Instance.StopDragging();
 
-            cursorManager.UpdateCursorPlato(true);
             buttonManager.DisableButton(buttonManager.cogerPlatoTazaButton);
             buttonManager.DisableButton(buttonManager.cogerVasoInicioButton);
         }
@@ -811,29 +802,29 @@ public class MinigameInput : MonoBehaviour
             currentSlideTime = 0f;
 
             isSliding = true;
-            Debug.Log($"[Cliente {order.currentOrder.orderId}] Preparacion: Carga de cafe iniciada.");
+            //Debug.Log($"[Cliente {order.currentOrder.orderId}] Preparacion: Carga de cafe iniciada.");
         }
     }
     public void StopCoffee()
     {
         if (isSliding)
         {
-            // detenemos el movimiento
+            // Detenemos el movimiento
             isSliding = false;
             coffeeDone = true;
 
             buttonManager.DisableButton(buttonManager.coffeeButton);
             buttonManager.EnableButton(buttonManager.molerButton);
 
-            // guarda la pos del slider
+            // Guarda la pos del slider
             if (order != null && order.currentOrder != null)
             {
                 order.currentOrder.coffeePrecision = currentSlideTime;
-                Debug.Log($"[Cliente {order.currentOrder.orderId}] Preparacion: Cafe detenido en: {currentSlideTime:F2}. Valor guardado.");
+                //Debug.Log($"[Cliente {order.currentOrder.orderId}] Preparacion: Cafe detenido en: {currentSlideTime:F2}. Valor guardado.");
             } 
             else
             {
-                Debug.LogWarning($"[Cliente {order.currentOrder.orderId}] Preparacion: Cafe detenido en: {currentSlideTime:F2}, pero no se pudo guardar porque no hay un pedido activo.");
+                //Debug.LogWarning($"[Cliente {order.currentOrder.orderId}] Preparacion: Cafe detenido en: {currentSlideTime:F2}, pero no se pudo guardar porque no hay un pedido activo.");
             }
 
             Image cantidadCafeBut = buttonManager.coffeeButton.GetComponent<Image>();
@@ -857,7 +848,7 @@ public class MinigameInput : MonoBehaviour
             molerPanel.SetActive(true);
             molerFillImage.fillAmount = 0f;
             molerFillImage.color = Color.yellow;
-            Debug.Log($"[Cliente {order.currentOrder.orderId}] Preparacion: Moliendo cafe...");
+            //Debug.Log($"[Cliente {order.currentOrder.orderId}] Preparacion: Moliendo cafe...");
         }
     }
     public void StopMoler()
@@ -867,7 +858,7 @@ public class MinigameInput : MonoBehaviour
             isMoliendo = false;
             molerPanel.SetActive(false);
 
-            Debug.Log($"[Cliente {order.currentOrder.orderId}] Cafe molido");
+            //Debug.Log($"[Cliente {order.currentOrder.orderId}] Cafe molido");
             buttonManager.DisableButton(buttonManager.molerButton);
             buttonManager.filtroButton.gameObject.SetActive(true);
             buttonManager.EnableButton(buttonManager.filtroButton);
@@ -929,7 +920,7 @@ public class MinigameInput : MonoBehaviour
         bool recipienteEnCafetera = tazaIsInCafetera || vasoIsInCafetera;
         if (!recipienteEnCafetera || !filtroIsInCafetera) return;
 
-        Debug.Log($"[Cliente {order.currentOrder.orderId}] Preparacion: Echando cafe...");
+        //Debug.Log($"[Cliente {order.currentOrder.orderId}] Preparacion: Echando cafe...");
 
         isServing = true;
         movingRight = true;
@@ -980,7 +971,7 @@ public class MinigameInput : MonoBehaviour
         if (order != null && order.currentOrder != null)
         {
             order.currentOrder.coffeeServedPrecision = normalizedPrecision;
-            Debug.Log($"[Cliente {order.currentOrder.orderId}] Echar cafe detenido en: {normalizedPrecision}");
+            //Debug.Log($"[Cliente {order.currentOrder.orderId}] Echar cafe detenido en: {normalizedPrecision}");
         }
 
         order.currentOrder.stepsPerformed.Add(OrderStep.AddCoffee);
@@ -1162,11 +1153,15 @@ public class MinigameInput : MonoBehaviour
         {
             milkInHand = true;
             milkImage.material = glowMaterial;
+
+            DragController.Instance.StartDragging(milkImage.sprite);
         }
         else if (milkInHand == true)
         {
             milkInHand = false;
             milkImage.material = defaultMaterial;
+
+            DragController.Instance.StopDragging();
         }
     }
     public void EcharLecheFria()
@@ -1197,11 +1192,15 @@ public class MinigameInput : MonoBehaviour
         {
             tazaMilkInHand = true;
             milkCupImage.material = glowMaterial;
+
+            DragController.Instance.StartDragging(TazaLeche.GetComponent<Image>().sprite);
         }
         else if (tazaMilkInHand == true)
         {
             tazaMilkInHand = false;
             milkCupImage.material = defaultMaterial;
+
+            DragController.Instance.StopDragging();
         }
     }
 
@@ -1229,8 +1228,6 @@ public class MinigameInput : MonoBehaviour
             Image espumador = Espumador.GetComponent<Image>();
             espumador.sprite = espumadorShort;
 
-            //cursorManager.UpdateCursorTazaMilk(true);
-
             if (tutorialManager.isRunningT3 && tutorialManager.currentStep == 1)
                 FindFirstObjectByType<TutorialManager>().CompleteCurrentStep3();
 
@@ -1246,8 +1243,6 @@ public class MinigameInput : MonoBehaviour
             buttonManager.DisableButton(buttonManager.calentarButton);
             Image espumador = Espumador.GetComponent<Image>();
             espumador.sprite = espumadorNormal;
-
-            //cursorManager.UpdateCursorTazaMilk(false);
         }
     }
     public void StartHeating()
@@ -1290,13 +1285,13 @@ public class MinigameInput : MonoBehaviour
         {
             if (countMilk <= 1)
             {
-                if (currentHeat < 0.4f)
+                if (currentHeat < 0.2f)
                 {
                     countMilk += 1;
                     order.currentOrder.milkPrecision = countMilk;
                     order.currentOrder.heatedMilkPrecision = 0;
                 }
-                else if (currentHeat < 0.8f)
+                else if (currentHeat < 0.6f)
                 {
                     countMilk += 1;
                     order.currentOrder.milkPrecision = countMilk;
@@ -1334,11 +1329,15 @@ public class MinigameInput : MonoBehaviour
         {
             waterInHand = true;
             waterImage.material = glowMaterial;
+
+            DragController.Instance.StartDragging(waterImage.sprite);
         }
         else if (waterInHand == true)
         {
             waterInHand = false;
             waterImage.material = defaultMaterial;
+
+            DragController.Instance.StopDragging();
         }
     }
     public void EcharAgua()
@@ -1372,11 +1371,15 @@ public class MinigameInput : MonoBehaviour
         {
             condensedMilkInHand = true;
             condensedMilkImage.material = glowMaterial;
+
+            DragController.Instance.StartDragging(condensedMilkImage.sprite);
         }
         else if (condensedMilkInHand == true)
         {
             condensedMilkInHand = false;
             condensedMilkImage.material = defaultMaterial;
+
+            DragController.Instance.StopDragging();
         }
     }
     public void EcharLecheCondensada()
@@ -1389,8 +1392,9 @@ public class MinigameInput : MonoBehaviour
                 countCondensedMilk += 1; //Se incrementa el contador de leche condensada
                 order.currentOrder.condensedMilkPrecision = countCondensedMilk; // Se guarda el resultado obtenido en la precision del jugador
                 PopUpMechanicsMsg.Instance.ShowMessage("+Leche Condensada");
+                order.currentOrder.stepsPerformed.Add(OrderStep.AddCondensedMilk);
             }
-            order.currentOrder.stepsPerformed.Add(OrderStep.AddCondensedMilk);
+
             if (tazaIsInCafetera)
             {
                 UpdateCupSprite(false);
@@ -1446,11 +1450,16 @@ public class MinigameInput : MonoBehaviour
         {
             chocolateInHand = true;
             chocolateImage.material = glowMaterial;
+
+            DragController.Instance.StartDragging(chocolateImage.sprite);
         }
+
         else if (chocolateInHand == true)
         {
             chocolateInHand = false;
             chocolateImage.material = defaultMaterial;
+
+            DragController.Instance.StopDragging();
         }
     }
     public void EcharChocolate()
@@ -1463,8 +1472,9 @@ public class MinigameInput : MonoBehaviour
                 countChocolate += 1; //Se incrementa el contador de chocolate
                 order.currentOrder.chocolatePrecision = countChocolate; // Se guarda el resultado obtenido en la precision del jugador
                 PopUpMechanicsMsg.Instance.ShowMessage("+ Chocolate");
+                order.currentOrder.stepsPerformed.Add(OrderStep.AddChocolate);
             }
-            order.currentOrder.stepsPerformed.Add(OrderStep.AddChocolate);
+
             if (tazaIsInCafetera)
             {
                 UpdateCupSprite(false);
@@ -1483,11 +1493,15 @@ public class MinigameInput : MonoBehaviour
         {
             whiskeyInHand = true;
             whiskeyImage.material = glowMaterial;
+
+            DragController.Instance.StartDragging(whiskeyImage.sprite);
         }
         else if (whiskeyInHand == true)
         {
             whiskeyInHand = false;
             whiskeyImage.material = defaultMaterial;
+
+            DragController.Instance.StopDragging();
         }
     }
     public void EcharWhiskey()
@@ -1500,8 +1514,9 @@ public class MinigameInput : MonoBehaviour
                 countWhiskey += 1; //Se incrementa el contador de hielo
                 order.currentOrder.whiskeyPrecision = countWhiskey; // Se guarda el resultado obtenido en la precision del jugador
                 PopUpMechanicsMsg.Instance.ShowMessage("+ Whiskey");
+                order.currentOrder.stepsPerformed.Add(OrderStep.AddWhiskey);
             }
-            order.currentOrder.stepsPerformed.Add(OrderStep.AddWhiskey);
+
             if (tazaIsInCafetera)
             {
                 UpdateCupSprite(false);
@@ -1596,11 +1611,14 @@ public class MinigameInput : MonoBehaviour
             coverInHand = true;
             coverImage.material = glowMaterial;
 
+            DragController.Instance.StartDragging(coverImg);
         }
         else if (coverInHand == true)
         {
             coverInHand = false;
             coverImage.material = defaultMaterial;
+
+            DragController.Instance.StopDragging();
         }
     }
     public void PonerTapa()
@@ -1613,6 +1631,7 @@ public class MinigameInput : MonoBehaviour
                 countCover += 1; //Se incrementa el contador de hielo
                 order.currentOrder.typePrecision = countCover; // Se guarda el resultado obtenido en la precision del jugador
             }
+
             Image vaso = Vaso.GetComponent<Image>();
             vaso.sprite = vasoConTapa;
             currentSprite = vasoConTapa;
@@ -1625,7 +1644,6 @@ public class MinigameInput : MonoBehaviour
 
             order.currentOrder.stepsPerformed.Add(OrderStep.PutCover);
             buttonManager.DisableButton(buttonManager.coverButton);
-            cursorManager.SetDefaultCursor();
             coverInHand = false;
         }
     }

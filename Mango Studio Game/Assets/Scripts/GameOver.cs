@@ -22,15 +22,15 @@ public class GameOver : MonoBehaviour
 
         if (averageSatisfaction > 75)
         {
-            text2.text = "SIGUE ASÍ!!";
+            text2.text = "Sigue así!!";
         }
         else if (averageSatisfaction > 50)
         {
-            text2.text = "NO ESTÁ MAL :)";
+            text2.text = "No está mal :)";
         }
         else if (averageSatisfaction > 25)
         {
-            text2.text = "MEJORABLE...";
+            text2.text = "Mejorable...";
         }
         else
         {
