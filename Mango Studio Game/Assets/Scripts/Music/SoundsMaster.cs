@@ -10,10 +10,16 @@ public class SoundsMaster : MonoBehaviour
     [SerializeField] private AudioSource audioSource_SFX;
     [SerializeField] private AudioSource audioSource_SoundTrack;
     string loadedScene;
+
+    [Header("Sonidos generales")]
     [SerializeField] AudioClip sfx_menu;
     [SerializeField] AudioClip sfx_game;
     [SerializeField] AudioClip sfx_clickMenu;
+    [SerializeField] AudioClip sfx_entregar;
+    [SerializeField] AudioClip sfx_takeNote;
+    [SerializeField] AudioClip sfx_finDia;
 
+    [Header("Sonidos cafe")]
     [SerializeField] AudioClip sfx_clickCoffeeAmountMachine;
     [SerializeField] AudioClip sfx_coffeeMachine;
     [SerializeField] AudioClip sfx_cantidadCafeEchada;
@@ -21,17 +27,23 @@ public class SoundsMaster : MonoBehaviour
     [SerializeField] AudioClip sfx_molerCafe;
     [SerializeField] AudioClip sfx_espumador;
 
+    [Header("Sonidos mecanicas")]
     [SerializeField] AudioClip sfx_echarLiquido;
     [SerializeField] AudioClip sfx_cogerHielo;
     [SerializeField] AudioClip sfx_echarHielo;
     [SerializeField] AudioClip sfx_dejarHielo;
     [SerializeField] AudioClip sfx_dejarCogerObj;
+    [SerializeField] AudioClip sfx_cuchara;
+    [SerializeField] AudioClip sfx_azucar;
+    [SerializeField] AudioClip sfx_papelera;
 
+    [Header("Sonidos envases")]
     [SerializeField] AudioClip sfx_cogerPlato;
     [SerializeField] AudioClip sfx_cogerVaso;
     [SerializeField] AudioClip sfx_cogerTaza;
     [SerializeField] AudioClip sfx_cogerBolsa;
 
+    [Header("Sonidos comida")]
     [SerializeField] AudioClip sfx_comida;
     [SerializeField] AudioClip sfx_microondas;
 
@@ -64,9 +76,7 @@ public class SoundsMaster : MonoBehaviour
         }
 
         CreateAudioSource("CoffeeMachine", sfx_coffeeMachine, true);
-
         CreateAudioSource("Espumador", sfx_espumador, true);
-
         CreateAudioSource("Microondas", sfx_microondas, true);
     }
 
@@ -133,6 +143,21 @@ public class SoundsMaster : MonoBehaviour
         PlaySound(sfx_clickMenu);
     }
 
+    public void PlaySound_TakeOrderNote()
+    {
+        PlaySound(sfx_takeNote);
+    }
+
+    public void PlaySound_Entregar()
+    {
+        PlaySound(sfx_entregar);
+    }
+
+    public void PlaySound_FinDia()
+    {
+        PlaySound(sfx_finDia);
+    }
+
     public void PlaySound_CoffeeAmountReady()
     {
         PlaySound(sfx_cantidadCafeEchada);
@@ -178,6 +203,20 @@ public class SoundsMaster : MonoBehaviour
         PlaySound(sfx_dejarHielo);
     }
 
+    public void PlaySound_Cuchara()
+    {
+        PlaySound(sfx_cuchara);
+    }
+
+    public void PlaySound_Azucar()
+    {
+        PlaySound(sfx_azucar);
+    }
+
+    public void PlaySound_Papelera()
+    {
+        PlaySound(sfx_papelera);
+    }
 
     public void PlaySound_TakePlate()
     {

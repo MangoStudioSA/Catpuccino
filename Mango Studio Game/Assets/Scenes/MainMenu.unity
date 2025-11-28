@@ -11295,9 +11295,33 @@ PrefabInstance:
       value: AudioMaster
       objectReference: {fileID: 0}
     - target: {fileID: 6563893040131285069, guid: 40fcd3f615988a74883f9aa3309e7971, type: 3}
+      propertyPath: sfx_azucar
+      value: 
+      objectReference: {fileID: 8300000, guid: 2b57498f3833eaa4dbc7f5764b494a7b, type: 3}
+    - target: {fileID: 6563893040131285069, guid: 40fcd3f615988a74883f9aa3309e7971, type: 3}
       propertyPath: sfx_comida
       value: 
       objectReference: {fileID: 8300000, guid: 409cad6b7601bee46b91a27bf352bdfa, type: 3}
+    - target: {fileID: 6563893040131285069, guid: 40fcd3f615988a74883f9aa3309e7971, type: 3}
+      propertyPath: sfx_finDia
+      value: 
+      objectReference: {fileID: 8300000, guid: 63ed8a57453161f4dbc3cd6db7573bc8, type: 3}
+    - target: {fileID: 6563893040131285069, guid: 40fcd3f615988a74883f9aa3309e7971, type: 3}
+      propertyPath: sfx_cuchara
+      value: 
+      objectReference: {fileID: 8300000, guid: aa25698416cdb014b8ca792aefc04505, type: 3}
+    - target: {fileID: 6563893040131285069, guid: 40fcd3f615988a74883f9aa3309e7971, type: 3}
+      propertyPath: sfx_entregar
+      value: 
+      objectReference: {fileID: 8300000, guid: 7a6998d1974f65246a83a2c38d9481d1, type: 3}
+    - target: {fileID: 6563893040131285069, guid: 40fcd3f615988a74883f9aa3309e7971, type: 3}
+      propertyPath: sfx_papelera
+      value: 
+      objectReference: {fileID: 8300000, guid: d27a26b8713bec748b2ec014d852ba73, type: 3}
+    - target: {fileID: 6563893040131285069, guid: 40fcd3f615988a74883f9aa3309e7971, type: 3}
+      propertyPath: sfx_takeNote
+      value: 
+      objectReference: {fileID: 8300000, guid: 3895d7bd2982a7e4eb4a81230df16276, type: 3}
     - target: {fileID: 6563893040131285069, guid: 40fcd3f615988a74883f9aa3309e7971, type: 3}
       propertyPath: sfx_cogerTaza
       value: 

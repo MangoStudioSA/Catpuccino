@@ -123,27 +123,32 @@ public class ShopManager : MonoBehaviour
     #region Funciones botones
     public void OnBuyPackCoinsClicked()
     {
+        SoundsMaster.Instance.PlaySound_ClickMenu();
         message.Show("Funcionalidad en desarrollo."); // Mensaje cuando el jugador intenta comprar monedas premium
     }
 
     public void OnBuyBasicPackClicked()
     {
+        SoundsMaster.Instance.PlaySound_ClickMenu();
         messageBuyBP.Show("Si compras este sobre gastarás 70 monedas de café. ¿Deseas continuar y abrirlo?"); // Mensaje cuando el jugador intenta comprar un sobre básico
     }
 
     public void OnBuyPremiumPackClicked()
     {
+        SoundsMaster.Instance.PlaySound_ClickMenu();
         messageBuyPP.Show("Si compras este sobre gastarás 120 croquetas doradas o 220 monedas de café. ¿Deseas continuar y abrirlo?"); // Mensaje cuando el jugador intenta comprar un sobre premium
     }
 
     public void OnFinalBuyBasicPackClicked()
     {
+        SoundsMaster.Instance.PlaySound_ClickMenu();
         BuyBasicPack(); // Si acepta comprar el sobre basico se llama a la funcion correspondiente
         buyBasicPackMsgPanel.SetActive(false); 
     }
 
     public void OnFinalBuyPremiumPackClicked()
     {
+        SoundsMaster.Instance.PlaySound_ClickMenu();
         BuyPremiumPackPC(); // Si acepta comprar el sobre premium se llama a la funcion correspondiente
         buyPremiumPackMsgPanel.SetActive(false);
     }

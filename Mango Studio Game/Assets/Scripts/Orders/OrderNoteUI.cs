@@ -49,7 +49,9 @@ public class OrderNoteUI : MonoBehaviour
     // Activa/desactiva el panel
     public void ToggleNote()
     {
-        if (currentOrder == null) return; 
+        if (currentOrder == null) return;
+
+        SoundsMaster.Instance.PlaySound_ClickMenu();
 
         isVisible = !isVisible;
         notePanelOrder.gameObject.SetActive(true);

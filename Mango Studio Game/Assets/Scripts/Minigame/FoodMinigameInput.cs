@@ -652,6 +652,7 @@ public class FoodMinigameInput : MonoBehaviour
         if (horneadoCoroutine != null) StopCoroutine(horneadoCoroutine);
 
         MicroondasSound();
+        BotonDownBMachine();
 
         horneadoCoroutine = StartCoroutine(HornearCoroutine());
         isBaking = true;
@@ -708,6 +709,7 @@ public class FoodMinigameInput : MonoBehaviour
         }
 
         SoundsMaster.Instance.StopAudio("Microondas");
+        BotonDownBMachine();
 
         isBaking = false;
         foodBaked = true;
@@ -744,5 +746,15 @@ public class FoodMinigameInput : MonoBehaviour
     public void MicroondasSound()
     {
         SoundsMaster.Instance.PlayAudio("Microondas");
+    }
+
+    public void PapeleraBSound()
+    {
+        SoundsMaster.Instance.PlaySound_Papelera();
+    }
+
+    public void BotonDownBMachine()
+    {
+        SoundsMaster.Instance.PlaySound_CoffeeAmountMachine();
     }
 }

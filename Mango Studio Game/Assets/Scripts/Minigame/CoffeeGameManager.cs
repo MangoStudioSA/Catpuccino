@@ -50,6 +50,7 @@ public class CoffeeGameManager : MonoBehaviour
     {
         // Se calcula la puntuacion del pedido comparando lo que se pedia con el resultado del jugador
         EvaluationResult result = evaluation.Evaluate(npc.currentOrder, player.currentOrder);
+        SoundsMaster.Instance.PlaySound_Entregar();
 
         if (result == null)
         {

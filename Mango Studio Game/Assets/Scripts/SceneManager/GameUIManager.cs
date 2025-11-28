@@ -29,6 +29,8 @@ public class GameUIManager : MonoBehaviour
     // Menu de pausa
     public void OpenPauseMenu()
     {
+        SoundsMaster.Instance.PlaySound_ClickMenu();
+
         pausePanel.SetActive(true); // Activar UI menu pausa desde el juego
         gameCanvasGroup.interactable = false;
         gameCanvasGroup.blocksRaycasts = false;
@@ -36,6 +38,8 @@ public class GameUIManager : MonoBehaviour
     }
     public void ClosePauseMenu()
     {
+        SoundsMaster.Instance.PlaySound_ClickMenu();
+
         pausePanel.SetActive(false);
         gameCanvasGroup.interactable = true;
         gameCanvasGroup.blocksRaycasts = true;
@@ -45,11 +49,15 @@ public class GameUIManager : MonoBehaviour
     // Menu de opciones (desde el juego)
     public void OpenGameOptions()
     {
+        SoundsMaster.Instance.PlaySound_ClickMenu();
+
         optionsPanel.SetActive(true); // Activar UI menu opciones desde el juego
         pausePanel.SetActive(false);
     }
     public void CloseGameOptions()
     {
+        SoundsMaster.Instance.PlaySound_ClickMenu();
+
         optionsPanel.SetActive(false);
         pausePanel.SetActive(true);
     }
@@ -57,6 +65,8 @@ public class GameUIManager : MonoBehaviour
     // Menu de la tienda
     public void OpenShopMenu()
     {
+        SoundsMaster.Instance.PlaySound_ClickMenu();
+
         shopPanel.SetActive(true); // Activar UI menu tienda desde el juego
         gameCanvasGroup.interactable = false;
         gameCanvasGroup.blocksRaycasts = false;
@@ -66,6 +76,8 @@ public class GameUIManager : MonoBehaviour
     }
     public void CloseShopMenu()
     {
+        SoundsMaster.Instance.PlaySound_ClickMenu();
+
         shopPanel.SetActive(false); // Desactivar UI menu tienda desde el juego
         gameCanvasGroup.interactable = true;
         gameCanvasGroup.blocksRaycasts = true;
@@ -83,6 +95,8 @@ public class GameUIManager : MonoBehaviour
             customerOrderGenerator.GenRandomOrder();
         }
 
+        SoundsMaster.Instance.PlaySound_Entregar();
+
         gameCanvasGroup.gameObject.SetActive(false);
         dialoguePanel.SetActive(true);
         orderScreen = true;
@@ -94,6 +108,7 @@ public class GameUIManager : MonoBehaviour
     // Menu del final del dia
     public void ShowEndOfDayPanel()
     {
+        SoundsMaster.Instance.PlaySound_FinDia();
         endOfDayPanel.SetActive(true);
         // Desactivamos el panel principal del juego para que no se pueda interactuar con él
         gamePanel.SetActive(false);

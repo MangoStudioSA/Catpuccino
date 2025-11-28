@@ -66,6 +66,8 @@ public class UIDialogue : MonoBehaviour
         dialoguePanel.SetActive(false);
         preparationPanel.SetActive(true);
 
+        SoundsMaster.Instance.PlaySound_TakeOrderNote();
+
         if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 2)
             FindFirstObjectByType<TutorialManager>().CompleteCurrentStep();
 
@@ -80,6 +82,8 @@ public class UIDialogue : MonoBehaviour
     // Funcion encargada de cerrar el panel de feedback del cliente
     public void EndDelivery()
     {
+        SoundsMaster.Instance.PlaySound_Entregar();
+
         deliveryPanel.SetActive(false);
         roomPanel.SetActive(true);
         manager.orderButton.SetActive(false);

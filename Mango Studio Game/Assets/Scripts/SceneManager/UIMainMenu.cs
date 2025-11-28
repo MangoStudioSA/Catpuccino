@@ -28,6 +28,8 @@ public class UIMainMenu : MonoBehaviour
 
     public void OpenSettings()
     {
+        SoundsMaster.Instance.PlaySound_ClickMenu();
+
         settingsPanel.SetActive(true);
         mainMenuPanel.SetActive(true);
         mainMenuCanvasGroup.interactable = false;
@@ -36,6 +38,8 @@ public class UIMainMenu : MonoBehaviour
 
     public void OpenSlots()
     {
+        SoundsMaster.Instance.PlaySound_ClickMenu();
+
         slotsPanel.SetActive(true);
         mainMenuPanel.SetActive(true);
         mainMenuCanvasGroup.interactable = false;
@@ -45,6 +49,8 @@ public class UIMainMenu : MonoBehaviour
 
     public void OpenContact()
     {
+        SoundsMaster.Instance.PlaySound_ClickMenu();
+
         contactPanel.SetActive(true);
         mainMenuPanel.SetActive(true);
         mainMenuCanvasGroup.interactable = false;
@@ -55,18 +61,24 @@ public class UIMainMenu : MonoBehaviour
     {
         if (settingsPanel.activeSelf)
         {
+            SoundsMaster.Instance.PlaySound_ClickMenu();
+
             settingsPanel.SetActive(false);
             mainMenuCanvasGroup.interactable = true;
             mainMenuCanvasGroup.blocksRaycasts = true;
         }
         if (contactPanel.activeSelf)
         {
+            SoundsMaster.Instance.PlaySound_ClickMenu();
+
             contactPanel.SetActive(false);
             mainMenuCanvasGroup.interactable = true;
             mainMenuCanvasGroup.blocksRaycasts = true;
         }
         if (slotsPanel.activeSelf)
         {
+            SoundsMaster.Instance.PlaySound_ClickMenu();
+
             slotsPanel.SetActive(false);
             mainMenuCanvasGroup.interactable = true;
             mainMenuCanvasGroup.blocksRaycasts = true;

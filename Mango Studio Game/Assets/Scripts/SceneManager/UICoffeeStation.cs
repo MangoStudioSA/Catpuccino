@@ -32,6 +32,8 @@ public class UICoffeeStation : MonoBehaviour
     // Mostrar panel de recetas
     public void ShowRecipesPanel()
     {
+        SoundsMaster.Instance.PlaySound_ClickMenu();
+
         recipesPanel.SetActive(true);
         Time.timeScale = 0.0f;
 
@@ -44,6 +46,8 @@ public class UICoffeeStation : MonoBehaviour
     // Cerrar panel de recetas
     public void CloseRecipesPanel()
     {
+        SoundsMaster.Instance.PlaySound_ClickMenu();
+
         recipesPanel.SetActive(false);
         Time.timeScale = 1.0f;
 
@@ -59,6 +63,8 @@ public class UICoffeeStation : MonoBehaviour
     // Mostrar panel de reposteria
     public void ShowBakeryPanel()
     {
+        SoundsMaster.Instance.PlaySound_ClickMenu();
+
         preparationPanel.SetActive(false);
         bakeryPanel.SetActive(true);
 
@@ -69,6 +75,8 @@ public class UICoffeeStation : MonoBehaviour
     // Cerrar panel de reposteria
     public void ReturnBakeryPanel()
     {
+        SoundsMaster.Instance.PlaySound_ClickMenu();
+
         bakeryPanel.SetActive(false);
         preparationPanel.SetActive(true);
 
@@ -79,9 +87,10 @@ public class UICoffeeStation : MonoBehaviour
     // Mostrar panel de feedback del cliente
     public void SubmitOrderUI()
     {
-
         if (gameManager != null && miniGameInput.coffeeServed == true && !miniGameInput.cucharaInHand && !miniGameInput.iceInHand && !miniGameInput.coverInHand)
         {
+            SoundsMaster.Instance.PlaySound_Entregar();
+
             gameManager.SubmitOrder();
             preparationPanel.SetActive(false);
             deliveryPanel.SetActive(true);

@@ -40,7 +40,7 @@ public class MinigameInput : MonoBehaviour
     [SerializeField] private GameObject molerPanel;
     [SerializeField] private GameObject palancaDown;
     [SerializeField] private Image molerFillImage;
-    [SerializeField] private float molerFillSpeed = 0.5f;
+    [SerializeField] private float molerFillSpeed = 0.4f;
     [SerializeField] private float maxFillMoler = 1f;
     [SerializeField] private float currentMolido = 0f;
     [SerializeField] private bool isMoliendo = false;
@@ -48,7 +48,7 @@ public class MinigameInput : MonoBehaviour
     [Header("Mecánica espumador")]
     [SerializeField] private GameObject heatPanel;
     [SerializeField] private Image curvedFillImage;
-    [SerializeField] private float fillSpeed = 0.5f;
+    [SerializeField] private float fillSpeed = 0.05f;
     [SerializeField] private float currentHeat = 0f;
     [SerializeField] private bool isHeating = false;
     [SerializeField] public bool heatedMilk = false;
@@ -232,7 +232,7 @@ public class MinigameInput : MonoBehaviour
     #region Funciones auxiliares
     public void ResetCafe()
     {
-        if (TengoOtroObjetoEnLaMano() || filtroInHand) return;
+        if (TengoOtroObjetoEnLaMano() || filtroInHand || tazaInHand || tazaMilkInHand || vasoInHand || platoTazaInHand) return;
 
         buttonManager.filtroCafeteraButton.gameObject.SetActive(false);
         buttonManager.filtroButton.gameObject.SetActive(false);
@@ -951,6 +951,7 @@ public class MinigameInput : MonoBehaviour
 
         //Debug.Log($"[Cliente {order.currentOrder.orderId}] Preparacion: Echando cafe...");
 
+        BotonDownMachine();
         CafeteraSound();
         isServing = true;
         movingRight = true;
@@ -997,6 +998,8 @@ public class MinigameInput : MonoBehaviour
         coffeeServed = true;
 
         SoundsMaster.Instance.StopAudio("CoffeeMachine");
+
+        BotonDownMachine();
         EcharCafeSound();
 
         buttonManager.DisableButton(buttonManager.pararEcharCafeButton);
@@ -1220,6 +1223,14 @@ public class MinigameInput : MonoBehaviour
                 UpdateCupSprite(false);
                 currentSprite = Taza.GetComponent<Image>().sprite;
             }
+            else if (vasoIsInCafetera && coffeeServed)
+            {
+                CoffeeType currentType = DetermineCoffeeType();
+                bool isCup = false;
+                currentSprite = GetBaseCoffeeSprite(currentType, isCup);
+                Image vaso = Vaso.GetComponent<Image>();
+                vaso.sprite = currentSprite;
+            }
         }
     }
     public void CogerJarraLeche()
@@ -1252,6 +1263,7 @@ public class MinigameInput : MonoBehaviour
         if (!tazaMilkIsInEspumador && tazaMilkInHand)
         {
             CogerDejarObjSound();
+            DragController.Instance.StopDragging();
 
             // Poner en el espumador
             TazaLeche.SetActive(true);
@@ -1275,6 +1287,7 @@ public class MinigameInput : MonoBehaviour
         else if (tazaMilkIsInEspumador && !tazaMilkInHand)
         {
             CogerDejarObjSound();
+            DragController.Instance.StartDragging(TazaLeche.GetComponent<Image>().sprite);
 
             //Recoger del espumador
             TazaLeche.SetActive(false);
@@ -1294,6 +1307,7 @@ public class MinigameInput : MonoBehaviour
 
         if (!isHeating && !heatedMilk)
         {
+            BotonDownMachine();
             EspumadorSound();
 
             currentHeat = 0f;
@@ -1364,6 +1378,14 @@ public class MinigameInput : MonoBehaviour
                     UpdateCupSprite(false);
                     currentSprite = Taza.GetComponent<Image>().sprite;
                 }
+                else if (vasoIsInCafetera && coffeeServed)
+                {
+                    CoffeeType currentType = DetermineCoffeeType();
+                    bool isCup = false;
+                    currentSprite = GetBaseCoffeeSprite(currentType, isCup);
+                    Image vaso = Vaso.GetComponent<Image>();
+                    vaso.sprite = currentSprite;
+                }
             }
         }
     }
@@ -1410,6 +1432,14 @@ public class MinigameInput : MonoBehaviour
                 UpdateCupSprite(false);
                 currentSprite = Taza.GetComponent<Image>().sprite;
             }
+            else if (vasoIsInCafetera && coffeeServed)
+            {
+                CoffeeType currentType = DetermineCoffeeType();
+                bool isCup = false;
+                currentSprite = GetBaseCoffeeSprite(currentType, isCup);
+                Image vaso = Vaso.GetComponent<Image>();
+                vaso.sprite = currentSprite;
+            }
         }
     }
     #endregion
@@ -1454,6 +1484,14 @@ public class MinigameInput : MonoBehaviour
                 UpdateCupSprite(false);
                 currentSprite = Taza.GetComponent<Image>().sprite;
             }
+            else if (vasoIsInCafetera && coffeeServed)
+            {
+                CoffeeType currentType = DetermineCoffeeType();
+                bool isCup = false;
+                currentSprite = GetBaseCoffeeSprite(currentType, isCup);
+                Image vaso = Vaso.GetComponent<Image>();
+                vaso.sprite = currentSprite;
+            }
         }
     }
     #endregion
@@ -1467,11 +1505,13 @@ public class MinigameInput : MonoBehaviour
         {
             creamInHand = true;
             buttonManager.creamButton.image.sprite = creamWithoutSpoon;
+            CucharaSound();
         }
         else if (creamInHand == true)
         {
             creamInHand = false;
-            buttonManager.creamButton.image.sprite = creamWithSpoon; 
+            buttonManager.creamButton.image.sprite = creamWithSpoon;
+            CucharaSound();
         }
     }
     public void EcharCrema()
@@ -1490,6 +1530,14 @@ public class MinigameInput : MonoBehaviour
             {
                 UpdateCupSprite(false);
                 currentSprite = Taza.GetComponent<Image>().sprite;
+            }
+            else if (vasoIsInCafetera && coffeeServed)
+            {
+                CoffeeType currentType = DetermineCoffeeType();
+                bool isCup = false;
+                currentSprite = GetBaseCoffeeSprite(currentType, isCup);
+                Image vaso = Vaso.GetComponent<Image>();
+                vaso.sprite = currentSprite;
             }
         }
     }
@@ -1536,6 +1584,14 @@ public class MinigameInput : MonoBehaviour
                 UpdateCupSprite(false);
                 currentSprite = Taza.GetComponent<Image>().sprite;
             }
+            else if (vasoIsInCafetera && coffeeServed)
+            {
+                CoffeeType currentType = DetermineCoffeeType();
+                bool isCup = false;
+                currentSprite = GetBaseCoffeeSprite(currentType, isCup);
+                Image vaso = Vaso.GetComponent<Image>();
+                vaso.sprite = currentSprite;
+            }
         }
     }
     #endregion
@@ -1581,6 +1637,14 @@ public class MinigameInput : MonoBehaviour
                 UpdateCupSprite(false);
                 currentSprite = Taza.GetComponent<Image>().sprite;
             }
+            else if (vasoIsInCafetera && coffeeServed)
+            {
+                CoffeeType currentType = DetermineCoffeeType();
+                bool isCup = false;
+                currentSprite = GetBaseCoffeeSprite(currentType, isCup);
+                Image vaso = Vaso.GetComponent<Image>();
+                vaso.sprite = currentSprite;
+            }
         }
     }
     #endregion
@@ -1591,10 +1655,12 @@ public class MinigameInput : MonoBehaviour
         if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand && countCover <= 0 && !filtroInHand && !platoTazaInHand)
         {
             cucharaInHand = true;
+            CucharaSound();
         }
         else if (cucharaInHand == true)
         {
             cucharaInHand = false;
+            CucharaSound();
         }
     }
     public void EcharAzucar()
@@ -1604,6 +1670,7 @@ public class MinigameInput : MonoBehaviour
         {
             if (countSugar <= 1)
             {
+                AzucarSound();
                 countSugar += 1; //Se incrementa el contador de hielo
                 order.currentOrder.sugarPrecision = countSugar; // Se guarda el resultado obtenido en la precision del jugador
                 PopUpMechanicsMsg.Instance.ShowMessage($"+{countSugar} Azúcar");
@@ -1672,6 +1739,7 @@ public class MinigameInput : MonoBehaviour
         {
             coverInHand = true;
             coverImage.material = glowMaterial;
+            TakeVaseSound();
 
             DragController.Instance.StartDragging(coverImg);
         }
@@ -1679,6 +1747,7 @@ public class MinigameInput : MonoBehaviour
         {
             coverInHand = false;
             coverImage.material = defaultMaterial;
+            TakeVaseSound();
 
             DragController.Instance.StopDragging();
         }
@@ -1694,6 +1763,7 @@ public class MinigameInput : MonoBehaviour
                 order.currentOrder.typePrecision = countCover; // Se guarda el resultado obtenido en la precision del jugador
             }
 
+            TakeVaseSound();
             Image vaso = Vaso.GetComponent<Image>();
             vaso.sprite = vasoConTapa;
             currentSprite = vasoConTapa;
@@ -1729,13 +1799,11 @@ public class MinigameInput : MonoBehaviour
 
     public void BotonDownMachine()
     {
-        if (coffeeDone) return;
         SoundsMaster.Instance.PlaySound_CoffeeAmountMachine();
     }
 
     public void BotonUpMachine()
     {
-        if (coffeeDone) return; 
         SoundsMaster.Instance.PlaySound_CoffeeAmountReady();
     }
 
@@ -1784,7 +1852,20 @@ public class MinigameInput : MonoBehaviour
         SoundsMaster.Instance.PlaySound_DejarHielo();
     }
 
-    
+    public void CucharaSound()
+    {
+        SoundsMaster.Instance.PlaySound_Cuchara();
+    }
+
+    public void AzucarSound()
+    {
+        SoundsMaster.Instance.PlaySound_Azucar();
+    }
+
+    public void PapeleraSound()
+    {
+        SoundsMaster.Instance.PlaySound_Papelera();
+    }
 
     #endregion
 }
