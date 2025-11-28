@@ -312,6 +312,7 @@ public class FoodMinigameInput : MonoBehaviour
         {
             platoInHand = true;
             platoImage.material = glowMaterial;
+            TakeFoodPlateSound();
 
             Sprite plato = Plato.GetComponent<Image>().sprite;
             DragController.Instance.StartDragging(plato);
@@ -320,6 +321,7 @@ public class FoodMinigameInput : MonoBehaviour
         {
             platoInHand = false;
             platoImage.material = defaultMaterial;
+            TakeFoodPlateSound();
 
             DragController.Instance.StopDragging();
         }
@@ -334,6 +336,7 @@ public class FoodMinigameInput : MonoBehaviour
         {
             carryBagInHand = true;
             bolsaImage.material = glowMaterial;
+            TakeBagSound();
 
             Sprite bolsaLlevar = BolsaLlevar.GetComponent<Image>().sprite;
             DragController.Instance.StartDragging(bolsaLlevar);
@@ -342,6 +345,7 @@ public class FoodMinigameInput : MonoBehaviour
         {
             carryBagInHand = false;
             bolsaImage.material = defaultMaterial;
+            TakeBagSound();
 
             DragController.Instance.StopDragging();
         }
@@ -353,6 +357,7 @@ public class FoodMinigameInput : MonoBehaviour
         if (platoIsInEncimera || carryBagIsInEncimera) return;
         if (!platoInHand) return;
 
+        TakeFoodPlateSound();
         Plato.SetActive(true);
         Plato.transform.position = puntoEncimera.position;
 
@@ -376,6 +381,7 @@ public class FoodMinigameInput : MonoBehaviour
         if (carryBagIsInEncimera || platoIsInEncimera) return;
         if (!carryBagInHand) return;
 
+        TakeBagSound();
         BolsaLlevar.SetActive(true);
         BolsaLlevar.transform.position = puntoEncimera.position;
 
@@ -412,6 +418,8 @@ public class FoodMinigameInput : MonoBehaviour
             foodObj.SetActive(true);
             foodObj.transform.position = puntoComida.position;
             foodInPlatoObj = foodObj;
+
+            ComidaSound();
 
             // Se asocia la imagen
             Image img = foodObj.GetComponent<Image>();
@@ -468,6 +476,8 @@ public class FoodMinigameInput : MonoBehaviour
             foodInHand = true;
             foodServed = false;
 
+            ComidaSound();
+
             //  Se asocia la categoria y el tipo de comida del plato a la mano
             foodCategoryInHand = foodCategoryInPlato;
             foodTypeInHand = foodTypeInPlato;
@@ -499,6 +509,8 @@ public class FoodMinigameInput : MonoBehaviour
             //  Se asocia la categoria y el tipo de comida de la mano al plato
             foodCategoryInCarryBag = foodCategoryInHand;
             foodTypeInCarryBag = foodTypeInHand;
+
+            ComidaSound();
 
             countFoodCover++;
             order.currentOrder.typeOrderFoodPrecision = countFoodCover; // Se guarda el resultado obtenido en la precision del jugador
@@ -540,6 +552,8 @@ public class FoodMinigameInput : MonoBehaviour
             foodInHand = true;
             foodServed = false;
 
+            ComidaSound();
+
             //  Se asocia la categoria y el tipo de comida de la bolsa a la mano
             foodCategoryInHand = foodCategoryInCarryBag;
             foodTypeInHand = foodTypeInCarryBag;
@@ -575,6 +589,8 @@ public class FoodMinigameInput : MonoBehaviour
             foodObj.transform.position = puntoHorno.position;
             foodInHornoObj = foodObj;
 
+            ComidaSound();
+
             //  Se asocia la categoria y el tipo de comida de la mano al horno
             foodCategoryInHorno = foodCategoryInHand;
             foodTypeInHorno = foodTypeInHand;
@@ -609,6 +625,8 @@ public class FoodMinigameInput : MonoBehaviour
             foodIsInHorno = false;
             foodInHand = true;
 
+            ComidaSound();
+
             //  Se asocia la categoria y el tipo de comida del horno a la mano
             foodCategoryInHand = foodCategoryInHorno;
             foodTypeInHand = foodTypeInHorno;
@@ -632,6 +650,8 @@ public class FoodMinigameInput : MonoBehaviour
         if (!foodIsInHorno || foodInHornoObj == null || foodBaked) return;
          
         if (horneadoCoroutine != null) StopCoroutine(horneadoCoroutine);
+
+        MicroondasSound();
 
         horneadoCoroutine = StartCoroutine(HornearCoroutine());
         isBaking = true;
@@ -687,6 +707,8 @@ public class FoodMinigameInput : MonoBehaviour
             horneadoCoroutine = null;
         }
 
+        SoundsMaster.Instance.StopAudio("Microondas");
+
         isBaking = false;
         foodBaked = true;
 
@@ -703,4 +725,24 @@ public class FoodMinigameInput : MonoBehaviour
         stopHornearBut.sprite = botonPH_P;
     }
     #endregion
+
+    public void TakeFoodPlateSound()
+    {
+        SoundsMaster.Instance.PlaySound_TakePlate();
+    }
+
+    public void TakeBagSound()
+    {
+        SoundsMaster.Instance.PlaySound_TakeBag();
+    }
+
+    public void ComidaSound()
+    {
+        SoundsMaster.Instance.PlaySound_TakeFood();
+    }
+
+    public void MicroondasSound()
+    {
+        SoundsMaster.Instance.PlayAudio("Microondas");
+    }
 }

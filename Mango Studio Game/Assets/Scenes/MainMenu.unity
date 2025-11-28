@@ -11294,6 +11294,82 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioMaster
       objectReference: {fileID: 0}
+    - target: {fileID: 6563893040131285069, guid: 40fcd3f615988a74883f9aa3309e7971, type: 3}
+      propertyPath: sfx_comida
+      value: 
+      objectReference: {fileID: 8300000, guid: 409cad6b7601bee46b91a27bf352bdfa, type: 3}
+    - target: {fileID: 6563893040131285069, guid: 40fcd3f615988a74883f9aa3309e7971, type: 3}
+      propertyPath: sfx_cogerTaza
+      value: 
+      objectReference: {fileID: 8300000, guid: 17764375193bb204ea12dbc8857015da, type: 3}
+    - target: {fileID: 6563893040131285069, guid: 40fcd3f615988a74883f9aa3309e7971, type: 3}
+      propertyPath: sfx_cogerVaso
+      value: 
+      objectReference: {fileID: 8300000, guid: 597b90a0e7911c642890bb16c93406dd, type: 3}
+    - target: {fileID: 6563893040131285069, guid: 40fcd3f615988a74883f9aa3309e7971, type: 3}
+      propertyPath: sfx_dejarTaza
+      value: 
+      objectReference: {fileID: 8300000, guid: 17764375193bb204ea12dbc8857015da, type: 3}
+    - target: {fileID: 6563893040131285069, guid: 40fcd3f615988a74883f9aa3309e7971, type: 3}
+      propertyPath: sfx_echarCafe
+      value: 
+      objectReference: {fileID: 8300000, guid: 1c243af556e0e7a4289db50e04ea9fd5, type: 3}
+    - target: {fileID: 6563893040131285069, guid: 40fcd3f615988a74883f9aa3309e7971, type: 3}
+      propertyPath: sfx_espumador
+      value: 
+      objectReference: {fileID: 8300000, guid: 946fbbc56fddfaf4f8015167bf5c11ea, type: 3}
+    - target: {fileID: 6563893040131285069, guid: 40fcd3f615988a74883f9aa3309e7971, type: 3}
+      propertyPath: sfx_molerCafe
+      value: 
+      objectReference: {fileID: 8300000, guid: 675136310979b2445b64496f4564c1fb, type: 3}
+    - target: {fileID: 6563893040131285069, guid: 40fcd3f615988a74883f9aa3309e7971, type: 3}
+      propertyPath: sfx_cogerBolsa
+      value: 
+      objectReference: {fileID: 8300000, guid: 684fb959b0612364fa810b5bab89f257, type: 3}
+    - target: {fileID: 6563893040131285069, guid: 40fcd3f615988a74883f9aa3309e7971, type: 3}
+      propertyPath: sfx_cogerHielo
+      value: 
+      objectReference: {fileID: 8300000, guid: 5212cf33b7a75154c87057c49ebaa793, type: 3}
+    - target: {fileID: 6563893040131285069, guid: 40fcd3f615988a74883f9aa3309e7971, type: 3}
+      propertyPath: sfx_cogerPlato
+      value: 
+      objectReference: {fileID: 8300000, guid: ac8563cf7f280284ea7c8f3a1a33cfd7, type: 3}
+    - target: {fileID: 6563893040131285069, guid: 40fcd3f615988a74883f9aa3309e7971, type: 3}
+      propertyPath: sfx_dejarHielo
+      value: 
+      objectReference: {fileID: 8300000, guid: a9b904cb7db053640b1715f9a3c6ec1f, type: 3}
+    - target: {fileID: 6563893040131285069, guid: 40fcd3f615988a74883f9aa3309e7971, type: 3}
+      propertyPath: sfx_dejarPlato
+      value: 
+      objectReference: {fileID: 8300000, guid: ac8563cf7f280284ea7c8f3a1a33cfd7, type: 3}
+    - target: {fileID: 6563893040131285069, guid: 40fcd3f615988a74883f9aa3309e7971, type: 3}
+      propertyPath: sfx_echarHielo
+      value: 
+      objectReference: {fileID: 8300000, guid: 2404fee48b11c3745bbb0984478e1408, type: 3}
+    - target: {fileID: 6563893040131285069, guid: 40fcd3f615988a74883f9aa3309e7971, type: 3}
+      propertyPath: sfx_microondas
+      value: 
+      objectReference: {fileID: 8300000, guid: 690d834276dd1294f85df95dad257598, type: 3}
+    - target: {fileID: 6563893040131285069, guid: 40fcd3f615988a74883f9aa3309e7971, type: 3}
+      propertyPath: sfx_echarLiquido
+      value: 
+      objectReference: {fileID: 8300000, guid: d4cd07b0e3399ad45bd4411e2191c29b, type: 3}
+    - target: {fileID: 6563893040131285069, guid: 40fcd3f615988a74883f9aa3309e7971, type: 3}
+      propertyPath: sfx_coffeeMachine
+      value: 
+      objectReference: {fileID: 8300000, guid: 3136110edb866a743b9d6593fe0134e2, type: 3}
+    - target: {fileID: 6563893040131285069, guid: 40fcd3f615988a74883f9aa3309e7971, type: 3}
+      propertyPath: sfx_dejarCogerObj
+      value: 
+      objectReference: {fileID: 8300000, guid: 54e7c50c772ec5e4e9ecec7a578b60ee, type: 3}
+    - target: {fileID: 6563893040131285069, guid: 40fcd3f615988a74883f9aa3309e7971, type: 3}
+      propertyPath: sfx_cantidadCafeEchada
+      value: 
+      objectReference: {fileID: 8300000, guid: b31fd8c556a40fb4aa94fa5e3d8ffe6d, type: 3}
+    - target: {fileID: 6563893040131285069, guid: 40fcd3f615988a74883f9aa3309e7971, type: 3}
+      propertyPath: sfx_clickCoffeeAmountMachine
+      value: 
+      objectReference: {fileID: 8300000, guid: 26328037cb40b9d4cb7a4549c2579e20, type: 3}
     - target: {fileID: 9049820028735950962, guid: 40fcd3f615988a74883f9aa3309e7971, type: 3}
       propertyPath: m_LocalPosition.x
       value: 980.74646

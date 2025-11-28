@@ -45,6 +45,7 @@ public class CursorManager : MonoBehaviour
         if (foodMinigameInput.foodInHand || foodMinigameInput.platoInHand)
             return;
 
+        foodMinigameInput.ComidaSound();
         foodMinigameInput.foodInHand = true;
         foodMinigameInput.foodCategoryInHand = category;
         foodMinigameInput.foodTypeInHand = (int)type;

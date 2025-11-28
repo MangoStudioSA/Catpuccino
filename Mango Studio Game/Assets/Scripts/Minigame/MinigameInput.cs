@@ -520,6 +520,7 @@ public class MinigameInput : MonoBehaviour
         {
             tazaInHand = true;
             tazasImage.material = glowMaterial;
+            TakeCupSound();
 
             DragController.Instance.StartDragging(tazaSinCafe);
         }
@@ -527,6 +528,7 @@ public class MinigameInput : MonoBehaviour
         {
             tazaInHand = false;
             tazasImage.material = defaultMaterial;
+            TakeCupSound();
 
             DragController.Instance.StopDragging();
         }
@@ -538,6 +540,7 @@ public class MinigameInput : MonoBehaviour
         {
             platoTazaInHand = true;
             platoTazaImage.material = glowMaterial;
+            TakePlateSound();
 
             Sprite platoTaza = PlatoTaza.GetComponent<Image>().sprite;
             DragController.Instance.StartDragging(platoTaza);
@@ -546,6 +549,7 @@ public class MinigameInput : MonoBehaviour
         {
             platoTazaInHand = false;
             platoTazaImage.material = defaultMaterial;
+            TakePlateSound();
 
             DragController.Instance.StopDragging();
         }
@@ -557,6 +561,7 @@ public class MinigameInput : MonoBehaviour
         {
             vasoInHand = true;
             vasoImage.material = glowMaterial;
+            TakeVaseSound();
 
             DragController.Instance.StartDragging(vasoSinTapa);
         }
@@ -564,6 +569,7 @@ public class MinigameInput : MonoBehaviour
         {
             vasoInHand = false;
             vasoImage.material = defaultMaterial;
+            TakeVaseSound();
 
             DragController.Instance.StopDragging();
         }
@@ -592,6 +598,8 @@ public class MinigameInput : MonoBehaviour
 
         if (!tazaIsInCafetera && tazaInHand)
         {
+            TakeCupSound();
+
             // Poner en la cafetera
             Taza.SetActive(true);
             Taza.transform.position = puntoCafeteraTaza.position;
@@ -614,6 +622,8 @@ public class MinigameInput : MonoBehaviour
         }
         else if (tazaIsInCafetera && !tazaInHand)
         {
+            TakeCupSound();
+
             //Recoger de la cafetera
             Taza.SetActive(false);
             tazaInHand = true;
@@ -642,6 +652,8 @@ public class MinigameInput : MonoBehaviour
 
         if (!tazaIsInPlato && tazaInHand)
         {
+            TakeCupSound();
+
             // Poner en el plato
             Taza.SetActive(true);
             Taza.transform.position = puntoTazaPlato.position;
@@ -659,6 +671,8 @@ public class MinigameInput : MonoBehaviour
         }
         else if (tazaIsInPlato && !tazaInHand)
         {
+            TakeCupSound();
+
             //Recoger del plato
             Taza.SetActive(false);
             tazaInHand = true;
@@ -683,6 +697,8 @@ public class MinigameInput : MonoBehaviour
 
         if (!vasoIsInCafetera && vasoInHand)
         {
+            TakeVaseSound();
+
             // Poner en la cafetera
             Vaso.SetActive(true);
             Vaso.transform.position = puntoCafeteraVaso.position;
@@ -705,6 +721,8 @@ public class MinigameInput : MonoBehaviour
         }
         else if (vasoIsInCafetera && !vasoInHand)
         {
+            TakeVaseSound();
+
             //Recoger de la cafetera
             Vaso.SetActive(false);
             vasoInHand = true;
@@ -733,6 +751,8 @@ public class MinigameInput : MonoBehaviour
 
         if (!vasoIsInTable && vasoInHand)
         {
+            TakeVaseSound();
+
             // Poner en la cafetera
             Vaso.SetActive(true);
             Vaso.transform.position = puntoMesaVaso.position;
@@ -748,6 +768,8 @@ public class MinigameInput : MonoBehaviour
         }
         else if (vasoIsInTable && !vasoInHand)
         {
+            TakeVaseSound();
+
             //Recoger de la cafetera
             Vaso.SetActive(false);
             vasoInHand = true;
@@ -775,6 +797,8 @@ public class MinigameInput : MonoBehaviour
 
         if (platoTazaInHand)
         {
+            TakePlateSound();
+
             // Poner en la mesa
             PlatoTaza.SetActive(true);
             PlatoTaza.transform.position = puntoMesa.position;
@@ -798,6 +822,7 @@ public class MinigameInput : MonoBehaviour
 
         if  (!isSliding && !coffeeDone)
         {
+            BotonDownMachine();
             //reiniciamos la pos de la barra
             currentSlideTime = 0f;
 
@@ -809,6 +834,8 @@ public class MinigameInput : MonoBehaviour
     {
         if (isSliding)
         {
+            BotonUpMachine();
+
             // Detenemos el movimiento
             isSliding = false;
             coffeeDone = true;
@@ -842,6 +869,8 @@ public class MinigameInput : MonoBehaviour
 
         if (!isMoliendo)
         {
+            MolerCafeSound();
+
             currentMolido = 0f;
             isMoliendo = true;
 
@@ -922,6 +951,7 @@ public class MinigameInput : MonoBehaviour
 
         //Debug.Log($"[Cliente {order.currentOrder.orderId}] Preparacion: Echando cafe...");
 
+        CafeteraSound();
         isServing = true;
         movingRight = true;
 
@@ -965,6 +995,9 @@ public class MinigameInput : MonoBehaviour
 
         isServing = false;
         coffeeServed = true;
+
+        SoundsMaster.Instance.StopAudio("CoffeeMachine");
+        EcharCafeSound();
 
         buttonManager.DisableButton(buttonManager.pararEcharCafeButton);
 
@@ -1153,6 +1186,7 @@ public class MinigameInput : MonoBehaviour
         {
             milkInHand = true;
             milkImage.material = glowMaterial;
+            CogerDejarObjSound();
 
             DragController.Instance.StartDragging(milkImage.sprite);
         }
@@ -1160,6 +1194,7 @@ public class MinigameInput : MonoBehaviour
         {
             milkInHand = false;
             milkImage.material = defaultMaterial;
+            CogerDejarObjSound();
 
             DragController.Instance.StopDragging();
         }
@@ -1171,6 +1206,7 @@ public class MinigameInput : MonoBehaviour
         {
             if (countMilk <= 1)
             {
+                EcharLiquidoSound();
                 countMilk += 1; //Se incrementa el contador de leche
                 order.currentOrder.milkPrecision = countMilk; // Se guarda el resultado obtenido en la precision del jugador
                 PopUpMechanicsMsg.Instance.ShowMessage($"+{countMilk} Leche");
@@ -1192,6 +1228,7 @@ public class MinigameInput : MonoBehaviour
         {
             tazaMilkInHand = true;
             milkCupImage.material = glowMaterial;
+            CogerDejarObjSound();
 
             DragController.Instance.StartDragging(TazaLeche.GetComponent<Image>().sprite);
         }
@@ -1199,6 +1236,7 @@ public class MinigameInput : MonoBehaviour
         {
             tazaMilkInHand = false;
             milkCupImage.material = defaultMaterial;
+            CogerDejarObjSound();
 
             DragController.Instance.StopDragging();
         }
@@ -1213,6 +1251,8 @@ public class MinigameInput : MonoBehaviour
 
         if (!tazaMilkIsInEspumador && tazaMilkInHand)
         {
+            CogerDejarObjSound();
+
             // Poner en el espumador
             TazaLeche.SetActive(true);
             TazaLeche.transform.position = puntoEspumador.position;
@@ -1234,6 +1274,8 @@ public class MinigameInput : MonoBehaviour
         }
         else if (tazaMilkIsInEspumador && !tazaMilkInHand)
         {
+            CogerDejarObjSound();
+
             //Recoger del espumador
             TazaLeche.SetActive(false);
 
@@ -1252,6 +1294,8 @@ public class MinigameInput : MonoBehaviour
 
         if (!isHeating && !heatedMilk)
         {
+            EspumadorSound();
+
             currentHeat = 0f;
             isHeating = true;
 
@@ -1267,6 +1311,8 @@ public class MinigameInput : MonoBehaviour
     {
         if (isHeating)
         {
+            SoundsMaster.Instance.StopAudio("Espumador");
+
             isHeating = false;
 
             heatPanel.SetActive(false);
@@ -1287,18 +1333,21 @@ public class MinigameInput : MonoBehaviour
             {
                 if (currentHeat < 0.2f)
                 {
+                    EcharLiquidoSound();
                     countMilk += 1;
                     order.currentOrder.milkPrecision = countMilk;
                     order.currentOrder.heatedMilkPrecision = 0;
                 }
                 else if (currentHeat < 0.6f)
                 {
+                    EcharLiquidoSound();
                     countMilk += 1;
                     order.currentOrder.milkPrecision = countMilk;
                     order.currentOrder.heatedMilkPrecision = 1;
                 }
                 else
                 {
+                    EcharLiquidoSound();
                     countMilk += 1;
                     order.currentOrder.milkPrecision = countMilk;
                     order.currentOrder.heatedMilkPrecision = 2;
@@ -1329,6 +1378,7 @@ public class MinigameInput : MonoBehaviour
         {
             waterInHand = true;
             waterImage.material = glowMaterial;
+            CogerDejarObjSound();
 
             DragController.Instance.StartDragging(waterImage.sprite);
         }
@@ -1336,6 +1386,7 @@ public class MinigameInput : MonoBehaviour
         {
             waterInHand = false;
             waterImage.material = defaultMaterial;
+            CogerDejarObjSound();
 
             DragController.Instance.StopDragging();
         }
@@ -1347,11 +1398,12 @@ public class MinigameInput : MonoBehaviour
         {
             if (countWater < 1)
             {
+                EcharLiquidoSound();
                 countWater += 1; //Se incrementa el contador de agua
                 order.currentOrder.waterPrecision = countWater; // Se guarda el resultado obtenido en la precision del jugador
                 PopUpMechanicsMsg.Instance.ShowMessage("+ Agua");
+                order.currentOrder.stepsPerformed.Add(OrderStep.AddWater);
             }
-            order.currentOrder.stepsPerformed.Add(OrderStep.AddWater);
 
             if (tazaIsInCafetera)
             {
@@ -1371,6 +1423,7 @@ public class MinigameInput : MonoBehaviour
         {
             condensedMilkInHand = true;
             condensedMilkImage.material = glowMaterial;
+            CogerDejarObjSound();
 
             DragController.Instance.StartDragging(condensedMilkImage.sprite);
         }
@@ -1378,6 +1431,7 @@ public class MinigameInput : MonoBehaviour
         {
             condensedMilkInHand = false;
             condensedMilkImage.material = defaultMaterial;
+            CogerDejarObjSound();
 
             DragController.Instance.StopDragging();
         }
@@ -1450,6 +1504,7 @@ public class MinigameInput : MonoBehaviour
         {
             chocolateInHand = true;
             chocolateImage.material = glowMaterial;
+            CogerDejarObjSound();
 
             DragController.Instance.StartDragging(chocolateImage.sprite);
         }
@@ -1458,6 +1513,7 @@ public class MinigameInput : MonoBehaviour
         {
             chocolateInHand = false;
             chocolateImage.material = defaultMaterial;
+            CogerDejarObjSound();
 
             DragController.Instance.StopDragging();
         }
@@ -1493,6 +1549,7 @@ public class MinigameInput : MonoBehaviour
         {
             whiskeyInHand = true;
             whiskeyImage.material = glowMaterial;
+            CogerDejarObjSound();
 
             DragController.Instance.StartDragging(whiskeyImage.sprite);
         }
@@ -1500,6 +1557,7 @@ public class MinigameInput : MonoBehaviour
         {
             whiskeyInHand = false;
             whiskeyImage.material = defaultMaterial;
+            CogerDejarObjSound();
 
             DragController.Instance.StopDragging();
         }
@@ -1511,6 +1569,7 @@ public class MinigameInput : MonoBehaviour
         {
             if (countWhiskey < 1)
             {
+                EcharLiquidoSound();
                 countWhiskey += 1; //Se incrementa el contador de hielo
                 order.currentOrder.whiskeyPrecision = countWhiskey; // Se guarda el resultado obtenido en la precision del jugador
                 PopUpMechanicsMsg.Instance.ShowMessage("+ Whiskey");
@@ -1559,10 +1618,12 @@ public class MinigameInput : MonoBehaviour
         if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand && countCover <= 0 && !filtroInHand && !platoTazaInHand)
         {
             iceInHand = true;
+            CogerHieloSound();
         }
         else if (iceInHand == true)
         {
             iceInHand = false;
+            DejarHieloSound();
         }
     }
     public void EcharHielo()
@@ -1572,6 +1633,7 @@ public class MinigameInput : MonoBehaviour
         {
             if (countIce < 1)
             {
+                EcharHieloSound();
                 countIce += 1; //Se incrementa el contador de hielo
                 order.currentOrder.icePrecision = countIce; // Se guarda el resultado obtenido en la precision del jugador
                 PopUpMechanicsMsg.Instance.ShowMessage("+Hielo");
@@ -1650,16 +1712,79 @@ public class MinigameInput : MonoBehaviour
     }
     #endregion
 
-    #region Sonidos
+    #region Sonidos envases
+    public void TakeCupSound()
+    {
+        SoundsMaster.Instance.PlaySound_TakeCup();
+    }
+    public void TakeVaseSound()
+    {
+        SoundsMaster.Instance.PlaySound_TakeVase();
+    }
+
+    public void TakePlateSound()
+    {
+        SoundsMaster.Instance.PlaySound_TakePlate();
+    }
+
     public void BotonDownMachine()
     {
-        if (coffeeDone) { return; }
-        SoundsMaster.Instance.PlaySound_CoffeeMachine();
+        if (coffeeDone) return;
+        SoundsMaster.Instance.PlaySound_CoffeeAmountMachine();
     }
 
     public void BotonUpMachine()
     {
-        SoundsMaster.Instance.PlaySound_CoffeeReady();
+        if (coffeeDone) return; 
+        SoundsMaster.Instance.PlaySound_CoffeeAmountReady();
     }
+
+    public void MolerCafeSound()
+    {
+        SoundsMaster.Instance.PlaySound_MolerCafe();
+    }
+
+    public void CafeteraSound()
+    {
+        SoundsMaster.Instance.PlayAudio("CoffeeMachine");
+    }   
+
+    public void EcharCafeSound()
+    {
+        SoundsMaster.Instance.PlaySound_EcharCafe();
+    }
+
+    public void EspumadorSound()
+    {
+        SoundsMaster.Instance.PlayAudio("Espumador");
+    }
+
+    public void EcharLiquidoSound()
+    {
+        SoundsMaster.Instance.PlaySound_EcharLiquido();
+    }
+
+    public void CogerDejarObjSound()
+    {
+        SoundsMaster.Instance.PlaySound_CogerDejarObj();
+    }
+
+    public void CogerHieloSound()
+    {
+        SoundsMaster.Instance.PlaySound_CogerHielo();
+    }
+
+    public void EcharHieloSound()
+    {
+        SoundsMaster.Instance.PlaySound_EcharHielo();
+    }
+
+    public void DejarHieloSound()
+    {
+        SoundsMaster.Instance.PlaySound_DejarHielo();
+    }
+
+    
+
     #endregion
 }
