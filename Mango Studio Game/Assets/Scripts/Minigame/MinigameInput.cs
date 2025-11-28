@@ -86,7 +86,8 @@ public class MinigameInput : MonoBehaviour
     public GameObject Balda;
     public GameObject Estante;
 
-    public Transform puntoCafetera;
+    public Transform puntoCafeteraTaza;
+    public Transform puntoCafeteraVaso;
     public Transform puntoEspumador;
     public Transform puntoMesa;
     public Transform puntoTazaPlato;
@@ -371,6 +372,8 @@ public class MinigameInput : MonoBehaviour
     }
     private void HandleMoler()
     {
+        if (!coffeeDone) return; 
+
         if (isMoliendo && Input.GetMouseButton(0))
         {
             currentMolido += molerFillSpeed * Time.unscaledDeltaTime;
@@ -589,7 +592,7 @@ public class MinigameInput : MonoBehaviour
         {
             // Poner en la cafetera
             Taza.SetActive(true);
-            Taza.transform.position = puntoCafetera.position;
+            Taza.transform.position = puntoCafeteraTaza.position;
 
             tazaInHand = false;
             tazaIsInCafetera = true;
@@ -686,7 +689,8 @@ public class MinigameInput : MonoBehaviour
         {
             // Poner en la cafetera
             Vaso.SetActive(true);
-            Vaso.transform.position = puntoCafetera.position;
+            Vaso.transform.position = puntoCafeteraVaso.position;
+            Vaso.transform.position = puntoCafeteraVaso.position;
 
             vasoInHand = false;
             vasoIsInCafetera = true;
@@ -843,6 +847,7 @@ public class MinigameInput : MonoBehaviour
     {
         if (tutorialManager.isRunningT1 && tutorialManager.currentStep != 9) return;
         if (TengoOtroObjetoEnLaMano() || vasoInHand || tazaInHand || platoTazaInHand || tazaMilkInHand) return;
+        if (!coffeeDone) return;
 
         if (!isMoliendo)
         {
@@ -932,6 +937,7 @@ public class MinigameInput : MonoBehaviour
         Image echarCafeBut = buttonManager.echarCafeButton.GetComponent<Image>();
         echarCafeBut.sprite = boton1_P;
 
+        buttonManager.DisableButton(buttonManager.echarCafeButton);
         buttonManager.EnableButton(buttonManager.pararEcharCafeButton);
     }
 
