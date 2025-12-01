@@ -21,15 +21,24 @@ public class ButtonUnlockManager : MonoBehaviour
     [SerializeField] public Button sugarButton;
     [SerializeField] public Button iceButton;
     [SerializeField] public Button coverButton;
+    [SerializeField] public Button coverPButton;
     [SerializeField] public Button condensedMilkButton;
     [SerializeField] public Button creamButton;
     [SerializeField] public Button chocolateButton;
     [SerializeField] public Button whiskeyButton;
 
-    [Header("Botones del minijuego de cafe")]
+    [Header("Botones de los envases de cafe")]
     [SerializeField] public Button cogerTazaInicioButton;
     [SerializeField] public Button cogerVasoInicioButton;
     [SerializeField] public Button cogerPlatoTazaButton;
+    [SerializeField] public Button cogerTazaB2InicioButton;
+    [SerializeField] public Button cogerVasoB2InicioButton;
+    [SerializeField] public Button cogerPlatoTazaB2Button;
+    [SerializeField] public Button cogerTazaPInicioButton;
+    [SerializeField] public Button cogerVasoPInicioButton;
+    [SerializeField] public Button cogerPlatoTazaPButton;
+
+    [Header("Botones del minijuego de cafe")]
     [SerializeField] public Button molerButton;
     [SerializeField] public Button filtroButton;
     [SerializeField] public Button filtroCafeteraButton;
