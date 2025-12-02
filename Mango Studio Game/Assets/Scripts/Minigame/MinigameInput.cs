@@ -603,7 +603,8 @@ public class MinigameInput : MonoBehaviour
     #region Envases
     public void CogerTaza(bool isPrem)
     {
-        if (coffeeServed || countChocolate != 0 || countCondensedMilk != 0 || countCream != 0 || countMilk != 0 || countWhiskey != 0 || countWater != 0) return; 
+        if (coffeeServed || countChocolate != 0 || countCondensedMilk != 0 || countCream != 0 || countMilk != 0 || countWhiskey != 0 || countWater != 0) return;
+        if (tazaIsInCafetera || tazaIsInPlato || vasoIsInCafetera || vasoIsInTable ) return;
 
         if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand && !filtroInHand && !platoTazaInHand && !tazaMilkInHand)
         {
@@ -636,6 +637,7 @@ public class MinigameInput : MonoBehaviour
 
     public void CogerPlatoTaza(bool isPrem)
     {
+        if (platoTazaIsInTable) return;
         if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand && !filtroInHand && !platoTazaInHand && !tazaMilkInHand)
         {
             plateIsPremium = isPrem;
@@ -665,6 +667,7 @@ public class MinigameInput : MonoBehaviour
 
     public void CogerVaso(bool isPrem)
     {
+        if (vasoIsInCafetera || vasoIsInTable || tazaIsInCafetera || tazaIsInPlato) return;
         if (coffeeServed || countChocolate != 0 || countCondensedMilk != 0 || countCream != 0 || countMilk != 0 || countWhiskey != 0 || countWater != 0) return;
 
         if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand && !filtroInHand && !platoTazaInHand && !tazaMilkInHand)
@@ -714,6 +717,26 @@ public class MinigameInput : MonoBehaviour
             buttonManager.EnableButton(buttonManager.cogerVasoB2InicioButton);
             buttonManager.EnableButton(buttonManager.cogerVasoPInicioButton);
         }
+
+        if (vasoIsInCafetera || vasoIsInTable)
+        {
+            buttonManager.DisableButton(buttonManager.cogerPlatoTazaButton);
+            buttonManager.DisableButton(buttonManager.cogerPlatoTazaB2Button);
+            buttonManager.DisableButton(buttonManager.cogerPlatoTazaPButton);
+        }
+        else if (tazaIsInCafetera || tazaIsInPlato || platoTazaIsInTable)
+        {
+            buttonManager.DisableButton(buttonManager.coverButton);
+            buttonManager.DisableButton(buttonManager.coverPButton);
+        }
+        else
+        {
+            buttonManager.EnableButton(buttonManager.cogerPlatoTazaButton);
+            buttonManager.EnableButton(buttonManager.cogerPlatoTazaB2Button);
+            buttonManager.EnableButton(buttonManager.cogerPlatoTazaPButton);
+            buttonManager.EnableButton(buttonManager.coverButton);
+            buttonManager.EnableButton(buttonManager.coverPButton);
+        }
     }
     public void ToggleTazaCafetera()
     {
@@ -723,6 +746,7 @@ public class MinigameInput : MonoBehaviour
         if (!tazaIsInCafetera && tazaInHand)
         {
             TakeCupSound();
+            currentSkin = cupIsPremium ? skinPremium : skinBase;
 
             // Poner en la cafetera
             Taza.SetActive(true);
@@ -749,6 +773,7 @@ public class MinigameInput : MonoBehaviour
         else if (tazaIsInCafetera && !tazaInHand)
         {
             TakeCupSound();
+            currentSkin = cupIsPremium ? skinPremium : skinBase;
 
             //Recoger de la cafetera
             Taza.SetActive(false);
@@ -762,6 +787,7 @@ public class MinigameInput : MonoBehaviour
         {
             buttonManager.EnableButton(buttonManager.echarCafeButton);
         }
+        ActualizarBotonCogerEnvase();
     }
     public void ToggleTazaPlato()
     {
@@ -815,6 +841,7 @@ public class MinigameInput : MonoBehaviour
             // Se quita de la bandeja
             CoffeeFoodManager.Instance.ToggleCafe(false, null, null);
         }
+        ActualizarBotonCogerEnvase();
     }
     public void ToggleVasoCafetera()
     {
@@ -842,10 +869,6 @@ public class MinigameInput : MonoBehaviour
 
             DragController.Instance.StopDragging();
 
-            buttonManager.DisableButton(buttonManager.cogerPlatoTazaButton);
-            buttonManager.DisableButton(buttonManager.cogerPlatoTazaB2Button);
-            buttonManager.DisableButton(buttonManager.cogerPlatoTazaPButton);
-
             if (!tutorialManager.isRunningT1)
                 buttonManager.EnableButton(buttonManager.coffeeButton);
 
@@ -857,6 +880,7 @@ public class MinigameInput : MonoBehaviour
         else if (vasoIsInCafetera && !vasoInHand)
         {
             TakeVaseSound();
+            currentSkin = vasoIsPremium ? skinPremium : skinBase;
 
             //Recoger de la cafetera
             Vaso.SetActive(false);
@@ -870,6 +894,7 @@ public class MinigameInput : MonoBehaviour
         {
             buttonManager.EnableButton(buttonManager.echarCafeButton);
         }
+        ActualizarBotonCogerEnvase();
     }
     public void ToggleVasoMesa()
     {
@@ -923,6 +948,7 @@ public class MinigameInput : MonoBehaviour
             // Se quita de la bandeja
             CoffeeFoodManager.Instance.ToggleCafe(false, null, null);
         }
+        ActualizarBotonCogerEnvase();
     }
     public void PlacePlatoTazaMesa()
     {
@@ -935,7 +961,8 @@ public class MinigameInput : MonoBehaviour
 
             // Poner en la mesa
             PlatoTaza.SetActive(true);
-            PlatoTaza.GetComponent<Image>().sprite = currentSkin.platoTaza;
+            CoffeeSkin skinPlatoReal = plateIsPremium ? skinPremium : skinBase;
+            PlatoTaza.GetComponent<Image>().sprite = skinPlatoReal.platoTaza;
             PlatoTaza.transform.position = puntoMesa.position;
 
             platoTazaInHand = false;
@@ -954,14 +981,15 @@ public class MinigameInput : MonoBehaviour
         else if (!platoTazaInHand && !cupServed && !tazaInHand)
         {
             TakePlateSound();
+            CoffeeSkin skinPlatoTemp = plateIsPremium ? skinPremium : skinBase;
 
-            // Poner en la mesa
+            // Recoger de la mesa
             PlatoTaza.SetActive(false);
 
             platoTazaInHand = true;
             platoTazaIsInTable = false;
 
-            DragController.Instance.StartDragging(currentSprite != null ? currentSprite : currentSkin.platoTaza);
+            DragController.Instance.StartDragging(skinPlatoTemp.platoTaza);
 
             buttonManager.EnableButton(buttonManager.cogerPlatoTazaButton);
             buttonManager.EnableButton(buttonManager.cogerPlatoTazaB2Button);
@@ -971,6 +999,7 @@ public class MinigameInput : MonoBehaviour
             buttonManager.EnableButton(buttonManager.cogerVasoB2InicioButton);
             buttonManager.EnableButton(buttonManager.cogerVasoPInicioButton);
         }
+        ActualizarBotonCogerEnvase();
     }
 #endregion
 
@@ -1904,17 +1933,17 @@ public class MinigameInput : MonoBehaviour
     #region Mecanica tipo de pedido
     public void CogerTapa(bool isPrem)
     {
+        if (countCover != 0) return;
         if (!TengoOtroObjetoEnLaMano() && !tazaInHand && !vasoInHand && !tazaMilkInHand)
         {
             coverIsPremium = isPrem;
-            currentSkin = coverIsPremium ? skinPremium : skinBase;
-            coverInHand = true;
+            CoffeeSkin skinTapaTemp = coverIsPremium ? skinPremium : skinBase; coverInHand = true;
 
             if (isPrem) coverPImage.material = glowMaterial;
             else coverImage.material = glowMaterial;
 
             TakeVaseSound();
-            DragController.Instance.StartDragging(currentSkin.tapaVaso);
+            DragController.Instance.StartDragging(skinTapaTemp.tapaVaso);
         }
         else if (coverInHand == true)
         {
