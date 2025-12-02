@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28be916ee6e44c5439b352cd11460fbd, type: 3}
+  m_Name: SkinPremium_PB
+  m_EditorClassIdentifier: 
+  vasoConTapa: {fileID: -363732562, guid: 1d6911d1c7d2bd24b9181db69d4aac5e, type: 3}
+  vasoSinTapa: {fileID: 335790042, guid: 1d6911d1c7d2bd24b9181db69d4aac5e, type: 3}
+  tapaVaso: {fileID: 995744487, guid: 2b927bda68822ec4aa3a8f7cd037d8af, type: 3}
+  tazaSinCafe: {fileID: 1598334309, guid: 87d48dae7136c8f49b760e3c2e1426e8, type: 3}
+  tazaSinCafeP: {fileID: 1748059999, guid: a4aae4597533c2f48a61382af86881bc, type: 3}
+  platoTaza: {fileID: 1560237351, guid: 20fb181bcd7dd094595b2d7c4a402c65, type: 3}
+  tazaNWater: {fileID: 1723385174, guid: 87d48dae7136c8f49b760e3c2e1426e8, type: 3}
+  tazaNMilk: {fileID: -1155325115, guid: 87d48dae7136c8f49b760e3c2e1426e8, type: 3}
+  tazaNWhiskey: {fileID: -442830537, guid: 87d48dae7136c8f49b760e3c2e1426e8, type: 3}
+  tazaNChocolate: {fileID: -1695031621, guid: 87d48dae7136c8f49b760e3c2e1426e8, type: 3}
+  tazaNWaterP: {fileID: -2041707726, guid: a4aae4597533c2f48a61382af86881bc, type: 3}
+  tazaNMilkP: {fileID: 2087110970, guid: a4aae4597533c2f48a61382af86881bc, type: 3}
+  tazaNWhiskeyP: {fileID: 1263775610, guid: a4aae4597533c2f48a61382af86881bc, type: 3}
+  tazaNChocolateP: {fileID: 436649357, guid: a4aae4597533c2f48a61382af86881bc, type: 3}
+  tazaNEspresso: {fileID: 1830461587, guid: 87d48dae7136c8f49b760e3c2e1426e8, type: 3}
+  tazaNAmericanoLungo: {fileID: -1192538593, guid: 87d48dae7136c8f49b760e3c2e1426e8, type: 3}
+  tazaNMocaIrishLatte: {fileID: -913977904, guid: 87d48dae7136c8f49b760e3c2e1426e8, type: 3}
+  tazaNCappuccino: {fileID: -1444412790, guid: 87d48dae7136c8f49b760e3c2e1426e8, type: 3}
+  tazaNMachiatoBombon: {fileID: -441627303, guid: 87d48dae7136c8f49b760e3c2e1426e8, type: 3}
+  tazaNVienes: {fileID: 1617675630, guid: 87d48dae7136c8f49b760e3c2e1426e8, type: 3}
+  tazaNFrappe: {fileID: 720304330, guid: 87d48dae7136c8f49b760e3c2e1426e8, type: 3}
+  tazaNMocaIrishLatteD: {fileID: -612872636, guid: 87d48dae7136c8f49b760e3c2e1426e8, type: 3}
+  tazaNMachiatoBombonD: {fileID: 149040760, guid: 87d48dae7136c8f49b760e3c2e1426e8, type: 3}
+  tazaNVienesD: {fileID: 1823873147, guid: 87d48dae7136c8f49b760e3c2e1426e8, type: 3}
+  tazaNEspressoP: {fileID: -52608063, guid: a4aae4597533c2f48a61382af86881bc, type: 3}
+  tazaNAmericanoLungoP: {fileID: -1818325104, guid: a4aae4597533c2f48a61382af86881bc, type: 3}
+  tazaNMocaIrishLatteP: {fileID: 1278266324, guid: a4aae4597533c2f48a61382af86881bc, type: 3}
+  tazaNCappuccinoP: {fileID: 1421473546, guid: a4aae4597533c2f48a61382af86881bc, type: 3}
+  tazaNMachiatoBombonP: {fileID: -1812967452, guid: a4aae4597533c2f48a61382af86881bc, type: 3}
+  tazaNVienesP: {fileID: 1396557054, guid: a4aae4597533c2f48a61382af86881bc, type: 3}
+  tazaNFrappeP: {fileID: 1026139681, guid: a4aae4597533c2f48a61382af86881bc, type: 3}
+  tazaNMocaIrishLatteDP: {fileID: -1622861186, guid: a4aae4597533c2f48a61382af86881bc, type: 3}
+  tazaNMachiatoBombonDP: {fileID: 1145625853, guid: a4aae4597533c2f48a61382af86881bc, type: 3}
+  tazaNVienesDP: {fileID: -1306322247, guid: a4aae4597533c2f48a61382af86881bc, type: 3}
+  vasoNEspresso: {fileID: -509740443, guid: 1d6911d1c7d2bd24b9181db69d4aac5e, type: 3}
+  vasoNAmericanoLungo: {fileID: 774804656, guid: 1d6911d1c7d2bd24b9181db69d4aac5e, type: 3}
+  vasoNMocaIrishLatte: {fileID: -2093461431, guid: 1d6911d1c7d2bd24b9181db69d4aac5e, type: 3}
+  vasoNCappuccino: {fileID: -939608761, guid: 1d6911d1c7d2bd24b9181db69d4aac5e, type: 3}
+  vasoNMachiatoBombon: {fileID: 1877289809, guid: 1d6911d1c7d2bd24b9181db69d4aac5e, type: 3}
+  vasoNVienes: {fileID: -2075157723, guid: 1d6911d1c7d2bd24b9181db69d4aac5e, type: 3}
+  vasoNFrappe: {fileID: -856158141, guid: 1d6911d1c7d2bd24b9181db69d4aac5e, type: 3}
+  vasoNMocaIrishLatteD: {fileID: 590169429, guid: 1d6911d1c7d2bd24b9181db69d4aac5e, type: 3}
+  vasoNMachiatoBombonD: {fileID: -2019633659, guid: 1d6911d1c7d2bd24b9181db69d4aac5e, type: 3}
+  vasoNVienesD: {fileID: 1751003757, guid: 1d6911d1c7d2bd24b9181db69d4aac5e, type: 3}

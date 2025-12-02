@@ -47,6 +47,7 @@ public class OrderEvaluation : MonoBehaviour
     public EvaluationResult Evaluate(Order npcOrder, Order playerOrder)
     {
         EvaluationResult result = new EvaluationResult();
+        MinigameInput mg = FindFirstObjectByType<MinigameInput>();
         ResetFoodBools();
 
         int totalScore = 0; // Inicializa la puntuacion del jugador en 0
@@ -223,6 +224,34 @@ public class OrderEvaluation : MonoBehaviour
         {
             money *= 1.2f;
             Debug.Log("Latte Art bonus aplicado (+20%)");
+        }
+
+        // Bonus taza skin premium
+        if (mg.finalCupIsPremium)
+        {
+            money *= 1.15f;
+            Debug.Log("Taza premium bonus aplicado (+15%)");
+        }
+
+        // Bonus plato skin premium
+        if (mg.finalPlateIsPremium)
+        {
+            money *= 1.1f;
+            Debug.Log("Plato premium bonus aplicado (+10%)");
+        }
+
+        // Bonus vaso skin premium
+        if (mg.finalVasoIsPremium)
+        {
+            money *= 1.1f;
+            Debug.Log("Vaso premium bonus aplicado (+10%)");
+        }
+
+        // Bonus tapa skin premium
+        if (mg.finalCoverIsPremium)
+        {
+            money *= 1.05f;
+            Debug.Log("Tapa premium bonus aplicado (+5%)");
         }
 
         result.moneyEarned = Mathf.RoundToInt(money);
