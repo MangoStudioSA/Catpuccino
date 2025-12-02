@@ -1,23 +1,23 @@
 ﻿using UnityEngine;
 
+// Clase encargada de gestionar la posicion y spawn de clientes
 public class CustomerController : MonoBehaviour
 {
+    [Header("Referencias")]
     public float speed = 5f;
     public Vector3 direction = Vector3.forward;
     public bool atCounter = false, atQueue = false;
     public CustomerManager manager;
     public int model = 0;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         manager = GameObject.FindWithTag("CustomerManager").GetComponent<CustomerManager>();
         manager.customers.Enqueue(this);
-        model = Random.Range(0, (int)transform.childCount);
+        model = Random.Range(0, (int)transform.childCount); // Se accede al prefab de los distintos sprites y fbx de clientes
         transform.GetChild(model).gameObject.SetActive(true);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (!atCounter && !atQueue)
@@ -31,6 +31,7 @@ public class CustomerController : MonoBehaviour
         }
     }
 
+    // Funcion que comprueba si el cliente ha llegado al mostrador
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "CustomerManager")
@@ -51,6 +52,7 @@ public class CustomerController : MonoBehaviour
         }
     }
 
+    // Funcion que comprueba si el cliente se ha ido del mostrador
     private void OnTriggerExit(Collider other)
     {
         if (other.tag == "CustomerManager")

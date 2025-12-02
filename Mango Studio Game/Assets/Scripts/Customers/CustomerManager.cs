@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
+// Clase encargada de gestionar los clientes
 public class CustomerManager : MonoBehaviour
 {
+    [Header("Referencias")]
     public GameObject spawn;
     public GameObject customer;
     private float nextSpawn;
@@ -42,6 +44,7 @@ public class CustomerManager : MonoBehaviour
         }
     }
 
+    // Funcion encargada de reestablecer los clientes por dia 
     public void ResetForNewDay()
     {
         Debug.Log("Reiniciando clientes para el nuevo día.");
@@ -59,6 +62,7 @@ public class CustomerManager : MonoBehaviour
             maxTime = minMaxTime;
         }
 
+        // Se borran todos los clientes generados previamente
         foreach (CustomerController customer in customers)
         {
             if (customer != null)
