@@ -108,6 +108,11 @@ public class HUDManager : MonoBehaviour
         CoffeeType[] unlockedCoffees = coffeeUnlockManager.GetUnlockedCoffees(day);
         FoodCategory[] unlockedFood = foodUnlockerManager.GetUnlockedFood(day);
 
+        if (unlockedCoffees.Length == 0 && unlockedFood.Length == 0)
+        {
+            return;
+        }
+
         string message = "¡Has desbloqueado nuevos cafés y/o postres! \n";
 
         if (unlockedCoffees.Length > 0)

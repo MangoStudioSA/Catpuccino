@@ -54,7 +54,13 @@ public class CoffeeUnlockerManager : MonoBehaviour
     // Se crea un array con los tipos de cafes DESBLOQUEADOS ese día
     public CoffeeType[] GetUnlockedCoffees(int currentDay)
     {
-        int day = Mathf.Clamp(currentDay, 1, coffeeUnlocks.Count);
-        return coffeeUnlocks[day];
+        //int day = Mathf.Clamp(currentDay, 1, coffeeUnlocks.Count);
+        //return coffeeUnlocks[day];
+        if (coffeeUnlocks.ContainsKey(currentDay))
+        {
+            return coffeeUnlocks[currentDay];
+        }
+
+        return new CoffeeType[0];
     }
 }

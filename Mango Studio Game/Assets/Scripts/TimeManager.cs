@@ -26,7 +26,6 @@ public class TimeManager : MonoBehaviour
     [Header("Configuración de facturas")]
     [SerializeField] private float requiredIncrement;
 
-
     private float currentTimeInSeconds;
     public int currentDay;
     public event Action<int> onDayStarted;
@@ -50,9 +49,6 @@ public class TimeManager : MonoBehaviour
     private float averageCoffeePrice = 1f;
     private float averageFoodPrice = 2f;
     private int requiredMoney = 0;
-    //private int basicCoins = 0;
-    //private int premiumCoins = 0;
-
     private int customersPerDay = 10;
 
     void Awake()
@@ -258,6 +254,6 @@ public class TimeManager : MonoBehaviour
         }
     }
 
-    private float GetCurrentHour() { return currentTimeInSeconds / 3600f; }
+    public float GetCurrentHour() { return currentTimeInSeconds / 3600f; }
     private float GetCurrentMinute() { return (currentTimeInSeconds % 3600f) / 60f; }
 }

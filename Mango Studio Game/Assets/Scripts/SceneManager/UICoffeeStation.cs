@@ -19,6 +19,7 @@ public class UICoffeeStation : MonoBehaviour
     public CoffeeRecipesManager recipesManager;
     public CoffeeUnlockerManager unlockerManager;
     public TimeManager timeManager;
+    public PopUpMechanicsMsg popUpMechanicsMsg;
 
     private void Start()
     {
@@ -34,6 +35,7 @@ public class UICoffeeStation : MonoBehaviour
     public void ShowRecipesPanel()
     {
         SoundsMaster.Instance.PlaySound_ClickMenu();
+        popUpMechanicsMsg.DestroyAllPopUps();
 
         recipesPanel.SetActive(true);
         Time.timeScale = 0.0f;

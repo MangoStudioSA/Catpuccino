@@ -37,6 +37,11 @@ public class GameProgressManager : MonoBehaviour
     // Funcion principal
     public void UpdateMechanicsForDay(int day)
     {
+        if (day > 7)
+        {
+            day = 7;
+        }
+
         switch (day)
         {
             case 1:
