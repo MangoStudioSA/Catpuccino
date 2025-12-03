@@ -19004,6 +19004,50 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coffeeType: 1
   coffeeSprite: {fileID: 21300000, guid: 31cb02b61d020374cad0e6ac788b62ee, type: 3}
+--- !u!1 &688795441
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 688795443}
+  - component: {fileID: 688795442}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &688795442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 688795441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f774a70a56f54be40813428463907282, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &688795443
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 688795441}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2461.5703, y: 1597.6903, z: -14.359166}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &693327791
 GameObject:
   m_ObjectHideFlags: 0
@@ -34466,9 +34510,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 50023188}
-        m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
-        m_MethodName: PapeleraSound
+      - m_Target: {fileID: 688795442}
+        m_TargetAssemblyTypeName: CoffeeSoundManager, Assembly-CSharp
+        m_MethodName: PlayPapelera
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -55547,3 +55591,4 @@ SceneRoots:
   - {fileID: 416222925}
   - {fileID: 964576183}
   - {fileID: 297461898}
+  - {fileID: 688795443}

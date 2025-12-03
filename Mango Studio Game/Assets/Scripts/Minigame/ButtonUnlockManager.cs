@@ -115,7 +115,6 @@ public class ButtonUnlockManager : MonoBehaviour
 
         sugarButton.interactable = false;
         iceButton.interactable = false;
-        coverButton.interactable = false;
         waterButton.interactable = false;
         milkButton.interactable = false;
         condensedMilkButton.interactable = false;
