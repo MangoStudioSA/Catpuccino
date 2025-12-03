@@ -3,26 +3,17 @@ using UnityEngine;
 using UnityEngine.Assertions.Must;
 using UnityEngine.UI;
 
+// Clase encargada de gestionar el cambio de cursor con las comidas
 public class CursorManager : MonoBehaviour
 {
-    [Header("Texturas cursores cafe")]
+    [Header("Textura y hotspot cursores")]
     [SerializeField] Texture2D defaultCursorTexture;
-    [SerializeField] Texture2D cucharaCursorTexture;
-    [SerializeField] Texture2D cremaCursorTexture;
-    [SerializeField] Texture2D hieloCucharaCursorTexture;
-    [SerializeField] Texture2D hieloCucharaVaciaCursorTexture;
-
-    [Header("HotSpots cursores cafe")]
     [SerializeField] Vector2 hotSpotDefault = Vector2.zero; //el punto que hace click en si del cursor (ahora mismo arriba izquierda)
-    [SerializeField] Vector2 hotSpotCuchara = Vector2.zero; //el punto que hace click en si del cursor (ahora mismo arriba izquierda)
-    [SerializeField] Vector2 hotSpotHieloCuchara = Vector2.zero; //el punto que hace click en si del cursor (ahora mismo arriba izquierda)
-    [SerializeField] Vector2 hotSpotCrema = Vector2.zero; //el punto que hace click en si del cursor (ahora mismo arriba izquierda)
 
-    [SerializeField] MinigameInput miniGameInput; //para poder usar referencias a los vasos y tazas       
+    [Header("Referencias")]
     public FoodManager foodManager;
     public TutorialManager tutorialManager;
     public FoodMinigameInput foodMinigameInput;
-    public CoffeeContainerManager coffeeContainerManager;
 
     // El boton llamara a una de las 3 funciones segun el tipo de comida que se trate (asociado al index del tipo de cada una)
     public void TakeCakeByInt(int index)
@@ -78,56 +69,6 @@ public class CursorManager : MonoBehaviour
         else
         {
             Cursor.SetCursor(cursor, Vector2.zero, CursorMode.Auto);
-        }
-    }
-
-    public void TakeCuchara()
-    {
-        if (miniGameInput.cucharaInHand && !miniGameInput.waterInHand && !coffeeContainerManager.coverInHand && !miniGameInput.iceInHand && !miniGameInput.milkInHand 
-            && !miniGameInput.condensedMilkInHand && !miniGameInput.creamInHand && !miniGameInput.chocolateInHand && !miniGameInput.whiskeyInHand)
-        {
-            Cursor.SetCursor(cucharaCursorTexture, hotSpotCuchara, CursorMode.Auto);
-        }
-
-        if (!miniGameInput.TengoOtroObjetoEnLaMano())
-        {
-            Cursor.SetCursor(defaultCursorTexture, hotSpotDefault, CursorMode.Auto);
-        }
-    }
-
-    public void TakeCream()
-    {
-        if (miniGameInput.creamInHand && !miniGameInput.filtroInHand && !miniGameInput.waterInHand && !coffeeContainerManager.coverInHand && !miniGameInput.cucharaInHand && !miniGameInput.iceInHand
-            && !miniGameInput.milkInHand && !miniGameInput.condensedMilkInHand && !miniGameInput.chocolateInHand && !miniGameInput.whiskeyInHand && !miniGameInput.tazaMilkInHand)
-        {
-            Cursor.SetCursor(cremaCursorTexture, hotSpotCrema, CursorMode.Auto);
-        }
-
-        if (!miniGameInput.TengoOtroObjetoEnLaMano() && !miniGameInput.tazaMilkInHand && !miniGameInput.filtroInHand)
-        {
-            Cursor.SetCursor(defaultCursorTexture, hotSpotDefault, CursorMode.Auto);
-        }
-    }
-
-    public void TakeHielo()
-    { 
-        if(miniGameInput.iceInHand && !miniGameInput.cucharaInHand && !coffeeContainerManager.coverInHand && !miniGameInput.waterInHand && !miniGameInput.milkInHand 
-            && !miniGameInput.condensedMilkInHand  && !miniGameInput.creamInHand && !miniGameInput.chocolateInHand && !miniGameInput.whiskeyInHand)
-        {
-            Cursor.SetCursor(hieloCucharaCursorTexture, hotSpotHieloCuchara, CursorMode.Auto);
-        }
-
-        if (!miniGameInput.TengoOtroObjetoEnLaMano())
-        {
-            Cursor.SetCursor(defaultCursorTexture, hotSpotDefault, CursorMode.Auto);
-        }
-    }
-
-    public void ChangeHieloSpoon()
-    {
-        if (miniGameInput.iceInHand && miniGameInput.countIce > 0)
-        {
-            Cursor.SetCursor(hieloCucharaVaciaCursorTexture, hotSpotHieloCuchara, CursorMode.Auto);
         }
     }
 }

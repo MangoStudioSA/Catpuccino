@@ -18,13 +18,11 @@ public class CustomerManager : MonoBehaviour
     public Queue<CustomerController> customers;
     TimeManager timeManager;
     public float timeDecay = 1f;
-    private bool startedDecay = false;
 
     void Awake()
     {
         customers = new Queue<CustomerController>();
         timeManager = FindFirstObjectByType<TimeManager>();
-
     }
 
     void Start()
@@ -48,15 +46,13 @@ public class CustomerManager : MonoBehaviour
     public void ResetForNewDay()
     {
         Debug.Log("Reiniciando clientes para el nuevo día.");
-
         minTime = minTimeBase - (timeDecay * timeManager.currentDay);
-        maxTime = maxTimeBase - (timeDecay * timeManager.currentDay); ;
+        maxTime = maxTimeBase - (timeDecay * timeManager.currentDay);
 
         if (minTime < minMinTime)
         {
             minTime = minMinTime;
         }
-
         if (minTime < minMinTime)
         {
             maxTime = minMaxTime;
@@ -83,7 +79,5 @@ public class CustomerManager : MonoBehaviour
         {
             orderButton.SetActive(false);
         }
-
-        startedDecay = false;
     }
 }

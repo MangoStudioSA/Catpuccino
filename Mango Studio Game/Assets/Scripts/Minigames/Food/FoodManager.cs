@@ -167,7 +167,7 @@ public class FoodManager : MonoBehaviour
         if (food == null) return false;
 
         if (food.currentIndex >= food.foodInstances.Length)
-            return false; // ya no quedan objetos disponibles
+            return false; // Ya no quedan objetos disponibles
 
         // Ocultar el siguiente objeto disponible
         food.foodInstances[food.currentIndex].SetActive(false);
@@ -209,6 +209,7 @@ public class FoodManager : MonoBehaviour
         }
     }
 
+    // Funcion para gestionar las comidas desbloqueadas
     public void ApplyFoodUnlocks()
     {
         if (GameProgressManager.Instance == null) return;
@@ -233,29 +234,4 @@ public class FoodManager : MonoBehaviour
             stock.SetLocked(!unlocked);
         }
     }
-
-    /*public void UnlockCategory(FoodCategory category)
-    {
-        unlockedCategories[category] = true;
-        UpdateCategoryVisibility(category);
-    }
-
-    public void LockCategory(FoodCategory category)
-    {
-        unlockedCategories[category] = false;
-        UpdateCategoryVisibility(category);
-    }
-
-    private void UpdateCategoryVisibility(FoodCategory category)
-    {
-        bool unlocked = unlockedCategories.ContainsKey(category) && unlockedCategories[category];
-
-        foreach (var stock in foodStocks)
-        {
-            if (stock.category != category) continue;
-
-            foreach (var obj in stock.foodInstances)
-                obj.SetActive(unlocked);
-        }
-    }*/
 }

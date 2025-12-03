@@ -2,6 +2,7 @@
 using TMPro;
 using UnityEngine.UI;
 
+// Clase auxiliar para crear el resultado de la evaluacion
 [System.Serializable]
 public class EvaluationResult
 {
@@ -9,12 +10,14 @@ public class EvaluationResult
     public int moneyEarned;
 }
 
+// Clase auxiliar para manejar los sprites del feedback de los clientes
 [System.Serializable]
 public class FeedBackSprites
 {
     public Sprite[] feedBackS;
 }
 
+// Clase encargada de gestionar la entrega del pedido y la valoracion de los clientes
 public class CoffeeGameManager : MonoBehaviour
 {
     [Header("Referencias")]
@@ -46,6 +49,7 @@ public class CoffeeGameManager : MonoBehaviour
         customerManager = FindFirstObjectByType<CustomerManager>();
     }
 
+    // Funcion para entregar el pedido y vincular la propina y el feedback
     public void SubmitOrder()
     {
         // Se calcula la puntuacion del pedido comparando lo que se pedia con el resultado del jugador
@@ -61,6 +65,7 @@ public class CoffeeGameManager : MonoBehaviour
         // Se suma la puntuacion obtenida a la total y se suma 1 al numero de clientes atendidos
         totalScore += result.score;
         customersServed++;
+
         // Añade el dinero y la puntuacion para calcular la satisfaccion media
         GameManager.Instance.AnadirMonedas(result.moneyEarned);
         GameManager.Instance.AddServedCustomers(customersServed);
@@ -68,16 +73,15 @@ public class CoffeeGameManager : MonoBehaviour
 
         // Se calcula la propina obtenida
         int tip = CalculateTip(result.score);
+
         // Se mostrara un feedback distinto en funcion de la puntuacion obtenida
         if (tip > 0) 
         {
             GameManager.Instance.AnadirMonedas(tip);
-            //earnedTipTxt.text = $"¡El cliente ha dejado una propina de {tip}$!";
             PopUpMechanicsMsg.Instance.ShowMessage($"Propina recibida: {tip}$", new Vector3(300, -87, 0), 5f);
         }
         else 
         {
-            //earnedTipTxt.text = "El cliente no ha dejado propina.";
             PopUpMechanicsMsg.Instance.ShowMessage("El cliente no ha dejado propina.", new Vector3(300, -87, 0), 6f);
         }
 
@@ -89,6 +93,7 @@ public class CoffeeGameManager : MonoBehaviour
             MostrarFeedback(tipoCliente, tipoFeedback);
         }
 
+        // Generar feedback
         string feedback = GenerateFeedbackText(
             result.score,
             evaluation.isOrderWithFood,
@@ -98,9 +103,10 @@ public class CoffeeGameManager : MonoBehaviour
             evaluation.lastBadCookStateBurned
         );
 
+        PopUpMechanicsMsg.Instance.ShowMessage($"+{result.moneyEarned}$", new Vector3(-427, -50, 0), 6f); // Mostrar mensaje en popup
+
+        // Actualizar textos
         orderFeedbackTxt.text = feedback;
-        //earnedMoneyTxt.text = $"¡Has ganado {result.moneyEarned}$!";
-        PopUpMechanicsMsg.Instance.ShowMessage($"+{result.moneyEarned}$", new Vector3(-427,-50,0), 6f);
         servedCustomersTxt.text = $"Clientes servidos en la jornada de hoy: {customersServed}";
         scoreTxt.text = $"Puntuación total: {result.score}/100"; 
     }
@@ -117,6 +123,7 @@ public class CoffeeGameManager : MonoBehaviour
     private string GenerateFeedbackText(int score, bool isOrderWithFood, bool playerForgotFood, bool wrongFoodType, bool badCookStateRaw, bool badCookStateBurned)
     {
         string feedback = "";
+
         if (score <= 40) feedback = "Este café no es lo que había pedido...";
         else if (score <= 80) feedback = "El café no está mal.";
         else feedback = "¡Me encanta! ¡Es justo el café que había pedido!";
@@ -168,7 +175,7 @@ public class CoffeeGameManager : MonoBehaviour
     {
         if (score < 40)
             return 1;
-        else if (score > 40 && score < 80)
+        else if (score > 40 && score < 85)
             return 0;
         else
             return 2;

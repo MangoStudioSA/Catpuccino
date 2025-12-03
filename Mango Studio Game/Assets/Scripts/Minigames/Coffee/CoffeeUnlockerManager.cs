@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
+// Clase encargada de gestionar el desbloqueo de los cafes por dia 
 public class CoffeeUnlockerManager : MonoBehaviour
 {
     [Header("Cafes + recetas")]
@@ -31,7 +32,7 @@ public class CoffeeUnlockerManager : MonoBehaviour
         return available[Random.Range(0, available.Length)];
     }
 
-    // Se crea un array con todos los tipos de cafes disponibles ese dia
+    // Se crea un array con todos los tipos de cafes DISPONIBLES ese dia
     public CoffeeType[] GetAvailableCoffees(int currentDay)
     {
         List<CoffeeType> available = new();
@@ -47,11 +48,10 @@ public class CoffeeUnlockerManager : MonoBehaviour
                 }
             }
         }
-
         return available.ToArray();
     }
 
-    // Se crea un array con los tipos de cafes desbloqueados ese día
+    // Se crea un array con los tipos de cafes DESBLOQUEADOS ese día
     public CoffeeType[] GetUnlockedCoffees(int currentDay)
     {
         int day = Mathf.Clamp(currentDay, 1, coffeeUnlocks.Count);

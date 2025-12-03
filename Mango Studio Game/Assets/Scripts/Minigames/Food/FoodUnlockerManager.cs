@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+// Clase encargada de desbloquear las comidas segun el dia
 public class FoodUnlockerManager : MonoBehaviour
 {
     // Se crea un diccionario relacionando el dia del juego con las comidas que se desbloquean 

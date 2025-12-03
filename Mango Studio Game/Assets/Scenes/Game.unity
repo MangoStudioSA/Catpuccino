@@ -1901,9 +1901,16 @@ MonoBehaviour:
   waterImage: {fileID: 74253030}
   milkImage: {fileID: 1639563792}
   milkCupImage: {fileID: 1946061798}
+  sugarImage: {fileID: 573849091}
+  sugarSpoonImage: {fileID: 21300000, guid: 1c77af57bf4bb514eaefcfa9e9ae7f86, type: 3}
+  creamImage: {fileID: 528060068}
+  creamSpoonImage: {fileID: 21300000, guid: 5fa2bb9ecef717f4e9e22633f671bcb9, type: 3}
   condensedMilkImage: {fileID: 290504853}
   chocolateImage: {fileID: 1159473349}
   whiskeyImage: {fileID: 371112198}
+  iceImage: {fileID: 496000361}
+  iceSpoonWithIceImage: {fileID: 21300000, guid: 13a89e9bed1c70b49a280ab1ae983a1b, type: 3}
+  iceSpoonWithoutIceImage: {fileID: 21300000, guid: e78ecbcf04f525446b7b3cd4047fc665, type: 3}
   creamWithSpoon: {fileID: 21300000, guid: ce485aa0c7b9b314dae8c4a0986636f3, type: 3}
   creamWithoutSpoon: {fileID: 21300000, guid: 1604b00999e07634780567e5acdc473b, type: 3}
   filtroImg: {fileID: 186981477, guid: e288ad6c858bce44d98d91c579e9587e, type: 3}
@@ -13572,18 +13579,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 342197122}
-        m_TargetAssemblyTypeName: CursorManager, Assembly-CSharp
-        m_MethodName: TakeHielo
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &496000361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14714,18 +14709,6 @@ MonoBehaviour:
       - m_Target: {fileID: 50023188}
         m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
         m_MethodName: CogerCrema
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 342197122}
-        m_TargetAssemblyTypeName: CursorManager, Assembly-CSharp
-        m_MethodName: TakeCream
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -16195,18 +16178,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 342197122}
-        m_TargetAssemblyTypeName: CursorManager, Assembly-CSharp
-        m_MethodName: TakeCuchara
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &573849091
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16227,7 +16198,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 87e77b069c9ae4f4488fa6b708a9cad4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: eb46e7f6821035642a07d117a0ab45cc, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1

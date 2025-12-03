@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Jobs;
 using UnityEngine.UI;
 
+// Clase principal del minijuego de cafes - Gestiona los ingredientes, el resultado del jugador etc
 public class MinigameInput : MonoBehaviour
 {
     #region Variables
@@ -92,9 +93,16 @@ public class MinigameInput : MonoBehaviour
     public Image waterImage;
     public Image milkImage;
     public Image milkCupImage;
+    public Image sugarImage;
+    public Sprite sugarSpoonImage;
+    public Image creamImage;
+    public Sprite creamSpoonImage;
     public Image condensedMilkImage;
     public Image chocolateImage;
     public Image whiskeyImage;
+    public Image iceImage;
+    public Sprite iceSpoonWithIceImage;
+    public Sprite iceSpoonWithoutIceImage;
 
     [Header("Sprites mecánicas")]
     public Sprite creamWithSpoon;
@@ -143,6 +151,8 @@ public class MinigameInput : MonoBehaviour
     }
 
     #region Funciones auxiliares
+
+    // Funcion encargada de resetear las variables del minijuego del cafe 
     public void ResetCafe()
     {
         if (TengoOtroObjetoEnLaMano() || filtroInHand || coffeeContainerManager.tazaInHand || tazaMilkInHand || coffeeContainerManager.vasoInHand || coffeeContainerManager.platoTazaInHand) return;
@@ -225,6 +235,7 @@ public class MinigameInput : MonoBehaviour
         pararCalentarLecheBut.sprite = boton3_N;
     }
 
+    // Funcion encargada de la gestion del slider de la cantidad de cafe
     private void HandleCoffeeSlider()
     {
         // Movimiento slider cantidad cafe
@@ -244,6 +255,8 @@ public class MinigameInput : MonoBehaviour
             }
         }
     }
+
+    // Funcion encargada de gestionar la interaccion con la palanca para moler el cafe
     private void HandleMoler()
     {
         if (!coffeeDone) return; 
@@ -262,6 +275,8 @@ public class MinigameInput : MonoBehaviour
             }
         }
     }
+
+    // Funcion encargada de gestionar la interaccion para calentar la leche
     private void HandleHeating()
     {
         if (!tazaMilkIsInEspumador) return;
@@ -293,10 +308,14 @@ public class MinigameInput : MonoBehaviour
             buttonManager.EnableButton(buttonManager.espumadorButton);
         }
     }
+
+    // Funcion para comprobar si el jugador tiene algo en la mano
     public bool TengoOtroObjetoEnLaMano()
     {
         return  cucharaInHand || waterInHand || milkInHand || condensedMilkInHand || creamInHand || chocolateInHand || whiskeyInHand || iceInHand || coffeeContainerManager.coverInHand;
     }
+
+    // Funcion para deshabilitar los botones de los ingredientes
     public void DisableMechanics()
     {
         buttonManager.DisableButton(buttonManager.whiskeyButton);
@@ -307,6 +326,8 @@ public class MinigameInput : MonoBehaviour
         buttonManager.DisableButton(buttonManager.creamButton);
         buttonManager.DisableButton(buttonManager.chocolateButton);
     }
+
+    // Funcion para habilitar los botones de los ingredientes
     public void EnableMechanics()
     {
         buttonManager.EnableButton(buttonManager.whiskeyButton);
@@ -317,6 +338,8 @@ public class MinigameInput : MonoBehaviour
         buttonManager.EnableButton(buttonManager.creamButton);
         buttonManager.EnableButton(buttonManager.chocolateButton);
     }
+
+    // Funcion para comprobar los botones segun el estado del minijuego o tutorial
     public void CheckButtons()
     {
         Balda.SetActive(progressManager.condensedMilkEnabled);
@@ -383,6 +406,8 @@ public class MinigameInput : MonoBehaviour
     #endregion
 
     #region Mecanicas cafe
+
+    // Funcion que activa el slider de la cantidad de cafe
     public void StartCoffee()
     {
         if (tutorialManager.isRunningT1 && tutorialManager.currentStep != 8) return;
@@ -391,13 +416,15 @@ public class MinigameInput : MonoBehaviour
         if  (!isSliding && !coffeeDone)
         {
             MiniGameSoundManager.instance.PlayButtonDown();
-            //reiniciamos la pos de la barra
+            // Se reinicia la posicion del slider
             currentSlideTime = 0f;
 
             isSliding = true;
             //Debug.Log($"[Cliente {order.currentOrder.orderId}] Preparacion: Carga de cafe iniciada.");
         }
     }
+
+    // Funcion que desactiva el slider de la cantidad de cafe
     public void StopCoffee()
     {
         if (isSliding)
@@ -429,6 +456,8 @@ public class MinigameInput : MonoBehaviour
                 FindFirstObjectByType<TutorialManager>().CompleteCurrentStep();
         }
     }
+
+    // Funcion que activa la interaccion de moler el cafe
     public void StartMoler()
     {
         if (tutorialManager.isRunningT1 && tutorialManager.currentStep != 9) return;
@@ -448,6 +477,8 @@ public class MinigameInput : MonoBehaviour
             //Debug.Log($"[Cliente {order.currentOrder.orderId}] Preparacion: Moliendo cafe...");
         }
     }
+
+    // Funcion que desactiva la interaccion de moler el cafe
     public void StopMoler()
     {
         if (isMoliendo && currentMolido == maxFillMoler)
@@ -467,6 +498,8 @@ public class MinigameInput : MonoBehaviour
                 FindFirstObjectByType<TutorialManager>().CompleteCurrentStep();
         }
     }
+
+    // Funcion para coger el filtro
     public void TakeFiltro()
     {
         if (TengoOtroObjetoEnLaMano() || coffeeContainerManager.tazaInHand || coffeeContainerManager.vasoInHand || coffeeContainerManager.platoTazaInHand || tazaMilkInHand) return;
@@ -475,7 +508,7 @@ public class MinigameInput : MonoBehaviour
         {
             filtroInHand = true;
 
-            DragController.Instance.StartDragging(filtroImg);
+            DragController.Instance.StartDragging(filtroImg); // Coger con el cursor
 
             buttonManager.DisableButton(buttonManager.filtroButton);
             buttonManager.EnableButton(buttonManager.filtroCafeteraButton);
@@ -483,6 +516,8 @@ public class MinigameInput : MonoBehaviour
             buttonManager.filtroCafeteraButton.gameObject.SetActive(true);
         }
     }
+
+    // Funcion para colocar el filtro
     public void PutFiltro()
     {
         if (filtroIsInCafetera == false)
@@ -490,13 +525,13 @@ public class MinigameInput : MonoBehaviour
             filtroIsInCafetera = true;
             filtroInHand = false;
 
-            // Poner en la mesa
+            // Poner en la cafetera
             Filtro.SetActive(true);
             Filtro.transform.position = puntoFiltroCafetera.position;
             Image filtro = Filtro.GetComponent<Image>();
             filtro.sprite = filtroCafeteraImg;
 
-            DragController.Instance.StopDragging();
+            DragController.Instance.StopDragging(); // Soltar del cursor
             buttonManager.DisableButton(buttonManager.filtroCafeteraButton);
 
             if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 10)
@@ -508,6 +543,8 @@ public class MinigameInput : MonoBehaviour
             buttonManager.EnableButton(buttonManager.echarCafeButton);
         }
     }
+
+    // Funcion para activar la interaccion de echar el cafe
     public void StartServingCoffee()
     {
         if (tutorialManager.isRunningT1 && tutorialManager.currentStep != 12) return;
@@ -531,11 +568,12 @@ public class MinigameInput : MonoBehaviour
         buttonManager.EnableButton(buttonManager.pararEcharCafeButton);
     }
 
+    // Funcion para mover la aguja de echar el cafe de izquierda a derecha
     public void MoveNeedle()
     {
         float step = rotationSpeed * Time.deltaTime;
 
-        if (movingRight)
+        if (movingRight) // Movimiento derecha
         {
             currentAngle += step;
             if (currentAngle >= maxAngle)
@@ -544,7 +582,7 @@ public class MinigameInput : MonoBehaviour
                 movingRight = false;
             }
         }
-        else
+        else // Movimiento izquierda
         {
             currentAngle -= step;
             if (currentAngle <= 0f)
@@ -558,6 +596,7 @@ public class MinigameInput : MonoBehaviour
         normalizedPrecision = currentAngle / maxAngle;
     }
 
+    // Funcion para desactivar la interaccion de echar el cafe
     public void StopServingCoffee()
     {
         if (!isServing || coffeeServed) return;
@@ -585,6 +624,7 @@ public class MinigameInput : MonoBehaviour
         Image pararEcharCafeBut = buttonManager.pararEcharCafeButton.GetComponent<Image>();
         pararEcharCafeBut.sprite = boton2_P;
 
+        // Actualizar sprites taza/vaso
         if (coffeeContainerManager.tazaIsInCafetera)
         {
             CoffeeType currentType = DetermineCoffeeType();
@@ -614,11 +654,10 @@ public class MinigameInput : MonoBehaviour
     public void UpdateCupSprite(bool inPlato)
     {
         Image taza = coffeeContainerManager.Taza.GetComponent<Image>();
-        bool cupEmpty = !coffeeServed && !milkServed && countWater == 0 && countMilk == 0
-            && countCream == 0 && countWhiskey == 0 && countChocolate == 0 && countCondensedMilk == 0;
-
+        bool cupEmpty = !coffeeServed && !milkServed && countWater == 0 && countMilk == 0 && countCream == 0 && countWhiskey == 0 && countChocolate == 0 && countCondensedMilk == 0;
         Sprite newBaseSprite = null;
 
+        // Taza vacia
         if (cupEmpty)
         {
             newBaseSprite = inPlato ? coffeeContainerManager.currentSkin.tazaSinCafeP : coffeeContainerManager.currentSkin.tazaSinCafe;
@@ -633,12 +672,12 @@ public class MinigameInput : MonoBehaviour
         {
             newBaseSprite = inPlato ? coffeeContainerManager.currentSkin.tazaNMilkP : coffeeContainerManager.currentSkin.tazaNMilk;
         }
-        // Chocolate
+        // Chocolate sin cafe
         else if (countChocolate != 0 && !coffeeServed)
         {
             newBaseSprite = inPlato ? coffeeContainerManager.currentSkin.tazaNChocolateP : coffeeContainerManager.currentSkin.tazaNChocolate;
         }
-        // Whiskey
+        // Whiskey sin cafe
         else if (countWhiskey != 0 && !coffeeServed)
         {
             newBaseSprite = inPlato ? coffeeContainerManager.currentSkin.tazaNWhiskeyP : coffeeContainerManager.currentSkin.tazaNWhiskey;
@@ -671,7 +710,6 @@ public class MinigameInput : MonoBehaviour
         }
 
         if (countWater != 0 && !milkServed) return CoffeeType.americano;
-
         if (countCondensedMilk > 0 && !milkServed) return CoffeeType.bombon;
 
         if (milkServed)
@@ -686,6 +724,7 @@ public class MinigameInput : MonoBehaviour
 
             return CoffeeType.capuccino;
         }
+
         if (countCream > 0 && countIce <= 0) return CoffeeType.vienes;
         if (countIce > 0 && countCream > 0) return CoffeeType.frappe;
 
@@ -748,27 +787,32 @@ public class MinigameInput : MonoBehaviour
     #endregion
 
     #region Mecanicas leche
+
+    // Funcion para coger/dejar el brick de leche
     public void CogerLeche()
     {
-        if (tazaMilkInHand) return;
+        if (tazaMilkInHand || filtroInHand) return;
 
+        // Coger leche
         if (!TengoOtroObjetoEnLaMano() && !coffeeContainerManager.tazaInHand && !coffeeContainerManager.vasoInHand && !filtroInHand && !coffeeContainerManager.platoTazaInHand)
         {
             milkInHand = true;
             milkImage.material = glowMaterial;
             MiniGameSoundManager.instance.PlayIntObjeto();
 
-            DragController.Instance.StartDragging(milkImage.sprite);
+            DragController.Instance.StartDragging(milkImage.sprite); // Coger con el cursor
         }
-        else if (milkInHand == true)
+        else if (milkInHand == true) // Dejar leche
         {
             milkInHand = false;
             milkImage.material = defaultMaterial;
             MiniGameSoundManager.instance.PlayIntObjeto();
 
-            DragController.Instance.StopDragging();
+            DragController.Instance.StopDragging(); // Soltar del cursor
         }
     }
+
+    // Funcion para echar la leche
     public void EcharLecheFria()
     {
         //Si se tiene la leche en la mano y el cafe no esta servido entonces se puede echar
@@ -783,8 +827,9 @@ public class MinigameInput : MonoBehaviour
             }
             milkServed = true;
             cMilkServed = true;
-            order.currentOrder.stepsPerformed.Add(OrderStep.AddMilk);
+            order.currentOrder.stepsPerformed.Add(OrderStep.AddMilk); // Añadir a la lista de pasos
 
+            // Actualizar sprites taza/vaso
             if (coffeeContainerManager.tazaIsInCafetera)
             {
                 UpdateCupSprite(false);
@@ -801,26 +846,30 @@ public class MinigameInput : MonoBehaviour
             coffeeContainerManager.ActualizarBotonCogerEnvase();
         }
     }
+
+    // Funcion para coger/dejar la jarra de leche
     public void CogerJarraLeche()
     {
+        // Coger jarra de leche
         if (!TengoOtroObjetoEnLaMano() && !coffeeContainerManager.tazaInHand && !coffeeContainerManager.vasoInHand && !filtroInHand && !coffeeContainerManager.platoTazaInHand && !tazaMilkInHand)
         {
             tazaMilkInHand = true;
             milkCupImage.material = glowMaterial;
             MiniGameSoundManager.instance.PlayIntObjeto();
 
-            DragController.Instance.StartDragging(TazaLeche.GetComponent<Image>().sprite);
+            DragController.Instance.StartDragging(TazaLeche.GetComponent<Image>().sprite); // Coger con el cursor
         }
-        else if (tazaMilkInHand == true)
+        else if (tazaMilkInHand == true) // Dejar jarra de leche
         {
             tazaMilkInHand = false;
             milkCupImage.material = defaultMaterial;
             MiniGameSoundManager.instance.PlayIntObjeto();
 
-            DragController.Instance.StopDragging();
+            DragController.Instance.StopDragging(); // Soltar del cursor
         }
     }
 
+    // Funcion para activar/desactivar la jarra de leche en el espumador
     public void ToggleTazaLecheEspumador()
     {
         if (TengoOtroObjetoEnLaMano() || coffeeContainerManager.vasoInHand || coffeeContainerManager.tazaInHand)
@@ -828,12 +877,10 @@ public class MinigameInput : MonoBehaviour
         if (!tazaMilkInHand && !tazaMilkIsInEspumador)
             return;
 
-        if (!tazaMilkIsInEspumador && tazaMilkInHand)
+        if (!tazaMilkIsInEspumador && tazaMilkInHand) // Colocar en el espumador
         {
             MiniGameSoundManager.instance.PlayIntObjeto();
-            DragController.Instance.StopDragging();
-
-            // Poner en el espumador
+            DragController.Instance.StopDragging(); // Soltar del cursor
             TazaLeche.SetActive(true);
             TazaLeche.transform.position = puntoEspumador.position;
 
@@ -852,12 +899,10 @@ public class MinigameInput : MonoBehaviour
                 FindFirstObjectByType<TutorialManager>().CompleteCurrentStep3();
 
         }
-        else if (tazaMilkIsInEspumador && !tazaMilkInHand)
+        else if (tazaMilkIsInEspumador && !tazaMilkInHand) // Recoger del espumador
         {
             MiniGameSoundManager.instance.PlayIntObjeto();
-            DragController.Instance.StartDragging(TazaLeche.GetComponent<Image>().sprite);
-
-            //Recoger del espumador
+            DragController.Instance.StartDragging(TazaLeche.GetComponent<Image>().sprite); // Coger con el cursor
             TazaLeche.SetActive(false);
 
             tazaMilkInHand = true;
@@ -868,6 +913,8 @@ public class MinigameInput : MonoBehaviour
             espumador.sprite = espumadorNormal;
         }
     }
+
+    // Funcion para comenzar a calentar la jarra de leche
     public void StartHeating()
     {
         if (!tazaMilkIsInEspumador || TengoOtroObjetoEnLaMano()) return;
@@ -889,23 +936,25 @@ public class MinigameInput : MonoBehaviour
                 FindFirstObjectByType<TutorialManager>().CompleteCurrentStep3();
         }
     }
+
+    // Funcion para parar de calentar la jarra de leche
     public void StopHeating()
     {
         if (isHeating)
         {
             MiniGameSoundManager.instance.StopEspumadorPour();
 
+            heatedMilk = true;
             isHeating = false;
-
             heatPanel.SetActive(false);
             buttonManager.DisableButton(buttonManager.calentarButton);
 
             Image pararCalentarLecheBut = buttonManager.calentarButton.GetComponent<Image>();
             pararCalentarLecheBut.sprite = boton3_P;
-
-            heatedMilk = true;
         }
     }
+
+    // Funcion para echar leche de la jarra de leche
     public void EcharLecheCaliente()
     {
         //Si se tiene la leche caliente en la mano y el cafe no esta servido entonces se puede echar
@@ -941,6 +990,7 @@ public class MinigameInput : MonoBehaviour
 
                 PopUpMechanicsMsg.Instance.ShowMessage($"+{countMilk} Leche");
 
+                // Actualizar sprite taza/vaso
                 if (coffeeContainerManager.tazaIsInCafetera)
                 {
                     UpdateCupSprite(false);
@@ -961,27 +1011,32 @@ public class MinigameInput : MonoBehaviour
     #endregion
 
     #region Mecanica agua
+
+    // Funcion para coger/dejar el agua
     public void CogerAgua()
     {
-        if (tazaMilkInHand) return;
+        if (tazaMilkInHand || filtroInHand) return;
 
+        // Coger agua
         if (!TengoOtroObjetoEnLaMano() && !coffeeContainerManager.tazaInHand && !coffeeContainerManager.vasoInHand && !tazaMilkInHand && !filtroInHand && !coffeeContainerManager.platoTazaInHand)
         {
             waterInHand = true;
             waterImage.material = glowMaterial;
             MiniGameSoundManager.instance.PlayIntObjeto();
 
-            DragController.Instance.StartDragging(waterImage.sprite);
+            DragController.Instance.StartDragging(waterImage.sprite); // Coger con el cursor
         }
-        else if (waterInHand == true)
+        else if (waterInHand == true) // Dejar agua
         {
             waterInHand = false;
             waterImage.material = defaultMaterial;
             MiniGameSoundManager.instance.PlayIntObjeto();
 
-            DragController.Instance.StopDragging();
+            DragController.Instance.StopDragging(); // Soltar del cursor
         }
     }
+
+    // Funcion para echar agua
     public void EcharAgua()
     {
         //Si se tiene el agua en la mano y el cafe no esta servido entonces se puede echar 
@@ -993,9 +1048,10 @@ public class MinigameInput : MonoBehaviour
                 countWater += 1; //Se incrementa el contador de agua
                 order.currentOrder.waterPrecision = countWater; // Se guarda el resultado obtenido en la precision del jugador
                 PopUpMechanicsMsg.Instance.ShowMessage("+ Agua");
-                order.currentOrder.stepsPerformed.Add(OrderStep.AddWater);
+                order.currentOrder.stepsPerformed.Add(OrderStep.AddWater); // Añadir paso a la lista
             }
 
+            // Actualizar sprite taza/vaso
             if (coffeeContainerManager.tazaIsInCafetera)
             {
                 UpdateCupSprite(false);
@@ -1015,27 +1071,32 @@ public class MinigameInput : MonoBehaviour
     #endregion
 
     #region Mecanica leche condensada
+
+    // Funcion para coger/dejar la leche condensada
     public void CogerLecheCondensada()
     {
-        if (tazaMilkInHand) return;
+        if (tazaMilkInHand || filtroInHand) return;
 
+        // Coger leche condensada
         if (!TengoOtroObjetoEnLaMano() && !coffeeContainerManager.tazaInHand && !coffeeContainerManager.vasoInHand && !tazaMilkInHand && !filtroInHand && !coffeeContainerManager.platoTazaInHand)
         {
             condensedMilkInHand = true;
             condensedMilkImage.material = glowMaterial;
             MiniGameSoundManager.instance.PlayIntObjeto();
 
-            DragController.Instance.StartDragging(condensedMilkImage.sprite);
+            DragController.Instance.StartDragging(condensedMilkImage.sprite); // Coger con el cursor
         }
-        else if (condensedMilkInHand == true)
+        else if (condensedMilkInHand == true) // Dejar leche condensada
         {
             condensedMilkInHand = false;
             condensedMilkImage.material = defaultMaterial;
             MiniGameSoundManager.instance.PlayIntObjeto();
 
-            DragController.Instance.StopDragging();
+            DragController.Instance.StopDragging(); // Soltar del cursor
         }
     }
+
+    // Funcion para echar leche condensada
     public void EcharLecheCondensada()
     {
         //Si se tiene la leche condensada en la mano y el cafe no esta servido entonces se puede echar 
@@ -1046,9 +1107,10 @@ public class MinigameInput : MonoBehaviour
                 countCondensedMilk += 1; //Se incrementa el contador de leche condensada
                 order.currentOrder.condensedMilkPrecision = countCondensedMilk; // Se guarda el resultado obtenido en la precision del jugador
                 PopUpMechanicsMsg.Instance.ShowMessage("+Leche Condensada");
-                order.currentOrder.stepsPerformed.Add(OrderStep.AddCondensedMilk);
+                order.currentOrder.stepsPerformed.Add(OrderStep.AddCondensedMilk); // Añadir a la lista de pasos
             }
 
+            // Actualizar sprite taza/vaso
             if (coffeeContainerManager.tazaIsInCafetera)
             {
                 UpdateCupSprite(false);
@@ -1068,23 +1130,34 @@ public class MinigameInput : MonoBehaviour
     #endregion
 
     #region Mecanica crema
+
+    // Funcion para coger/dejar la crema
     public void CogerCrema()
     {
-        if (tazaMilkInHand) return;
+        if (tazaMilkInHand || filtroInHand) return;
 
+        // Coger cuchara crema
         if (!TengoOtroObjetoEnLaMano() && !coffeeContainerManager.tazaInHand && !coffeeContainerManager.vasoInHand && !tazaMilkInHand && !filtroInHand && !coffeeContainerManager.platoTazaInHand)
         {
             creamInHand = true;
             buttonManager.creamButton.image.sprite = creamWithoutSpoon;
+            creamImage.material = glowMaterial;
             MiniGameSoundManager.instance.PlayCuchara();
+
+            DragController.Instance.StartDragging(creamSpoonImage); // Coger con el cursor
         }
-        else if (creamInHand == true)
+        else if (creamInHand == true) // Dejar cuchara crema
         {
             creamInHand = false;
             buttonManager.creamButton.image.sprite = creamWithSpoon;
+            creamImage.material = defaultMaterial;
             MiniGameSoundManager.instance.PlayCuchara();
+
+            DragController.Instance.StopDragging(); // Soltar del cursor
         }
     }
+
+    // Funcion para echar crema
     public void EcharCrema()
     {
         //Si se tiene la crema en la mano y el cafe no esta servido entonces se puede echar
@@ -1095,8 +1168,10 @@ public class MinigameInput : MonoBehaviour
                 countCream += 1; //Se incrementa el contador de crema
                 order.currentOrder.creamPrecision = countCream; // Se guarda el resultado obtenido en la precision del jugador
                 PopUpMechanicsMsg.Instance.ShowMessage("+ Crema");
+                order.currentOrder.stepsPerformed.Add(OrderStep.AddCream); // Añadir paso a la lista
             }
-            order.currentOrder.stepsPerformed.Add(OrderStep.AddCream);
+
+            // Actualizar sprite taza/vaso
             if (coffeeContainerManager.tazaIsInCafetera)
             {
                 UpdateCupSprite(false);
@@ -1116,28 +1191,32 @@ public class MinigameInput : MonoBehaviour
     #endregion
 
     #region Mecanica chocolate
+
+    // Funcion para coger/dejar el chocolate
     public void CogerChocolate()
     {
-        if (tazaMilkInHand) return;
+        if (tazaMilkInHand || filtroInHand) return;
 
+        // Coger chocolate
         if (!TengoOtroObjetoEnLaMano() && !coffeeContainerManager.tazaInHand && !coffeeContainerManager.vasoInHand && !tazaMilkInHand && !filtroInHand && !coffeeContainerManager.platoTazaInHand)
         {
             chocolateInHand = true;
             chocolateImage.material = glowMaterial;
             MiniGameSoundManager.instance.PlayIntObjeto();
 
-            DragController.Instance.StartDragging(chocolateImage.sprite);
+            DragController.Instance.StartDragging(chocolateImage.sprite); // Coger con el cursor
         }
-
-        else if (chocolateInHand == true)
+        else if (chocolateInHand == true) // Dejar chocolate
         {
             chocolateInHand = false;
             chocolateImage.material = defaultMaterial;
             MiniGameSoundManager.instance.PlayIntObjeto();
 
-            DragController.Instance.StopDragging();
+            DragController.Instance.StopDragging(); // Soltar del cursor
         }
     }
+
+    // Funcion para echar el chocolate
     public void EcharChocolate()
     {
         //Si se tiene el chocolate en la mano y el cafe no esta servido entonces se puede echar
@@ -1148,9 +1227,10 @@ public class MinigameInput : MonoBehaviour
                 countChocolate += 1; //Se incrementa el contador de chocolate
                 order.currentOrder.chocolatePrecision = countChocolate; // Se guarda el resultado obtenido en la precision del jugador
                 PopUpMechanicsMsg.Instance.ShowMessage("+ Chocolate");
-                order.currentOrder.stepsPerformed.Add(OrderStep.AddChocolate);
+                order.currentOrder.stepsPerformed.Add(OrderStep.AddChocolate); // Añadir a la lista de pasos
             }
 
+            // Actualizar sprite taza/vaso
             if (coffeeContainerManager.tazaIsInCafetera)
             {
                 UpdateCupSprite(false);
@@ -1170,27 +1250,32 @@ public class MinigameInput : MonoBehaviour
     #endregion
 
     #region Mecanica whiskey
+
+    // Funcion para coger/dejar el whiskey
     public void CogerWhiskey()
     {
-        if (tazaMilkInHand) return;
+        if (tazaMilkInHand || filtroInHand) return;
 
+        // Coger el whiskey
         if (!TengoOtroObjetoEnLaMano() && !coffeeContainerManager.tazaInHand && !coffeeContainerManager.vasoInHand && !tazaMilkInHand && !filtroInHand && !coffeeContainerManager.platoTazaInHand)
         {
             whiskeyInHand = true;
             whiskeyImage.material = glowMaterial;
             MiniGameSoundManager.instance.PlayIntObjeto();
 
-            DragController.Instance.StartDragging(whiskeyImage.sprite);
+            DragController.Instance.StartDragging(whiskeyImage.sprite); // Coger con el cursor
         }
-        else if (whiskeyInHand == true)
+        else if (whiskeyInHand == true) // Dejar el whiskey
         {
             whiskeyInHand = false;
             whiskeyImage.material = defaultMaterial;
             MiniGameSoundManager.instance.PlayIntObjeto();
 
-            DragController.Instance.StopDragging();
+            DragController.Instance.StopDragging(); // Soltar del cursor
         }
     }
+
+    // Funcion para echar el whiskey
     public void EcharWhiskey()
     {
         //Si se tiene el whiskey en la mano y el cafe esta servido entonces se puede echar
@@ -1202,9 +1287,10 @@ public class MinigameInput : MonoBehaviour
                 countWhiskey += 1; //Se incrementa el contador de hielo
                 order.currentOrder.whiskeyPrecision = countWhiskey; // Se guarda el resultado obtenido en la precision del jugador
                 PopUpMechanicsMsg.Instance.ShowMessage("+ Whiskey");
-                order.currentOrder.stepsPerformed.Add(OrderStep.AddWhiskey);
+                order.currentOrder.stepsPerformed.Add(OrderStep.AddWhiskey); // Se añade el paso a la lista
             }
 
+            // Actualizar sprites taza/vaso
             if (coffeeContainerManager.tazaIsInCafetera)
             {
                 UpdateCupSprite(false);
@@ -1224,19 +1310,32 @@ public class MinigameInput : MonoBehaviour
     #endregion
 
     #region Mecanica azucar
+
+    // Funcion para coger/dejar la cuchara de azucar
     public void CogerAzucar()
     {
+        if (tazaMilkInHand || filtroInHand) return;
+
+        // Coger cuchara de azucar
         if (!TengoOtroObjetoEnLaMano() && !coffeeContainerManager.tazaInHand && !coffeeContainerManager.vasoInHand && countCover <= 0 && !filtroInHand && !coffeeContainerManager.platoTazaInHand)
         {
             cucharaInHand = true;
+            sugarImage.material = glowMaterial;
             MiniGameSoundManager.instance.PlayCuchara();
+
+            DragController.Instance.StartDragging(sugarSpoonImage); // Coger con el cursor
         }
-        else if (cucharaInHand == true)
+        else if (cucharaInHand == true) // Dejar cuchara de azucar
         {
             cucharaInHand = false;
+            sugarImage.material = defaultMaterial;
             MiniGameSoundManager.instance.PlayCuchara();
+
+            DragController.Instance.StopDragging(); // Soltar del cursor
         }
     }
+
+    // Funcion para echar azucar
     public void EcharAzucar()
     {
         //Si se tiene la cuchara de azucar en la mano y el cafe esta servido entonces se puede echar
@@ -1254,19 +1353,32 @@ public class MinigameInput : MonoBehaviour
     #endregion
 
     #region Mecanica hielo
+
+    // Funcion para coger/dejar cuchara de hielo
     public void CogerHielo()
     {
+        if (tazaMilkInHand || filtroInHand) return;
+
+        // Coger cuchara de hielo
         if (!TengoOtroObjetoEnLaMano() && !coffeeContainerManager.tazaInHand && !coffeeContainerManager.vasoInHand && countCover <= 0 && !filtroInHand && !coffeeContainerManager.platoTazaInHand)
         {
             iceInHand = true;
+            iceImage.material = glowMaterial;
             MiniGameSoundManager.instance.PlayCogerHielo();
+
+            DragController.Instance.StartDragging(iceSpoonWithIceImage); // Coger con el cursor
         }
-        else if (iceInHand == true)
+        else if (iceInHand == true) // Dejar cuchara de hielo
         {
             iceInHand = false;
+            iceImage.material = defaultMaterial;
             MiniGameSoundManager.instance.PlayDejarHielo();
+
+            DragController.Instance.StopDragging(); // Soltar del cursor
         }
     }
+
+    // Funcion para echar hielo
     public void EcharHielo()
     {
         //Si se tiene la cuchara de hielo en la mano y el cafe esta servido entonces se puede echar
@@ -1278,11 +1390,13 @@ public class MinigameInput : MonoBehaviour
                 countIce += 1; //Se incrementa el contador de hielo
                 order.currentOrder.icePrecision = countIce; // Se guarda el resultado obtenido en la precision del jugador
                 PopUpMechanicsMsg.Instance.ShowMessage("+Hielo");
-                cursorManager.ChangeHieloSpoon();
+                DragController.Instance.StartDragging(iceSpoonWithoutIceImage); // Coger con el cursor
 
                 if (countCream > 0 && coffeeServed)
                 {
                     CoffeeType currentType = CoffeeType.frappe;
+
+                    // Actualizar sprite taza/vaso si es un cafe frappe
                     if (coffeeContainerManager.tazaIsInCafetera)
                     {
                         bool isCup = true;

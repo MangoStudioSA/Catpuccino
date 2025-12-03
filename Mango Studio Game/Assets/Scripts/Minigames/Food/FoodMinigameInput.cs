@@ -122,6 +122,7 @@ public class FoodMinigameInput : MonoBehaviour
     }
 
     #region Funciones auxiliares
+
     // Funcion para resetear variables de la comida
     public void ResetFoodState()
     {
@@ -225,6 +226,7 @@ public class FoodMinigameInput : MonoBehaviour
         plato.sprite = platoSinComida;
     }
 
+    // Funcion para obtener el sprite de la comida con el plato indicados
     private Sprite GetFoodSpriteWithPlate(FoodCategory category, int type)
     {
         switch (category)
@@ -303,59 +305,62 @@ public class FoodMinigameInput : MonoBehaviour
     #endregion
 
     #region Envases
+
+    // Funcion para coger/dejar el plato
     public void CogerPlato()
     {
         if (platoIsInEncimera) return;
 
-        if (!platoInHand)
+        if (!platoInHand) // Coger plato
         {
             platoInHand = true;
             platoImage.material = glowMaterial;
             MiniGameSoundManager.instance.PlayTakePlate();
 
             Sprite plato = Plato.GetComponent<Image>().sprite;
-            DragController.Instance.StartDragging(plato);
+            DragController.Instance.StartDragging(plato); // Coger con el cursor
         }
-        else if (platoInHand)
+        else if (platoInHand) // Dejar plato
         {
             platoInHand = false;
             platoImage.material = defaultMaterial;
 
             MiniGameSoundManager.instance.PlayTakePlate();
-            DragController.Instance.StopDragging();
+            DragController.Instance.StopDragging(); // Soltar del cursor
         }
     }
 
+    // Funcion para coger/dejar la bolsa para llevar
     public void CogerBolsaLlevar()
     {
         if (carryBagIsInEncimera) return;
 
-        if (!carryBagInHand)
+        if (!carryBagInHand) // Coger bolsa
         {
             carryBagInHand = true;
             bolsaImage.material = glowMaterial;
             MiniGameSoundManager.instance.PlayTakeBag();
 
             Sprite bolsaLlevar = BolsaLlevar.GetComponent<Image>().sprite;
-            DragController.Instance.StartDragging(bolsaLlevar);
+            DragController.Instance.StartDragging(bolsaLlevar); // Coger con el cursor
         }
-        else if (carryBagInHand)
+        else if (carryBagInHand) // Dejar bolsa
         {
             carryBagInHand = false;
             bolsaImage.material = defaultMaterial;
 
             MiniGameSoundManager.instance.PlayTakeBag();
-            DragController.Instance.StopDragging();
+            DragController.Instance.StopDragging(); // Soltar del cursor
         }
     }
 
-    // Funcion para colocar el plato en la encima
+    // Funcion para colocar/coger el plato en la encimera
     public void TogglePlatoEncimera()
     {
         if (carryBagIsInEncimera) return;
         if (!platoInHand && !platoIsInEncimera) return;
 
-        if (platoInHand)
+        if (platoInHand) // Colocar plato en la encimera
         {
             MiniGameSoundManager.instance.PlayTakePlate();
             Plato.SetActive(true);
@@ -368,13 +373,13 @@ public class FoodMinigameInput : MonoBehaviour
             buttonManager.DisableButton(buttonManager.cogerBolsaLlevarInicioButton);
             buttonManager.DisableButton(buttonManager.cogerPlatoInicioButton);
 
-            DragController.Instance.StopDragging();
+            DragController.Instance.StopDragging(); // Soltar del cursor
             ActualizarBotonCogerComida();
 
             if (tutorialManager.isRunningT2 && tutorialManager.currentStep == 2)
                 FindFirstObjectByType<TutorialManager>().CompleteCurrentStep2();
         }
-        else if (!platoInHand && !foodServed && !foodInHand)
+        else if (!platoInHand && !foodServed && !foodInHand) // Coger plato de la encimera
         {
             MiniGameSoundManager.instance.PlayTakePlate();
             Plato.SetActive(false);
@@ -387,18 +392,18 @@ public class FoodMinigameInput : MonoBehaviour
             buttonManager.EnableButton(buttonManager.cogerPlatoInicioButton);
 
             Sprite plato = Plato.GetComponent<Image>().sprite;
-            DragController.Instance.StartDragging(plato);
+            DragController.Instance.StartDragging(plato); // Coger con el cursor
             ActualizarBotonCogerComida();
         }   
     }
 
-    // Funcion para colocar la bolsa para llevar en la encima
+    // Funcion para colocar/coger la bolsa para llevar en la encimera
     public void ToggleCarryBagEncimera()
     {
         if (platoIsInEncimera) return;
         if (!carryBagInHand && !carryBagIsInEncimera) return;
 
-        if (carryBagInHand)
+        if (carryBagInHand) // Colocar bolsa en la encimera
         {
             MiniGameSoundManager.instance.PlayTakeBag();
             BolsaLlevar.SetActive(true);
@@ -417,7 +422,7 @@ public class FoodMinigameInput : MonoBehaviour
             if (tutorialManager.isRunningT2 && tutorialManager.currentStep == 2)
                 FindFirstObjectByType<TutorialManager>().CompleteCurrentStep2();
         }
-        else if (carryBagIsInEncimera && !foodServed && !foodInHand)
+        else if (carryBagIsInEncimera && !foodServed && !foodInHand) // Coger bolsa de la encimera
         {
             MiniGameSoundManager.instance.PlayTakeBag();
             BolsaLlevar.SetActive(false);
@@ -437,6 +442,7 @@ public class FoodMinigameInput : MonoBehaviour
     #endregion
 
     #region Interaccion envase-comida
+
     // Funcion para interactuar con la comida en el plato 
     public void ToggleFoodPlato()
     {
@@ -499,7 +505,7 @@ public class FoodMinigameInput : MonoBehaviour
             if (tutorialManager.isRunningT2 && tutorialManager.currentStep == 7)
                 FindFirstObjectByType<TutorialManager>().CompleteCurrentStep2();
         }
-        else if (foodIsInPlato)
+        else if (foodIsInPlato) // Coger comida del plato
         {
             Image img = foodInPlatoObj.GetComponent<Image>();
             if (img != null)
@@ -522,9 +528,7 @@ public class FoodMinigameInput : MonoBehaviour
             foodCategoryInPlato = FoodCategory.no;
             foodTypeInPlato = -1;
 
-            // Se quita de la bandeja
-            CoffeeFoodManager.Instance.ToggleComida(false, null, null);
-
+            CoffeeFoodManager.Instance.ToggleComida(false, null, null); // Se quita de la bandeja
             cursorManager.UpdateCursorFood(false, foodCategoryInHand, foodTypeInHand);
         }
         ActualizarBotonCogerComida();
@@ -536,7 +540,7 @@ public class FoodMinigameInput : MonoBehaviour
         if (platoIsInEncimera) return;
         if (!foodInHand && !foodIsInBolsaLlevar && !carryBagIsInEncimera) return;
 
-        if (foodInHand)
+        if (foodInHand) // Colocar comida en bolsa
         {
             GameObject foodObj = foodManager.GetFoodObject(foodCategoryInHand, foodTypeInHand);
             if (foodObj == null) return;
@@ -582,7 +586,7 @@ public class FoodMinigameInput : MonoBehaviour
             if (tutorialManager.isRunningT2 && tutorialManager.currentStep == 7)
                 FindFirstObjectByType<TutorialManager>().CompleteCurrentStep2();
         }
-        else if (foodIsInBolsaLlevar)
+        else if (foodIsInBolsaLlevar) // Coger comida de la bolsa
         {
             foodIsInBolsaLlevar = false;
             foodInHand = true;

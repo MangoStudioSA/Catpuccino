@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
+// Clase encargada de vincular los precios y los tipos de cafes
 public class CoffeePriceManager : MonoBehaviour
 {
     public static CoffeePriceManager Instance;

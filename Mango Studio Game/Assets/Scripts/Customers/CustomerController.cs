@@ -24,7 +24,6 @@ public class CustomerController : MonoBehaviour
         {
             transform.Translate(direction.normalized * speed * Time.deltaTime);
         }
-
         if (!atCounter && manager.customers.Count > 0 && manager.customers.Peek() == this)
         {
             atQueue = false;

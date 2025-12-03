@@ -4,6 +4,7 @@
 [System.Serializable]
 public class FoodOrder
 {
+    [Header("Referencias")]
     public FoodCategory category;
     public CakeType cakeType;
     public CookieType cookieType;
@@ -57,7 +58,6 @@ public class FoodOrder
         foodPrecisionType = type;
         Debug.Log($"La precisionCategory es: {category} y la precisionType es: {type}");
     }
-
     public void SetCookStatePrecision(CookState state)
     {
         precisionCookState = state;
