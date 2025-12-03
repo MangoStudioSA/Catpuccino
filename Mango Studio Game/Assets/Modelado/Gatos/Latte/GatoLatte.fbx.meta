@@ -8,17 +8,17 @@ ModelImporter:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: sinAnimacion_Material _20_BaseColor
-    second: {fileID: 2800000, guid: aaf4bacc7c8525243b215379f564119c, type: 3}
+    second: {fileID: 2800000, guid: 07f36eef1cd31fd4aa234be21ea35d48, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: sinAnimacion_Material _20_Normal
-    second: {fileID: 2800000, guid: b67ef74a754a1db4ba0557713ca1ac7c, type: 3}
+    second: {fileID: 2800000, guid: 03bb56d174d1a024ba887ba5c6ae513a, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: sinAnimacion_Material _20_Roughness
-    second: {fileID: 2800000, guid: f03134667d4be51489d70e44873b8e04, type: 3}
+    second: {fileID: 2800000, guid: 5b92f41225727054aa465791f4337817, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -46,38 +46,9 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Sentarse
-      takeName: Take 001
-      internalID: 1827226128182048838
-      firstFrame: 94
-      lastFrame: 104
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
       name: Andar
       takeName: Take 001
-      internalID: -998496362607748373
+      internalID: 1827226128182048838
       firstFrame: 0
       lastFrame: 94
       wrapMode: 0
@@ -104,11 +75,40 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
+      name: Sentarse
+      takeName: Take 001
+      internalID: -998496362607748373
+      firstFrame: 95
+      lastFrame: 104
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
       name: Sentado
       takeName: Take 001
       internalID: 3060872287085348379
-      firstFrame: 103
-      lastFrame: 104
+      firstFrame: 104
+      lastFrame: 105
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

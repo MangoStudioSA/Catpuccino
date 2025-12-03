@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e72c0feee1d97dd45b8eaa1ebd070923
+guid: 89f314d545bc3574cb7d7e1dfef3ca97
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -8,17 +8,17 @@ ModelImporter:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: sinAnimacion_Material _20_BaseColor
-    second: {fileID: 2800000, guid: 1a4c37fc4952cfa4c83065d5a56d7567, type: 3}
+    second: {fileID: 2800000, guid: fda723b9cd541984b9b41743bf1b73e7, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: sinAnimacion_Material _20_Normal
-    second: {fileID: 2800000, guid: 27d6509cded09234ba3244cabc40f8de, type: 3}
+    second: {fileID: 2800000, guid: 37e512fe00b13dd47b3603f84d5383bc, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: sinAnimacion_Material _20_Roughness
-    second: {fileID: 2800000, guid: b463edb892efa9a429efb1b5d336d42c, type: 3}
+    second: {fileID: 2800000, guid: 2aed50bd36de246449686ea4babb36df, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0

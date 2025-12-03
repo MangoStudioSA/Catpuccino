@@ -8,17 +8,17 @@ ModelImporter:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: sinAnimacion_Material _20_BaseColor
-    second: {fileID: 2800000, guid: e7d1de90786f5294184d1517be30c96b, type: 3}
+    second: {fileID: 2800000, guid: 96557bfd2c11eea4fbb90aa56175009a, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: sinAnimacion_Material _20_Normal
-    second: {fileID: 2800000, guid: f441f805706879e45b4b857f85db48a5, type: 3}
+    second: {fileID: 2800000, guid: 4a097042b0e33604685b47bebcd2433e, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: sinAnimacion_Material _20_Roughness
-    second: {fileID: 2800000, guid: e51eda7ac12bd8c41ae1983a4ba1bd12, type: 3}
+    second: {fileID: 2800000, guid: f177e231bf9713448beb0e4d1bb8add5, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -107,8 +107,8 @@ ModelImporter:
       name: Sentado
       takeName: Take 001
       internalID: 3060872287085348379
-      firstFrame: 103
-      lastFrame: 104
+      firstFrame: 104
+      lastFrame: 105
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
