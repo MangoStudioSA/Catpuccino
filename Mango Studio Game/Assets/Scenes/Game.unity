@@ -267,7 +267,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 191.08002, y: 148}
+  m_AnchoredPosition: {x: 194.08002, y: 150}
   m_SizeDelta: {x: 126.16, y: 99}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &12149003
@@ -1035,6 +1035,283 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 37379447}
   m_CullTransparentMesh: 1
+--- !u!1 &38363351
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 38363355}
+  - component: {fileID: 38363354}
+  - component: {fileID: 38363353}
+  - component: {fileID: 38363352}
+  m_Layer: 0
+  m_Name: MinigameFoodController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &38363352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 38363351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ecca8dc2d3dc844a94b456dc8105348, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BZanahoria: {fileID: 309942767}
+  BMantequilla: {fileID: 801309280}
+  BChocolate: {fileID: 708130278}
+  BRedVelvet: {fileID: 98089538}
+  GChocolate: {fileID: 1354414399}
+  GChocolateB: {fileID: 1901911379}
+  GMantequilla: {fileID: 619921038}
+  MArandano: {fileID: 1560350577}
+  MCereza: {fileID: 1564548820}
+  MPistacho: {fileID: 1032402577}
+  MDulceLeche: {fileID: 1392499142}
+  BZanahoriaCursor: {fileID: 2800000, guid: d52f73c55452dfb49aae11bdec0f7d68, type: 3}
+  BMantequillaCursor: {fileID: 2800000, guid: 45ac92221242c0a48b4fbe82ead0cdff, type: 3}
+  BChocolateCursor: {fileID: 2800000, guid: 2e430f6ccb81378479c3c64b68b16336, type: 3}
+  BRedVelvetCursor: {fileID: 2800000, guid: ebf1b64c15a3e2543958edf8a1074545, type: 3}
+  GChocolateCursor: {fileID: 2800000, guid: 6e0e46a2f2494ae44978081034f03f39, type: 3}
+  GChocolateBCursor: {fileID: 2800000, guid: fa6dd4960d93ae347a5606fe2c3b28ce, type: 3}
+  GMantequillaCursor: {fileID: 2800000, guid: 49db63acfec37dd41b284cafbb039bd5, type: 3}
+  MArandanoCursor: {fileID: 2800000, guid: 20b55075bcbf9694488571055c82d70d, type: 3}
+  MCerezaCursor: {fileID: 2800000, guid: e5248c59ab6eaaf43a28583cefdf18ea, type: 3}
+  MPistachoCursor: {fileID: 2800000, guid: 1e4e55812971e6d4e8abe882bcb56b2b, type: 3}
+  MDulceLecheCursor: {fileID: 2800000, guid: 5f6c4e738b6d9f64f94acc759366208e, type: 3}
+  foodStocks:
+  - category: 3
+    type: 1
+    foodInstances:
+    - {fileID: 1685573948}
+    - {fileID: 1984504317}
+    - {fileID: 856409927}
+    - {fileID: 283228593}
+    currentIndex: 0
+  - category: 3
+    type: 2
+    foodInstances:
+    - {fileID: 1844523894}
+    - {fileID: 120018185}
+    - {fileID: 1292078407}
+    currentIndex: 0
+  - category: 3
+    type: 3
+    foodInstances:
+    - {fileID: 472830529}
+    - {fileID: 1271932865}
+    - {fileID: 332175817}
+    currentIndex: 0
+  - category: 3
+    type: 4
+    foodInstances:
+    - {fileID: 1992568239}
+    - {fileID: 1572909193}
+    - {fileID: 522617127}
+    - {fileID: 1124410638}
+    - {fileID: 1575638361}
+    currentIndex: 0
+  - category: 2
+    type: 1
+    foodInstances:
+    - {fileID: 1592604044}
+    - {fileID: 863887072}
+    - {fileID: 961618032}
+    - {fileID: 882630483}
+    - {fileID: 87889923}
+    - {fileID: 1629316981}
+    - {fileID: 322166430}
+    - {fileID: 642971831}
+    - {fileID: 436189042}
+    currentIndex: 0
+  - category: 2
+    type: 2
+    foodInstances:
+    - {fileID: 1531266013}
+    - {fileID: 1900292354}
+    - {fileID: 827986972}
+    - {fileID: 2115118438}
+    - {fileID: 450240424}
+    - {fileID: 1676965184}
+    - {fileID: 839889153}
+    - {fileID: 53272989}
+    - {fileID: 1324807611}
+    currentIndex: 0
+  - category: 2
+    type: 3
+    foodInstances:
+    - {fileID: 1308355229}
+    - {fileID: 614655496}
+    - {fileID: 199430203}
+    - {fileID: 1583224713}
+    - {fileID: 715176390}
+    - {fileID: 915490910}
+    - {fileID: 288703694}
+    - {fileID: 299735094}
+    - {fileID: 896398331}
+    - {fileID: 1647403049}
+    - {fileID: 285772829}
+    - {fileID: 1274049854}
+    - {fileID: 1268618349}
+    - {fileID: 964459642}
+    - {fileID: 935175396}
+    currentIndex: 0
+  cakeSpriteStocks:
+  - cakeType: 2
+    image: {fileID: 926106727}
+    stages:
+    - {fileID: 21300000, guid: 75ffb667453601d49b97bd62bcf128ed, type: 3}
+    - {fileID: 21300000, guid: f1f083a92ddead044ac3e363240d390c, type: 3}
+    - {fileID: 21300000, guid: 183c3904fb5c73d428e08a1698fe56c8, type: 3}
+    - {fileID: 21300000, guid: 57b79c03ee1754f4893dbd13b544daca, type: 3}
+    - {fileID: 21300000, guid: 6fe7e1bab6b6bef46816d9d419e5d3aa, type: 3}
+    - {fileID: 21300000, guid: eb7dc428f2bd46c4bbfaca87e87ae9a6, type: 3}
+    - {fileID: 21300000, guid: 437dc2db9740b0746a5935e99cdc43d2, type: 3}
+    - {fileID: 21300000, guid: 9898a57f4392c354292e9c29853d1f77, type: 3}
+    - {fileID: 21300000, guid: 405c9349929f8d64c807c1c8feca3a74, type: 3}
+    currentStage: 0
+  - cakeType: 1
+    image: {fileID: 212039145}
+    stages:
+    - {fileID: 21300000, guid: 3f25e2ab89169274f8db32e808f78735, type: 3}
+    - {fileID: 21300000, guid: c2eb8ad084c62624a8d30972b66a10bc, type: 3}
+    - {fileID: 21300000, guid: 99e6e3e8e8c06bb4d897f10672e6061e, type: 3}
+    - {fileID: 21300000, guid: a38d193a1db2820419adde59b064ac61, type: 3}
+    - {fileID: 21300000, guid: e0439d604441dcc479f753b7f40a0928, type: 3}
+    - {fileID: 21300000, guid: db912152b51df8b48ae42828e1c21857, type: 3}
+    - {fileID: 21300000, guid: 264a692ff03f84541b49481fec4bfbd7, type: 3}
+    - {fileID: 21300000, guid: 9f19a013d32703244a48c4b7ba8bd5c3, type: 3}
+    - {fileID: 21300000, guid: 405c9349929f8d64c807c1c8feca3a74, type: 3}
+    currentStage: 0
+  - cakeType: 3
+    image: {fileID: 1802058464}
+    stages:
+    - {fileID: 21300000, guid: 58b8708cd8e7e674d9b48461f61736c3, type: 3}
+    - {fileID: 21300000, guid: 70e9f2e96c4f94544bbeef20effad959, type: 3}
+    - {fileID: 21300000, guid: ff894f250d96a7c41918a804568e44da, type: 3}
+    - {fileID: 21300000, guid: 9c5ff53b6079c7c44a9bcacc03ec17e6, type: 3}
+    - {fileID: 21300000, guid: 60b473117cf1ac84e9be30dc3adcf33b, type: 3}
+    - {fileID: 21300000, guid: 44fca0d06703389468a0c3985657e0dc, type: 3}
+    - {fileID: 21300000, guid: 40775c0ab0f6aee439980423ccaf8cb0, type: 3}
+    - {fileID: 21300000, guid: e761419cfcc57d64e8d26638e0408142, type: 3}
+    - {fileID: 21300000, guid: 405c9349929f8d64c807c1c8feca3a74, type: 3}
+    currentStage: 0
+  - cakeType: 4
+    image: {fileID: 515852916}
+    stages:
+    - {fileID: 21300000, guid: 439ebd915a845e949b691d69a204cbe5, type: 3}
+    - {fileID: 21300000, guid: 5d4cb8a009b819c4baecbbd3a5646412, type: 3}
+    - {fileID: 21300000, guid: bfe11bb7e3bd65442812d9592ba54a29, type: 3}
+    - {fileID: 21300000, guid: a3695e2c3e7e9c841af4634756a0349b, type: 3}
+    - {fileID: 21300000, guid: 9a87ac218a0d68d4d83ea51577e56956, type: 3}
+    - {fileID: 21300000, guid: baf169bcdd8c3f94c90973400ecef9e0, type: 3}
+    - {fileID: 21300000, guid: 9793e67fa83786a43a23d976d3453d8f, type: 3}
+    - {fileID: 21300000, guid: 4d50f84718a301c4cbd9120918f4d9a9, type: 3}
+    - {fileID: 21300000, guid: 405c9349929f8d64c807c1c8feca3a74, type: 3}
+    currentStage: 0
+--- !u!114 &38363353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 38363351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 511d0cb483d6f46488ec69edbe2e363c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  order: {fileID: 1270257532}
+  foodManager: {fileID: 38363352}
+  tutorialManager: {fileID: 841635553}
+  buttonManager: {fileID: 1270257526}
+  cursorManager: {fileID: 342197122}
+  bakeSlider: {fileID: 544665798}
+  fillBakeImage: {fileID: 1090232296}
+  Plato: {fileID: 1786740808}
+  PlatoSinComida: {fileID: 1099894484}
+  BolsaLlevar: {fileID: 935583402}
+  BolsaLlevarBandeja: {fileID: 1310215598}
+  puntoEncimera: {fileID: 1955836105}
+  puntoComida: {fileID: 1048102190}
+  puntoHorno: {fileID: 591006215}
+  platoInHand: 0
+  carryBagInHand: 0
+  foodInHand: 0
+  platoIsInEncimera: 0
+  carryBagIsInEncimera: 0
+  foodIsInBolsaLlevar: 0
+  foodIsInPlato: 0
+  foodIsInHorno: 0
+  isBaking: 0
+  foodServed: 0
+  foodBaked: 0
+  countFoodCover: 0
+  foodCategoryInHand: 0
+  foodTypeInHand: 0
+  foodCategoryInPlato: 0
+  foodTypeInPlato: 0
+  foodCategoryInCarryBag: 0
+  foodTypeInCarryBag: 0
+  foodCategoryInHorno: 0
+  foodTypeInHorno: 0
+  tiempoHorneado: 30
+  defaultMaterial: {fileID: 2100000, guid: 6e520e2e2418e3447977fe40e37ca7c1, type: 2}
+  glowMaterial: {fileID: 2100000, guid: c2af7ce3b9757de4dbc308fdd63b53f4, type: 2}
+  bolsaImage: {fileID: 2085979023}
+  platoImage: {fileID: 857833593}
+  botonH_N: {fileID: 304915697, guid: 1ce395fc4a1cc454c85499e1e33c3e7e, type: 3}
+  botonH_P: {fileID: 761929660, guid: 1ce395fc4a1cc454c85499e1e33c3e7e, type: 3}
+  botonPH_N: {fileID: 304915697, guid: 1ce395fc4a1cc454c85499e1e33c3e7e, type: 3}
+  botonPH_P: {fileID: 761929660, guid: 1ce395fc4a1cc454c85499e1e33c3e7e, type: 3}
+  platoSinComida: {fileID: 1560237351, guid: 20fb181bcd7dd094595b2d7c4a402c65, type: 3}
+  BZanahoriaP: {fileID: 21300000, guid: 7c4bcf0461b6f1440a2276c00d110412, type: 3}
+  BChocolateP: {fileID: 21300000, guid: fe20cb62126cfec42a775ab1c41d8d1c, type: 3}
+  BRedVelvetP: {fileID: 21300000, guid: 0dcd84189b0861146aec790b2526765e, type: 3}
+  BMantequillaP: {fileID: 21300000, guid: f5cd4488d5501594996a671a91232a46, type: 3}
+  GChocolateP: {fileID: 21300000, guid: 4c63dbd50f1da4346bc7097497e4f267, type: 3}
+  GChocolateBP: {fileID: 21300000, guid: 4635e292042d8b546bafae241fe8a1a2, type: 3}
+  GMantequillaP: {fileID: 21300000, guid: a33447889730342438faeefb8f8c1c43, type: 3}
+  MArandanosP: {fileID: 21300000, guid: 02e7b0f40351dfc4b921563bbd892fec, type: 3}
+  MCerezaP: {fileID: 21300000, guid: 45a68e003c9ddb841bca32346af76141, type: 3}
+  MPistachoP: {fileID: 21300000, guid: c7b5bfe9b274ae342aa623861bf70d2c, type: 3}
+  MDulceLecheP: {fileID: 21300000, guid: 73145ae689486a745a793b0e0da7569b, type: 3}
+--- !u!114 &38363354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 38363351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8bcc474397cbaa4db36870e6062f544, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &38363355
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 38363351}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 960, y: 540, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &41484741
 GameObject:
   m_ObjectHideFlags: 0
@@ -1532,22 +1809,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 50023189}
-  - component: {fileID: 50023193}
-  - component: {fileID: 50023196}
-  - component: {fileID: 50023188}
-  - component: {fileID: 50023200}
-  - component: {fileID: 50023197}
-  - component: {fileID: 50023190}
-  - component: {fileID: 50023192}
   - component: {fileID: 50023191}
-  - component: {fileID: 50023202}
+  - component: {fileID: 50023193}
+  - component: {fileID: 50023188}
   - component: {fileID: 50023194}
-  - component: {fileID: 50023199}
-  - component: {fileID: 50023195}
-  - component: {fileID: 50023201}
-  - component: {fileID: 50023203}
   m_Layer: 0
-  m_Name: MinigameController
+  m_Name: MinigameCoffeeController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1566,12 +1833,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   order: {fileID: 0}
-  orderNoteUI: {fileID: 50023199}
+  orderNoteUI: {fileID: 1270257527}
   tutorialManager: {fileID: 841635553}
-  buttonManager: {fileID: 50023195}
+  buttonManager: {fileID: 1270257526}
   cursorManager: {fileID: 342197122}
-  progressManager: {fileID: 50023194}
-  foodMinigameInput: {fileID: 50023200}
+  progressManager: {fileID: 1270257528}
+  foodMinigameInput: {fileID: 38363353}
+  coffeeContainerManager: {fileID: 50023194}
   coffeeSlider: {fileID: 558733945}
   coffeeSliderFillImage: {fileID: 491869337}
   slideSpeed: 0.8
@@ -1598,68 +1866,44 @@ MonoBehaviour:
   currentHeat: 0
   isHeating: 0
   heatedMilk: 0
+  countSugar: 0
   countIce: 0
+  countCover: 0
+  countWater: 0
+  countMilk: 0
+  countCondensedMilk: 0
+  countCream: 0
+  countChocolate: 0
+  countWhiskey: 0
   milkServed: 0
   cMilkServed: 0
   cupServed: 0
   filtroInHand: 0
   cucharaInHand: 0
-  tazaInHand: 0
-  vasoInHand: 0
-  platoTazaInHand: 0
   tazaMilkInHand: 0
   iceInHand: 0
-  coverInHand: 0
   waterInHand: 0
   milkInHand: 0
   condensedMilkInHand: 0
   creamInHand: 0
   chocolateInHand: 0
   whiskeyInHand: 0
-  tazaIsInCafetera: 0
-  tazaIsInPlato: 0
-  vasoIsInCafetera: 0
-  vasoIsInTable: 0
-  platoTazaIsInTable: 0
   tazaMilkIsInEspumador: 0
-  vasoTapaPuesta: 0
   filtroIsInCafetera: 0
-  Taza: {fileID: 386902211}
-  Vaso: {fileID: 2016690274}
   TazaLeche: {fileID: 1645141594}
-  PlatoTaza: {fileID: 1275036455}
   Filtro: {fileID: 1217273030}
   Espumador: {fileID: 2107302304}
   Balda: {fileID: 244413808}
-  Estante: {fileID: 1015384994}
-  puntoCafeteraTaza: {fileID: 365230178}
-  puntoCafeteraVaso: {fileID: 2106033307}
   puntoEspumador: {fileID: 1266513885}
-  puntoMesa: {fileID: 1938362649}
-  puntoTazaPlato: {fileID: 1573721646}
-  puntoMesaVaso: {fileID: 300016680}
   puntoFiltroCafetera: {fileID: 722471628}
-  estanteBase: {fileID: 1015384994}
-  estanteTazaPremium: {fileID: 1534359512}
-  estanteVasoPremium: {fileID: 1859234157}
-  estantePremium: {fileID: 1074631924}
   defaultMaterial: {fileID: 2100000, guid: 6e520e2e2418e3447977fe40e37ca7c1, type: 2}
   glowMaterial: {fileID: 2100000, guid: c2af7ce3b9757de4dbc308fdd63b53f4, type: 2}
-  tazasImage: {fileID: 2132560482}
-  tazaBImage: {fileID: 2095200535}
-  tazaPImage: {fileID: 12149003}
-  vasoImage: {fileID: 2038729419}
-  vasoPImage: {fileID: 383831561}
-  platoTazaImage: {fileID: 2028102492}
-  platoTazaPImage: {fileID: 1332905745}
   waterImage: {fileID: 74253030}
   milkImage: {fileID: 1639563792}
   milkCupImage: {fileID: 1946061798}
   condensedMilkImage: {fileID: 290504853}
   chocolateImage: {fileID: 1159473349}
   whiskeyImage: {fileID: 371112198}
-  coverImage: {fileID: 1529611146}
-  coverPImage: {fileID: 114359261}
   creamWithSpoon: {fileID: 21300000, guid: ce485aa0c7b9b314dae8c4a0986636f3, type: 3}
   creamWithoutSpoon: {fileID: 21300000, guid: 1604b00999e07634780567e5acdc473b, type: 3}
   filtroImg: {fileID: 186981477, guid: e288ad6c858bce44d98d91c579e9587e, type: 3}
@@ -1675,16 +1919,8 @@ MonoBehaviour:
   boton3_P: {fileID: 21300000, guid: 122887e50126f5247ae45c68b502d2c3, type: 3}
   botonCantidadCafe_N: {fileID: 21300000, guid: 153e1f9e852a60a42863338081caa987, type: 3}
   botonCantidadCafe_P: {fileID: 21300000, guid: 3a12deb6300b4c14bb51d9b2215b8935, type: 3}
-  skinBase: {fileID: 11400000, guid: 04e5da8be6853e045af67a4501d9e6fa, type: 2}
-  skinPremium: {fileID: 11400000, guid: 7129d46a60142f84d9836ed4a5a03e9f, type: 2}
-  skinB_PP: {fileID: 11400000, guid: d360d7db644534140bd53fdd31bf88d5, type: 2}
-  skinP_PB: {fileID: 11400000, guid: 37811a689c9be5345903166488683284, type: 2}
   currentSprite: {fileID: 0}
   baseCupSprite: {fileID: 0}
-  finalCupIsPremium: 0
-  finalPlateIsPremium: 0
-  finalVasoIsPremium: 0
-  finalCoverIsPremium: 0
 --- !u!4 &50023189
 Transform:
   m_ObjectHideFlags: 0
@@ -1700,63 +1936,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &50023190
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 50023187}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 530ffad5c22790b4597619d39547dabf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentOrder:
-    orderId: 0
-    coffeeType: 0
-    sugarAm: 0
-    iceAm: 0
-    orderType: 0
-    foodOrder:
-      category: 0
-      cakeType: 0
-      cookieType: 0
-      mufflinType: 0
-      foodTargetCategory: 0
-      foodTargetType: 0
-      foodPrecisionCategory: 0
-      foodPrecisionType: 0
-      targetCookState: 0
-      precisionCookState: 0
-    stepsPerformed: 
-    stepsRequired: 
-    coffeeTarget: 0
-    coffeePrecision: 0
-    coffeeServedTarget: 0
-    coffeeServedPrecision: 0
-    milkTarget: 0
-    milkPrecision: 0
-    heatedMilkTarget: 0
-    heatedMilkPrecision: 0
-    waterTarget: 0
-    waterPrecision: 0
-    condensedMilkTarget: 0
-    condensedMilkPrecision: 0
-    creamTarget: 0
-    creamPrecision: 0
-    chocolateTarget: 0
-    chocolatePrecision: 0
-    whiskeyTarget: 0
-    whiskeyPrecision: 0
-    sugarTarget: 0
-    sugarPrecision: 0
-    iceTarget: 0
-    icePrecision: 0
-    typeTarget: 0
-    typePrecision: 0
-    typeOrderFoodTarget: 0
-    typeOrderFoodPrecision: 0
 --- !u!114 &50023191
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1770,9 +1949,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npc: {fileID: 2111219102}
-  player: {fileID: 50023190}
-  evaluation: {fileID: 50023192}
-  customerManager: {fileID: 0}
+  player: {fileID: 1270257532}
+  evaluation: {fileID: 1270257531}
+  customerManager: {fileID: 94516044}
   orderFeedbackTxt: {fileID: 63311953}
   earnedMoneyTxt: {fileID: 1484668476}
   servedCustomersTxt: {fileID: 2051559962}
@@ -1818,23 +1997,6 @@ MonoBehaviour:
     - {fileID: -1694793384, guid: 0b8a318dc8b299341828c211b1a8ef19, type: 3}
     - {fileID: 1274107746, guid: 0b8a318dc8b299341828c211b1a8ef19, type: 3}
   customersServed: 0
---- !u!114 &50023192
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 50023187}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c46e8e102fae604f92aa93f796f4ab6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isOrderWithFood: 0
-  playerForgotFood: 0
-  lastWrongFoodType: 0
-  lastBadCookStateBurned: 0
-  lastBadCookStateRaw: 0
 --- !u!114 &50023193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1869,404 +2031,56 @@ MonoBehaviour:
   m_GameObject: {fileID: 50023187}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6290b5e207243941b15508e4fb92615, type: 3}
+  m_Script: {fileID: 11500000, guid: a8f7fa8783462f64c8de6b742eb2b901, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coffeeEnabled: 0
-  waterEnabled: 0
-  sugarEnabled: 0
-  iceEnabled: 0
-  typeOrderEnabled: 0
-  milkEnabled: 0
-  heatedMilkEnabled: 0
-  condensedMilkEnabled: 0
-  creamEnabled: 0
-  chocolateEnabled: 0
-  whiskeyEnabled: 0
-  cakesEnabled: 0
-  cookiesEnabled: 0
-  mufflinsEnabled: 0
---- !u!114 &50023195
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 50023187}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85fe928d2fedb2748bed0e9fef2167c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  endDeliveryButton: {fileID: 49673518}
-  gameButton: {fileID: 48577136}
-  acceptOrderButton: {fileID: 1610250849}
-  shopButton: {fileID: 1757957347}
-  submitOrderButton: {fileID: 1838202980}
-  recipesBookButton: {fileID: 1694360623}
-  recipesBookBButton: {fileID: 1300218827}
-  orderNoteButton: {fileID: 405058592}
-  orderNoteBButton: {fileID: 1333060178}
-  coffeeButton: {fileID: 21858912}
-  milkButton: {fileID: 1639563791}
-  waterButton: {fileID: 74253029}
-  sugarButton: {fileID: 573849090}
-  iceButton: {fileID: 496000360}
-  coverButton: {fileID: 1656632135}
-  coverPButton: {fileID: 541747772}
-  condensedMilkButton: {fileID: 290504852}
-  creamButton: {fileID: 528060067}
-  chocolateButton: {fileID: 1159473348}
-  whiskeyButton: {fileID: 371112197}
-  cogerTazaInicioButton: {fileID: 1210999608}
-  cogerVasoInicioButton: {fileID: 1086673708}
-  cogerPlatoTazaButton: {fileID: 1951049803}
-  cogerTazaB2InicioButton: {fileID: 571858689}
-  cogerVasoB2InicioButton: {fileID: 1641614508}
-  cogerPlatoTazaB2Button: {fileID: 1837797422}
-  cogerTazaPInicioButton: {fileID: 909881282}
-  cogerVasoPInicioButton: {fileID: 565794232}
-  cogerPlatoTazaPButton: {fileID: 616947512}
-  molerButton: {fileID: 1919829060}
-  filtroButton: {fileID: 1376509724}
-  filtroCafeteraButton: {fileID: 1683990715}
-  echarCafeButton: {fileID: 1099100926}
-  pararEcharCafeButton: {fileID: 1272839814}
-  calentarButton: {fileID: 472504998}
-  espumadorButton: {fileID: 1775370128}
-  cogerTazaLecheButton: {fileID: 1946061797}
-  papeleraButton: {fileID: 1292536846}
-  bakeryButton: {fileID: 1082078882}
-  returnBakeryButton: {fileID: 569478934}
-  cogerPlatoInicioButton: {fileID: 1822414049}
-  cogerBolsaLlevarInicioButton: {fileID: 1324809004}
-  cogerBZanahoriaButton: {fileID: 1285437426}
-  cogerBMantequillaButton: {fileID: 2014591114}
-  cogerBChocolateButton: {fileID: 1434989450}
-  cogerBRedVelvetButton: {fileID: 94120223}
-  cogerGChocolateButton: {fileID: 1426963565}
-  cogerGChocolateBlButton: {fileID: 1206601179}
-  cogerGMantequillaButton: {fileID: 1142898002}
-  cogerMArandanosButton: {fileID: 1265485775}
-  cogerMCerezaButton: {fileID: 1293447404}
-  cogerMPistachoButton: {fileID: 376533071}
-  cogerMDulceLecheButton: {fileID: 731598299}
-  hornoButton: {fileID: 1863339080}
-  hornearButton: {fileID: 1992149927}
-  stopHorneadoButton: {fileID: 122319120}
-  papeleraRButton: {fileID: 618589648}
---- !u!114 &50023196
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 50023187}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8bcc474397cbaa4db36870e6062f544, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &50023197
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 50023187}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ecca8dc2d3dc844a94b456dc8105348, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BZanahoria: {fileID: 309942767}
-  BMantequilla: {fileID: 801309280}
-  BChocolate: {fileID: 708130278}
-  BRedVelvet: {fileID: 98089538}
-  GChocolate: {fileID: 1354414399}
-  GChocolateB: {fileID: 1901911379}
-  GMantequilla: {fileID: 619921038}
-  MArandano: {fileID: 1560350577}
-  MCereza: {fileID: 1564548820}
-  MPistacho: {fileID: 1032402577}
-  MDulceLeche: {fileID: 1392499142}
-  BZanahoriaCursor: {fileID: 2800000, guid: d52f73c55452dfb49aae11bdec0f7d68, type: 3}
-  BMantequillaCursor: {fileID: 2800000, guid: 45ac92221242c0a48b4fbe82ead0cdff, type: 3}
-  BChocolateCursor: {fileID: 2800000, guid: 2e430f6ccb81378479c3c64b68b16336, type: 3}
-  BRedVelvetCursor: {fileID: 2800000, guid: ebf1b64c15a3e2543958edf8a1074545, type: 3}
-  GChocolateCursor: {fileID: 2800000, guid: 6e0e46a2f2494ae44978081034f03f39, type: 3}
-  GChocolateBCursor: {fileID: 2800000, guid: fa6dd4960d93ae347a5606fe2c3b28ce, type: 3}
-  GMantequillaCursor: {fileID: 2800000, guid: 49db63acfec37dd41b284cafbb039bd5, type: 3}
-  MArandanoCursor: {fileID: 2800000, guid: 20b55075bcbf9694488571055c82d70d, type: 3}
-  MCerezaCursor: {fileID: 2800000, guid: e5248c59ab6eaaf43a28583cefdf18ea, type: 3}
-  MPistachoCursor: {fileID: 2800000, guid: 1e4e55812971e6d4e8abe882bcb56b2b, type: 3}
-  MDulceLecheCursor: {fileID: 2800000, guid: 5f6c4e738b6d9f64f94acc759366208e, type: 3}
-  foodStocks:
-  - category: 3
-    type: 1
-    foodInstances:
-    - {fileID: 1685573948}
-    - {fileID: 1984504317}
-    - {fileID: 856409927}
-    - {fileID: 283228593}
-    currentIndex: 0
-  - category: 3
-    type: 2
-    foodInstances:
-    - {fileID: 1844523894}
-    - {fileID: 120018185}
-    - {fileID: 1292078407}
-    currentIndex: 0
-  - category: 3
-    type: 3
-    foodInstances:
-    - {fileID: 472830529}
-    - {fileID: 1271932865}
-    - {fileID: 332175817}
-    currentIndex: 0
-  - category: 3
-    type: 4
-    foodInstances:
-    - {fileID: 1992568239}
-    - {fileID: 1572909193}
-    - {fileID: 522617127}
-    - {fileID: 1124410638}
-    - {fileID: 1575638361}
-    currentIndex: 0
-  - category: 2
-    type: 1
-    foodInstances:
-    - {fileID: 1592604044}
-    - {fileID: 863887072}
-    - {fileID: 961618032}
-    - {fileID: 882630483}
-    - {fileID: 87889923}
-    - {fileID: 1629316981}
-    - {fileID: 322166430}
-    - {fileID: 642971831}
-    - {fileID: 436189042}
-    currentIndex: 0
-  - category: 2
-    type: 2
-    foodInstances:
-    - {fileID: 1531266013}
-    - {fileID: 1900292354}
-    - {fileID: 827986972}
-    - {fileID: 2115118438}
-    - {fileID: 450240424}
-    - {fileID: 1676965184}
-    - {fileID: 839889153}
-    - {fileID: 53272989}
-    - {fileID: 1324807611}
-    currentIndex: 0
-  - category: 2
-    type: 3
-    foodInstances:
-    - {fileID: 1308355229}
-    - {fileID: 614655496}
-    - {fileID: 199430203}
-    - {fileID: 1583224713}
-    - {fileID: 715176390}
-    - {fileID: 915490910}
-    - {fileID: 288703694}
-    - {fileID: 299735094}
-    - {fileID: 896398331}
-    - {fileID: 1647403049}
-    - {fileID: 285772829}
-    - {fileID: 1274049854}
-    - {fileID: 1268618349}
-    - {fileID: 964459642}
-    - {fileID: 935175396}
-    currentIndex: 0
-  cakeSpriteStocks:
-  - cakeType: 2
-    image: {fileID: 926106727}
-    stages:
-    - {fileID: 21300000, guid: 75ffb667453601d49b97bd62bcf128ed, type: 3}
-    - {fileID: 21300000, guid: f1f083a92ddead044ac3e363240d390c, type: 3}
-    - {fileID: 21300000, guid: 183c3904fb5c73d428e08a1698fe56c8, type: 3}
-    - {fileID: 21300000, guid: 57b79c03ee1754f4893dbd13b544daca, type: 3}
-    - {fileID: 21300000, guid: 6fe7e1bab6b6bef46816d9d419e5d3aa, type: 3}
-    - {fileID: 21300000, guid: eb7dc428f2bd46c4bbfaca87e87ae9a6, type: 3}
-    - {fileID: 21300000, guid: 437dc2db9740b0746a5935e99cdc43d2, type: 3}
-    - {fileID: 21300000, guid: 9898a57f4392c354292e9c29853d1f77, type: 3}
-    - {fileID: 21300000, guid: 405c9349929f8d64c807c1c8feca3a74, type: 3}
-    currentStage: 0
-  - cakeType: 1
-    image: {fileID: 212039145}
-    stages:
-    - {fileID: 21300000, guid: 3f25e2ab89169274f8db32e808f78735, type: 3}
-    - {fileID: 21300000, guid: c2eb8ad084c62624a8d30972b66a10bc, type: 3}
-    - {fileID: 21300000, guid: 99e6e3e8e8c06bb4d897f10672e6061e, type: 3}
-    - {fileID: 21300000, guid: a38d193a1db2820419adde59b064ac61, type: 3}
-    - {fileID: 21300000, guid: e0439d604441dcc479f753b7f40a0928, type: 3}
-    - {fileID: 21300000, guid: db912152b51df8b48ae42828e1c21857, type: 3}
-    - {fileID: 21300000, guid: 264a692ff03f84541b49481fec4bfbd7, type: 3}
-    - {fileID: 21300000, guid: 9f19a013d32703244a48c4b7ba8bd5c3, type: 3}
-    - {fileID: 21300000, guid: 405c9349929f8d64c807c1c8feca3a74, type: 3}
-    currentStage: 0
-  - cakeType: 3
-    image: {fileID: 1802058464}
-    stages:
-    - {fileID: 21300000, guid: 58b8708cd8e7e674d9b48461f61736c3, type: 3}
-    - {fileID: 21300000, guid: 70e9f2e96c4f94544bbeef20effad959, type: 3}
-    - {fileID: 21300000, guid: ff894f250d96a7c41918a804568e44da, type: 3}
-    - {fileID: 21300000, guid: 9c5ff53b6079c7c44a9bcacc03ec17e6, type: 3}
-    - {fileID: 21300000, guid: 60b473117cf1ac84e9be30dc3adcf33b, type: 3}
-    - {fileID: 21300000, guid: 44fca0d06703389468a0c3985657e0dc, type: 3}
-    - {fileID: 21300000, guid: 40775c0ab0f6aee439980423ccaf8cb0, type: 3}
-    - {fileID: 21300000, guid: e761419cfcc57d64e8d26638e0408142, type: 3}
-    - {fileID: 21300000, guid: 405c9349929f8d64c807c1c8feca3a74, type: 3}
-    currentStage: 0
-  - cakeType: 4
-    image: {fileID: 515852916}
-    stages:
-    - {fileID: 21300000, guid: 439ebd915a845e949b691d69a204cbe5, type: 3}
-    - {fileID: 21300000, guid: 5d4cb8a009b819c4baecbbd3a5646412, type: 3}
-    - {fileID: 21300000, guid: bfe11bb7e3bd65442812d9592ba54a29, type: 3}
-    - {fileID: 21300000, guid: a3695e2c3e7e9c841af4634756a0349b, type: 3}
-    - {fileID: 21300000, guid: 9a87ac218a0d68d4d83ea51577e56956, type: 3}
-    - {fileID: 21300000, guid: baf169bcdd8c3f94c90973400ecef9e0, type: 3}
-    - {fileID: 21300000, guid: 9793e67fa83786a43a23d976d3453d8f, type: 3}
-    - {fileID: 21300000, guid: 4d50f84718a301c4cbd9120918f4d9a9, type: 3}
-    - {fileID: 21300000, guid: 405c9349929f8d64c807c1c8feca3a74, type: 3}
-    currentStage: 0
---- !u!114 &50023199
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 50023187}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c258d11105ac454faca353780b3aea3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  notePanelOrder: {fileID: 33306565}
-  notePanelOrderB: {fileID: 780939500}
-  noteTxt: {fileID: 496077005}
-  noteTxtB: {fileID: 1007361956}
-  slideDuration: 0.5
-  npc: {fileID: 2111219102}
-  isVisible: 0
-  tutorialManager: {fileID: 841635553}
---- !u!114 &50023200
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 50023187}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 511d0cb483d6f46488ec69edbe2e363c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  order: {fileID: 0}
-  foodManager: {fileID: 50023197}
-  tutorialManager: {fileID: 841635553}
-  buttonManager: {fileID: 50023195}
-  cursorManager: {fileID: 342197122}
-  bakeSlider: {fileID: 544665798}
-  fillBakeImage: {fileID: 1090232296}
-  Plato: {fileID: 1786740808}
-  PlatoSinComida: {fileID: 1099894484}
-  BolsaLlevar: {fileID: 935583402}
-  BolsaLlevarBandeja: {fileID: 1310215598}
-  puntoEncimera: {fileID: 1955836105}
-  puntoComida: {fileID: 1048102190}
-  puntoHorno: {fileID: 591006215}
-  platoInHand: 0
-  carryBagInHand: 0
-  foodInHand: 0
-  platoIsInEncimera: 0
-  carryBagIsInEncimera: 0
-  foodIsInBolsaLlevar: 0
-  foodIsInPlato: 0
-  foodIsInHorno: 0
-  isBaking: 0
-  foodServed: 0
-  foodBaked: 0
-  countFoodCover: 0
-  foodCategoryInHand: 0
-  foodTypeInHand: 0
-  foodCategoryInPlato: 0
-  foodTypeInPlato: 0
-  foodCategoryInCarryBag: 0
-  foodTypeInCarryBag: 0
-  foodCategoryInHorno: 0
-  foodTypeInHorno: 0
-  tiempoHorneado: 30
+  minigame: {fileID: 50023188}
+  Taza: {fileID: 386902211}
+  Vaso: {fileID: 2016690274}
+  PlatoTaza: {fileID: 1275036455}
+  Estante: {fileID: 1015384994}
+  estanteBase: {fileID: 1015384994}
+  estanteTazaPremium: {fileID: 1534359512}
+  estanteVasoPremium: {fileID: 1859234157}
+  estantePremium: {fileID: 1074631924}
+  puntoCafeteraTaza: {fileID: 365230178}
+  puntoCafeteraVaso: {fileID: 2106033307}
+  puntoMesa: {fileID: 1938362649}
+  puntoTazaPlato: {fileID: 1573721646}
+  puntoMesaVaso: {fileID: 300016680}
+  skinBase: {fileID: 11400000, guid: 04e5da8be6853e045af67a4501d9e6fa, type: 2}
+  skinPremium: {fileID: 11400000, guid: 7129d46a60142f84d9836ed4a5a03e9f, type: 2}
+  skinB_PP: {fileID: 11400000, guid: d360d7db644534140bd53fdd31bf88d5, type: 2}
+  skinP_PB: {fileID: 11400000, guid: 37811a689c9be5345903166488683284, type: 2}
+  cupIsPremium: 0
+  plateIsPremium: 0
+  vasoIsPremium: 0
+  coverIsPremium: 0
+  currentSkin: {fileID: 0}
+  finalCupIsPremium: 0
+  finalPlateIsPremium: 0
+  finalVasoIsPremium: 0
+  finalCoverIsPremium: 0
   defaultMaterial: {fileID: 2100000, guid: 6e520e2e2418e3447977fe40e37ca7c1, type: 2}
   glowMaterial: {fileID: 2100000, guid: c2af7ce3b9757de4dbc308fdd63b53f4, type: 2}
-  bolsaImage: {fileID: 2085979023}
-  platoImage: {fileID: 857833593}
-  botonH_N: {fileID: 304915697, guid: 1ce395fc4a1cc454c85499e1e33c3e7e, type: 3}
-  botonH_P: {fileID: 761929660, guid: 1ce395fc4a1cc454c85499e1e33c3e7e, type: 3}
-  botonPH_N: {fileID: 304915697, guid: 1ce395fc4a1cc454c85499e1e33c3e7e, type: 3}
-  botonPH_P: {fileID: 761929660, guid: 1ce395fc4a1cc454c85499e1e33c3e7e, type: 3}
-  platoSinComida: {fileID: 1560237351, guid: 20fb181bcd7dd094595b2d7c4a402c65, type: 3}
-  BZanahoriaP: {fileID: 21300000, guid: 7c4bcf0461b6f1440a2276c00d110412, type: 3}
-  BChocolateP: {fileID: 21300000, guid: fe20cb62126cfec42a775ab1c41d8d1c, type: 3}
-  BRedVelvetP: {fileID: 21300000, guid: 0dcd84189b0861146aec790b2526765e, type: 3}
-  BMantequillaP: {fileID: 21300000, guid: f5cd4488d5501594996a671a91232a46, type: 3}
-  GChocolateP: {fileID: 21300000, guid: 4c63dbd50f1da4346bc7097497e4f267, type: 3}
-  GChocolateBP: {fileID: 21300000, guid: 4635e292042d8b546bafae241fe8a1a2, type: 3}
-  GMantequillaP: {fileID: 21300000, guid: a33447889730342438faeefb8f8c1c43, type: 3}
-  MArandanosP: {fileID: 21300000, guid: 02e7b0f40351dfc4b921563bbd892fec, type: 3}
-  MCerezaP: {fileID: 21300000, guid: 45a68e003c9ddb841bca32346af76141, type: 3}
-  MPistachoP: {fileID: 21300000, guid: c7b5bfe9b274ae342aa623861bf70d2c, type: 3}
-  MDulceLecheP: {fileID: 21300000, guid: 73145ae689486a745a793b0e0da7569b, type: 3}
---- !u!114 &50023201
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 50023187}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af6ba5a582ad8d146a3d98813aa8b578, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  popUpMsgPrefab: {fileID: 442559460290348521, guid: c14faf90a696f734baa96f165021ec5b, type: 3}
-  canvasParent: {fileID: 2090294130}
-  fadeTime: 1.5
---- !u!114 &50023202
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 50023187}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da5bf29e8a9a53748b127df20ee989b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  taza_CoffeePanel: {fileID: 386902213}
-  taza_FoodPanel: {fileID: 2137433135}
-  vaso_CoffeePanel: {fileID: 2016690276}
-  vaso_FoodPanel: {fileID: 148133999}
-  plato_CoffeePanel: {fileID: 228307302}
-  plato_FoodPanel: {fileID: 1786740810}
-  bolsa_CoffeePanel: {fileID: 1692446719}
-  bolsa_FoodPanel: {fileID: 1310215600}
---- !u!114 &50023203
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 50023187}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0936a6b0b8c93140b7dc83e54227ca3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dragIcon: {fileID: 693327792}
-  dragImage: {fileID: 693327793}
+  tazasImage: {fileID: 2132560482}
+  tazaBImage: {fileID: 2095200535}
+  tazaPImage: {fileID: 12149003}
+  vasoImage: {fileID: 2038729419}
+  vasoPImage: {fileID: 383831561}
+  platoTazaImage: {fileID: 2028102492}
+  platoTazaPImage: {fileID: 1332905745}
+  coverImage: {fileID: 1529611146}
+  coverPImage: {fileID: 114359261}
+  tazaInHand: 0
+  vasoInHand: 0
+  platoTazaInHand: 0
+  coverInHand: 0
+  tazaIsInCafetera: 0
+  tazaIsInPlato: 0
+  vasoIsInCafetera: 0
+  vasoIsInTable: 0
+  platoTazaIsInTable: 0
 --- !u!1 &53272989
 GameObject:
   m_ObjectHideFlags: 0
@@ -3949,7 +3763,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 296.08002, y: -201}
+  m_AnchoredPosition: {x: 299.08002, y: -197}
   m_SizeDelta: {x: 164.16, y: 174.82}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &114359261
@@ -4225,7 +4039,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 50023200}
+      - m_Target: {fileID: 38363353}
         m_TargetAssemblyTypeName: FoodMinigameInput, Assembly-CSharp
         m_MethodName: StopHorneado
         m_Mode: 1
@@ -4275,106 +4089,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 122319118}
   m_CullTransparentMesh: 1
---- !u!1 &129718431
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 129718433}
-  - component: {fileID: 129718432}
-  m_Layer: 0
-  m_Name: SkinManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &129718432
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 129718431}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7097ac4ddb7ea314ab365b10e20297f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skinsCups:
-  - skinName: Default
-    isUnlocked: 1
-    tazaEspresso: {fileID: 733939883, guid: 201f287702e250b428b779d463de5863, type: 3}
-    tazaAmericanoLungo: {fileID: 1232495608, guid: 201f287702e250b428b779d463de5863, type: 3}
-    tazaMocaIrishLatteCapucino: {fileID: 1500889245, guid: 201f287702e250b428b779d463de5863, type: 3}
-    tazaMachiatoBombon: {fileID: -1865598279, guid: 201f287702e250b428b779d463de5863, type: 3}
-    tazaVienes: {fileID: 43330235, guid: 201f287702e250b428b779d463de5863, type: 3}
-    tazaFrappe: {fileID: -1494053487, guid: 201f287702e250b428b779d463de5863, type: 3}
-    tazaEspressoP: {fileID: -1073616951, guid: 20fb181bcd7dd094595b2d7c4a402c65, type: 3}
-    tazaAmericanoLungoP: {fileID: 353575500, guid: 20fb181bcd7dd094595b2d7c4a402c65, type: 3}
-    tazaMocaIrishLatteCapucinoP: {fileID: -163495531, guid: 20fb181bcd7dd094595b2d7c4a402c65, type: 3}
-    tazaMachiatoBombonP: {fileID: 823452004, guid: 20fb181bcd7dd094595b2d7c4a402c65, type: 3}
-    tazaVienesP: {fileID: 1809922038, guid: 20fb181bcd7dd094595b2d7c4a402c65, type: 3}
-    tazaFrappeP: {fileID: -1179351341, guid: 20fb181bcd7dd094595b2d7c4a402c65, type: 3}
-    tazaSinCafe: {fileID: 1598334309, guid: 87d48dae7136c8f49b760e3c2e1426e8, type: 3}
-    tazaSinCafeP: {fileID: 1701029948, guid: 20fb181bcd7dd094595b2d7c4a402c65, type: 3}
-  - skinName: PremiumTaza
-    isUnlocked: 0
-    tazaEspresso: {fileID: 1830461587, guid: 87d48dae7136c8f49b760e3c2e1426e8, type: 3}
-    tazaAmericanoLungo: {fileID: -1192538593, guid: 87d48dae7136c8f49b760e3c2e1426e8, type: 3}
-    tazaMocaIrishLatteCapucino: {fileID: -913977904, guid: 87d48dae7136c8f49b760e3c2e1426e8, type: 3}
-    tazaMachiatoBombon: {fileID: -441627303, guid: 87d48dae7136c8f49b760e3c2e1426e8, type: 3}
-    tazaVienes: {fileID: 1617675630, guid: 87d48dae7136c8f49b760e3c2e1426e8, type: 3}
-    tazaFrappe: {fileID: 720304330, guid: 87d48dae7136c8f49b760e3c2e1426e8, type: 3}
-    tazaEspressoP: {fileID: 1170187954, guid: 9256d17a05eb88f48b6f53b57d5659bb, type: 3}
-    tazaAmericanoLungoP: {fileID: -986950368, guid: 9256d17a05eb88f48b6f53b57d5659bb, type: 3}
-    tazaMocaIrishLatteCapucinoP: {fileID: -1111524489, guid: 9256d17a05eb88f48b6f53b57d5659bb, type: 3}
-    tazaMachiatoBombonP: {fileID: -830783142, guid: 9256d17a05eb88f48b6f53b57d5659bb, type: 3}
-    tazaVienesP: {fileID: -1930223006, guid: 9256d17a05eb88f48b6f53b57d5659bb, type: 3}
-    tazaFrappeP: {fileID: -1508795458, guid: 9256d17a05eb88f48b6f53b57d5659bb, type: 3}
-    tazaSinCafe: {fileID: 1598334309, guid: 87d48dae7136c8f49b760e3c2e1426e8, type: 3}
-    tazaSinCafeP: {fileID: -1376484295, guid: 9256d17a05eb88f48b6f53b57d5659bb, type: 3}
-  skinsVaso:
-  - skinName: Default
-    isUnlocked: 1
-    vasoEspresso: {fileID: -1133698446, guid: 2b927bda68822ec4aa3a8f7cd037d8af, type: 3}
-    vasoAmericanoLungo: {fileID: 1769788772, guid: 2b927bda68822ec4aa3a8f7cd037d8af, type: 3}
-    vasoMocaIrishLatteCapucino: {fileID: 637303276, guid: 2b927bda68822ec4aa3a8f7cd037d8af, type: 3}
-    vasoMachiatoBombon: {fileID: 2039060911, guid: 2b927bda68822ec4aa3a8f7cd037d8af, type: 3}
-    vasoVienes: {fileID: -1304742774, guid: 2b927bda68822ec4aa3a8f7cd037d8af, type: 3}
-    vasoFrappe: {fileID: 771037991, guid: 2b927bda68822ec4aa3a8f7cd037d8af, type: 3}
-    vasoConTapa: {fileID: 884330594, guid: 2b927bda68822ec4aa3a8f7cd037d8af, type: 3}
-    vasoSinTapa: {fileID: -647785046, guid: 2b927bda68822ec4aa3a8f7cd037d8af, type: 3}
-  - skinName: PremiumVaso
-    isUnlocked: 0
-    vasoEspresso: {fileID: -509740443, guid: 1d6911d1c7d2bd24b9181db69d4aac5e, type: 3}
-    vasoAmericanoLungo: {fileID: 774804656, guid: 1d6911d1c7d2bd24b9181db69d4aac5e, type: 3}
-    vasoMocaIrishLatteCapucino: {fileID: -2093461431, guid: 1d6911d1c7d2bd24b9181db69d4aac5e, type: 3}
-    vasoMachiatoBombon: {fileID: 1877289809, guid: 1d6911d1c7d2bd24b9181db69d4aac5e, type: 3}
-    vasoVienes: {fileID: -2075157723, guid: 1d6911d1c7d2bd24b9181db69d4aac5e, type: 3}
-    vasoFrappe: {fileID: -856158141, guid: 1d6911d1c7d2bd24b9181db69d4aac5e, type: 3}
-    vasoConTapa: {fileID: -995673930, guid: 1d6911d1c7d2bd24b9181db69d4aac5e, type: 3}
-    vasoSinTapa: {fileID: 335790042, guid: 1d6911d1c7d2bd24b9181db69d4aac5e, type: 3}
-  activeSkinCupName: Default
-  activeSkinVasoName: Default
---- !u!4 &129718433
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 129718431}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.243468, y: 7.2453613, z: -6.646677}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &138141018
 GameObject:
   m_ObjectHideFlags: 0
@@ -8890,12 +8604,12 @@ MonoBehaviour:
   deliveryPanel: {fileID: 69314340}
   roomPanel: {fileID: 230416457}
   npcOrder: {fileID: 2111219102}
-  playerOrder: {fileID: 50023190}
+  playerOrder: {fileID: 1270257532}
   minigameInput: {fileID: 50023188}
-  foodMinigameInput: {fileID: 50023200}
+  foodMinigameInput: {fileID: 38363353}
   acceptButton: {fileID: 1610250849}
   tutorialManager: {fileID: 841635553}
-  popUpMechanicsMsg: {fileID: 50023201}
+  popUpMechanicsMsg: {fileID: 1270257525}
 --- !u!114 &342197120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8914,10 +8628,11 @@ MonoBehaviour:
   recipesPanel: {fileID: 1692941314}
   gameManager: {fileID: 50023191}
   tutorialManager: {fileID: 841635553}
-  orderNoteUI: {fileID: 50023199}
+  orderNoteUI: {fileID: 1270257527}
+  coffeeContainerManager: {fileID: 50023194}
   miniGameInput: {fileID: 50023188}
-  foodMinigameInput: {fileID: 50023200}
-  foodManager: {fileID: 50023197}
+  foodMinigameInput: {fileID: 38363353}
+  foodManager: {fileID: 38363352}
   recipesManager: {fileID: 1692941318}
   unlockerManager: {fileID: 50023193}
   timeManager: {fileID: 863263442}
@@ -8943,9 +8658,10 @@ MonoBehaviour:
   hotSpotHieloCuchara: {x: 0, y: 0}
   hotSpotCrema: {x: 0, y: 0}
   miniGameInput: {fileID: 50023188}
-  foodManager: {fileID: 50023197}
+  foodManager: {fileID: 38363352}
   tutorialManager: {fileID: 841635553}
-  foodMinigameInput: {fileID: 50023200}
+  foodMinigameInput: {fileID: 38363353}
+  coffeeContainerManager: {fileID: 50023194}
 --- !u!114 &342197123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9889,7 +9605,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.417}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 289.104, y: 178.50403}
+  m_AnchoredPosition: {x: 290.64038, y: 183.49298}
   m_SizeDelta: {x: 165.6, y: 175}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &383831561
@@ -10435,7 +10151,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 50023199}
+      - m_Target: {fileID: 1270257527}
         m_TargetAssemblyTypeName: OrderNoteUI, Assembly-CSharp
         m_MethodName: ToggleNote
         m_Mode: 1
@@ -11256,8 +10972,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 50023188}
-        m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
+      - m_Target: {fileID: 50023194}
+        m_TargetAssemblyTypeName: CoffeeContainerManager, Assembly-CSharp
         m_MethodName: CogerTapa
         m_Mode: 6
         m_Arguments:
@@ -15351,8 +15067,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 50023188}
-        m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
+      - m_Target: {fileID: 50023194}
+        m_TargetAssemblyTypeName: CoffeeContainerManager, Assembly-CSharp
         m_MethodName: CogerTapa
         m_Mode: 6
         m_Arguments:
@@ -15939,8 +15655,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 50023188}
-        m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
+      - m_Target: {fileID: 50023194}
+        m_TargetAssemblyTypeName: CoffeeContainerManager, Assembly-CSharp
         m_MethodName: CogerVaso
         m_Mode: 6
         m_Arguments:
@@ -16354,8 +16070,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 50023188}
-        m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
+      - m_Target: {fileID: 50023194}
+        m_TargetAssemblyTypeName: CoffeeContainerManager, Assembly-CSharp
         m_MethodName: CogerTaza
         m_Mode: 6
         m_Arguments:
@@ -17125,8 +16841,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 50023188}
-        m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
+      - m_Target: {fileID: 50023194}
+        m_TargetAssemblyTypeName: CoffeeContainerManager, Assembly-CSharp
         m_MethodName: CogerPlatoTaza
         m_Mode: 6
         m_Arguments:
@@ -17258,7 +16974,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 50023200}
+      - m_Target: {fileID: 38363353}
         m_TargetAssemblyTypeName: FoodMinigameInput, Assembly-CSharp
         m_MethodName: ResetFoodState
         m_Mode: 1
@@ -17270,9 +16986,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 50023200}
-        m_TargetAssemblyTypeName: FoodMinigameInput, Assembly-CSharp
-        m_MethodName: PapeleraBSound
+      - m_Target: {fileID: 688795442}
+        m_TargetAssemblyTypeName: MiniGameSoundManager, Assembly-CSharp
+        m_MethodName: PlayPapelera
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -18142,9 +17858,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 50023200}
+      - m_Target: {fileID: 38363353}
         m_TargetAssemblyTypeName: FoodMinigameInput, Assembly-CSharp
-        m_MethodName: PlacePlatoEncimera
+        m_MethodName: ToggleCarryBagEncimera
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -18154,9 +17870,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 50023200}
+      - m_Target: {fileID: 38363353}
         m_TargetAssemblyTypeName: FoodMinigameInput, Assembly-CSharp
-        m_MethodName: ToggleFoodPlato
+        m_MethodName: TogglePlatoEncimera
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -18166,21 +17882,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 50023200}
-        m_TargetAssemblyTypeName: FoodMinigameInput, Assembly-CSharp
-        m_MethodName: PlaceCarryBagEncimera
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 50023200}
+      - m_Target: {fileID: 38363353}
         m_TargetAssemblyTypeName: FoodMinigameInput, Assembly-CSharp
         m_MethodName: ToggleFoodCarryBag
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 38363353}
+        m_TargetAssemblyTypeName: FoodMinigameInput, Assembly-CSharp
+        m_MethodName: ToggleFoodPlato
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -22282,7 +21998,7 @@ MonoBehaviour:
   isRunningT2: 0
   isRunningT3: 0
   skipTutorialButton: {fileID: 1097233526}
-  buttonManager: {fileID: 50023195}
+  buttonManager: {fileID: 1270257526}
   glowMaterial: {fileID: 2100000, guid: c2af7ce3b9757de4dbc308fdd63b53f4, type: 2}
   estanteImage: {fileID: 1015384996}
   bandejaImage: {fileID: 330642389}
@@ -23880,8 +23596,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 50023188}
-        m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
+      - m_Target: {fileID: 50023194}
+        m_TargetAssemblyTypeName: CoffeeContainerManager, Assembly-CSharp
         m_MethodName: ToggleTazaCafetera
         m_Mode: 1
         m_Arguments:
@@ -23892,8 +23608,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 50023188}
-        m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
+      - m_Target: {fileID: 50023194}
+        m_TargetAssemblyTypeName: CoffeeContainerManager, Assembly-CSharp
         m_MethodName: ToggleVasoCafetera
         m_Mode: 1
         m_Arguments:
@@ -23928,8 +23644,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 50023188}
-        m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
+      - m_Target: {fileID: 50023194}
+        m_TargetAssemblyTypeName: CoffeeContainerManager, Assembly-CSharp
         m_MethodName: PonerTapa
         m_Mode: 1
         m_Arguments:
@@ -24334,8 +24050,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 50023188}
-        m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
+      - m_Target: {fileID: 50023194}
+        m_TargetAssemblyTypeName: CoffeeContainerManager, Assembly-CSharp
         m_MethodName: CogerTaza
         m_Mode: 6
         m_Arguments:
@@ -25694,7 +25410,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coffeeUnlockManager: {fileID: 50023193}
-  foodUnlockerManager: {fileID: 50023196}
+  foodUnlockerManager: {fileID: 38363354}
   timeManager: {fileID: 863263442}
   notePanelAvailableItems: {fileID: 1833589226}
   slideDuration: 0.5
@@ -28452,7 +28168,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 236.79309, y: 0}
+  m_AnchoredPosition: {x: 238.79309, y: 4}
   m_SizeDelta: {x: 405.5862, y: 533.72}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1074631926
@@ -28787,8 +28503,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 50023188}
-        m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
+      - m_Target: {fileID: 50023194}
+        m_TargetAssemblyTypeName: CoffeeContainerManager, Assembly-CSharp
         m_MethodName: CogerVaso
         m_Mode: 6
         m_Arguments:
@@ -32245,8 +31961,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 50023188}
-        m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
+      - m_Target: {fileID: 50023194}
+        m_TargetAssemblyTypeName: CoffeeContainerManager, Assembly-CSharp
         m_MethodName: CogerTaza
         m_Mode: 6
         m_Arguments:
@@ -33327,6 +33043,283 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1268618349}
   m_CullTransparentMesh: 1
+--- !u!1 &1270257523
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1270257538}
+  - component: {fileID: 1270257532}
+  - component: {fileID: 1270257531}
+  - component: {fileID: 1270257529}
+  - component: {fileID: 1270257528}
+  - component: {fileID: 1270257527}
+  - component: {fileID: 1270257526}
+  - component: {fileID: 1270257525}
+  - component: {fileID: 1270257524}
+  m_Layer: 0
+  m_Name: MinigameController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1270257524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1270257523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0936a6b0b8c93140b7dc83e54227ca3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dragIcon: {fileID: 693327792}
+  dragImage: {fileID: 693327793}
+--- !u!114 &1270257525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1270257523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af6ba5a582ad8d146a3d98813aa8b578, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  popUpMsgPrefab: {fileID: 442559460290348521, guid: c14faf90a696f734baa96f165021ec5b, type: 3}
+  canvasParent: {fileID: 2090294130}
+  fadeTime: 1.5
+--- !u!114 &1270257526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1270257523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85fe928d2fedb2748bed0e9fef2167c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  endDeliveryButton: {fileID: 49673518}
+  gameButton: {fileID: 48577136}
+  acceptOrderButton: {fileID: 1610250849}
+  shopButton: {fileID: 1757957347}
+  submitOrderButton: {fileID: 1838202980}
+  recipesBookButton: {fileID: 1694360623}
+  recipesBookBButton: {fileID: 1300218827}
+  orderNoteButton: {fileID: 405058592}
+  orderNoteBButton: {fileID: 1333060178}
+  coffeeButton: {fileID: 21858912}
+  milkButton: {fileID: 1639563791}
+  waterButton: {fileID: 74253029}
+  sugarButton: {fileID: 573849090}
+  iceButton: {fileID: 496000360}
+  coverButton: {fileID: 1656632135}
+  coverPButton: {fileID: 541747772}
+  condensedMilkButton: {fileID: 290504852}
+  creamButton: {fileID: 528060067}
+  chocolateButton: {fileID: 1159473348}
+  whiskeyButton: {fileID: 371112197}
+  cogerTazaInicioButton: {fileID: 1210999608}
+  cogerVasoInicioButton: {fileID: 1086673708}
+  cogerPlatoTazaButton: {fileID: 1951049803}
+  cogerTazaB2InicioButton: {fileID: 571858689}
+  cogerVasoB2InicioButton: {fileID: 1641614508}
+  cogerPlatoTazaB2Button: {fileID: 1837797422}
+  cogerTazaPInicioButton: {fileID: 909881282}
+  cogerVasoPInicioButton: {fileID: 565794232}
+  cogerPlatoTazaPButton: {fileID: 616947512}
+  molerButton: {fileID: 1919829060}
+  filtroButton: {fileID: 1376509724}
+  filtroCafeteraButton: {fileID: 1683990715}
+  echarCafeButton: {fileID: 1099100926}
+  pararEcharCafeButton: {fileID: 1272839814}
+  calentarButton: {fileID: 472504998}
+  espumadorButton: {fileID: 1775370128}
+  cogerTazaLecheButton: {fileID: 1946061797}
+  papeleraButton: {fileID: 1292536846}
+  bakeryButton: {fileID: 1082078882}
+  returnBakeryButton: {fileID: 569478934}
+  cogerPlatoInicioButton: {fileID: 1822414049}
+  cogerBolsaLlevarInicioButton: {fileID: 1324809004}
+  cogerBZanahoriaButton: {fileID: 1285437426}
+  cogerBMantequillaButton: {fileID: 2014591114}
+  cogerBChocolateButton: {fileID: 1434989450}
+  cogerBRedVelvetButton: {fileID: 94120223}
+  cogerGChocolateButton: {fileID: 1426963565}
+  cogerGChocolateBlButton: {fileID: 1206601179}
+  cogerGMantequillaButton: {fileID: 1142898002}
+  cogerMArandanosButton: {fileID: 1265485775}
+  cogerMCerezaButton: {fileID: 1293447404}
+  cogerMPistachoButton: {fileID: 376533071}
+  cogerMDulceLecheButton: {fileID: 731598299}
+  hornoButton: {fileID: 1863339080}
+  hornearButton: {fileID: 1992149927}
+  stopHorneadoButton: {fileID: 122319120}
+  papeleraRButton: {fileID: 618589648}
+--- !u!114 &1270257527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1270257523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c258d11105ac454faca353780b3aea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notePanelOrder: {fileID: 33306565}
+  notePanelOrderB: {fileID: 780939500}
+  noteTxt: {fileID: 496077005}
+  noteTxtB: {fileID: 1007361956}
+  slideDuration: 0.5
+  npc: {fileID: 2111219102}
+  isVisible: 0
+  tutorialManager: {fileID: 841635553}
+--- !u!114 &1270257528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1270257523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6290b5e207243941b15508e4fb92615, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coffeeEnabled: 0
+  waterEnabled: 0
+  sugarEnabled: 0
+  iceEnabled: 0
+  typeOrderEnabled: 0
+  milkEnabled: 0
+  heatedMilkEnabled: 0
+  condensedMilkEnabled: 0
+  creamEnabled: 0
+  chocolateEnabled: 0
+  whiskeyEnabled: 0
+  cakesEnabled: 0
+  cookiesEnabled: 0
+  mufflinsEnabled: 0
+--- !u!114 &1270257529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1270257523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da5bf29e8a9a53748b127df20ee989b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  taza_CoffeePanel: {fileID: 386902213}
+  taza_FoodPanel: {fileID: 2137433135}
+  vaso_CoffeePanel: {fileID: 2016690276}
+  vaso_FoodPanel: {fileID: 148133999}
+  plato_CoffeePanel: {fileID: 228307302}
+  plato_FoodPanel: {fileID: 1786740810}
+  bolsa_CoffeePanel: {fileID: 1692446719}
+  bolsa_FoodPanel: {fileID: 1310215600}
+--- !u!114 &1270257531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1270257523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c46e8e102fae604f92aa93f796f4ab6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isOrderWithFood: 0
+  playerForgotFood: 0
+  lastWrongFoodType: 0
+  lastBadCookStateBurned: 0
+  lastBadCookStateRaw: 0
+--- !u!114 &1270257532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1270257523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 530ffad5c22790b4597619d39547dabf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentOrder:
+    orderId: 0
+    coffeeType: 0
+    sugarAm: 0
+    iceAm: 0
+    orderType: 0
+    foodOrder:
+      category: 0
+      cakeType: 0
+      cookieType: 0
+      mufflinType: 0
+      foodTargetCategory: 0
+      foodTargetType: 0
+      foodPrecisionCategory: 0
+      foodPrecisionType: 0
+      targetCookState: 0
+      precisionCookState: 0
+    stepsPerformed: 
+    stepsRequired: 
+    coffeeTarget: 0
+    coffeePrecision: 0
+    coffeeServedTarget: 0
+    coffeeServedPrecision: 0
+    milkTarget: 0
+    milkPrecision: 0
+    heatedMilkTarget: 0
+    heatedMilkPrecision: 0
+    waterTarget: 0
+    waterPrecision: 0
+    condensedMilkTarget: 0
+    condensedMilkPrecision: 0
+    creamTarget: 0
+    creamPrecision: 0
+    chocolateTarget: 0
+    chocolatePrecision: 0
+    whiskeyTarget: 0
+    whiskeyPrecision: 0
+    sugarTarget: 0
+    sugarPrecision: 0
+    iceTarget: 0
+    icePrecision: 0
+    typeTarget: 0
+    typePrecision: 0
+    typeOrderFoodTarget: 0
+    typeOrderFoodPrecision: 0
+--- !u!4 &1270257538
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1270257523}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 960, y: 540, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1271618667
 GameObject:
   m_ObjectHideFlags: 0
@@ -35481,7 +35474,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 50023200}
+      - m_Target: {fileID: 38363353}
         m_TargetAssemblyTypeName: FoodMinigameInput, Assembly-CSharp
         m_MethodName: CogerBolsaLlevar
         m_Mode: 1
@@ -35701,7 +35694,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 324.58002, y: -57.5}
+  m_AnchoredPosition: {x: 325.58002, y: -55}
   m_SizeDelta: {x: 177.16, y: 166}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1332905745
@@ -35825,7 +35818,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 50023199}
+      - m_Target: {fileID: 1270257527}
         m_TargetAssemblyTypeName: OrderNoteUI, Assembly-CSharp
         m_MethodName: ToggleNote
         m_Mode: 1
@@ -41261,7 +41254,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 238.76172, y: -6}
+  m_AnchoredPosition: {x: 241.26172, y: -4}
   m_SizeDelta: {x: 407.52377, y: 519.86}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1534359514
@@ -43944,8 +43937,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 50023188}
-        m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
+      - m_Target: {fileID: 50023194}
+        m_TargetAssemblyTypeName: CoffeeContainerManager, Assembly-CSharp
         m_MethodName: CogerVaso
         m_Mode: 6
         m_Arguments:
@@ -44611,8 +44604,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 50023188}
-        m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
+      - m_Target: {fileID: 50023194}
+        m_TargetAssemblyTypeName: CoffeeContainerManager, Assembly-CSharp
         m_MethodName: CogerTapa
         m_Mode: 6
         m_Arguments:
@@ -48802,7 +48795,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 50023200}
+      - m_Target: {fileID: 38363353}
         m_TargetAssemblyTypeName: FoodMinigameInput, Assembly-CSharp
         m_MethodName: CogerPlato
         m_Mode: 1
@@ -49156,8 +49149,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 50023188}
-        m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
+      - m_Target: {fileID: 50023194}
+        m_TargetAssemblyTypeName: CoffeeContainerManager, Assembly-CSharp
         m_MethodName: CogerPlatoTaza
         m_Mode: 6
         m_Arguments:
@@ -49693,7 +49686,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 236.05518, y: 0}
+  m_AnchoredPosition: {x: 239.05518, y: 3}
   m_SizeDelta: {x: 406.10992, y: 534}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1859234159
@@ -49928,7 +49921,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 50023200}
+      - m_Target: {fileID: 38363353}
         m_TargetAssemblyTypeName: FoodMinigameInput, Assembly-CSharp
         m_MethodName: ToggleFoodHorno
         m_Mode: 1
@@ -51224,8 +51217,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 50023188}
-        m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
+      - m_Target: {fileID: 50023194}
+        m_TargetAssemblyTypeName: CoffeeContainerManager, Assembly-CSharp
         m_MethodName: CogerPlatoTaza
         m_Mode: 6
         m_Arguments:
@@ -52308,7 +52301,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 50023200}
+      - m_Target: {fileID: 38363353}
         m_TargetAssemblyTypeName: FoodMinigameInput, Assembly-CSharp
         m_MethodName: StartHorneado
         m_Mode: 1
@@ -52903,9 +52896,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 50023188}
-        m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
-        m_MethodName: PlacePlatoTazaMesa
+      - m_Target: {fileID: 50023194}
+        m_TargetAssemblyTypeName: CoffeeContainerManager, Assembly-CSharp
+        m_MethodName: TogglePlatoTazaMesa
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -52915,8 +52908,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 50023188}
-        m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
+      - m_Target: {fileID: 50023194}
+        m_TargetAssemblyTypeName: CoffeeContainerManager, Assembly-CSharp
         m_MethodName: ToggleTazaPlato
         m_Mode: 1
         m_Arguments:
@@ -52927,8 +52920,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 50023188}
-        m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
+      - m_Target: {fileID: 50023194}
+        m_TargetAssemblyTypeName: CoffeeContainerManager, Assembly-CSharp
         m_MethodName: ToggleVasoMesa
         m_Mode: 1
         m_Arguments:
@@ -52939,8 +52932,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 50023188}
-        m_TargetAssemblyTypeName: MinigameInput, Assembly-CSharp
+      - m_Target: {fileID: 50023194}
+        m_TargetAssemblyTypeName: CoffeeContainerManager, Assembly-CSharp
         m_MethodName: PonerTapa
         m_Mode: 1
         m_Arguments:
@@ -53370,7 +53363,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 367.28998, y: 159}
+  m_AnchoredPosition: {x: 370.28998, y: 160}
   m_SizeDelta: {x: 188.57999, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2038729419
@@ -53709,8 +53702,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.6}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -24.998657, y: -147.23822}
-  m_SizeDelta: {x: 467.71008, y: 80.44}
+  m_AnchoredPosition: {x: -39.998047, y: -147.08115}
+  m_SizeDelta: {x: 562.71, y: 80.44}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2051559962
 MonoBehaviour:
@@ -54646,7 +54639,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 112.76514, y: 114}
+  m_AnchoredPosition: {x: 115.76514, y: 116}
   m_SizeDelta: {x: 111.53, y: 96}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2095200535
@@ -55109,10 +55102,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orderTxt: {fileID: 1349629253}
   coffeeUnlocker: {fileID: 50023193}
-  foodUnlocker: {fileID: 50023196}
+  foodUnlocker: {fileID: 38363354}
   tutorialManager: {fileID: 841635553}
   timeManager: {fileID: 863263442}
-  orderNoteUI: {fileID: 50023199}
+  orderNoteUI: {fileID: 1270257527}
   foodRequestChance: 0.8
 --- !u!4 &2111219103
 Transform:
@@ -55579,12 +55572,13 @@ SceneRoots:
   - {fileID: 55580696}
   - {fileID: 2090294130}
   - {fileID: 1345220538}
+  - {fileID: 1270257538}
   - {fileID: 50023189}
+  - {fileID: 38363355}
   - {fileID: 545326587}
   - {fileID: 841635552}
   - {fileID: 316105912}
   - {fileID: 2072732762}
-  - {fileID: 129718433}
   - {fileID: 960583783}
   - {fileID: 138900462}
   - {fileID: 863263443}

@@ -51,7 +51,7 @@ public class UIDialogue : MonoBehaviour
         }
         else
         {
-            Debug.LogError("ya sabes que");
+            Debug.LogError("Falta la referencia a minigame");
         }
         if (foodMinigameInput != null)
         {
@@ -59,7 +59,7 @@ public class UIDialogue : MonoBehaviour
         }
         else
         {
-            Debug.LogError("ya sabes que, pero de la comida");
+            Debug.LogError("Falta la referencia a foodminigame");
         }
 
         //transicion de la ui

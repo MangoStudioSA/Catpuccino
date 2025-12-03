@@ -12,6 +12,7 @@ public class UICoffeeStation : MonoBehaviour
     public CoffeeGameManager gameManager;
     public TutorialManager tutorialManager;
     public OrderNoteUI orderNoteUI;
+    public CoffeeContainerManager coffeeContainerManager;
     public MinigameInput miniGameInput;
     public FoodMinigameInput foodMinigameInput;
     public FoodManager foodManager;
@@ -87,7 +88,7 @@ public class UICoffeeStation : MonoBehaviour
     // Mostrar panel de feedback del cliente
     public void SubmitOrderUI()
     {
-        if (gameManager != null && miniGameInput.coffeeServed == true && !miniGameInput.cucharaInHand && !miniGameInput.iceInHand && !miniGameInput.coverInHand)
+        if (gameManager != null && miniGameInput.coffeeServed == true && !miniGameInput.cucharaInHand && !miniGameInput.iceInHand && !coffeeContainerManager.coverInHand)
         {
             SoundsMaster.Instance.PlaySound_Entregar();
 

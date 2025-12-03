@@ -33,7 +33,6 @@ public class OrderEvaluation : MonoBehaviour
     public bool lastBadCookStateBurned = false;
     public bool lastBadCookStateRaw = false;
 
-
     public void ResetFoodBools()
     {
         isOrderWithFood = false;
@@ -47,7 +46,7 @@ public class OrderEvaluation : MonoBehaviour
     public EvaluationResult Evaluate(Order npcOrder, Order playerOrder)
     {
         EvaluationResult result = new EvaluationResult();
-        MinigameInput mg = FindFirstObjectByType<MinigameInput>();
+        CoffeeContainerManager ccm = FindFirstObjectByType<CoffeeContainerManager>();
         ResetFoodBools();
 
         int totalScore = 0; // Inicializa la puntuacion del jugador en 0
@@ -227,28 +226,28 @@ public class OrderEvaluation : MonoBehaviour
         }
 
         // Bonus taza skin premium
-        if (mg.finalCupIsPremium)
+        if (ccm.finalCupIsPremium)
         {
             money *= 1.15f;
             Debug.Log("Taza premium bonus aplicado (+15%)");
         }
 
         // Bonus plato skin premium
-        if (mg.finalPlateIsPremium)
+        if (ccm.finalPlateIsPremium)
         {
             money *= 1.1f;
             Debug.Log("Plato premium bonus aplicado (+10%)");
         }
 
         // Bonus vaso skin premium
-        if (mg.finalVasoIsPremium)
+        if (ccm.finalVasoIsPremium)
         {
             money *= 1.1f;
             Debug.Log("Vaso premium bonus aplicado (+10%)");
         }
 
         // Bonus tapa skin premium
-        if (mg.finalCoverIsPremium)
+        if (ccm.finalCoverIsPremium)
         {
             money *= 1.05f;
             Debug.Log("Tapa premium bonus aplicado (+5%)");

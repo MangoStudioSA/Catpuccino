@@ -305,14 +305,13 @@ public class FoodMinigameInput : MonoBehaviour
     #region Envases
     public void CogerPlato()
     {
-        if (platoIsInEncimera)
-            return;
+        if (platoIsInEncimera) return;
 
         if (!platoInHand)
         {
             platoInHand = true;
             platoImage.material = glowMaterial;
-            TakeFoodPlateSound();
+            MiniGameSoundManager.instance.PlayTakePlate();
 
             Sprite plato = Plato.GetComponent<Image>().sprite;
             DragController.Instance.StartDragging(plato);
@@ -321,22 +320,21 @@ public class FoodMinigameInput : MonoBehaviour
         {
             platoInHand = false;
             platoImage.material = defaultMaterial;
-            TakeFoodPlateSound();
 
+            MiniGameSoundManager.instance.PlayTakePlate();
             DragController.Instance.StopDragging();
         }
     }
 
     public void CogerBolsaLlevar()
     {
-        if (carryBagIsInEncimera)
-            return;
+        if (carryBagIsInEncimera) return;
 
         if (!carryBagInHand)
         {
             carryBagInHand = true;
             bolsaImage.material = glowMaterial;
-            TakeBagSound();
+            MiniGameSoundManager.instance.PlayTakeBag();
 
             Sprite bolsaLlevar = BolsaLlevar.GetComponent<Image>().sprite;
             DragController.Instance.StartDragging(bolsaLlevar);
@@ -345,58 +343,96 @@ public class FoodMinigameInput : MonoBehaviour
         {
             carryBagInHand = false;
             bolsaImage.material = defaultMaterial;
-            TakeBagSound();
 
+            MiniGameSoundManager.instance.PlayTakeBag();
             DragController.Instance.StopDragging();
         }
     }
 
     // Funcion para colocar el plato en la encima
-    public void PlacePlatoEncimera()
+    public void TogglePlatoEncimera()
     {
-        if (platoIsInEncimera || carryBagIsInEncimera) return;
-        if (!platoInHand) return;
+        if (carryBagIsInEncimera) return;
+        if (!platoInHand && !platoIsInEncimera) return;
 
-        TakeFoodPlateSound();
-        Plato.SetActive(true);
-        Plato.transform.position = puntoEncimera.position;
+        if (platoInHand)
+        {
+            MiniGameSoundManager.instance.PlayTakePlate();
+            Plato.SetActive(true);
+            Plato.transform.position = puntoEncimera.position;
 
-        platoInHand = false;
-        platoIsInEncimera = true;
+            platoInHand = false;
+            platoIsInEncimera = true;
 
-        buttonManager.EnableButton(buttonManager.hornoButton);
-        buttonManager.DisableButton(buttonManager.cogerBolsaLlevarInicioButton);
-        buttonManager.DisableButton(buttonManager.cogerPlatoInicioButton);
+            buttonManager.EnableButton(buttonManager.hornoButton);
+            buttonManager.DisableButton(buttonManager.cogerBolsaLlevarInicioButton);
+            buttonManager.DisableButton(buttonManager.cogerPlatoInicioButton);
 
-        DragController.Instance.StopDragging();
-        ActualizarBotonCogerComida();
+            DragController.Instance.StopDragging();
+            ActualizarBotonCogerComida();
 
-        if (tutorialManager.isRunningT2 && tutorialManager.currentStep == 2)
-            FindFirstObjectByType<TutorialManager>().CompleteCurrentStep2();
+            if (tutorialManager.isRunningT2 && tutorialManager.currentStep == 2)
+                FindFirstObjectByType<TutorialManager>().CompleteCurrentStep2();
+        }
+        else if (!platoInHand && !foodServed && !foodInHand)
+        {
+            MiniGameSoundManager.instance.PlayTakePlate();
+            Plato.SetActive(false);
+
+            platoInHand = true;
+            platoIsInEncimera = false;
+
+            buttonManager.DisableButton(buttonManager.hornoButton);
+            buttonManager.EnableButton(buttonManager.cogerBolsaLlevarInicioButton);
+            buttonManager.EnableButton(buttonManager.cogerPlatoInicioButton);
+
+            Sprite plato = Plato.GetComponent<Image>().sprite;
+            DragController.Instance.StartDragging(plato);
+            ActualizarBotonCogerComida();
+        }   
     }
-    
+
     // Funcion para colocar la bolsa para llevar en la encima
-    public void PlaceCarryBagEncimera()
+    public void ToggleCarryBagEncimera()
     {
-        if (carryBagIsInEncimera || platoIsInEncimera) return;
-        if (!carryBagInHand) return;
+        if (platoIsInEncimera) return;
+        if (!carryBagInHand && !carryBagIsInEncimera) return;
 
-        TakeBagSound();
-        BolsaLlevar.SetActive(true);
-        BolsaLlevar.transform.position = puntoEncimera.position;
+        if (carryBagInHand)
+        {
+            MiniGameSoundManager.instance.PlayTakeBag();
+            BolsaLlevar.SetActive(true);
+            BolsaLlevar.transform.position = puntoEncimera.position;
 
-        carryBagInHand = false;
-        carryBagIsInEncimera = true;
+            carryBagInHand = false;
+            carryBagIsInEncimera = true;
 
-        buttonManager.EnableButton(buttonManager.hornoButton);
-        buttonManager.DisableButton(buttonManager.cogerBolsaLlevarInicioButton);
-        buttonManager.DisableButton(buttonManager.cogerPlatoInicioButton);
+            buttonManager.EnableButton(buttonManager.hornoButton);
+            buttonManager.DisableButton(buttonManager.cogerBolsaLlevarInicioButton);
+            buttonManager.DisableButton(buttonManager.cogerPlatoInicioButton);
 
-        DragController.Instance.StopDragging();
-        ActualizarBotonCogerComida();
+            DragController.Instance.StopDragging();
+            ActualizarBotonCogerComida();
 
-        if (tutorialManager.isRunningT2 && tutorialManager.currentStep == 2)
-            FindFirstObjectByType<TutorialManager>().CompleteCurrentStep2();
+            if (tutorialManager.isRunningT2 && tutorialManager.currentStep == 2)
+                FindFirstObjectByType<TutorialManager>().CompleteCurrentStep2();
+        }
+        else if (carryBagIsInEncimera && !foodServed && !foodInHand)
+        {
+            MiniGameSoundManager.instance.PlayTakeBag();
+            BolsaLlevar.SetActive(false);
+
+            carryBagInHand = true;
+            carryBagIsInEncimera = false;
+
+            buttonManager.DisableButton(buttonManager.hornoButton);
+            buttonManager.EnableButton(buttonManager.cogerBolsaLlevarInicioButton);
+            buttonManager.EnableButton(buttonManager.cogerPlatoInicioButton);
+
+            Sprite bolsaLlevar = BolsaLlevar.GetComponent<Image>().sprite;
+            DragController.Instance.StartDragging(bolsaLlevar);
+            ActualizarBotonCogerComida();
+        }
     }
     #endregion
 
@@ -419,7 +455,7 @@ public class FoodMinigameInput : MonoBehaviour
             foodObj.transform.position = puntoComida.position;
             foodInPlatoObj = foodObj;
 
-            ComidaSound();
+            MiniGameSoundManager.instance.PlayTakeFood();
 
             // Se asocia la imagen
             Image img = foodObj.GetComponent<Image>();
@@ -476,7 +512,7 @@ public class FoodMinigameInput : MonoBehaviour
             foodInHand = true;
             foodServed = false;
 
-            ComidaSound();
+            MiniGameSoundManager.instance.PlayTakeFood();
 
             //  Se asocia la categoria y el tipo de comida del plato a la mano
             foodCategoryInHand = foodCategoryInPlato;
@@ -510,7 +546,7 @@ public class FoodMinigameInput : MonoBehaviour
             foodCategoryInCarryBag = foodCategoryInHand;
             foodTypeInCarryBag = foodTypeInHand;
 
-            ComidaSound();
+            MiniGameSoundManager.instance.PlayTakeFood();
 
             countFoodCover++;
             order.currentOrder.typeOrderFoodPrecision = countFoodCover; // Se guarda el resultado obtenido en la precision del jugador
@@ -552,7 +588,7 @@ public class FoodMinigameInput : MonoBehaviour
             foodInHand = true;
             foodServed = false;
 
-            ComidaSound();
+            MiniGameSoundManager.instance.PlayTakeFood();
 
             //  Se asocia la categoria y el tipo de comida de la bolsa a la mano
             foodCategoryInHand = foodCategoryInCarryBag;
@@ -589,7 +625,7 @@ public class FoodMinigameInput : MonoBehaviour
             foodObj.transform.position = puntoHorno.position;
             foodInHornoObj = foodObj;
 
-            ComidaSound();
+            MiniGameSoundManager.instance.PlayTakeFood();
 
             //  Se asocia la categoria y el tipo de comida de la mano al horno
             foodCategoryInHorno = foodCategoryInHand;
@@ -625,7 +661,7 @@ public class FoodMinigameInput : MonoBehaviour
             foodIsInHorno = false;
             foodInHand = true;
 
-            ComidaSound();
+            MiniGameSoundManager.instance.PlayTakeFood();
 
             //  Se asocia la categoria y el tipo de comida del horno a la mano
             foodCategoryInHand = foodCategoryInHorno;
@@ -651,8 +687,8 @@ public class FoodMinigameInput : MonoBehaviour
          
         if (horneadoCoroutine != null) StopCoroutine(horneadoCoroutine);
 
-        MicroondasSound();
-        BotonDownBMachine();
+        MiniGameSoundManager.instance.PlayMicroondasPour();
+        MiniGameSoundManager.instance.PlayButtonDown();
 
         horneadoCoroutine = StartCoroutine(HornearCoroutine());
         isBaking = true;
@@ -708,8 +744,8 @@ public class FoodMinigameInput : MonoBehaviour
             horneadoCoroutine = null;
         }
 
-        SoundsMaster.Instance.StopAudio("Microondas");
-        BotonDownBMachine();
+        MiniGameSoundManager.instance.StopMicroondasPour();
+        MiniGameSoundManager.instance.PlayButtonDown();
 
         isBaking = false;
         foodBaked = true;
@@ -727,34 +763,4 @@ public class FoodMinigameInput : MonoBehaviour
         stopHornearBut.sprite = botonPH_P;
     }
     #endregion
-
-    public void TakeFoodPlateSound()
-    {
-        SoundsMaster.Instance.PlaySound_TakePlate();
-    }
-
-    public void TakeBagSound()
-    {
-        SoundsMaster.Instance.PlaySound_TakeBag();
-    }
-
-    public void ComidaSound()
-    {
-        SoundsMaster.Instance.PlaySound_TakeFood();
-    }
-
-    public void MicroondasSound()
-    {
-        SoundsMaster.Instance.PlayAudio("Microondas");
-    }
-
-    public void PapeleraBSound()
-    {
-        SoundsMaster.Instance.PlaySound_Papelera();
-    }
-
-    public void BotonDownBMachine()
-    {
-        SoundsMaster.Instance.PlaySound_CoffeeAmountMachine();
-    }
 }

@@ -21,7 +21,8 @@ public class CursorManager : MonoBehaviour
     [SerializeField] MinigameInput miniGameInput; //para poder usar referencias a los vasos y tazas       
     public FoodManager foodManager;
     public TutorialManager tutorialManager;
-    public FoodMinigameInput foodMinigameInput;   
+    public FoodMinigameInput foodMinigameInput;
+    public CoffeeContainerManager coffeeContainerManager;
 
     // El boton llamara a una de las 3 funciones segun el tipo de comida que se trate (asociado al index del tipo de cada una)
     public void TakeCakeByInt(int index)
@@ -45,7 +46,7 @@ public class CursorManager : MonoBehaviour
         if (foodMinigameInput.foodInHand || foodMinigameInput.platoInHand)
             return;
 
-        foodMinigameInput.ComidaSound();
+        MiniGameSoundManager.instance.PlayTakeFood();
         foodMinigameInput.foodInHand = true;
         foodMinigameInput.foodCategoryInHand = category;
         foodMinigameInput.foodTypeInHand = (int)type;
@@ -82,7 +83,7 @@ public class CursorManager : MonoBehaviour
 
     public void TakeCuchara()
     {
-        if (miniGameInput.cucharaInHand && !miniGameInput.waterInHand && !miniGameInput.coverInHand && !miniGameInput.iceInHand && !miniGameInput.milkInHand 
+        if (miniGameInput.cucharaInHand && !miniGameInput.waterInHand && !coffeeContainerManager.coverInHand && !miniGameInput.iceInHand && !miniGameInput.milkInHand 
             && !miniGameInput.condensedMilkInHand && !miniGameInput.creamInHand && !miniGameInput.chocolateInHand && !miniGameInput.whiskeyInHand)
         {
             Cursor.SetCursor(cucharaCursorTexture, hotSpotCuchara, CursorMode.Auto);
@@ -96,7 +97,7 @@ public class CursorManager : MonoBehaviour
 
     public void TakeCream()
     {
-        if (miniGameInput.creamInHand && !miniGameInput.filtroInHand && !miniGameInput.waterInHand && !miniGameInput.coverInHand && !miniGameInput.cucharaInHand && !miniGameInput.iceInHand
+        if (miniGameInput.creamInHand && !miniGameInput.filtroInHand && !miniGameInput.waterInHand && !coffeeContainerManager.coverInHand && !miniGameInput.cucharaInHand && !miniGameInput.iceInHand
             && !miniGameInput.milkInHand && !miniGameInput.condensedMilkInHand && !miniGameInput.chocolateInHand && !miniGameInput.whiskeyInHand && !miniGameInput.tazaMilkInHand)
         {
             Cursor.SetCursor(cremaCursorTexture, hotSpotCrema, CursorMode.Auto);
@@ -110,7 +111,7 @@ public class CursorManager : MonoBehaviour
 
     public void TakeHielo()
     { 
-        if(miniGameInput.iceInHand && !miniGameInput.cucharaInHand && !miniGameInput.coverInHand && !miniGameInput.waterInHand && !miniGameInput.milkInHand 
+        if(miniGameInput.iceInHand && !miniGameInput.cucharaInHand && !coffeeContainerManager.coverInHand && !miniGameInput.waterInHand && !miniGameInput.milkInHand 
             && !miniGameInput.condensedMilkInHand  && !miniGameInput.creamInHand && !miniGameInput.chocolateInHand && !miniGameInput.whiskeyInHand)
         {
             Cursor.SetCursor(hieloCucharaCursorTexture, hotSpotHieloCuchara, CursorMode.Auto);
