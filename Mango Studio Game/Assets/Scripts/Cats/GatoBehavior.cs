@@ -1,10 +1,14 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
+// Clase encargada de gestionar el comportamiento de los gatos
 public class GatoBehavior : MonoBehaviour
 {
     private UnityEngine.AI.NavMeshAgent agent;
     private Animator animator;
-    private bool estaSentado = false;
+    private bool haLlegado = false;
+    private Transform objetivoMirada;
 
     void Awake()
     {
@@ -12,36 +16,127 @@ public class GatoBehavior : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    // Llamamos a esta funci�n para decirle a qu� silla ir
-    public void IrASitio(Vector3 destino)
-    {
-        // Activamos animaci�n de andar
-        animator.SetBool("isWalking", true);
-        animator.SetBool("isSitting", false);
-
-        agent.SetDestination(destino);
-    }
-
     void Update()
     {
-        // Si el gato est� caminando y le falta poco para llegar
-        if (!estaSentado && agent.remainingDistance <= agent.stoppingDistance && !agent.pathPending)
+        if (haLlegado) return;
+
+        if (agent != null && agent.enabled && agent.isOnNavMesh && agent.hasPath)
         {
-            Sentarse();
+            if (agent.remainingDistance <= agent.stoppingDistance && !agent.pathPending)
+            {
+                Sentarse();
+            }
         }
     }
 
+    // Funcion para marcar el destino del gato y el punto de mira
+    public void IrASitio(Vector3 destino, Transform objetivoParaMirar)
+    {
+        objetivoMirada = objetivoParaMirar;
+
+        if (agent == null) agent = GetComponent<NavMeshAgent>();
+        if (animator == null) animator = GetComponentInChildren<Animator>();
+        if (agent == null || animator == null) return;
+
+        StopAllCoroutines();
+        haLlegado = false;
+
+        StartCoroutine(MoverSeguro(destino));
+    }
+
+    // Corrutina para el movimiento del gato
+    IEnumerator MoverSeguro(Vector3 destino)
+    {
+        yield return null; // Esperamos 1 frame
+
+        if (animator != null && animator.gameObject.activeInHierarchy)
+        {
+            animator.SetBool("isWalking", true);
+            animator.SetBool("isSitting", false);
+        }
+
+        if (agent.isOnNavMesh)
+        {
+            agent.isStopped = false; // Se llama a "Resume"
+            agent.SetDestination(destino);
+        }
+        else
+        {
+            agent.Warp(transform.position);
+            agent.SetDestination(destino);
+        }
+    }
+
+    // Funcion para que el gato reproduzca la animacion de sentarse
     void Sentarse()
     {
-        estaSentado = true;
-        agent.isStopped = true; // Detenemos el NavMesh
+        haLlegado = true;
 
-        // Cambiamos animaciones
-        animator.SetBool("isWalking", false);
-        animator.SetTrigger("sitDown"); // Trigger para la transici�n de sentarse
-        animator.SetBool("isSitting", true); // Loop de estar sentado
+        // Paramos al agente
+        if (agent != null) agent.isStopped = true;
 
-        // Opcional: Rotar el gato para que mire al frente de la silla
-        // transform.rotation = ...
+        // Cambiamos las animaciones
+        if (animator != null)
+        {
+            animator.SetBool("isWalking", false); // Dejar de andar
+            animator.SetTrigger("sitDown");       // Accion de sentarse
+            animator.SetBool("isSitting", true);  // Bool de quedarse sentado
+        }
+
+        if (objetivoMirada != null)
+        {
+            StartCoroutine(RotarSuavemente(objetivoMirada));
+        }
+    }
+
+    // Corrutina para girarse hacia el punto de mira
+    IEnumerator RotarSuavemente(Transform target)
+    {
+        // Se calcula la direccion ignorando la altura
+        Vector3 direccion = target.position - transform.position;
+        direccion.y = 0;
+
+        if (direccion != Vector3.zero)
+        {
+            Quaternion rotacionFinal = Quaternion.LookRotation(direccion);
+
+            float tiempo = 0;
+            while (tiempo < 1f)
+            {
+                transform.rotation = Quaternion.Slerp(transform.rotation, rotacionFinal, tiempo * 2f); // *2f - velocidad de giro
+                tiempo += Time.deltaTime;
+                yield return null;
+            }
+
+            transform.rotation = rotacionFinal; // Rotacion final
+        }
+    }
+
+    // Funcion para teletransporta los gatos que tengan marcada la casilla de "Mostrador"
+    public void Teletransportarse(Vector3 destino, Transform mirarA)
+    {
+        if (agent == null) agent = GetComponent<NavMeshAgent>();
+        if (animator == null) animator = GetComponentInChildren<Animator>();
+
+        // Se apaga y teletransporta el gato
+        if (agent != null) agent.enabled = false;
+        transform.position = destino;
+
+        // Se orienta hacia el objetivo
+        if (mirarA != null)
+        {
+            Vector3 direccion = mirarA.position - transform.position;
+            direccion.y = 0;
+            if (direccion != Vector3.zero)
+                transform.rotation = Quaternion.LookRotation(direccion);
+        }
+
+        if (animator != null)
+        {
+            animator.SetBool("isWalking", false);
+            animator.SetBool("isSitting", true);
+
+            animator.Play("Sentado", 0, 0f);
+        }
     }
 }

@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class CardPackManager : MonoBehaviour
 {
     [Header("Referencias UI")]
+    public CatCafeManager catCafeManager;
     public GameObject packPanel; // Panel 
     public RectTransform packRect; // Sobre
     public Image cardImage; // Imagen de la carta
@@ -138,6 +139,7 @@ public class CardPackManager : MonoBehaviour
         closeButton.interactable = true;
 
         PlayerDataManager.instance.AddCard(cardSprite);
+        catCafeManager.RevisarGatosDesbloqueados();
 
         var collection = FindFirstObjectByType<CardCollectionManager>();
     }
