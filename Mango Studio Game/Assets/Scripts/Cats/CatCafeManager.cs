@@ -9,11 +9,10 @@ public class CatCafeManager : MonoBehaviour
     public class InfoGato
     {
         public string nombreCarta;    
-        public GameObject prefabGato; // Modelo 3D del gato
-        public Transform destino;  // Destino
-
-        [Tooltip("Marcar si el lugar esta fuera del NavMesh")]
-        public bool mostrador;
+        public GameObject prefabGato;
+        public Transform destino;
+        public bool posFija;
+        public Sprite iconoGato;
 
         [System.NonSerialized] public GameObject gatoInstancia;
     }
@@ -22,32 +21,31 @@ public class CatCafeManager : MonoBehaviour
     public Transform puertaEntrada;
     public Transform puntoDeAtencion;
 
-    void Start()
+    public void Start()
     {
-        // Limpieza inicial de seguridad
         for (int i = 0; i < listaDeGatos.Count; i++)
         {
             listaDeGatos[i].gatoInstancia = null;
         }
-
-        RevisarGatosDesbloqueados();
     }
 
-    // Funcion para comprobar que gatos se han desbloqueado
-    public void RevisarGatosDesbloqueados()
+    // Funcion que recibe los indices de los gatos que deben estar visibles
+    public void UpdateCafeCats(List<int> indicesSeleccionados)
     {
         for (int i = 0; i < listaDeGatos.Count; i++)
         {
-            if (listaDeGatos[i].gatoInstancia != null) // Si ya se encuentra desbloqueado se continua
-            {
-                continue;
-            }
+            bool shouldExist = indicesSeleccionados.Contains(i);
+            bool exists = listaDeGatos[i].gatoInstancia != null;
 
-            bool desbloqueado = PlayerDataManager.instance.HasCard(listaDeGatos[i].nombreCarta); // Se accede a las cartas del jugador
-
-            if (desbloqueado)
+            // El jugador lo ha seleccionado y no esta en escena -> se crea
+            if (shouldExist && !exists)
             {
                 SpawnearGato(i);
+            }
+            // El jugador lo ha desmarcado y esta en escena -> se borra
+            else if (!shouldExist && exists)
+            {
+                DespawnearGato(i);
             }
         }
     }
@@ -57,17 +55,17 @@ public class CatCafeManager : MonoBehaviour
     {
         InfoGato info = listaDeGatos[index];
 
-        // Instanciar gato en la puerta y activarlo
+        // Se instancia y activa el gato en la puerta
         GameObject nuevoGato = Instantiate(info.prefabGato, puertaEntrada.position, puertaEntrada.rotation);
         nuevoGato.SetActive(true);
 
-        // Añadirlo a la lista de gatos
+        // Se añade a la lista de gatos
         listaDeGatos[index].gatoInstancia = nuevoGato;
 
         GatoBehavior comportamiento = nuevoGato.GetComponent<GatoBehavior>();
         if (comportamiento != null)
         {
-            if (info.mostrador)
+            if (info.posFija)
             {
                 comportamiento.Teletransportarse(info.destino.position, puntoDeAtencion); // NO tener en cuenta el navmesh y colocar el gato en una posicion concreta
             }
@@ -77,6 +75,16 @@ public class CatCafeManager : MonoBehaviour
                 nuevoGato.transform.rotation = puertaEntrada.rotation;
                 comportamiento.IrASitio(info.destino.position, puntoDeAtencion);
             }
+        }
+    }
+
+    // Funcion para borrar el gato
+    void DespawnearGato(int index)
+    {
+        if (listaDeGatos[index].gatoInstancia != null)
+        {
+            Destroy(listaDeGatos[index].gatoInstancia);
+            listaDeGatos[index].gatoInstancia = null;
         }
     }
 }
