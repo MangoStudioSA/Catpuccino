@@ -14,6 +14,10 @@ public class CardCollectionManager : MonoBehaviour
     public GameObject bookPagesContainer;
     public GameObject clipsContainer;
 
+    [Header("Configuracion animaciones")]
+    public List<string> nextTriggers;
+    public List<string> backTriggers;
+
     private int currentPage = 0;
     private HashSet<string> unlockedCards;
     private bool isTurningPage = false;
@@ -62,18 +66,41 @@ public class CardCollectionManager : MonoBehaviour
     }
     public void NextPage()
     {
+        // 1. Comprobamos que no estemos en la última página ni en mitad de una animación
         if (isTurningPage || currentPage >= pages.Count - 1)
             return;
 
-        StartCoroutine(PageTurnRoutine(currentPage + 1, "NextPage"));
+        // 2. Seguridad: Verificamos si configuraste el nombre en la lista
+        if (currentPage >= nextTriggers.Count)
+        {
+            Debug.LogError($"[CardManager] Falta el nombre del trigger en la lista 'Next Triggers' para la página {currentPage}");
+            return;
+        }
+
+        // 3. Obtenemos el nombre específico para esta página
+        string triggerName = nextTriggers[currentPage];
+
+        StartCoroutine(PageTurnRoutine(currentPage + 1, triggerName));
     }
 
     public void PreviousPage()
     {
+        // 1. Comprobamos que no estemos en la primera página
         if (isTurningPage || currentPage <= 0)
             return;
 
-        StartCoroutine(PageTurnRoutine(currentPage - 1, "PreviousPage"));
+        // 2. Seguridad: Verificamos la lista
+        if (currentPage >= backTriggers.Count)
+        {
+            Debug.LogError($"[CardManager] Falta el nombre del trigger en la lista 'Back Triggers' para la página {currentPage}");
+            return;
+        }
+
+        // 3. Obtenemos el nombre. 
+        // Nota: Usamos 'currentPage' como índice. Si estoy en la pág 2 y vuelvo, uso el trigger en la posición 2.
+        string triggerName = backTriggers[currentPage];
+
+        StartCoroutine(PageTurnRoutine(currentPage - 1, triggerName));
     }
 
     private IEnumerator PageTurnRoutine(int newPageIndex, string trigger)
@@ -88,7 +115,7 @@ public class CardCollectionManager : MonoBehaviour
         // Animacion
         if (bookAnimator != null)
             bookAnimator.SetTrigger(trigger);
-        yield return new WaitForSecondsRealtime(0.7f);
+        yield return new WaitForSecondsRealtime(1f);
 
         // Muestra la nueva pagina
         ShowPage(newPageIndex);
@@ -118,10 +145,16 @@ public class CardCollectionManager : MonoBehaviour
         if (bookCG != null) bookCG.alpha = 0;
         bookPagesContainer.SetActive(true);
 
+        if (bookAnimator != null)
+        {
+            bookAnimator.Play($"Idle_{targetPage}");
+        }
+        currentPage = targetPage;
+
         // Animacion
         if (clipsAnimator != null)
             clipsAnimator.SetTrigger(trigger);
-        yield return new WaitForSecondsRealtime(1f);
+        yield return new WaitForSecondsRealtime(0.7f);
 
         // Muestra la pagina correspondiente
         ShowPage(targetPage);
@@ -149,7 +182,7 @@ public class CardCollectionManager : MonoBehaviour
                         card.sprite = unlockedSprite;
 
                     card.color = Color.white;
-                    Debug.Log($"Card name: {card.name}, unlocked: {unlockedCards.Contains(card.name)}");
+                    //Debug.Log($"Card name: {card.name}, unlocked: {unlockedCards.Contains(card.name)}");
                 }
                 else
                 {
