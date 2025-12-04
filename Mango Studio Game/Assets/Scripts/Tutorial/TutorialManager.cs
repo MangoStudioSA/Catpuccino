@@ -62,11 +62,10 @@ public class TutorialManager : MonoBehaviour
     public Image BRedVelvetImage;
 
     [Header("Imagenes bocadillos")]
-    public Image bocadilloAbajoIzq;
-    public Image bocadilloAbajoDer;
-    public Image bocadilloArribaIzq;
-    public Image bocadilloArribaDer;
-    public Image bocadilloCentro;
+    public Sprite bocadilloAbajoIzq;
+    public Sprite bocadilloAbajoDer;
+    public Sprite bocadilloArribaIzq;
+    public Sprite bocadilloArribaDer;
 
     [Header("Imagenes gatos")]
     public Image gatoAbajoIzq;

@@ -8,7 +8,8 @@ public class CatCafeManager : MonoBehaviour
     [System.Serializable]
     public class InfoGato
     {
-        public string nombreCarta;    
+        public string nombreCarta;
+        public string nombreGato;
         public GameObject prefabGato;
         public Transform destino;
         public bool posFija;

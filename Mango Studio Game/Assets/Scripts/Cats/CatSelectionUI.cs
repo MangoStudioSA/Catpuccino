@@ -52,13 +52,15 @@ public class CatSelectionUI : MonoBehaviour
             var info = cafeManager.listaDeGatos[i];
             bool unlocked = PlayerDataManager.instance.HasCard(info.nombreCarta);
             bool shouldBeActive = selectedCats.Contains(i);
-             
+
+            string name = unlocked ? info.nombreGato : "???????";
+
             Sprite img = unlocked ? info.iconoGato : spriteLocked; // Se comprueba si usar la imagen del gato o la de no desbloqueado
 
             GameObject nuevoSlot = Instantiate(slotPrefab, contentPanel);
             CatUISlot scriptSlot = nuevoSlot.GetComponent<CatUISlot>();
 
-            scriptSlot.Initialize(i, info.nombreCarta, img, unlocked, shouldBeActive, this);
+            scriptSlot.Initialize(i, name, img, unlocked, shouldBeActive, this);
             generatedSlots.Add(scriptSlot);
         }
         cafeManager.UpdateCafeCats(selectedCats);

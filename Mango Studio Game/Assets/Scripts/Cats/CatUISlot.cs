@@ -29,7 +29,7 @@ public class CatUISlot : MonoBehaviour
             miToggle.interactable = false;
             miToggle.isOn = false;
             imagenGato.color = Color.white;
-            textoNombre.text = "???";
+            textoNombre.text = "???????";
         }
         else
         {

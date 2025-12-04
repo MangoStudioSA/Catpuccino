@@ -3109,7 +3109,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &82270508
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3246,11 +3246,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 80229186}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &84590305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3284,7 +3284,7 @@ MonoBehaviour:
     m_Bottom: 0
   m_ChildAlignment: 0
   m_Spacing: 0
-  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 1
   m_ChildControlHeight: 0
@@ -4702,9 +4702,9 @@ RectTransform:
   - {fileID: 469536961}
   m_Father: {fileID: 515931700}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 294.5, y: -311.4425}
   m_SizeDelta: {x: 266, y: 57.59}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &151938810
@@ -5400,56 +5400,67 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   listaDeGatos:
   - nombreCarta: CartaEspresso
+    nombreGato: Espresso
     prefabGato: {fileID: 7708863945366761413, guid: 364ab47413f44234986db64d62e264a9, type: 3}
     destino: {fileID: 2022023997}
     posFija: 0
     iconoGato: {fileID: 21300000, guid: 36833921526aaa443923bcbea6115db5, type: 3}
   - nombreCarta: CartaLungo
+    nombreGato: Lungo
     prefabGato: {fileID: 3435089762177913357, guid: 281cda4dad297a245902f629e2c94552, type: 3}
     destino: {fileID: 1308594540}
     posFija: 1
     iconoGato: {fileID: 21300000, guid: 77cafc824f6c85c479697b9f6e2407e8, type: 3}
   - nombreCarta: CartaAmericano
+    nombreGato: Americano
     prefabGato: {fileID: 8317513770651591682, guid: 808cbf8a2c2db5549808cd6508bd6dca, type: 3}
     destino: {fileID: 238284409}
     posFija: 0
     iconoGato: {fileID: 21300000, guid: a5590022b098fad4785323ee99c5612c, type: 3}
   - nombreCarta: CartaMacchiato
+    nombreGato: Macchiato
     prefabGato: {fileID: 4391016203592885922, guid: bb58acb8de2393e4ca0d31248cd84472, type: 3}
     destino: {fileID: 2090454217}
     posFija: 0
     iconoGato: {fileID: 21300000, guid: 4799869882ede7e41b01dcbd3c6d41ad, type: 3}
   - nombreCarta: CartaLatte
+    nombreGato: Latte
     prefabGato: {fileID: 4209573403446710180, guid: f97426ce19287d74da695d0e37080250, type: 3}
     destino: {fileID: 1337610865}
     posFija: 1
     iconoGato: {fileID: 21300000, guid: aff30b42b7a34914ea4767d15f57bc05, type: 3}
   - nombreCarta: CartaCappuccino
+    nombreGato: Cappuccino
     prefabGato: {fileID: 5896092215618244762, guid: f551e648a77898b4b8dcc36ffa2e77e9, type: 3}
     destino: {fileID: 1237320079}
     posFija: 0
     iconoGato: {fileID: 21300000, guid: fca27596eeb581b46883ebd66b9d24fc, type: 3}
   - nombreCarta: CartaBombon
+    nombreGato: "Bomb\xF3n"
     prefabGato: {fileID: 6444980182211544290, guid: 45c6081e172bf484e8abfea3ccda345f, type: 3}
     destino: {fileID: 452169298}
     posFija: 0
     iconoGato: {fileID: 21300000, guid: 956c15351fd9afd43b6f0220fafe8f5e, type: 3}
   - nombreCarta: CartaVienes
+    nombreGato: "Vien\xE9s"
     prefabGato: {fileID: 1533948774032305245, guid: 19f516804f6c9dc41895ae5d875f1cb8, type: 3}
     destino: {fileID: 1467403560}
     posFija: 0
     iconoGato: {fileID: 21300000, guid: 31c04df195a5e314395c3640e3c2ae2c, type: 3}
   - nombreCarta: CartaFrappe
+    nombreGato: "Frapp\xE9"
     prefabGato: {fileID: 8408411481250471445, guid: 66b2b7aea1dbb4146aee5fa4e84adf29, type: 3}
     destino: {fileID: 2072865779}
     posFija: 0
     iconoGato: {fileID: 21300000, guid: b91eb703f022d3d47bc494aa6cf0880c, type: 3}
   - nombreCarta: CartaIrish
+    nombreGato: Irish
     prefabGato: {fileID: 3982032218080718433, guid: b92e8fd4a7574e34789464c542cd8f8c, type: 3}
     destino: {fileID: 1574846558}
     posFija: 1
     iconoGato: {fileID: 21300000, guid: 331da6bf4d268cc41955675d437dea7c, type: 3}
   - nombreCarta: CartaMocca
+    nombreGato: Moca
     prefabGato: {fileID: 7321870284333220811, guid: ce1f799fcd0d0d04b8c4d9ab87c866ab, type: 3}
     destino: {fileID: 76937783}
     posFija: 0
@@ -12103,7 +12114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -12343,7 +12354,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &461767902
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12598,9 +12609,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 515931700}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 294.5, y: -130.9425}
   m_SizeDelta: {x: 439.9999, y: 220.36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &466819055
@@ -16957,7 +16968,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!225 &567051560
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -17800,9 +17811,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1996889342}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 294.5, y: -130.9425}
   m_SizeDelta: {x: 439.9999, y: 220.36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &604880776
@@ -19504,9 +19515,9 @@ RectTransform:
   - {fileID: 812629757}
   m_Father: {fileID: 1996889342}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 294.5, y: -311.4425}
   m_SizeDelta: {x: 266, y: 57.59}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &666273214
@@ -22612,8 +22623,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 5/5
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c75a8322d19e0634fb94a76023722274, type: 2}
-  m_sharedMaterial: {fileID: -8877842855350245762, guid: c75a8322d19e0634fb94a76023722274, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1f1a52f410d10dc4e945be94b9437e60, type: 2}
+  m_sharedMaterial: {fileID: -8877842855350245762, guid: 1f1a52f410d10dc4e945be94b9437e60, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -23582,11 +23593,10 @@ MonoBehaviour:
   BMantequillaImage: {fileID: 926106727}
   BZanahoriaImage: {fileID: 1802058464}
   BRedVelvetImage: {fileID: 515852916}
-  bocadilloAbajoIzq: {fileID: 0}
-  bocadilloAbajoDer: {fileID: 0}
-  bocadilloArribaIzq: {fileID: 0}
-  bocadilloArribaDer: {fileID: 0}
-  bocadilloCentro: {fileID: 0}
+  bocadilloAbajoIzq: {fileID: 21300000, guid: 5cd35262dbcf3684d83d9788409b712c, type: 3}
+  bocadilloAbajoDer: {fileID: 21300000, guid: b5b30a27ac068a648a3787c97a6ca3b0, type: 3}
+  bocadilloArribaIzq: {fileID: 21300000, guid: 4efdc4bdcc05192408b26dcf4b060c5b, type: 3}
+  bocadilloArribaDer: {fileID: 21300000, guid: fbf021b7dfacd3547adc81e822ad0304, type: 3}
   gatoAbajoIzq: {fileID: 0}
   gatoAbajoDer: {fileID: 0}
   gatoArribaIzq: {fileID: 0}
@@ -32149,7 +32159,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!225 &1155155594
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -33304,7 +33314,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!225 &1205143832
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -40865,9 +40875,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -266, y: -83}
+  m_AnchoredPosition: {x: -15, y: -93}
   m_SizeDelta: {x: 501.24658, y: 865.8004}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &1457148705
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40881,7 +40891,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Content: {fileID: 84590304}
-  m_Horizontal: 1
+  m_Horizontal: 0
   m_Vertical: 1
   m_MovementType: 1
   m_Elasticity: 0.1
@@ -40912,7 +40922,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0.392}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -43782,9 +43792,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1440798470}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 294.5, y: -130.9425}
   m_SizeDelta: {x: 439.99988, y: 220.36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1549526674
@@ -48532,9 +48542,9 @@ RectTransform:
   - {fileID: 738040420}
   m_Father: {fileID: 1440798470}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 294.5, y: -311.4425}
   m_SizeDelta: {x: 266, y: 57.59}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1715472382
@@ -53501,7 +53511,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1957982743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53950,7 +53960,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!225 &1976100350
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -55370,8 +55380,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Gatos en la cafeter\xEDa:"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c75a8322d19e0634fb94a76023722274, type: 2}
-  m_sharedMaterial: {fileID: -8877842855350245762, guid: c75a8322d19e0634fb94a76023722274, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1f1a52f410d10dc4e945be94b9437e60, type: 2}
+  m_sharedMaterial: {fileID: -8877842855350245762, guid: 1f1a52f410d10dc4e945be94b9437e60, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -56283,7 +56293,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
