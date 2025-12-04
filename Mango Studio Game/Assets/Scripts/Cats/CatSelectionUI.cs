@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 // Clase encargada de gestionar la seleccion de gatos en el menu
@@ -11,6 +12,7 @@ public class CatSelectionUI : MonoBehaviour
 
     [Header("Sprites")]
     public Sprite spriteLocked;
+    public TextMeshProUGUI contText;
 
     private List<CatUISlot> generatedSlots = new List<CatUISlot>();
     private List<int> selectedCats = new List<int>();
@@ -18,7 +20,17 @@ public class CatSelectionUI : MonoBehaviour
 
     void Start()
     {
+        LoadSelection();
         GenerateMenu();
+    }
+
+    void OnEnable()
+    {
+        if (generatedSlots.Count > 0)
+        {
+            RefreshVisuals();
+            UpdateContText();
+        }
     }
 
     // Funcion para actualizar el menu
@@ -33,27 +45,34 @@ public class CatSelectionUI : MonoBehaviour
         // Se limpia la lista anterior
         foreach (Transform child in contentPanel) Destroy(child.gameObject);
         generatedSlots.Clear();
-        selectedCats.Clear();
 
         // Se crean los elementos en el scroll
         for (int i = 0; i < cafeManager.listaDeGatos.Count; i++)
         {
             var info = cafeManager.listaDeGatos[i];
             bool unlocked = PlayerDataManager.instance.HasCard(info.nombreCarta);
-            bool isActive = (info.gatoInstancia != null);
-
-            if (isActive) selectedCats.Add(i);
+            bool shouldBeActive = selectedCats.Contains(i);
              
             Sprite img = unlocked ? info.iconoGato : spriteLocked; // Se comprueba si usar la imagen del gato o la de no desbloqueado
 
             GameObject nuevoSlot = Instantiate(slotPrefab, contentPanel);
             CatUISlot scriptSlot = nuevoSlot.GetComponent<CatUISlot>();
 
-            scriptSlot.Initialize(i, info.nombreCarta, img, unlocked, isActive, this);
+            scriptSlot.Initialize(i, info.nombreCarta, img, unlocked, shouldBeActive, this);
             generatedSlots.Add(scriptSlot);
         }
-
+        cafeManager.UpdateCafeCats(selectedCats);
         CheckLimits();
+        UpdateContText();
+    }
+
+    // Funcion para actualizar el texto del contador de gatos
+    void UpdateContText()
+    {
+        if (contText != null)
+        {
+            contText.text = $"{selectedCats.Count}/{MAX_GATOS}";
+        }
     }
 
     // Funcion que gestiona el cambio del menu cuando el jugador marca/desmarca un gato
@@ -76,6 +95,8 @@ public class CatSelectionUI : MonoBehaviour
 
         cafeManager.UpdateCafeCats(selectedCats);
         CheckLimits(); // Comprobar que no se pase el limite
+        UpdateContText();
+        SaveSelection();
     }
 
     // Funcion para deshabilitar los check boxes si hay el numero maximo de gatos en la cafeteria
@@ -99,6 +120,56 @@ public class CatSelectionUI : MonoBehaviour
                     slot.SetInteractable(true);
                 }
             }
+        }
+    }
+
+    // Funcion para actualizar los prefabs en el menu
+    void RefreshVisuals()
+    {
+        foreach (var slot in generatedSlots)
+        {
+            bool desbloqueado = PlayerDataManager.instance.HasCard(cafeManager.listaDeGatos[slot.indexGato].nombreCarta);
+            Sprite img = desbloqueado ? cafeManager.listaDeGatos[slot.indexGato].iconoGato : spriteLocked;
+
+            slot.Initialize(slot.indexGato, cafeManager.listaDeGatos[slot.indexGato].nombreCarta, img, desbloqueado, slot.miToggle.isOn, this);
+        }
+        CheckLimits();
+    }
+
+    // Funcion para guardar los gatos activos
+    void SaveSelection()
+    {
+        PlayerPrefs.DeleteKey("NumGatosSeleccionados"); // Se borran los antiguos
+        PlayerPrefs.SetInt("NumGatosSeleccionados", selectedCats.Count); // Se guardan los actuales
+
+        // Se guardan uno a uno
+        for (int i = 0; i < selectedCats.Count; i++)
+        {
+            PlayerPrefs.SetInt("GatoSeleccionado_" + i, selectedCats[i]);
+        }
+
+        PlayerPrefs.Save();
+        Debug.Log("Guardado exitoso. Gatos guardados: " + selectedCats.Count);
+    }
+
+    // Funcion para cargar los gatos activos
+    void LoadSelection()
+    {
+        selectedCats.Clear();
+
+        // Comprueba si hay datos guardados
+        if (PlayerPrefs.HasKey("NumGatosSeleccionados"))
+        {
+            int num = PlayerPrefs.GetInt("NumGatosSeleccionados");
+
+            // Se recuperan
+            for (int i = 0; i < num; i++)
+            {
+                int idGato = PlayerPrefs.GetInt("GatoSeleccionado_" + i);
+                selectedCats.Add(idGato);
+            }
+
+            Debug.Log("Carga exitosa. Gatos recuperados: " + num);
         }
     }
 }

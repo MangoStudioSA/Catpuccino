@@ -21,7 +21,7 @@ public class CatCafeManager : MonoBehaviour
     public Transform puertaEntrada;
     public Transform puntoDeAtencion;
 
-    public void Start()
+    public void Awake()
     {
         for (int i = 0; i < listaDeGatos.Count; i++)
         {

@@ -30,9 +30,10 @@ public class PlayerDataManager : MonoBehaviour
 
         //RemoveUnlockedCard("CartaLatteArt");
         //AddLockedCard("CartaLatteArt");
-        RemoveUnlockedCard("CartaLatte");
-        RemoveUnlockedCard("CartaLungo");
-        RemoveUnlockedCard("CartaEspresso");
+        //AddLockedCard("CartaLatte");
+        //AddLockedCard("CartaLungo");
+        //AddLockedCard("CartaIrish");
+        //RemoveUnlockedCard("CartaEspresso");
         //RemoveUnlockedCard("CartaAmericano");
         //AddBasicCoins(1000);
         //AddLockedCard("CartaMocca");
