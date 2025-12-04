@@ -18,15 +18,18 @@ public class CardPackManager : MonoBehaviour
     public Sprite basicPackSprite; // Sprite sobre basico
     public Sprite premiumPackSprite; // Sprite sobre premium
 
+    [Header("Referencias animacion")]
+    public float timeToShowCard = 2.2f;
+
+    [Header("Referencias Animaciones Full Screen")]
+    public GameObject basicAnimObject;   
+    public GameObject premiumAnimObject;
+
     [Header("Sprites por rareza")]
     public Sprite[] basicCards;       
     public Sprite[] intermediateCards;
     public Sprite[] rareCards;        
     public Sprite[] legendaryCards;   
-
-    [Header("Configuración animación")]
-    public float dropDuration = 1.5f; // Duracion del movimiento
-    public float packMoveDistance = 1300f; // Distancia que baja el sobre
 
     private bool isOpening = false;
     private string pendindPackType = ""; // Guarda el tipo de sobre que se va a abrir
@@ -37,10 +40,14 @@ public class CardPackManager : MonoBehaviour
     public void Start()
     {
         packPanel.SetActive(false);
+        if (basicAnimObject != null) basicAnimObject.SetActive(false);
+        if (premiumAnimObject != null) premiumAnimObject.SetActive(false);
+
         cardImage.gameObject.SetActive(false);
         openButton.gameObject.SetActive(false);
         closeButton.gameObject.SetActive(false);
         openButton.onClick.AddListener(OpenPack);
+
         packRect.anchoredPosition = Vector2.zero;
         isOpening = false;
         pendindPackType = "";
@@ -57,9 +64,13 @@ public class CardPackManager : MonoBehaviour
             openButton.gameObject.SetActive(true);
 
         closeButton.gameObject.SetActive(false);
-        closeButton.interactable = false;
         cardImage.gameObject.SetActive(false);
-        packRect.anchoredPosition = Vector2.zero;   
+
+        if (basicAnimObject != null) basicAnimObject.SetActive(false);
+        if (premiumAnimObject != null) premiumAnimObject.SetActive(false);
+
+        packImage.gameObject.SetActive(true);
+        packRect.anchoredPosition = Vector2.zero;
 
         if (packType == "basic")
         {
@@ -76,7 +87,6 @@ public class CardPackManager : MonoBehaviour
     public void OpenPack()
     {
         if (isOpening || string.IsNullOrEmpty(pendindPackType)) return;
-        Debug.Log("Openpack llamado");
 
         isOpening = true;
         if (openButton != null)
@@ -85,37 +95,30 @@ public class CardPackManager : MonoBehaviour
         CardRarity rarity = DeterminateRarity(pendindPackType);
         Sprite cardSprite = GetRandomCardSprite(rarity);
 
-        if (cardSprite == null)
-            Debug.Log("No se encontro sprite");
-
         StartCoroutine(OpenPackAnimation(cardSprite));
-
-        PlayerDataManager.instance.AddCard(cardSprite);
     }
 
     private IEnumerator OpenPackAnimation(Sprite cardSprite)
     {
-        // Resetear la carta y determinar su rareza y nombre
-        isOpening = true;
+        packImage.gameObject.SetActive(false);
         openButton.gameObject.SetActive(false);
 
-        // Reiniciar posicion carta
-        packRect.anchoredPosition = new Vector2(0, 200f);
-        cardImage.gameObject.SetActive(false);
-
-        // Animación caida de sobre
-        Vector2 startPos = packRect.anchoredPosition;
-        Vector2 targetPos = startPos - new Vector2(0, packMoveDistance);
-        float elapsed = 0f;
-
-        // Animacion de caida del sobre
-        while (elapsed < dropDuration)
+        if (pendindPackType == "basic" && basicAnimObject != null)
         {
-            elapsed += Time.unscaledDeltaTime;
-            float t = Mathf.Clamp01(elapsed / dropDuration);
-            packRect.anchoredPosition = Vector2.Lerp(startPos, targetPos, t);
-            yield return null;
+            basicAnimObject.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+            basicAnimObject.SetActive(true);
         }
+        else if (pendindPackType == "premium" && premiumAnimObject != null)
+        {
+            premiumAnimObject.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+            premiumAnimObject.SetActive(true);
+        }
+
+        // Esperar el tiempo configurado
+        yield return new WaitForSecondsRealtime(timeToShowCard);
+
+        if (basicAnimObject != null) basicAnimObject.SetActive(false);
+        if (premiumAnimObject != null) premiumAnimObject.SetActive(false);
 
         // Mostrar la carta y su color
         cardImage.sprite = cardSprite;
@@ -141,8 +144,6 @@ public class CardPackManager : MonoBehaviour
 
         PlayerDataManager.instance.AddCard(cardSprite);
         if (catSelectionUI != null) catSelectionUI.RefreshMenu();
-
-        var collection = FindFirstObjectByType<CardCollectionManager>();
     }
 
     // Se determina la rareza de la carta dependiendo del sobre abierto
