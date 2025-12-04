@@ -19,7 +19,7 @@ public class CardPackManager : MonoBehaviour
     public Sprite premiumPackSprite; // Sprite sobre premium
 
     [Header("Referencias animacion")]
-    public float timeToShowCard = 2.2f;
+    public float timeToShowCard = 6f;
 
     [Header("Referencias Animaciones Full Screen")]
     public GameObject basicAnimObject;   
@@ -117,14 +117,11 @@ public class CardPackManager : MonoBehaviour
         // Esperar el tiempo configurado
         yield return new WaitForSecondsRealtime(timeToShowCard);
 
-        if (basicAnimObject != null) basicAnimObject.SetActive(false);
-        if (premiumAnimObject != null) premiumAnimObject.SetActive(false);
-
         // Mostrar la carta y su color
         cardImage.sprite = cardSprite;
         cardImage.gameObject.SetActive(true);
 
-        float fadeDuration = 1.2f;
+        float fadeDuration = 3f;
         float fadeElapsed = 0f;
 
         while (fadeElapsed < fadeDuration)
@@ -135,6 +132,9 @@ public class CardPackManager : MonoBehaviour
             cardImage.color = new Color (1,1,1, alpha);
             yield return null;
         }
+
+        if (basicAnimObject != null) basicAnimObject.SetActive(false);
+        if (premiumAnimObject != null) premiumAnimObject.SetActive(false);
 
         yield return new WaitForSecondsRealtime(1.25f);
 

@@ -18,19 +18,10 @@ public class CatSelectionUI : MonoBehaviour
     private List<int> selectedCats = new List<int>();
     private const int MAX_GATOS = 5;
 
-    void Start()
+    void OnEnable()
     {
         LoadSelection();
         GenerateMenu();
-    }
-
-    void OnEnable()
-    {
-        if (generatedSlots.Count > 0)
-        {
-            RefreshVisuals();
-            UpdateContText();
-        }
     }
 
     // Funcion para actualizar el menu
