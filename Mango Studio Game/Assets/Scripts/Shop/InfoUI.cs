@@ -6,14 +6,12 @@ using UnityEngine;
 public class InfoUI : MonoBehaviour
 {
     [SerializeField] private RectTransform noteInfo;
-    [SerializeField] private TextMeshProUGUI infoTxt;
     [SerializeField] private float slideDuration = 0.5f;
     
     // Posiciones del panel
     private Vector2 hiddenPos;
     private Vector2 visiblePos;
-
-    private bool isVisible = false;
+    private Coroutine currentCoroutine;
 
     private void Awake()
     {
@@ -27,18 +25,21 @@ public class InfoUI : MonoBehaviour
     // Funcion para activar/desactivar el panel
     public void ToggleNote()
     {
-        isVisible = !isVisible;
-        noteInfo.gameObject.SetActive(true);
+        if (currentCoroutine != null) StopCoroutine(currentCoroutine);
 
-        StopAllCoroutines();
-        StartCoroutine(SlideNote(isVisible));    
+        noteInfo.gameObject.SetActive(true);
+        bool show = noteInfo.anchoredPosition.y < (visiblePos.y - 1f);
+
+        if (show)
+            currentCoroutine = StartCoroutine(SlideNote(visiblePos, true)); // Subir
+        else
+            currentCoroutine = StartCoroutine(SlideNote(hiddenPos, false));   
     }
 
     // Corrutina para que se muestre el panel con animacion de subida o bajada
-    private IEnumerator SlideNote (bool show)
+    private IEnumerator SlideNote (Vector2 target, bool show)
     {
         Vector2 start = noteInfo.anchoredPosition; // posicion inicial
-        Vector2 end = show ? visiblePos : hiddenPos; // posicion final
 
         float elapsed = 0f;
         while (elapsed < slideDuration)
@@ -46,11 +47,11 @@ public class InfoUI : MonoBehaviour
             elapsed += Time.unscaledDeltaTime;
             float t = Mathf.Clamp01(elapsed / slideDuration);
             t = Mathf.SmoothStep(0f, 1f, t);
-            noteInfo.anchoredPosition = Vector2.Lerp(start, end, t);
+            noteInfo.anchoredPosition = Vector2.Lerp(start, target, t);
             yield return null;
         }
 
-        noteInfo.anchoredPosition = end;
+        noteInfo.anchoredPosition = target;
 
         if (!show)
             noteInfo.gameObject.SetActive(false);

@@ -281,9 +281,6 @@ public class FoodMinigameInput : MonoBehaviour
         else if (tutorialManager.isRunningT2)
             buttonManager.DisableButton(buttonManager.papeleraRButton);
 
-        if (tutorialManager.isRunningT2)
-            buttonManager.DisableButton(buttonManager.recipesBookBButton);
-
         if ((foodInHand || platoInHand || carryBagInHand) && !tutorialManager.isRunningT2)
         {
             buttonManager.DisableButton(buttonManager.orderNoteBButton);
@@ -408,6 +405,11 @@ public class FoodMinigameInput : MonoBehaviour
             MiniGameSoundManager.instance.PlayTakeBag();
             BolsaLlevar.SetActive(true);
             BolsaLlevar.transform.position = puntoEncimera.position;
+
+            var img = BolsaLlevar.GetComponent<Image>();
+            var c = img.color;
+            c.a = 1f; // Restaurar opacidad al 100%
+            img.color = c;
 
             carryBagInHand = false;
             carryBagIsInEncimera = true;

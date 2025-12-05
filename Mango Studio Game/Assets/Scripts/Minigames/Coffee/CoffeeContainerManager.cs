@@ -401,7 +401,7 @@ public class CoffeeContainerManager : MonoBehaviour
     public void CogerVaso(bool isPrem)
     {
         // Comprobaciones iniciales
-        if (vasoIsInCafetera || vasoIsInTable || tazaIsInCafetera || tazaIsInPlato) return;
+        if (vasoIsInCafetera || vasoIsInTable || tazaIsInCafetera || tazaIsInPlato || platoTazaIsInTable) return;
         if (CupNotEmpty()) return;
 
         // Coger vaso
@@ -670,6 +670,9 @@ public class CoffeeContainerManager : MonoBehaviour
             minigame.buttonManager.DisableButton(minigame.buttonManager.cogerVasoInicioButton);
             minigame.buttonManager.DisableButton(minigame.buttonManager.cogerVasoB2InicioButton);
             minigame.buttonManager.DisableButton(minigame.buttonManager.cogerVasoPInicioButton);
+
+            if (minigame.tutorialManager.isRunningT1 && minigame.tutorialManager.currentStep == 4)
+                FindFirstObjectByType<TutorialManager>().CompleteCurrentStep();
         }
         else if (!platoTazaInHand && !minigame.cupServed && !tazaInHand)
         {

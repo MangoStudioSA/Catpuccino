@@ -46,8 +46,11 @@ public class CustomerOrder : MonoBehaviour
         CoffeeType coffeeType = coffeeUnlocker.GetRandomAvailableCoffee(currentDay); // Se genera el tipo de cafe entre los disponibles
         SugarAmount sugar = (SugarAmount)Random.Range(0, System.Enum.GetValues(typeof(SugarAmount)).Length); // Se genera una cantidad de azucar al azar entre los 3 tipos
         IceAmount ice = (IceAmount)Random.Range(0, System.Enum.GetValues(typeof(IceAmount)).Length); // Se genera una cantidad de hielo al azar entre los 2 tipos
-        OrderType type = (OrderType)Random.Range(0, System.Enum.GetValues(typeof(OrderType)).Length); // Se genera un tipo de pedido entre los 2 tipos
+        OrderType type;
 
+        if (tutorialManager.isRunningT1) type = OrderType.tomar;
+        else type = (OrderType)Random.Range(0, System.Enum.GetValues(typeof(OrderType)).Length); // Se genera un tipo de pedido entre los 2 tipos
+        
         currentOrder = new Order(coffeeType, sugar, ice, type, foodOrder); // Se genera el nuevo pedido con las cantidades generadas
         orderNoteUI.SetCurrentOrder(currentOrder);
         currentOrder.GenerateRequiredSteps();

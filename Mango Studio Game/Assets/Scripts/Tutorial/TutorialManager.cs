@@ -9,12 +9,20 @@ using UnityEngine.UI;
 // Clase para gestionar los tutoriales
 public class TutorialManager : MonoBehaviour
 {
+    public enum StepType
+    {
+        UpLeft,
+        UpRight,
+        DownLeft,
+        DownRight
+    }
+
     // Se crea una clase basica para los componentes del tutorial
     [System.Serializable]
     public class TutorialStep
     {
         public string message;
-        public Sprite panelSprite;
+        public StepType stepType;
         public GameObject stepImage;
         public Vector2 position;
         public bool autoAdvance;
@@ -27,11 +35,18 @@ public class TutorialManager : MonoBehaviour
         public System.Action onStepComplete;
     }
 
-    [Header("Tutorial")]
-    [SerializeField] public RectTransform tutorialPanel;
-    [SerializeField] private TextMeshProUGUI tutorialText;
-    [SerializeField] CanvasGroup canvasGroup;
-    [SerializeField] private Image tutorialBackgroundImage;
+    [Header("Prefabs sprites bocadillos")]
+    [SerializeField] private GameObject prefabArribaIzq;
+    [SerializeField] private GameObject prefabArribaDer;
+    [SerializeField] private GameObject prefabAbajoIzq;
+    [SerializeField] private GameObject prefabAbajoDer;
+
+    [Header("Elementos tutorial")]
+    [SerializeField] public Transform tutorialContainer;
+    private GameObject currentBubbleObject;
+    private RectTransform currentPanelRect;
+    private CanvasGroup currentCanvasGroup;
+    private TextMeshProUGUI currentTextTMP;
     [SerializeField] private List<TutorialStep> steps;
 
     public float fadeDuration = 0.5f;
@@ -61,12 +76,6 @@ public class TutorialManager : MonoBehaviour
     public Image BZanahoriaImage;
     public Image BRedVelvetImage;
 
-    [Header("Imagenes bocadillos")]
-    public Sprite bocadilloAbajoIzq;
-    public Sprite bocadilloAbajoDer;
-    public Sprite bocadilloArribaIzq;
-    public Sprite bocadilloArribaDer;
-
     [Header("Imagenes gatos")]
     public Image gatoAbajoIzq;
     public Image gatoAbajoDer;
@@ -84,7 +93,7 @@ public class TutorialManager : MonoBehaviour
         if (TimeManager.Instance != null) TimeManager.Instance.onDayStarted -= HandleDayStarted;
     }
 
-    private void DesactivarImagenesGatos()
+    private void DesactivateCatsImages()
     {
         if (gatoCentro) gatoCentro.gameObject.SetActive(false);
         if (gatoAbajoIzq) gatoAbajoIzq.gameObject.SetActive(false);
@@ -95,12 +104,25 @@ public class TutorialManager : MonoBehaviour
 
     private IEnumerator Start()
     {
-        tutorialPanel.gameObject.SetActive(false);
-        DesactivarImagenesGatos();
+        ClearActualStep();
+        DesactivateCatsImages();
         yield return new WaitForSeconds(0.1f);
 
         int currentDay = TimeManager.Instance.currentDay;
         HandleDayStarted(currentDay);
+    }
+
+    // Funcion para obtener el prefab correspondiente del bocadillo
+    private GameObject GetPrefab(StepType tipo)
+    {
+        switch (tipo)
+        {
+            case StepType.UpLeft: return prefabArribaIzq;
+            case StepType.UpRight: return prefabArribaDer;
+            case StepType.DownLeft: return prefabAbajoIzq;
+            case StepType.DownRight: return prefabAbajoDer;
+            default: return prefabArribaIzq;
+        }
     }
 
     // Referencias a los dias que se muestra cada tutorial
@@ -145,7 +167,7 @@ public class TutorialManager : MonoBehaviour
                 message = "¡Bienvenido/a a Catpuccino! Tu primer día en la cafetería ha comenzado.",
                 position = new Vector2(0f, 0f),
                 autoAdvance = true,
-                //panelSprite = ,
+                stepType = StepType.UpLeft,
                 //stepImage = 
             });
             // Paso 1
@@ -154,7 +176,7 @@ public class TutorialManager : MonoBehaviour
                 message = "Comienza aceptando el pedido del primer cliente.",
                 position = new Vector2(-430, 210f),
                 autoAdvance = false,
-                //panelSprite = ,
+                stepType = StepType.UpLeft,
                 //stepImage = ,
                 glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
@@ -168,7 +190,7 @@ public class TutorialManager : MonoBehaviour
                 message = "¡Ya sabes que quiere el cliente! ¡Manos a la obra, haz clic en \"Aceptar pedido\"!",
                 position = new Vector2(400f, -91f),
                 autoAdvance = false,
-                //panelSprite = ,
+                stepType = StepType.UpRight,
                 //stepImage = ,
                 glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
@@ -182,7 +204,7 @@ public class TutorialManager : MonoBehaviour
                 message = "Coloca una taza en la cafetera. Si se trata de un pedido para llevar coloca un vaso.",
                 position = new Vector2(-723f, -110f),
                 autoAdvance = false,
-                //panelSprite = ,
+                stepType = StepType.DownLeft,
                 //stepImage = ,
                 glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
@@ -195,8 +217,8 @@ public class TutorialManager : MonoBehaviour
             {
                 message = "Si es para tomar, deberás clicar sobre un plato y colocarlo en la bandeja.",
                 position = new Vector2(575f, -125f),
-                autoAdvance = true,
-                //panelSprite = ,
+                autoAdvance = false,
+                stepType = StepType.DownRight,
                 //stepImage = ,
                 glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
@@ -210,7 +232,7 @@ public class TutorialManager : MonoBehaviour
                 message = "Si es para llevar, al finalizar deberás clicar sobre la tapa y colocarla en el vaso.",
                 position = new Vector2(-654f, -325f),
                 autoAdvance = true,
-                //panelSprite = ,
+                stepType = StepType.DownRight,
                 //stepImage = ,
                 glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
@@ -224,7 +246,7 @@ public class TutorialManager : MonoBehaviour
                 message = "Puedes comprobar los requisitos de la comanda clicando en \"Pedido\"",
                 position = new Vector2(120f, 280f),
                 autoAdvance = false,
-                //panelSprite = ,
+                stepType = StepType.DownRight,
                 //stepImage = ,
                 glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
@@ -242,7 +264,7 @@ public class TutorialManager : MonoBehaviour
                 message = "Para saber cómo preparar los cafés haz clic en el libro de recetas.",
                 position = new Vector2(-685f, 225f),
                 autoAdvance = false,
-                //panelSprite = ,
+                stepType = StepType.DownRight,
                 //stepImage = ,
                 glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
@@ -260,7 +282,7 @@ public class TutorialManager : MonoBehaviour
                 message = "Ahora que ya sabes cómo preparar el café, mantén presionado el botón para seleccionar la cantidad de café correspondiente.",
                 position = new Vector2(-380f, -120f),
                 autoAdvance = false,
-                //panelSprite = ,
+                stepType = StepType.DownRight,
                 //stepImage = ,
                 glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
@@ -278,7 +300,7 @@ public class TutorialManager : MonoBehaviour
                 message = "¡Mantén presionada la palanca para moler el café!",
                 position = new Vector2(160f, 114f),
                 autoAdvance = false,
-                //panelSprite = ,
+                stepType = StepType.DownRight,
                 //stepImage = ,
                 glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
@@ -296,7 +318,7 @@ public class TutorialManager : MonoBehaviour
                 message = "Una vez molido el café, mueve el filtro a la cafetera clicando sobre él.",
                 position = new Vector2(-157f, -231f),
                 autoAdvance = false,
-                //panelSprite = ,
+                stepType = StepType.DownRight,
                 //stepImage = ,
                 glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
@@ -314,7 +336,7 @@ public class TutorialManager : MonoBehaviour
                 message = "Comprueba si el café se prepara con agua. Si es así, clica sobre ella e interactúa con el recipiente.",
                 position = new Vector2(30f, -390f),
                 autoAdvance = true,
-                //panelSprite = ,
+                stepType = StepType.DownRight,
                 //stepImage = ,
                 glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
@@ -328,7 +350,7 @@ public class TutorialManager : MonoBehaviour
                 message = "¡Ya puedes clicar para echar el café! ¡Presiona el botón superior y, cuando el marcador esté cerca de la zona marcada, clica en el inferior para pararlo!",
                 position = new Vector2(-390f, 180f),
                 autoAdvance = false,
-                //panelSprite = ,
+                stepType = StepType.DownRight,
                 //stepImage = ,
                 glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
@@ -342,7 +364,7 @@ public class TutorialManager : MonoBehaviour
                 message = "Ahora puedes echar el azúcar y los hielos clicando sobre ellos e interactuando con el recipiente mediante clic.",
                 position = new Vector2(30f, -390f),
                 autoAdvance = true,
-                //panelSprite = ,
+                stepType = StepType.DownRight,
                 //stepImage = ,
                 glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
@@ -357,7 +379,7 @@ public class TutorialManager : MonoBehaviour
                 message = "¡Ten cuidado con la preparación! ¡Comprueba en el recetario en qué orden echar los ingredientes o perderás puntos!",
                 position = new Vector2(30f, -390f),
                 autoAdvance = true,
-                //panelSprite = ,
+                stepType = StepType.DownRight,
                 //stepImage = ,
                 glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
@@ -371,7 +393,7 @@ public class TutorialManager : MonoBehaviour
                 message = "¡Si te equivocas con la preparación puedes empezar de 0 clicando sobre la basura!",
                 position = new Vector2(-200f, 100f),
                 autoAdvance = true,
-                //panelSprite = ,
+                stepType = StepType.DownRight,
                 //stepImage = ,
                 glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
@@ -385,7 +407,7 @@ public class TutorialManager : MonoBehaviour
                 message = "Cuando tengas todo listo, coloca el vaso sobre la mesa. Si se trata de una taza, colócala sobre el plato.",
                 position = new Vector2(600f, -100f),
                 autoAdvance = true,
-                //panelSprite = ,
+                stepType = StepType.DownRight,
                 //stepImage = ,
                 glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
@@ -399,7 +421,7 @@ public class TutorialManager : MonoBehaviour
                 message = "Presiona \"Entregar\" para entregarle el pedido al cliente.",
                 position = new Vector2(195f, -390f),
                 autoAdvance = false,
-                //panelSprite = ,
+                stepType = StepType.DownRight,
                 //stepImage = ,
                 glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
@@ -413,7 +435,7 @@ public class TutorialManager : MonoBehaviour
                 message = "El cliente expondrá su valoración y pagará en función de la puntuación que hayas obtenido al preparar su comanda.",
                 position = new Vector2(350f, 175f),
                 autoAdvance = true,
-                //panelSprite = ,
+                stepType = StepType.DownRight,
                 //stepImage = ,
             });
             // Paso 19
@@ -422,7 +444,7 @@ public class TutorialManager : MonoBehaviour
                 message = "¡Si la puntuación es alta te dará una propina!",
                 position = new Vector2(350f, 175f),
                 autoAdvance = true,
-                //panelSprite = ,
+                stepType = StepType.DownRight,
                 //stepImage = ,
             });
             // Paso 20
@@ -431,7 +453,7 @@ public class TutorialManager : MonoBehaviour
                 message = "Haz clic en \"Finalizar\" para volver a la cafetería.",
                 position = new Vector2(350f, 175f),
                 autoAdvance = false,
-                //panelSprite = ,
+                stepType = StepType.DownRight,
                 //stepImage = ,
                 glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
@@ -445,7 +467,7 @@ public class TutorialManager : MonoBehaviour
                 message = "¡Ya has atendido a tu primer cliente! Sigue atendiendo más para poder pagar las facturas al final del día. ¡La cafetería cierra a las 20:00pm!",
                 position = new Vector2(0f, 0f),
                 autoAdvance = true,
-                //panelSprite = ,
+                stepType = StepType.DownRight,
                 //stepImage = ,
             });
             // Paso 22
@@ -454,7 +476,7 @@ public class TutorialManager : MonoBehaviour
                 message = "Al cerrar, siempre ganarás 50 monedas de café, que podrás gastar en los sobres de la tienda.",
                 position = new Vector2(-596f, 350f),
                 autoAdvance = true,
-                //panelSprite = ,
+                stepType = StepType.DownRight,
                 //stepImage = ,
             });
             // Paso 23
@@ -463,7 +485,7 @@ public class TutorialManager : MonoBehaviour
                 message = "¡Si compras sobres de cartas, podrás tener los gatos que desbloquees acompañándote en la cafetería!",
                 position = new Vector2(0f, 0f),
                 autoAdvance = true,
-                //panelSprite = ,
+                stepType = StepType.DownRight,
                 //stepImage = ,
             });
             // Paso 24
@@ -472,7 +494,7 @@ public class TutorialManager : MonoBehaviour
                 message = "Como recompensa, se te ingresarán 220$ para ayudarte a pasar el primer día y 20 monedas de café. ¡Disfruta de Catpuccino!",
                 position = new Vector2(0f, 0f),
                 autoAdvance = true,
-                //panelSprite = ,
+                stepType = StepType.DownRight,
                 //stepImage = ,
             });
         }
@@ -497,21 +519,27 @@ public class TutorialManager : MonoBehaviour
 
         var step = steps[currentStep];
 
-        if (tutorialBackgroundImage != null && step.panelSprite != null)
+        ClearActualStep();
+
+        GameObject prefabToSpawn = GetPrefab(step.stepType);
+        if (prefabToSpawn != null && tutorialContainer != null)
         {
-            tutorialBackgroundImage.sprite = step.panelSprite;
+            currentBubbleObject = Instantiate(prefabToSpawn, tutorialContainer);
+
+            currentPanelRect = currentBubbleObject.GetComponent<RectTransform>();
+            currentCanvasGroup = currentBubbleObject.GetComponent<CanvasGroup>();
+            currentTextTMP = currentBubbleObject.GetComponentInChildren<TextMeshProUGUI>();
+
+            // Configuracion inicial
+            currentPanelRect.localScale = Vector3.one;
+            currentPanelRect.localRotation = Quaternion.identity;
+            currentPanelRect.anchoredPosition = step.position; // Se pone la posicion indicada
+
+            if (currentCanvasGroup == null) currentCanvasGroup = currentBubbleObject.AddComponent<CanvasGroup>();
+            if (currentTextTMP != null) currentTextTMP.text = step.message;
         }
 
-        if (step.stepImage != null)
-        {
-            step.stepImage.SetActive(true);
-        }
-
-        // Mover el panel a la posicion indicada
-        tutorialPanel.anchoredPosition = step.position;
-        tutorialText.text = step.message;
-        tutorialPanel.gameObject.SetActive(true);
-
+        if (step.stepImage != null) step.stepImage.SetActive(true);
         step.onStepStart?.Invoke();
 
         // Efecto fade + rebote al mostrar el paso del turorial
@@ -526,7 +554,6 @@ public class TutorialManager : MonoBehaviour
             foreach (var obj in step.highlightObjects)
             {
                 if (obj == null) continue;
-
                 var img = obj.GetComponent<UnityEngine.UI.Image>();
                 if (img != null)
                 {
@@ -541,7 +568,6 @@ public class TutorialManager : MonoBehaviour
         {
             while (!Input.GetMouseButtonDown(0))
                 yield return null;
-            //yield return new WaitForSeconds(step.autoDelay);
             CompleteCurrentStep();
         }
     }
@@ -583,7 +609,7 @@ public class TutorialManager : MonoBehaviour
     public void EndTutorialT1()
     {
         isRunningT1 = false;
-        tutorialPanel.gameObject.SetActive(false);
+        tutorialContainer.gameObject.SetActive(false);
         skipTutorialButton.SetActive(false);
         GameManager.Instance.AnadirMonedas(220);
         PlayerDataManager.instance.AddBasicCoins(20);
@@ -602,7 +628,7 @@ public class TutorialManager : MonoBehaviour
                 message = "¡Cada día desbloquearás nuevas recetas e ingredientes! Interactúa con ellos haciendo clic.",
                 position = new Vector2(45f, 45f),
                 autoAdvance = true,
-                //panelSprite = ,
+                stepType = StepType.DownRight,
                 //stepImage = ,
                 glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
@@ -614,9 +640,9 @@ public class TutorialManager : MonoBehaviour
             steps.Add(new TutorialStep
             {
                 message = "¡Ahora puedes visitar la zona de pastelería! Haz clic sobre el bótón para ir.",
-                position = new Vector2(50f, 320f),
+                position = new Vector2(50f, 290f),
                 autoAdvance = false,
-                //panelSprite = ,
+                stepType = StepType.DownRight,
                 //stepImage = ,
                 glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
@@ -630,7 +656,7 @@ public class TutorialManager : MonoBehaviour
                 message = "Comienza poniendo un plato o una bolsa para llevar en la bandeja según el tipo de pedido.",
                 position = new Vector2(150f, -370f),
                 autoAdvance = false,
-                //panelSprite = ,
+                stepType = StepType.DownRight,
                 //stepImage = ,
                 glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
@@ -645,7 +671,7 @@ public class TutorialManager : MonoBehaviour
                 message = "Ahora, selecciona el tipo de bizcocho correspondiente. Si no sabes identificarlo, comprueba los nombres en el libro de recetas.",
                 position = new Vector2(340f, 10f),
                 autoAdvance = false,
-                //panelSprite = ,
+                stepType = StepType.DownRight,
                 //stepImage = ,
                 glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
@@ -663,7 +689,7 @@ public class TutorialManager : MonoBehaviour
                 message = "Mediante clic, coloca el bizcocho en el horno.",
                 position = new Vector2(130f, -160f),
                 autoAdvance = false,
-                //panelSprite = ,
+                stepType = StepType.DownRight,
                 //stepImage = ,
             });
             // Paso 5
@@ -672,7 +698,7 @@ public class TutorialManager : MonoBehaviour
                 message = "¡Pulsa el botón para hornearlo!",
                 position = new Vector2(130f, -160f),
                 autoAdvance = false,
-                //panelSprite = ,
+                stepType = StepType.DownRight,
                 //stepImage = ,
                 glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
@@ -686,7 +712,7 @@ public class TutorialManager : MonoBehaviour
                 message = "Vigila el tiempo y clica el botón inferior. ¡Si lo paras antes quedará crudo! ¡Si te pasas se quemará!",
                 position = new Vector2(450f, 206f),
                 autoAdvance = true,
-                //panelSprite = ,
+                stepType = StepType.DownRight,
                 //stepImage = ,
                 glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
@@ -701,7 +727,7 @@ public class TutorialManager : MonoBehaviour
                 message = "Cuando finalice el horneado mueve el bizcocho al recipiente mediante clic.",
                 position = new Vector2(150f, -370f),
                 autoAdvance = false,
-                //panelSprite = ,
+                stepType = StepType.DownRight,
                 //stepImage = ,
                 glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
@@ -715,7 +741,7 @@ public class TutorialManager : MonoBehaviour
                 message = "Si te equivocas preparando la comida, puedes comenzar de 0 clicando sobre la basura.",
                 position = new Vector2(-450f, -380f),
                 autoAdvance = true,
-                //panelSprite = ,
+                stepType = StepType.DownRight,
                 //stepImage = ,
                 glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
@@ -729,7 +755,7 @@ public class TutorialManager : MonoBehaviour
                 message = "¡Ya has finalizado la preparación del dulce! Vuelve a la zona de los cafés para continuar la comanda.",
                 position = new Vector2(280f, 361f),
                 autoAdvance = false,
-                //panelSprite = ,
+                stepType = StepType.DownRight,
                 //stepImage = ,
                 onStepStart = () =>
                 {
@@ -796,21 +822,30 @@ public class TutorialManager : MonoBehaviour
         }
 
         var step = steps[currentStep];
+        ClearActualStep();
 
-        if (tutorialBackgroundImage != null && step.panelSprite != null)
+        GameObject prefabToSpawn = GetPrefab(step.stepType);
+        if (prefabToSpawn != null && tutorialContainer != null)
         {
-            tutorialBackgroundImage.sprite = step.panelSprite;
+            currentBubbleObject = Instantiate(prefabToSpawn, tutorialContainer);
+
+            currentPanelRect = currentBubbleObject.GetComponent<RectTransform>();
+            currentCanvasGroup = currentBubbleObject.GetComponent<CanvasGroup>();
+            currentTextTMP = currentBubbleObject.GetComponentInChildren<TextMeshProUGUI>();
+
+            // Configuracion inicial
+            currentPanelRect.localScale = Vector3.one;
+            currentPanelRect.localRotation = Quaternion.identity;
+            currentPanelRect.anchoredPosition = step.position; // Se pone la posicion indicada
+
+            if (currentCanvasGroup == null) currentCanvasGroup = currentBubbleObject.AddComponent<CanvasGroup>();
+            if (currentTextTMP != null) currentTextTMP.text = step.message;
         }
 
         if (step.stepImage != null)
         {
             step.stepImage.SetActive(true);
         }
-
-        // Mover el panel a la posicion indicada
-        tutorialPanel.anchoredPosition = step.position;
-        tutorialText.text = step.message;
-        tutorialPanel.gameObject.SetActive(true);
 
         step.onStepStart?.Invoke();
 
@@ -848,7 +883,7 @@ public class TutorialManager : MonoBehaviour
     public void EndTutorialT2()
     {
         isRunningT2 = false;
-        tutorialPanel.gameObject.SetActive(false);
+        tutorialContainer.gameObject.SetActive(false);
         skipTutorialButton.SetActive(false);
         Debug.Log("Tutorial 2 completado");
     }
@@ -865,7 +900,7 @@ public class TutorialManager : MonoBehaviour
                 message = "¡Hoy has desbloqueado la opción de calentar la leche!",
                 position = new Vector2(0f, 0f),
                 autoAdvance = true,
-                //panelSprite = ,
+                stepType = StepType.DownRight,
                 //stepImage = ,
                 glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
@@ -879,7 +914,7 @@ public class TutorialManager : MonoBehaviour
                 message = "Clica sobre la taza de leche y colócala en el espumador.",
                 position = new Vector2(-140f, -170f),
                 autoAdvance = false,
-                //panelSprite = ,
+                stepType = StepType.DownRight,
                 //stepImage = ,
                 onStepStart = () =>
                 {
@@ -897,7 +932,7 @@ public class TutorialManager : MonoBehaviour
                 message = "Ahora, mantén presiona la rueda para calentar hasta el punto indicado.",
                 position = new Vector2(100f, 260f),
                 autoAdvance = false,
-                //panelSprite = ,
+                stepType = StepType.DownRight,
                 //stepImage = ,
                 onStepStart = () =>
                 {
@@ -915,7 +950,7 @@ public class TutorialManager : MonoBehaviour
                 message = "¡Ten cuidado de no pasarte calentando la leche ni de dejarla fría!",
                 position = new Vector2(581f, 54f),
                 autoAdvance = true,
-                //panelSprite = ,
+                stepType = StepType.DownRight,
                 //stepImage = ,
             });
             // Paso 4
@@ -924,7 +959,7 @@ public class TutorialManager : MonoBehaviour
                 message = "¡Ya has aprendido cómo preparar la leche caliente para tus cafés!",
                 position = new Vector2(581f, 54f),
                 autoAdvance = true,
-                //panelSprite = ,
+                stepType = StepType.DownRight,
                 //stepImage = ,
             });
         }
@@ -983,22 +1018,30 @@ public class TutorialManager : MonoBehaviour
         }
 
         var step = steps[currentStep];
+        ClearActualStep();
 
-        if (tutorialBackgroundImage != null && step.panelSprite != null)
+        GameObject prefabToSpawn = GetPrefab(step.stepType);
+        if (prefabToSpawn != null && tutorialContainer != null)
         {
-            tutorialBackgroundImage.sprite = step.panelSprite;
+            currentBubbleObject = Instantiate(prefabToSpawn, tutorialContainer);
+
+            currentPanelRect = currentBubbleObject.GetComponent<RectTransform>();
+            currentCanvasGroup = currentBubbleObject.GetComponent<CanvasGroup>();
+            currentTextTMP = currentBubbleObject.GetComponentInChildren<TextMeshProUGUI>();
+
+            // Configuracion inicial
+            currentPanelRect.localScale = Vector3.one;
+            currentPanelRect.localRotation = Quaternion.identity;
+            currentPanelRect.anchoredPosition = step.position; // Se pone la posicion indicada
+
+            if (currentCanvasGroup == null) currentCanvasGroup = currentBubbleObject.AddComponent<CanvasGroup>();
+            if (currentTextTMP != null) currentTextTMP.text = step.message;
         }
 
         if (step.stepImage != null)
         {
             step.stepImage.SetActive(true);
         }
-
-        // Mover el panel a la posicion indicada
-        tutorialPanel.anchoredPosition = step.position;
-        tutorialText.text = step.message;
-        tutorialPanel.gameObject.SetActive(true);
-
         step.onStepStart?.Invoke();
 
         // Efecto fade + rebote al mostrar el paso del turorial
@@ -1035,7 +1078,7 @@ public class TutorialManager : MonoBehaviour
     public void EndTutorialT3()
     {
         isRunningT3 = false;
-        tutorialPanel.gameObject.SetActive(false);
+        tutorialContainer.gameObject.SetActive(false);
         skipTutorialButton.SetActive(false);
         Debug.Log("Tutorial 3 completado");
     }
@@ -1046,11 +1089,10 @@ public class TutorialManager : MonoBehaviour
     {
         StopAllCoroutines();
         ClearAllGlow();
+        ClearActualStep();
 
         if (skipTutorialButton != null)
             skipTutorialButton.SetActive(false);
-        tutorialPanel.gameObject.SetActive(false);
-        canvasGroup.alpha = 0f;
 
         if (isRunningT1)
         {
@@ -1063,6 +1105,16 @@ public class TutorialManager : MonoBehaviour
         isRunningT3 = false;
 
         Debug.Log("Tutorial saltado manualmente");
+    }
+
+    // Funcion para resetear el bocadillo del paso actual
+    private void ClearActualStep()
+    {
+        if (currentBubbleObject != null)
+        {
+            Destroy(currentBubbleObject);
+            currentBubbleObject = null;
+        }
     }
 
     // Funcion encargada de eliminar el efecto glow si se salta el tutorial
@@ -1092,55 +1144,61 @@ public class TutorialManager : MonoBehaviour
     // Funciones para la animacion y el fade in/out de los mensajes 
     private IEnumerator FadeInPanel()
     {
-        canvasGroup.alpha = 0f;
+        if (currentCanvasGroup == null) yield break;
+
+        currentCanvasGroup.alpha = 0f;
         float elapsed = 0f;
 
         while (elapsed < fadeDuration)
         {
             elapsed += Time.deltaTime;
-            canvasGroup.alpha = Mathf.Clamp01(elapsed / fadeDuration);
+            if (currentCanvasGroup != null)
+                currentCanvasGroup.alpha = Mathf.Clamp01(elapsed / fadeDuration);
             yield return null;
         }
     }
 
     private IEnumerator FadeOutPanel(System.Action onFinish)
     {
-        float elapsed = 0f;
-        while (elapsed < fadeDuration)
+        if (currentCanvasGroup != null)
         {
-            elapsed += Time.deltaTime;
-            canvasGroup.alpha = 1f - Mathf.Clamp01(elapsed / fadeDuration);
-            yield return null;
+            float elapsed = 0f;
+            while (elapsed < fadeDuration)
+            {
+                elapsed += Time.deltaTime;
+                if (currentCanvasGroup != null)
+                    currentCanvasGroup.alpha = 1f - Mathf.Clamp01(elapsed / fadeDuration);
+                yield return null;
+            }
         }
-        tutorialPanel.gameObject.SetActive(false);
         onFinish?.Invoke();
     }
 
     // Animacion de rebote del mensaje
     private IEnumerator BouncePanelLoop()
     {
+        if (currentPanelRect == null) yield break;
         Vector3 originalScale = Vector3.one;
         Vector3 targetScale = Vector3.one * bounceScale;
 
-        while (tutorialPanel.gameObject.activeSelf)
+        while (currentBubbleObject != null) // Mientras el objeto exista
         {
-            // Escalar hacia afuera
             float elapsed = 0f;
             while (elapsed < bounceSpeed)
             {
+                if (currentPanelRect == null) yield break;
                 elapsed += Time.deltaTime;
                 float t = Mathf.Sin((elapsed / bounceSpeed) * Mathf.PI * 0.5f);
-                tutorialPanel.localScale = Vector3.Lerp(originalScale, targetScale, t);
+                currentPanelRect.localScale = Vector3.Lerp(originalScale, targetScale, t);
                 yield return null;
             }
-
-            // Escalar de vuelta
             elapsed = 0f;
             while (elapsed < bounceSpeed)
             {
+                if (currentPanelRect == null) yield break;
                 elapsed += Time.deltaTime;
                 float t = Mathf.Sin((elapsed / bounceSpeed) * Mathf.PI * 0.5f);
-                tutorialPanel.localScale = Vector3.Lerp(targetScale, originalScale, t);
+                currentPanelRect.localScale = Vector3.Lerp(targetScale, originalScale, t);
                 yield return null;
             }
         }
