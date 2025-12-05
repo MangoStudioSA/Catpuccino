@@ -2996,7 +2996,7 @@ Transform:
   m_GameObject: {fileID: 76937782}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.87546456, z: -0, w: -0.48328236}
-  m_LocalPosition: {x: -3.184, y: 0.983, z: 1.893}
+  m_LocalPosition: {x: -3.184, y: 1.003, z: 1.893}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3127,6 +3127,7 @@ RectTransform:
   - {fileID: 2079572000}
   - {fileID: 1827775116}
   - {fileID: 1715472385}
+  - {fileID: 1808044518}
   - {fileID: 410345402}
   - {fileID: 666273215}
   m_Father: {fileID: 2090294130}
@@ -3151,6 +3152,7 @@ MonoBehaviour:
   catCafeManager: {fileID: 188743421}
   catSelectionUI: {fileID: 188743423}
   packPanel: {fileID: 82270507}
+  emptyCardAnimObject: {fileID: 1808044517}
   packRect: {fileID: 2079572000}
   cardImage: {fileID: 1715472383}
   packImage: {fileID: 410345403}
@@ -3158,9 +3160,13 @@ MonoBehaviour:
   closeButton: {fileID: 666273216}
   basicPackSprite: {fileID: 21300000, guid: 49ec3b4d092c8b147a8a5f1a023c78ef, type: 3}
   premiumPackSprite: {fileID: 21300000, guid: 207cc549797ec9e418a123463b47035e, type: 3}
+  emptyAnimName: OpenCard
   timeToShowCard: 2.1
+  emptyCardAnimDuration: 1
+  timeReadingCard: 2
   basicAnimObject: {fileID: 2079571997}
   premiumAnimObject: {fileID: 1827775115}
+  emptyCardSprite: {fileID: 21300000, guid: 36a3f119d563c754bb4b1ff1623aa1d3, type: 3}
   basicCards:
   - {fileID: 21300000, guid: deb71a0c49a76164e93318c07b92e024, type: 3}
   - {fileID: 21300000, guid: 4c037cdda812633439407dd193d602cc, type: 3}
@@ -6479,7 +6485,7 @@ Transform:
   m_GameObject: {fileID: 238284408}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.35836798, z: -0, w: 0.93358046}
-  m_LocalPosition: {x: -6.21, y: 0, z: -0.51}
+  m_LocalPosition: {x: -6.21, y: 0.02, z: -0.51}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10596,7 +10602,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 75
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -13345,7 +13351,7 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 1
+    enabled: 0
     serializedVersion: 4
     type: 1
     collisionMode: 0
@@ -13526,7 +13532,7 @@ ParticleSystem:
     collidesWithDynamic: 1
     interiorCollisions: 0
   TriggerModule:
-    enabled: 0
+    enabled: 1
     serializedVersion: 2
     inside: 1
     outside: 0
@@ -13534,7 +13540,8 @@ ParticleSystem:
     exit: 0
     colliderQueryMode: 0
     radiusScale: 1
-    primitives: []
+    primitives:
+    - {fileID: 1092924960}
   SubModule:
     serializedVersion: 2
     enabled: 0
@@ -14498,7 +14505,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2.7, y: 63}
+  m_AnchoredPosition: {x: 0.45, y: 20.9}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &371112195
@@ -16601,7 +16608,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -40, y: -67}
+  m_AnchoredPosition: {x: -4.5, y: -67}
   m_SizeDelta: {x: 388, y: 96}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &425404462
@@ -17337,7 +17344,7 @@ Transform:
   m_GameObject: {fileID: 452169297}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.9985835, z: -0, w: 0.053207573}
-  m_LocalPosition: {x: -4.82, y: 0, z: 1.76}
+  m_LocalPosition: {x: -4.82, y: 0.01999998, z: 1.76}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -22939,15 +22946,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: bcf8ef3f23dee4e489fb2b7f700d52bc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3a88fc8ea9a5c3149aba9080e790373d, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -22978,7 +22985,7 @@ MonoBehaviour:
   category: 0
   coffeeType: 2
   foodType: 0
-  recipeSprite: {fileID: 21300000, guid: bcf8ef3f23dee4e489fb2b7f700d52bc, type: 3}
+  recipeSprite: {fileID: 21300000, guid: 3a88fc8ea9a5c3149aba9080e790373d, type: 3}
 --- !u!1 &639290466
 GameObject:
   m_ObjectHideFlags: 0
@@ -23031,15 +23038,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: daff9e541ea4bb24aa789048fe329e04, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 160e546c44afd1b4fac5a7218b5ff470, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -23070,7 +23077,7 @@ MonoBehaviour:
   category: 0
   coffeeType: 3
   foodType: 0
-  recipeSprite: {fileID: 21300000, guid: daff9e541ea4bb24aa789048fe329e04, type: 3}
+  recipeSprite: {fileID: 21300000, guid: 160e546c44afd1b4fac5a7218b5ff470, type: 3}
 --- !u!1 &642971831
 GameObject:
   m_ObjectHideFlags: 0
@@ -24470,9 +24477,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 31cb02b61d020374cad0e6ac788b62ee, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c8c6f41e62f81594fa062441219c685d, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -24503,7 +24510,7 @@ MonoBehaviour:
   category: 0
   coffeeType: 1
   foodType: 0
-  recipeSprite: {fileID: 21300000, guid: 31cb02b61d020374cad0e6ac788b62ee, type: 3}
+  recipeSprite: {fileID: 21300000, guid: c8c6f41e62f81594fa062441219c685d, type: 3}
 --- !u!1 &688795441
 GameObject:
   m_ObjectHideFlags: 0
@@ -27646,10 +27653,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1071502799}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.012207031, y: 0}
-  m_SizeDelta: {x: -1119.94, y: -630.07996}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 35.512207, y: 0}
+  m_SizeDelta: {x: 800.06006, y: 449.92004}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &829624732
 MonoBehaviour:
@@ -34929,6 +34936,68 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1092924959
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1092924960}
+  - component: {fileID: 1092924962}
+  - component: {fileID: 1092924961}
+  m_Layer: 0
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1092924960
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1092924959}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.34095383, z: 0, w: 0.94008005}
+  m_LocalPosition: {x: 0.0013, y: -0.1917, z: 0.0352}
+  m_LocalScale: {x: 0.12, y: 0.02, z: 0.12}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1356819471}
+  m_LocalEulerAnglesHint: {x: 0, y: 39.87, z: 0}
+--- !u!65 &1092924961
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1092924959}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!33 &1092924962
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1092924959}
+  m_Mesh: {fileID: 0}
 --- !u!1 &1097233526
 GameObject:
   m_ObjectHideFlags: 0
@@ -35496,15 +35565,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2c68f245f2e99d241b4f5b0aa2ff3b59, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fd6fdf3fde44e684aa72184cb8eea904, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -35535,7 +35604,7 @@ MonoBehaviour:
   category: 0
   coffeeType: 4
   foodType: 0
-  recipeSprite: {fileID: 21300000, guid: 2c68f245f2e99d241b4f5b0aa2ff3b59, type: 3}
+  recipeSprite: {fileID: 21300000, guid: fd6fdf3fde44e684aa72184cb8eea904, type: 3}
 --- !u!1 &1124410638
 GameObject:
   m_ObjectHideFlags: 0
@@ -36010,15 +36079,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 19f9019a305ebfb4e8b8efdfb8776651, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b659301738589ab46b2ac8dc6562ef42, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -36049,7 +36118,7 @@ MonoBehaviour:
   category: 0
   coffeeType: 5
   foodType: 0
-  recipeSprite: {fileID: 21300000, guid: 19f9019a305ebfb4e8b8efdfb8776651, type: 3}
+  recipeSprite: {fileID: 21300000, guid: b659301738589ab46b2ac8dc6562ef42, type: 3}
 --- !u!1 &1135090888
 GameObject:
   m_ObjectHideFlags: 0
@@ -37487,9 +37556,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 22519088d8242494b8754859a4b9c8ca, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4336edd1b0efb0d4abc53be90e4bb96c, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -37520,7 +37589,7 @@ MonoBehaviour:
   category: 0
   coffeeType: 0
   foodType: 0
-  recipeSprite: {fileID: 21300000, guid: 22519088d8242494b8754859a4b9c8ca, type: 3}
+  recipeSprite: {fileID: 21300000, guid: 4336edd1b0efb0d4abc53be90e4bb96c, type: 3}
 --- !u!1 &1193703490
 GameObject:
   m_ObjectHideFlags: 0
@@ -38873,7 +38942,7 @@ Transform:
   m_GameObject: {fileID: 1237320078}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.35836798, z: -0, w: 0.93358046}
-  m_LocalPosition: {x: -4.205, y: 0, z: -2.316}
+  m_LocalPosition: {x: -4.205, y: 0.01999998, z: -2.316}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -41517,7 +41586,7 @@ Transform:
   m_GameObject: {fileID: 1308594539}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.9571175, z: -0, w: 0.2897001}
-  m_LocalPosition: {x: -0.36, y: 1.7390001, z: 1.703}
+  m_LocalPosition: {x: -0.36, y: 1.799, z: 1.703}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -42296,7 +42365,7 @@ Transform:
   m_GameObject: {fileID: 1337610864}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.6845471, z: -0, w: 0.7289686}
-  m_LocalPosition: {x: -6.81, y: 0.82, z: 0.639}
+  m_LocalPosition: {x: -6.81, y: 0.88, z: 0.639}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -43045,6 +43114,38 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1356517772}
   m_CullTransparentMesh: 1
+--- !u!1 &1356819470
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1356819471}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1356819471
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1356819470}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.912, y: 12.08, z: -4.37}
+  m_LocalScale: {x: 50, y: 50, z: 50}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1092924960}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1357721045
 GameObject:
   m_ObjectHideFlags: 0
@@ -45880,7 +45981,7 @@ Transform:
   m_GameObject: {fileID: 1467403559}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.032282885, z: -0, w: 0.99947876}
-  m_LocalPosition: {x: -1.41, y: 0, z: -1.5299997}
+  m_LocalPosition: {x: -1.41, y: 0.01999998, z: -1.5299997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -47436,6 +47537,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Escenario
       objectReference: {fileID: 0}
+    - target: {fileID: 1061929016259872697, guid: 5a68725673f3cc94a95a94ac3df60f90, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4f17fa5dfb7751f43a60a1195eb29fbb, type: 2}
     - target: {fileID: 2527800619430112377, guid: 5a68725673f3cc94a95a94ac3df60f90, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -49273,7 +49378,7 @@ Transform:
   m_GameObject: {fileID: 1574846557}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.93605953, z: -0, w: 0.3518417}
-  m_LocalPosition: {x: 0.22, y: 0.56799996, z: 1.17}
+  m_LocalPosition: {x: 0.22, y: 0.62799996, z: 1.17}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -53625,7 +53730,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -39.5, y: 230}
+  m_AnchoredPosition: {x: -4, y: 230}
   m_SizeDelta: {x: 352, y: 60.54}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1744815208
@@ -53779,15 +53884,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 876eee47d769f37419b6ed79339f33b6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bd7387dfa298e0446848dc992ccd8fec, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -53818,7 +53923,7 @@ MonoBehaviour:
   category: 0
   coffeeType: 6
   foodType: 0
-  recipeSprite: {fileID: 21300000, guid: 876eee47d769f37419b6ed79339f33b6, type: 3}
+  recipeSprite: {fileID: 21300000, guid: bd7387dfa298e0446848dc992ccd8fec, type: 3}
 --- !u!1 &1749412238
 GameObject:
   m_ObjectHideFlags: 0
@@ -54421,15 +54526,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: fd1ecf3dd0a8b5a498f63c6ecdc72fde, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 76197f7c5f06b85488dae63c7f8ccb5c, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -54460,7 +54565,7 @@ MonoBehaviour:
   category: 0
   coffeeType: 7
   foodType: 0
-  recipeSprite: {fileID: 21300000, guid: fd1ecf3dd0a8b5a498f63c6ecdc72fde, type: 3}
+  recipeSprite: {fileID: 21300000, guid: 76197f7c5f06b85488dae63c7f8ccb5c, type: 3}
 --- !u!1 &1785940528
 GameObject:
   m_ObjectHideFlags: 0
@@ -55247,6 +55352,104 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1806166178}
   m_CullTransparentMesh: 1
+--- !u!1 &1808044517
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1808044518}
+  - component: {fileID: 1808044520}
+  - component: {fileID: 1808044519}
+  - component: {fileID: 1808044521}
+  m_Layer: 5
+  m_Name: CartaBaseImg
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1808044518
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1808044517}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 82270508}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1808044519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1808044517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 1
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1808044520
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1808044517}
+  m_CullTransparentMesh: 1
+--- !u!95 &1808044521
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1808044517}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b854f79d6e63a924187eb892baee5d2e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 2
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1810667997
 GameObject:
   m_ObjectHideFlags: 0
@@ -56087,7 +56290,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -40, y: 77}
+  m_AnchoredPosition: {x: -4.5, y: 77}
   m_SizeDelta: {x: 387, y: 95}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1836738695
@@ -57568,15 +57771,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5c5bc64c54b9550488f8928bb97e2afc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fc9e958c432b4d24cb1bbd94b7083ceb, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -57607,7 +57810,7 @@ MonoBehaviour:
   category: 0
   coffeeType: 10
   foodType: 0
-  recipeSprite: {fileID: 21300000, guid: 5c5bc64c54b9550488f8928bb97e2afc, type: 3}
+  recipeSprite: {fileID: 21300000, guid: fc9e958c432b4d24cb1bbd94b7083ceb, type: 3}
 --- !u!1 &1919829058
 GameObject:
   m_ObjectHideFlags: 0
@@ -57815,15 +58018,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 879afa58e1a562c45902d5b395d81040, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 53111b8d9a06f184bbe9538a0cbda0d0, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -57854,7 +58057,7 @@ MonoBehaviour:
   category: 0
   coffeeType: 8
   foodType: 0
-  recipeSprite: {fileID: 21300000, guid: 879afa58e1a562c45902d5b395d81040, type: 3}
+  recipeSprite: {fileID: 21300000, guid: 53111b8d9a06f184bbe9538a0cbda0d0, type: 3}
 --- !u!1 &1931899733
 GameObject:
   m_ObjectHideFlags: 0
@@ -59874,7 +60077,7 @@ Transform:
   m_GameObject: {fileID: 2022023996}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.032282885, z: -0, w: 0.99947876}
-  m_LocalPosition: {x: -1.819, y: 0, z: -2.026}
+  m_LocalPosition: {x: -1.819, y: 0.01999998, z: -2.026}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -60833,15 +61036,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 36e2df195f4813346805404b4500c22f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1a866271400a1344b821c0749930a0ed, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -60872,7 +61075,7 @@ MonoBehaviour:
   category: 0
   coffeeType: 9
   foodType: 0
-  recipeSprite: {fileID: 21300000, guid: 36e2df195f4813346805404b4500c22f, type: 3}
+  recipeSprite: {fileID: 21300000, guid: 1a866271400a1344b821c0749930a0ed, type: 3}
 --- !u!1 &2051559960
 GameObject:
   m_ObjectHideFlags: 0
@@ -61235,7 +61438,7 @@ Transform:
   m_GameObject: {fileID: 2072865778}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.35836798, z: -0, w: 0.93358046}
-  m_LocalPosition: {x: -5.96, y: 0, z: -0.84}
+  m_LocalPosition: {x: -5.96, y: 0.01999998, z: -0.84}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -61965,7 +62168,7 @@ Transform:
   m_GameObject: {fileID: 2090454216}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.032282885, z: -0, w: 0.99947876}
-  m_LocalPosition: {x: -0.80999994, y: 0, z: -0.9949999}
+  m_LocalPosition: {x: -0.80999994, y: 0.01999998, z: -0.9949999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -62082,7 +62285,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -40, y: -211}
+  m_AnchoredPosition: {x: -4.5, y: -211}
   m_SizeDelta: {x: 387, y: 95}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2100299599
@@ -62933,6 +63136,7 @@ SceneRoots:
   - {fileID: 370260288}
   - {fileID: 832575519}
   - {fileID: 1092756765}
+  - {fileID: 1356819471}
   - {fileID: 2111219103}
   - {fileID: 55580696}
   - {fileID: 2090294130}
