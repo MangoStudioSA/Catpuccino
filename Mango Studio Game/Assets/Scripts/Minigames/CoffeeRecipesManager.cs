@@ -15,7 +15,9 @@ public class CoffeeRecipesManager : MonoBehaviour
 
     [Header("Coffee Unlocker")]
     public CoffeeUnlockerManager coffeeUnlocker;
+    public FoodUnlockerManager foodUnlocker;
 
+    private int _targetPage = 0;
     private int currentPage = 0;
     private bool isTurningPage = false;
 
@@ -27,10 +29,21 @@ public class CoffeeRecipesManager : MonoBehaviour
 
     void OnEnable()
     {
-        StartCoroutine(OpenBookAndShowFirstPage());
+        StartCoroutine(OpenBookRoutine());
     }
 
-    private IEnumerator OpenBookAndShowFirstPage()
+    void OnDisable()
+    {
+        _targetPage = 0;
+    }
+
+    public void OpenBookAtPage(int pageIndex)
+    {
+        _targetPage = pageIndex; // Guardamos que queremos ir a la 7 (o la que sea)
+        gameObject.SetActive(true); // Activamos el libro, lo que dispara OnEnable
+    }
+
+    private IEnumerator OpenBookRoutine()
     {
         // Oculta las páginas mientras está la animación
         bookPagesContainer.SetActive(false);
@@ -42,7 +55,7 @@ public class CoffeeRecipesManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(1.4f);
 
         // Muestra la primera página
-        ShowPage(0);
+        ShowPage(_targetPage);
         bookPagesContainer.SetActive(true);
     }
 
@@ -80,7 +93,7 @@ public class CoffeeRecipesManager : MonoBehaviour
         if (bookAnimator != null)
             bookAnimator.SetTrigger(trigger);
 
-        yield return new WaitForSecondsRealtime(0.8f);
+        yield return new WaitForSecondsRealtime(1.1f);
 
         // Muestra la nueva página
         ShowPage(newPageIndex);
@@ -93,9 +106,9 @@ public class CoffeeRecipesManager : MonoBehaviour
     {
         int currentDay = TimeManager.Instance.currentDay;
         CoffeeType[] unlockedCoffees = coffeeUnlocker.GetAvailableCoffees(currentDay); // Todas las desbloqueadas hasta el día actual
+        FoodCategory[] unlockedFoods = foodUnlocker.GetAvailableFood(currentDay);
 
         GameObject current = pages[currentPage];
-
         RecipeSlot[] slots = current.GetComponentsInChildren<RecipeSlot>();
 
         foreach (var slotData in slots)
@@ -103,9 +116,18 @@ public class CoffeeRecipesManager : MonoBehaviour
             Image img = slotData.GetComponent<Image>();
             if (img == null) continue;
 
-            bool unlocked = System.Array.Exists(unlockedCoffees, ct => ct == slotData.coffeeType);
+            bool unlocked = false;
 
-            img.sprite = slotData.coffeeSprite;
+            if (slotData.category == RecipeCategory.Coffee)
+            {
+                unlocked = System.Array.Exists(unlockedCoffees, ct => ct == slotData.coffeeType);
+            }
+            else if (slotData.category == RecipeCategory.Food)
+            {
+                unlocked = System.Array.Exists(unlockedFoods, ft => ft == slotData.foodType);
+            }
+
+            img.sprite = slotData.recipeSprite;
 
             if (unlocked)
                 img.color = Color.white;             // visible

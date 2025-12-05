@@ -32,12 +32,13 @@ public class UICoffeeStation : MonoBehaviour
     }
 
     // Mostrar panel de recetas
-    public void ShowRecipesPanel()
+    public void ShowRecipesPanel(int pagNum)
     {
         SoundsMaster.Instance.PlaySound_ClickMenu();
         popUpMechanicsMsg.DestroyAllPopUps();
 
-        recipesPanel.SetActive(true);
+        //recipesPanel.SetActive(true);
+        recipesManager.OpenBookAtPage(pagNum);
         Time.timeScale = 0.0f;
 
         if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 7)
