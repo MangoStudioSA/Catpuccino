@@ -9,6 +9,7 @@ public class CoffeeContainerManager : MonoBehaviour
 
     [Header("Referencia minigame")]
     public MinigameInput minigame;
+    public TutorialManager tutorialManager;
 
     [Header("Objetos fisicos")]
     public GameObject Taza;
@@ -518,6 +519,9 @@ public class CoffeeContainerManager : MonoBehaviour
 
             DragController.Instance.StopDragging(); // Soltar del cursor
             CoffeeFoodManager.Instance.ToggleCafe(true, Taza.GetComponent<Image>(), Taza.GetComponent<Image>().sprite); // Se asocia a la bandeja
+
+            if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 16)
+                FindFirstObjectByType<TutorialManager>().CompleteCurrentStep();
         }
         else if (tazaIsInPlato && !tazaInHand) // Recoger la taza del plato
         {

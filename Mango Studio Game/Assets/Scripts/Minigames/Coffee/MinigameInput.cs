@@ -1378,6 +1378,9 @@ public class MinigameInput : MonoBehaviour
             MiniGameSoundManager.instance.PlayDejarHielo();
 
             DragController.Instance.StopDragging(); // Soltar del cursor
+
+            if (tutorialManager.isRunningT1 && tutorialManager.currentStep == 13)
+                FindFirstObjectByType<TutorialManager>().CompleteCurrentStep();
         }
     }
 
@@ -1417,7 +1420,7 @@ public class MinigameInput : MonoBehaviour
                         Image vaso = coffeeContainerManager.Vaso.GetComponent<Image>();
                         vaso.sprite = currentSprite;
                     }
-                }    
+                }
             }
         }
     }

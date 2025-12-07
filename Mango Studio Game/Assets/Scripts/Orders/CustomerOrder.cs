@@ -31,8 +31,7 @@ public class CustomerOrder : MonoBehaviour
         int currentDay = timeManager.currentDay;
         float currentFoodRequestChance = foodRequestChance;
 
-        if (tutorialManager.isRunningT2)
-            currentFoodRequestChance = 1f;
+        if (tutorialManager.isRunningT2) currentFoodRequestChance = 1f;
 
         foodOrder = null;
         // Si se han desbloqueado las comidas, se genera una al azar del tipo desbloqueado
@@ -43,14 +42,23 @@ public class CustomerOrder : MonoBehaviour
                 foodOrder = new FoodOrder(randomCategory);
         }
 
-        CoffeeType coffeeType = coffeeUnlocker.GetRandomAvailableCoffee(currentDay); // Se genera el tipo de cafe entre los disponibles
-        SugarAmount sugar = (SugarAmount)Random.Range(0, System.Enum.GetValues(typeof(SugarAmount)).Length); // Se genera una cantidad de azucar al azar entre los 3 tipos
-        IceAmount ice = (IceAmount)Random.Range(0, System.Enum.GetValues(typeof(IceAmount)).Length); // Se genera una cantidad de hielo al azar entre los 2 tipos
+        CoffeeType coffeeType;
+        SugarAmount sugar;
+        IceAmount ice;
         OrderType type;
+
+        if (tutorialManager.isRunningT1) coffeeType = CoffeeType.espresso;
+        else coffeeType = coffeeUnlocker.GetRandomAvailableCoffee(currentDay); // Se genera el tipo de cafe entre los disponibles
+
+        if (tutorialManager.isRunningT1) sugar = SugarAmount.nada;
+        else sugar = (SugarAmount)Random.Range(0, System.Enum.GetValues(typeof(SugarAmount)).Length); // Se genera una cantidad de azucar al azar entre los 3 tipos
+
+        if (tutorialManager.isRunningT1) ice = IceAmount.si;
+        else ice = (IceAmount)Random.Range(0, System.Enum.GetValues(typeof(IceAmount)).Length); // Se genera una cantidad de hielo al azar entre los 2 tipos
 
         if (tutorialManager.isRunningT1) type = OrderType.tomar;
         else type = (OrderType)Random.Range(0, System.Enum.GetValues(typeof(OrderType)).Length); // Se genera un tipo de pedido entre los 2 tipos
-        
+
         currentOrder = new Order(coffeeType, sugar, ice, type, foodOrder); // Se genera el nuevo pedido con las cantidades generadas
         orderNoteUI.SetCurrentOrder(currentOrder);
         currentOrder.GenerateRequiredSteps();
@@ -78,8 +86,8 @@ public class CustomerOrder : MonoBehaviour
             ? order.foodOrder.GetFoodDescription()
             : " No quiero comida.";
         string baseText = order.coffeeType == CoffeeType.frappe
-            ? $"Quiero un {order.coffeeType} {sugarText}.{foodText} Lo quiero para {order.orderType}."
-            : $"Quiero un {order.coffeeType} {sugarText} y {iceText}.{foodText} Lo quiero para {order.orderType}.";
+            ? $"Quiero un {order.coffeeType} {sugarText}.{foodText} Lo quiero para {(order.orderType == OrderType.tomar ? "tomar aquí" : "llevar")}."
+            : $"Quiero un {order.coffeeType} {sugarText} y {iceText}.{foodText} Lo quiero para {(order.orderType == OrderType.tomar ? "tomar aquí" : "llevar")}.";
 
         return baseText;
     }

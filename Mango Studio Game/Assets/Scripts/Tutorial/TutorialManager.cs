@@ -67,6 +67,7 @@ public class TutorialManager : MonoBehaviour
     public Image estanteImage;
     public Image bandejaImage;
     public Image espumadorImage;
+    public Image cafeteraImage;
     public Image bandejaBImage;
     public Image platoBakeryImage;
     public Image bolsaBakeryImage;
@@ -75,6 +76,23 @@ public class TutorialManager : MonoBehaviour
     public Image BMantequillaImage;
     public Image BZanahoriaImage;
     public Image BRedVelvetImage;
+    public Image catsMenuImage;
+    public GameObject catsMenu;
+
+    [Header("Imagenes envases")]
+    public Image tapaBImage;
+    public Image tapaPImage;
+    public Image tazaBImage;
+    public Image tazaPImage;
+    public Image tazaB2Image;
+    public Image platoBImage;
+    public Image platoPImage;
+
+    [Header("Imagenes estantes")]
+    public Image estanteBase;
+    public Image estanteTP;
+    public Image estanteVP;
+    public Image estantePremium;
 
     [Header("Imagenes gatos")]
     public Image gatoAbajoIzq;
@@ -110,6 +128,7 @@ public class TutorialManager : MonoBehaviour
 
         int currentDay = TimeManager.Instance.currentDay;
         HandleDayStarted(currentDay);
+        catsMenuImage = catsMenu.GetComponent<Image>();
     }
 
     // Funcion para obtener el prefab correspondiente del bocadillo
@@ -188,7 +207,7 @@ public class TutorialManager : MonoBehaviour
             steps.Add(new TutorialStep
             {
                 message = "¡Ya sabes que quiere el cliente! ¡Manos a la obra, haz clic en \"Aceptar pedido\"!",
-                position = new Vector2(400f, -91f),
+                position = new Vector2(513f, -161f),
                 autoAdvance = false,
                 stepType = StepType.UpRight,
                 //stepImage = ,
@@ -202,51 +221,58 @@ public class TutorialManager : MonoBehaviour
             steps.Add(new TutorialStep
             {
                 message = "Coloca una taza en la cafetera. Si se trata de un pedido para llevar coloca un vaso.",
-                position = new Vector2(-723f, -110f),
+                position = new Vector2(-416f, -110f),
                 autoAdvance = false,
                 stepType = StepType.DownLeft,
                 //stepImage = ,
                 glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
                 {
-                    estanteImage.gameObject,
+                    tazaB2Image.gameObject,
+                    tazaBImage.gameObject,
+                    tazaPImage.gameObject,
+                    cafeteraImage.gameObject,
                 },
             });
             // Paso 4
             steps.Add(new TutorialStep
             {
                 message = "Si es para tomar, deberás clicar sobre un plato y colocarlo en la bandeja.",
-                position = new Vector2(575f, -125f),
+                position = new Vector2(589f, -90f),
                 autoAdvance = false,
-                stepType = StepType.DownRight,
+                stepType = StepType.UpRight,
                 //stepImage = ,
                 glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
                 {
-                    estanteImage.gameObject,
+                    bandejaImage.gameObject,
+                    platoBImage.gameObject,
+                    platoPImage.gameObject,
                 }
             });
             // Paso 5
             steps.Add(new TutorialStep
             {
                 message = "Si es para llevar, al finalizar deberás clicar sobre la tapa y colocarla en el vaso.",
-                position = new Vector2(-654f, -325f),
+                position = new Vector2(-595f, 2f),
                 autoAdvance = true,
-                stepType = StepType.DownRight,
+                stepType = StepType.UpLeft,
                 //stepImage = ,
                 glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
                 {
                     estanteImage.gameObject,
+                    tapaBImage.gameObject,
+                    tapaPImage.gameObject,
                 }
             });
             // Paso 6
             steps.Add(new TutorialStep
             {
                 message = "Puedes comprobar los requisitos de la comanda clicando en \"Pedido\"",
-                position = new Vector2(120f, 280f),
+                position = new Vector2(157f, 280f),
                 autoAdvance = false,
-                stepType = StepType.DownRight,
+                stepType = StepType.UpLeft,
                 //stepImage = ,
                 glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
@@ -262,9 +288,9 @@ public class TutorialManager : MonoBehaviour
             steps.Add(new TutorialStep
             {
                 message = "Para saber cómo preparar los cafés haz clic en el libro de recetas.",
-                position = new Vector2(-685f, 225f),
+                position = new Vector2(-556f, 183f),
                 autoAdvance = false,
-                stepType = StepType.DownRight,
+                stepType = StepType.UpRight,
                 //stepImage = ,
                 glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
@@ -280,9 +306,9 @@ public class TutorialManager : MonoBehaviour
             steps.Add(new TutorialStep
             {
                 message = "Ahora que ya sabes cómo preparar el café, mantén presionado el botón para seleccionar la cantidad de café correspondiente.",
-                position = new Vector2(-380f, -120f),
+                position = new Vector2(-301f, -150f),
                 autoAdvance = false,
-                stepType = StepType.DownRight,
+                stepType = StepType.DownLeft,
                 //stepImage = ,
                 glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
@@ -300,7 +326,7 @@ public class TutorialManager : MonoBehaviour
                 message = "¡Mantén presionada la palanca para moler el café!",
                 position = new Vector2(160f, 114f),
                 autoAdvance = false,
-                stepType = StepType.DownRight,
+                stepType = StepType.UpRight,
                 //stepImage = ,
                 glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
@@ -316,7 +342,7 @@ public class TutorialManager : MonoBehaviour
             steps.Add(new TutorialStep
             {
                 message = "Una vez molido el café, mueve el filtro a la cafetera clicando sobre él.",
-                position = new Vector2(-157f, -231f),
+                position = new Vector2(-98f, -270f),
                 autoAdvance = false,
                 stepType = StepType.DownRight,
                 //stepImage = ,
@@ -324,6 +350,7 @@ public class TutorialManager : MonoBehaviour
                 highlightObjects = new List<GameObject>
                 {
                     buttonManager.filtroButton.gameObject,
+                    cafeteraImage.gameObject,
                 },
                 onStepStart = () =>
                 {
@@ -333,7 +360,7 @@ public class TutorialManager : MonoBehaviour
             // Paso 11
             steps.Add(new TutorialStep
             {
-                message = "Comprueba si el café se prepara con agua. Si es así, clica sobre ella e interactúa con el recipiente.",
+                message = "Algunos cafés se prepararán con más inggredientes. Cuando sea así, clica sobre ellos e interactúa con el recipiente.",
                 position = new Vector2(30f, -390f),
                 autoAdvance = true,
                 stepType = StepType.DownRight,
@@ -350,12 +377,13 @@ public class TutorialManager : MonoBehaviour
                 message = "¡Ya puedes clicar para echar el café! ¡Presiona el botón superior y, cuando el marcador esté cerca de la zona marcada, clica en el inferior para pararlo!",
                 position = new Vector2(-390f, 180f),
                 autoAdvance = false,
-                stepType = StepType.DownRight,
+                stepType = StepType.UpLeft,
                 //stepImage = ,
                 glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
                 {
                     buttonManager.echarCafeButton.gameObject,
+                    buttonManager.pararEcharCafeButton.gameObject,
                 },
             });
             // Paso 13
@@ -363,7 +391,7 @@ public class TutorialManager : MonoBehaviour
             {
                 message = "Ahora puedes echar el azúcar y los hielos clicando sobre ellos e interactuando con el recipiente mediante clic.",
                 position = new Vector2(30f, -390f),
-                autoAdvance = true,
+                autoAdvance = false,
                 stepType = StepType.DownRight,
                 //stepImage = ,
                 glowMaterial = glowMaterial,
@@ -391,9 +419,9 @@ public class TutorialManager : MonoBehaviour
             steps.Add(new TutorialStep
             {
                 message = "¡Si te equivocas con la preparación puedes empezar de 0 clicando sobre la basura!",
-                position = new Vector2(-200f, 100f),
+                position = new Vector2(2f, -384f),
                 autoAdvance = true,
-                stepType = StepType.DownRight,
+                stepType = StepType.DownLeft,
                 //stepImage = ,
                 glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
@@ -406,8 +434,8 @@ public class TutorialManager : MonoBehaviour
             {
                 message = "Cuando tengas todo listo, coloca el vaso sobre la mesa. Si se trata de una taza, colócala sobre el plato.",
                 position = new Vector2(600f, -100f),
-                autoAdvance = true,
-                stepType = StepType.DownRight,
+                autoAdvance = false,
+                stepType = StepType.UpRight,
                 //stepImage = ,
                 glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
@@ -421,7 +449,7 @@ public class TutorialManager : MonoBehaviour
                 message = "Presiona \"Entregar\" para entregarle el pedido al cliente.",
                 position = new Vector2(195f, -390f),
                 autoAdvance = false,
-                stepType = StepType.DownRight,
+                stepType = StepType.DownLeft,
                 //stepImage = ,
                 glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
@@ -433,16 +461,16 @@ public class TutorialManager : MonoBehaviour
             steps.Add(new TutorialStep
             {
                 message = "El cliente expondrá su valoración y pagará en función de la puntuación que hayas obtenido al preparar su comanda.",
-                position = new Vector2(350f, 175f),
+                position = new Vector2(-541f, 140f),
                 autoAdvance = true,
-                stepType = StepType.DownRight,
+                stepType = StepType.UpLeft,
                 //stepImage = ,
             });
             // Paso 19
             steps.Add(new TutorialStep
             {
                 message = "¡Si la puntuación es alta te dará una propina!",
-                position = new Vector2(350f, 175f),
+                position = new Vector2(489f, 7f),
                 autoAdvance = true,
                 stepType = StepType.DownRight,
                 //stepImage = ,
@@ -451,9 +479,9 @@ public class TutorialManager : MonoBehaviour
             steps.Add(new TutorialStep
             {
                 message = "Haz clic en \"Finalizar\" para volver a la cafetería.",
-                position = new Vector2(350f, 175f),
+                position = new Vector2(508f, -149f),
                 autoAdvance = false,
-                stepType = StepType.DownRight,
+                stepType = StepType.UpRight,
                 //stepImage = ,
                 glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
@@ -474,19 +502,27 @@ public class TutorialManager : MonoBehaviour
             steps.Add(new TutorialStep
             {
                 message = "Al cerrar, siempre ganarás 50 monedas de café, que podrás gastar en los sobres de la tienda.",
-                position = new Vector2(-596f, 350f),
+                position = new Vector2(-520f, 262f),
                 autoAdvance = true,
-                stepType = StepType.DownRight,
+                stepType = StepType.DownLeft,
                 //stepImage = ,
+                highlightObjects = new List<GameObject>
+                {
+                    buttonManager.shopButton.gameObject,
+                },
             });
             // Paso 23
             steps.Add(new TutorialStep
             {
                 message = "¡Si compras sobres de cartas, podrás tener los gatos que desbloquees acompañándote en la cafetería!",
-                position = new Vector2(0f, 0f),
+                position = new Vector2(628f, 2f),
                 autoAdvance = true,
-                stepType = StepType.DownRight,
+                stepType = StepType.UpRight,
                 //stepImage = ,
+                highlightObjects = new List<GameObject>
+                {
+                    catsMenuImage.gameObject,
+                },
             });
             // Paso 24
             steps.Add(new TutorialStep

@@ -88,10 +88,10 @@ public class OrderNoteUI : MonoBehaviour
 
         string note = "";
 
+        note += $"- Tipo de pedido: para {(order.orderType == OrderType.tomar ? "tomar aquí" : "llevar")}.\n";
         note += $"- Café: {order.coffeeType}.\n";
         note += $"- Azúcar: {order.sugarAm}.\n";
         note += $"- Hielo: {(order.iceAm == IceAmount.no ? "sin hielo" : "con hielo")}.\n";
-        note += $"- Tipo de pedido: para {order.orderType}.\n";
 
         if (order.foodOrder.category != FoodCategory.no)
         {

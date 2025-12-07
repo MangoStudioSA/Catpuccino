@@ -2244,7 +2244,7 @@ MonoBehaviour:
   scoreTxt: {fileID: 881984046}
   clientImage: {fileID: 510474126}
   clienteSprites:
-  - {fileID: -241628341, guid: d88e51f19f30e6d41b0b20e9f518055d, type: 3}
+  - {fileID: -830623268, guid: d88e51f19f30e6d41b0b20e9f518055d, type: 3}
   - {fileID: 2117634430, guid: d1fa4b2ccaf78314f8186daffea5d2cd, type: 3}
   - {fileID: 2068000113, guid: a30b1f919e2217243a5aff42cb78fa61, type: 3}
   - {fileID: 997484142, guid: 11b835e23e4115e41b742735a76a745c, type: 3}
@@ -2255,8 +2255,8 @@ MonoBehaviour:
   clientFeedbackImage: {fileID: 2118854376}
   feedbakClientSprites:
   - feedBackS:
-    - {fileID: -241628341, guid: d88e51f19f30e6d41b0b20e9f518055d, type: 3}
     - {fileID: -830623268, guid: d88e51f19f30e6d41b0b20e9f518055d, type: 3}
+    - {fileID: -241628341, guid: d88e51f19f30e6d41b0b20e9f518055d, type: 3}
     - {fileID: -1188072588, guid: d88e51f19f30e6d41b0b20e9f518055d, type: 3}
   - feedBackS:
     - {fileID: 2117634430, guid: d1fa4b2ccaf78314f8186daffea5d2cd, type: 3}
@@ -2325,6 +2325,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minigame: {fileID: 50023188}
+  tutorialManager: {fileID: 841635553}
   Taza: {fileID: 386902211}
   Vaso: {fileID: 2016690274}
   PlatoTaza: {fileID: 1275036455}
@@ -29383,6 +29384,7 @@ MonoBehaviour:
   estanteImage: {fileID: 1015384996}
   bandejaImage: {fileID: 330642389}
   espumadorImage: {fileID: 2107302306}
+  cafeteraImage: {fileID: 790261687}
   bandejaBImage: {fileID: 1492751192}
   platoBakeryImage: {fileID: 857833593}
   bolsaBakeryImage: {fileID: 2085979023}
@@ -29391,6 +29393,19 @@ MonoBehaviour:
   BMantequillaImage: {fileID: 926106727}
   BZanahoriaImage: {fileID: 1802058464}
   BRedVelvetImage: {fileID: 515852916}
+  catsMenuImage: {fileID: 2068181531}
+  catsMenu: {fileID: 0}
+  tapaBImage: {fileID: 1529611146}
+  tapaPImage: {fileID: 114359261}
+  tazaBImage: {fileID: 2132560482}
+  tazaPImage: {fileID: 12149003}
+  tazaB2Image: {fileID: 2095200535}
+  platoBImage: {fileID: 2028102492}
+  platoPImage: {fileID: 1332905745}
+  estanteBase: {fileID: 1015384996}
+  estanteTP: {fileID: 1534359514}
+  estanteVP: {fileID: 1859234159}
+  estantePremium: {fileID: 1074631926}
   gatoAbajoIzq: {fileID: 0}
   gatoAbajoDer: {fileID: 0}
   gatoArribaIzq: {fileID: 0}
