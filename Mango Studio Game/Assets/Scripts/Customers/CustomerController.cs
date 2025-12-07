@@ -10,12 +10,16 @@ public class CustomerController : MonoBehaviour
     public CustomerManager manager;
     public int model = 0;
 
+    Animator anim;
+
     void Start()
     {
         manager = GameObject.FindWithTag("CustomerManager").GetComponent<CustomerManager>();
         manager.customers.Enqueue(this);
         model = Random.Range(0, (int)transform.childCount); // Se accede al prefab de los distintos sprites y fbx de clientes
         transform.GetChild(model).gameObject.SetActive(true);
+
+        anim = transform.GetChild(model).GetChild(0).GetComponent<Animator>();
     }
 
     void Update()
@@ -23,7 +27,13 @@ public class CustomerController : MonoBehaviour
         if (!atCounter && !atQueue)
         {
             transform.Translate(direction.normalized * speed * Time.deltaTime);
+            anim.SetBool("Idle", false);
         }
+        else
+        {
+            anim.SetBool("Idle", true);
+        }
+
         if (!atCounter && manager.customers.Count > 0 && manager.customers.Peek() == this)
         {
             atQueue = false;
