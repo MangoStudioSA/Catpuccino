@@ -16,7 +16,7 @@ public class TimeManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI endButtonText;
 
     [Header("Configuración del Tiempo")]
-    [SerializeField] private float secondsPerGameMinute;
+    [SerializeField] public float secondsPerGameMinute;
     [SerializeField] private float secondsPerGameMinuteBase;
     [SerializeField] private float timeDecay;
     [SerializeField] private int startHour;

@@ -5,7 +5,7 @@ public class DayNightManager : MonoBehaviour
 {
     public TimeManager timeManager;
 
-    [Header("Configuración")]
+    [Header("Configuracion")]
     public float horaInicio = 7f;
     public float horaFin = 20f;
 

@@ -1,60 +1,93 @@
 using UnityEngine;
 
+// Clase encargada de gestionar el movimiento de la camara y el zoom
 public class CameraController : MonoBehaviour
 {
-    //MOVIMIENTO
-    [SerializeField] float CamSpeed = 0.5f; //velocidad de movimiento de la camara
-    [SerializeField] float minX = -10f;
-    [SerializeField] float maxX = 10f;
-    [SerializeField] float minY = 5f;
-    [SerializeField] float maxY = 15;
+    private Camera cam;
 
-    Vector3 lastMousePos;
+    [Header("Configuracion")]
+    public float sensibilidad = 0.5f;
 
-    //ZOOM
-    [SerializeField] float zoomSpeed = 10f; //velocidad del zoom
-    [SerializeField] float minZoom = 25f;
-    [SerializeField] float maxZoom = 60f;
+    [Header("Limites de movimiento de la camara")]
+    public float minX = -1.58f; // Tope izquierda
+    public float maxX = -1.34f;  // Tope derecha
+    public float minZ = -14.8f; // Tope abajo
+    public float maxZ = -7.38f;  // Tope arriba
 
+    [Header("Zoom camara")]
+    public float zoomSpeed = 2f;
+    public float minZoom = 1.5f;
+    public float maxZoom = 3.52f;
 
-    // Update is called once per frame
+    private float mapTop, mapBottom, mapLeft, mapRight;
+
+    void Awake()
+    {
+        cam = GetComponent<Camera>();
+
+        float vertExtent = maxZoom;
+        float horzExtent = maxZoom * cam.aspect;
+
+        mapLeft = minX - horzExtent;
+        mapRight = maxX + horzExtent;
+        mapBottom = minZ - vertExtent;
+        mapTop = maxZ + vertExtent;
+    }
+
     void Update()
     {
-        //si mantienes el click derecho (1) se mueve la camara
-        //se almacena la posicion inicial del cursor al hacer click
-        if (Input.GetMouseButtonDown(1)) //(solo el primer frame)
+        if (Input.GetMouseButton(1))
         {
-            lastMousePos = Input.mousePosition;
-            //este es el punto de partid aque usamos para saber desde donde mover la camara
+            float moveX = Input.GetAxis("Mouse X");
+            float moveZ = Input.GetAxis("Mouse Y");
+
+            // Se multiplica por el zoom actual
+            float fuerza = sensibilidad * cam.orthographicSize * 0.1f;
+            Vector3 movimiento = new Vector3(-moveX * fuerza, 0, -moveZ * fuerza);
+
+            transform.Translate(movimiento, Space.World);
         }
 
-        //mover la camara mientras se esta manteniendo el click
-        if (Input.GetMouseButton(1))  //(todo el tiempo que se mantenga)
-        {
-            //diferencia entre el punto de partida y el actual
-            Vector3 a = Input.mousePosition - lastMousePos;
-            //se crea un vector nuevo, este defina la direccion del movimiento
-            Vector3 move = new Vector3(-a.x * CamSpeed * Time.deltaTime, -a.y * CamSpeed * Time.deltaTime, 0);
-            //mueve la camara en funcion al vector creado
-            transform.Translate(move, Space.World);
+        // Zoom de la camara
+        float scroll = Input.GetAxis("Mouse ScrollWheel");
+        cam.orthographicSize -= scroll * zoomSpeed;
+        cam.orthographicSize = Mathf.Clamp(cam.orthographicSize, minZoom, maxZoom);
 
-            //limites
-            //variable temporal para la psocion actual de la camra
-            Vector3 camPos = transform.position;
-            //limitamos la posicion entre dos puntos con un clamp
-            camPos.x = Mathf.Clamp(camPos.x, minX, maxX); 
-            camPos.y = Mathf.Clamp(camPos.y, minY, maxY);
-            transform.position = camPos;
+        // Limitar movimiento de la camara
+        DinamicClamp();
+    }
 
-            //se actualiza la posicion
-            lastMousePos = Input.mousePosition;
-        }
+    // Funcion para limitar el movimiento de la camara tenga + o - zoom (limite dinamico: se recalcula al modificar el zoom)
+    void DinamicClamp()
+    {
+        // Se calculan las medidas de la camara
+        float vertExtent = cam.orthographicSize;
+        float horzExtent = cam.orthographicSize * cam.aspect;
 
-        //ZOOM
-        float zoom = Input.GetAxis("Mouse ScrollWheel"); //detecta el movimiento del raton
-        Camera.main.fieldOfView -= zoom * zoomSpeed; //fieldOfView define que porcentaje de la camara ve el jugador
+        Vector3 pos = transform.position;
 
-        //limites del zoom
-        Camera.main.fieldOfView = Mathf.Clamp(Camera.main.fieldOfView, minZoom, maxZoom); //nos aseguramos de que se mantenga el zoom en el rango
+        // Limite de la camara dinamico: limite con zoom maximo - tamaño actual de la camara
+        //  Camara pequeña -> se expande el limite
+        //  Camara grande -> limite marcado en inspector
+        float currentMinX = mapLeft + horzExtent;
+        float currentMaxX = mapRight - horzExtent;
+        float currentMinZ = mapBottom + vertExtent;
+        float currentMaxZ = mapTop - vertExtent;
+
+        pos.x = Mathf.Clamp(pos.x, currentMinX, currentMaxX);
+        pos.z = Mathf.Clamp(pos.z, currentMinZ, currentMaxZ);
+
+        transform.position = pos;
+    }
+
+    // Funcion para dibujar los limites en la escena
+    private void OnDrawGizmos()
+    {
+        if (cam == null) cam = GetComponent<Camera>();
+
+        Gizmos.color = Color.yellow;
+        Vector3 centerUser = new Vector3((minX + maxX) / 2, 0, (minZ + maxZ) / 2);
+        Vector3 sizeUser = new Vector3(maxX - minX, 1, maxZ - minZ);
+        Gizmos.DrawWireCube(centerUser, sizeUser);
     }
 }

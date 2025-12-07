@@ -45,7 +45,7 @@ public class CustomerController : MonoBehaviour
                 coffeManager.MostrarCliente(model);
             }
         }
-        else
+        else if (other.CompareTag("Customer"))
         {
             atQueue = true;
         }
@@ -65,9 +65,9 @@ public class CustomerController : MonoBehaviour
                 coffeManager.MostrarCliente(-1);
             }
         }
-        else
+        else if (other.CompareTag("Customer"))
         {
-            atQueue= false;
+            atQueue = false;
         }
     }
 }
