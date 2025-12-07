@@ -114,6 +114,11 @@ public class TimeManager : MonoBehaviour
         currentDay++;
         coffeeGameManager.customersServed = 0;
 
+        if (SpecialReward.instance != null)
+        {
+            SpecialReward.instance.CheckDayCondition();
+        }
+
         // Restar dinero de facturas
         GameManager.Instance.monedas -= requiredMoney;
         HUDManager.Instance.UpdateMonedas(GameManager.Instance.monedas);

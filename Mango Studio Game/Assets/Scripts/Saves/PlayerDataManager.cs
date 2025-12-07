@@ -28,7 +28,8 @@ public class PlayerDataManager : MonoBehaviour
         }
         Debug.Log("PlayerDataManager Awake. Coins: " + data.basicCoins + "/" + data.premiumCoins);
 
-        //RemoveUnlockedCard("CartaLatteArt");
+        //RemoveUnlockedCard("CartaFelicidades");
+        //RemoveReward();
         //AddLockedCard("CartaLatteArt");
         //AddLockedCard("CartaLatte");
         //AddLockedCard("CartaLungo");
@@ -79,6 +80,26 @@ public class PlayerDataManager : MonoBehaviour
         Debug.LogWarning("No hay suficientes croquetas doradas.");
         return false;
     }
+
+    // Funcion para marcar que se ha recibido el logro del dia 7
+    public void MarkDay7AsClaimed()
+    {
+        data.day7RewardClaimed = true;
+        SaveData();
+        Debug.Log("Logro Día 7 marcado como completado y guardado.");
+    }
+
+    // Funcion para consultar si tiene el logro del dia 7
+    public bool IsDay7Claimed()
+    {
+        return data.day7RewardClaimed;
+    }
+
+    public void RemoveReward()
+    {
+        data.day7RewardClaimed = false;
+    }
+
     // Funcion para añadir cartas
     public void AddCard(Sprite cardSprite)
     {

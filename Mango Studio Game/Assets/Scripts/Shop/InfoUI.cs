@@ -6,7 +6,7 @@ using UnityEngine;
 public class InfoUI : MonoBehaviour
 {
     [SerializeField] private RectTransform noteInfo;
-    [SerializeField] private float slideDuration = 0.5f;
+    [SerializeField] private float slideDuration = 1.5f;
     
     // Posiciones del panel
     private Vector2 hiddenPos;

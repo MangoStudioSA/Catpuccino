@@ -35,7 +35,7 @@ public class ShopManager : MonoBehaviour
     [Header("Costes de los sobres")]
     public int basicPackCost = 70;
     public int premiumPackCostBC = 220;
-    public int premiumPackCostPC = 120;
+    public int premiumPackCostPC = 100;
 
     [Header("Panel UI")]
     public GameObject coinsShopPanel;
@@ -195,7 +195,7 @@ public class ShopManager : MonoBehaviour
         var player = PlayerDataManager.instance;
         bool paid = false;
 
-        if (player.SpendPremiumCoins(120)) paid = true;
+        if (player.SpendPremiumCoins(100)) paid = true;
         
         if (paid)
         {
@@ -211,7 +211,7 @@ public class ShopManager : MonoBehaviour
         var player = PlayerDataManager.instance;
         bool paid = false;
 
-        if (player.SpendBasicCoins(220)) paid = true;
+        if (player.SpendBasicCoins(200)) paid = true;
 
         if (paid)
         {
