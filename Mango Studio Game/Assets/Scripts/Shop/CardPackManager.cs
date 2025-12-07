@@ -20,10 +20,14 @@ public class CardPackManager : MonoBehaviour
     public Sprite basicPackSprite; // Sprite sobre basico
     public Sprite premiumPackSprite; // Sprite sobre premium
 
+    [Header("Texto")]
+    public TextMeshProUGUI clickHintText;
+    public float bounceSpeed = 5f; // Velocidad del rebote
+    public float bounceAmplitude = 10f; // Distancia del rebote
+
     [Header("Referencias animacion")]
     public float timeToShowCard = 6f; // Tiempo animacion sobre
     public float emptyCardAnimDuration = 1.2f; // Tiempo animacion carta vacia
-    public float timeReadingCard = 2f; // Tiempo que se queda la carta en pantalla
 
     [Header("Referencias Animaciones")]
     public GameObject basicAnimObject;   
@@ -41,6 +45,7 @@ public class CardPackManager : MonoBehaviour
     private bool isOpening = false;
     private string pendindPackType = ""; // Guarda el tipo de sobre que se va a abrir
     private Animator emptyCardAnimator;
+    private Vector2 hintTextOriginalPos;
 
     public enum CardRarity { Basic, Intermediate, Rare, Legendary }
 
@@ -67,6 +72,13 @@ public class CardPackManager : MonoBehaviour
                 emptyCardAnimator.updateMode = AnimatorUpdateMode.UnscaledTime; // Unescaled time porque esta el tiempo parado
                 emptyCardAnimator.enabled = false;
             }
+        }
+
+        // Texto
+        if (clickHintText != null)
+        {
+            hintTextOriginalPos = clickHintText.rectTransform.anchoredPosition;
+            clickHintText.gameObject.SetActive(false); // Ocultar al inicio
         }
 
         // Comprobaciones iniciales
@@ -122,22 +134,14 @@ public class CardPackManager : MonoBehaviour
         {
             float chance = Random.Range(0f, 100f);
 
-            if (chance >= 90f) // 90 - 100 (10%): 2 cartas vacias + 1 coleccionable
-            {
-                results.Add(new CardResult { type = CardType.Empty, sprite = emptyCardSprite });
-
-                // Y añadimos la coleccionable final
-                CardRarity rarity = DeterminateRarity("basic");
-                Sprite s = GetRandomCardSprite(rarity);
-                results.Add(new CardResult { type = CardType.Collectable, sprite = s });
-            }
-            else if (chance >= 60f) // 60 - 90 (30%): carta vacia + 1 coleccionable
+            // 61 - 100 (40%): carta coleccionable
+            if (chance >= 60f)
             {
                 CardRarity rarity = DeterminateRarity("basic");
                 Sprite s = GetRandomCardSprite(rarity);
                 results.Add(new CardResult { type = CardType.Collectable, sprite = s });
             }
-            // 0 - 60 (60%): carta vacia
+            // 0 - 60 (60%): no se añaden mas cartas
         }
         else if (packType == "premium") // Premium: carta vacia + coleccionable
         {
@@ -194,7 +198,7 @@ public class CardPackManager : MonoBehaviour
                 cardImage.color = Color.white;
                 cardImage.gameObject.SetActive(true);
 
-                yield return new WaitForSecondsRealtime(timeReadingCard);
+                yield return StartCoroutine(WaitForUserClick());
             }
             else
             {
@@ -217,7 +221,7 @@ public class CardPackManager : MonoBehaviour
                 cardImage.color = Color.white;
 
                 PlayerDataManager.instance.AddCard(cardData.sprite); // Se guarda la carta obtenida
-                yield return new WaitForSecondsRealtime(timeReadingCard);
+                yield return StartCoroutine(WaitForUserClick());
             }
 
             // Se comprueba si la carta es la ultima de la lista generada
@@ -245,6 +249,40 @@ public class CardPackManager : MonoBehaviour
         closeButton.interactable = true;
 
         if (catSelectionUI != null) catSelectionUI.RefreshMenu();
+    }
+
+    // Corrutina auxiliar para esperar input del jugador
+    private IEnumerator WaitForUserClick()
+    {
+        yield return null;
+
+        // Texto
+        if (clickHintText != null)
+        {
+            clickHintText.gameObject.SetActive(true);
+            // Aseguramos que empiece en su posicion original
+            clickHintText.rectTransform.anchoredPosition = hintTextOriginalPos;
+        }
+
+        // Esperar el clic del jugador
+        while (!Input.GetMouseButtonDown(0))
+        {
+            if (clickHintText != null)
+            {
+                float yOffset = Mathf.Sin(Time.unscaledTime * bounceSpeed) * bounceAmplitude;
+                // Nueva posicion
+                clickHintText.rectTransform.anchoredPosition = hintTextOriginalPos + new Vector2(0, yOffset);
+            }
+
+            yield return null;
+        }
+
+        // Desactivar texto al terminar
+        if (clickHintText != null)
+        {
+            clickHintText.gameObject.SetActive(false);
+            clickHintText.rectTransform.anchoredPosition = hintTextOriginalPos; // Restaurar pos
+        }
     }
 
     // Se determina la rareza de la carta dependiendo del sobre abierto
