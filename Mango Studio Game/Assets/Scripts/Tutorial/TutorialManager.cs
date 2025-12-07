@@ -77,7 +77,7 @@ public class TutorialManager : MonoBehaviour
     public Image BZanahoriaImage;
     public Image BRedVelvetImage;
     public Image catsMenuImage;
-    public GameObject catsMenu;
+    public Image catsMenu;
 
     [Header("Imagenes envases")]
     public Image tapaBImage;
@@ -128,7 +128,6 @@ public class TutorialManager : MonoBehaviour
 
         int currentDay = TimeManager.Instance.currentDay;
         HandleDayStarted(currentDay);
-        catsMenuImage = catsMenu.GetComponent<Image>();
     }
 
     // Funcion para obtener el prefab correspondiente del bocadillo

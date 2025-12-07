@@ -250,13 +250,13 @@ public class FoodMinigameInput : MonoBehaviour
                 }
                 break;
 
-            case FoodCategory.mufflin:
-                switch ((MufflinType)type)
+            case FoodCategory.cupcake:
+                switch ((CupcakeType)type)
                 {
-                    case MufflinType.cereza: return MCerezaP;
-                    case MufflinType.arandanos: return MArandanosP;
-                    case MufflinType.pistacho: return MPistachoP;
-                    case MufflinType.dulceLeche: return MDulceLecheP;
+                    case CupcakeType.cereza: return MCerezaP;
+                    case CupcakeType.arandanos: return MArandanosP;
+                    case CupcakeType.pistacho: return MPistachoP;
+                    case CupcakeType.dulceLeche: return MDulceLecheP;
                 }
                 break;
         }

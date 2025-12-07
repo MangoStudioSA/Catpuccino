@@ -12,7 +12,7 @@ public class FoodUnlockerManager : MonoBehaviour
         {3, new FoodCategory[] {  } },
         {4, new FoodCategory[] { FoodCategory.galleta } },
         {5, new FoodCategory[] {  } },
-        {6, new FoodCategory[] { FoodCategory.mufflin } },
+        {6, new FoodCategory[] { FoodCategory.cupcake } },
         {7, new FoodCategory[] {  } },
     };
 

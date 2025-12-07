@@ -7,12 +7,12 @@ public class FoodPriceManager : MonoBehaviour
     public static FoodPriceManager Instance;
 
     // Se crea un diccionario con la categoria de comida y su precio
-    private Dictionary<FoodCategory, float> foodPrices = new Dictionary<FoodCategory, float>()
+    private Dictionary<FoodCategory, float> foodPrices = new()
     {
         { FoodCategory.no, 0f },
         { FoodCategory.bizcocho, 4f },
         { FoodCategory.galleta, 3.5f },
-        { FoodCategory.mufflin, 5f },
+        { FoodCategory.cupcake, 5f },
     };
 
     private void Awake()

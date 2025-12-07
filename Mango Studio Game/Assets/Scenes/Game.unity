@@ -29394,7 +29394,7 @@ MonoBehaviour:
   BZanahoriaImage: {fileID: 1802058464}
   BRedVelvetImage: {fileID: 515852916}
   catsMenuImage: {fileID: 2068181531}
-  catsMenu: {fileID: 0}
+  catsMenu: {fileID: 2068181531}
   tapaBImage: {fileID: 1529611146}
   tapaPImage: {fileID: 114359261}
   tazaBImage: {fileID: 2132560482}
@@ -41551,7 +41551,7 @@ MonoBehaviour:
       category: 0
       cakeType: 0
       cookieType: 0
-      mufflinType: 0
+      cupcakeType: 0
       foodTargetCategory: 0
       foodTargetType: 0
       foodPrecisionCategory: 0

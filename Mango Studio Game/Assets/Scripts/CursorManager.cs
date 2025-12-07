@@ -28,7 +28,7 @@ public class CursorManager : MonoBehaviour
 
     public void TakeMufflinByInt(int index)
     {
-        TakeFood(FoodCategory.mufflin, (MufflinType)index);
+        TakeFood(FoodCategory.cupcake, (CupcakeType)index);
     }
 
     // Gestionar coger la comida del estante
@@ -43,7 +43,7 @@ public class CursorManager : MonoBehaviour
         foodMinigameInput.foodTypeInHand = (int)type;
         foodMinigameInput.ActualizarBotonCogerComida();
 
-        if (category == FoodCategory.mufflin || category == FoodCategory.galleta)
+        if (category == FoodCategory.cupcake || category == FoodCategory.galleta)
             foodManager.TakeFood(category, (int)type);
 
         if (category == FoodCategory.bizcocho)

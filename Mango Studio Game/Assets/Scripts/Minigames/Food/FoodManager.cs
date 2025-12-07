@@ -40,12 +40,12 @@ public class FoodManager : MonoBehaviour
     // Diccionarios gameobjects comida
     private Dictionary<CakeType, GameObject> cakes = new();
     private Dictionary<CookieType, GameObject> cookies = new();
-    private Dictionary<MufflinType, GameObject> mufflins = new();
+    private Dictionary<CupcakeType, GameObject> cupcakes = new();
 
     // Diccionarios cursores comida
     private Dictionary<CakeType, Texture2D> cakeCursors = new();
     private Dictionary<CookieType, Texture2D> cookiesCursors = new();
-    private Dictionary<MufflinType, Texture2D> mufflinsCursors = new();
+    private Dictionary<CupcakeType, Texture2D> cupcakesCursors = new();
 
     [Header("GameObjects comida")]
     public GameObject BZanahoria;
@@ -73,7 +73,7 @@ public class FoodManager : MonoBehaviour
     public Texture2D MPistachoCursor;
     public Texture2D MDulceLecheCursor;
 
-    [Header("Stocks de galletas y mufflins")]
+    [Header("Stocks de galletas y cupcakes")]
     public FoodObjects[] foodStocks;
 
     [Header("Stocks de bizcochos")]
@@ -92,10 +92,10 @@ public class FoodManager : MonoBehaviour
         cookies.Add(CookieType.blanco, GChocolateB);
         cookies.Add(CookieType.mantequilla, GMantequilla);
 
-        mufflins.Add(MufflinType.cereza, MCereza);
-        mufflins.Add(MufflinType.pistacho, MPistacho);
-        mufflins.Add(MufflinType.arandanos, MArandano);
-        mufflins.Add(MufflinType.dulceLeche, MDulceLeche);
+        cupcakes.Add(CupcakeType.cereza, MCereza);
+        cupcakes.Add(CupcakeType.pistacho, MPistacho);
+        cupcakes.Add(CupcakeType.arandanos, MArandano);
+        cupcakes.Add(CupcakeType.dulceLeche, MDulceLeche);
 
         // Cursores
         cakeCursors.Add(CakeType.chocolate, BChocolateCursor);
@@ -107,10 +107,10 @@ public class FoodManager : MonoBehaviour
         cookiesCursors.Add(CookieType.blanco, GChocolateBCursor);
         cookiesCursors.Add(CookieType.mantequilla, GMantequillaCursor);
 
-        mufflinsCursors.Add(MufflinType.cereza, MCerezaCursor);
-        mufflinsCursors.Add(MufflinType.pistacho, MPistachoCursor);
-        mufflinsCursors.Add(MufflinType.arandanos, MArandanoCursor);
-        mufflinsCursors.Add(MufflinType.dulceLeche, MDulceLecheCursor);
+        cupcakesCursors.Add(CupcakeType.cereza, MCerezaCursor);
+        cupcakesCursors.Add(CupcakeType.pistacho, MPistachoCursor);
+        cupcakesCursors.Add(CupcakeType.arandanos, MArandanoCursor);
+        cupcakesCursors.Add(CupcakeType.dulceLeche, MDulceLecheCursor);
 
         foreach (var stock in foodStocks)
         {
@@ -129,8 +129,8 @@ public class FoodManager : MonoBehaviour
             case FoodCategory.galleta:
                 return cookies.TryGetValue((CookieType)type, out GameObject cookie) ? cookie : null;
 
-            case FoodCategory.mufflin:
-                return mufflins.TryGetValue((MufflinType)type, out GameObject mufflin) ? mufflin : null;
+            case FoodCategory.cupcake:
+                return cupcakes.TryGetValue((CupcakeType)type, out GameObject mufflin) ? mufflin : null;
 
             default:
                 return null;
@@ -152,8 +152,8 @@ public class FoodManager : MonoBehaviour
                     return cookieCursor;
                 break;
 
-            case FoodCategory.mufflin:
-                if (mufflinsCursors.TryGetValue((MufflinType)type, out Texture2D mufflinCursor))
+            case FoodCategory.cupcake:
+                if (cupcakesCursors.TryGetValue((CupcakeType)type, out Texture2D mufflinCursor))
                     return mufflinCursor;
                 break;
         }
@@ -226,7 +226,7 @@ public class FoodManager : MonoBehaviour
                 case FoodCategory.galleta:
                     unlocked = GameProgressManager.Instance.cookiesEnabled;
                     break;
-                case FoodCategory.mufflin:
+                case FoodCategory.cupcake:
                     unlocked = GameProgressManager.Instance.mufflinsEnabled;
                     break;
             }

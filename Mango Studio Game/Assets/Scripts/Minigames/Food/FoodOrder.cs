@@ -8,7 +8,7 @@ public class FoodOrder
     public FoodCategory category;
     public CakeType cakeType;
     public CookieType cookieType;
-    public MufflinType mufflinType;
+    public CupcakeType cupcakeType;
 
     public FoodCategory foodTargetCategory;
     public int foodTargetType;
@@ -40,9 +40,9 @@ public class FoodOrder
                 foodTargetType = Random.Range(1, System.Enum.GetValues(typeof(CookieType)).Length);
                 cookieType = (CookieType)foodTargetType;
                 break;
-            case FoodCategory.mufflin:
-                foodTargetType = Random.Range(1, System.Enum.GetValues(typeof(MufflinType)).Length);
-                mufflinType = (MufflinType)foodTargetType;
+            case FoodCategory.cupcake:
+                foodTargetType = Random.Range(1, System.Enum.GetValues(typeof(CupcakeType)).Length);
+                cupcakeType = (CupcakeType)foodTargetType;
                 break;
             default:
                 foodTargetType = -1;
@@ -85,9 +85,9 @@ public class FoodOrder
                 tipo = "una galleta";
                 nombre = cookieType.ToString();
                 break;
-            case FoodCategory.mufflin:
-                tipo = "un mufflin";
-                nombre = mufflinType.ToString();
+            case FoodCategory.cupcake:
+                tipo = "un cupcake";
+                nombre = cupcakeType.ToString();
                 break;
         }
 
@@ -120,8 +120,8 @@ public class FoodOrder
             case FoodCategory.galleta:
                 nombre = cookieType.ToString();
                 break;
-            case FoodCategory.mufflin:
-                nombre = mufflinType.ToString();
+            case FoodCategory.cupcake:
+                nombre = cupcakeType.ToString();
                 break;
         }
 
@@ -136,8 +136,8 @@ public class FoodOrder
 }
 
 // Declaracion de categorias de comidas y sus tipos
-public enum FoodCategory { no, bizcocho, galleta, mufflin }
+public enum FoodCategory { no, bizcocho, galleta, cupcake }
 public enum CakeType { ninguno, chocolate, mantequilla, zanahoria,RedVelvet}
 public enum CookieType { ninguno, chocolate,blanco, mantequilla }
-public enum MufflinType { ninguno, pistacho,arandanos, cereza,dulceLeche}
+public enum CupcakeType { ninguno, pistacho,arandanos, cereza,dulceLeche}
 public enum CookState { no, crudo, horneado, quemado }
