@@ -3010,6 +3010,7 @@ GameObject:
   - component: {fileID: 69314341}
   - component: {fileID: 69314343}
   - component: {fileID: 69314342}
+  - component: {fileID: 69314344}
   m_Layer: 5
   m_Name: 'CustomerDeliveryUI '
   m_TagString: Untagged
@@ -3084,6 +3085,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 69314340}
   m_CullTransparentMesh: 1
+--- !u!114 &69314344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 69314340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e5487515fa56be4781666ceb936ce33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  silenciarPorCompleto: 0
 --- !u!1 &74253027
 GameObject:
   m_ObjectHideFlags: 0
@@ -3387,6 +3401,7 @@ GameObject:
   - component: {fileID: 82270511}
   - component: {fileID: 82270510}
   - component: {fileID: 82270509}
+  - component: {fileID: 82270512}
   m_Layer: 5
   m_Name: OpenPackPanel
   m_TagString: Untagged
@@ -3509,6 +3524,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 82270507}
   m_CullTransparentMesh: 1
+--- !u!114 &82270512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 82270507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e5487515fa56be4781666ceb936ce33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  silenciarPorCompleto: 1
 --- !u!1 &84590303
 GameObject:
   m_ObjectHideFlags: 0
@@ -5364,6 +5392,7 @@ GameObject:
   - component: {fileID: 153319689}
   - component: {fileID: 153319691}
   - component: {fileID: 153319690}
+  - component: {fileID: 153319692}
   m_Layer: 5
   m_Name: Cafetera
   m_TagString: Untagged
@@ -5443,6 +5472,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 153319688}
   m_CullTransparentMesh: 1
+--- !u!114 &153319692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 153319688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e5487515fa56be4781666ceb936ce33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  silenciarPorCompleto: 0
 --- !u!1 &165792297
 GameObject:
   m_ObjectHideFlags: 0
@@ -7604,6 +7646,7 @@ GameObject:
   - component: {fileID: 270205275}
   - component: {fileID: 270205277}
   - component: {fileID: 270205276}
+  - component: {fileID: 270205278}
   m_Layer: 5
   m_Name: Bakery
   m_TagString: Untagged
@@ -7685,6 +7728,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 270205274}
   m_CullTransparentMesh: 1
+--- !u!114 &270205278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 270205274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e5487515fa56be4781666ceb936ce33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  silenciarPorCompleto: 0
 --- !u!1 &270730258
 GameObject:
   m_ObjectHideFlags: 0
@@ -16475,6 +16531,7 @@ GameObject:
   - component: {fileID: 409527325}
   - component: {fileID: 409527324}
   - component: {fileID: 409527323}
+  - component: {fileID: 409527326}
   m_Layer: 5
   m_Name: ShopMenu
   m_TagString: Untagged
@@ -16565,6 +16622,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 409527321}
   m_CullTransparentMesh: 1
+--- !u!114 &409527326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 409527321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e5487515fa56be4781666ceb936ce33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  silenciarPorCompleto: 1
 --- !u!1 &409539647
 GameObject:
   m_ObjectHideFlags: 0
@@ -16857,7 +16927,7 @@ MonoBehaviour:
   rendererFloor: {fileID: 1513225473}
   sunnyHours: {x: 4, y: 8}
   rainyHours: {x: 2, y: 3.5}
-  rainProbability: 60
+  rainProbability: 100
   sunIntensitySunny: 1.5
   sunColorSunny: {r: 1, g: 0.9600814, b: 0.84339625, a: 1}
   ambientIntensitySunny: 1
@@ -16869,6 +16939,7 @@ MonoBehaviour:
   rainClip: {fileID: 8300000, guid: 727a258b18ad6f347918934e8926ef3f, type: 3}
   ambientClip: {fileID: 8300000, guid: a0c5ac40bbe4b0d47a2d2c62ee591040, type: 3}
   maxVolume: 0.5
+  volumenInterior: 0.15
 --- !u!1 &410345401
 GameObject:
   m_ObjectHideFlags: 0
@@ -18391,6 +18462,7 @@ GameObject:
   - component: {fileID: 461767905}
   - component: {fileID: 461767904}
   - component: {fileID: 461767903}
+  - component: {fileID: 461767907}
   m_Layer: 5
   m_Name: WarningMessagePopUp
   m_TagString: Untagged
@@ -18484,6 +18556,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 461767901}
   m_CullTransparentMesh: 1
+--- !u!114 &461767907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 461767901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e5487515fa56be4781666ceb936ce33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  silenciarPorCompleto: 1
 --- !u!1 &463943255
 GameObject:
   m_ObjectHideFlags: 0
@@ -22328,6 +22413,7 @@ GameObject:
   - component: {fileID: 567051561}
   - component: {fileID: 567051563}
   - component: {fileID: 567051560}
+  - component: {fileID: 567051565}
   m_Layer: 5
   m_Name: OpenPremiumPackMessagePopUp
   m_TagString: Untagged
@@ -22420,6 +22506,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &567051565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 567051559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e5487515fa56be4781666ceb936ce33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  silenciarPorCompleto: 1
 --- !u!1 &569478932
 GameObject:
   m_ObjectHideFlags: 0
@@ -26065,6 +26164,7 @@ GameObject:
   - component: {fileID: 726219182}
   - component: {fileID: 726219184}
   - component: {fileID: 726219183}
+  - component: {fileID: 726219185}
   m_Layer: 5
   m_Name: CoinsShopPanel
   m_TagString: Untagged
@@ -26130,6 +26230,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 726219181}
   m_CullTransparentMesh: 1
+--- !u!114 &726219185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 726219181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e5487515fa56be4781666ceb936ce33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  silenciarPorCompleto: 1
 --- !u!1 &731598297
 GameObject:
   m_ObjectHideFlags: 0
@@ -33907,6 +34020,7 @@ GameObject:
   - component: {fileID: 995759340}
   - component: {fileID: 995759342}
   - component: {fileID: 995759341}
+  - component: {fileID: 995759343}
   m_Layer: 5
   m_Name: CustomerDialogueUI
   m_TagString: Untagged
@@ -33977,6 +34091,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 995759339}
   m_CullTransparentMesh: 1
+--- !u!114 &995759343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 995759339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e5487515fa56be4781666ceb936ce33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  silenciarPorCompleto: 0
 --- !u!1 &998293347
 GameObject:
   m_ObjectHideFlags: 0
@@ -35910,6 +36037,7 @@ GameObject:
   - component: {fileID: 1071502799}
   - component: {fileID: 1071502801}
   - component: {fileID: 1071502800}
+  - component: {fileID: 1071502802}
   m_Layer: 5
   m_Name: PauseMenu
   m_TagString: Untagged
@@ -35979,6 +36107,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1071502798}
   m_CullTransparentMesh: 1
+--- !u!114 &1071502802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1071502798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e5487515fa56be4781666ceb936ce33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  silenciarPorCompleto: 0
 --- !u!1 &1074631924
 GameObject:
   m_ObjectHideFlags: 0
@@ -38772,6 +38913,7 @@ GameObject:
   - component: {fileID: 1155155595}
   - component: {fileID: 1155155597}
   - component: {fileID: 1155155594}
+  - component: {fileID: 1155155599}
   m_Layer: 5
   m_Name: NotEnoughMoneyB
   m_TagString: Untagged
@@ -38865,6 +39007,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1155155599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1155155593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e5487515fa56be4781666ceb936ce33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  silenciarPorCompleto: 1
 --- !u!1 &1159473346
 GameObject:
   m_ObjectHideFlags: 0
@@ -40142,6 +40297,7 @@ GameObject:
   - component: {fileID: 1205143833}
   - component: {fileID: 1205143832}
   - component: {fileID: 1205143835}
+  - component: {fileID: 1205143837}
   m_Layer: 5
   m_Name: OpenBasicPackMessagePopUp
   m_TagString: Untagged
@@ -40234,6 +40390,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1205143837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1205143831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e5487515fa56be4781666ceb936ce33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  silenciarPorCompleto: 1
 --- !u!1 &1206601177
 GameObject:
   m_ObjectHideFlags: 0
@@ -56905,6 +57074,7 @@ GameObject:
   - component: {fileID: 1692941315}
   - component: {fileID: 1692941317}
   - component: {fileID: 1692941316}
+  - component: {fileID: 1692941319}
   - component: {fileID: 1692941318}
   m_Layer: 5
   m_Name: RecipesBook
@@ -56997,6 +57167,19 @@ MonoBehaviour:
   bookPagesContainer: {fileID: 570483449}
   coffeeUnlocker: {fileID: 50023193}
   foodUnlocker: {fileID: 38363354}
+--- !u!114 &1692941319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1692941314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e5487515fa56be4781666ceb936ce33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  silenciarPorCompleto: 0
 --- !u!1 &1694230559
 GameObject:
   m_ObjectHideFlags: 0
@@ -63018,6 +63201,7 @@ GameObject:
   - component: {fileID: 1962994464}
   - component: {fileID: 1962994463}
   - component: {fileID: 1962994462}
+  - component: {fileID: 1962994466}
   m_Layer: 5
   m_Name: CardCollectionPanel
   m_TagString: Untagged
@@ -63115,6 +63299,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1962994466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1962994461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e5487515fa56be4781666ceb936ce33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  silenciarPorCompleto: 1
 --- !u!1 &1965152598
 GameObject:
   m_ObjectHideFlags: 0
@@ -63264,6 +63461,7 @@ GameObject:
   - component: {fileID: 1976100351}
   - component: {fileID: 1976100353}
   - component: {fileID: 1976100350}
+  - component: {fileID: 1976100355}
   m_Layer: 5
   m_Name: NotEnoughMoneyP
   m_TagString: Untagged
@@ -63357,6 +63555,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1976100355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1976100349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e5487515fa56be4781666ceb936ce33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  silenciarPorCompleto: 1
 --- !u!1 &1980980243
 GameObject:
   m_ObjectHideFlags: 0
@@ -64853,6 +65064,7 @@ GameObject:
   - component: {fileID: 2032705005}
   - component: {fileID: 2032705004}
   - component: {fileID: 2032705003}
+  - component: {fileID: 2032705006}
   m_Layer: 5
   m_Name: OptionsMenu
   m_TagString: Untagged
@@ -64923,6 +65135,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2032705006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2032705002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e5487515fa56be4781666ceb936ce33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  silenciarPorCompleto: 0
 --- !u!1 &2033099878
 GameObject:
   m_ObjectHideFlags: 0
@@ -66763,10 +66988,10 @@ MonoBehaviour:
   pausePanel: {fileID: 1071502798}
   optionsPanel: {fileID: 2032705002}
   shopPanel: {fileID: 409527321}
-  catsPanel: {fileID: 0}
+  catsPanel: {fileID: 448990011}
   dialoguePanel: {fileID: 995759339}
   endOfDayPanel: {fileID: 1071443432}
-  tutorialManager: {fileID: 0}
+  tutorialManager: {fileID: 841635553}
   orderScreen: 0
   customerOrderGenerator: {fileID: 0}
 --- !u!1 &2090454216

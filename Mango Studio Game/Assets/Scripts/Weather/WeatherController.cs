@@ -4,6 +4,8 @@ using UnityEngine;
 // Clase encargada de gestionar el clima del juego (lluvia/sol)
 public class WeatherController : MonoBehaviour
 {
+    public static WeatherController Instance;
+
     [Header("Referencias")]
     public ParticleSystem rainSystem;
     public Light sunLight;
@@ -37,12 +39,23 @@ public class WeatherController : MonoBehaviour
     public AudioClip rainClip;
     public AudioClip ambientClip;
     [Range(0f, 1f)] public float maxVolume = 0.5f;
+    [Range(0f, 1f)] public float volumenInterior = 0.2f;
 
     private AudioSource rainSource;
     private AudioSource ambientSource;
+    private float currentRainTargetVolume = 0f;
+    private float currentAmbientTargetVolume = 0f;
 
     private float normalIntensitySun; // Brillo normal del sol
+    private float indoorFactor = 1f;
     private float transitionVel = 0.5f; // Suavidad del cambio de luz
+
+    private void Awake()
+    {
+        // Configuración Singleton
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
+    }
 
     private void Start()
     {
@@ -70,6 +83,38 @@ public class WeatherController : MonoBehaviour
 
         // Se inicia el ciclo de clima
         StartCoroutine(WeatherCicle());
+    }
+
+    private void Update()
+    {
+        // --- NUEVO: Actualización constante del volumen ---
+        // El volumen final es: (Lo que pide el clima) * (Si estás dentro o fuera)
+        if (rainSource != null)
+            rainSource.volume = currentRainTargetVolume * indoorFactor;
+
+        if (ambientSource != null)
+            ambientSource.volume = currentAmbientTargetVolume * indoorFactor;
+    }
+
+    // --- NUEVA FUNCIÓN PÚBLICA: Llamar a esto cuando entras/sales del panel ---
+    public void SetIndoorVolume(float targetVolume)
+    {
+        StopCoroutine("TransitionIndoorAudio"); // Detener si ya se estaba ejecutando
+        StartCoroutine(TransitionIndoorAudio(targetVolume));
+    }
+
+    IEnumerator TransitionIndoorAudio(float targetValue)
+    {
+        float startValue = indoorFactor;
+        float timer = 0f;
+
+        while (timer < 1f)
+        {
+            timer += Time.unscaledDeltaTime * 3.0f;
+            indoorFactor = Mathf.Lerp(startValue, targetValue, timer);
+            yield return null;
+        }
+        indoorFactor = targetValue;
     }
 
     // Funcion para gestionar el sonido
@@ -145,9 +190,8 @@ public class WeatherController : MonoBehaviour
         // Sonidos 
         float targetRainVol = isRain ? maxVolume : 0f;
         float targetAmbientVol = isRain ? 0f : maxVolume;
-
-        float startRainVol = rainSource.volume;
-        float startAmbientVol = ambientSource.volume;
+        float startRainVol = currentRainTargetVolume;
+        float startAmbientVol = currentAmbientTargetVolume;
 
         while (timer < 1f)
         {
@@ -165,11 +209,8 @@ public class WeatherController : MonoBehaviour
                 materialFloor.SetFloat("_Smoothness", nuevoBrillo);
             }
 
-            if (rainSource != null)
-                rainSource.volume = Mathf.Lerp(startRainVol, targetRainVol, timer);
-
-            if (ambientSource != null)
-                ambientSource.volume = Mathf.Lerp(startAmbientVol, targetAmbientVol, timer);
+            currentRainTargetVolume = Mathf.Lerp(startRainVol, targetRainVol, timer);
+            currentAmbientTargetVolume = Mathf.Lerp(startAmbientVol, targetAmbientVol, timer);
 
             yield return null;
         }
