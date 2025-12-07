@@ -86,8 +86,8 @@ public class CustomerOrder : MonoBehaviour
             ? order.foodOrder.GetFoodDescription()
             : " No quiero comida.";
         string baseText = order.coffeeType == CoffeeType.frappe
-            ? $"Quiero un {order.coffeeType} {sugarText}.{foodText} Lo quiero para {(order.orderType == OrderType.tomar ? "tomar aquí" : "llevar")}."
-            : $"Quiero un {order.coffeeType} {sugarText} y {iceText}.{foodText} Lo quiero para {(order.orderType == OrderType.tomar ? "tomar aquí" : "llevar")}.";
+            ? $"Quiero un {order.coffeeType} {sugarText}.{foodText} Lo quiero todo para {(order.orderType == OrderType.tomar ? "tomar aquí" : "llevar")}."
+            : $"Quiero un {order.coffeeType} {sugarText} y {iceText}.{foodText} Lo quiero todo para {(order.orderType == OrderType.tomar ? "tomar aquí" : "llevar")}.";
 
         return baseText;
     }

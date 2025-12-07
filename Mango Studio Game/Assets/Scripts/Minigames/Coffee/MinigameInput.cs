@@ -50,7 +50,7 @@ public class MinigameInput : MonoBehaviour
     [Header("Mecánica espumador")]
     [SerializeField] private GameObject heatPanel;
     [SerializeField] private Image curvedFillImage;
-    [SerializeField] private float fillSpeed = 0.05f;
+    [SerializeField] private float fillSpeed = 0.4f;
     [SerializeField] private float currentHeat = 0f;
     [SerializeField] private bool isHeating = false;
     [SerializeField] public bool heatedMilk = false;
@@ -287,7 +287,7 @@ public class MinigameInput : MonoBehaviour
             currentHeat += fillSpeed * Time.unscaledDeltaTime;
             currentHeat = Mathf.Clamp01(currentHeat);
 
-            curvedFillImage.fillAmount = currentHeat;
+            curvedFillImage.fillAmount = currentHeat * 0.5f;
             curvedFillImage.color = Color.Lerp(Color.blue, Color.red, currentHeat);
         }
 

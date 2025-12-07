@@ -26,32 +26,27 @@ public class InDoorPanelTrigger : MonoBehaviour
         UpdateSound();
     }
 
+    // Funcion para actualizar el volumen
     private void UpdateSound()
     {
         if (WeatherController.Instance == null) return;
 
-        float volumenObjetivo = 1f; // Por defecto: Exterior (100%)
+        float volumenObjetivo = 1f; // Exterior
 
-        // LÓGICA DE PRIORIDAD
         if (panelesSilenciososAbiertos > 0)
         {
-            // PRIORIDAD 1: Si hay AL MENOS UN panel de silencio total abierto
-            volumenObjetivo = 0f;
+            volumenObjetivo = 0f; 
         }
         else if (openPanels > 0)
         {
-            // PRIORIDAD 2: Si hay paneles normales abiertos (pero ninguno silencioso)
-            // Usamos la variable que definimos en el WeatherController
             volumenObjetivo = WeatherController.Instance.volumenInterior;
         }
 
-        // Enviamos la orden al controlador
         WeatherController.Instance.SetIndoorVolume(volumenObjetivo);
     }
 
     private void OnDestroy()
     {
-        // Reseteo de seguridad al cambiar de escena
         openPanels = 0;
         panelesSilenciososAbiertos = 0;
     }

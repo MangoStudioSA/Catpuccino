@@ -52,7 +52,7 @@ public class WeatherController : MonoBehaviour
 
     private void Awake()
     {
-        // Configuración Singleton
+        // Singleton
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
     }
@@ -87,8 +87,6 @@ public class WeatherController : MonoBehaviour
 
     private void Update()
     {
-        // --- NUEVO: Actualización constante del volumen ---
-        // El volumen final es: (Lo que pide el clima) * (Si estás dentro o fuera)
         if (rainSource != null)
             rainSource.volume = currentRainTargetVolume * indoorFactor;
 
@@ -96,13 +94,14 @@ public class WeatherController : MonoBehaviour
             ambientSource.volume = currentAmbientTargetVolume * indoorFactor;
     }
 
-    // --- NUEVA FUNCIÓN PÚBLICA: Llamar a esto cuando entras/sales del panel ---
+    // Funcion para calcular el volumen segun el panel en el que se encuentre el jugador
     public void SetIndoorVolume(float targetVolume)
     {
         StopCoroutine("TransitionIndoorAudio"); // Detener si ya se estaba ejecutando
         StartCoroutine(TransitionIndoorAudio(targetVolume));
     }
 
+    // Corrutina para la transicion al volumen dentro de la cafeteria
     IEnumerator TransitionIndoorAudio(float targetValue)
     {
         float startValue = indoorFactor;
