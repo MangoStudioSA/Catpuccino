@@ -63,7 +63,7 @@ public class CatCafeManager : MonoBehaviour
         // Se añade a la lista de gatos
         listaDeGatos[index].gatoInstancia = nuevoGato;
 
-        GatoBehavior comportamiento = nuevoGato.GetComponent<GatoBehavior>();
+        CatBehavior comportamiento = nuevoGato.GetComponent<CatBehavior>();
         if (comportamiento != null)
         {
             if (info.posFija)

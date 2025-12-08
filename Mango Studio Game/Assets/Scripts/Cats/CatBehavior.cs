@@ -3,11 +3,11 @@ using UnityEngine;
 using UnityEngine.AI;
 
 // Clase encargada de gestionar el comportamiento de los gatos
-public class GatoBehavior : MonoBehaviour
+public class CatBehavior : MonoBehaviour
 {
     private UnityEngine.AI.NavMeshAgent agent;
     private Animator animator;
-    private bool haLlegado = false;
+    private bool hasArrive = false;
     private Transform objetivoMirada;
 
     void Awake()
@@ -18,7 +18,7 @@ public class GatoBehavior : MonoBehaviour
 
     void Update()
     {
-        if (haLlegado) return;
+        if (hasArrive) return;
 
         if (agent != null && agent.enabled && agent.isOnNavMesh && agent.hasPath)
         {
@@ -39,7 +39,7 @@ public class GatoBehavior : MonoBehaviour
         if (agent == null || animator == null) return;
 
         StopAllCoroutines();
-        haLlegado = false;
+        hasArrive = false;
 
         StartCoroutine(MoverSeguro(destino));
     }
@@ -70,7 +70,7 @@ public class GatoBehavior : MonoBehaviour
     // Funcion para que el gato reproduzca la animacion de sentarse
     void Sentarse()
     {
-        haLlegado = true;
+        hasArrive = true;
 
         // Paramos al agente
         if (agent != null) agent.isStopped = true;

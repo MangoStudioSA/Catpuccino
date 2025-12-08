@@ -35,7 +35,7 @@ public class HUDManager : MonoBehaviour
 
     private IEnumerator Start()
     {
-        // Espera un frame para asegurar que PlayerDataManager y los textos estén inicializados
+        // Espera un frame para asegurar que PlayerDataManager y los textos esten inicializados
         yield return null;
 
         if (PlayerDataManager.instance != null)
@@ -209,7 +209,7 @@ public class HUDManager : MonoBehaviour
         if (availableCoffees.Length > 0)
         {
             string coffeesList = string.Join(", ", availableCoffees); // Se separa cada cafe por ","
-            message += $"Cafés: {coffeesList}. \n";
+            message += $"\n - Cafés: {coffeesList}. \n";
         }
         else
         {
@@ -219,11 +219,11 @@ public class HUDManager : MonoBehaviour
         if (availableFood.Length > 0)
         {
             string foodList = string.Join(", ", availableFood); // Se separa cada comida por ","
-            message += $"Comidas: {foodList}.";
+            message += $"\n - Comidas: {foodList}.";
         }
         else
         {
-            message += "No hay comida disponible.";
+            message += " - No hay comida disponible.";
         }
 
         UpdateAvailableText(message);
