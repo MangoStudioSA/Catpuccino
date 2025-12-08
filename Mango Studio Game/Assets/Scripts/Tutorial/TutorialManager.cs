@@ -9,6 +9,7 @@ using UnityEngine.UI;
 // Clase para gestionar los tutoriales
 public class TutorialManager : MonoBehaviour
 {
+    // Bocadillos
     public enum StepType
     {
         UpLeft,
@@ -17,13 +18,24 @@ public class TutorialManager : MonoBehaviour
         DownRight
     }
 
+    // Gatos
+    public enum CatPose
+    {
+        CatDown,
+        CatUp,
+        CatRight,
+        CatLeft,
+        CatCenter
+    }
+
     // Se crea una clase basica para los componentes del tutorial
     [System.Serializable]
     public class TutorialStep
     {
         public string message;
         public StepType stepType;
-        public GameObject stepImage;
+        public CatPose catPose;
+        public Vector2 catPosition;
         public Vector2 position;
         public bool autoAdvance;
 
@@ -41,18 +53,35 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private GameObject prefabAbajoIzq;
     [SerializeField] private GameObject prefabAbajoDer;
 
+    [Header("Prefabs Gatos")]
+    [SerializeField] private GameObject catDownPrefab;
+    [SerializeField] private float catDownRotation = 0f;
+    [SerializeField] private GameObject catUpPrefab;
+    [SerializeField] private float catUpRotation = 180f;
+    [SerializeField] private GameObject catRightPrefab;
+    [SerializeField] private float catRightRotation = -90f;
+    [SerializeField] private GameObject catLeftPrefab;
+    [SerializeField] private float catLeftRotation = 90f;
+    [SerializeField] private GameObject catCenterPrefab;
+    [SerializeField] private float catCenterRotation = 0f;
+
     [Header("Elementos tutorial")]
     [SerializeField] public Transform tutorialContainer;
+    public GameObject clickHintObject;
+
+    private GameObject currentCatInstance;
     private GameObject currentBubbleObject;
     private RectTransform currentPanelRect;
     private CanvasGroup currentCanvasGroup;
     private TextMeshProUGUI currentTextTMP;
+
+    [Header("Pasos tutoriales")]
     [SerializeField] private List<TutorialStep> steps;
 
+    [Header("Configuracion")]
     public float fadeDuration = 0.5f;
     public float bounceScale = 1.04f;
     public float bounceSpeed = 0.7f;
-
     public int currentStep = 0;
     public bool isRunningT1 = false;
     public bool isRunningT2 = false;
@@ -76,8 +105,6 @@ public class TutorialManager : MonoBehaviour
     public Image BMantequillaImage;
     public Image BZanahoriaImage;
     public Image BRedVelvetImage;
-    public Image catsMenuImage;
-    public Image catsMenu;
 
     [Header("Imagenes envases")]
     public Image tapaBImage;
@@ -87,19 +114,6 @@ public class TutorialManager : MonoBehaviour
     public Image tazaB2Image;
     public Image platoBImage;
     public Image platoPImage;
-
-    [Header("Imagenes estantes")]
-    public Image estanteBase;
-    public Image estanteTP;
-    public Image estanteVP;
-    public Image estantePremium;
-
-    [Header("Imagenes gatos")]
-    public Image gatoAbajoIzq;
-    public Image gatoAbajoDer;
-    public Image gatoArribaIzq;
-    public Image gatoArribaDer;
-    public Image gatoCentro;
 
     private void OnEnable()
     {
@@ -111,19 +125,10 @@ public class TutorialManager : MonoBehaviour
         if (TimeManager.Instance != null) TimeManager.Instance.onDayStarted -= HandleDayStarted;
     }
 
-    private void DesactivateCatsImages()
-    {
-        if (gatoCentro) gatoCentro.gameObject.SetActive(false);
-        if (gatoAbajoIzq) gatoAbajoIzq.gameObject.SetActive(false);
-        if (gatoAbajoDer) gatoAbajoDer.gameObject.SetActive(false);
-        if (gatoArribaIzq) gatoArribaIzq.gameObject.SetActive(false);
-        if (gatoArribaDer) gatoArribaDer.gameObject.SetActive(false);
-    }
-
     private IEnumerator Start()
     {
         ClearActualStep();
-        DesactivateCatsImages();
+        ClearCurrentCat();
         yield return new WaitForSeconds(0.1f);
 
         int currentDay = TimeManager.Instance.currentDay;
@@ -140,6 +145,66 @@ public class TutorialManager : MonoBehaviour
             case StepType.DownLeft: return prefabAbajoIzq;
             case StepType.DownRight: return prefabAbajoDer;
             default: return prefabArribaIzq;
+        }
+    }
+
+    // Funcion para actualizar el sprite del gato
+    private void UpdateCatVisuals(TutorialStep step)
+    {
+        ClearCurrentCat();
+
+        // Elegir prefab
+        GameObject prefabToSpawn = null;
+        float fixedRotation = 0f;
+
+        switch (step.catPose)
+        {
+            case CatPose.CatCenter: 
+                prefabToSpawn = catCenterPrefab;
+                fixedRotation = catCenterRotation;
+                break;
+            case CatPose.CatUp: 
+                prefabToSpawn = catUpPrefab;
+                fixedRotation = catUpRotation;
+                break;
+            case CatPose.CatDown: 
+                prefabToSpawn = catDownPrefab;
+                fixedRotation = catDownRotation;
+                break;
+            case CatPose.CatLeft: 
+                prefabToSpawn = catLeftPrefab;
+                fixedRotation = catLeftRotation;
+                break;
+            case CatPose.CatRight: 
+                prefabToSpawn = catRightPrefab;
+                fixedRotation = catRightRotation;
+                break;
+        }
+
+        // Instanciar y posicionar
+        if (prefabToSpawn != null && tutorialContainer != null)
+        {
+            currentCatInstance = Instantiate(prefabToSpawn, tutorialContainer);
+
+            RectTransform catRect = currentCatInstance.GetComponent<RectTransform>();
+            if (catRect != null)
+            {
+                catRect.localScale = Vector3.one;
+                catRect.anchoredPosition = step.catPosition;
+
+                catRect.localRotation = Quaternion.Euler(0f, 0f, fixedRotation);
+            }
+            currentCatInstance.transform.SetAsFirstSibling();
+        }
+    }
+
+    // Funcion para borrar sprite del gato actual
+    private void ClearCurrentCat()
+    {
+        if (currentCatInstance != null)
+        {
+            Destroy(currentCatInstance);
+            currentCatInstance = null;
         }
     }
 
@@ -186,7 +251,8 @@ public class TutorialManager : MonoBehaviour
                 position = new Vector2(0f, 0f),
                 autoAdvance = true,
                 stepType = StepType.UpLeft,
-                //stepImage = 
+                catPose = CatPose.CatCenter,
+                catPosition = new Vector2(-433, 193)
             });
             // Paso 1
             steps.Add(new TutorialStep
@@ -195,7 +261,8 @@ public class TutorialManager : MonoBehaviour
                 position = new Vector2(-430, 210f),
                 autoAdvance = false,
                 stepType = StepType.UpLeft,
-                //stepImage = ,
+                catPose = CatPose.CatUp,
+                catPosition = new Vector2(-812, 285),
                 glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
                 {
@@ -209,7 +276,8 @@ public class TutorialManager : MonoBehaviour
                 position = new Vector2(513f, -161f),
                 autoAdvance = false,
                 stepType = StepType.UpRight,
-                //stepImage = ,
+                catPose = CatPose.CatRight,
+                catPosition = new Vector2(707, 131),
                 glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
                 {
@@ -223,7 +291,8 @@ public class TutorialManager : MonoBehaviour
                 position = new Vector2(-416f, -110f),
                 autoAdvance = false,
                 stepType = StepType.DownLeft,
-                //stepImage = ,
+                catPose = CatPose.CatDown,
+                catPosition = new Vector2(-776, -286.4f),
                 glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
                 {
@@ -240,7 +309,8 @@ public class TutorialManager : MonoBehaviour
                 position = new Vector2(589f, -90f),
                 autoAdvance = false,
                 stepType = StepType.UpRight,
-                //stepImage = ,
+                catPose = CatPose.CatRight,
+                catPosition = new Vector2(706, 222),
                 glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
                 {
@@ -256,7 +326,8 @@ public class TutorialManager : MonoBehaviour
                 position = new Vector2(-595f, 2f),
                 autoAdvance = true,
                 stepType = StepType.UpLeft,
-                //stepImage = ,
+                catPose = CatPose.CatLeft,
+                catPosition = new Vector2(-706.3f, 191),
                 glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
                 {
@@ -272,7 +343,8 @@ public class TutorialManager : MonoBehaviour
                 position = new Vector2(157f, 280f),
                 autoAdvance = false,
                 stepType = StepType.UpLeft,
-                //stepImage = ,
+                catPose = CatPose.CatUp,
+                catPosition = new Vector2(-243, 286.7f),
                 glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
                 {
@@ -290,7 +362,8 @@ public class TutorialManager : MonoBehaviour
                 position = new Vector2(-556f, 183f),
                 autoAdvance = false,
                 stepType = StepType.UpRight,
-                //stepImage = ,
+                catPose = CatPose.CatUp,
+                catPosition = new Vector2(-187, 286),
                 glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
                 {
@@ -308,7 +381,8 @@ public class TutorialManager : MonoBehaviour
                 position = new Vector2(-301f, -150f),
                 autoAdvance = false,
                 stepType = StepType.DownLeft,
-                //stepImage = ,
+                catPose = CatPose.CatDown,
+                catPosition = new Vector2(-683, -288),
                 glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
                 {
@@ -323,10 +397,11 @@ public class TutorialManager : MonoBehaviour
             steps.Add(new TutorialStep
             {
                 message = "¡Mantén presionada la palanca para moler el café!",
-                position = new Vector2(160f, 114f),
+                position = new Vector2(260f, 114f),
                 autoAdvance = false,
                 stepType = StepType.UpRight,
-                //stepImage = ,
+                catPose = CatPose.CatCenter,
+                catPosition = new Vector2(678, 295),
                 glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
                 {
@@ -344,7 +419,8 @@ public class TutorialManager : MonoBehaviour
                 position = new Vector2(-98f, -270f),
                 autoAdvance = false,
                 stepType = StepType.DownRight,
-                //stepImage = ,
+                catPose = CatPose.CatDown,
+                catPosition = new Vector2(309, -286.5f),
                 glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
                 {
@@ -363,7 +439,8 @@ public class TutorialManager : MonoBehaviour
                 position = new Vector2(30f, -390f),
                 autoAdvance = true,
                 stepType = StepType.DownRight,
-                //stepImage = ,
+                catPose = CatPose.CatDown,
+                catPosition = new Vector2(451, -377),
                 glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
                 {
@@ -377,7 +454,8 @@ public class TutorialManager : MonoBehaviour
                 position = new Vector2(-390f, 180f),
                 autoAdvance = false,
                 stepType = StepType.UpLeft,
-                //stepImage = ,
+                catPose = CatPose.CatLeft,
+                catPosition = new Vector2(-752, 359),
                 glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
                 {
@@ -392,7 +470,8 @@ public class TutorialManager : MonoBehaviour
                 position = new Vector2(30f, -390f),
                 autoAdvance = false,
                 stepType = StepType.DownRight,
-                //stepImage = ,
+                catPose = CatPose.CatDown,
+                catPosition = new Vector2(431, -371),
                 glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
                 {
@@ -404,10 +483,11 @@ public class TutorialManager : MonoBehaviour
             steps.Add(new TutorialStep
             {
                 message = "¡Ten cuidado con la preparación! ¡Comprueba en el recetario en qué orden echar los ingredientes o perderás puntos!",
-                position = new Vector2(30f, -390f),
+                position = new Vector2(10f, -390f),
                 autoAdvance = true,
-                stepType = StepType.DownRight,
-                //stepImage = ,
+                stepType = StepType.UpLeft,
+                catPose = CatPose.CatDown,
+                catPosition = new Vector2(-419, -286),
                 glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
                 {
@@ -418,10 +498,11 @@ public class TutorialManager : MonoBehaviour
             steps.Add(new TutorialStep
             {
                 message = "¡Si te equivocas con la preparación puedes empezar de 0 clicando sobre la basura!",
-                position = new Vector2(2f, -384f),
+                position = new Vector2(-18f, -384f),
                 autoAdvance = true,
-                stepType = StepType.DownLeft,
-                //stepImage = ,
+                stepType = StepType.UpLeft,
+                catPose = CatPose.CatDown,
+                catPosition = new Vector2(-437, -286),
                 glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
                 {
@@ -435,7 +516,8 @@ public class TutorialManager : MonoBehaviour
                 position = new Vector2(600f, -100f),
                 autoAdvance = false,
                 stepType = StepType.UpRight,
-                //stepImage = ,
+                catPose = CatPose.CatRight,
+                catPosition = new Vector2(706.9f, 179),
                 glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
                 {
@@ -448,8 +530,9 @@ public class TutorialManager : MonoBehaviour
                 message = "Presiona \"Entregar\" para entregarle el pedido al cliente.",
                 position = new Vector2(195f, -390f),
                 autoAdvance = false,
-                stepType = StepType.DownLeft,
-                //stepImage = ,
+                stepType = StepType.UpLeft,
+                catPose = CatPose.CatDown,
+                catPosition = new Vector2(-291, -288),
                 glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
                 {
@@ -463,7 +546,8 @@ public class TutorialManager : MonoBehaviour
                 position = new Vector2(-541f, 140f),
                 autoAdvance = true,
                 stepType = StepType.UpLeft,
-                //stepImage = ,
+                catPose = CatPose.CatUp,
+                catPosition = new Vector2(-842, 357)
             });
             // Paso 19
             steps.Add(new TutorialStep
@@ -472,7 +556,8 @@ public class TutorialManager : MonoBehaviour
                 position = new Vector2(489f, 7f),
                 autoAdvance = true,
                 stepType = StepType.DownRight,
-                //stepImage = ,
+                catPose = CatPose.CatRight,
+                catPosition = new Vector2(707, -182)
             });
             // Paso 20
             steps.Add(new TutorialStep
@@ -481,7 +566,8 @@ public class TutorialManager : MonoBehaviour
                 position = new Vector2(508f, -149f),
                 autoAdvance = false,
                 stepType = StepType.UpRight,
-                //stepImage = ,
+                catPose = CatPose.CatRight,
+                catPosition = new Vector2(707, 142),
                 glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
                 {
@@ -495,7 +581,8 @@ public class TutorialManager : MonoBehaviour
                 position = new Vector2(0f, 0f),
                 autoAdvance = true,
                 stepType = StepType.DownRight,
-                //stepImage = ,
+                catPose = CatPose.CatCenter,
+                catPosition = new Vector2(481, -139)
             });
             // Paso 22
             steps.Add(new TutorialStep
@@ -504,7 +591,8 @@ public class TutorialManager : MonoBehaviour
                 position = new Vector2(-520f, 262f),
                 autoAdvance = true,
                 stepType = StepType.DownLeft,
-                //stepImage = ,
+                catPose = CatPose.CatLeft,
+                catPosition = new Vector2(-707, -62),
                 highlightObjects = new List<GameObject>
                 {
                     buttonManager.shopButton.gameObject,
@@ -517,11 +605,8 @@ public class TutorialManager : MonoBehaviour
                 position = new Vector2(628f, 2f),
                 autoAdvance = true,
                 stepType = StepType.UpRight,
-                //stepImage = ,
-                highlightObjects = new List<GameObject>
-                {
-                    catsMenuImage.gameObject,
-                },
+                catPose = CatPose.CatRight,
+                catPosition = new Vector2(709, 311),
             });
             // Paso 24
             steps.Add(new TutorialStep
@@ -530,7 +615,8 @@ public class TutorialManager : MonoBehaviour
                 position = new Vector2(0f, 0f),
                 autoAdvance = true,
                 stepType = StepType.UpRight,
-                //stepImage = ,
+                catPose = CatPose.CatCenter,
+                catPosition = new Vector2(353, 225)
             });
         }
     }
@@ -574,7 +660,21 @@ public class TutorialManager : MonoBehaviour
             if (currentTextTMP != null) currentTextTMP.text = step.message;
         }
 
-        if (step.stepImage != null) step.stepImage.SetActive(true);
+        UpdateCatVisuals(step);
+
+        if (clickHintObject != null)
+        {
+            if (currentStep == 0)
+            {
+                clickHintObject.SetActive(true);
+                StartCoroutine(BounceSpecificObject(clickHintObject.GetComponent<RectTransform>()));
+            }
+            else
+            {
+                clickHintObject.SetActive(false);
+            }
+        }
+
         step.onStepStart?.Invoke();
 
         // Efecto fade + rebote al mostrar el paso del turorial
@@ -607,6 +707,40 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
+    // Funcion para el efecto bounce del texto
+    private IEnumerator BounceSpecificObject(RectTransform targetRect)
+    {
+        if (targetRect == null) yield break;
+
+        Vector3 originalScale = Vector3.one;
+        Vector3 targetScale = Vector3.one * bounceScale;
+
+        while (targetRect != null && targetRect.gameObject.activeInHierarchy)
+        {
+            float elapsed = 0f;
+            // Escalar hacia arriba
+            while (elapsed < bounceSpeed)
+            {
+                if (targetRect == null || !targetRect.gameObject.activeInHierarchy) yield break;
+                elapsed += Time.deltaTime;
+                float t = Mathf.Sin((elapsed / bounceSpeed) * Mathf.PI * 0.5f);
+                targetRect.localScale = Vector3.Lerp(originalScale, targetScale, t);
+                yield return null;
+            }
+
+            elapsed = 0f;
+            // Escalar hacia abajo
+            while (elapsed < bounceSpeed)
+            {
+                if (targetRect == null || !targetRect.gameObject.activeInHierarchy) yield break;
+                elapsed += Time.deltaTime;
+                float t = Mathf.Sin((elapsed / bounceSpeed) * Mathf.PI * 0.5f);
+                targetRect.localScale = Vector3.Lerp(targetScale, originalScale, t);
+                yield return null;
+            }
+        }
+    }
+
     public void CompleteCurrentStep()
     {
         // Eliminar glow del paso actual
@@ -628,11 +762,7 @@ public class TutorialManager : MonoBehaviour
         StopAllCoroutines();
         StartCoroutine(FadeOutPanel(() =>
         {
-            if (step.stepImage != null)
-            {
-                step.stepImage.SetActive(false);
-            }
-
+            ClearCurrentCat();
             step.onStepComplete?.Invoke();
 
             currentStep++;
@@ -643,6 +773,7 @@ public class TutorialManager : MonoBehaviour
 
     public void EndTutorialT1()
     {
+        ClearCurrentCat();
         isRunningT1 = false;
         tutorialContainer.gameObject.SetActive(false);
         skipTutorialButton.SetActive(false);
@@ -836,10 +967,7 @@ public class TutorialManager : MonoBehaviour
         StopAllCoroutines();
         StartCoroutine(FadeOutPanel(() =>
         {
-            if (step.stepImage != null)
-            {
-                step.stepImage.SetActive(false);
-            }
+            ClearCurrentCat();
             step.onStepComplete?.Invoke();
 
             currentStep++;
@@ -877,11 +1005,7 @@ public class TutorialManager : MonoBehaviour
             if (currentTextTMP != null) currentTextTMP.text = step.message;
         }
 
-        if (step.stepImage != null)
-        {
-            step.stepImage.SetActive(true);
-        }
-
+        UpdateCatVisuals(step);
         step.onStepStart?.Invoke();
 
         // Efecto fade + rebote al mostrar el paso del turorial
@@ -917,6 +1041,7 @@ public class TutorialManager : MonoBehaviour
 
     public void EndTutorialT2()
     {
+        ClearCurrentCat();
         isRunningT2 = false;
         tutorialContainer.gameObject.SetActive(false);
         skipTutorialButton.SetActive(false);
@@ -1032,11 +1157,7 @@ public class TutorialManager : MonoBehaviour
         StopAllCoroutines();
         StartCoroutine(FadeOutPanel(() =>
         {
-            if (step.stepImage != null)
-            {
-                step.stepImage.SetActive(false);
-            }
-
+            ClearCurrentCat();
             step.onStepComplete?.Invoke();
 
             currentStep++;
@@ -1074,10 +1195,7 @@ public class TutorialManager : MonoBehaviour
             if (currentTextTMP != null) currentTextTMP.text = step.message;
         }
 
-        if (step.stepImage != null)
-        {
-            step.stepImage.SetActive(true);
-        }
+        UpdateCatVisuals(step);
         step.onStepStart?.Invoke();
 
         // Efecto fade + rebote al mostrar el paso del turorial
@@ -1113,6 +1231,7 @@ public class TutorialManager : MonoBehaviour
 
     public void EndTutorialT3()
     {
+        ClearCurrentCat();
         isRunningT3 = false;
         tutorialContainer.gameObject.SetActive(false);
         skipTutorialButton.SetActive(false);
@@ -1126,6 +1245,7 @@ public class TutorialManager : MonoBehaviour
         StopAllCoroutines();
         ClearAllGlow();
         ClearActualStep();
+        ClearCurrentCat();
 
         if (skipTutorialButton != null)
             skipTutorialButton.SetActive(false);
