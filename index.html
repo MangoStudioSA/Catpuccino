@@ -42,35 +42,35 @@
         }
         
         .carousel-catpuccino {
-                width: 600px;
-                height: 300px;
-                border-radius: 15px; /* Esquinas redondeadas */
-                overflow: hidden; /* Asegura que las imágenes se recorten con el radio */
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra ligera opcional */
-            }
+            width: 600px;
+            height: 300px;
+            border-radius: 15px; /* Esquinas redondeadas */
+            overflow: hidden; /* Asegura que las imágenes se recorten con el radio */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra ligera opcional */
+        }
         
-            .carousel-catpuccino .carousel-inner, 
-            .carousel-catpuccino .carousel-item,
-            .carousel-catpuccino img {
-                height: 100%;
-                width: 100%;
-                object-fit: cover; /* Asegura que la imagen cubra el área sin distorsionarse */
-            }
+        .carousel-catpuccino .carousel-inner, 
+        .carousel-catpuccino .carousel-item,
+        .carousel-catpuccino img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover; /* Asegura que la imagen cubra el área sin distorsionarse */
+        }
         
-            .carousel-control-prev-icon,
-            .carousel-control-next-icon {
-                background-color: rgba(0, 0, 0, 0.4); /* Fondo oscuro para las flechas */
-                border-radius: 5px;
-            }
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            background-color: rgba(0, 0, 0, 0.4); /* Fondo oscuro para las flechas */
+            border-radius: 5px;
+        }
         
-            /* Media query para hacer el carrusel responsivo en móviles */
-            @media (max-width: 991.98px) {
-                .carousel-catpuccino {
-                    width: 100%; /* Ancho completo en móviles */
-                    height: 250px; /* Altura ajustada para móviles */
-                    margin-bottom: 2rem; /* Espacio debajo del carrusel en móviles */
-                }
+        /* Media query para hacer el carrusel responsivo en móviles */
+        @media (max-width: 991.98px) {
+            .carousel-catpuccino {
+                width: 100%; /* Ancho completo en móviles */
+                height: 250px; /* Altura ajustada para móviles */
+                margin-bottom: 2rem; /* Espacio debajo del carrusel en móviles */
             }
+        }
         
         .team-member-img {
             width: 100px;
@@ -211,7 +211,9 @@
     <section id="games" class="section-spacing bg-light">
         <div class="container px-5">
             <h2 class="text-center mb-5 display-4">Nuestros Juegos</h2>
+            
             <div class="row justify-content-center">
+                
                 <div class="col-md-6 col-lg-4 mb-4">
                     <a href="https://mangostudiourjc.itch.io/catpuccino" target="_blank" class="text-decoration-none text-dark">
                         <div class="card shadow-sm h-100 rounded-lg">
@@ -223,6 +225,7 @@
                         </div>
                     </a>
                 </div>
+                
                 <div class="col-md-6 col-lg-4 mb-4">
                     <a href="https://drive.google.com/file/d/1wTb5Bw5j7bLPUMFiHEw1gab3hCIc4n1L/view?usp=drive_link" target="_blank" class="text-decoration-none text-dark">
                         <div class="card shadow-sm h-100 rounded-lg">
@@ -234,12 +237,11 @@
                         </div>
                     </a>
                 </div>
-            </div>
-        </div>
-        <div class="col-md-6 col-lg-4 mb-4">
+                
+                <div class="col-md-6 col-lg-4 mb-4">
                     <a href="https://drive.google.com/file/d/1wTb5Bw5j7bLPUMFiHEw1gab3hCIc4n1L/view?usp=drive_link" target="_blank" class="text-decoration-none text-dark">
                         <div class="card shadow-sm h-100 rounded-lg">
-                            <img src="assets/music.png" class="card-img-top rounded-t" alt="DJ Wordle" onerror="this.onerror=null;this.src='https://placehold.co/600x400/212529/ffc107?text=Music+Trivia';">
+                            <img src="assets/music.png" class="card-img-top rounded-t" alt="DJ Wordle" onerror="this.onerror=null;this.src='https://placehold.co/600x400/212529/ffc107?text=DJ+Wordle';">
                             <div class="card-body text-center">
                                 <h5 class="card-title fw-bold">DJ Wordle</h5>
                                 <p class="card-text">Cuantas palabras aciertas sobre musica</p>
@@ -247,8 +249,9 @@
                         </div>
                     </a>
                 </div>
+                
             </div>
-        </div>
+            </div>
     </section>
     <section id="team" class="section-spacing">
         <div class="container px-5">
@@ -319,6 +322,7 @@
             </a>
         </div>
     </section>
+    
     <div class="modal fade" id="teamMember1Modal" tabindex="-1" aria-labelledby="teamMember1ModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -342,6 +346,7 @@
             </div>
         </div>
     </div>
+    
     <div class="modal fade" id="teamMember2Modal" tabindex="-1" aria-labelledby="teamMember2ModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -365,6 +370,7 @@
             </div>
         </div>
     </div>
+    
     <div class="modal fade" id="teamMember3Modal" tabindex="-1" aria-labelledby="teamMember3ModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -388,6 +394,7 @@
             </div>
         </div>
     </div>
+    
     <div class="modal fade" id="teamMember4Modal" tabindex="-1" aria-labelledby="teamMember4ModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -395,48 +402,42 @@
                     <h5 class="modal-title" id="teamMember4ModalLabel">Garazi</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal fade" id="teamMember4Modal" tabindex="-1" aria-labelledby="teamMember4ModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="teamMember4ModalLabel">Garazi</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body text-center">
-                <img class="img-fluid rounded-circle mb-3" src="assets/img/member4.jpg" alt="Garazi" style="max-width: 150px;" onerror="this.onerror=null;this.src='https://placehold.co/150x150/ffc107/212529?text=G';"/>
-                <p><strong>Rol en el equipo:</strong> Artista 2D y game designer</p>
-                <p class="text-justify">Hola soy Garazi, aunque todo el mundo me llama Gara, llevo desde que tengo uso de razón dibujando y es lo que quiero seguir haciendo el resto de mi vida, por ello y por mi amor por los videojuegos, ahora soy artista 2d para videojuegos, hago desde personajes y escenarios hasta props e interfaces. Mi objetivo ahora es ofrecer experiencias atractivas e inmersivas a través de mi arte.</p>
-                
-                <div class="mt-4">
-                    <button class="btn btn-outline-invest btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#garaziContributions" aria-expanded="false" aria-controls="garaziContributions">
-                        Ver Contribuciones en Catpuccino
-                    </button>
-                    <div class="collapse mt-2" id="garaziContributions">
-                        <div class="card card-body text-start">
-                            <h6 class="fw-bold">Cosas realizadas por Garazi en Catpuccino:</h6>
-                            <ul class="list-unstyled mb-0">
-                                <li>- Diseño de todos los **props 2D**</li>
-                                <li>- **Concept art** del personaje principal</li>
-                                <li>- **Ilustraciones** del personaje principal para carteles e interfaces</li>
-                                <li>- Diseño 2D de **2 clientes** (Emi y Carina)</li>
-                                <li>- **Ilustraciones del gato** para el tutorial</li>
-                                <li>- Ayuda en programación (base muy sencilla del minijuego, camara 3d y resolución de un bug)</li>
-                            </ul>
+                <div class="modal-body text-center">
+                    <img class="img-fluid rounded-circle mb-3" src="assets/img/member4.jpg" alt="Garazi" style="max-width: 150px;" onerror="this.onerror=null;this.src='https://placehold.co/150x150/ffc107/212529?text=G';"/>
+                    <p><strong>Rol en el equipo:</strong> Artista 2D y game designer</p>
+                    <p class="text-justify">Hola soy Garazi, aunque todo el mundo me llama Gara, llevo desde que tengo uso de razón dibujando y es lo que quiero seguir haciendo el resto de mi vida, por ello y por mi amor por los videojuegos, ahora soy artista 2d para videojuegos, hago desde personajes y escenarios hasta props e interfaces. Mi objetivo ahora es ofrecer experiencias atractivas e inmersivas a través de mi arte.</p>
+                    
+                    <div class="mt-4 w-100">
+                        <button class="btn btn-outline-invest btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#garaziContributions" aria-expanded="false" aria-controls="garaziContributions">
+                            Ver Contribuciones en Catpuccino
+                        </button>
+                        <div class="collapse mt-2" id="garaziContributions">
+                            <div class="card card-body text-start">
+                                <h6 class="fw-bold">Cosas realizadas por Garazi en Catpuccino:</h6>
+                                <ul class="list-unstyled mb-0 ps-3">
+                                    <li>- Diseño de todos los **props 2D**</li>
+                                    <li>- **Concept art** del personaje principal</li>
+                                    <li>- **Ilustraciones** del personaje principal para carteles e interfaces</li>
+                                    <li>- Diseño 2D de **2 clientes** (Emi y Carina)</li>
+                                    <li>- **Ilustraciones del gato** para el tutorial</li>
+                                    <li>- Ayuda en programación (base muy sencilla del minijuego, camara 3d y resolución de un bug)</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="social-links mt-3 d-flex justify-content-center">
-                    <a class="nav-link mx-2" href="https://instagram.com/garalart_" target="_blank" aria-label="Instagram">
-                        <i class="fab fa-instagram fa-2x"></i>
-                    </a>
-                    <a class="nav-link mx-2" href="https://garalart.itch.io" target="_blank" aria-label="Itch.io">
-                        <i class="fab fa-itch-io fa-2x"></i>
-                    </a>
+                    <div class="social-links mt-3 d-flex justify-content-center">
+                        <a class="nav-link mx-2" href="https://instagram.com/garalart_" target="_blank" aria-label="Instagram">
+                            <i class="fab fa-instagram fa-2x"></i>
+                        </a>
+                        <a class="nav-link mx-2" href="https://garalart.itch.io" target="_blank" aria-label="Itch.io">
+                            <i class="fab fa-itch-io fa-2x"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+    
     <div class="modal fade" id="teamMember5Modal" tabindex="-1" aria-labelledby="teamMember5ModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -460,6 +461,7 @@
             </div>
         </div>
     </div>
+    
     <div class="modal fade" id="teamMember6Modal" tabindex="-1" aria-labelledby="teamMember6ModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -479,6 +481,7 @@
             </div>
         </div>
     </div>
+    
     <footer class="py-5 bg-black">
         <div class="container px-5"><p class="m-0 text-center text-white small">Mango Studio</p></div>
     </footer>
