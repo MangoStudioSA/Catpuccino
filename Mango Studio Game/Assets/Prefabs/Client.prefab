@@ -169,6 +169,7 @@ MonoBehaviour:
   atQueue: 0
   manager: {fileID: 0}
   model: 0
+  leaving: 0
 --- !u!54 &4231839258988541092
 Rigidbody:
   m_ObjectHideFlags: 0

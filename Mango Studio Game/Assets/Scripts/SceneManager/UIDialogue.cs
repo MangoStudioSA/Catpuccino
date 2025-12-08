@@ -89,7 +89,9 @@ public class UIDialogue : MonoBehaviour
         manager.orderButton.SetActive(false);
         manager.clients -= 1;
         manager.customers.Dequeue();
-        Destroy(manager.orderingCustomer);
+        manager.orderingCustomer.GetComponent<CustomerController>().leaving = true;
+        manager.orderingCustomer.transform.Translate(0.0f, 0.0f, 0.5f);
+        manager.orderingCustomer.transform.Rotate(0.0f, 180.0f, 0.0f);
         gameUI.orderScreen = false;
         popUpMechanicsMsg.DestroyAllPopUps();
 

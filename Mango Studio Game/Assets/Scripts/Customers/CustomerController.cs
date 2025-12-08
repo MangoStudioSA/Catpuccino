@@ -9,6 +9,8 @@ public class CustomerController : MonoBehaviour
     public bool atCounter = false, atQueue = false;
     public CustomerManager manager;
     public int model = 0;
+    public bool leaving = false;
+    float leavingCounter = 0;
 
     Animator anim;
 
@@ -24,14 +26,28 @@ public class CustomerController : MonoBehaviour
 
     void Update()
     {
-        if (!atCounter && !atQueue)
+        if (leavingCounter >= 10)
         {
-            transform.Translate(direction.normalized * speed * Time.deltaTime);
-            anim.SetBool("Idle", false);
+            Destroy(this.gameObject);
+        }
+
+        if (!leaving)
+        {
+            if (!atCounter && !atQueue)
+            {
+                transform.Translate(direction.normalized * speed * Time.deltaTime);
+                anim.SetBool("Idle", false);
+            }
+            else
+            {
+                anim.SetBool("Idle", true);
+            }
         }
         else
         {
-            anim.SetBool("Idle", true);
+            transform.Translate(direction.normalized * speed * Time.deltaTime);
+            anim.SetBool("Happy", true);
+            leavingCounter += Time.deltaTime;
         }
 
         if (!atCounter && manager.customers.Count > 0 && manager.customers.Peek() == this)
