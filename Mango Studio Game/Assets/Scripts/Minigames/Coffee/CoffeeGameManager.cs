@@ -78,11 +78,11 @@ public class CoffeeGameManager : MonoBehaviour
         if (tip > 0) 
         {
             GameManager.Instance.AnadirMonedas(tip);
-            PopUpMechanicsMsg.Instance.ShowMessage($"Propina recibida: {tip}$", new Vector3(300, -87, 0), 5f);
+            PopUpMechanicsMsg.Instance.ShowMessage($"Propina recibida: {tip}$", new Vector3(250, -87, 0), 5f);
         }
         else 
         {
-            PopUpMechanicsMsg.Instance.ShowMessage("El cliente no ha dejado propina.", new Vector3(300, -87, 0), 6f);
+            PopUpMechanicsMsg.Instance.ShowMessage("El cliente no ha dejado propina.", new Vector3(250, -87, 0), 6f);
         }
 
         if (customerManager.orderingCustomer != null)
@@ -103,7 +103,7 @@ public class CoffeeGameManager : MonoBehaviour
             evaluation.lastBadCookStateBurned
         );
 
-        PopUpMechanicsMsg.Instance.ShowMessage($"+{result.moneyEarned}$", new Vector3(-427, -50, 0), 6f); // Mostrar mensaje en popup
+        PopUpMechanicsMsg.Instance.ShowMessage($"+{result.moneyEarned}$", new Vector3(-510, -50, 0), 6f); // Mostrar mensaje en popup
 
         // Actualizar textos
         orderFeedbackTxt.text = feedback;
