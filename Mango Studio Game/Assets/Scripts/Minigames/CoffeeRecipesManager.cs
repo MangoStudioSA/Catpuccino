@@ -47,6 +47,7 @@ public class CoffeeRecipesManager : MonoBehaviour
     {
         // Oculta las páginas mientras está la animación
         bookPagesContainer.SetActive(false);
+        MiniGameSoundManager.instance.PlayOpenBook();
 
         // Animación de abrir libro
         if (bookAnimator != null)
@@ -85,6 +86,7 @@ public class CoffeeRecipesManager : MonoBehaviour
     private IEnumerator PageTurnRoutine(int newPageIndex, string trigger)
     {
         isTurningPage = true;
+        MiniGameSoundManager.instance.PlayNextPage();
 
         // Oculta las páginas
         bookPagesContainer.SetActive(false);

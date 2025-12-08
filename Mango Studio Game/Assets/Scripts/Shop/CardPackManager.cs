@@ -114,6 +114,7 @@ public class CardPackManager : MonoBehaviour
     public void OpenPack()
     {
         if (isOpening || string.IsNullOrEmpty(pendindPackType)) return;
+        SoundsMaster.Instance.PlaySound_ClickMenu();
 
         isOpening = true;
         openButton.gameObject.SetActive(false);
@@ -158,6 +159,7 @@ public class CardPackManager : MonoBehaviour
     private IEnumerator OpenPackSequence(List<CardResult> cards)
     {
         packImage.gameObject.SetActive(false);
+        MiniGameSoundManager.instance.PlayOpenPack();
 
         // Animacion sobre
         GameObject currentAnim = (pendindPackType == "basic") ? basicAnimObject : premiumAnimObject;
@@ -203,6 +205,8 @@ public class CardPackManager : MonoBehaviour
             else
             {
                 // Carta coleccionable
+                MiniGameSoundManager.instance.PlayCard();
+
                 if (emptyCardAnimObject != null) emptyCardAnimObject.SetActive(false);
 
                 cardImage.sprite = cardData.sprite;

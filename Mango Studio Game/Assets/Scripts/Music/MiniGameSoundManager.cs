@@ -17,6 +17,7 @@ public class MiniGameSoundManager : MonoBehaviour
     public void PlayButtonDown() => SoundsMaster.Instance.PlaySound_CoffeeAmountMachine();
     public void PlayButtonUp() => SoundsMaster.Instance.PlaySound_CoffeeAmountReady();
     public void PlayMolerCafe() => SoundsMaster.Instance.PlaySound_MolerCafe();
+    public void PlayFiltro() => SoundsMaster.Instance.PlaySound_Filtro();
     public void PlayEcharCafe() => SoundsMaster.Instance.PlaySound_EcharCafe();
     public void PlayEcharLiquido() => SoundsMaster.Instance.PlaySound_EcharLiquido();
     public void PlayIntObjeto() => SoundsMaster.Instance.PlaySound_CogerDejarObj();
@@ -25,14 +26,27 @@ public class MiniGameSoundManager : MonoBehaviour
     public void PlayDejarHielo() => SoundsMaster.Instance.PlaySound_DejarHielo();
     public void PlayCuchara() => SoundsMaster.Instance.PlaySound_Cuchara();
     public void PlaySugar() => SoundsMaster.Instance.PlaySound_Azucar();
+    public void PlayCream() => SoundsMaster.Instance.PlaySound_Cream();
     public void PlayTakeFood() => SoundsMaster.Instance.PlaySound_TakeFood();
     public void PlayPapelera() => SoundsMaster.Instance.PlaySound_Papelera();
 
+    
     public void PlayMachinePour() => SoundsMaster.Instance.PlayAudio("CoffeeMachine");
     public void StopMachinePour() => SoundsMaster.Instance.StopAudio("CoffeeMachine");
     public void PlayEspumadorPour() => SoundsMaster.Instance.PlayAudio("Espumador");
     public void StopEspumadorPour() => SoundsMaster.Instance.StopAudio("Espumador");
     public void PlayMicroondasPour() => SoundsMaster.Instance.PlayAudio("Microondas");
     public void StopMicroondasPour() => SoundsMaster.Instance.StopAudio("Microondas");
+
+    // Tienda
+    public void PlayOpenPack() => SoundsMaster.Instance.PlaySound_OpenPack();
+    public void PlayCard() => SoundsMaster.Instance.PlaySound_Card();
+    public void PlayShop() => SoundsMaster.Instance.PlaySound_Shop();
+    public void PlaySpendMoney() => SoundsMaster.Instance.PlaySound_SpendMoney();
+    public void PlayNotEnoughMoney() => SoundsMaster.Instance.PlaySound_NotEnoughMoney();
+
+    // Libros
+    public void PlayOpenBook() => SoundsMaster.Instance.PlaySound_OpenBook();
+    public void PlayNextPage() => SoundsMaster.Instance.PlaySound_NextPage();
 
 }

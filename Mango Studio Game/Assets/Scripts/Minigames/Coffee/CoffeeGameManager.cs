@@ -2,6 +2,8 @@
 using TMPro;
 using UnityEngine.UI;
 
+public enum Gender { Male, Female }
+
 // Clase auxiliar para crear el resultado de la evaluacion
 [System.Serializable]
 public class EvaluationResult
@@ -25,6 +27,7 @@ public class CoffeeGameManager : MonoBehaviour
     public PlayerOrder player;
     public OrderEvaluation evaluation;
     public CustomerManager customerManager;
+    public DeliveryPanel deliveryPanelScript;
 
     [Header("UI Texts")]
     public TextMeshProUGUI orderFeedbackTxt;
@@ -32,6 +35,9 @@ public class CoffeeGameManager : MonoBehaviour
     public TextMeshProUGUI servedCustomersTxt;
     public TextMeshProUGUI earnedTipTxt;
     public TextMeshProUGUI scoreTxt;
+
+    [Header("Configuracion de voces")]
+    public Gender[] clientGenders;
 
     [Header("Sprites clientes")]
     public Image clientImage;
@@ -91,6 +97,7 @@ public class CoffeeGameManager : MonoBehaviour
             int tipoCliente = currentCustomer.model;
             int tipoFeedback = CalculateFeedbackSprite(result.score);
             MostrarFeedback(tipoCliente, tipoFeedback);
+            PrepareReactionSound(tipoCliente, tipoFeedback);
         }
 
         // Generar feedback
@@ -117,6 +124,37 @@ public class CoffeeGameManager : MonoBehaviour
         if (score <= 80) return 0;
         if (score <= 92) return 1;
         else return 2;
+    }
+
+    // Funcion para cargar el audio del feedback del cliente
+    private void PrepareReactionSound(int tipoCliente, int tipoFeedback)
+    {
+        bool isMale = (clientGenders[tipoCliente] == Gender.Male);
+
+        AudioClip clipToPlay = SoundsMaster.Instance.GetCustomerVoice(isMale, tipoFeedback);
+
+        deliveryPanelScript.ReproducirVoz(clipToPlay);
+    }
+
+    // Acceder a la voz del cliente actual
+    public AudioClip GetCurrentOrderingCustomerVoice()
+    {
+        if (customerManager == null || customerManager.orderingCustomer == null)
+        {
+            return null;
+        }
+
+        // Se accede al id del cliente y su voz
+        CustomerController currentCustomer = customerManager.orderingCustomer.GetComponent<CustomerController>();
+        if (currentCustomer == null) return null;
+
+        int modelID = currentCustomer.model;
+
+        if (modelID < 0 || modelID >= clientGenders.Length)
+            return null;
+       
+        bool isMale = (clientGenders[modelID] == Gender.Male);
+        return SoundsMaster.Instance.GetCustomerVoice(isMale, 0);
     }
 
     // Funcion para generar el texto en funcion de la puntuacion obtenida

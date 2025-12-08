@@ -96,26 +96,31 @@ public class ShopManager : MonoBehaviour
     #region Interaccion paneles
     public void OpenCoinsShop()
     {
+        SoundsMaster.Instance.PlaySound_ClickMenu();
         coinsShopPanel.SetActive(true); // Abrir panel de comprar monedas premium
     }
 
     public void CloseCoinsShop()
     {
+        SoundsMaster.Instance.PlaySound_ClickMenu();
         coinsShopPanel.SetActive(false); // Cerrar panel de comprar monedas premium
     }
 
     public void OpenCollectionPanel()
     {
+        SoundsMaster.Instance.PlaySound_ClickMenu();
         collectionPanel.SetActive(true); // Abrir panel de comprar monedas premium
     }
 
     public void CloseCollectionPanel()
     {
+        SoundsMaster.Instance.PlaySound_ClickMenu();
         collectionPanel.SetActive(false); // Cerrar panel de comprar monedas premium
     }
 
     public void CloseOpenPackPanel()
     {
+        SoundsMaster.Instance.PlaySound_ClickMenu();
         openPackPanel.SetActive(false); // Cerrar panel de abrir sobre
     }
     #endregion
@@ -141,35 +146,39 @@ public class ShopManager : MonoBehaviour
 
     public void OnFinalBuyBasicPackClicked()
     {
-        SoundsMaster.Instance.PlaySound_ClickMenu();
+        MiniGameSoundManager.instance.PlaySpendMoney();
         BuyBasicPack(); // Si acepta comprar el sobre basico se llama a la funcion correspondiente
         buyBasicPackMsgPanel.SetActive(false); 
     }
 
     public void OnFinalBuyPremiumPackClicked()
     {
-        SoundsMaster.Instance.PlaySound_ClickMenu();
+        MiniGameSoundManager.instance.PlaySpendMoney();
         BuyPremiumPackPC(); // Si acepta comprar el sobre premium se llama a la funcion correspondiente
         buyPremiumPackMsgPanel.SetActive(false);
     }
 
     public void NotEnoughBasicMoney()
     {
+        MiniGameSoundManager.instance.PlayNotEnoughMoney();
         messageNotEnoughBMoney.Show("No tienes suficientes monedas de café para comprar este sobre."); // Mensaje cuando el jugador intenta comprar un sobre básico y no tiene suficiente dinero
     }
 
     public void NotEnoughPremiumMoney()
     {
+        MiniGameSoundManager.instance.PlayNotEnoughMoney();
         messageNotEnoughPMoney.Show("No tienes suficientes monedas de café/croquetas doradas para comprar este sobre"); // Mensaje cuando el jugador intenta comprar un sobre premium y no tiene suficiente dinero
     }
 
     public void ReturnNotEnoughBasicMoney()
     {
+        SoundsMaster.Instance.PlaySound_ClickMenu();
         notEnoughBMoneyMsgPanel.SetActive(false); // Volver cuando no tiene suficientes monedas basicas
     }
 
     public void ReturnNotEnoughPremiumMoney()
     {
+        SoundsMaster.Instance.PlaySound_ClickMenu();
         notEnoughPMoneyMsgPanel.SetActive(false); // Volver cuando no tiene suficientes monedas premium
     }
     #endregion

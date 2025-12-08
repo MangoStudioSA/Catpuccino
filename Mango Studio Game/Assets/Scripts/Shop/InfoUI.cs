@@ -26,6 +26,7 @@ public class InfoUI : MonoBehaviour
     public void ToggleNote()
     {
         if (currentCoroutine != null) StopCoroutine(currentCoroutine);
+        SoundsMaster.Instance.PlaySound_ClickMenu();
 
         noteInfo.gameObject.SetActive(true);
         bool show = noteInfo.anchoredPosition.y < (visiblePos.y - 1f);

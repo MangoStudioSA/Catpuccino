@@ -65,6 +65,8 @@ public class SpecialReward : MonoBehaviour
     {
         if (rewardPanel != null)
         {
+            SoundsMaster.Instance.PlaySound_Reward();
+
             if (PlayerDataManager.instance != null)
             {
                 PlayerDataManager.instance.MarkDay7AsClaimed();

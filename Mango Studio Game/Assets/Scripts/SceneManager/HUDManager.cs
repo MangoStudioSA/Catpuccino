@@ -242,6 +242,7 @@ public class HUDManager : MonoBehaviour
     {
         isVisible = !isVisible;
         notePanelAvailableItems.gameObject.SetActive(true);
+        SoundsMaster.Instance.PlaySound_ClickMenu();
 
         if (slideCoroutine != null)
         {

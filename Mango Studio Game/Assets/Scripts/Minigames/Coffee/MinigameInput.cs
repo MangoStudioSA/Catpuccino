@@ -261,17 +261,26 @@ public class MinigameInput : MonoBehaviour
     {
         if (!coffeeDone) return; 
 
-        if (isMoliendo && Input.GetMouseButton(0))
+        if (isMoliendo)
         {
-            currentMolido += molerFillSpeed * Time.unscaledDeltaTime;
-            currentMolido = Mathf.Clamp01(currentMolido);
-
-            molerFillImage.fillAmount = currentMolido * 0.5f;
-            molerFillImage.color = Color.Lerp(Color.yellow, Color.red, currentMolido);
-
-            if (currentMolido == maxFillMoler)
+            if (Input.GetMouseButton(0))
             {
-                StopMoler();
+                currentMolido += molerFillSpeed * Time.unscaledDeltaTime;
+                currentMolido = Mathf.Clamp01(currentMolido);
+
+                molerFillImage.fillAmount = currentMolido * 0.5f;
+                molerFillImage.color = Color.Lerp(Color.yellow, Color.red, currentMolido);
+                
+                SoundsMaster.Instance.ManageMolerSound(true);
+
+                if (currentMolido == maxFillMoler)
+                {
+                    StopMoler();
+                }
+            }
+            else
+            {
+                SoundsMaster.Instance.ManageMolerSound(false);
             }
         }
     }
@@ -469,8 +478,6 @@ public class MinigameInput : MonoBehaviour
 
         if (!isMoliendo)
         {
-            MiniGameSoundManager.instance.PlayMolerCafe();
-
             currentMolido = 0f;
             isMoliendo = true;
 
@@ -488,6 +495,7 @@ public class MinigameInput : MonoBehaviour
         {
             isMoliendo = false;
             molerPanel.SetActive(false);
+            SoundsMaster.Instance.StopMolerSoundComplete();
 
             //Debug.Log($"[Cliente {order.currentOrder.orderId}] Cafe molido");
             buttonManager.DisableButton(buttonManager.molerButton);
@@ -510,6 +518,7 @@ public class MinigameInput : MonoBehaviour
         if (!filtroIsInCafetera)
         {
             filtroInHand = true;
+            MiniGameSoundManager.instance.PlayFiltro();
 
             DragController.Instance.StartDragging(filtroImg); // Coger con el cursor
 
@@ -525,6 +534,7 @@ public class MinigameInput : MonoBehaviour
     {
         if (filtroIsInCafetera == false)
         {
+            MiniGameSoundManager.instance.PlayFiltro();
             filtroIsInCafetera = true;
             filtroInHand = false;
 
@@ -826,7 +836,7 @@ public class MinigameInput : MonoBehaviour
                 MiniGameSoundManager.instance.PlayEcharLiquido();
                 countMilk += 1; //Se incrementa el contador de leche
                 order.currentOrder.milkPrecision = countMilk; // Se guarda el resultado obtenido en la precision del jugador
-                PopUpMechanicsMsg.Instance.ShowMessage($"+{countMilk} Leche");
+                PopUpMechanicsMsg.Instance.ShowMessage($"+{countMilk} Leche", new Vector3(90, 0, 0));
             }
             milkServed = true;
             cMilkServed = true;
@@ -991,7 +1001,7 @@ public class MinigameInput : MonoBehaviour
                 order.currentOrder.stepsPerformed.Add(OrderStep.AddMilk);
                 order.currentOrder.stepsPerformed.Add(OrderStep.HeatMilk);
 
-                PopUpMechanicsMsg.Instance.ShowMessage($"+{countMilk} Leche");
+                PopUpMechanicsMsg.Instance.ShowMessage($"+{countMilk} Leche", new Vector3(90, 0, 0));
 
                 // Actualizar sprite taza/vaso
                 if (coffeeContainerManager.tazaIsInCafetera)
@@ -1050,7 +1060,7 @@ public class MinigameInput : MonoBehaviour
                 MiniGameSoundManager.instance.PlayEcharLiquido();
                 countWater += 1; //Se incrementa el contador de agua
                 order.currentOrder.waterPrecision = countWater; // Se guarda el resultado obtenido en la precision del jugador
-                PopUpMechanicsMsg.Instance.ShowMessage("+ Agua");
+                PopUpMechanicsMsg.Instance.ShowMessage("+ Agua", new Vector3(90, 0, 0));
                 order.currentOrder.stepsPerformed.Add(OrderStep.AddWater); // Añadir paso a la lista
             }
 
@@ -1107,9 +1117,10 @@ public class MinigameInput : MonoBehaviour
         {
             if (countCondensedMilk < 1)
             {
+                MiniGameSoundManager.instance.PlayCream();
                 countCondensedMilk += 1; //Se incrementa el contador de leche condensada
                 order.currentOrder.condensedMilkPrecision = countCondensedMilk; // Se guarda el resultado obtenido en la precision del jugador
-                PopUpMechanicsMsg.Instance.ShowMessage("+Leche Condensada");
+                PopUpMechanicsMsg.Instance.ShowMessage("+Leche Condensada", new Vector3(90, 0, 0));
                 order.currentOrder.stepsPerformed.Add(OrderStep.AddCondensedMilk); // Añadir a la lista de pasos
             }
 
@@ -1168,9 +1179,10 @@ public class MinigameInput : MonoBehaviour
         {
             if (countCream < 1)
             {
+                MiniGameSoundManager.instance.PlayCream();
                 countCream += 1; //Se incrementa el contador de crema
                 order.currentOrder.creamPrecision = countCream; // Se guarda el resultado obtenido en la precision del jugador
-                PopUpMechanicsMsg.Instance.ShowMessage("+ Crema");
+                PopUpMechanicsMsg.Instance.ShowMessage("+ Crema", new Vector3(90, 0, 0));
                 order.currentOrder.stepsPerformed.Add(OrderStep.AddCream); // Añadir paso a la lista
             }
 
@@ -1227,9 +1239,10 @@ public class MinigameInput : MonoBehaviour
         {
             if (countChocolate < 1)
             {
+                MiniGameSoundManager.instance.PlayCream();
                 countChocolate += 1; //Se incrementa el contador de chocolate
                 order.currentOrder.chocolatePrecision = countChocolate; // Se guarda el resultado obtenido en la precision del jugador
-                PopUpMechanicsMsg.Instance.ShowMessage("+ Chocolate");
+                PopUpMechanicsMsg.Instance.ShowMessage("+ Chocolate", new Vector3(90, 0, 0));
                 order.currentOrder.stepsPerformed.Add(OrderStep.AddChocolate); // Añadir a la lista de pasos
             }
 
@@ -1289,7 +1302,7 @@ public class MinigameInput : MonoBehaviour
                 MiniGameSoundManager.instance.PlayEcharLiquido();
                 countWhiskey += 1; //Se incrementa el contador de hielo
                 order.currentOrder.whiskeyPrecision = countWhiskey; // Se guarda el resultado obtenido en la precision del jugador
-                PopUpMechanicsMsg.Instance.ShowMessage("+ Whiskey");
+                PopUpMechanicsMsg.Instance.ShowMessage("+ Whiskey", new Vector3(90, 0, 0));
                 order.currentOrder.stepsPerformed.Add(OrderStep.AddWhiskey); // Se añade el paso a la lista
             }
 
@@ -1349,7 +1362,7 @@ public class MinigameInput : MonoBehaviour
                 MiniGameSoundManager.instance.PlaySugar();
                 countSugar += 1; //Se incrementa el contador de hielo
                 order.currentOrder.sugarPrecision = countSugar; // Se guarda el resultado obtenido en la precision del jugador
-                PopUpMechanicsMsg.Instance.ShowMessage($"+{countSugar} Azúcar");
+                PopUpMechanicsMsg.Instance.ShowMessage($"+{countSugar} Azúcar", new Vector3(90, 0, 0));
             }
         }
     }
@@ -1395,7 +1408,7 @@ public class MinigameInput : MonoBehaviour
                 MiniGameSoundManager.instance.PlayEcharHielo();
                 countIce += 1; //Se incrementa el contador de hielo
                 order.currentOrder.icePrecision = countIce; // Se guarda el resultado obtenido en la precision del jugador
-                PopUpMechanicsMsg.Instance.ShowMessage("+Hielo");
+                PopUpMechanicsMsg.Instance.ShowMessage("+Hielo", new Vector3(90, 0, 0));
                 DragController.Instance.StartDragging(iceSpoonWithoutIceImage); // Coger con el cursor
 
                 if (countCream > 0 && coffeeServed)

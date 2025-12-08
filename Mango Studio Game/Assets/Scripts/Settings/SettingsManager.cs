@@ -11,6 +11,9 @@ public class SettingsManager : MonoBehaviour
 
     [SerializeField] private Image brightnessOverlay;
 
+    private float stopSoundTimer = 0f;
+    private bool isSliding = false;
+
     private void Start()
     {
         brightnessSlider.value = PlayerPrefs.GetFloat("Brightness", 1f);
@@ -32,6 +35,23 @@ public class SettingsManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (isSliding)
+        {
+            stopSoundTimer -= Time.unscaledDeltaTime;
+
+            if (stopSoundTimer <= 0)
+            {
+                isSliding = false;
+                if (SoundsMaster.Instance != null)
+                {
+                    SoundsMaster.Instance.StopSound_SliderLoop();
+                }
+            }
+        }
+    }
+
     private void OnLevelWasLoaded()
     {
         brightnessSlider.value = PlayerPrefs.GetFloat("Brightness", 1f);
@@ -49,6 +69,8 @@ public class SettingsManager : MonoBehaviour
             brightnessOverlay.color = new Color(0, 0, 0, overlayAlpha);
         }
         PlayerPrefs.SetFloat("Brightness", brightnessSlider.value);
+
+        TriggerSliderSound();
     }
 
     public void AdjustVolume(float value)
@@ -56,10 +78,27 @@ public class SettingsManager : MonoBehaviour
         // Ajustar el volumen global
         AudioListener.volume = volumeSlider.value;
         PlayerPrefs.SetFloat("Volume", volumeSlider.value); // Guardar configuración
+
+        TriggerSliderSound();
+    }
+
+    private void TriggerSliderSound()
+    {
+        stopSoundTimer = 0.1f;
+
+        if (!isSliding)
+        {
+            isSliding = true;
+            if (SoundsMaster.Instance != null)
+            {
+                SoundsMaster.Instance.PlaySound_SliderLoop();
+            }
+        }
     }
 
     public void SetFullscreen(bool isFullscreen)
     {
+        SoundsMaster.Instance.PlaySound_ClickMenu();
         Screen.fullScreen = isFullscreen;
         PlayerPrefs.SetInt("Fullscreen", isFullscreen ? 1 : 0); // Guardar configuración
     }

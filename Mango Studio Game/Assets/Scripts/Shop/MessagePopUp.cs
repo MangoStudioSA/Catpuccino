@@ -25,6 +25,7 @@ public class MessagePopUp : MonoBehaviour
     // Desactivar panel
     public void Hide()
     {
+        SoundsMaster.Instance.PlaySound_ClickMenu();
         popupRoot.SetActive(false);
     }
 }

@@ -66,8 +66,6 @@ public class GameUIManager : MonoBehaviour
     // Menu de la tienda
     public void OpenShopMenu()
     {
-        SoundsMaster.Instance.PlaySound_ClickMenu();
-
         shopPanel.SetActive(true); // Activar UI menu tienda desde el juego
         gameCanvasGroup.interactable = false;
         gameCanvasGroup.blocksRaycasts = false;
@@ -85,26 +83,6 @@ public class GameUIManager : MonoBehaviour
         Time.timeScale = 1.0f;
 
         HUDManager.Instance.UpdateUI();
-    }
-
-    // Menu de seleccion de gatos
-    public void OpenCatsMenu()
-    {
-        SoundsMaster.Instance.PlaySound_ClickMenu();
-
-        catsPanel.SetActive(true); // Activar UI menu seleccion de gatos desde el juego
-        gameCanvasGroup.interactable = false;
-        gameCanvasGroup.blocksRaycasts = false;
-        Time.timeScale = 0.0f;
-    }
-    public void CloseCatsMenu()
-    {
-        SoundsMaster.Instance.PlaySound_ClickMenu();
-
-        catsPanel.SetActive(false);
-        gameCanvasGroup.interactable = true;
-        gameCanvasGroup.blocksRaycasts = true;
-        Time.timeScale = 1.0f;
     }
 
     // Mostrar panel dialogo con el cliente

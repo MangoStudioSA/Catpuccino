@@ -38,6 +38,7 @@ public class CatsMenu : MonoBehaviour
     public void ToggleMenu()
     {
         isOpen = !isOpen;
+        SoundsMaster.Instance.PlaySound_ClickMenu();
 
         if (animation != null) StopCoroutine(animation);
         animation = StartCoroutine(MovePanel(isOpen));

@@ -11296,6 +11296,18 @@ PrefabInstance:
       value: AudioMaster
       objectReference: {fileID: 0}
     - target: {fileID: 6563893040131285069, guid: 40fcd3f615988a74883f9aa3309e7971, type: 3}
+      propertyPath: sfx_carta
+      value: 
+      objectReference: {fileID: 8300000, guid: 71c37f673f18cba4d91b60ba6f5d05e7, type: 3}
+    - target: {fileID: 6563893040131285069, guid: 40fcd3f615988a74883f9aa3309e7971, type: 3}
+      propertyPath: sfx_libro
+      value: 
+      objectReference: {fileID: 8300000, guid: 7a55272ae6cd94a448124a9e1c759ff9, type: 3}
+    - target: {fileID: 6563893040131285069, guid: 40fcd3f615988a74883f9aa3309e7971, type: 3}
+      propertyPath: sfx_logro
+      value: 
+      objectReference: {fileID: 8300000, guid: 7eab5e183f56f4949afbce35ddf09e02, type: 3}
+    - target: {fileID: 6563893040131285069, guid: 40fcd3f615988a74883f9aa3309e7971, type: 3}
       propertyPath: sfx_azucar
       value: 
       objectReference: {fileID: 8300000, guid: 2b57498f3833eaa4dbc7f5764b494a7b, type: 3}
@@ -11304,9 +11316,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 409cad6b7601bee46b91a27bf352bdfa, type: 3}
     - target: {fileID: 6563893040131285069, guid: 40fcd3f615988a74883f9aa3309e7971, type: 3}
+      propertyPath: sfx_filtro
+      value: 
+      objectReference: {fileID: 8300000, guid: 6c5b01794af4c4d45b687ecdfb22fe5e, type: 3}
+    - target: {fileID: 6563893040131285069, guid: 40fcd3f615988a74883f9aa3309e7971, type: 3}
       propertyPath: sfx_finDia
       value: 
       objectReference: {fileID: 8300000, guid: 63ed8a57453161f4dbc3cd6db7573bc8, type: 3}
+    - target: {fileID: 6563893040131285069, guid: 40fcd3f615988a74883f9aa3309e7971, type: 3}
+      propertyPath: sfx_slider
+      value: 
+      objectReference: {fileID: 8300000, guid: 5332653629102b54585ee34ac85f3793, type: 3}
+    - target: {fileID: 6563893040131285069, guid: 40fcd3f615988a74883f9aa3309e7971, type: 3}
+      propertyPath: sfx_tienda
+      value: 
+      objectReference: {fileID: 8300000, guid: 11f9c9de2b66e60448e4713aafcbb342, type: 3}
     - target: {fileID: 6563893040131285069, guid: 40fcd3f615988a74883f9aa3309e7971, type: 3}
       propertyPath: sfx_cuchara
       value: 
@@ -11315,6 +11339,10 @@ PrefabInstance:
       propertyPath: sfx_entregar
       value: 
       objectReference: {fileID: 8300000, guid: 7a6998d1974f65246a83a2c38d9481d1, type: 3}
+    - target: {fileID: 6563893040131285069, guid: 40fcd3f615988a74883f9aa3309e7971, type: 3}
+      propertyPath: sfx_openPack
+      value: 
+      objectReference: {fileID: 8300000, guid: 7c444c384c5a1ee46986c324be8bfec0, type: 3}
     - target: {fileID: 6563893040131285069, guid: 40fcd3f615988a74883f9aa3309e7971, type: 3}
       propertyPath: sfx_papelera
       value: 
@@ -11376,9 +11404,29 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 690d834276dd1294f85df95dad257598, type: 3}
     - target: {fileID: 6563893040131285069, guid: 40fcd3f615988a74883f9aa3309e7971, type: 3}
+      propertyPath: sfx_errorDinero
+      value: 
+      objectReference: {fileID: 8300000, guid: 85096c4ee856a514f976f1c6e2f214d9, type: 3}
+    - target: {fileID: 6563893040131285069, guid: 40fcd3f615988a74883f9aa3309e7971, type: 3}
+      propertyPath: sfx_pasarPagina
+      value: 
+      objectReference: {fileID: 8300000, guid: 661c2fb082261fa47989c56e5f427319, type: 3}
+    - target: {fileID: 6563893040131285069, guid: 40fcd3f615988a74883f9aa3309e7971, type: 3}
+      propertyPath: sfx_cremaSiropes
+      value: 
+      objectReference: {fileID: 8300000, guid: b8db2581412b36546b7733a26221edf7, type: 3}
+    - target: {fileID: 6563893040131285069, guid: 40fcd3f615988a74883f9aa3309e7971, type: 3}
       propertyPath: sfx_echarLiquido
       value: 
       objectReference: {fileID: 8300000, guid: d4cd07b0e3399ad45bd4411e2191c29b, type: 3}
+    - target: {fileID: 6563893040131285069, guid: 40fcd3f615988a74883f9aa3309e7971, type: 3}
+      propertyPath: voice_Male_Angry
+      value: 
+      objectReference: {fileID: 8300000, guid: 447fa3bb34bc95044bdbd95af9152849, type: 3}
+    - target: {fileID: 6563893040131285069, guid: 40fcd3f615988a74883f9aa3309e7971, type: 3}
+      propertyPath: voice_Male_Happy
+      value: 
+      objectReference: {fileID: 8300000, guid: 5fd6a478da9cbd642a0d9c289a3135b3, type: 3}
     - target: {fileID: 6563893040131285069, guid: 40fcd3f615988a74883f9aa3309e7971, type: 3}
       propertyPath: sfx_coffeeMachine
       value: 
@@ -11387,6 +11435,30 @@ PrefabInstance:
       propertyPath: sfx_dejarCogerObj
       value: 
       objectReference: {fileID: 8300000, guid: 54e7c50c772ec5e4e9ecec7a578b60ee, type: 3}
+    - target: {fileID: 6563893040131285069, guid: 40fcd3f615988a74883f9aa3309e7971, type: 3}
+      propertyPath: sfx_sobreComprado
+      value: 
+      objectReference: {fileID: 8300000, guid: 0440476ecdc7bad45bffe0996ae17d4e, type: 3}
+    - target: {fileID: 6563893040131285069, guid: 40fcd3f615988a74883f9aa3309e7971, type: 3}
+      propertyPath: voice_Female_Angry
+      value: 
+      objectReference: {fileID: 8300000, guid: 1ca25b30b8783594c8d7e23e7757686d, type: 3}
+    - target: {fileID: 6563893040131285069, guid: 40fcd3f615988a74883f9aa3309e7971, type: 3}
+      propertyPath: voice_Female_Happy
+      value: 
+      objectReference: {fileID: 8300000, guid: d29b0f597fa306945a88ef6131ee89ef, type: 3}
+    - target: {fileID: 6563893040131285069, guid: 40fcd3f615988a74883f9aa3309e7971, type: 3}
+      propertyPath: voice_Male_Neutral
+      value: 
+      objectReference: {fileID: 8300000, guid: 7793ef81e3a74b341a9c0ea71b1225f6, type: 3}
+    - target: {fileID: 6563893040131285069, guid: 40fcd3f615988a74883f9aa3309e7971, type: 3}
+      propertyPath: sfx_cajaRegistradora
+      value: 
+      objectReference: {fileID: 8300000, guid: d512960859b8dd34aa40ebd6f04bebd1, type: 3}
+    - target: {fileID: 6563893040131285069, guid: 40fcd3f615988a74883f9aa3309e7971, type: 3}
+      propertyPath: voice_Female_Neutral
+      value: 
+      objectReference: {fileID: 8300000, guid: c857c022732d1794da70bb324cd1a586, type: 3}
     - target: {fileID: 6563893040131285069, guid: 40fcd3f615988a74883f9aa3309e7971, type: 3}
       propertyPath: sfx_cantidadCafeEchada
       value: 

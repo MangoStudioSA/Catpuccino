@@ -40,6 +40,7 @@ public class CardCollectionManager : MonoBehaviour
         bookPagesContainer.SetActive(false);
         CanvasGroup clipsCG = clipsAnimator.GetComponent<CanvasGroup>();
         if (clipsCG != null) clipsCG.alpha = 0;
+        MiniGameSoundManager.instance.PlayOpenBook();
 
         if (bookAnimator != null)
             bookAnimator.SetTrigger("OpenBook");
@@ -106,6 +107,7 @@ public class CardCollectionManager : MonoBehaviour
     private IEnumerator PageTurnRoutine(int newPageIndex, string trigger)
     {
         isTurningPage = true;
+        MiniGameSoundManager.instance.PlayNextPage();
 
         // Oculta las paginas
         bookPagesContainer.SetActive(false);
@@ -144,6 +146,7 @@ public class CardCollectionManager : MonoBehaviour
         CanvasGroup bookCG = bookAnimator.GetComponent<CanvasGroup>();
         if (bookCG != null) bookCG.alpha = 0;
         bookPagesContainer.SetActive(true);
+        MiniGameSoundManager.instance.PlayNextPage();
 
         if (bookAnimator != null)
         {

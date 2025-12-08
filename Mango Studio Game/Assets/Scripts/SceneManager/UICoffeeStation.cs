@@ -37,7 +37,6 @@ public class UICoffeeStation : MonoBehaviour
         SoundsMaster.Instance.PlaySound_ClickMenu();
         popUpMechanicsMsg.DestroyAllPopUps();
 
-        //recipesPanel.SetActive(true);
         recipesManager.OpenBookAtPage(pagNum);
         Time.timeScale = 0.0f;
 

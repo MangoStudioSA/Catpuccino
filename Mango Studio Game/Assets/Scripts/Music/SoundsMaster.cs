@@ -16,16 +16,43 @@ public class SoundsMaster : MonoBehaviour
     [SerializeField] AudioClip sfx_game;
     [SerializeField] AudioClip sfx_clickMenu;
     [SerializeField] AudioClip sfx_entregar;
+    [SerializeField] AudioClip sfx_cajaRegistradora;
+    [SerializeField] AudioClip sfx_logro;
     [SerializeField] AudioClip sfx_takeNote;
     [SerializeField] AudioClip sfx_finDia;
+    [SerializeField] AudioClip sfx_slider;
+
+    [Header("Voces clientes")]
+    // Hombre
+    [SerializeField] AudioClip voice_Male_Angry;
+    [SerializeField] AudioClip voice_Male_Neutral;
+    [SerializeField] AudioClip voice_Male_Happy;
+
+    // Mujer
+    [SerializeField] AudioClip voice_Female_Angry;
+    [SerializeField] AudioClip voice_Female_Neutral;
+    [SerializeField] AudioClip voice_Female_Happy;
+
+    [Header("Sonidos tienda")]
+    [SerializeField] AudioClip sfx_tienda;
+    [SerializeField] AudioClip sfx_errorDinero;
+    [SerializeField] AudioClip sfx_sobreComprado;
+    [SerializeField] AudioClip sfx_openPack;
+    [SerializeField] AudioClip sfx_carta;
+
+    [Header("Sonidos libros")]
+    [SerializeField] AudioClip sfx_libro;
+    [SerializeField] AudioClip sfx_pasarPagina;
 
     [Header("Sonidos cafe")]
     [SerializeField] AudioClip sfx_clickCoffeeAmountMachine;
     [SerializeField] AudioClip sfx_coffeeMachine;
     [SerializeField] AudioClip sfx_cantidadCafeEchada;
+    [SerializeField] AudioClip sfx_filtro;
     [SerializeField] AudioClip sfx_echarCafe;
     [SerializeField] AudioClip sfx_molerCafe;
     [SerializeField] AudioClip sfx_espumador;
+    [SerializeField] AudioClip sfx_cremaSiropes;
 
     [Header("Sonidos mecanicas")]
     [SerializeField] AudioClip sfx_echarLiquido;
@@ -78,6 +105,8 @@ public class SoundsMaster : MonoBehaviour
         CreateAudioSource("CoffeeMachine", sfx_coffeeMachine, true);
         CreateAudioSource("Espumador", sfx_espumador, true);
         CreateAudioSource("Microondas", sfx_microondas, true);
+        CreateAudioSource("Molinillo", sfx_molerCafe, true);
+        CreateAudioSource("Slider", sfx_slider, true);
     }
 
     private void CreateAudioSource(string key, AudioClip clip, bool loop = false)
@@ -128,6 +157,102 @@ public class SoundsMaster : MonoBehaviour
         }
     }
 
+    // Funciones para los sliders
+    public void PlaySound_SliderLoop()
+    {
+        PlayAudio("Slider");
+    }
+
+    public void StopSound_SliderLoop()
+    {
+        StopAudio("Slider");
+    }
+
+    // Funcion para acceder a la reaccion del cliente
+    public AudioClip GetCustomerVoice(bool isMale, int reactionLevel)
+    {
+        if (isMale) // Hombres
+        {
+            switch (reactionLevel)
+            {
+                case 1: return voice_Male_Angry;
+                case 0: return voice_Male_Neutral;
+                case 2: return voice_Male_Happy;
+                default: return voice_Male_Neutral;
+            }
+        }
+        else // Mujeres
+        {
+            switch (reactionLevel)
+            {
+                case 1: return voice_Female_Angry;
+                case 0: return voice_Female_Neutral;
+                case 2: return voice_Female_Happy;
+                default: return voice_Female_Neutral;
+            }
+        }
+    }
+
+    // Funcion para gestionar el sonido de moler
+    public void ManageMolerSound(bool shouldPlay)
+    {
+        if (audioSources.TryGetValue("Molinillo", out AudioSource source))
+        {
+            source.loop = true;
+            if (shouldPlay)
+            {
+                if (!source.isPlaying) source.Play();
+            }
+            else
+            {
+                if (source.isPlaying) source.Pause();
+            }
+        }
+    }
+
+    // Funcion para detener completamente el audio de moler
+    public void StopMolerSoundComplete()
+    {
+        if (audioSources.TryGetValue("Molinillo", out AudioSource source))
+        {
+            source.loop = false;
+            if (!source.isPlaying) source.Play();
+        }
+    }
+
+    // Tienda
+    public void PlaySound_Shop()
+    {
+        PlaySound(sfx_tienda);
+    }
+    public void PlaySound_SpendMoney()
+    {
+        PlaySound(sfx_sobreComprado);
+    }
+    public void PlaySound_NotEnoughMoney()
+    {
+        PlaySound(sfx_errorDinero);
+    }
+    public void PlaySound_OpenPack()
+    {
+        PlaySound(sfx_openPack);
+    }
+    public void PlaySound_Card()
+    {
+        PlaySound(sfx_carta);
+    }
+
+    // Libros
+    public void PlaySound_OpenBook()
+    {
+        PlaySound(sfx_libro);
+    }
+    public void PlaySound_NextPage()
+    {
+        PlaySound(sfx_pasarPagina);
+    }
+
+    // Sonidos generales
     public void PlaySound_Menu()
     {
         PlaySound(sfx_menu);
@@ -153,11 +278,22 @@ public class SoundsMaster : MonoBehaviour
         PlaySound(sfx_entregar);
     }
 
+    public void PlaySound_CajaRegistradora()
+    {
+        PlaySound(sfx_cajaRegistradora);
+    }
+
     public void PlaySound_FinDia()
     {
         PlaySound(sfx_finDia);
     }
 
+    public void PlaySound_Reward()
+    {
+        PlaySound(sfx_logro);
+    }
+
+    // Minijuegos
     public void PlaySound_CoffeeAmountReady()
     {
         PlaySound(sfx_cantidadCafeEchada);
@@ -171,6 +307,11 @@ public class SoundsMaster : MonoBehaviour
     public void PlaySound_MolerCafe()
     {
         PlaySound(sfx_molerCafe);
+    }
+
+    public void PlaySound_Filtro()
+    {
+        PlaySound(sfx_filtro);
     }
 
     public void PlaySound_EcharCafe()
@@ -206,6 +347,11 @@ public class SoundsMaster : MonoBehaviour
     public void PlaySound_Cuchara()
     {
         PlaySound(sfx_cuchara);
+    }
+
+    public void PlaySound_Cream()
+    {
+        PlaySound(sfx_cremaSiropes);
     }
 
     public void PlaySound_Azucar()

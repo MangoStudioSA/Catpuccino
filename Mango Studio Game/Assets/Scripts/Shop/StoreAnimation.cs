@@ -17,7 +17,9 @@ public class StoreAnimation : MonoBehaviour
     {
         if (isTransitioning) return;
 
+        MiniGameSoundManager.instance.PlayShop();
         if (storeAnimator != null)
+
             StartCoroutine(PlayTransition());
         else
             ActivateShopDirectly();
