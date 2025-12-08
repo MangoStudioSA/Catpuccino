@@ -21,6 +21,13 @@ public class SaveDataManager : MonoBehaviour
     public GameObject del2Button;
     public GameObject del3Button;
 
+    public GameObject message;
+
+    public GameObject messageAccept;
+    public GameObject messageReturn;
+
+    int tryingToDel = 0;
+
     SceneLoader sceneLoader;
 
     void Awake()
@@ -55,6 +62,18 @@ public class SaveDataManager : MonoBehaviour
         del1Button = GameObject.FindGameObjectWithTag("del1");
         del2Button = GameObject.FindGameObjectWithTag("del2");
         del3Button = GameObject.FindGameObjectWithTag("del3");
+
+        if (message == null)
+        {
+            message = GameObject.FindGameObjectWithTag("message");
+            message.SetActive(false);
+        }
+
+        messageAccept = message.transform.GetChild(0).transform.GetChild(2).gameObject;
+        messageReturn = message.transform.GetChild(0).transform.GetChild(1).gameObject;
+
+        messageAccept.GetComponent<Button>().onClick.AddListener(DeleteASlot);
+        messageReturn.GetComponent<Button>().onClick.AddListener(Return);
 
         slot1Button.onClick.AddListener(Slot1);
         slot2Button.onClick.AddListener(Slot2);
@@ -285,16 +304,30 @@ public class SaveDataManager : MonoBehaviour
 
     public void Del1()
     {
-        DelGame(1);
+        tryingToDel = 1;
+        message.SetActive(true);
     }
 
     public void Del2()
     {
-        DelGame(2);
+        tryingToDel = 2;
+        message.SetActive(true);
     }
 
     public void Del3()
     {
-        DelGame(3);
+        tryingToDel = 3;
+        message.SetActive(true);
+    }
+
+    public void Return()
+    {
+        message.SetActive(false);
+    }
+
+    public void DeleteASlot()
+    {
+        message.SetActive(false);
+        DelGame(tryingToDel);
     }
 }
