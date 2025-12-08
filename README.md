@@ -10,44 +10,45 @@
 
 **Redes sociales** → https://linktr.ee/mangostudiourjc?utm_source=linktree_profile_share&ltsid=bdd4e42b-4bf8-4e49-92eb-5ce8b950b732
 
-## Version 1.0 - Fase Beta
+## Version 2.0 - Fase Release
 ---
 ## 0. Diferencias con la fase anterior
-- Tutorial ingame implementado para los 3 primeros días.
+- **Bugs arreglados de la fase de *Betatesting***: errores relacionados con tener el filtro en la mano, errores relacionados con bloquear el flujo del tutorial y el juego, interfaces centradas y botones de cerrar con la misma posición en la interfaz, zonas interactuables de los minijuegos aumentadas y mejoradas, problemas en la resolución arreglados, posición de los elementos en la bandeja persistente actualizada, bugs al resetear el panel con la papelera y bug de la bolsa para llevar.
+- Tutorial ingame actualizado: nuevos sprites, clic para pasar los pasos sin acción vinculada, efecto bloom añadido y acción de saltar implementada.
 - Página web actualizada.
-- 5 clientes (concept, modedelado 3D y 2D)
-- Gato (modelado 3D y animación de caminar)
 - Nuevo contenido en RRSS.
-- Puntación media en pantalla final.
-- Mecánicas básicas actualizadas (pedidos para llevar).
-- Desbloqueo de cafés y comidas por día (en total 7 días).
-- Implementación de mensaje diario de elementos desbloqueados.
-- Implementación de una pizarra desplegable en la que comprobar la carta disponible del día.
-- Nuevas mecánicas de cafés implementadas: tipos de cafés (11), crema, leche condensada, whiskey, chocolate, leche, calentar leche...
-- Nuevas mecánicas de comida implementadas: bizcochos, galletas, mufflins, horno...
-- Diseño e implementación de todas las interfaces y botones.
-- Implementación de una bandeja persistente entre panel de preparación de cafés y de comidas.
+- 7 clientes (concept, modelado 3D y 2D y animaciones de andar e idle).
+- Dueña de cafetería (Catherine) implementada: modelado 3D y animación idle.
+- 11 gatos (modelado 3D y animaciones de caminar, sentarse e idle sentado).
+- Nueva ilustración de Catherine añadida en la pantalla de slots.
+- Mecánicas básicas actualizadas (evaluación del orden de pasos añadida, eliminado el bloqueo de ingredientes, cambio de cursores eliminado salvo con las comidas y mecánica de arrastrar elementos implementada).
+- Los envases (platos, bolsas, tazas y vasos) ahora pueden devolverse a los estantes si no contienen ningún ingrediente en lugar de tener que clicar en la papelera.
+- Al interactuar con un ingrediente o envase y cogerlo, este se queda marcado con un efecto "bloom" hasta que se devuelve.
+- Recetario modificado (añadido el orden de ingredientes a las recetas) y añadido el apartado de comidas.
+- Diseño e implementación de todas las nuevas interfaces y botones.
 - Implementación de comprobar los requisitos de la orden mediante una nota desplegable en ambos paneles.
+- Implementación del menú de pausa en ambos paneles de preparación del pedido.
+- Implementación del recetario en el panel de preparación de comidas.
 - Aumentado la complicación ingame e implementación de sistema de facturas que aumenta gradualmente con los días.
-- El tiempo ingame disminuye de forma más lenta con el transcurso de los días.
-- Diseñados e implementados los "*props*" del juego (todos los tipos de cafés, comidas, maquinas, sus mecánicas y los envases).
-- Implementadas 3 animaciones de interfaz (album, tienda y recetario).
-- Implementación de la tienda de temática gacha, así como de los 2 tipos de sobres y tienda de monedas premium.
-- Diseño e implemenación de cartas funcionales de distintas rarezas.
-- Implementación del álbum de cromos.
+- Implementadas animaciones de interfaz (abrir sobre y cromo vacío).
+- Diseño e implemenación de carta vacía y carta para el logro de llegar al día 7.
+- Implementación del menú de selección de gatos.
 - Arreglados bugs y errores estéticos de programación.
-- Arte final del diseño de estación de comida.
-- Modelado y concept interior final.
-- Modelos 3D (maquina de gacha, cafetera y elementos del escenario)
-- Diseños 2D (monedas de pago y monedas normales)
+- Arte final actualizado del diseño del mostrador 2D.
+- Modelado y concept interior y exterior final.
+- Texturizado del escenario final.
+- Iluminación del escenario implementada.
+- Sistema de día/noche implementado.
+- Sistema de clima (lluvioso o soleado) implementado junto con sus respectivos sonidos.
 - Diagrama de estados actualizado.
-- Implementación de una fuente de texto personalizada.
-- Cursores modificados (taza con cafe,agua, etc).
-- Implementada la funcionalidad de la carta "*Latte Art*".
-- Implementado el guardado de datos por partidas, creando la posibilidad de tener 3 partidas comenzadas y la opción de eliminar la que se desee.
-- Implementado el guardado de monedas de la tienda y colección de cartas vinculado al navegador en lugar de a la partida concreta.
+- Cursores modificados (cursor personalizado y comidas).
+- Implementada la funcionalidad de las cartas de skin "*Skin taza*" y "*Skin vaso*" .
+- Añadida una pantalla de confirmación al intentar borrar una partida guardada.
+- Implementado el guardado del logro "Alcanzar el día 7".
 - Creación e implementación de música propia.
-- Implementación de sonidos en algunos botones.
+- Implementación de sonidos en todos los botones e interfaces.
+- Implementación de sonidos en todos los elementos de los minijuegos.
+- Reacciones sonoras de los clientes en función de la puntuación obtenida implementadas.
 
 ## 1. Introducción
 
