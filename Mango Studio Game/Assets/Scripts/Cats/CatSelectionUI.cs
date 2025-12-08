@@ -116,19 +116,6 @@ public class CatSelectionUI : MonoBehaviour
         }
     }
 
-    // Funcion para actualizar los prefabs en el menu
-    void RefreshVisuals()
-    {
-        foreach (var slot in generatedSlots)
-        {
-            bool desbloqueado = PlayerDataManager.instance.HasCard(cafeManager.listaDeGatos[slot.indexGato].nombreCarta);
-            Sprite img = desbloqueado ? cafeManager.listaDeGatos[slot.indexGato].iconoGato : spriteLocked;
-
-            slot.Initialize(slot.indexGato, cafeManager.listaDeGatos[slot.indexGato].nombreCarta, img, desbloqueado, slot.miToggle.isOn, this);
-        }
-        CheckLimits();
-    }
-
     // Funcion para guardar los gatos activos
     void SaveSelection()
     {

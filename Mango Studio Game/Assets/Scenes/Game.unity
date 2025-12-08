@@ -3288,7 +3288,7 @@ Transform:
   m_GameObject: {fileID: 76937782}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.87546456, z: -0, w: -0.48328236}
-  m_LocalPosition: {x: -3.184, y: 1.003, z: 1.893}
+  m_LocalPosition: {x: -3.296, y: 1.029, z: 1.893}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3602,7 +3602,7 @@ MonoBehaviour:
     m_Bottom: 0
   m_ChildAlignment: 0
   m_Spacing: 0
-  m_ChildForceExpandWidth: 0
+  m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 1
   m_ChildControlHeight: 0
@@ -6369,10 +6369,10 @@ MonoBehaviour:
     posFija: 1
     iconoGato: {fileID: 21300000, guid: 331da6bf4d268cc41955675d437dea7c, type: 3}
   - nombreCarta: CartaMocca
-    nombreGato: Moca
+    nombreGato: Mocca
     prefabGato: {fileID: 7321870284333220811, guid: ce1f799fcd0d0d04b8c4d9ab87c866ab, type: 3}
     destino: {fileID: 76937783}
-    posFija: 0
+    posFija: 1
     iconoGato: {fileID: 21300000, guid: ae65d46edc3c9c34c98ae93d81b4e384, type: 3}
   puertaEntrada: {fileID: 1407304347}
   puntoDeAtencion: {fileID: 1540778861}
@@ -39364,7 +39364,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1140405589
 RectTransform:
   m_ObjectHideFlags: 0
@@ -44935,7 +44935,7 @@ Transform:
   m_GameObject: {fileID: 1308594539}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.9571175, z: -0, w: 0.2897001}
-  m_LocalPosition: {x: -0.36, y: 1.799, z: 1.703}
+  m_LocalPosition: {x: -0.296, y: 1.771, z: 1.703}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

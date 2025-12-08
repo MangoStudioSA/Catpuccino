@@ -46,11 +46,6 @@ public class SpecialReward : MonoBehaviour
         CheckDayCondition();
     }
 
-    private void Update()
-    {
-        CheckDayCondition();
-    }
-
     // Funcion para comprobar el dia actual y dar el logro
     public void CheckDayCondition()
     {
