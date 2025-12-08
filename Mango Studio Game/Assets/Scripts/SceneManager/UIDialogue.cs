@@ -90,8 +90,10 @@ public class UIDialogue : MonoBehaviour
         manager.clients -= 1;
         manager.customers.Dequeue();
         manager.orderingCustomer.GetComponent<CustomerController>().leaving = true;
+        manager.orderingCustomer.GetComponent<CapsuleCollider>().enabled = false;
         manager.orderingCustomer.transform.Translate(0.0f, 0.0f, 0.5f);
         manager.orderingCustomer.transform.Rotate(0.0f, 180.0f, 0.0f);
+        manager.orderingCustomer = null;
         gameUI.orderScreen = false;
         popUpMechanicsMsg.DestroyAllPopUps();
 
