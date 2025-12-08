@@ -41,6 +41,7 @@ public class FoodMinigameInput : MonoBehaviour
     public bool foodServed = false;
     public bool foodBaked = false;
     public int countFoodCover = 0;
+    private bool audioPausadoPorMenu = false;
 
     [Header("Comida - Categorias y tipos de comida")]
     public FoodCategory foodCategoryInHand = FoodCategory.no;
@@ -108,6 +109,17 @@ public class FoodMinigameInput : MonoBehaviour
         {
             buttonManager.hornoButton.gameObject.SetActive(false);
             buttonManager.DisableButton(buttonManager.hornoButton);
+
+            if (Time.timeScale == 0f && !audioPausadoPorMenu)
+            {
+                MiniGameSoundManager.instance.StopMicroondasPour();
+                audioPausadoPorMenu = true;
+            }
+            else if (Time.timeScale > 0f && audioPausadoPorMenu)
+            {
+                MiniGameSoundManager.instance.PlayMicroondasPour();
+                audioPausadoPorMenu = false;
+            }
         }
         else
         {
@@ -755,6 +767,7 @@ public class FoodMinigameInput : MonoBehaviour
 
         isBaking = false;
         foodBaked = true;
+        audioPausadoPorMenu = false;
 
         float progress = bakeSlider.value;
         bakeSlider.gameObject.SetActive(false);

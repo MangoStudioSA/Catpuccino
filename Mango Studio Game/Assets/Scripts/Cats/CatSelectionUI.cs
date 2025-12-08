@@ -71,6 +71,8 @@ public class CatSelectionUI : MonoBehaviour
     // Funcion que gestiona el cambio del menu cuando el jugador marca/desmarca un gato
     public void OnGatoToggled(int index, bool isChecked)
     {
+        SoundsMaster.Instance.PlaySound_ClickMenu();
+
         if (isChecked) 
         {
             if (!selectedCats.Contains(index))
