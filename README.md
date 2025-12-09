@@ -430,45 +430,47 @@ A continuación se muestran imágenes de del diseño de cada una de las pantalla
 ![Contactos](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/ContactosFinal.png)
 ### 8.1.4 Interfaz Partidas
 ![Partidas](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/PartidasFinal.png)
-### 8.1.5 Interfaz Partida
+### 8.1.5 Interfaz Tutorial
+![Tutorial](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/TutorialFinal.png)
+### 8.1.6 Interfaz Partida
 ![Game](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/InGame.png)
-### 8.1.6 Interfaz Gatos
+### 8.1.7 Interfaz Gatos
 ![Gatos](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/MenuGatos.png)
-### 8.1.7 Interfaz Pedido Cliente
+### 8.1.8 Interfaz Pedido Cliente
 ![ClientePedido](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Pedido.png)
-### 8.1.8 Interfaz Cafeteria
+### 8.1.9 Interfaz Cafeteria
 ![Cafeteria](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Cafeteria.png)
-### 8.1.9 Interfaz Recetario
+### 8.1.10 Interfaz Recetario
 ![Recetario](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/RecetarioFinal.png)
-### 8.1.10 Interfaz Pasteleria
+### 8.1.11 Interfaz Pasteleria
 ![Bakery](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Pasteleria.png)
-### 8.1.11 Interfaz Pausa
+### 8.1.12 Interfaz Pausa
 ![Pausa](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/PausaFinal.png)
-### 8.1.12 Interfaz Opciones (Partida)
+### 8.1.13 Interfaz Opciones (Partida)
 ![OpcionesInGame](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Opciones.png)
-### 8.1.13 Interfaz Entrega Pedido
+### 8.1.14 Interfaz Entrega Pedido
 ![ClienteFeedback](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Entrega.png)
-### 8.1.14 Interfaz Tienda
+### 8.1.15 Interfaz Tienda
 ![Tienda](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Tienda.png)
-### 8.1.15 Interfaz Información
+### 8.1.16 Interfaz Información
 ![Informacion](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Informacion.png)
-### 8.1.16 Interfaz Album
+### 8.1.17 Interfaz Album
 ![Album](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Album.png)
-### 8.1.17 Interfaz Monedas Premium
+### 8.1.18 Interfaz Monedas Premium
 ![ComprarMonedasPremium](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/ComprarMonedasPremium.png)
-### 8.1.18 Interfaz Fin del Dia
+### 8.1.19 Interfaz Fin del Dia
 ![FinDia](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/FinDiaFinal.png)
-### 8.1.19 Interfaz Fin/Salir Partida
-![FinPartida](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/FinPartidaFinal.png)
+### 8.1.20 Interfaz Fin/Salir Partida
+![FinPartida](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/FinPartidaFIN.png)
 
 ### Botones, Fondos y Otros
-### 8.1.19 Botones
+### 8.1.21 Botones
 ![Botones](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Interactuables.png)
-### 8.1.20 Fondos
+### 8.1.22 Fondos
 ![Fondos](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Fondos.png)
-### 8.1.21 Gatos para tutorial
+### 8.1.23 Gatos para tutorial
 ![GatosTuto](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/GatosTuto.png)
-### 8.1.22 Otros
+### 8.1.24 Otros
 ![Otros](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Otros.png)
 
 
