@@ -390,6 +390,14 @@ Para los clientes, se han realizado 3 ilustraciones para la pantalla de pedido, 
 
 ![Lucas](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/LucasMix.png)
 
+#### 6.9.6 Cliente 6 "Oliver"
+
+![Lucas](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/OliverMix.png)
+
+#### 6.9.7 Cliente 7 "James"
+
+![Lucas](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/JamesMix.png)
+
 ### 6.10 Texturizado del Escenario
 
 ![Escenario](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Escenario.jpeg)
