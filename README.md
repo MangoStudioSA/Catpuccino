@@ -455,7 +455,7 @@ A continuación se muestran imágenes de del diseño de cada una de las pantalla
 ### 8.1.20 Fondos
 ![Fondos](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Fondos.png)
 ### 8.1.21 Gatos para tutorial
-![GatosTutorial](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Yellow and Brown Cute Cat Abstract Shapes Daily Agenda Presentation.png)
+![GatosTuto](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/GatosTuto.png)
 ### 8.1.22 Otros
 ![Otros](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Otros.png)
 
