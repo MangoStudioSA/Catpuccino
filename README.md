@@ -370,11 +370,11 @@ Todos los objetos que se pueden observar en la siguiente imagen estan hechos por
 ### 6.8 Clientes
 Para los clientes, se han realizado 3 ilustraciones para la pantalla de pedido, una con una expresion neutra, una con una expresion enfadada o triste y otra con una expresion alegre. Ademas, se ha realizado un modelado 3d sencillo de cada cliente.
 
-#### 6.8.1 Cliente 1 "chicaEmo"
+#### 6.8.1 Cliente 1 "Emi"
 
 ![chicaEmo](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Emi.png)
 
-#### 6.8.2 Cliente 2 "chicaCoqueta"
+#### 6.8.2 Cliente 2 "Carina"
 
 ![chicaCoqueta](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Carina.png)
 
