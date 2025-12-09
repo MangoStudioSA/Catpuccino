@@ -367,25 +367,32 @@ Todos los objetos que se pueden observar en la siguiente imagen estan hechos por
 
 ![Cartas y sobres de cartas](https://github.com/MangoStudioSA/Catpuccino/blob/94eed32a71679b0de7f116218af42cba7f10aa56/PhotosGDD/cartas.png)
 
-### 6.8 Clientes
+### 6.9 Clientes
 Para los clientes, se han realizado 3 ilustraciones para la pantalla de pedido, una con una expresion neutra, una con una expresion enfadada o triste y otra con una expresion alegre. Ademas, se ha realizado un modelado 3d sencillo de cada cliente.
 
-#### 6.8.1 Cliente 1 "Emi"
+#### 6.9.1 Cliente 1 "Emi"
 
 ![chicaEmo](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Emi.png)
 
-#### 6.8.2 Cliente 2 "Carina"
+#### 6.9.2 Cliente 2 "Carina"
 
 ![chicaCoqueta](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Carina.png)
 
-#### 6.8.3 Cliente 3 "Gabriel"
+#### 6.9.3 Cliente 3 "Gabriel"
 
 ![Gracie](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/GabrielGDD.png)
 
-#### 6.8.4 Cliente 4 "Mindie"
+#### 6.9.4 Cliente 4 "Mindie"
 
-![Mindie](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/MindieFinal.png)
+![Mindie](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/MindieMix.png)
 
+#### 6.9.5 Cliente 5 "Lucas"
+
+![Lucas](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/LucasMix.png)
+
+### 6.10 Texturizado del Escenario
+
+![Escenario](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Escenario.png)
 
 ## 7. Sonido
 El estilo musical será lo-fi chillhop con influencias de jazz suave. El objetivo de utilizar este estilo de música es reforzar la sensación de estar en un lugar cómodo y sin estrés. Los instrumentos que deberá utilizar la música serán piano, contrabajo suave, percusión ligera, guitarra acústica, toques de sintetizador lo-fi.
