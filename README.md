@@ -338,6 +338,7 @@ Las referencias principales para el 2D son *Buena Pizza, Gran Pizza* y *Little C
 ![Concept Art PJ Principal2](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/catherineConcept2.png)
 ![Concept Art PJ Principal3](https://github.com/MangoStudioSA/Catpuccino/blob/e921cc81d0e6f43bd58ed52fc449a0f76f782ea9/PhotosGDD/conceptPJPrincipal.png)
 #### 6.6.2 Modelado 3d y texturizado
+![ModeladoYTexturizadoCatherine](https://github.com/MangoStudioSA/Catpuccino/blob/e921cc81d0e6f43bd58ed52fc449a0f76f782ea9/PhotosGDD/Catherine.png)
 
 
 ### 6.7 Props
@@ -371,11 +372,11 @@ Para los clientes, se han realizado 3 ilustraciones para la pantalla de pedido, 
 
 #### 6.8.1 Cliente 1 "chicaEmo"
 
-![chicaEmo](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/chicaEmoREFERENCIA.png)
+![chicaEmo](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Emi.png)
 
 #### 6.8.2 Cliente 2 "chicaCoqueta"
 
-![chicaCoqueta](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/chicaCoquetaREFERENCIA.png)
+![chicaCoqueta](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Carina.png)
 
 #### 6.8.3 Cliente 3 "Gabriel"
 
