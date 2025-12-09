@@ -439,7 +439,7 @@ A continuación se muestran imágenes de del diseño de cada una de las pantalla
 ### 8.1.8 Interfaz Pedido Cliente
 ![ClientePedido](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Pedido.png)
 ### 8.1.9 Interfaz Cafeteria
-![Cafeteria](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/CafeteriaFinal.png)
+![Cafeteria](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/CafeteriaFIN.png)
 ### 8.1.10 Interfaz Recetario
 ![Recetario](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/RecetarioFinal.png)
 ### 8.1.11 Interfaz Pasteleria
