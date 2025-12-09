@@ -12,7 +12,7 @@ public class CustomerController : MonoBehaviour
     public bool leaving = false;
     float leavingCounter = 0;
 
-    Animator anim;
+    public Animator anim;
 
     void Start()
     {
@@ -46,7 +46,6 @@ public class CustomerController : MonoBehaviour
         else
         {
             transform.Translate(direction.normalized * speed * Time.deltaTime);
-            anim.SetBool("Happy", true);
             leavingCounter += Time.deltaTime;
         }
 

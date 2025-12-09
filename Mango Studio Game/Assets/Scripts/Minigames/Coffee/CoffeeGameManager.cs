@@ -94,6 +94,16 @@ public class CoffeeGameManager : MonoBehaviour
         if (customerManager.orderingCustomer != null)
         {
             CustomerController currentCustomer = customerManager.orderingCustomer.GetComponent<CustomerController>();
+
+            if (result.score < 50)
+            {
+                currentCustomer.anim.SetBool("Sad", true);
+            } 
+            else
+            {
+                currentCustomer.anim.SetBool("Happy", true);
+            }
+
             int tipoCliente = currentCustomer.model;
             int tipoFeedback = CalculateFeedbackSprite(result.score);
             MostrarFeedback(tipoCliente, tipoFeedback);
