@@ -25,7 +25,6 @@ public class TimeManager : MonoBehaviour
 
     [Header("Economia")]
     [SerializeField][Range(0.1f, 1f)] private float difficultyPercentage = 0.85f;
-    [SerializeField] private float secondsPerCustomerEstimate = 12f;
 
     [Header("Configuración de facturas")]
     [SerializeField] private float requiredIncrement;
@@ -52,7 +51,6 @@ public class TimeManager : MonoBehaviour
     // Variables para las facturas
     private float averageTicketPrice = 3f;
     private int requiredMoney = 0;
-    private int customersPerDay = 10;
 
     void Awake()
     {
