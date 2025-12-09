@@ -38,8 +38,7 @@ public class PlayerDataManager : MonoBehaviour
         //RemoveUnlockedCard("CartaAmericano");
         //AddBasicCoins(1000);
         //AddLockedCard("CartaMocca");
-        MarkTutorialUnCompleted(3);
-
+        //MarkTutorialUnCompleted(3);
     }
 
     // Funcion para añadir monedas premium

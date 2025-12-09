@@ -979,7 +979,7 @@ public class MinigameInput : MonoBehaviour
     public void EcharLecheCaliente()
     {
         //Si se tiene la leche caliente en la mano y el cafe no esta servido entonces se puede echar
-        if (tazaMilkInHand == true)
+        if (tazaMilkInHand == true && (coffeeContainerManager.tazaIsInCafetera || coffeeContainerManager.vasoIsInCafetera))
         {
             if (countMilk <= 1)
             {

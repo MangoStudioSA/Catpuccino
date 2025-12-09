@@ -248,29 +248,13 @@ public class TutorialManager : MonoBehaviour
                 break;
 
             case 2:
-                if (!PlayerDataManager.instance.IsTutorialCompleted(2))
-                {
-                    SetupDay2Tutorial();
-                    isRunningT2 = true;
-                }
-                else
-                {
-                    Debug.Log("Tutorial 2 ya completado anteriormente. Saltando.");
-                    clickHintObject.SetActive(false);
-                }
+                SetupDay2Tutorial();
+                isRunningT2 = true;
                 break;
 
             case 3:
-                if (!PlayerDataManager.instance.IsTutorialCompleted(3))
-                {
-                    SetupDay3Tutorial();
-                    isRunningT3 = true;
-                }
-                else
-                {
-                    Debug.Log("Tutorial 3 ya completado anteriormente. Saltando.");
-                    clickHintObject.SetActive(false);
-                }
+                SetupDay3Tutorial();
+                isRunningT3 = true;
                 break;
 
             default:
@@ -1078,7 +1062,6 @@ public class TutorialManager : MonoBehaviour
         isRunningT2 = false;
         tutorialContainer.gameObject.SetActive(false);
         skipTutorialButton.SetActive(false);
-        PlayerDataManager.instance.MarkTutorialCompleted(2);
         Debug.Log("Tutorial 2 completado");
     }
     #endregion
@@ -1277,7 +1260,6 @@ public class TutorialManager : MonoBehaviour
         isRunningT3 = false;
         tutorialContainer.gameObject.SetActive(false);
         skipTutorialButton.SetActive(false);
-        PlayerDataManager.instance.MarkTutorialCompleted(3);
         Debug.Log("Tutorial 3 completado");
     }
     #endregion
@@ -1303,8 +1285,6 @@ public class TutorialManager : MonoBehaviour
                 PlayerDataManager.instance.MarkTutorialCompleted(1);
             }
         } 
-        else if (isRunningT2) PlayerDataManager.instance.MarkTutorialCompleted(2);
-        else if (isRunningT3) PlayerDataManager.instance.MarkTutorialCompleted(3);
 
         isRunningT1 = false;
         isRunningT2 = false;

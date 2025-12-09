@@ -24,18 +24,12 @@ public class CameraController : MonoBehaviour
     void Awake()
     {
         cam = GetComponent<Camera>();
-
-        float vertExtent = maxZoom;
-        float horzExtent = maxZoom * cam.aspect;
-
-        mapLeft = minX - horzExtent;
-        mapRight = maxX + horzExtent;
-        mapBottom = minZ - vertExtent;
-        mapTop = maxZ + vertExtent;
     }
 
     void Update()
     {
+        UpdateMapBounds();
+
         if (Input.GetMouseButton(1))
         {
             float moveX = Input.GetAxis("Mouse X");
@@ -57,6 +51,18 @@ public class CameraController : MonoBehaviour
         DinamicClamp();
     }
 
+
+    void UpdateMapBounds()
+    {
+        float vertExtent = maxZoom;
+        float horzExtent = maxZoom * cam.aspect;
+
+        mapLeft = minX - horzExtent;
+        mapRight = maxX + horzExtent;
+        mapBottom = minZ - vertExtent;
+        mapTop = maxZ + vertExtent;
+    }
+
     // Funcion para limitar el movimiento de la camara tenga + o - zoom (limite dinamico: se recalcula al modificar el zoom)
     void DinamicClamp()
     {
@@ -74,8 +80,23 @@ public class CameraController : MonoBehaviour
         float currentMinZ = mapBottom + vertExtent;
         float currentMaxZ = mapTop - vertExtent;
 
-        pos.x = Mathf.Clamp(pos.x, currentMinX, currentMaxX);
-        pos.z = Mathf.Clamp(pos.z, currentMinZ, currentMaxZ);
+        if (currentMinX > currentMaxX)
+        {
+            pos.x = (minX + maxX) / 2;
+        }
+        else
+        {
+            pos.x = Mathf.Clamp(pos.x, currentMinX, currentMaxX);
+        }
+
+        if (currentMinZ > currentMaxZ)
+        {
+            pos.z = (minZ + maxZ) / 2;
+        }
+        else
+        {
+            pos.z = Mathf.Clamp(pos.z, currentMinZ, currentMaxZ);
+        }
 
         transform.position = pos;
     }
