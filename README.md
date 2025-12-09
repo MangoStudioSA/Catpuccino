@@ -375,7 +375,7 @@ Para los clientes, se han realizado 3 ilustraciones para la pantalla de pedido, 
 
 #### 6.8.3 Cliente 3 "Gabriel"
 
-![Gracie](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Gabriel.png)
+![Gracie](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/GabrielGDD.png)
 
 #### 6.8.4 Cliente 4 "Mindie"
 
