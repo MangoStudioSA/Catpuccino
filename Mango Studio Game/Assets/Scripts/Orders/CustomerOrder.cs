@@ -55,6 +55,8 @@ public class CustomerOrder : MonoBehaviour
         else sugar = (SugarAmount)Random.Range(0, System.Enum.GetValues(typeof(SugarAmount)).Length); // Se genera una cantidad de azucar al azar entre los 3 tipos
 
         if (tutorialManager.isRunningT1) ice = IceAmount.si;
+        else if (coffeeType == CoffeeType.frappe) ice = IceAmount.si;
+        else if (coffeeType == CoffeeType.vienes) ice = IceAmount.no;
         else ice = (IceAmount)Random.Range(0, System.Enum.GetValues(typeof(IceAmount)).Length); // Se genera una cantidad de hielo al azar entre los 2 tipos
 
         if (tutorialManager.isRunningT1) type = OrderType.tomar;

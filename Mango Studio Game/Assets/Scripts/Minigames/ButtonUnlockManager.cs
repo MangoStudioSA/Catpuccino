@@ -13,6 +13,8 @@ public class ButtonUnlockManager : MonoBehaviour
     [SerializeField] public Button recipesBookBButton;
     [SerializeField] public Button orderNoteButton;
     [SerializeField] public Button orderNoteBButton;
+    [SerializeField] public Button pausaCButton;
+    [SerializeField] public Button pausaBButton;
 
     [Header("Botones de las mecanicas")]
     [SerializeField] public Button coffeeButton;

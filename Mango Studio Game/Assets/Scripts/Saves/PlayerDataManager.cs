@@ -28,8 +28,8 @@ public class PlayerDataManager : MonoBehaviour
         }
         Debug.Log("PlayerDataManager Awake. Coins: " + data.basicCoins + "/" + data.premiumCoins);
 
-        RemoveUnlockedCard("CartaFelicidades");
-        RemoveReward();
+        //RemoveUnlockedCard("CartaFelicidades");
+        //RemoveReward();
         //AddLockedCard("CartaLatteArt");
         //AddLockedCard("CartaLatte");
         //AddLockedCard("CartaLungo");
@@ -38,6 +38,8 @@ public class PlayerDataManager : MonoBehaviour
         //RemoveUnlockedCard("CartaAmericano");
         //AddBasicCoins(1000);
         //AddLockedCard("CartaMocca");
+        MarkTutorialUnCompleted(3);
+
     }
 
     // Funcion para añadir monedas premium
@@ -249,6 +251,19 @@ public class PlayerDataManager : MonoBehaviour
         }
         SaveData();
         Debug.Log($"Tutorial {tutorialNumber} marcado como completado y guardado.");
+    }
+
+    // Funcion para guardar el tutorial no completado
+    public void MarkTutorialUnCompleted(int tutorialNumber)
+    {
+        switch (tutorialNumber)
+        {
+            case 1: data.tutorial1Completed = false; break;
+            case 2: data.tutorial2Completed = false; break;
+            case 3: data.tutorial3Completed = false; break;
+        }
+        SaveData();
+        Debug.Log($"Tutorial {tutorialNumber} marcado como no completado y guardado.");
     }
 
     // Funcion para comprobar si un tutorial esta completado

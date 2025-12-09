@@ -141,7 +141,7 @@ public class ShopManager : MonoBehaviour
     public void OnBuyPremiumPackClicked()
     {
         SoundsMaster.Instance.PlaySound_ClickMenu();
-        messageBuyPP.Show("Si compras este sobre gastarás 120 croquetas doradas o 220 monedas de café. ¿Deseas continuar y abrirlo?"); // Mensaje cuando el jugador intenta comprar un sobre premium
+        messageBuyPP.Show("Si compras este sobre gastarás 100 croquetas doradas o 200 monedas de café. ¿Deseas continuar y abrirlo?"); // Mensaje cuando el jugador intenta comprar un sobre premium
     }
 
     public void OnFinalBuyBasicPackClicked()

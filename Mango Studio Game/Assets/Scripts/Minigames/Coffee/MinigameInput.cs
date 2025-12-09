@@ -393,7 +393,7 @@ public class MinigameInput : MonoBehaviour
 
         if (!tutorialManager.isRunningT1 && !tutorialManager.isRunningT2 && !tutorialManager.isRunningT3)
         {
-            if (coffeeContainerManager.tazaInHand || coffeeContainerManager.vasoInHand || TengoOtroObjetoEnLaMano() || coffeeContainerManager.platoTazaInHand || filtroInHand)
+            if (coffeeContainerManager.tazaInHand || coffeeContainerManager.vasoInHand || TengoOtroObjetoEnLaMano() || coffeeContainerManager.platoTazaInHand || filtroInHand || tazaMilkInHand)
             {
                 buttonManager.DisableButton(buttonManager.submitOrderButton);
                 buttonManager.DisableButton(buttonManager.bakeryButton);
@@ -401,6 +401,7 @@ public class MinigameInput : MonoBehaviour
                 buttonManager.DisableButton(buttonManager.orderNoteButton);
                 buttonManager.DisableButton(buttonManager.bakeryButton);
                 buttonManager.DisableButton(buttonManager.papeleraButton);
+                buttonManager.DisableButton(buttonManager.pausaCButton);
             }
             else
             {
@@ -410,6 +411,7 @@ public class MinigameInput : MonoBehaviour
                 buttonManager.EnableButton(buttonManager.orderNoteButton);
                 buttonManager.EnableButton(buttonManager.bakeryButton);
                 buttonManager.EnableButton(buttonManager.papeleraButton);
+                buttonManager.EnableButton(buttonManager.pausaCButton);
             }
         }
 
@@ -618,6 +620,7 @@ public class MinigameInput : MonoBehaviour
     public void StopServingCoffee()
     {
         if (!isServing || coffeeServed) return;
+        if (TengoOtroObjetoEnLaMano() || coffeeContainerManager.tazaInHand || coffeeContainerManager.vasoInHand || coffeeContainerManager.platoTazaInHand || tazaMilkInHand) return;
 
         isServing = false;
         coffeeServed = true;

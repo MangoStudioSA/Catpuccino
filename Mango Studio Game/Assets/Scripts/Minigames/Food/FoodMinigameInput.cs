@@ -107,7 +107,6 @@ public class FoodMinigameInput : MonoBehaviour
         // Horneado
         if (isBaking)
         {
-            buttonManager.hornoButton.gameObject.SetActive(false);
             buttonManager.DisableButton(buttonManager.hornoButton);
 
             if (Time.timeScale == 0f && !audioPausadoPorMenu)
@@ -123,7 +122,6 @@ public class FoodMinigameInput : MonoBehaviour
         }
         else
         {
-            buttonManager.hornoButton.gameObject.SetActive(true);
             buttonManager.EnableButton(buttonManager.hornoButton);
         }
 
@@ -138,6 +136,8 @@ public class FoodMinigameInput : MonoBehaviour
     // Funcion para resetear variables de la comida
     public void ResetFoodState()
     {
+        if (isBaking) StopHorneado();
+
         buttonManager.EnableButton(buttonManager.cogerPlatoInicioButton);
         buttonManager.EnableButton(buttonManager.cogerBolsaLlevarInicioButton);
         buttonManager.EnableButton(buttonManager.bakeryButton);
@@ -298,6 +298,7 @@ public class FoodMinigameInput : MonoBehaviour
             buttonManager.DisableButton(buttonManager.orderNoteBButton);
             buttonManager.DisableButton(buttonManager.papeleraRButton);
             buttonManager.DisableButton(buttonManager.returnBakeryButton);
+            buttonManager.DisableButton(buttonManager.pausaBButton);
             buttonManager.DisableButton(buttonManager.recipesBookBButton);
         }
         else if (!tutorialManager.isRunningT2)
@@ -305,6 +306,7 @@ public class FoodMinigameInput : MonoBehaviour
             buttonManager.EnableButton(buttonManager.orderNoteBButton);
             buttonManager.EnableButton(buttonManager.papeleraRButton);
             buttonManager.EnableButton(buttonManager.returnBakeryButton);
+            buttonManager.EnableButton(buttonManager.pausaBButton);
             buttonManager.EnableButton(buttonManager.recipesBookBButton);
         }
 
@@ -735,11 +737,8 @@ public class FoodMinigameInput : MonoBehaviour
             UpdateBakingBarColor(bakeSlider.value);
             yield return null;
         }
-        isBaking = false;
-        currentCookState = CookState.quemado;
 
-        bakeSlider.gameObject.SetActive(false);
-        Debug.Log("Se ha pasado el tiempo: comida quemada");
+        StopHorneado();
     }
     
     // Funcion para actualizar el slider del horneado

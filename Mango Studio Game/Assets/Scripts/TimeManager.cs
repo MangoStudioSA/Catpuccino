@@ -226,12 +226,12 @@ public class TimeManager : MonoBehaviour
         if (GameManager.Instance.monedas >= requiredMoney)
         {
             PlayerDataManager.instance.AddBasicCoins(50);
-            earnedText.text = "En total, tienes ingresados " + GameManager.Instance.monedas + "$. Puedes pagar las facturas pendientes";
+            earnedText.text = "En total, tienes ingresados " + GameManager.Instance.monedas + "$. Puedes pagar las facturas pendientes.";
             endButtonText.text = "Siguiente día";
         }
         else
         {
-            earnedText.text = "En total, tienes ingresados " + GameManager.Instance.monedas + "$. No puedes pagar las facturas pendientes";
+            earnedText.text = "En total, tienes ingresados " + GameManager.Instance.monedas + "$. No puedes pagar las facturas pendientes.";
             endButtonText.text = "Finalizar partida";
         }
 

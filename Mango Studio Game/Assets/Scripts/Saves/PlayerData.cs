@@ -8,9 +8,9 @@ public class PlayerData
     public int basicCoins = 0;
     public int premiumCoins = 0;
     public bool day7RewardClaimed = false;
-    public bool tutorial1Completed;
-    public bool tutorial2Completed;
-    public bool tutorial3Completed;
+    public bool tutorial1Completed = false;
+    public bool tutorial2Completed = false;
+    public bool tutorial3Completed = false;
 
     public List<string> unlockedCardsList;
 
