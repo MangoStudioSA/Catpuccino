@@ -17,7 +17,7 @@
 - Tutorial ingame actualizado: nuevos sprites, clic para pasar los pasos sin acción vinculada, efecto bloom añadido y acción de saltar implementada.
 - Página web actualizada.
 - Nuevo contenido en RRSS.
-- 7 clientes (concept, modelado 3D y 2D y animaciones de andar e idle).
+- 7 clientes (concept, modelado 3D y 2D y distintas animaciones de andar e idle).
 - Dueña de cafetería (Catherine) implementada: modelado 3D y animación idle.
 - 11 gatos (modelado 3D y animaciones de caminar, sentarse e idle sentado).
 - Nueva ilustración de Catherine añadida en la pantalla de slots.
@@ -395,6 +395,12 @@ Para cada sección del juego se tendrá temas musicales diferentes:
 ### 7.1	Ambiente sonoro
 El ambiente sonoro del juego busca recrear la calidez de una cafetería, transmitiendo la sensación de un espacio tranquilo y agradable. Se escucharán sonidos característicos de las cafeterías como el goteo de un café al prepararse, el vapor de las máquinas y la campanita de los clientes entrando. Además se escucharan los maullidos de los gatos, el murmullo de los clientes teniendo conversaciones y el arrastre suave de sillas, creando así una atmósfera relajada. A lo largo del día, el ambiente sonoro cambiará sutilmente, en las horas pico el sonido de las diferentes actividades de los clientes sonará más alto, mientras que en los momentos de calma se podrá escuchar más a los gatos. Todos estos elementos sonoros estarán mezclados de manera estilizada, no buscando un realismo extremo, si no crear un ambiente atmosférico de calma y suavidad, siguiendo la estética general del juego.
 
+### 7.2	Efectos de sonido
+Se han implementado efectos de sonido al realizar ciertas acciones como interactuar con envases, ingredientes y elementos de los minijuegos. También, se han incluido dichos efectos de sonido en todos los botones y sliders del juego, así como en las animaciones de abrir los libros de recetas y cromos y al abrir los sobres de cromos de la tienda. Concretamente, el sonido de "Abrir sobre" ha sido creado y editado a partir de tres audios descargados.
+
+Por último, se han implementado 3 tipos de voces (feliz, neutral y enfadada) tanto para el género femenino como el masculino. Así, cuando el cliente reciba la orden preparada, además del feedback por texto, se reproducirá un efecto sonoro por voz.
+
+Todos los efectos de sonido han sido descargados de la página web gratuita *Pixabay* (se ha cumplido con su licencia): https://pixabay.com/es/
 
 ## 8. Interfaz
 
