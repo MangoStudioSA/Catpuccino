@@ -237,4 +237,29 @@ public class PlayerDataManager : MonoBehaviour
             Debug.Log($"Carta '{cardName}' añadida correctamente.");
         }
     }
+
+    // Funcion para guardar el tutorial completado
+    public void MarkTutorialCompleted(int tutorialNumber)
+    {
+        switch (tutorialNumber)
+        {
+            case 1: data.tutorial1Completed = true; break;
+            case 2: data.tutorial2Completed = true; break;
+            case 3: data.tutorial3Completed = true; break;
+        }
+        SaveData();
+        Debug.Log($"Tutorial {tutorialNumber} marcado como completado y guardado.");
+    }
+
+    // Funcion para comprobar si un tutorial esta completado
+    public bool IsTutorialCompleted(int tutorialNumber)
+    {
+        switch (tutorialNumber)
+        {
+            case 1: return data.tutorial1Completed;
+            case 2: return data.tutorial2Completed;
+            case 3: return data.tutorial3Completed;
+            default: return false;
+        }
+    }
 }

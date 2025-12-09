@@ -48,6 +48,7 @@ public class CustomerOrder : MonoBehaviour
         OrderType type;
 
         if (tutorialManager.isRunningT1) coffeeType = CoffeeType.espresso;
+        else if (tutorialManager.isRunningT3) coffeeType = CoffeeType.capuccino;
         else coffeeType = coffeeUnlocker.GetRandomAvailableCoffee(currentDay); // Se genera el tipo de cafe entre los disponibles
 
         if (tutorialManager.isRunningT1) sugar = SugarAmount.nada;

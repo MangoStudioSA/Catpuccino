@@ -377,6 +377,7 @@ public class MinigameInput : MonoBehaviour
 
         if (tutorialManager.isRunningT2)
         {
+            buttonManager.DisableButton(buttonManager.coffeeButton);
             int step = tutorialManager.currentStep;
 
             if (step == 0) buttonManager.DisableButton(buttonManager.bakeryButton);
@@ -385,7 +386,10 @@ public class MinigameInput : MonoBehaviour
         else if (tutorialManager.isRunningT3)
             buttonManager.DisableButton(buttonManager.bakeryButton);
         else
+        {
             buttonManager.EnableButton(buttonManager.bakeryButton);
+            buttonManager.EnableButton(buttonManager.coffeeButton);
+        }
 
         if (!tutorialManager.isRunningT1 && !tutorialManager.isRunningT2 && !tutorialManager.isRunningT3)
         {
@@ -423,6 +427,7 @@ public class MinigameInput : MonoBehaviour
     public void StartCoffee()
     {
         if (tutorialManager.isRunningT1 && tutorialManager.currentStep != 8) return;
+        if (tutorialManager.isRunningT2) return;
         if (TengoOtroObjetoEnLaMano() || coffeeContainerManager.vasoInHand || coffeeContainerManager.tazaInHand || coffeeContainerManager.platoTazaInHand || tazaMilkInHand) return;
 
         if  (!isSliding && !coffeeDone)

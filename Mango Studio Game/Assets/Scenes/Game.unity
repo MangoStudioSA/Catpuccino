@@ -5079,7 +5079,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &138070999
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17658,7 +17658,7 @@ MonoBehaviour:
   rendererFloor: {fileID: 1513225473}
   sunnyHours: {x: 4, y: 8}
   rainyHours: {x: 2, y: 3.5}
-  rainProbability: 60
+  rainProbability: 40
   sunIntensitySunny: 1.5
   sunColorSunny: {r: 1, g: 0.9600814, b: 0.84339625, a: 1}
   ambientIntensitySunny: 1
@@ -30650,6 +30650,7 @@ MonoBehaviour:
   BMantequillaImage: {fileID: 926106727}
   BZanahoriaImage: {fileID: 1802058464}
   BRedVelvetImage: {fileID: 515852916}
+  catsMenuImage: {fileID: 2068181531}
   tapaBImage: {fileID: 1529611146}
   tapaPImage: {fileID: 114359261}
   tazaBImage: {fileID: 2132560482}

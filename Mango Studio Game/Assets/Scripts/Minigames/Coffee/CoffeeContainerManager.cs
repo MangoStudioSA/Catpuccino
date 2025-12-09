@@ -331,6 +331,7 @@ public class CoffeeContainerManager : MonoBehaviour
     public void CogerTaza(bool isPrem)
     {
         // Comprobaciones iniciales
+        if (tutorialManager.isRunningT2) return;
         if (CupNotEmpty()) return;
         if (tazaIsInCafetera || tazaIsInPlato || vasoIsInCafetera || vasoIsInTable) return;
 
@@ -368,6 +369,7 @@ public class CoffeeContainerManager : MonoBehaviour
     public void CogerPlatoTaza(bool isPrem)
     {
         // Comprobaciones iniciales
+        if (tutorialManager.isRunningT2) return;
         if (platoTazaIsInTable || vasoIsInCafetera || vasoIsInTable) return;
 
         // Coger plato taza
@@ -402,6 +404,7 @@ public class CoffeeContainerManager : MonoBehaviour
     public void CogerVaso(bool isPrem)
     {
         // Comprobaciones iniciales
+        if (tutorialManager.isRunningT1 || tutorialManager.isRunningT2) return;
         if (vasoIsInCafetera || vasoIsInTable || tazaIsInCafetera || tazaIsInPlato || platoTazaIsInTable) return;
         if (CupNotEmpty()) return;
 

@@ -37,6 +37,7 @@ public class TutorialManager : MonoBehaviour
         public CatPose catPose;
         public Vector2 catPosition;
         public Vector2 position;
+        public Vector2 hintPosition;
         public bool autoAdvance;
 
         public List<GameObject> highlightObjects;
@@ -47,6 +48,7 @@ public class TutorialManager : MonoBehaviour
         public System.Action onStepComplete;
     }
 
+    // Variables
     [Header("Prefabs sprites bocadillos")]
     [SerializeField] private GameObject prefabArribaIzq;
     [SerializeField] private GameObject prefabArribaDer;
@@ -105,6 +107,7 @@ public class TutorialManager : MonoBehaviour
     public Image BMantequillaImage;
     public Image BZanahoriaImage;
     public Image BRedVelvetImage;
+    public Image catsMenuImage;
 
     [Header("Imagenes envases")]
     public Image tapaBImage;
@@ -198,6 +201,29 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
+    // Funcion para el texto de ayuda
+    private void UpdateHintObject(TutorialStep step)
+    {
+        if (clickHintObject == null) return;
+
+        // Solo se muestra la pista en el paso 0
+        if (currentStep == 0)
+        {
+            clickHintObject.SetActive(true);
+
+            RectTransform hintRect = clickHintObject.GetComponent<RectTransform>();
+            if (hintRect != null)
+            {
+                hintRect.anchoredPosition = step.hintPosition;
+                StartCoroutine(BounceSpecificObject(hintRect));
+            }
+        }
+        else
+        {
+            clickHintObject.SetActive(false);
+        }
+    }
+
     // Funcion para borrar sprite del gato actual
     private void ClearCurrentCat()
     {
@@ -216,26 +242,48 @@ public class TutorialManager : MonoBehaviour
         switch (day)
         {
             case 1:
-                SetupDay1Tutorial();
-                StartTutorial1();
-                isRunningT1 = true;
-                Debug.Log("Comenzando tutorial día 1");
+                if (!PlayerDataManager.instance.IsTutorialCompleted(1))
+                {
+                    SetupDay1Tutorial();
+                    StartTutorial1();
+                    isRunningT1 = true;
+                }
+                else
+                {
+                    Debug.Log("Tutorial 1 ya completado anteriormente. Saltando.");
+                    clickHintObject.SetActive(false);
+                }
                 break;
 
             case 2:
-                SetupDay2Tutorial();
-                isRunningT2 = true;
-                Debug.Log("Comenzando tutorial día 2");
+                if (!PlayerDataManager.instance.IsTutorialCompleted(2))
+                {
+                    SetupDay2Tutorial();
+                    isRunningT2 = true;
+                }
+                else
+                {
+                    Debug.Log("Tutorial 2 ya completado anteriormente. Saltando.");
+                    clickHintObject.SetActive(false);
+                }
                 break;
 
             case 3:
-                SetupDay3Tutorial();
-                isRunningT3 = true;
-                Debug.Log("Comenzando tutorial día 3");
+                if (!PlayerDataManager.instance.IsTutorialCompleted(3))
+                {
+                    SetupDay3Tutorial();
+                    isRunningT3 = true;
+                }
+                else
+                {
+                    Debug.Log("Tutorial 3 ya completado anteriormente. Saltando.");
+                    clickHintObject.SetActive(false);
+                }
                 break;
 
             default:
                 Debug.Log("[TutorialManager] No hay tutorial configurado para hoy");
+                clickHintObject.gameObject.SetActive(false);
                 break;
         }
     }
@@ -252,7 +300,8 @@ public class TutorialManager : MonoBehaviour
                 autoAdvance = true,
                 stepType = StepType.UpLeft,
                 catPose = CatPose.CatCenter,
-                catPosition = new Vector2(-433, 193)
+                catPosition = new Vector2(-433, 193),
+                hintPosition = new Vector2(3.458f, -174.4f)
             });
             // Paso 1
             steps.Add(new TutorialStep
@@ -593,6 +642,7 @@ public class TutorialManager : MonoBehaviour
                 stepType = StepType.DownLeft,
                 catPose = CatPose.CatLeft,
                 catPosition = new Vector2(-707, -62),
+                glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
                 {
                     buttonManager.shopButton.gameObject,
@@ -607,6 +657,11 @@ public class TutorialManager : MonoBehaviour
                 stepType = StepType.UpRight,
                 catPose = CatPose.CatRight,
                 catPosition = new Vector2(709, 311),
+                glowMaterial = glowMaterial,
+                highlightObjects = new List<GameObject>
+                {
+                    catsMenuImage.gameObject,
+                },
             });
             // Paso 24
             steps.Add(new TutorialStep
@@ -661,7 +716,8 @@ public class TutorialManager : MonoBehaviour
         }
 
         UpdateCatVisuals(step);
-
+        UpdateHintObject(step);
+        
         if (clickHintObject != null)
         {
             if (currentStep == 0)
@@ -779,6 +835,7 @@ public class TutorialManager : MonoBehaviour
         skipTutorialButton.SetActive(false);
         GameManager.Instance.AnadirMonedas(220);
         PlayerDataManager.instance.AddBasicCoins(20);
+        PlayerDataManager.instance.MarkTutorialCompleted(1);
         Debug.Log("Tutorial completado");
     }
     #endregion
@@ -795,12 +852,14 @@ public class TutorialManager : MonoBehaviour
                 position = new Vector2(406f, 203f),
                 autoAdvance = true,
                 stepType = StepType.UpRight,
-                //stepImage = ,
+                catPose = CatPose.CatRight,
+                catPosition = new Vector2(706.6f, 455),
                 glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
                 {
                     buttonManager.milkButton.gameObject,
                 },
+                hintPosition = new Vector2(400, 39)
             });
             // Paso 1
             steps.Add(new TutorialStep
@@ -809,7 +868,8 @@ public class TutorialManager : MonoBehaviour
                 position = new Vector2(117f, 232f),
                 autoAdvance = false,
                 stepType = StepType.UpRight,
-                //stepImage = ,
+                catPose = CatPose.CatUp,
+                catPosition = new Vector2(528, 290),
                 glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
                 {
@@ -822,13 +882,15 @@ public class TutorialManager : MonoBehaviour
                 message = "Comienza poniendo un plato o una bolsa para llevar en la bandeja según el tipo de pedido.",
                 position = new Vector2(173f, -370f),
                 autoAdvance = false,
-                stepType = StepType.DownRight,
-                //stepImage = ,
+                stepType = StepType.DownLeft,
+                catPose = CatPose.CatDown,
+                catPosition = new Vector2(-261, -349),
                 glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
                 {
                     platoBakeryImage.gameObject,
-                    bolsaBakeryImage.gameObject
+                    bolsaBakeryImage.gameObject,
+                    bandejaBImage.gameObject,
                 },
             });
             // Paso 3
@@ -838,7 +900,8 @@ public class TutorialManager : MonoBehaviour
                 position = new Vector2(-587f, 181f),
                 autoAdvance = false,
                 stepType = StepType.UpRight,
-                //stepImage = ,
+                catPose = CatPose.CatUp,
+                catPosition = new Vector2(-195, 287.5f),
                 glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
                 {
@@ -856,16 +919,18 @@ public class TutorialManager : MonoBehaviour
                 position = new Vector2(130f, -160f),
                 autoAdvance = false,
                 stepType = StepType.UpLeft,
-                //stepImage = ,
+                catPose = CatPose.CatCenter,
+                catPosition = new Vector2(-313, -4)
             });
             // Paso 5
             steps.Add(new TutorialStep
             {
                 message = "¡Pulsa el botón para hornearlo!",
-                position = new Vector2(183f, 199f),
+                position = new Vector2(357, 159),
                 autoAdvance = false,
                 stepType = StepType.UpRight,
-                //stepImage = ,
+                catPose = CatPose.CatUp,
+                catPosition = new Vector2(708, 350),
                 glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
                 {
@@ -879,7 +944,8 @@ public class TutorialManager : MonoBehaviour
                 position = new Vector2(183f, 199f),
                 autoAdvance = true,
                 stepType = StepType.UpRight,
-                //stepImage = ,
+                catPose = CatPose.CatUp,
+                catPosition = new Vector2(590, 295),
                 glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
                 {
@@ -894,7 +960,8 @@ public class TutorialManager : MonoBehaviour
                 position = new Vector2(87f, -224f),
                 autoAdvance = false,
                 stepType = StepType.DownLeft,
-                //stepImage = ,
+                catPose = CatPose.CatDown,
+                catPosition = new Vector2(-322, -290),
                 glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
                 {
@@ -908,7 +975,8 @@ public class TutorialManager : MonoBehaviour
                 position = new Vector2(-5f, -380f),
                 autoAdvance = true,
                 stepType = StepType.DownLeft,
-                //stepImage = ,
+                catPose = CatPose.CatDown,
+                catPosition = new Vector2(-431, -377),
                 glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
                 {
@@ -922,7 +990,8 @@ public class TutorialManager : MonoBehaviour
                 position = new Vector2(113f, 289f),
                 autoAdvance = false,
                 stepType = StepType.UpRight,
-                //stepImage = ,
+                catPose = CatPose.CatUp,
+                catPosition = new Vector2(511, 343),
                 onStepStart = () =>
                 {
                     buttonManager.EnableButton(buttonManager.returnBakeryButton);
@@ -1006,6 +1075,8 @@ public class TutorialManager : MonoBehaviour
         }
 
         UpdateCatVisuals(step);
+        UpdateHintObject(step);
+
         step.onStepStart?.Invoke();
 
         // Efecto fade + rebote al mostrar el paso del turorial
@@ -1045,6 +1116,7 @@ public class TutorialManager : MonoBehaviour
         isRunningT2 = false;
         tutorialContainer.gameObject.SetActive(false);
         skipTutorialButton.SetActive(false);
+        PlayerDataManager.instance.MarkTutorialCompleted(2);
         Debug.Log("Tutorial 2 completado");
     }
     #endregion
@@ -1061,21 +1133,24 @@ public class TutorialManager : MonoBehaviour
                 position = new Vector2(610f, 135f),
                 autoAdvance = true,
                 stepType = StepType.UpLeft,
-                //stepImage = ,
+                catPose = CatPose.CatUp,
+                catPosition = new Vector2(183, 288),
                 glowMaterial = glowMaterial,
                 highlightObjects = new List<GameObject>
                 {
                     buttonManager.cogerTazaLecheButton.gameObject,
                 },
+                hintPosition = new Vector2(623f, -30f)
             });
             // Paso 1
             steps.Add(new TutorialStep
             {
-                message = "Clica sobre la taza de leche y colócala en el espumador.",
+                message = "Clica sobre la jarra de leche y colócala en el espumador.",
                 position = new Vector2(151f, -289f),
                 autoAdvance = false,
                 stepType = StepType.DownLeft,
-                //stepImage = ,
+                catPose = CatPose.CatDown,
+                catPosition = new Vector2(-258, -315),
                 onStepStart = () =>
                 {
                     buttonManager.EnableButton(buttonManager.cogerTazaLecheButton);
@@ -1094,7 +1169,8 @@ public class TutorialManager : MonoBehaviour
                 position = new Vector2(-184f, 235f),
                 autoAdvance = false,
                 stepType = StepType.UpRight,
-                //stepImage = ,
+                catPose = CatPose.CatUp,
+                catPosition = new Vector2(221, 316),
                 onStepStart = () =>
                 {
                     buttonManager.EnableButton(buttonManager.calentarButton);
@@ -1112,16 +1188,18 @@ public class TutorialManager : MonoBehaviour
                 position = new Vector2(-184f, 235f),
                 autoAdvance = true,
                 stepType = StepType.UpRight,
-                //stepImage = ,
+                catPose = CatPose.CatUp,
+                catPosition = new Vector2(214, 317),
             });
             // Paso 4
             steps.Add(new TutorialStep
             {
                 message = "¡Ya has aprendido cómo preparar la leche caliente para tus cafés!",
-                position = new Vector2(-149f, 181f),
+                position = new Vector2(-149f, -33f),
                 autoAdvance = true,
                 stepType = StepType.UpLeft,
-                //stepImage = ,
+                catPose = CatPose.CatCenter,
+                catPosition = new Vector2(-584, 157),
             });
         }
     }
@@ -1196,6 +1274,8 @@ public class TutorialManager : MonoBehaviour
         }
 
         UpdateCatVisuals(step);
+        UpdateHintObject(step);
+
         step.onStepStart?.Invoke();
 
         // Efecto fade + rebote al mostrar el paso del turorial
@@ -1235,6 +1315,7 @@ public class TutorialManager : MonoBehaviour
         isRunningT3 = false;
         tutorialContainer.gameObject.SetActive(false);
         skipTutorialButton.SetActive(false);
+        PlayerDataManager.instance.MarkTutorialCompleted(3);
         Debug.Log("Tutorial 3 completado");
     }
     #endregion
@@ -1246,6 +1327,7 @@ public class TutorialManager : MonoBehaviour
         ClearAllGlow();
         ClearActualStep();
         ClearCurrentCat();
+        clickHintObject.SetActive(false);
 
         if (skipTutorialButton != null)
             skipTutorialButton.SetActive(false);
@@ -1254,7 +1336,10 @@ public class TutorialManager : MonoBehaviour
         {
             GameManager.Instance.AnadirMonedas(220);
             PlayerDataManager.instance.AddBasicCoins(20);
-        }
+            PlayerDataManager.instance.MarkTutorialCompleted(1);
+        } 
+        else if (isRunningT2) PlayerDataManager.instance.MarkTutorialCompleted(2);
+        else if (isRunningT3) PlayerDataManager.instance.MarkTutorialCompleted(3);
 
         isRunningT1 = false;
         isRunningT2 = false;
