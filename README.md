@@ -332,10 +332,12 @@ Las referencias principales para el 2D son *Buena Pizza, Gran Pizza* y *Little C
 ### 6.5	Logo del videojuego
 ![Logo Catpuccino](https://github.com/MangoStudioSA/Catpuccino/blob/e921cc81d0e6f43bd58ed52fc449a0f76f782ea9/PhotosGDD/LogoCatpuccino.PNG)
 
-### 6.6	Concept Art personaje principal
+### 6.6	Personaje principal
+#### 6.6.1 Concept Art
 ![Concept Art PJ Principal1](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/catherineConcept1.png)
 ![Concept Art PJ Principal2](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/catherineConcept2.png)
 ![Concept Art PJ Principal3](https://github.com/MangoStudioSA/Catpuccino/blob/e921cc81d0e6f43bd58ed52fc449a0f76f782ea9/PhotosGDD/conceptPJPrincipal.png)
+#### 6.6.2 Modelado 3d y texturizado
 
 
 ### 6.7 Props
