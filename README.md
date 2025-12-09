@@ -40,7 +40,6 @@
 - Iluminación del escenario implementada.
 - Sistema de día/noche implementado.
 - Sistema de clima (lluvioso o soleado) implementado junto con sus respectivos sonidos.
-- Diagrama de estados actualizado.
 - Cursores modificados (cursor personalizado y comidas).
 - Implementada la funcionalidad de las cartas de skin "*Skin taza*" y "*Skin vaso*" .
 - Añadida una pantalla de confirmación al intentar borrar una partida guardada.
@@ -110,7 +109,7 @@ Queremos incorporar un tipo de gacha, donde existen 2 tipos de sobres:
 |:----------------:|:-----------------------------------------:|:----------------------------------------------:|:--------------------------------------------------------------:|:--------------------:|
 | Monedas del café | Gratis                                    | Recompensa por comandas y login                | Sirven para comprar sobres básicos y mejoras menores            | Siempre              |
 | Sobre básico     | Moneda del café                           | 70 monedas                                     | 1 a 3 ítems básicos                                            | Gratis diario + tienda |
-| Sobre premium    | Moneda premium o monedas del café          | 220 monedas del café o 120 croquetas doradas   | 1 a 3 ítems raros o exclusivos                                 | Tienda               |
+| Sobre premium    | Moneda premium o monedas del café          | 200 monedas del café o 100 croquetas doradas   | 1 a 3 ítems raros o exclusivos                                 | Tienda               |
 | Moneda premium   | Dinero real                               | Pack 1: 0,99 € (100)  <br> Pack 2: 4,99 € (550)  <br> Pack 3: 9,99 € (1200)  <br> Pack 4: 19,99 € (2500) | Moneda premium para sobres, acelerar progresos y cosméticos | Tienda online        |
 
 
@@ -240,15 +239,15 @@ Durante la preparación de pedidos, el jugador deberá interactuar con varios ob
 
 - **Brick de leche** → A partir del día dos, estará disponible para añadir poca o mucha cantidad en el café.
 
-- **Espumador y jarra de leche** → A partir del día 3, se podrá calentar la jarra de leche para añadirla al café.
+- **Espumador y jarra de leche** → A partir del día tres se podrá calentar la jarra de leche para añadirla al café.
 
-- **Leche condensada** → A partir del día 5, se podrá añadir al café.
+- **Leche condensada** → A partir del día cinco se podrá añadir al café.
 
-- **Crema** → A partir del día 5, se podrá añadir al café.
+- **Crema** → A partir del día cinco se podrá añadir al café.
 
-- **Sirope de chocolate** → A partir del día 7, se podrá añadir al café.
+- **Sirope de chocolate** → A partir del día siete se podrá añadir al café.
 
-- **Botella de whiskey** → A partir del día 7, se podrá añadir al café.
+- **Botella de whiskey** → A partir del día siete se podrá añadir al café.
 
 - **Plato o bolsa** → Plato para pedidos para tomar y bolsa para pedidos para llevar.
 
