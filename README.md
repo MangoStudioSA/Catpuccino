@@ -427,7 +427,7 @@ A continuación se muestran imágenes de del diseño de cada una de las pantalla
 ### 8.1.2 Interfaz Opciones (Inicio)
 ![Opciones](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/OpcionesMenuPrincipal.png)
 ### 8.1.3 Interfaz Contacto
-![Contactos](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Contactos.png)
+![Contactos](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/ContactosFinal.png)
 ### 8.1.4 Interfaz Partidas
 ![Partidas](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/PartidasFinal.png)
 ### 8.1.5 Interfaz Partida
@@ -457,9 +457,9 @@ A continuación se muestran imágenes de del diseño de cada una de las pantalla
 ### 8.1.17 Interfaz Monedas Premium
 ![ComprarMonedasPremium](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/ComprarMonedasPremium.png)
 ### 8.1.18 Interfaz Fin del Dia
-![FinDia](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/FinDia.png)
+![FinDia](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/FinDiaFinal.png)
 ### 8.1.19 Interfaz Fin/Salir Partida
-![FinPartida](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/FinPartida.png)
+![FinPartida](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/FinPartidaFinal.png)
 
 ### Botones, Fondos y Otros
 ### 8.1.19 Botones
