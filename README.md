@@ -454,7 +454,8 @@ A continuación se muestran imágenes de del diseño de cada una de las pantalla
 ![Botones](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Interactuables.png)
 ### 8.1.20 Fondos
 ![Fondos](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Fondos.png)
-### 8.1.19 Otros
+### 8.1.21 Gatos para tutorial
+### 8.1.22 Otros
 ![Otros](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Otros.png)
 
 
