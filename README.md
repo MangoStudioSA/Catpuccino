@@ -392,7 +392,7 @@ Para los clientes, se han realizado 3 ilustraciones para la pantalla de pedido, 
 
 ### 6.10 Texturizado del Escenario
 
-![Escenario](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Escenario.png)
+![Escenario](https://github.com/MangoStudioSA/Catpuccino/blob/main/PhotosGDD/Escenario.jpeg)
 
 ## 7. Sonido
 El estilo musical será lo-fi chillhop con influencias de jazz suave. El objetivo de utilizar este estilo de música es reforzar la sensación de estar en un lugar cómodo y sin estrés. Los instrumentos que deberá utilizar la música serán piano, contrabajo suave, percusión ligera, guitarra acústica, toques de sintetizador lo-fi.
