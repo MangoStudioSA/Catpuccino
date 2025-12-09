@@ -242,17 +242,9 @@ public class TutorialManager : MonoBehaviour
         switch (day)
         {
             case 1:
-                if (!PlayerDataManager.instance.IsTutorialCompleted(1))
-                {
-                    SetupDay1Tutorial();
-                    StartTutorial1();
-                    isRunningT1 = true;
-                }
-                else
-                {
-                    Debug.Log("Tutorial 1 ya completado anteriormente. Saltando.");
-                    clickHintObject.SetActive(false);
-                }
+                SetupDay1Tutorial();
+                StartTutorial1();
+                isRunningT1 = true;
                 break;
 
             case 2:
@@ -307,7 +299,7 @@ public class TutorialManager : MonoBehaviour
             steps.Add(new TutorialStep
             {
                 message = "Comienza aceptando el pedido del primer cliente.",
-                position = new Vector2(-430, 210f),
+                position = new Vector2(-430, 215f),
                 autoAdvance = false,
                 stepType = StepType.UpLeft,
                 catPose = CatPose.CatUp,
@@ -763,40 +755,6 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
-    // Funcion para el efecto bounce del texto
-    private IEnumerator BounceSpecificObject(RectTransform targetRect)
-    {
-        if (targetRect == null) yield break;
-
-        Vector3 originalScale = Vector3.one;
-        Vector3 targetScale = Vector3.one * bounceScale;
-
-        while (targetRect != null && targetRect.gameObject.activeInHierarchy)
-        {
-            float elapsed = 0f;
-            // Escalar hacia arriba
-            while (elapsed < bounceSpeed)
-            {
-                if (targetRect == null || !targetRect.gameObject.activeInHierarchy) yield break;
-                elapsed += Time.deltaTime;
-                float t = Mathf.Sin((elapsed / bounceSpeed) * Mathf.PI * 0.5f);
-                targetRect.localScale = Vector3.Lerp(originalScale, targetScale, t);
-                yield return null;
-            }
-
-            elapsed = 0f;
-            // Escalar hacia abajo
-            while (elapsed < bounceSpeed)
-            {
-                if (targetRect == null || !targetRect.gameObject.activeInHierarchy) yield break;
-                elapsed += Time.deltaTime;
-                float t = Mathf.Sin((elapsed / bounceSpeed) * Mathf.PI * 0.5f);
-                targetRect.localScale = Vector3.Lerp(targetScale, originalScale, t);
-                yield return null;
-            }
-        }
-    }
-
     public void CompleteCurrentStep()
     {
         // Eliminar glow del paso actual
@@ -834,8 +792,12 @@ public class TutorialManager : MonoBehaviour
         tutorialContainer.gameObject.SetActive(false);
         skipTutorialButton.SetActive(false);
         GameManager.Instance.AnadirMonedas(220);
-        PlayerDataManager.instance.AddBasicCoins(20);
-        PlayerDataManager.instance.MarkTutorialCompleted(1);
+
+        if (!PlayerDataManager.instance.IsTutorialCompleted(1))
+        {
+            PlayerDataManager.instance.AddBasicCoins(20);
+            PlayerDataManager.instance.MarkTutorialCompleted(1);
+        }       
         Debug.Log("Tutorial completado");
     }
     #endregion
@@ -1335,8 +1297,11 @@ public class TutorialManager : MonoBehaviour
         if (isRunningT1)
         {
             GameManager.Instance.AnadirMonedas(220);
-            PlayerDataManager.instance.AddBasicCoins(20);
-            PlayerDataManager.instance.MarkTutorialCompleted(1);
+            if (!PlayerDataManager.instance.IsTutorialCompleted(1))
+            {
+                PlayerDataManager.instance.AddBasicCoins(20);
+                PlayerDataManager.instance.MarkTutorialCompleted(1);
+            }
         } 
         else if (isRunningT2) PlayerDataManager.instance.MarkTutorialCompleted(2);
         else if (isRunningT3) PlayerDataManager.instance.MarkTutorialCompleted(3);
@@ -1378,6 +1343,40 @@ public class TutorialManager : MonoBehaviour
                 {
                     img.material = step.originalMaterials[i];
                 }
+            }
+        }
+    }
+
+    // Funcion para el efecto bounce del texto
+    private IEnumerator BounceSpecificObject(RectTransform targetRect)
+    {
+        if (targetRect == null) yield break;
+
+        Vector3 originalScale = Vector3.one;
+        Vector3 targetScale = Vector3.one * bounceScale;
+
+        while (targetRect != null && targetRect.gameObject.activeInHierarchy)
+        {
+            float elapsed = 0f;
+            // Escalar hacia arriba
+            while (elapsed < bounceSpeed)
+            {
+                if (targetRect == null || !targetRect.gameObject.activeInHierarchy) yield break;
+                elapsed += Time.deltaTime;
+                float t = Mathf.Sin((elapsed / bounceSpeed) * Mathf.PI * 0.5f);
+                targetRect.localScale = Vector3.Lerp(originalScale, targetScale, t);
+                yield return null;
+            }
+
+            elapsed = 0f;
+            // Escalar hacia abajo
+            while (elapsed < bounceSpeed)
+            {
+                if (targetRect == null || !targetRect.gameObject.activeInHierarchy) yield break;
+                elapsed += Time.deltaTime;
+                float t = Mathf.Sin((elapsed / bounceSpeed) * Mathf.PI * 0.5f);
+                targetRect.localScale = Vector3.Lerp(targetScale, originalScale, t);
+                yield return null;
             }
         }
     }

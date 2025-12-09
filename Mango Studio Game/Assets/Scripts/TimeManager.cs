@@ -23,6 +23,10 @@ public class TimeManager : MonoBehaviour
     [SerializeField] private int endHour;
     [SerializeField] private int endMinutes;
 
+    [Header("Economia")]
+    [SerializeField][Range(0.1f, 1f)] private float difficultyPercentage = 0.85f;
+    [SerializeField] private float secondsPerCustomerEstimate = 12f;
+
     [Header("Configuración de facturas")]
     [SerializeField] private float requiredIncrement;
 
@@ -46,8 +50,7 @@ public class TimeManager : MonoBehaviour
     private SaveDataManager saveDataManager;
 
     // Variables para las facturas
-    private float averageCoffeePrice = 1f;
-    private float averageFoodPrice = 2f;
+    private float averageTicketPrice = 3f;
     private int requiredMoney = 0;
     private int customersPerDay = 10;
 
@@ -96,7 +99,8 @@ public class TimeManager : MonoBehaviour
 
     public void StartNewDay()
     {
-        if (GameManager.Instance.monedas <= requiredMoney && currentDay != 0)
+        // Comprobacion de game over y pago de facturas
+        if (GameManager.Instance.monedas < requiredMoney && currentDay != 0)
         {
             saveDataManager.rated = GameManager.Instance.customersRated;
             saveDataManager.score = GameManager.Instance.totalSatisfactionScore;
@@ -104,88 +108,103 @@ public class TimeManager : MonoBehaviour
             return;
         }
 
-        // Llamamos a la función de reinicio ANTES de hacer cualquier otra cosa
-        if (customerManager != null)
+        // Restar dinero de facturas si no es el 1 dia
+        if (currentDay > 0)
         {
-            customerManager.ResetForNewDay();
+            GameManager.Instance.monedas -= requiredMoney;
+            HUDManager.Instance.UpdateMonedas(GameManager.Instance.monedas);
         }
-
-        // Se aumenta el dia y se guarda en el progreso del jugador
-        currentDay++;
-        coffeeGameManager.customersServed = 0;
-
-        if (SpecialReward.instance != null)
+           
+        // Guardar y cargar datos
+        if (currentDay > 0)
         {
-            SpecialReward.instance.CheckDayCondition();
-        }
-
-        // Restar dinero de facturas
-        GameManager.Instance.monedas -= requiredMoney;
-        HUDManager.Instance.UpdateMonedas(GameManager.Instance.monedas);
-
-        if (currentDay > 1)
-        {
-            saveDataManager.currentDay = currentDay;
+            saveDataManager.currentDay = currentDay + 1;
             saveDataManager.money = GameManager.Instance.monedas;
             saveDataManager.rated = GameManager.Instance.customersRated;
             saveDataManager.score = GameManager.Instance.totalSatisfactionScore;
             saveDataManager.SaveGame();
         }
 
+        // Se resetean los clientes
+        if (customerManager != null) customerManager.ResetForNewDay();
+
+        // Se aumenta el dia
+        currentDay++;
+        coffeeGameManager.customersServed = 0;
+
+        if (SpecialReward.instance != null) SpecialReward.instance.CheckDayCondition();
+        
+        // Se cargan los datos del jugador y se actualiza la UI
         currentDay = saveDataManager.LoadDay();
         GameManager.Instance.monedas = saveDataManager.LoadMoney();
         GameManager.Instance.customersRated = saveDataManager.LoadRated();
         GameManager.Instance.totalSatisfactionScore = saveDataManager.LoadScore();
+        
         if (GameManager.Instance.customersRated > 0)
         {
             float averageSatisfaction = ((float)GameManager.Instance.totalSatisfactionScore / GameManager.Instance.customersRated);
             HUDManager.Instance.UpdateSatisfaccion(averageSatisfaction);
         } 
         HUDManager.Instance.UpdateMonedas(GameManager.Instance.monedas);
-        secondsPerGameMinute = secondsPerGameMinuteBase + timeDecay * (currentDay - 1);
 
-        // Se actualiza el tiempo y las variables
+        // Calcular velocidad del dia y resetear variables
+        secondsPerGameMinute = secondsPerGameMinuteBase + timeDecay * (currentDay - 1);
+        
         currentTimeInSeconds = startHour * 3600;
         IsOpen = true;
         isDayEnding = false;
 
-        // Asignar monedas basicas y premium
+        // Actualizar UI de monedas basicas y premium
         HUDManager.Instance.UpdateUI();
 
         // Actualizar mecanicas y elementos disponibles para el dia actual
         GameProgressManager.Instance.UpdateMechanicsForDay(currentDay);
         FindFirstObjectByType<FoodManager>().ApplyFoodUnlocks();
         buttonUnlockManager.RefreshButtons();
-        
+
         // Calculo facturas
-        float dailyIncome = (averageCoffeePrice + averageFoodPrice) * customersPerDay;
-        float difficultyFactor = 1f + (currentDay - 1) * requiredIncrement;
-        int randomVariation = (int)UnityEngine.Random.Range(-10f, 10f);
+        float totalGameMinutes = (endHour - startHour) * 60f + endMinutes;
+        float realSecondsDuration = totalGameMinutes * secondsPerGameMinute;
 
-        //requiredMoney = requiredBase + (currentDay - 1) * requiredIncrement + (int)Random.Range(-10, 10);
-        requiredMoney = Mathf.RoundToInt(dailyIncome * difficultyFactor) + randomVariation;
+        float t = Mathf.Clamp01((float)(currentDay - 1) / 6f);
+        float dynamicEstimate = Mathf.Lerp(80f, 50f, t);
 
-        if (gameUIManager != null)
+        // Capacidad maxima teorica
+        int maxPossibleCustomers = Mathf.FloorToInt(realSecondsDuration / dynamicEstimate);
+        // Precio estimado de la comida + cafe
+        float currentAvgTicket = averageTicketPrice + (currentDay * 0.2f);
+       
+        // Calculo base 
+        float calculatedBill = maxPossibleCustomers * currentAvgTicket * difficultyPercentage;
+
+        // Variacion
+        int randomVar = UnityEngine.Random.Range(-5, 15);
+        requiredMoney = Mathf.RoundToInt(calculatedBill) + randomVar;
+        
+        int minimumFloor = 15 + ((currentDay - 1) * 12);
+        requiredMoney = Mathf.Max(minimumFloor, requiredMoney);
+
+        if (currentDay == 1)
         {
-            gameUIManager.ShowGamePanel();
+            requiredMoney = Mathf.Clamp(requiredMoney, 10, 30);
         }
 
-        // Se muestra el dia actual
-        currentDayText.text = $"Día {currentDay:F0}"; 
+        // Se muestra el dia actual y se resetea la pizarra con la carta del dia
+        if (gameUIManager != null) gameUIManager.ShowGamePanel();
+        currentDayText.text = $"Día {currentDay:F0}";
+        HUDmanager.ResetNote();
+
         if (HUDManager.Instance != null)
         {
             HUDManager.Instance.ShowAvailableElements();
             HUDManager.Instance.ShowUnlockedElements();
         }
-
-        // Se resetea la pizarra con la carta del dia
-        HUDmanager.ResetNote(); 
             
         Debug.Log($"--- DÍA {currentDay} --- \nLa cafetería ha abierto.");
         onDayStarted?.Invoke(currentDay);
     }
 
-
+    // Funcion para las facturas al final del dia
     private IEnumerator EndDaySequence()
     {
         isDayEnding = true; // Marcamos que el fin de día ha comenzado
@@ -218,8 +237,6 @@ public class TimeManager : MonoBehaviour
             endButtonText.text = "Finalizar partida";
         }
 
-        // La corrutina ahora simplemente termina aquí.
-        // Ya no espera ni llama a StartNewDay().
         yield return null;
     }
 
@@ -230,32 +247,14 @@ public class TimeManager : MonoBehaviour
             int hours = Mathf.FloorToInt(GetCurrentHour());
             int minutes = Mathf.FloorToInt(GetCurrentMinute());
 
-            if (minutes>=50)
-            {
-                minutes = 50;
-            }
-            else if (minutes>=40)
-            {
-                minutes = 40;
-            } 
-            else if (minutes>=30)
-            {
-                minutes = 30;
-            }
-            else if (minutes >= 20)
-            {
-                minutes = 20;
-            }
-            else if (minutes >= 10)
-            {
-                minutes = 10;
-            }
-            else
-            {
-                minutes = 0;
-            }
-
-                timeText.text = $"{hours:D2}:{minutes:D2}h";
+            if (minutes>=50) minutes = 50;
+            else if (minutes>=40) minutes = 40;
+            else if (minutes>=30) minutes = 30;
+            else if (minutes >= 20) minutes = 20;
+            else if (minutes >= 10) minutes = 10;
+            else minutes = 0;
+            
+            timeText.text = $"{hours:D2}:{minutes:D2}h";
         }
     }
 

@@ -31024,11 +31024,13 @@ MonoBehaviour:
   earnedText: {fileID: 1621369669}
   endButtonText: {fileID: 1495100694}
   secondsPerGameMinute: 0
-  secondsPerGameMinuteBase: 0.2
-  timeDecay: 0.1
+  secondsPerGameMinuteBase: 0.35
+  timeDecay: 0.06
   startHour: 7
   endHour: 20
   endMinutes: 0
+  difficultyPercentage: 0.85
+  secondsPerCustomerEstimate: 80
   requiredIncrement: 1.25
   currentDay: 0
   coffeeRecipesManager: {fileID: 1692941318}

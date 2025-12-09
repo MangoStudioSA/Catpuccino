@@ -28,8 +28,8 @@ public class PlayerDataManager : MonoBehaviour
         }
         Debug.Log("PlayerDataManager Awake. Coins: " + data.basicCoins + "/" + data.premiumCoins);
 
-        //RemoveUnlockedCard("CartaFelicidades");
-        //RemoveReward();
+        RemoveUnlockedCard("CartaFelicidades");
+        RemoveReward();
         //AddLockedCard("CartaLatteArt");
         //AddLockedCard("CartaLatte");
         //AddLockedCard("CartaLungo");
