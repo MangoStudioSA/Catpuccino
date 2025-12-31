@@ -1,7 +1,7 @@
 using UnityEngine;
 
 // Clase encargada de gestionar el movimiento de la camara y el zoom
-public class CameraController : MonoBehaviour
+public class CameraController2 : MonoBehaviour
 {
     private Camera cam;
 
