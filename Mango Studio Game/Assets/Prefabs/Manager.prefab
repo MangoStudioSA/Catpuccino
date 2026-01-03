@@ -44,10 +44,10 @@ GameObject:
   - component: {fileID: 9018088346766054255}
   - component: {fileID: 1768167252910596680}
   - component: {fileID: 6711653460611295843}
-  - component: {fileID: 7046728267881875669}
   - component: {fileID: 4231839258988541092}
+  - component: {fileID: 5351860986151089318}
   m_Layer: 0
-  m_Name: Client
+  m_Name: Manager
   m_TagString: Customer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -151,1765 +151,6 @@ CapsuleCollider:
   m_Height: 3.44
   m_Direction: 1
   m_Center: {x: 0, y: 0.55, z: 0}
---- !u!114 &7046728267881875669
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2753711945148426859}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a24a4574475bf20458c07a2e58bd6937, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  executeOnLoop: 1
-  interruptOptions: 0
-  _eventHandler:
-    debugStatusChanges: 0
-    identifier: 
-  data:
-    graphs:
-    - name: newbehaviourgraph
-      id: d6a0a788-9f8c-44c4-b108-e28c63c97add
-      graph:
-        rid: 697659541331902529
-      nodes:
-      - name: 
-        id: 3535c517-3f66-4842-9dba-a7799b9d6bc0
-        position: {x: 4078.125, y: 0}
-        node:
-          rid: 697659541331902532
-        references: []
-        parentIds: []
-        childIds:
-        - d7ffcdf3-e345-4c7b-925a-90b1a61750fd
-      - name: 
-        id: d7ffcdf3-e345-4c7b-925a-90b1a61750fd
-        position: {x: 4078.125, y: 200}
-        node:
-          rid: 697659541331902533
-        references: []
-        parentIds:
-        - 3535c517-3f66-4842-9dba-a7799b9d6bc0
-        childIds:
-        - a1008538-630a-46a3-bcd1-eddb3319cfbc
-        - 5b69266a-7f17-46f7-ac6e-40549976f012
-        - 3ea1763b-7578-4530-a8be-439597f19e03
-        - 26c3a9d8-0730-49dd-85cd-6ac55a74c36f
-      - name: 
-        id: a1008538-630a-46a3-bcd1-eddb3319cfbc
-        position: {x: -300, y: 400}
-        node:
-          rid: 697659541331902535
-        references: []
-        parentIds:
-        - d7ffcdf3-e345-4c7b-925a-90b1a61750fd
-        childIds:
-        - 29881668-d804-4cbf-b065-d7a6b4282c2e
-        - d75431a2-6768-43cd-8869-a78046610b25
-        - 2b09dc3c-4181-408c-b796-6647eddb3ac4
-      - name: 
-        id: 5b69266a-7f17-46f7-ac6e-40549976f012
-        position: {x: 1668.75, y: 400}
-        node:
-          rid: 697659541331902536
-        references: []
-        parentIds:
-        - d7ffcdf3-e345-4c7b-925a-90b1a61750fd
-        childIds:
-        - 28c9909e-e7b9-4b1f-acea-cc3605bef134
-        - 8c2a39ab-46d2-4c63-8d0d-bc958ec9a803
-        - fa32a505-d497-48e3-a2e1-8e9fcf0f6d66
-        - 37f1b996-ea0e-4e7e-8e44-8485fead2fa4
-        - e4be1b63-c5f8-4cfc-8401-c2ad0f684a63
-      - name: 
-        id: 3ea1763b-7578-4530-a8be-439597f19e03
-        position: {x: 3637.5, y: 400}
-        node:
-          rid: 697659541331902537
-        references: []
-        parentIds:
-        - d7ffcdf3-e345-4c7b-925a-90b1a61750fd
-        childIds:
-        - e3e94e05-045a-4823-ac73-99d12a9a61ab
-        - b4908d28-f7df-45ab-bb53-abecd47ec31a
-        - 51021442-8721-471f-b519-d1c8fdd63bee
-        - 8c65d4c4-3531-4842-bacf-90592a742cb7
-      - name: "\xBFACABA DE ENTRAR?"
-        id: 29881668-d804-4cbf-b065-d7a6b4282c2e
-        position: {x: -750, y: 600}
-        node:
-          rid: 697659541331902539
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - a1008538-630a-46a3-bcd1-eddb3319cfbc
-        childIds: []
-      - name: "\xBFCOLA MOSTRADOR LLENA?"
-        id: d75431a2-6768-43cd-8869-a78046610b25
-        position: {x: -450, y: 600}
-        node:
-          rid: 697659541331902540
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - a1008538-630a-46a3-bcd1-eddb3319cfbc
-        childIds: []
-      - name: 
-        id: 2b09dc3c-4181-408c-b796-6647eddb3ac4
-        position: {x: 150, y: 600}
-        node:
-          rid: 697659541331902541
-        references: []
-        parentIds:
-        - a1008538-630a-46a3-bcd1-eddb3319cfbc
-        childIds:
-        - 1c0f4b32-aa92-4cb8-ac88-9bea9084d1c2
-        - 7dfc78e3-ff54-41b7-9209-f685ccfa611f
-        - a88b8a54-f683-4f7c-ba0e-262c465e79d0
-        - d39d66b5-543a-42f5-9dd9-62e00aeb7be3
-        - 9bce270a-ed21-4aec-9506-853905538b87
-      - name: BUSCAR GERENTE
-        id: 1c0f4b32-aa92-4cb8-ac88-9bea9084d1c2
-        position: {x: -450, y: 800}
-        node:
-          rid: 697659541331902542
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 2b09dc3c-4181-408c-b796-6647eddb3ac4
-        childIds: []
-      - name: AVANZAR A GERENTE
-        id: 7dfc78e3-ff54-41b7-9209-f685ccfa611f
-        position: {x: -150, y: 800}
-        node:
-          rid: 697659541331902543
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 2b09dc3c-4181-408c-b796-6647eddb3ac4
-        childIds: []
-      - name: QUEJARSE
-        id: a88b8a54-f683-4f7c-ba0e-262c465e79d0
-        position: {x: 150, y: 800}
-        node:
-          rid: 697659541331902544
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 2b09dc3c-4181-408c-b796-6647eddb3ac4
-        childIds: []
-      - name: AVANZAR A SALIDA
-        id: d39d66b5-543a-42f5-9dd9-62e00aeb7be3
-        position: {x: 450, y: 800}
-        node:
-          rid: 697659541331902545
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 2b09dc3c-4181-408c-b796-6647eddb3ac4
-        childIds: []
-      - name: IRSE
-        id: 9bce270a-ed21-4aec-9506-853905538b87
-        position: {x: 750, y: 800}
-        node:
-          rid: 697659541331902546
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 2b09dc3c-4181-408c-b796-6647eddb3ac4
-        childIds: []
-      - name: "\xBFNECESIDAD DE BA\xD1O?"
-        id: 28c9909e-e7b9-4b1f-acea-cc3605bef134
-        position: {x: 450, y: 600}
-        node:
-          rid: 697659541331902547
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 5b69266a-7f17-46f7-ac6e-40549976f012
-        childIds: []
-      - name: PAUSAR TAREA ACTUAL
-        id: 8c2a39ab-46d2-4c63-8d0d-bc958ec9a803
-        position: {x: 750, y: 600}
-        node:
-          rid: 697659541331902548
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 5b69266a-7f17-46f7-ac6e-40549976f012
-        childIds: []
-      - name: RESETEAR PACIENCIA
-        id: fa32a505-d497-48e3-a2e1-8e9fcf0f6d66
-        position: {x: 1050, y: 600}
-        node:
-          rid: 697659541331902549
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 5b69266a-7f17-46f7-ac6e-40549976f012
-        childIds: []
-      - name: "AVANZAR A COLA BA\xD1O"
-        id: 37f1b996-ea0e-4e7e-8e44-8485fead2fa4
-        position: {x: 1350, y: 600}
-        node:
-          rid: 697659541331902550
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 5b69266a-7f17-46f7-ac6e-40549976f012
-        childIds: []
-      - name: 
-        id: e4be1b63-c5f8-4cfc-8401-c2ad0f684a63
-        position: {x: 2887.5, y: 600}
-        node:
-          rid: 697659541331902551
-        references: []
-        parentIds:
-        - 5b69266a-7f17-46f7-ac6e-40549976f012
-        childIds:
-        - 951eef82-6a02-4a62-becc-6ca9b443f229
-        - 27a4ec72-7671-4a51-abb3-e5a62454a8dc
-        - c0603fcd-285a-4cd2-8f5a-8aedfe0e09a1
-      - name: 
-        id: 951eef82-6a02-4a62-becc-6ca9b443f229
-        position: {x: 1350, y: 800}
-        node:
-          rid: 697659541331902552
-        references: []
-        parentIds:
-        - e4be1b63-c5f8-4cfc-8401-c2ad0f684a63
-        childIds:
-        - 5291c44c-0297-40cf-a0b5-cd0fa7a98146
-        - 821cfc1f-75e4-4ae8-81a3-ce9540cd8645
-      - name: 
-        id: 27a4ec72-7671-4a51-abb3-e5a62454a8dc
-        position: {x: 2400, y: 800}
-        node:
-          rid: 697659541331902553
-        references: []
-        parentIds:
-        - e4be1b63-c5f8-4cfc-8401-c2ad0f684a63
-        childIds:
-        - 3f554430-d836-4977-a6f3-15269a0b2250
-        - 7876f6a1-372c-4262-a954-755bbe25f9a3
-      - name: 
-        id: c0603fcd-285a-4cd2-8f5a-8aedfe0e09a1
-        position: {x: 4425, y: 800}
-        node:
-          rid: 697659541331902554
-        references: []
-        parentIds:
-        - e4be1b63-c5f8-4cfc-8401-c2ad0f684a63
-        childIds:
-        - ead3dad9-6e2f-4b10-84ee-dc64a07a1536
-        - ae1b7516-cbbc-4a33-935d-7edf7033e6f2
-      - name: "\xBFBA\xD1O MANTENIMIENTO?"
-        id: 5291c44c-0297-40cf-a0b5-cd0fa7a98146
-        position: {x: 1200, y: 1000}
-        node:
-          rid: 697659541331902555
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 951eef82-6a02-4a62-becc-6ca9b443f229
-        childIds: []
-      - name: "\xBFCOLA BA\xD1O LLENA?"
-        id: 3f554430-d836-4977-a6f3-15269a0b2250
-        position: {x: 1800, y: 1000}
-        node:
-          rid: 697659541331902556
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 27a4ec72-7671-4a51-abb3-e5a62454a8dc
-        childIds: []
-      - name: REANUDAR TAREA
-        id: ae1b7516-cbbc-4a33-935d-7edf7033e6f2
-        position: {x: 4575, y: 1000}
-        node:
-          rid: 697659541331902557
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - c0603fcd-285a-4cd2-8f5a-8aedfe0e09a1
-        childIds: []
-      - name: 
-        id: ead3dad9-6e2f-4b10-84ee-dc64a07a1536
-        position: {x: 4275, y: 1000}
-        node:
-          rid: 697659541331902558
-        references: []
-        parentIds:
-        - c0603fcd-285a-4cd2-8f5a-8aedfe0e09a1
-        childIds:
-        - 498ae14f-69cd-4d6b-a1a3-6f69a363dea3
-        - ee7274dd-b630-4cfc-b7b2-e985bea6ce25
-      - name: 
-        id: 7876f6a1-372c-4262-a954-755bbe25f9a3
-        position: {x: 3000, y: 1000}
-        node:
-          rid: 697659541331902559
-        references: []
-        parentIds:
-        - 27a4ec72-7671-4a51-abb3-e5a62454a8dc
-        childIds:
-        - 860f7df5-35b3-4d11-b7a4-ca289f252ebf
-        - 75107ad4-76c7-4fb5-aa6b-9a3317a0a00a
-        - 74b01f41-b757-4c9f-971a-99edb4352ae5
-        - f320157c-3e10-4f2e-995a-37ebc8b51e6c
-        - e20e89ab-0791-4047-b73e-e0523a38485f
-      - name: 
-        id: 821cfc1f-75e4-4ae8-81a3-ce9540cd8645
-        position: {x: 1500, y: 1000}
-        node:
-          rid: 697659541331902560
-        references: []
-        parentIds:
-        - 951eef82-6a02-4a62-becc-6ca9b443f229
-        childIds:
-        - 1aae4eff-0bcf-41f2-acdb-7a619dbe155a
-        - d7c0bc41-5b7d-47e6-8136-7c3687ecc1b0
-        - 59b1ada1-0d0b-421d-ac05-94378d29ce83
-        - 48d3cf0f-d0b0-4c60-a832-834e2ad7d86a
-        - f196c694-14a7-40ba-affe-efe04a89c37d
-      - name: BUSCAR GERENTE
-        id: 1aae4eff-0bcf-41f2-acdb-7a619dbe155a
-        position: {x: 900, y: 1200}
-        node:
-          rid: 697659541331902561
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 821cfc1f-75e4-4ae8-81a3-ce9540cd8645
-        childIds: []
-      - name: AVANZAR A GERENTE
-        id: d7c0bc41-5b7d-47e6-8136-7c3687ecc1b0
-        position: {x: 1200, y: 1200}
-        node:
-          rid: 697659541331902562
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 821cfc1f-75e4-4ae8-81a3-ce9540cd8645
-        childIds: []
-      - name: QUEJARSE
-        id: 59b1ada1-0d0b-421d-ac05-94378d29ce83
-        position: {x: 1500, y: 1200}
-        node:
-          rid: 697659541331902563
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 821cfc1f-75e4-4ae8-81a3-ce9540cd8645
-        childIds: []
-      - name: AVANZAR A SALIDA
-        id: 48d3cf0f-d0b0-4c60-a832-834e2ad7d86a
-        position: {x: 1800, y: 1200}
-        node:
-          rid: 697659541331902564
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 821cfc1f-75e4-4ae8-81a3-ce9540cd8645
-        childIds: []
-      - name: IRSE
-        id: f196c694-14a7-40ba-affe-efe04a89c37d
-        position: {x: 2100, y: 1200}
-        node:
-          rid: 697659541331902565
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 821cfc1f-75e4-4ae8-81a3-ce9540cd8645
-        childIds: []
-      - name: BUSCAR GERENTE
-        id: 860f7df5-35b3-4d11-b7a4-ca289f252ebf
-        position: {x: 2400, y: 1200}
-        node:
-          rid: 697659541331902566
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 7876f6a1-372c-4262-a954-755bbe25f9a3
-        childIds: []
-      - name: AVANZAR A GERENTE
-        id: 75107ad4-76c7-4fb5-aa6b-9a3317a0a00a
-        position: {x: 2700, y: 1200}
-        node:
-          rid: 697659541331902567
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 7876f6a1-372c-4262-a954-755bbe25f9a3
-        childIds: []
-      - name: QUEJARSE
-        id: 74b01f41-b757-4c9f-971a-99edb4352ae5
-        position: {x: 3000, y: 1200}
-        node:
-          rid: 697659541331902568
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 7876f6a1-372c-4262-a954-755bbe25f9a3
-        childIds: []
-      - name: AVANZAR A SALIDA
-        id: f320157c-3e10-4f2e-995a-37ebc8b51e6c
-        position: {x: 3300, y: 1200}
-        node:
-          rid: 697659541331902569
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 7876f6a1-372c-4262-a954-755bbe25f9a3
-        childIds: []
-      - name: IRSE
-        id: e20e89ab-0791-4047-b73e-e0523a38485f
-        position: {x: 3600, y: 1200}
-        node:
-          rid: 697659541331902570
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 7876f6a1-372c-4262-a954-755bbe25f9a3
-        childIds: []
-      - name: "\xBFEST\xC1 EN COLA?"
-        id: 498ae14f-69cd-4d6b-a1a3-6f69a363dea3
-        position: {x: 3900, y: 1200}
-        node:
-          rid: 697659541331902571
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - ead3dad9-6e2f-4b10-84ee-dc64a07a1536
-        childIds: []
-      - name: 
-        id: ee7274dd-b630-4cfc-b7b2-e985bea6ce25
-        position: {x: 4650, y: 1200}
-        node:
-          rid: 697659541331902572
-        references: []
-        parentIds:
-        - ead3dad9-6e2f-4b10-84ee-dc64a07a1536
-        childIds:
-        - c4bb77dc-3054-48fc-a6a3-e10478ba62d9
-        - 8c739b15-fa4d-4234-8d04-d0d7ee69ffae
-        - c1969a87-e45c-4b19-bd6c-f0bf04cbeaea
-      - name: 
-        id: c4bb77dc-3054-48fc-a6a3-e10478ba62d9
-        position: {x: 3900, y: 1400}
-        node:
-          rid: 697659541331902573
-        references: []
-        parentIds:
-        - ee7274dd-b630-4cfc-b7b2-e985bea6ce25
-        childIds:
-        - d0a0468e-ee1f-430c-8b2a-aa09387d74d5
-        - 07fa3bd7-b12e-407d-b505-aded23ba7988
-        - 8e1d6dba-703d-4f25-b312-8a3b2de7f9be
-        - 86ebcab1-c638-4fe0-86d9-13748ffc5f44
-        - 3609154d-bec5-4f05-9156-d975105b5642
-        - 6f74075d-280c-4ae8-800e-a34e491d8006
-      - name: 
-        id: 8c739b15-fa4d-4234-8d04-d0d7ee69ffae
-        position: {x: 5100, y: 1400}
-        node:
-          rid: 697659541331902574
-        references: []
-        parentIds:
-        - ee7274dd-b630-4cfc-b7b2-e985bea6ce25
-        childIds:
-        - 399606a2-3113-41b5-91a8-06de20ffe4c0
-        - b9f024a2-50b8-4ca2-aab2-b9689cf9cd72
-      - name: ESPERAR
-        id: c1969a87-e45c-4b19-bd6c-f0bf04cbeaea
-        position: {x: 5400, y: 1400}
-        node:
-          rid: 697659541331902575
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - ee7274dd-b630-4cfc-b7b2-e985bea6ce25
-        childIds: []
-      - name: "\xBFPACIENCIA == 0?"
-        id: d0a0468e-ee1f-430c-8b2a-aa09387d74d5
-        position: {x: 3150, y: 1600}
-        node:
-          rid: 697659541331902576
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - c4bb77dc-3054-48fc-a6a3-e10478ba62d9
-        childIds: []
-      - name: BUSCAR GERENTE
-        id: 07fa3bd7-b12e-407d-b505-aded23ba7988
-        position: {x: 3450, y: 1600}
-        node:
-          rid: 697659541331902577
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - c4bb77dc-3054-48fc-a6a3-e10478ba62d9
-        childIds: []
-      - name: AVANZAR A GERENTE
-        id: 8e1d6dba-703d-4f25-b312-8a3b2de7f9be
-        position: {x: 3750, y: 1600}
-        node:
-          rid: 697659541331902578
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - c4bb77dc-3054-48fc-a6a3-e10478ba62d9
-        childIds: []
-      - name: QUEJARSE
-        id: 86ebcab1-c638-4fe0-86d9-13748ffc5f44
-        position: {x: 4050, y: 1600}
-        node:
-          rid: 697659541331902579
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - c4bb77dc-3054-48fc-a6a3-e10478ba62d9
-        childIds: []
-      - name: AVANZAR A SALIDA
-        id: 3609154d-bec5-4f05-9156-d975105b5642
-        position: {x: 4350, y: 1600}
-        node:
-          rid: 697659541331902580
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - c4bb77dc-3054-48fc-a6a3-e10478ba62d9
-        childIds: []
-      - name: IRSE
-        id: 6f74075d-280c-4ae8-800e-a34e491d8006
-        position: {x: 4650, y: 1600}
-        node:
-          rid: 697659541331902581
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - c4bb77dc-3054-48fc-a6a3-e10478ba62d9
-        childIds: []
-      - name: "\xBFES MI TURNO?"
-        id: 399606a2-3113-41b5-91a8-06de20ffe4c0
-        position: {x: 4950, y: 1600}
-        node:
-          rid: 697659541331902582
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 8c739b15-fa4d-4234-8d04-d0d7ee69ffae
-        childIds: []
-      - name: "USAR BA\xD1O"
-        id: b9f024a2-50b8-4ca2-aab2-b9689cf9cd72
-        position: {x: 5250, y: 1600}
-        node:
-          rid: 697659541331902583
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 8c739b15-fa4d-4234-8d04-d0d7ee69ffae
-        childIds: []
-      - name: "\xBFGATO EN RANGO?"
-        id: e3e94e05-045a-4823-ac73-99d12a9a61ab
-        position: {x: 3187.5, y: 600}
-        node:
-          rid: 697659541331902584
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 3ea1763b-7578-4530-a8be-439597f19e03
-        childIds: []
-      - name: "\xBFNECESIDAD DE ACARICIAR?"
-        id: b4908d28-f7df-45ab-bb53-abecd47ec31a
-        position: {x: 3487.5, y: 600}
-        node:
-          rid: 697659541331902585
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 3ea1763b-7578-4530-a8be-439597f19e03
-        childIds: []
-      - name: ACARICIAR GATO
-        id: 51021442-8721-471f-b519-d1c8fdd63bee
-        position: {x: 3787.5, y: 600}
-        node:
-          rid: 697659541331902586
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 3ea1763b-7578-4530-a8be-439597f19e03
-        childIds: []
-      - name: REANUDAR TAREA
-        id: 8c65d4c4-3531-4842-bacf-90592a742cb7
-        position: {x: 4087.5, y: 600}
-        node:
-          rid: 697659541331902587
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 3ea1763b-7578-4530-a8be-439597f19e03
-        childIds: []
-      - name: 
-        id: 4748162a-2ab1-4bbf-a3e2-16ef96f5d3de
-        position: {x: 5362.5, y: 600}
-        node:
-          rid: 697659541331902588
-        references: []
-        parentIds:
-        - 26c3a9d8-0730-49dd-85cd-6ac55a74c36f
-        childIds:
-        - 4b509647-fc9e-4827-a1cf-49c39e53055d
-        - 4ec3e1ce-44f8-4120-beb5-a6cd4cf791b9
-      - name: 
-        id: 689c321b-ec73-499c-bd6f-6adc2341eeaf
-        position: {x: 8025, y: 600}
-        node:
-          rid: 697659541331902589
-        references: []
-        parentIds:
-        - 26c3a9d8-0730-49dd-85cd-6ac55a74c36f
-        childIds:
-        - b045e0b2-6fa7-4e2e-8a0e-41fabf0e14a1
-        - 190182e0-2529-46f5-b692-aa7dffc7cab1
-        - 43d175ee-a368-41ba-9aa9-d3151d88555a
-      - name: 
-        id: 3b756beb-1d75-451f-a1a5-f608079210cb
-        position: {x: 11250, y: 600}
-        node:
-          rid: 697659541331902590
-        references: []
-        parentIds:
-        - 26c3a9d8-0730-49dd-85cd-6ac55a74c36f
-        childIds:
-        - 3504ec41-1cb2-44be-9b06-2732d9c46bd7
-        - e0782f70-fbdd-41c0-97c6-b79bdbffbe31
-      - name: AVANZAR A COLA MOSTRADOR
-        id: 6065efdf-321f-4e72-94ad-623995a41d8e
-        position: {x: 11550, y: 600}
-        node:
-          rid: 697659541331902591
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 26c3a9d8-0730-49dd-85cd-6ac55a74c36f
-        childIds: []
-      - name: "\xBFPEDIDO RECIBIDO?"
-        id: 4b509647-fc9e-4827-a1cf-49c39e53055d
-        position: {x: 4725, y: 800}
-        node:
-          rid: 697659541331902592
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 4748162a-2ab1-4bbf-a3e2-16ef96f5d3de
-        childIds: []
-      - name: 
-        id: 4ec3e1ce-44f8-4120-beb5-a6cd4cf791b9
-        position: {x: 6000, y: 800}
-        node:
-          rid: 697659541331902594
-        references: []
-        parentIds:
-        - 4748162a-2ab1-4bbf-a3e2-16ef96f5d3de
-        childIds:
-        - 0967c460-f5ad-4cab-b267-3afea3aee6e0
-        - 0637d2b1-af19-4ea2-9b47-20e1b1e1d6df
-      - name: 
-        id: 0967c460-f5ad-4cab-b267-3afea3aee6e0
-        position: {x: 5250, y: 1000}
-        node:
-          rid: 697659541331902595
-        references: []
-        parentIds:
-        - 4ec3e1ce-44f8-4120-beb5-a6cd4cf791b9
-        childIds:
-        - 1ebeb014-d54a-4843-a1e2-6d73f139babc
-        - a09f2092-78b5-4839-8343-1a49efb49fc0
-        - c329c0cc-4956-42eb-b01a-b006773925ca
-      - name: 
-        id: 0637d2b1-af19-4ea2-9b47-20e1b1e1d6df
-        position: {x: 6750, y: 1000}
-        node:
-          rid: 697659541331902596
-        references: []
-        parentIds:
-        - 4ec3e1ce-44f8-4120-beb5-a6cd4cf791b9
-        childIds:
-        - b71d8074-6261-4b22-8bba-397822fe5fd4
-        - c6a0db58-098d-451f-a527-a89cd78c2d1d
-        - 33955ccc-f796-4148-8298-8c71a6c4888b
-        - b4c2d8b4-55f0-40f0-8bd5-17946321061d
-        - 379106d4-fff4-43d5-a515-4739360639ee
-        - 898fd2e7-e101-46a6-a341-8c778323b4c3
-        - b81a944e-09c2-41a8-8498-eaf0bcdcbf6f
-      - name: "\xBFTIPOPEDIDO == LLEVAR?"
-        id: 1ebeb014-d54a-4843-a1e2-6d73f139babc
-        position: {x: 4950, y: 1200}
-        node:
-          rid: 697659541331902597
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 0967c460-f5ad-4cab-b267-3afea3aee6e0
-        childIds: []
-      - name: AVANZAR A SALIDA
-        id: a09f2092-78b5-4839-8343-1a49efb49fc0
-        position: {x: 5250, y: 1200}
-        node:
-          rid: 697659541331902598
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 0967c460-f5ad-4cab-b267-3afea3aee6e0
-        childIds: []
-      - name: IRSE
-        id: c329c0cc-4956-42eb-b01a-b006773925ca
-        position: {x: 5550, y: 1200}
-        node:
-          rid: 697659541331902599
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 0967c460-f5ad-4cab-b267-3afea3aee6e0
-        childIds: []
-      - name: "\xBFTIPOPEDIDO == TOMAR?"
-        id: b71d8074-6261-4b22-8bba-397822fe5fd4
-        position: {x: 5850, y: 1200}
-        node:
-          rid: 697659541331902600
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 0637d2b1-af19-4ea2-9b47-20e1b1e1d6df
-        childIds: []
-      - name: BUSCAR ASIENTO
-        id: c6a0db58-098d-451f-a527-a89cd78c2d1d
-        position: {x: 6150, y: 1200}
-        node:
-          rid: 697659541331902601
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 0637d2b1-af19-4ea2-9b47-20e1b1e1d6df
-        childIds: []
-      - name: AVANZAR A ASIENTO
-        id: 33955ccc-f796-4148-8298-8c71a6c4888b
-        position: {x: 6450, y: 1200}
-        node:
-          rid: 697659541331902602
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 0637d2b1-af19-4ea2-9b47-20e1b1e1d6df
-        childIds: []
-      - name: CONSUMIR PEDIDO
-        id: b4c2d8b4-55f0-40f0-8bd5-17946321061d
-        position: {x: 6750, y: 1200}
-        node:
-          rid: 697659541331902603
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 0637d2b1-af19-4ea2-9b47-20e1b1e1d6df
-        childIds: []
-      - name: LIBERAR ASIENTO
-        id: 379106d4-fff4-43d5-a515-4739360639ee
-        position: {x: 7050, y: 1200}
-        node:
-          rid: 697659541331902604
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 0637d2b1-af19-4ea2-9b47-20e1b1e1d6df
-        childIds: []
-      - name: AVANZAR A SALIDA
-        id: 898fd2e7-e101-46a6-a341-8c778323b4c3
-        position: {x: 7350, y: 1200}
-        node:
-          rid: 697659541331902605
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 0637d2b1-af19-4ea2-9b47-20e1b1e1d6df
-        childIds: []
-      - name: IRSE
-        id: b81a944e-09c2-41a8-8498-eaf0bcdcbf6f
-        position: {x: 7650, y: 1200}
-        node:
-          rid: 697659541331902606
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 0637d2b1-af19-4ea2-9b47-20e1b1e1d6df
-        childIds: []
-      - name: 
-        id: 26c3a9d8-0730-49dd-85cd-6ac55a74c36f
-        position: {x: 8456.25, y: 400}
-        node:
-          rid: 697659541331902607
-        references: []
-        parentIds:
-        - d7ffcdf3-e345-4c7b-925a-90b1a61750fd
-        childIds:
-        - 4748162a-2ab1-4bbf-a3e2-16ef96f5d3de
-        - 689c321b-ec73-499c-bd6f-6adc2341eeaf
-        - 3b756beb-1d75-451f-a1a5-f608079210cb
-        - 6065efdf-321f-4e72-94ad-623995a41d8e
-      - name: "\xBFHA PEDIDO?"
-        id: b045e0b2-6fa7-4e2e-8a0e-41fabf0e14a1
-        position: {x: 6300, y: 800}
-        node:
-          rid: 697659541331902608
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 689c321b-ec73-499c-bd6f-6adc2341eeaf
-        childIds: []
-      - name: ESPERAR EN MOSTRADOR
-        id: 190182e0-2529-46f5-b692-aa7dffc7cab1
-        position: {x: 6600, y: 800}
-        node:
-          rid: 697659541331902610
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 689c321b-ec73-499c-bd6f-6adc2341eeaf
-        childIds: []
-      - name: 
-        id: 43d175ee-a368-41ba-9aa9-d3151d88555a
-        position: {x: 9750, y: 800}
-        node:
-          rid: 697659541331902612
-        references: []
-        parentIds:
-        - 689c321b-ec73-499c-bd6f-6adc2341eeaf
-        childIds:
-        - fb077b2c-8d48-4892-afa7-3e2400713431
-        - 28ba75b1-0e7a-4d74-916b-354a06115602
-        - c6fb4815-9895-4137-941b-b07fd40192b1
-      - name: 
-        id: fb077b2c-8d48-4892-afa7-3e2400713431
-        position: {x: 8850, y: 1000}
-        node:
-          rid: 697659541331902613
-        references: []
-        parentIds:
-        - 43d175ee-a368-41ba-9aa9-d3151d88555a
-        childIds:
-        - 0c63a39a-16bd-4253-9758-eaaf367aa127
-        - 93c97b52-ec9a-4974-b9ab-bbe2531a9426
-        - 32344b65-a5af-47d0-929d-0aaa276abc2d
-        - de092729-bca6-4596-87fb-e76e3b316f24
-        - 102fff2b-9006-4ee7-86d1-1bb5e1e68802
-        - 0169bca3-1cb9-4f1c-a131-9cebb36fffb1
-        - 8f94fa0d-4e5d-46f6-90df-74d5111533db
-      - name: 
-        id: 28ba75b1-0e7a-4d74-916b-354a06115602
-        position: {x: 10350, y: 1000}
-        node:
-          rid: 697659541331902614
-        references: []
-        parentIds:
-        - 43d175ee-a368-41ba-9aa9-d3151d88555a
-        childIds:
-        - 6ec1fe03-b254-4fa6-9c8b-fb54e269e20b
-        - e1ef6811-24e9-4681-9445-a87e5a16a89b
-        - 9d5fa49e-348c-453d-ab17-850ed947bbf7
-      - name: ESPERAR
-        id: c6fb4815-9895-4137-941b-b07fd40192b1
-        position: {x: 10650, y: 1000}
-        node:
-          rid: 697659541331902615
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 43d175ee-a368-41ba-9aa9-d3151d88555a
-        childIds: []
-      - name: "\xBFPEDIDO ENTREGADO?"
-        id: 6ec1fe03-b254-4fa6-9c8b-fb54e269e20b
-        position: {x: 10050, y: 1200}
-        node:
-          rid: 697659541331902616
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 28ba75b1-0e7a-4d74-916b-354a06115602
-        childIds: []
-      - name: RECOGER PEDIDO
-        id: e1ef6811-24e9-4681-9445-a87e5a16a89b
-        position: {x: 10350, y: 1200}
-        node:
-          rid: 697659541331902617
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 28ba75b1-0e7a-4d74-916b-354a06115602
-        childIds: []
-      - name: RESETEAR PACIENCIA
-        id: 9d5fa49e-348c-453d-ab17-850ed947bbf7
-        position: {x: 10650, y: 1200}
-        node:
-          rid: 697659541331902618
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 28ba75b1-0e7a-4d74-916b-354a06115602
-        childIds: []
-      - name: "\xBFPACIENCIA == 0'?"
-        id: 0c63a39a-16bd-4253-9758-eaaf367aa127
-        position: {x: 7950, y: 1200}
-        node:
-          rid: 697659541331902619
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - fb077b2c-8d48-4892-afa7-3e2400713431
-        childIds: []
-      - name: RECOGER PEDIDO
-        id: 93c97b52-ec9a-4974-b9ab-bbe2531a9426
-        position: {x: 8250, y: 1200}
-        node:
-          rid: 697659541331902620
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - fb077b2c-8d48-4892-afa7-3e2400713431
-        childIds: []
-      - name: BUSCAR GERENTE
-        id: 32344b65-a5af-47d0-929d-0aaa276abc2d
-        position: {x: 8550, y: 1200}
-        node:
-          rid: 697659541331902621
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - fb077b2c-8d48-4892-afa7-3e2400713431
-        childIds: []
-      - name: QUEJARSE
-        id: 102fff2b-9006-4ee7-86d1-1bb5e1e68802
-        position: {x: 9150, y: 1200}
-        node:
-          rid: 697659541331902622
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - fb077b2c-8d48-4892-afa7-3e2400713431
-        childIds: []
-      - name: AVANZAR A GERENTE
-        id: de092729-bca6-4596-87fb-e76e3b316f24
-        position: {x: 8850, y: 1200}
-        node:
-          rid: 697659541331902623
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - fb077b2c-8d48-4892-afa7-3e2400713431
-        childIds: []
-      - name: IRSE
-        id: 8f94fa0d-4e5d-46f6-90df-74d5111533db
-        position: {x: 9750, y: 1200}
-        node:
-          rid: 697659541331902624
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - fb077b2c-8d48-4892-afa7-3e2400713431
-        childIds: []
-      - name: AVANZAR A SALIDA
-        id: 0169bca3-1cb9-4f1c-a131-9cebb36fffb1
-        position: {x: 9450, y: 1200}
-        node:
-          rid: 697659541331902625
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - fb077b2c-8d48-4892-afa7-3e2400713431
-        childIds: []
-      - name: "\xBFEST\xC1 EN COLA?"
-        id: 3504ec41-1cb2-44be-9b06-2732d9c46bd7
-        position: {x: 10050, y: 800}
-        node:
-          rid: 697659541331902626
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 3b756beb-1d75-451f-a1a5-f608079210cb
-        childIds: []
-      - name: 
-        id: e0782f70-fbdd-41c0-97c6-b79bdbffbe31
-        position: {x: 12450, y: 800}
-        node:
-          rid: 697659541331902628
-        references: []
-        parentIds:
-        - 3b756beb-1d75-451f-a1a5-f608079210cb
-        childIds:
-        - 81a3b2d1-bb55-4ae7-8e48-4a3747fed2ea
-        - 9c9d9207-a06d-41f4-bebe-ee39088035a0
-        - b29e93c8-01bd-4127-aecb-4ab74d146136
-      - name: 
-        id: 81a3b2d1-bb55-4ae7-8e48-4a3747fed2ea
-        position: {x: 11700, y: 1000}
-        node:
-          rid: 697659541331902629
-        references: []
-        parentIds:
-        - e0782f70-fbdd-41c0-97c6-b79bdbffbe31
-        childIds:
-        - 6ebb118e-cfeb-4c99-96b3-0f44491ad734
-        - d26c4777-1cdc-4f86-8ecd-869c432895e1
-        - 58fbf6d2-fb40-421d-8c2c-d05c182ac23e
-        - 149aea85-df4d-4fc8-89b9-395b342976f4
-        - 4ce92452-b89a-4b72-aac7-d2cf67574a1b
-        - fdd28141-60e2-44da-ab33-f4c1c386da74
-      - name: 
-        id: 9c9d9207-a06d-41f4-bebe-ee39088035a0
-        position: {x: 12900, y: 1000}
-        node:
-          rid: 697659541331902630
-        references: []
-        parentIds:
-        - e0782f70-fbdd-41c0-97c6-b79bdbffbe31
-        childIds:
-        - 7a65aa0d-c6e8-42a4-bf58-1d20fe24e143
-        - 081c1083-b63b-4da2-bff4-437e37416691
-      - name: ESPERAR
-        id: b29e93c8-01bd-4127-aecb-4ab74d146136
-        position: {x: 13200, y: 1000}
-        node:
-          rid: 697659541331902631
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - e0782f70-fbdd-41c0-97c6-b79bdbffbe31
-        childIds: []
-      - name: "\xBFES MI TURNO?"
-        id: 7a65aa0d-c6e8-42a4-bf58-1d20fe24e143
-        position: {x: 12750, y: 1200}
-        node:
-          rid: 697659541331902632
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 9c9d9207-a06d-41f4-bebe-ee39088035a0
-        childIds: []
-      - name: PEDIR Y PAGAR
-        id: 081c1083-b63b-4da2-bff4-437e37416691
-        position: {x: 13050, y: 1200}
-        node:
-          rid: 697659541331902633
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 9c9d9207-a06d-41f4-bebe-ee39088035a0
-        childIds: []
-      - name: "\xBFPACIENCIA == 0?"
-        id: 6ebb118e-cfeb-4c99-96b3-0f44491ad734
-        position: {x: 10950, y: 1200}
-        node:
-          rid: 697659541331902634
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 81a3b2d1-bb55-4ae7-8e48-4a3747fed2ea
-        childIds: []
-      - name: BUSCAR GERENTE
-        id: d26c4777-1cdc-4f86-8ecd-869c432895e1
-        position: {x: 11250, y: 1200}
-        node:
-          rid: 697659541331902635
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 81a3b2d1-bb55-4ae7-8e48-4a3747fed2ea
-        childIds: []
-      - name: QUEJARSE
-        id: 149aea85-df4d-4fc8-89b9-395b342976f4
-        position: {x: 11850, y: 1200}
-        node:
-          rid: 697659541331902636
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 81a3b2d1-bb55-4ae7-8e48-4a3747fed2ea
-        childIds: []
-      - name: AVANZAR A GERENTE
-        id: 58fbf6d2-fb40-421d-8c2c-d05c182ac23e
-        position: {x: 11550, y: 1200}
-        node:
-          rid: 697659541331902637
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 81a3b2d1-bb55-4ae7-8e48-4a3747fed2ea
-        childIds: []
-      - name: AVANZAR A SALIDA
-        id: 4ce92452-b89a-4b72-aac7-d2cf67574a1b
-        position: {x: 12150, y: 1200}
-        node:
-          rid: 697659541331902638
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 81a3b2d1-bb55-4ae7-8e48-4a3747fed2ea
-        childIds: []
-      - name: IRSE
-        id: fdd28141-60e2-44da-ab33-f4c1c386da74
-        position: {x: 12450, y: 1200}
-        node:
-          rid: 697659541331902639
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 81a3b2d1-bb55-4ae7-8e48-4a3747fed2ea
-        childIds: []
-    pushPerceptions: []
-  speed: 0.75
-  direction: {x: -1, y: 0, z: 0}
-  atCounter: 0
-  atQueue: 0
-  manager: {fileID: 0}
-  model: 0
-  leaving: 0
-  anim: {fileID: 0}
-  references:
-    version: 2
-    RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
-    - rid: 697659541331902529
-      type: {class: BehaviourTree, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902532
-      type: {class: LoopNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data:
-        Iterations: -1
-    - rid: 697659541331902533
-      type: {class: SelectorNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data:
-        IsRandomized: 0
-    - rid: 697659541331902535
-      type: {class: SequencerNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data:
-        IsRandomized: 0
-    - rid: 697659541331902536
-      type: {class: SequencerNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data:
-        IsRandomized: 0
-    - rid: 697659541331902537
-      type: {class: SequencerNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data:
-        IsRandomized: 0
-    - rid: 697659541331902539
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902540
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902541
-      type: {class: SequencerNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data:
-        IsRandomized: 0
-    - rid: 697659541331902542
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902543
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902544
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902545
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902546
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902547
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902548
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902549
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902550
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902551
-      type: {class: SelectorNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data:
-        IsRandomized: 0
-    - rid: 697659541331902552
-      type: {class: SequencerNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data:
-        IsRandomized: 0
-    - rid: 697659541331902553
-      type: {class: SequencerNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data:
-        IsRandomized: 0
-    - rid: 697659541331902554
-      type: {class: SequencerNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data:
-        IsRandomized: 0
-    - rid: 697659541331902555
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902556
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902557
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902558
-      type: {class: SequencerNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data:
-        IsRandomized: 0
-    - rid: 697659541331902559
-      type: {class: SequencerNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data:
-        IsRandomized: 0
-    - rid: 697659541331902560
-      type: {class: SequencerNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data:
-        IsRandomized: 0
-    - rid: 697659541331902561
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902562
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902563
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902564
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902565
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902566
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902567
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902568
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902569
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902570
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902571
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902572
-      type: {class: SelectorNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data:
-        IsRandomized: 0
-    - rid: 697659541331902573
-      type: {class: SequencerNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data:
-        IsRandomized: 0
-    - rid: 697659541331902574
-      type: {class: SequencerNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data:
-        IsRandomized: 0
-    - rid: 697659541331902575
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902576
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902577
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902578
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902579
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902580
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902581
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902582
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902583
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902584
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902585
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902586
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902587
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902588
-      type: {class: SequencerNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data:
-        IsRandomized: 0
-    - rid: 697659541331902589
-      type: {class: SequencerNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data:
-        IsRandomized: 0
-    - rid: 697659541331902590
-      type: {class: SequencerNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data:
-        IsRandomized: 0
-    - rid: 697659541331902591
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902592
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902594
-      type: {class: SelectorNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data:
-        IsRandomized: 0
-    - rid: 697659541331902595
-      type: {class: SequencerNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data:
-        IsRandomized: 0
-    - rid: 697659541331902596
-      type: {class: SequencerNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data:
-        IsRandomized: 0
-    - rid: 697659541331902597
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902598
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902599
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902600
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902601
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902602
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902603
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902604
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902605
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902606
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902607
-      type: {class: SelectorNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data:
-        IsRandomized: 0
-    - rid: 697659541331902608
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902610
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902612
-      type: {class: SelectorNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data:
-        IsRandomized: 0
-    - rid: 697659541331902613
-      type: {class: SequencerNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data:
-        IsRandomized: 0
-    - rid: 697659541331902614
-      type: {class: SequencerNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data:
-        IsRandomized: 0
-    - rid: 697659541331902615
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902616
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902617
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902618
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902619
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902620
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902621
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902622
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902623
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902624
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902625
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902626
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902628
-      type: {class: SelectorNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data:
-        IsRandomized: 0
-    - rid: 697659541331902629
-      type: {class: SequencerNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data:
-        IsRandomized: 0
-    - rid: 697659541331902630
-      type: {class: SequencerNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data:
-        IsRandomized: 0
-    - rid: 697659541331902631
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902632
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902633
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902634
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902635
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902636
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902637
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902638
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902639
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
 --- !u!54 &4231839258988541092
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1937,6 +178,343 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &5351860986151089318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2753711945148426859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12cadccb7d38ccd4cb0bdf1aea87ba58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  executeOnLoop: 1
+  interruptOptions: 0
+  _eventHandler:
+    debugStatusChanges: 0
+    identifier: 
+  data:
+    graphs:
+    - name: newbehaviourgraph
+      id: 1f506072-9296-493e-8b42-a16052b54aff
+      graph:
+        rid: 90097363322404864
+      nodes:
+      - name: 
+        id: b35c44db-a7d2-49a0-8fe9-7f76ecad5a08
+        position: {x: 412.5, y: 0}
+        node:
+          rid: 90097363322404865
+        references: []
+        parentIds: []
+        childIds:
+        - 79a72637-7a99-4d22-90a0-c5b4c2768592
+      - name: 
+        id: 79a72637-7a99-4d22-90a0-c5b4c2768592
+        position: {x: 412.5, y: 200}
+        node:
+          rid: 90097363322404866
+        references: []
+        parentIds:
+        - b35c44db-a7d2-49a0-8fe9-7f76ecad5a08
+        childIds:
+        - 29705e0c-00b2-40d0-b1e1-fbd8c007f1d7
+        - 970100b5-c7a7-4e83-b394-9cb62fbdd211
+        - d50763d4-4000-4997-9b63-b0125bf86f8f
+      - name: 
+        id: 29705e0c-00b2-40d0-b1e1-fbd8c007f1d7
+        position: {x: -225, y: 400}
+        node:
+          rid: 90097363322404867
+        references: []
+        parentIds:
+        - 79a72637-7a99-4d22-90a0-c5b4c2768592
+        childIds:
+        - c565882e-21a5-485c-b799-cea4af6ee5d5
+        - ece43aab-1af7-471e-b74f-6b6718a32d60
+      - name: 
+        id: 970100b5-c7a7-4e83-b394-9cb62fbdd211
+        position: {x: 450, y: 400}
+        node:
+          rid: 90097363322404868
+        references: []
+        parentIds:
+        - 79a72637-7a99-4d22-90a0-c5b4c2768592
+        childIds:
+        - 4c328fa9-2dcc-409e-9b8c-20234ee994e3
+        - 2bfbf2fc-6113-4394-8db1-fcd36b8d6801
+      - name: 
+        id: d50763d4-4000-4997-9b63-b0125bf86f8f
+        position: {x: 1050, y: 400}
+        node:
+          rid: 90097363322404869
+        references: []
+        parentIds:
+        - 79a72637-7a99-4d22-90a0-c5b4c2768592
+        childIds:
+        - 9384c17a-5269-4545-a766-f8b9a5d0bd06
+        - 858d1bfb-466d-4f73-9ab2-7f58d64f8ccc
+      - name: "\xBFNOTIFICAC\xCDON AVER\xCDA?"
+        id: c565882e-21a5-485c-b799-cea4af6ee5d5
+        position: {x: -450, y: 600}
+        node:
+          rid: 90097363322404870
+        references:
+        - fieldName: Action
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - 29705e0c-00b2-40d0-b1e1-fbd8c007f1d7
+        childIds: []
+      - name: 
+        id: ece43aab-1af7-471e-b74f-6b6718a32d60
+        position: {x: 0, y: 600}
+        node:
+          rid: 90097363322404871
+        references: []
+        parentIds:
+        - 29705e0c-00b2-40d0-b1e1-fbd8c007f1d7
+        childIds:
+        - 38be3b85-f42f-4b44-88da-e1560dd9bd88
+        - afecfbf5-c725-4eca-908b-316021c3aed6
+      - name: "\xBFNING\xDAN PROBLEMA?"
+        id: 9384c17a-5269-4545-a766-f8b9a5d0bd06
+        position: {x: 900, y: 600}
+        node:
+          rid: 90097363322404872
+        references:
+        - fieldName: Action
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - d50763d4-4000-4997-9b63-b0125bf86f8f
+        childIds: []
+      - name: 
+        id: 858d1bfb-466d-4f73-9ab2-7f58d64f8ccc
+        position: {x: 1200, y: 600}
+        node:
+          rid: 90097363322404873
+        references: []
+        parentIds:
+        - d50763d4-4000-4997-9b63-b0125bf86f8f
+        childIds:
+        - 301c0abd-1753-489e-9401-d65cbebc6d41
+        - 9209620c-48ab-469f-bf40-0ac985ea486e
+      - name: "\xBFCLIENTE FRUSTRADO?"
+        id: 4c328fa9-2dcc-409e-9b8c-20234ee994e3
+        position: {x: 300, y: 600}
+        node:
+          rid: 90097363322404874
+        references:
+        - fieldName: Action
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - 970100b5-c7a7-4e83-b394-9cb62fbdd211
+        childIds: []
+      - name: CALMAR CLIENTE
+        id: 2bfbf2fc-6113-4394-8db1-fcd36b8d6801
+        position: {x: 600, y: 600}
+        node:
+          rid: 90097363322404875
+        references:
+        - fieldName: Action
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - 970100b5-c7a7-4e83-b394-9cb62fbdd211
+        childIds: []
+      - name: 
+        id: 38be3b85-f42f-4b44-88da-e1560dd9bd88
+        position: {x: -150, y: 800}
+        node:
+          rid: 90097363322404876
+        references: []
+        parentIds:
+        - ece43aab-1af7-471e-b74f-6b6718a32d60
+        childIds:
+        - bfcbac9f-7f4c-415c-8ae0-0084b6b8ac19
+        - bdcc0406-4e1a-4f9a-9db5-933b618de714
+      - name: "COMPROBAR T\xC9CNICO"
+        id: afecfbf5-c725-4eca-908b-316021c3aed6
+        position: {x: 150, y: 800}
+        node:
+          rid: 90097363322404877
+        references:
+        - fieldName: Action
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - ece43aab-1af7-471e-b74f-6b6718a32d60
+        childIds: []
+      - name: "\xBFT\xC9CNICO DISPONIBLE?"
+        id: bfcbac9f-7f4c-415c-8ae0-0084b6b8ac19
+        position: {x: -300, y: 1000}
+        node:
+          rid: 90097363322404878
+        references:
+        - fieldName: Action
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - 38be3b85-f42f-4b44-88da-e1560dd9bd88
+        childIds: []
+      - name: "LLAMAR T\xC9CNICO"
+        id: bdcc0406-4e1a-4f9a-9db5-933b618de714
+        position: {x: 0, y: 1000}
+        node:
+          rid: 90097363322404879
+        references:
+        - fieldName: Action
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - 38be3b85-f42f-4b44-88da-e1560dd9bd88
+        childIds: []
+      - name: 
+        id: 301c0abd-1753-489e-9401-d65cbebc6d41
+        position: {x: 1050, y: 800}
+        node:
+          rid: 90097363322404880
+        references: []
+        parentIds:
+        - 858d1bfb-466d-4f73-9ab2-7f58d64f8ccc
+        childIds:
+        - 0263f227-1956-435c-aba9-e1021a4ed5b9
+        - 65fb1e83-fb5b-4027-9209-a210c955db63
+      - name: "VOLVER A POSICI\xD3N BASE"
+        id: 9209620c-48ab-469f-bf40-0ac985ea486e
+        position: {x: 1350, y: 800}
+        node:
+          rid: 90097363322404881
+        references:
+        - fieldName: Action
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - 858d1bfb-466d-4f73-9ab2-7f58d64f8ccc
+        childIds: []
+      - name: "\xBFEN POSICI\xD3N BASE?"
+        id: 0263f227-1956-435c-aba9-e1021a4ed5b9
+        position: {x: 900, y: 1000}
+        node:
+          rid: 90097363322404882
+        references:
+        - fieldName: Action
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - 301c0abd-1753-489e-9401-d65cbebc6d41
+        childIds: []
+      - name: ESPERAR INCIDENCIAS
+        id: 65fb1e83-fb5b-4027-9209-a210c955db63
+        position: {x: 1200, y: 1000}
+        node:
+          rid: 90097363322404883
+        references:
+        - fieldName: Action
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - 301c0abd-1753-489e-9401-d65cbebc6d41
+        childIds: []
+    pushPerceptions: []
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 90097363322404864
+      type: {class: BehaviourTree, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data: 
+    - rid: 90097363322404865
+      type: {class: LoopNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data:
+        Iterations: -1
+    - rid: 90097363322404866
+      type: {class: SelectorNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data:
+        IsRandomized: 0
+    - rid: 90097363322404867
+      type: {class: SequencerNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data:
+        IsRandomized: 0
+    - rid: 90097363322404868
+      type: {class: SequencerNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data:
+        IsRandomized: 0
+    - rid: 90097363322404869
+      type: {class: SequencerNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data:
+        IsRandomized: 0
+    - rid: 90097363322404870
+      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data: 
+    - rid: 90097363322404871
+      type: {class: SelectorNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data:
+        IsRandomized: 0
+    - rid: 90097363322404872
+      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data: 
+    - rid: 90097363322404873
+      type: {class: SelectorNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data:
+        IsRandomized: 0
+    - rid: 90097363322404874
+      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data: 
+    - rid: 90097363322404875
+      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data: 
+    - rid: 90097363322404876
+      type: {class: SequencerNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data:
+        IsRandomized: 0
+    - rid: 90097363322404877
+      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data: 
+    - rid: 90097363322404878
+      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data: 
+    - rid: 90097363322404879
+      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data: 
+    - rid: 90097363322404880
+      type: {class: SequencerNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data:
+        IsRandomized: 0
+    - rid: 90097363322404881
+      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data: 
+    - rid: 90097363322404882
+      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data: 
+    - rid: 90097363322404883
+      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data: 
 --- !u!1 &3063709687755922950
 GameObject:
   m_ObjectHideFlags: 0

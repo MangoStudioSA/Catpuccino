@@ -1,7 +1,9 @@
-﻿using UnityEngine;
+﻿using BehaviourAPI.Core;
+using BehaviourAPI.UnityToolkit.GUIDesigner.Runtime;
+using UnityEngine;
 
 // Clase encargada de gestionar la posicion y spawn de clientes
-public class CustomerController : MonoBehaviour
+public class CustomerController : EditorBehaviourRunner
 {
     [Header("Referencias")]
     public float speed = 5f;

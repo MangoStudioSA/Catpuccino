@@ -1,9 +1,11 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using BehaviourAPI.Core;
+using BehaviourAPI.UnityToolkit.GUIDesigner.Runtime;
 
 // Clase encargada de gestionar el comportamiento de los gatos
-public class CatBehavior : MonoBehaviour
+public class CatBehavior : EditorBehaviourRunner
 {
     private UnityEngine.AI.NavMeshAgent agent;
     private Animator animator;

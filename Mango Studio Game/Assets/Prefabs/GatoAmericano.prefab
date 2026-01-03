@@ -131,3 +131,218 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f549b6966294e542b121c4cd3720c57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  executeOnLoop: 1
+  interruptOptions: 0
+  _eventHandler:
+    debugStatusChanges: 0
+    identifier: 
+  data:
+    graphs:
+    - name: newbehaviourgraph
+      id: b48b3695-6d85-4f75-a561-bbb5f433a43e
+      graph:
+        rid: 697659541331902641
+      nodes:
+      - name: DIVAGANDO
+        id: 1eb2c1ed-3024-46f7-a840-8caec34a54b1
+        position: {x: 758.1037, y: -101.80081}
+        node:
+          rid: 697659541331902642
+        references:
+        - fieldName: Action
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - 78d18c0f-1807-4a07-bf99-6dd893143a34
+        - 6a68a032-09eb-454b-8a64-5e5bdf4c5020
+        childIds:
+        - dc56c1b0-afa7-4275-b555-395572f0df89
+      - name: SIENDO ACARICIADO
+        id: 1c11c1a3-e96b-4683-97df-86b3c151cf73
+        position: {x: 1203.9612, y: 271.80066}
+        node:
+          rid: 697659541331902643
+        references:
+        - fieldName: Action
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - dc56c1b0-afa7-4275-b555-395572f0df89
+        childIds:
+        - ead97b8a-f20b-412c-9ce3-dc1ee286d0bc
+        - 6a68a032-09eb-454b-8a64-5e5bdf4c5020
+      - name: AVANZA A ESCONDITE
+        id: d5357b20-5f70-4578-ac7a-ef5548ba592b
+        position: {x: 746.052, y: 903.67664}
+        node:
+          rid: 697659541331902644
+        references:
+        - fieldName: Action
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - ead97b8a-f20b-412c-9ce3-dc1ee286d0bc
+        childIds:
+        - 31cd6351-5747-4fa2-8506-13e088634a8d
+      - name: ESCONDITE
+        id: 97eee6cf-7aee-4b00-963a-a4b2d341a1aa
+        position: {x: 215.02011, y: 458.47073}
+        node:
+          rid: 697659541331902645
+        references:
+        - fieldName: Action
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - 31cd6351-5747-4fa2-8506-13e088634a8d
+        childIds:
+        - 78d18c0f-1807-4a07-bf99-6dd893143a34
+      - name: "INTERACCI\xD3N FINALIZADA"
+        id: dc56c1b0-afa7-4275-b555-395572f0df89
+        position: {x: 1008.8405, y: 53.03739}
+        node:
+          rid: 697659541331902646
+        references:
+        - fieldName: Perception
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Perceptions.Perception, BehaviourAPI.Core,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        - fieldName: Action
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - 1eb2c1ed-3024-46f7-a840-8caec34a54b1
+        childIds:
+        - 1c11c1a3-e96b-4683-97df-86b3c151cf73
+      - name: PACIENCIA AGOTADA
+        id: ead97b8a-f20b-412c-9ce3-dc1ee286d0bc
+        position: {x: 1081.4994, y: 682.7411}
+        node:
+          rid: 697659541331902647
+        references:
+        - fieldName: Perception
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Perceptions.Perception, BehaviourAPI.Core,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        - fieldName: Action
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - 1c11c1a3-e96b-4683-97df-86b3c151cf73
+        childIds:
+        - d5357b20-5f70-4578-ac7a-ef5548ba592b
+      - name: ESTA EN ESCONDITE
+        id: 31cd6351-5747-4fa2-8506-13e088634a8d
+        position: {x: 372.14566, y: 809.92957}
+        node:
+          rid: 697659541331902649
+        references:
+        - fieldName: Perception
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Perceptions.Perception, BehaviourAPI.Core,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        - fieldName: Action
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - d5357b20-5f70-4578-ac7a-ef5548ba592b
+        childIds:
+        - 97eee6cf-7aee-4b00-963a-a4b2d341a1aa
+      - name: TIEMPO ESCONDIDO FINALIZADO
+        id: 78d18c0f-1807-4a07-bf99-6dd893143a34
+        position: {x: 374.28128, y: 90.383545}
+        node:
+          rid: 697659541331902650
+        references:
+        - fieldName: Perception
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Perceptions.Perception, BehaviourAPI.Core,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        - fieldName: Action
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - 97eee6cf-7aee-4b00-963a-a4b2d341a1aa
+        childIds:
+        - 1eb2c1ed-3024-46f7-a840-8caec34a54b1
+      - name: CLIENTE ACARICIA
+        id: 6a68a032-09eb-454b-8a64-5e5bdf4c5020
+        position: {x: 1146.3467, y: -112.38318}
+        node:
+          rid: 697659541331902651
+        references:
+        - fieldName: Perception
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Perceptions.Perception, BehaviourAPI.Core,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        - fieldName: Action
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - 1c11c1a3-e96b-4683-97df-86b3c151cf73
+        childIds:
+        - 1eb2c1ed-3024-46f7-a840-8caec34a54b1
+    pushPerceptions: []
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 697659541331902641
+      type: {class: FSM, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
+      data: 
+    - rid: 697659541331902642
+      type: {class: State, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
+      data: 
+    - rid: 697659541331902643
+      type: {class: State, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
+      data: 
+    - rid: 697659541331902644
+      type: {class: State, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
+      data: 
+    - rid: 697659541331902645
+      type: {class: State, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
+      data: 
+    - rid: 697659541331902646
+      type: {class: StateTransition, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
+      data:
+        StatusFlags: 0
+    - rid: 697659541331902647
+      type: {class: StateTransition, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
+      data:
+        StatusFlags: 0
+    - rid: 697659541331902649
+      type: {class: StateTransition, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
+      data:
+        StatusFlags: 0
+    - rid: 697659541331902650
+      type: {class: StateTransition, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
+      data:
+        StatusFlags: 0
+    - rid: 697659541331902651
+      type: {class: StateTransition, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
+      data:
+        StatusFlags: 0
