@@ -15,4 +15,43 @@ public class ManagerController : EditorBehaviourRunner
     {
         
     }
+
+    public Status NotificacionAveria()
+    {
+        return Status.Success;
+    }
+
+    public Status ComprobarTecnico()
+    {
+        return Status.Success;
+    }
+    public Status TecnicoDisponible()
+    {
+        return Status.Success;
+    }
+
+    public Status LlamarTecnico()
+    {
+        return Status.Success;
+    }
+
+    public Status ClienteFrustrado()
+    {
+        return Status.Success;
+    }
+
+    public Status CalmarCliente()
+    {
+        return Status.Success;
+    }
+
+    public Status NingunProblema()
+    {
+        return Status.Success;
+    }
+
+    public Status EsperarIncidencias()
+    {
+        return Status.Success;
+    }
 }

@@ -255,7 +255,7 @@ MonoBehaviour:
         - 79a72637-7a99-4d22-90a0-c5b4c2768592
         childIds:
         - 9384c17a-5269-4545-a766-f8b9a5d0bd06
-        - 858d1bfb-466d-4f73-9ab2-7f58d64f8ccc
+        - 65fb1e83-fb5b-4027-9209-a210c955db63
       - name: "\xBFNOTIFICAC\xCDON AVER\xCDA?"
         id: c565882e-21a5-485c-b799-cea4af6ee5d5
         position: {x: -450, y: 600}
@@ -264,7 +264,7 @@ MonoBehaviour:
         references:
         - fieldName: Action
           value:
-            rid: -2
+            rid: 90097388269600942
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
@@ -289,23 +289,12 @@ MonoBehaviour:
         references:
         - fieldName: Action
           value:
-            rid: -2
+            rid: 90097388269600948
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
         - d50763d4-4000-4997-9b63-b0125bf86f8f
         childIds: []
-      - name: 
-        id: 858d1bfb-466d-4f73-9ab2-7f58d64f8ccc
-        position: {x: 1200, y: 600}
-        node:
-          rid: 90097363322404873
-        references: []
-        parentIds:
-        - d50763d4-4000-4997-9b63-b0125bf86f8f
-        childIds:
-        - 301c0abd-1753-489e-9401-d65cbebc6d41
-        - 9209620c-48ab-469f-bf40-0ac985ea486e
       - name: "\xBFCLIENTE FRUSTRADO?"
         id: 4c328fa9-2dcc-409e-9b8c-20234ee994e3
         position: {x: 300, y: 600}
@@ -314,7 +303,7 @@ MonoBehaviour:
         references:
         - fieldName: Action
           value:
-            rid: -2
+            rid: 90097388269600946
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
@@ -328,7 +317,7 @@ MonoBehaviour:
         references:
         - fieldName: Action
           value:
-            rid: -2
+            rid: 90097388269600947
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
@@ -353,7 +342,7 @@ MonoBehaviour:
         references:
         - fieldName: Action
           value:
-            rid: -2
+            rid: 90097388269600943
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
@@ -367,7 +356,7 @@ MonoBehaviour:
         references:
         - fieldName: Action
           value:
-            rid: -2
+            rid: 90097388269600944
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
@@ -381,71 +370,30 @@ MonoBehaviour:
         references:
         - fieldName: Action
           value:
-            rid: -2
+            rid: 90097388269600945
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
         - 38be3b85-f42f-4b44-88da-e1560dd9bd88
         childIds: []
-      - name: 
-        id: 301c0abd-1753-489e-9401-d65cbebc6d41
-        position: {x: 1050, y: 800}
-        node:
-          rid: 90097363322404880
-        references: []
-        parentIds:
-        - 858d1bfb-466d-4f73-9ab2-7f58d64f8ccc
-        childIds:
-        - 0263f227-1956-435c-aba9-e1021a4ed5b9
-        - 65fb1e83-fb5b-4027-9209-a210c955db63
-      - name: "VOLVER A POSICI\xD3N BASE"
-        id: 9209620c-48ab-469f-bf40-0ac985ea486e
-        position: {x: 1350, y: 800}
-        node:
-          rid: 90097363322404881
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 858d1bfb-466d-4f73-9ab2-7f58d64f8ccc
-        childIds: []
-      - name: "\xBFEN POSICI\xD3N BASE?"
-        id: 0263f227-1956-435c-aba9-e1021a4ed5b9
-        position: {x: 900, y: 1000}
-        node:
-          rid: 90097363322404882
-        references:
-        - fieldName: Action
-          value:
-            rid: -2
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 301c0abd-1753-489e-9401-d65cbebc6d41
-        childIds: []
       - name: ESPERAR INCIDENCIAS
         id: 65fb1e83-fb5b-4027-9209-a210c955db63
-        position: {x: 1200, y: 1000}
+        position: {x: 1200, y: 600}
         node:
           rid: 90097363322404883
         references:
         - fieldName: Action
           value:
-            rid: -2
+            rid: 90097388269600949
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
-        - 301c0abd-1753-489e-9401-d65cbebc6d41
+        - d50763d4-4000-4997-9b63-b0125bf86f8f
         childIds: []
     pushPerceptions: []
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
     - rid: 90097363322404864
       type: {class: BehaviourTree, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data: 
@@ -479,10 +427,6 @@ MonoBehaviour:
     - rid: 90097363322404872
       type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data: 
-    - rid: 90097363322404873
-      type: {class: SelectorNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data:
-        IsRandomized: 0
     - rid: 90097363322404874
       type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data: 
@@ -502,19 +446,153 @@ MonoBehaviour:
     - rid: 90097363322404879
       type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data: 
-    - rid: 90097363322404880
-      type: {class: SequencerNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data:
-        IsRandomized: 0
-    - rid: 90097363322404881
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 90097363322404882
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
     - rid: 90097363322404883
       type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data: 
+    - rid: 90097388269600942
+      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        start:
+          componentName: 
+          methodName: NotificacionAveria
+        update:
+          componentName: 
+          methodName: 
+        stop:
+          componentName: 
+          methodName: 
+        pause:
+          componentName: 
+          methodName: 
+        unpause:
+          componentName: 
+          methodName: 
+    - rid: 90097388269600943
+      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        start:
+          componentName: 
+          methodName: ComprobarTecnico
+        update:
+          componentName: 
+          methodName: 
+        stop:
+          componentName: 
+          methodName: 
+        pause:
+          componentName: 
+          methodName: 
+        unpause:
+          componentName: 
+          methodName: 
+    - rid: 90097388269600944
+      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        start:
+          componentName: 
+          methodName: TecnicoDisponible
+        update:
+          componentName: 
+          methodName: 
+        stop:
+          componentName: 
+          methodName: 
+        pause:
+          componentName: 
+          methodName: 
+        unpause:
+          componentName: 
+          methodName: 
+    - rid: 90097388269600945
+      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        start:
+          componentName: 
+          methodName: LlamarTecnico
+        update:
+          componentName: 
+          methodName: 
+        stop:
+          componentName: 
+          methodName: 
+        pause:
+          componentName: 
+          methodName: 
+        unpause:
+          componentName: 
+          methodName: 
+    - rid: 90097388269600946
+      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        start:
+          componentName: 
+          methodName: ClienteFrustrado
+        update:
+          componentName: 
+          methodName: 
+        stop:
+          componentName: 
+          methodName: 
+        pause:
+          componentName: 
+          methodName: 
+        unpause:
+          componentName: 
+          methodName: 
+    - rid: 90097388269600947
+      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        start:
+          componentName: 
+          methodName: 
+        update:
+          componentName: 
+          methodName: CalmarCliente
+        stop:
+          componentName: 
+          methodName: 
+        pause:
+          componentName: 
+          methodName: 
+        unpause:
+          componentName: 
+          methodName: 
+    - rid: 90097388269600948
+      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        start:
+          componentName: 
+          methodName: NingunProblema
+        update:
+          componentName: 
+          methodName: 
+        stop:
+          componentName: 
+          methodName: 
+        pause:
+          componentName: 
+          methodName: 
+        unpause:
+          componentName: 
+          methodName: 
+    - rid: 90097388269600949
+      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        start:
+          componentName: 
+          methodName: EsperarIncidencias
+        update:
+          componentName: 
+          methodName: 
+        stop:
+          componentName: 
+          methodName: 
+        pause:
+          componentName: 
+          methodName: 
+        unpause:
+          componentName: 
+          methodName: 
 --- !u!1 &3063709687755922950
 GameObject:
   m_ObjectHideFlags: 0

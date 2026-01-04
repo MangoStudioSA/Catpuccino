@@ -204,7 +204,7 @@ MonoBehaviour:
       nodes:
       - name: 
         id: ddcbcec9-31fd-4663-af75-d68f461ba1bd
-        position: {x: 637.5, y: 0}
+        position: {x: 525, y: 0}
         node:
           rid: 90097363322404909
         references: []
@@ -213,30 +213,18 @@ MonoBehaviour:
         - f166c08b-b588-43d7-8e72-9c17dbbf1649
       - name: 
         id: f166c08b-b588-43d7-8e72-9c17dbbf1649
-        position: {x: 637.5, y: 200}
+        position: {x: 525, y: 200}
         node:
           rid: 90097363322404910
         references: []
         parentIds:
         - ddcbcec9-31fd-4663-af75-d68f461ba1bd
         childIds:
-        - 6d8c8438-cae0-4205-bd9a-7b9162abaf81
+        - ebd83591-b9d4-4446-90f4-46dbf51ced38
         - 36a4f082-826e-4946-b484-16db2f5ca86e
       - name: 
-        id: 6d8c8438-cae0-4205-bd9a-7b9162abaf81
-        position: {x: 225, y: 400}
-        node:
-          rid: 90097363322404911
-        references: []
-        parentIds:
-        - f166c08b-b588-43d7-8e72-9c17dbbf1649
-        childIds:
-        - ebd83591-b9d4-4446-90f4-46dbf51ced38
-        - 2200e66f-ca26-45ca-ab5c-bcae608903c4
-        - dec22e3c-7437-435f-95d6-d0ce61c019a6
-      - name: 
         id: 36a4f082-826e-4946-b484-16db2f5ca86e
-        position: {x: 1050, y: 400}
+        position: {x: 675, y: 400}
         node:
           rid: 90097363322404914
         references: []
@@ -246,13 +234,13 @@ MonoBehaviour:
         - 6d25d590-c85a-420a-b140-39ac73b7b285
       - name: ESPERANDO
         id: 6d25d590-c85a-420a-b140-39ac73b7b285
-        position: {x: 1050, y: 600}
+        position: {x: 675, y: 600}
         node:
           rid: 90097363322404915
         references:
         - fieldName: Action
           value:
-            rid: -2
+            rid: 90097388269600963
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
@@ -260,51 +248,51 @@ MonoBehaviour:
         childIds: []
       - name: AVANZAR A OBJETO
         id: dec22e3c-7437-435f-95d6-d0ce61c019a6
-        position: {x: 750, y: 600}
+        position: {x: 1050, y: 1000}
         node:
           rid: 90097363322404918
         references:
         - fieldName: Action
           value:
-            rid: -2
+            rid: 90097388269600964
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
-        - 6d8c8438-cae0-4205-bd9a-7b9162abaf81
+        - 34712c82-cc1e-4312-974d-7af4b350d3e9
         childIds: []
       - name: "\xBFTIENE TAREA ASIGNADA?"
         id: ebd83591-b9d4-4446-90f4-46dbf51ced38
-        position: {x: -300, y: 600}
+        position: {x: 375, y: 400}
         node:
           rid: 90097363322404919
         references:
         - fieldName: Perception
           value:
-            rid: -2
+            rid: 90097388269600951
           fieldType: BehaviourAPI.Core.Perceptions.Perception, BehaviourAPI.Core,
             Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         parentIds:
-        - 6d8c8438-cae0-4205-bd9a-7b9162abaf81
+        - f166c08b-b588-43d7-8e72-9c17dbbf1649
         childIds:
-        - 4a1a69ee-bba2-4133-9112-2778708f1a61
+        - e38eaf7a-ca22-460e-a007-9e0651629d9e
       - name: "\xBFEST\xC1 EN EL OBJETO?"
         id: 2200e66f-ca26-45ca-ab5c-bcae608903c4
-        position: {x: 450, y: 600}
+        position: {x: 750, y: 1000}
         node:
           rid: 90097363322404920
         references:
         - fieldName: Perception
           value:
-            rid: -2
+            rid: 90097388269600962
           fieldType: BehaviourAPI.Core.Perceptions.Perception, BehaviourAPI.Core,
             Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         parentIds:
-        - 6d8c8438-cae0-4205-bd9a-7b9162abaf81
+        - 34712c82-cc1e-4312-974d-7af4b350d3e9
         childIds:
         - 4fcf0ef0-8183-4089-bab0-def880661621
       - name: 
         id: 4fcf0ef0-8183-4089-bab0-def880661621
-        position: {x: 450, y: 800}
+        position: {x: 750, y: 1200}
         node:
           rid: 90097363322404921
         references: []
@@ -315,13 +303,13 @@ MonoBehaviour:
         - 3e563eb2-7e45-44dd-b4e8-aafd78f6d0cb
       - name: REPARAR
         id: c96b962d-87cd-40e1-b4ef-2bc58fd43e2c
-        position: {x: 300, y: 1000}
+        position: {x: 600, y: 1400}
         node:
           rid: 90097363322404922
         references:
         - fieldName: Action
           value:
-            rid: -2
+            rid: 90097388269600956
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
@@ -329,13 +317,13 @@ MonoBehaviour:
         childIds: []
       - name: "INFORMAR REPARACI\xD3N"
         id: 3e563eb2-7e45-44dd-b4e8-aafd78f6d0cb
-        position: {x: 600, y: 1000}
+        position: {x: 900, y: 1400}
         node:
           rid: 90097363322404923
         references:
         - fieldName: Action
           value:
-            rid: -2
+            rid: 90097388269600957
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
@@ -343,24 +331,24 @@ MonoBehaviour:
         childIds: []
       - name: 
         id: 4a1a69ee-bba2-4133-9112-2778708f1a61
-        position: {x: -300, y: 800}
+        position: {x: -150, y: 800}
         node:
           rid: 90097363322404924
         references: []
         parentIds:
-        - ebd83591-b9d4-4446-90f4-46dbf51ced38
+        - e38eaf7a-ca22-460e-a007-9e0651629d9e
         childIds:
         - d01b0cde-8b44-441e-bb2b-4d97f897556a
         - eff90654-c99f-495e-9c1d-9c383fdd4b7c
-      - name: "\xBFREPARACI\xD3N COMPLETADA?"
+      - name: "\xBFREPARACI\xD3N EN CURSO?"
         id: d01b0cde-8b44-441e-bb2b-4d97f897556a
-        position: {x: -600, y: 1000}
+        position: {x: -450, y: 1000}
         node:
           rid: 90097363322404925
         references:
         - fieldName: Action
           value:
-            rid: -2
+            rid: 90097388269600952
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
@@ -368,7 +356,7 @@ MonoBehaviour:
         childIds: []
       - name: 
         id: eff90654-c99f-495e-9c1d-9c383fdd4b7c
-        position: {x: 0, y: 1000}
+        position: {x: 150, y: 1000}
         node:
           rid: 90097363322404926
         references: []
@@ -380,13 +368,13 @@ MonoBehaviour:
         - 04773068-795d-40e9-bb27-2e46bb8699a8
       - name: AVANZAR A SALIDA
         id: 69ccd683-a719-46b0-b9c1-d5479aaa6f2a
-        position: {x: -300, y: 1200}
+        position: {x: -150, y: 1200}
         node:
           rid: 90097363322404927
         references:
         - fieldName: Action
           value:
-            rid: -2
+            rid: 90097388269600953
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
@@ -394,13 +382,13 @@ MonoBehaviour:
         childIds: []
       - name: "\xBFLLEG\xD3 A LA SALIDA?"
         id: db702424-9087-44c5-aa8d-88dc9460c99e
-        position: {x: 0, y: 1200}
+        position: {x: 150, y: 1200}
         node:
           rid: 90097363322404928
         references:
         - fieldName: Action
           value:
-            rid: -2
+            rid: 90097388269600954
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
@@ -408,24 +396,44 @@ MonoBehaviour:
         childIds: []
       - name: RESETEAR TAREA
         id: 04773068-795d-40e9-bb27-2e46bb8699a8
-        position: {x: 300, y: 1200}
+        position: {x: 450, y: 1200}
         node:
           rid: 90097363322404929
         references:
         - fieldName: Action
           value:
-            rid: -2
+            rid: 90097388269600955
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
         - eff90654-c99f-495e-9c1d-9c383fdd4b7c
         childIds: []
+      - name: 
+        id: e38eaf7a-ca22-460e-a007-9e0651629d9e
+        position: {x: 375, y: 600}
+        node:
+          rid: 90097388269600960
+        references: []
+        parentIds:
+        - ebd83591-b9d4-4446-90f4-46dbf51ced38
+        childIds:
+        - 4a1a69ee-bba2-4133-9112-2778708f1a61
+        - 34712c82-cc1e-4312-974d-7af4b350d3e9
+      - name: 
+        id: 34712c82-cc1e-4312-974d-7af4b350d3e9
+        position: {x: 900, y: 800}
+        node:
+          rid: 90097388269600961
+        references: []
+        parentIds:
+        - e38eaf7a-ca22-460e-a007-9e0651629d9e
+        childIds:
+        - 2200e66f-ca26-45ca-ab5c-bcae608903c4
+        - dec22e3c-7437-435f-95d6-d0ce61c019a6
     pushPerceptions: []
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
     - rid: 90097363322404908
       type: {class: BehaviourTree, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data: 
@@ -435,10 +443,6 @@ MonoBehaviour:
         Iterations: -1
     - rid: 90097363322404910
       type: {class: SelectorNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data:
-        IsRandomized: 0
-    - rid: 90097363322404911
-      type: {class: SequencerNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data:
         IsRandomized: 0
     - rid: 90097363322404914
@@ -487,6 +491,194 @@ MonoBehaviour:
     - rid: 90097363322404929
       type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data: 
+    - rid: 90097388269600951
+      type: {class: CustomPerception, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        init:
+          componentName: 
+          methodName: 
+        check:
+          componentName: 
+          methodName: TieneTareaAsignada
+        reset:
+          componentName: 
+          methodName: 
+        pause:
+          componentName: 
+          methodName: 
+        unpause:
+          componentName: 
+          methodName: 
+    - rid: 90097388269600952
+      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        start:
+          componentName: 
+          methodName: ReparacionEnCurso
+        update:
+          componentName: 
+          methodName: 
+        stop:
+          componentName: 
+          methodName: 
+        pause:
+          componentName: 
+          methodName: 
+        unpause:
+          componentName: 
+          methodName: 
+    - rid: 90097388269600953
+      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        start:
+          componentName: 
+          methodName: AvanzarASalida
+        update:
+          componentName: 
+          methodName: 
+        stop:
+          componentName: 
+          methodName: 
+        pause:
+          componentName: 
+          methodName: 
+        unpause:
+          componentName: 
+          methodName: 
+    - rid: 90097388269600954
+      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        start:
+          componentName: 
+          methodName: 
+        update:
+          componentName: 
+          methodName: LlegoASalida
+        stop:
+          componentName: 
+          methodName: 
+        pause:
+          componentName: 
+          methodName: 
+        unpause:
+          componentName: 
+          methodName: 
+    - rid: 90097388269600955
+      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        start:
+          componentName: 
+          methodName: ResetearTarea
+        update:
+          componentName: 
+          methodName: 
+        stop:
+          componentName: 
+          methodName: 
+        pause:
+          componentName: 
+          methodName: 
+        unpause:
+          componentName: 
+          methodName: 
+    - rid: 90097388269600956
+      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        start:
+          componentName: 
+          methodName: Reparar
+        update:
+          componentName: 
+          methodName: 
+        stop:
+          componentName: 
+          methodName: 
+        pause:
+          componentName: 
+          methodName: 
+        unpause:
+          componentName: 
+          methodName: 
+    - rid: 90097388269600957
+      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        start:
+          componentName: 
+          methodName: InformarReparacion
+        update:
+          componentName: 
+          methodName: 
+        stop:
+          componentName: 
+          methodName: 
+        pause:
+          componentName: 
+          methodName: 
+        unpause:
+          componentName: 
+          methodName: 
+    - rid: 90097388269600960
+      type: {class: SequencerNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data:
+        IsRandomized: 0
+    - rid: 90097388269600961
+      type: {class: SelectorNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data:
+        IsRandomized: 0
+    - rid: 90097388269600962
+      type: {class: CustomPerception, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        init:
+          componentName: 
+          methodName: 
+        check:
+          componentName: 
+          methodName: EstaEnElObjeto
+        reset:
+          componentName: 
+          methodName: 
+        pause:
+          componentName: 
+          methodName: 
+        unpause:
+          componentName: 
+          methodName: 
+    - rid: 90097388269600963
+      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        start:
+          componentName: 
+          methodName: Esperando
+        update:
+          componentName: 
+          methodName: 
+        stop:
+          componentName: 
+          methodName: 
+        pause:
+          componentName: 
+          methodName: 
+        unpause:
+          componentName: 
+          methodName: 
+    - rid: 90097388269600964
+      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        start:
+          componentName: 
+          methodName: AvanzarAObjeto
+        update:
+          componentName: 
+          methodName: 
+        stop:
+          componentName: 
+          methodName: 
+        pause:
+          componentName: 
+          methodName: 
+        unpause:
+          componentName: 
+          methodName: 
 --- !u!1 &3063709687755922950
 GameObject:
   m_ObjectHideFlags: 0

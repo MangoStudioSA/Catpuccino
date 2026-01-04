@@ -97,4 +97,179 @@ public class CustomerController : EditorBehaviourRunner
             atQueue = false;
         }
     }
+
+    public Status AcabaDeEntrar()
+    {
+        return Status.Success;
+    }
+
+    public Status ColaMostradorLlena()
+    {
+        return Status.Success;
+    }
+
+    public Status BuscarGerente()
+    {
+        return Status.Success;
+    }
+
+    public Status AvanzarAGerente()
+    {
+        return Status.Success;
+    }
+
+    public Status Quejarse()
+    {
+        return Status.Success;
+    }
+
+    public Status AvanzarASalida()
+    {
+        return Status.Success;
+    }
+
+    public Status Irse()
+    {
+        return Status.Success;
+    }
+
+    public Status NecesidadDeBanyo()
+    {
+        return Status.Success;
+    }
+
+    public Status PausarTareaActual()
+    {
+        return Status.Success;
+    }
+
+    public Status ResetearPaciencia()
+    {
+        return Status.Success;
+    }
+
+    public Status AvanzarAColaBanyo()
+    {
+        return Status.Success;
+    }
+
+    public Status BanyoMantenimiento()
+    {
+        return Status.Success;
+    }
+
+    public Status ColaBanyoLlena()
+    {
+        return Status.Success;
+    }
+
+    public Status ReanudarTarea()
+    {
+        return Status.Success;
+    }
+
+    public Status EstaEnCola()
+    {
+        return Status.Success;
+    }
+
+    public Status Paciencia0()
+    {
+        return Status.Success;
+    }
+
+    public Status EsMiTurno()
+    {
+        return Status.Success;
+    }
+
+    public Status UsarBanyo()
+    {
+        return Status.Success;
+    }
+
+    public Status Esperar()
+    {
+        return Status.Success;
+    }
+
+    public Status GatoEnRango()
+    {
+        return Status.Success;
+    }
+
+    public Status NecesidadDeAcariciar()
+    {
+        return Status.Success;
+    }
+
+    public Status AcariciarGato()
+    {
+        return Status.Success;
+    }
+
+    public Status PedidoRecibido()
+    {
+        return Status.Success;
+    }
+
+    public Status TipoPedidoLlevar()
+    {
+        return Status.Success;
+    }
+
+    public Status TipoPedidoTomar()
+    {
+        return Status.Success;
+    }
+
+    public Status BuscarAsiento()
+    {
+        return Status.Success;
+    }
+
+    public Status AvanzarAAsiento()
+    {
+        return Status.Success;
+    }
+
+    public Status ConsumirPedido()
+    {
+        return Status.Success;
+    }
+
+    public Status LiberarAsiento()
+    {
+        return Status.Success;
+    }
+
+    public Status HaPedido()
+    {
+        return Status.Success;
+    }
+
+    public Status EsperarEnMostrador()
+    {
+        return Status.Success;
+    }
+
+    public Status RecogerPedido()
+    {
+        return Status.Success;
+    }
+
+    public Status PedidoEntregado()
+    {
+        return Status.Success;
+    }
+
+    public Status PedirYPagar()
+    {
+        return Status.Success;
+    }
+
+    public Status AvanzarAColaMostrador()
+    {
+        return Status.Success;
+    }
 }

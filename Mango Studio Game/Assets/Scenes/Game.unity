@@ -2582,7 +2582,7 @@ Transform:
   m_GameObject: {fileID: 55580695}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.34021536, z: 0, w: 0.9403476}
-  m_LocalPosition: {x: 5.65, y: 0.505, z: -6.24}
+  m_LocalPosition: {x: 2.092, y: 0.505, z: -3.281}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4350,7 +4350,7 @@ MonoBehaviour:
   minMinTime: 2
   minMaxTime: 4
   clients: 0
-  maxClients: 4
+  maxClients: 10
   orderButton: {fileID: 48577134}
   orderingCustomer: {fileID: 0}
   timeDecay: 2
@@ -31024,10 +31024,10 @@ MonoBehaviour:
   earnedText: {fileID: 1621369669}
   endButtonText: {fileID: 1495100694}
   secondsPerGameMinute: 0
-  secondsPerGameMinuteBase: 0.35
-  timeDecay: 0.06
-  startHour: 7
-  endHour: 20
+  secondsPerGameMinuteBase: 3.4028235e+38
+  timeDecay: 0
+  startHour: 0
+  endHour: 23
   endMinutes: 0
   difficultyPercentage: 0.85
   requiredIncrement: 1.25
