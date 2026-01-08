@@ -1,34 +1,50 @@
 using UnityEngine;
 using BehaviourAPI.Core;
 using BehaviourAPI.UnityToolkit.GUIDesigner.Runtime;
+using UnityEngine.AI;
 
 public class CleanerController : EditorBehaviourRunner
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    NavMeshAgent agent;
 
-    // Update is called once per frame
-    void Update()
+    public Transform aseosPos;
+    public GameObject[] superficies;
+    GameObject superficieSucia;
+
+    public Transform[] puntosRuta;
+    int iRuta = 0;
+
+    [System.NonSerialized] public bool aseosSucios;
+
+    private void Awake()
     {
-        
+        agent = GetComponent<NavMeshAgent>();
     }
 
     public Status AseosSucios()
     {
-        return Status.Success;
+        if (aseosSucios)
+        {
+            return Status.Success;
+        }
+
+        return Status.Failure;
     }
 
     public Status AvanzarAAseos()
     {
+        agent.SetDestination(aseosPos.position);
         return Status.Success;
     }
 
     public Status PosicionAlcanzada()
     {
-        return Status.Success;
+        if (Vector3.Distance(transform.position, aseosPos.position) < 0.5)
+        {
+            return Status.Success;
+        }
+        
+        return Status.Failure;
     }
 
     public Status LimpiarAseos()
@@ -38,21 +54,50 @@ public class CleanerController : EditorBehaviourRunner
 
     public Status SuperficieSucia()
     {
-        return Status.Success;
+        superficieSucia = null;
+        foreach (GameObject sup in superficies)
+        {
+            if (sup.gameObject.activeSelf)
+            {
+                superficieSucia = sup;
+                break;
+            }
+        }
+
+        if (Random.Range(0, 99) < 20 && superficieSucia == null)
+        {
+            int idx = Random.Range(0, superficies.Length);
+            superficies[idx].gameObject.SetActive(true);
+            superficieSucia = superficies[idx];
+        }
+
+        if (superficieSucia != null)
+        {
+            return Status.Success;
+        }
+        
+        return Status.Failure;
     }
 
     public Status AvanzarASuperficie()
     {
+        agent.SetDestination(superficieSucia.transform.position);
         return Status.Success;
     }
 
     public Status PosicionMasCercanaAlcanzada()
     {
-        return Status.Success;
+        if (Vector3.Distance(transform.position, superficieSucia.transform.position) < 0.5)
+        {
+            return Status.Success;
+        }
+
+        return Status.Failure;
     }
 
     public Status LimpiarSuperficie()
     {
+        superficieSucia.SetActive(false);
         return Status.Success;
     }
 
@@ -63,16 +108,29 @@ public class CleanerController : EditorBehaviourRunner
 
     public Status AvanzarASiguientePuntoDeRuta()
     {
+        agent.SetDestination(puntosRuta[iRuta].position);
         return Status.Success;
     }
 
     public Status HaLLegadoAlDestino()
     {
-        return Status.Success;
+        if (Vector3.Distance(transform.position, puntosRuta[iRuta].position) < 0.5)
+        {
+            return Status.Success;
+        }
+
+        return Status.Failure;
     }
 
     public Status RepetirRutaDePatrulla()
     {
+        iRuta++;
+
+        if (iRuta > puntosRuta.Length - 1)
+        {
+            iRuta = 0;
+        }
+
         return Status.Success;
     }
 }
