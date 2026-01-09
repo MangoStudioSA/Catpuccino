@@ -4350,7 +4350,7 @@ MonoBehaviour:
   minMinTime: 2
   minMaxTime: 4
   clients: 0
-  maxClients: 10
+  maxClients: 3
   orderButton: {fileID: 48577134}
   orderingCustomer: {fileID: 0}
   timeDecay: 2

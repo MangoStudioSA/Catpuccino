@@ -13,6 +13,8 @@ public class CustomerManager : MonoBehaviour
     public float minMinTime = 1, minMaxTime = 2;
     public int clients = 0;
     public int maxClients = 7;
+    public int maxClientsBathroom = 2;
+    public int clientsBathroom = 0;
     public GameObject orderButton;
     public GameObject orderingCustomer;
     public Queue<CustomerController> customers;
@@ -34,7 +36,7 @@ public class CustomerManager : MonoBehaviour
     {
         nextSpawn -= Time.deltaTime;
 
-        if (nextSpawn <= 0 && clients < maxClients && TimeManager.Instance.IsOpen)
+        if (nextSpawn <= 0 && TimeManager.Instance.IsOpen)
         {
             nextSpawn = Random.Range(minTime, maxTime);
             Instantiate(customer, spawn.transform.position, spawn.transform.rotation);

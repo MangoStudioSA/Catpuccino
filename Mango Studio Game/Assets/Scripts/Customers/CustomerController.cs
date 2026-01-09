@@ -1,6 +1,7 @@
 ﻿using BehaviourAPI.Core;
 using BehaviourAPI.UnityToolkit.GUIDesigner.Runtime;
 using UnityEngine;
+using UnityEngine.AI;
 
 // Clase encargada de gestionar la posicion y spawn de clientes
 public class CustomerController : EditorBehaviourRunner
@@ -16,7 +17,19 @@ public class CustomerController : EditorBehaviourRunner
 
     public Animator anim;
 
-    void Start()
+
+    NavMeshAgent agent;
+    bool acabaDeEntrar;
+    bool haIdoAlBanyo;
+    bool haUsadoBanyo;
+    float paciencia;
+    ManagerController gerente;
+    Transform salidaPos;
+    Transform aseosPos;
+    Transform colaBanyo;
+    Transform cola;
+
+    void Awake()
     {
         manager = GameObject.FindWithTag("CustomerManager").GetComponent<CustomerManager>();
         manager.customers.Enqueue(this);
@@ -24,6 +37,18 @@ public class CustomerController : EditorBehaviourRunner
         transform.GetChild(model).gameObject.SetActive(true);
 
         anim = transform.GetChild(model).GetChild(0).GetComponent<Animator>();
+
+
+        acabaDeEntrar = true;
+        haIdoAlBanyo = false;
+        haUsadoBanyo = false;
+        paciencia = 100;
+        agent = GetComponent<NavMeshAgent>();
+        gerente = FindFirstObjectByType<ManagerController>();
+        salidaPos = GameObject.FindWithTag("Salida").transform;
+        aseosPos = GameObject.FindWithTag("Aseos").transform;
+        colaBanyo = GameObject.FindWithTag("AseosCola").transform;
+        cola = GameObject.FindWithTag("Cola").transform;
     }
 
     void Update()
@@ -55,6 +80,9 @@ public class CustomerController : EditorBehaviourRunner
         {
             atQueue = false;
         }
+
+
+        paciencia -= Time.deltaTime * 2;
     }
 
     // Funcion que comprueba si el cliente ha llegado al mostrador
@@ -100,22 +128,39 @@ public class CustomerController : EditorBehaviourRunner
 
     public Status AcabaDeEntrar()
     {
-        return Status.Success;
+        if (acabaDeEntrar)
+        {
+            acabaDeEntrar = false;
+            return Status.Success;
+        }
+        
+        return Status.Failure;
     }
 
     public Status ColaMostradorLlena()
     {
-        return Status.Success;
+        if (manager.clients > manager.maxClients)
+        {
+            return Status.Success;
+        }
+
+        return Status.Failure;
     }
 
     public Status BuscarGerente()
     {
+        agent.SetDestination(gerente.transform.position);
         return Status.Success;
     }
 
     public Status AvanzarAGerente()
     {
-        return Status.Success;
+        if (Vector3.Distance(transform.position, gerente.transform.position) < 0.5)
+        {
+            return Status.Success;
+        }
+
+        return Status.Running;
     }
 
     public Status Quejarse()
@@ -125,17 +170,46 @@ public class CustomerController : EditorBehaviourRunner
 
     public Status AvanzarASalida()
     {
-        return Status.Success;
+        if (agent.isStopped)
+        {
+            agent.SetDestination(salidaPos.position);
+        }
+
+        if (Vector3.Distance(transform.position, salidaPos.position) < 0.5)
+        {
+            return Status.Success;
+        }
+
+        return Status.Running;
     }
 
     public Status Irse()
     {
+        if (haIdoAlBanyo && !haUsadoBanyo)
+        {
+            manager.clientsBathroom -= 1;
+        }
+
+        manager.clients -= 1;
+        Destroy(this.gameObject);
         return Status.Success;
     }
 
     public Status NecesidadDeBanyo()
     {
-        return Status.Success;
+        if (!haIdoAlBanyo && !atCounter)
+        {
+            haIdoAlBanyo = Random.Range(0, 100) < 20;
+
+            if (haIdoAlBanyo)
+            {
+                manager.clientsBathroom += 1;
+                transform.position = colaBanyo.position;
+                return Status.Success;
+            }
+        }
+
+        return Status.Failure;
     }
 
     public Status PausarTareaActual()
@@ -145,22 +219,39 @@ public class CustomerController : EditorBehaviourRunner
 
     public Status ResetearPaciencia()
     {
+        paciencia = 100;
         return Status.Success;
     }
 
     public Status AvanzarAColaBanyo()
     {
-        return Status.Success;
+        if (atQueue || atCounter)
+        {
+            return Status.Success;
+        }
+
+        transform.Translate(direction.normalized * speed * Time.deltaTime);
+        return Status.Running;
     }
 
     public Status BanyoMantenimiento()
     {
-        return Status.Success;
+        if (gerente.aseosAveriados)
+        {
+            return Status.Success;
+        }
+
+        return Status.Failure;
     }
 
     public Status ColaBanyoLlena()
     {
-        return Status.Success;
+        if (manager.clientsBathroom > manager.maxClientsBathroom)
+        {
+            return Status.Success;
+        }
+
+        return Status.Failure;
     }
 
     public Status ReanudarTarea()
@@ -170,26 +261,49 @@ public class CustomerController : EditorBehaviourRunner
 
     public Status EstaEnCola()
     {
-        return Status.Success;
+        if (atQueue || atCounter)
+        {
+            return Status.Success;
+        }
+
+        return Status.Failure;
     }
 
     public Status Paciencia0()
     {
-        return Status.Success;
+        if (paciencia <= 0)
+        {
+            return Status.Success;
+        }
+
+        return Status.Failure;
     }
 
     public Status EsMiTurno()
     {
+        if (atCounter)
+        {
+            return Status.Success;
+        }
+        
         return Status.Success;
     }
 
     public Status UsarBanyo()
     {
+        transform.position = cola.position;
+        haUsadoBanyo = true;
+        manager.clientsBathroom -= 1;
         return Status.Success;
     }
 
     public Status Esperar()
     {
+        if (!atQueue && !atCounter)
+        {
+            transform.Translate(direction.normalized * speed * Time.deltaTime);
+        }
+
         return Status.Success;
     }
 

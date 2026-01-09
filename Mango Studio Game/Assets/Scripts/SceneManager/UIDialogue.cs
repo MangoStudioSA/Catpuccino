@@ -87,7 +87,6 @@ public class UIDialogue : MonoBehaviour
         deliveryPanel.SetActive(false);
         roomPanel.SetActive(true);
         manager.orderButton.SetActive(false);
-        manager.clients -= 1;
         manager.customers.Dequeue();
         manager.orderingCustomer.GetComponent<CustomerController>().leaving = true;
         manager.orderingCustomer.GetComponent<CapsuleCollider>().enabled = false;

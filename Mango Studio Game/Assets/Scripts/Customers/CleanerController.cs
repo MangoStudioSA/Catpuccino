@@ -12,7 +12,7 @@ public class CleanerController : EditorBehaviourRunner
     GameObject superficieSucia;
 
     public Transform[] puntosRuta;
-    int iRuta = 0;
+    int iRuta;
 
     [System.NonSerialized] public bool aseosSucios;
 
@@ -20,6 +20,7 @@ public class CleanerController : EditorBehaviourRunner
     {
         agent = GetComponent<NavMeshAgent>();
         aseosSucios = false;
+        iRuta = 0;
     }
 
     public Status AseosSucios()
@@ -65,7 +66,7 @@ public class CleanerController : EditorBehaviourRunner
             }
         }
 
-        if (Random.Range(0, 99) < 20 && superficieSucia == null)
+        if (Random.Range(0, 100) < 20 && superficieSucia == null)
         {
             int idx = Random.Range(0, superficies.Length);
             superficies[idx].gameObject.SetActive(true);
