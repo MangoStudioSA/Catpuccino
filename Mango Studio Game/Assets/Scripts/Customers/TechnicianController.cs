@@ -1,52 +1,85 @@
 using UnityEngine;
 using BehaviourAPI.Core;
 using BehaviourAPI.UnityToolkit.GUIDesigner.Runtime;
+using UnityEngine.AI;
 
 public class TechnicianController : EditorBehaviourRunner
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    NavMeshAgent agent;
 
-    // Update is called once per frame
-    void Update()
+    public GameObject model;
+
+    public Transform aseosPos;
+    public Transform salidaPos;
+
+    [System.NonSerialized] public bool tieneTarea;
+    [System.NonSerialized] public bool reparacionCompleta;
+
+    private void Awake()
     {
-        
+        agent = GetComponent<NavMeshAgent>();
+        model.SetActive(false);
+
+        tieneTarea = false;
+        reparacionCompleta = false;
     }
 
     public bool TieneTareaAsignada()
     {
-        return true;
+        if (tieneTarea)
+        {
+            model.SetActive(true);
+        }
+
+        return tieneTarea;
     }
 
     public bool EstaEnElObjeto()
     {
-        return true;
+        if (Vector3.Distance(transform.position, aseosPos.position) < 0.5)
+        {
+            return true;
+        }
+
+        return false;
     }
 
-    public Status ReparacionEnCurso()
+    public Status ReparacionCompletada()
     {
-        return Status.Success;
+        if (reparacionCompleta)
+        {
+            return Status.Success;
+        }
+        
+        return Status.Failure;
     }
 
     public Status AvanzarASalida()
     {
+        agent.SetDestination(salidaPos.position);
         return Status.Success;
     }
     public Status LlegoALaSalida()
     {
-        return Status.Success;
+        if (Vector3.Distance(transform.position, salidaPos.position) < 0.5)
+        {
+            model.SetActive(false);
+            return Status.Success;
+        }
+
+        return Status.Running;
     }
 
     public Status ResetearTarea()
     {
+        tieneTarea = false;
+        reparacionCompleta = false;
         return Status.Success;
     }
 
     public Status AvanzarAObjeto()
     {
+        agent.SetDestination(aseosPos.position);
         return Status.Success;
     }
 
@@ -57,6 +90,7 @@ public class TechnicianController : EditorBehaviourRunner
 
     public Status InformarReparacion()
     {
+        reparacionCompleta = true;
         return Status.Success;
     }
 

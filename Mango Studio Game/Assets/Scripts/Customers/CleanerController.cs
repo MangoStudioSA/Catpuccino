@@ -19,6 +19,7 @@ public class CleanerController : EditorBehaviourRunner
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+        aseosSucios = false;
     }
 
     public Status AseosSucios()

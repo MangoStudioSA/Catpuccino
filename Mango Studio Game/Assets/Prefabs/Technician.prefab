@@ -32,6 +32,116 @@ Transform:
   - {fileID: 2849051630669572017}
   m_Father: {fileID: 7518710689930535423}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!1 &2714066667616240080
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3746147590563842449}
+  - component: {fileID: 5515180985012855714}
+  - component: {fileID: 5759481980036505845}
+  - component: {fileID: 288913269213363463}
+  m_Layer: 0
+  m_Name: Capsule
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3746147590563842449
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2714066667616240080}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7518710689930535423}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &5515180985012855714
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2714066667616240080}
+  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &5759481980036505845
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2714066667616240080}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: ce8a313505bd20844a1739fc139f9f05, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &288913269213363463
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2714066667616240080}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2753711945148426859
 GameObject:
   m_ObjectHideFlags: 0
@@ -46,6 +156,7 @@ GameObject:
   - component: {fileID: 6711653460611295843}
   - component: {fileID: 4231839258988541092}
   - component: {fileID: 5220193592214517808}
+  - component: {fileID: 755689509592173093}
   m_Layer: 0
   m_Name: Technician
   m_TagString: Customer
@@ -66,6 +177,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
+  - {fileID: 3746147590563842449}
   - {fileID: 8609389897187339562}
   - {fileID: 3792475351592691462}
   - {fileID: 2399711373154730027}
@@ -220,21 +332,11 @@ MonoBehaviour:
         parentIds:
         - ddcbcec9-31fd-4663-af75-d68f461ba1bd
         childIds:
-        - ebd83591-b9d4-4446-90f4-46dbf51ced38
-        - 36a4f082-826e-4946-b484-16db2f5ca86e
-      - name: 
-        id: 36a4f082-826e-4946-b484-16db2f5ca86e
-        position: {x: 675, y: 400}
-        node:
-          rid: 90097363322404914
-        references: []
-        parentIds:
-        - f166c08b-b588-43d7-8e72-9c17dbbf1649
-        childIds:
+        - b2b05bc9-e832-4139-9f45-148792d3f3f7
         - 6d25d590-c85a-420a-b140-39ac73b7b285
       - name: ESPERANDO
         id: 6d25d590-c85a-420a-b140-39ac73b7b285
-        position: {x: 675, y: 600}
+        position: {x: 675, y: 400}
         node:
           rid: 90097363322404915
         references:
@@ -244,37 +346,8 @@ MonoBehaviour:
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
-        - 36a4f082-826e-4946-b484-16db2f5ca86e
-        childIds: []
-      - name: AVANZAR A OBJETO
-        id: dec22e3c-7437-435f-95d6-d0ce61c019a6
-        position: {x: 1050, y: 1000}
-        node:
-          rid: 90097363322404918
-        references:
-        - fieldName: Action
-          value:
-            rid: 90097388269600964
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 34712c82-cc1e-4312-974d-7af4b350d3e9
-        childIds: []
-      - name: "\xBFTIENE TAREA ASIGNADA?"
-        id: ebd83591-b9d4-4446-90f4-46dbf51ced38
-        position: {x: 375, y: 400}
-        node:
-          rid: 90097363322404919
-        references:
-        - fieldName: Perception
-          value:
-            rid: 90097388269600951
-          fieldType: BehaviourAPI.Core.Perceptions.Perception, BehaviourAPI.Core,
-            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-        parentIds:
         - f166c08b-b588-43d7-8e72-9c17dbbf1649
-        childIds:
-        - e38eaf7a-ca22-460e-a007-9e0651629d9e
+        childIds: []
       - name: "\xBFEST\xC1 EN EL OBJETO?"
         id: 2200e66f-ca26-45ca-ab5c-bcae608903c4
         position: {x: 750, y: 1000}
@@ -329,18 +402,7 @@ MonoBehaviour:
         parentIds:
         - 4fcf0ef0-8183-4089-bab0-def880661621
         childIds: []
-      - name: 
-        id: 4a1a69ee-bba2-4133-9112-2778708f1a61
-        position: {x: -150, y: 800}
-        node:
-          rid: 90097363322404924
-        references: []
-        parentIds:
-        - e38eaf7a-ca22-460e-a007-9e0651629d9e
-        childIds:
-        - d01b0cde-8b44-441e-bb2b-4d97f897556a
-        - eff90654-c99f-495e-9c1d-9c383fdd4b7c
-      - name: "\xBFREPARACI\xD3N EN CURSO?"
+      - name: "\xBFREPARACI\xD3N COMPLETADA?"
         id: d01b0cde-8b44-441e-bb2b-4d97f897556a
         position: {x: -450, y: 1000}
         node:
@@ -352,7 +414,7 @@ MonoBehaviour:
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
-        - 4a1a69ee-bba2-4133-9112-2778708f1a61
+        - 76b059b6-58a0-4f2b-a9a1-83e36f2a8f66
         childIds: []
       - name: 
         id: eff90654-c99f-495e-9c1d-9c383fdd4b7c
@@ -361,7 +423,7 @@ MonoBehaviour:
           rid: 90097363322404926
         references: []
         parentIds:
-        - 4a1a69ee-bba2-4133-9112-2778708f1a61
+        - 76b059b6-58a0-4f2b-a9a1-83e36f2a8f66
         childIds:
         - 69ccd683-a719-46b0-b9c1-d5479aaa6f2a
         - db702424-9087-44c5-aa8d-88dc9460c99e
@@ -409,28 +471,71 @@ MonoBehaviour:
         - eff90654-c99f-495e-9c1d-9c383fdd4b7c
         childIds: []
       - name: 
-        id: e38eaf7a-ca22-460e-a007-9e0651629d9e
-        position: {x: 375, y: 600}
-        node:
-          rid: 90097388269600960
-        references: []
-        parentIds:
-        - ebd83591-b9d4-4446-90f4-46dbf51ced38
-        childIds:
-        - 4a1a69ee-bba2-4133-9112-2778708f1a61
-        - 34712c82-cc1e-4312-974d-7af4b350d3e9
-      - name: 
         id: 34712c82-cc1e-4312-974d-7af4b350d3e9
         position: {x: 900, y: 800}
         node:
           rid: 90097388269600961
         references: []
         parentIds:
-        - e38eaf7a-ca22-460e-a007-9e0651629d9e
+        - fb6b6d49-f689-4c0f-abf5-927df583c17d
         childIds:
         - 2200e66f-ca26-45ca-ab5c-bcae608903c4
-        - dec22e3c-7437-435f-95d6-d0ce61c019a6
+        - 0c38dfa4-d1d0-4f78-bf72-98ba904956f3
+      - name: 
+        id: fb6b6d49-f689-4c0f-abf5-927df583c17d
+        position: {x: 375, y: 600}
+        node:
+          rid: 90097496608735233
+        references: []
+        parentIds:
+        - b2b05bc9-e832-4139-9f45-148792d3f3f7
+        childIds:
+        - 76b059b6-58a0-4f2b-a9a1-83e36f2a8f66
+        - 34712c82-cc1e-4312-974d-7af4b350d3e9
+      - name: 
+        id: 76b059b6-58a0-4f2b-a9a1-83e36f2a8f66
+        position: {x: -150, y: 800}
+        node:
+          rid: 90097496608735234
+        references: []
+        parentIds:
+        - fb6b6d49-f689-4c0f-abf5-927df583c17d
+        childIds:
+        - d01b0cde-8b44-441e-bb2b-4d97f897556a
+        - eff90654-c99f-495e-9c1d-9c383fdd4b7c
+      - name: "\xBFTIENE TAREA ASIGNADA?"
+        id: b2b05bc9-e832-4139-9f45-148792d3f3f7
+        position: {x: 375, y: 400}
+        node:
+          rid: 90097496608735236
+        references:
+        - fieldName: Perception
+          value:
+            rid: 90097496608735237
+          fieldType: BehaviourAPI.Core.Perceptions.Perception, BehaviourAPI.Core,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - f166c08b-b588-43d7-8e72-9c17dbbf1649
+        childIds:
+        - fb6b6d49-f689-4c0f-abf5-927df583c17d
+      - name: AVANZAR A OBJETO
+        id: 0c38dfa4-d1d0-4f78-bf72-98ba904956f3
+        position: {x: 1050, y: 1000}
+        node:
+          rid: 90097496608735238
+        references:
+        - fieldName: Action
+          value:
+            rid: 90097496608735239
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - 34712c82-cc1e-4312-974d-7af4b350d3e9
+        childIds: []
     pushPerceptions: []
+  model: {fileID: 0}
+  aseosPos: {fileID: 0}
+  salidaPos: {fileID: 0}
   references:
     version: 2
     RefIds:
@@ -445,18 +550,8 @@ MonoBehaviour:
       type: {class: SelectorNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data:
         IsRandomized: 0
-    - rid: 90097363322404914
-      type: {class: SequencerNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data:
-        IsRandomized: 0
     - rid: 90097363322404915
       type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 90097363322404918
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 90097363322404919
-      type: {class: ConditionNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data: 
     - rid: 90097363322404920
       type: {class: ConditionNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
@@ -471,10 +566,6 @@ MonoBehaviour:
     - rid: 90097363322404923
       type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data: 
-    - rid: 90097363322404924
-      type: {class: SelectorNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data:
-        IsRandomized: 0
     - rid: 90097363322404925
       type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data: 
@@ -491,30 +582,12 @@ MonoBehaviour:
     - rid: 90097363322404929
       type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data: 
-    - rid: 90097388269600951
-      type: {class: CustomPerception, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
-      data:
-        init:
-          componentName: 
-          methodName: 
-        check:
-          componentName: 
-          methodName: TieneTareaAsignada
-        reset:
-          componentName: 
-          methodName: 
-        pause:
-          componentName: 
-          methodName: 
-        unpause:
-          componentName: 
-          methodName: 
     - rid: 90097388269600952
       type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
       data:
         start:
           componentName: 
-          methodName: ReparacionEnCurso
+          methodName: ReparacionCompletada
         update:
           componentName: 
           methodName: 
@@ -553,7 +626,7 @@ MonoBehaviour:
           methodName: 
         update:
           componentName: 
-          methodName: LlegoASalida
+          methodName: LlegoALaSalida
         stop:
           componentName: 
           methodName: 
@@ -617,10 +690,6 @@ MonoBehaviour:
         unpause:
           componentName: 
           methodName: 
-    - rid: 90097388269600960
-      type: {class: SequencerNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data:
-        IsRandomized: 0
     - rid: 90097388269600961
       type: {class: SelectorNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data:
@@ -661,7 +730,39 @@ MonoBehaviour:
         unpause:
           componentName: 
           methodName: 
-    - rid: 90097388269600964
+    - rid: 90097496608735233
+      type: {class: SelectorNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data:
+        IsRandomized: 0
+    - rid: 90097496608735234
+      type: {class: SequencerNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data:
+        IsRandomized: 0
+    - rid: 90097496608735236
+      type: {class: ConditionNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data: 
+    - rid: 90097496608735237
+      type: {class: CustomPerception, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        init:
+          componentName: 
+          methodName: 
+        check:
+          componentName: 
+          methodName: TieneTareaaAsignada
+        reset:
+          componentName: 
+          methodName: 
+        pause:
+          componentName: 
+          methodName: 
+        unpause:
+          componentName: 
+          methodName: 
+    - rid: 90097496608735238
+      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data: 
+    - rid: 90097496608735239
       type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
       data:
         start:
@@ -679,6 +780,28 @@ MonoBehaviour:
         unpause:
           componentName: 
           methodName: 
+--- !u!195 &755689509592173093
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2753711945148426859}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.25
+  m_Speed: 1
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0.2
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 0.5
+  m_BaseOffset: 1
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &3063709687755922950
 GameObject:
   m_ObjectHideFlags: 0

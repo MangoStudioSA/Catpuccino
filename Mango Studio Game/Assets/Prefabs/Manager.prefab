@@ -66,6 +66,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
+  - {fileID: 7407623533610947886}
   - {fileID: 8609389897187339562}
   - {fileID: 3792475351592691462}
   - {fileID: 2399711373154730027}
@@ -233,7 +234,7 @@ MonoBehaviour:
         - 79a72637-7a99-4d22-90a0-c5b4c2768592
         childIds:
         - c565882e-21a5-485c-b799-cea4af6ee5d5
-        - ece43aab-1af7-471e-b74f-6b6718a32d60
+        - 38be3b85-f42f-4b44-88da-e1560dd9bd88
       - name: 
         id: 970100b5-c7a7-4e83-b394-9cb62fbdd211
         position: {x: 450, y: 400}
@@ -270,17 +271,6 @@ MonoBehaviour:
         parentIds:
         - 29705e0c-00b2-40d0-b1e1-fbd8c007f1d7
         childIds: []
-      - name: 
-        id: ece43aab-1af7-471e-b74f-6b6718a32d60
-        position: {x: 0, y: 600}
-        node:
-          rid: 90097363322404871
-        references: []
-        parentIds:
-        - 29705e0c-00b2-40d0-b1e1-fbd8c007f1d7
-        childIds:
-        - 38be3b85-f42f-4b44-88da-e1560dd9bd88
-        - afecfbf5-c725-4eca-908b-316021c3aed6
       - name: "\xBFNING\xDAN PROBLEMA?"
         id: 9384c17a-5269-4545-a766-f8b9a5d0bd06
         position: {x: 900, y: 600}
@@ -325,32 +315,18 @@ MonoBehaviour:
         childIds: []
       - name: 
         id: 38be3b85-f42f-4b44-88da-e1560dd9bd88
-        position: {x: -150, y: 800}
+        position: {x: 0, y: 600}
         node:
           rid: 90097363322404876
         references: []
         parentIds:
-        - ece43aab-1af7-471e-b74f-6b6718a32d60
+        - 29705e0c-00b2-40d0-b1e1-fbd8c007f1d7
         childIds:
         - bfcbac9f-7f4c-415c-8ae0-0084b6b8ac19
         - bdcc0406-4e1a-4f9a-9db5-933b618de714
-      - name: "COMPROBAR T\xC9CNICO"
-        id: afecfbf5-c725-4eca-908b-316021c3aed6
-        position: {x: 150, y: 800}
-        node:
-          rid: 90097363322404877
-        references:
-        - fieldName: Action
-          value:
-            rid: 90097388269600943
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - ece43aab-1af7-471e-b74f-6b6718a32d60
-        childIds: []
       - name: "\xBFT\xC9CNICO DISPONIBLE?"
         id: bfcbac9f-7f4c-415c-8ae0-0084b6b8ac19
-        position: {x: -300, y: 1000}
+        position: {x: -150, y: 800}
         node:
           rid: 90097363322404878
         references:
@@ -364,7 +340,7 @@ MonoBehaviour:
         childIds: []
       - name: "LLAMAR T\xC9CNICO"
         id: bdcc0406-4e1a-4f9a-9db5-933b618de714
-        position: {x: 0, y: 1000}
+        position: {x: 150, y: 800}
         node:
           rid: 90097363322404879
         references:
@@ -391,6 +367,7 @@ MonoBehaviour:
         - d50763d4-4000-4997-9b63-b0125bf86f8f
         childIds: []
     pushPerceptions: []
+  tech: {fileID: 0}
   references:
     version: 2
     RefIds:
@@ -420,10 +397,6 @@ MonoBehaviour:
     - rid: 90097363322404870
       type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data: 
-    - rid: 90097363322404871
-      type: {class: SelectorNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data:
-        IsRandomized: 0
     - rid: 90097363322404872
       type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data: 
@@ -437,9 +410,6 @@ MonoBehaviour:
       type: {class: SequencerNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data:
         IsRandomized: 0
-    - rid: 90097363322404877
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
     - rid: 90097363322404878
       type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data: 
@@ -455,24 +425,6 @@ MonoBehaviour:
         start:
           componentName: 
           methodName: NotificacionAveria
-        update:
-          componentName: 
-          methodName: 
-        stop:
-          componentName: 
-          methodName: 
-        pause:
-          componentName: 
-          methodName: 
-        unpause:
-          componentName: 
-          methodName: 
-    - rid: 90097388269600943
-      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
-      data:
-        start:
-          componentName: 
-          methodName: ComprobarTecnico
         update:
           componentName: 
           methodName: 
@@ -657,6 +609,116 @@ Transform:
   - {fileID: 4963785780272815920}
   m_Father: {fileID: 7518710689930535423}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!1 &4422755179802973357
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7407623533610947886}
+  - component: {fileID: 9019740763918902491}
+  - component: {fileID: 2949679211118751883}
+  - component: {fileID: 6183671607619710733}
+  m_Layer: 0
+  m_Name: Capsule
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7407623533610947886
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4422755179802973357}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7518710689930535423}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &9019740763918902491
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4422755179802973357}
+  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &2949679211118751883
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4422755179802973357}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 970d9fb495c2d1c4fb3d4dc9b9cd5dc5, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &6183671607619710733
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4422755179802973357}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4616313573794619384
 GameObject:
   m_ObjectHideFlags: 0

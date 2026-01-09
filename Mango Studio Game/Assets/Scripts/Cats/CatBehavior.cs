@@ -141,49 +141,4 @@ public class CatBehavior : EditorBehaviourRunner
             animator.Play("Sentado", 0, 0f);
         }
     }
-
-    public void Divagando()
-    {
-
-    }
-
-    public void SiendoAcariciado()
-    {
-
-    }
-
-    public void AvanzaAEscondite()
-    {
-
-    }
-
-    public void Escondido()
-    {
-
-    }
-
-    public bool ClienteAcaricia()
-    {
-        return false;
-    }
-
-    public bool InteraccionFinaliza()
-    {
-        return false;
-    }
-
-    public bool PacienciaAgotada()
-    {
-        return false;
-    }
-
-    public bool EstaEnEscondite()
-    {
-        return false;
-    }
-
-    public bool TiempoEscondidoFinalizado()
-    {
-        return false;
-    }
 }

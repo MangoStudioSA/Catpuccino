@@ -1,48 +1,66 @@
 using UnityEngine;
 using BehaviourAPI.Core;
 using BehaviourAPI.UnityToolkit.GUIDesigner.Runtime;
+using UnityEngine.AI;
 
 public class ManagerController : EditorBehaviourRunner
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    NavMeshAgent agent;
 
-    // Update is called once per frame
-    void Update()
+    public TechnicianController tech;
+
+    [System.NonSerialized] public bool aseosAveriados;
+    [System.NonSerialized] public bool hayClienteFrustrado;
+
+    private void Awake()
     {
-        
+        agent = GetComponent<NavMeshAgent>();
     }
 
     public Status NotificacionAveria()
     {
-        return Status.Success;
+        if (aseosAveriados)
+        {
+            return Status.Success;
+        }
+
+        return Status.Failure;
     }
 
-    public Status ComprobarTecnico()
-    {
-        return Status.Success;
-    }
     public Status TecnicoDisponible()
     {
-        return Status.Success;
+        if (tech != null)
+        {
+            return Status.Success;
+        }
+
+        return Status.Failure;
     }
 
     public Status LlamarTecnico()
     {
+        tech.tieneTarea = true;
         return Status.Success;
     }
 
     public Status ClienteFrustrado()
     {
-        return Status.Success;
+        if (hayClienteFrustrado)
+        { 
+            return Status.Success;
+        }
+
+        return Status.Failure;
     }
 
     public Status CalmarCliente()
     {
-        return Status.Success;
+        if (hayClienteFrustrado)
+        {
+            return Status.Success;
+        }
+
+        return Status.Running;
     }
 
     public Status NingunProblema()

@@ -45,10 +45,10 @@ GameObject:
   - component: {fileID: 1768167252910596680}
   - component: {fileID: 6711653460611295843}
   - component: {fileID: 4231839258988541092}
-  - component: {fileID: 6625350751271107375}
   - component: {fileID: 9220417957603831634}
+  - component: {fileID: 2463974634285924113}
   m_Layer: 0
-  m_Name: Cleaner
+  m_Name: Cat
   m_TagString: Customer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -180,624 +180,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!114 &6625350751271107375
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2753711945148426859}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8382d901717bd944c9614346b2dbb7e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  executeOnLoop: 1
-  interruptOptions: 0
-  _eventHandler:
-    debugStatusChanges: 0
-    identifier: 
-  data:
-    graphs:
-    - name: newbehaviourgraph
-      id: b572aea9-65e7-4822-bc78-2df6f468555e
-      graph:
-        rid: 90097363322404884
-      nodes:
-      - name: 
-        id: 147d61a6-9ecc-43ae-9725-93bec99176a2
-        position: {x: 412.5, y: 0}
-        node:
-          rid: 90097363322404885
-        references: []
-        parentIds: []
-        childIds:
-        - 042ef57a-0dd3-4eef-96a2-14ffc8201267
-      - name: 
-        id: 042ef57a-0dd3-4eef-96a2-14ffc8201267
-        position: {x: 412.5, y: 200}
-        node:
-          rid: 90097363322404886
-        references: []
-        parentIds:
-        - 147d61a6-9ecc-43ae-9725-93bec99176a2
-        childIds:
-        - b9c866ce-fd7c-4cd0-918d-b5a317113a58
-        - d327fa22-cffc-43bc-ab33-4e0b8a9d1110
-        - 1024d223-5c7d-4702-8156-22419ccc3bd4
-      - name: 
-        id: b9c866ce-fd7c-4cd0-918d-b5a317113a58
-        position: {x: -225, y: 400}
-        node:
-          rid: 90097363322404887
-        references: []
-        parentIds:
-        - 042ef57a-0dd3-4eef-96a2-14ffc8201267
-        childIds:
-        - 4b03eac7-c577-4ef9-929d-18fad43162ae
-        - e5de1575-95a8-483c-b37b-ee0ef3062913
-      - name: 
-        id: d327fa22-cffc-43bc-ab33-4e0b8a9d1110
-        position: {x: 450, y: 400}
-        node:
-          rid: 90097363322404888
-        references: []
-        parentIds:
-        - 042ef57a-0dd3-4eef-96a2-14ffc8201267
-        childIds:
-        - ca851b2d-c9d7-460d-92ca-9f6b68356dc8
-        - 559d1e34-d18b-4ce1-9b4e-4ed128f8bf9c
-      - name: 
-        id: 1024d223-5c7d-4702-8156-22419ccc3bd4
-        position: {x: 1050, y: 400}
-        node:
-          rid: 90097363322404889
-        references: []
-        parentIds:
-        - 042ef57a-0dd3-4eef-96a2-14ffc8201267
-        childIds:
-        - 557fa9ff-9f50-444a-950b-37234e8856ac
-        - b99d7106-e474-4bcf-a817-ac2e05258e34
-      - name: "\xBFASEOS SUCIOS?"
-        id: 4b03eac7-c577-4ef9-929d-18fad43162ae
-        position: {x: -450, y: 600}
-        node:
-          rid: 90097363322404890
-        references:
-        - fieldName: Action
-          value:
-            rid: 90097388269600930
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - b9c866ce-fd7c-4cd0-918d-b5a317113a58
-        childIds: []
-      - name: 
-        id: e5de1575-95a8-483c-b37b-ee0ef3062913
-        position: {x: 0, y: 600}
-        node:
-          rid: 90097363322404891
-        references: []
-        parentIds:
-        - b9c866ce-fd7c-4cd0-918d-b5a317113a58
-        childIds:
-        - 7127c3dc-ecf6-4f7f-9183-34243d057ec5
-        - 3579dd21-cf97-4d56-86a0-74cf06b73694
-      - name: "\xBFSUPERFICIE SUCIA?"
-        id: ca851b2d-c9d7-460d-92ca-9f6b68356dc8
-        position: {x: 300, y: 600}
-        node:
-          rid: 90097363322404892
-        references:
-        - fieldName: Action
-          value:
-            rid: 90097388269600934
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - d327fa22-cffc-43bc-ab33-4e0b8a9d1110
-        childIds: []
-      - name: 
-        id: 559d1e34-d18b-4ce1-9b4e-4ed128f8bf9c
-        position: {x: 600, y: 600}
-        node:
-          rid: 90097363322404893
-        references: []
-        parentIds:
-        - d327fa22-cffc-43bc-ab33-4e0b8a9d1110
-        childIds:
-        - 6dba3bfd-f40c-4c0e-82d5-c50ad1b68d87
-        - 06d9601e-0390-477c-8671-bd78a854e288
-      - name: "\xBFNADA SUCIO?"
-        id: 557fa9ff-9f50-444a-950b-37234e8856ac
-        position: {x: 900, y: 600}
-        node:
-          rid: 90097363322404894
-        references:
-        - fieldName: Action
-          value:
-            rid: 90097388269600938
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 1024d223-5c7d-4702-8156-22419ccc3bd4
-        childIds: []
-      - name: 
-        id: b99d7106-e474-4bcf-a817-ac2e05258e34
-        position: {x: 1200, y: 600}
-        node:
-          rid: 90097363322404895
-        references: []
-        parentIds:
-        - 1024d223-5c7d-4702-8156-22419ccc3bd4
-        childIds:
-        - beed8baa-8b14-4eb3-91fd-4b7fc989f567
-        - 758c7ba5-c47a-47bf-8def-3df904106347
-      - name: 
-        id: 7127c3dc-ecf6-4f7f-9183-34243d057ec5
-        position: {x: -150, y: 800}
-        node:
-          rid: 90097363322404896
-        references: []
-        parentIds:
-        - e5de1575-95a8-483c-b37b-ee0ef3062913
-        childIds:
-        - 93bec3c7-ca89-4bf4-929f-6ee50182ce5e
-        - cc3a8795-10f6-40fc-9a59-b08aef3edc84
-      - name: AVANZAR A ASEOS
-        id: 3579dd21-cf97-4d56-86a0-74cf06b73694
-        position: {x: 150, y: 800}
-        node:
-          rid: 90097363322404897
-        references:
-        - fieldName: Action
-          value:
-            rid: 90097388269600931
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - e5de1575-95a8-483c-b37b-ee0ef3062913
-        childIds: []
-      - name: 
-        id: 6dba3bfd-f40c-4c0e-82d5-c50ad1b68d87
-        position: {x: 450, y: 800}
-        node:
-          rid: 90097363322404898
-        references: []
-        parentIds:
-        - 559d1e34-d18b-4ce1-9b4e-4ed128f8bf9c
-        childIds:
-        - 89669680-b1f3-4f74-b1b4-1fce363c2d95
-        - 1972bf93-d050-4451-a549-c4920b204cb5
-      - name: AVANZAR A SUPERFICIE
-        id: 06d9601e-0390-477c-8671-bd78a854e288
-        position: {x: 750, y: 800}
-        node:
-          rid: 90097363322404899
-        references:
-        - fieldName: Action
-          value:
-            rid: 90097388269600935
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 559d1e34-d18b-4ce1-9b4e-4ed128f8bf9c
-        childIds: []
-      - name: 
-        id: beed8baa-8b14-4eb3-91fd-4b7fc989f567
-        position: {x: 1050, y: 800}
-        node:
-          rid: 90097363322404900
-        references: []
-        parentIds:
-        - b99d7106-e474-4bcf-a817-ac2e05258e34
-        childIds:
-        - 45d84b42-d261-453a-8439-fecef994c3e4
-        - a61ef2cc-1cfb-43d3-b3ca-3bbd936e6aff
-      - name: AVANZAR A PUNTO DE RUTA
-        id: 758c7ba5-c47a-47bf-8def-3df904106347
-        position: {x: 1350, y: 800}
-        node:
-          rid: 90097363322404901
-        references:
-        - fieldName: Action
-          value:
-            rid: 90097388269600939
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - b99d7106-e474-4bcf-a817-ac2e05258e34
-        childIds: []
-      - name: "\xBFPOSICI\xD3N ALCANZADA?"
-        id: 93bec3c7-ca89-4bf4-929f-6ee50182ce5e
-        position: {x: -300, y: 1000}
-        node:
-          rid: 90097363322404902
-        references:
-        - fieldName: Action
-          value:
-            rid: 90097388269600932
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 7127c3dc-ecf6-4f7f-9183-34243d057ec5
-        childIds: []
-      - name: LIMPIAR ASEOS
-        id: cc3a8795-10f6-40fc-9a59-b08aef3edc84
-        position: {x: 0, y: 1000}
-        node:
-          rid: 90097363322404903
-        references:
-        - fieldName: Action
-          value:
-            rid: 90097388269600933
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 7127c3dc-ecf6-4f7f-9183-34243d057ec5
-        childIds: []
-      - name: "\xBFPOSICICI\xD3N CERCANA ALCANZADA?"
-        id: 89669680-b1f3-4f74-b1b4-1fce363c2d95
-        position: {x: 300, y: 1000}
-        node:
-          rid: 90097363322404904
-        references:
-        - fieldName: Action
-          value:
-            rid: 90097388269600936
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 6dba3bfd-f40c-4c0e-82d5-c50ad1b68d87
-        childIds: []
-      - name: LIMPIAR SUPERFICIE
-        id: 1972bf93-d050-4451-a549-c4920b204cb5
-        position: {x: 600, y: 1000}
-        node:
-          rid: 90097363322404905
-        references:
-        - fieldName: Action
-          value:
-            rid: 90097388269600937
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 6dba3bfd-f40c-4c0e-82d5-c50ad1b68d87
-        childIds: []
-      - name: "\xBFHA LLEGADO AL DESTINO?"
-        id: 45d84b42-d261-453a-8439-fecef994c3e4
-        position: {x: 900, y: 1000}
-        node:
-          rid: 90097363322404906
-        references:
-        - fieldName: Action
-          value:
-            rid: 90097388269600940
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - beed8baa-8b14-4eb3-91fd-4b7fc989f567
-        childIds: []
-      - name: REPETIR RUTA DE PATRULLA
-        id: a61ef2cc-1cfb-43d3-b3ca-3bbd936e6aff
-        position: {x: 1200, y: 1000}
-        node:
-          rid: 90097363322404907
-        references:
-        - fieldName: Action
-          value:
-            rid: 90097388269600941
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - beed8baa-8b14-4eb3-91fd-4b7fc989f567
-        childIds: []
-    pushPerceptions: []
-  aseosPos: {fileID: 0}
-  superficies: []
-  puntosRuta: []
-  references:
-    version: 2
-    RefIds:
-    - rid: 90097363322404884
-      type: {class: BehaviourTree, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 90097363322404885
-      type: {class: LoopNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data:
-        Iterations: -1
-    - rid: 90097363322404886
-      type: {class: SelectorNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data:
-        IsRandomized: 0
-    - rid: 90097363322404887
-      type: {class: SequencerNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data:
-        IsRandomized: 0
-    - rid: 90097363322404888
-      type: {class: SequencerNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data:
-        IsRandomized: 0
-    - rid: 90097363322404889
-      type: {class: SequencerNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data:
-        IsRandomized: 0
-    - rid: 90097363322404890
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 90097363322404891
-      type: {class: SelectorNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data:
-        IsRandomized: 0
-    - rid: 90097363322404892
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 90097363322404893
-      type: {class: SelectorNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data:
-        IsRandomized: 0
-    - rid: 90097363322404894
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 90097363322404895
-      type: {class: SelectorNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data:
-        IsRandomized: 0
-    - rid: 90097363322404896
-      type: {class: SequencerNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data:
-        IsRandomized: 0
-    - rid: 90097363322404897
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 90097363322404898
-      type: {class: SequencerNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data:
-        IsRandomized: 0
-    - rid: 90097363322404899
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 90097363322404900
-      type: {class: SequencerNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data:
-        IsRandomized: 0
-    - rid: 90097363322404901
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 90097363322404902
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 90097363322404903
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 90097363322404904
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 90097363322404905
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 90097363322404906
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 90097363322404907
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 90097388269600930
-      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
-      data:
-        start:
-          componentName: 
-          methodName: AseosSucios
-        update:
-          componentName: 
-          methodName: 
-        stop:
-          componentName: 
-          methodName: 
-        pause:
-          componentName: 
-          methodName: 
-        unpause:
-          componentName: 
-          methodName: 
-    - rid: 90097388269600931
-      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
-      data:
-        start:
-          componentName: 
-          methodName: AvanzarAAseos
-        update:
-          componentName: 
-          methodName: 
-        stop:
-          componentName: 
-          methodName: 
-        pause:
-          componentName: 
-          methodName: 
-        unpause:
-          componentName: 
-          methodName: 
-    - rid: 90097388269600932
-      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
-      data:
-        start:
-          componentName: 
-          methodName: PosicionAlcanzada
-        update:
-          componentName: 
-          methodName: 
-        stop:
-          componentName: 
-          methodName: 
-        pause:
-          componentName: 
-          methodName: 
-        unpause:
-          componentName: 
-          methodName: 
-    - rid: 90097388269600933
-      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
-      data:
-        start:
-          componentName: 
-          methodName: LimpiarAseos
-        update:
-          componentName: 
-          methodName: 
-        stop:
-          componentName: 
-          methodName: 
-        pause:
-          componentName: 
-          methodName: 
-        unpause:
-          componentName: 
-          methodName: 
-    - rid: 90097388269600934
-      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
-      data:
-        start:
-          componentName: 
-          methodName: SuperficieSucia
-        update:
-          componentName: 
-          methodName: 
-        stop:
-          componentName: 
-          methodName: 
-        pause:
-          componentName: 
-          methodName: 
-        unpause:
-          componentName: 
-          methodName: 
-    - rid: 90097388269600935
-      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
-      data:
-        start:
-          componentName: 
-          methodName: AvanzarASuperficie
-        update:
-          componentName: 
-          methodName: 
-        stop:
-          componentName: 
-          methodName: 
-        pause:
-          componentName: 
-          methodName: 
-        unpause:
-          componentName: 
-          methodName: 
-    - rid: 90097388269600936
-      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
-      data:
-        start:
-          componentName: 
-          methodName: PosicionMasCercanaAlcanzada
-        update:
-          componentName: 
-          methodName: 
-        stop:
-          componentName: 
-          methodName: 
-        pause:
-          componentName: 
-          methodName: 
-        unpause:
-          componentName: 
-          methodName: 
-    - rid: 90097388269600937
-      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
-      data:
-        start:
-          componentName: 
-          methodName: LimpiarSuperficie
-        update:
-          componentName: 
-          methodName: 
-        stop:
-          componentName: 
-          methodName: 
-        pause:
-          componentName: 
-          methodName: 
-        unpause:
-          componentName: 
-          methodName: 
-    - rid: 90097388269600938
-      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
-      data:
-        start:
-          componentName: 
-          methodName: NadaSucio
-        update:
-          componentName: 
-          methodName: 
-        stop:
-          componentName: 
-          methodName: 
-        pause:
-          componentName: 
-          methodName: 
-        unpause:
-          componentName: 
-          methodName: 
-    - rid: 90097388269600939
-      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
-      data:
-        start:
-          componentName: 
-          methodName: AvanzarASiguientePuntoDeRuta
-        update:
-          componentName: 
-          methodName: 
-        stop:
-          componentName: 
-          methodName: 
-        pause:
-          componentName: 
-          methodName: 
-        unpause:
-          componentName: 
-          methodName: 
-    - rid: 90097388269600940
-      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
-      data:
-        start:
-          componentName: 
-          methodName: HaLlegadoAlDestino
-        update:
-          componentName: 
-          methodName: 
-        stop:
-          componentName: 
-          methodName: 
-        pause:
-          componentName: 
-          methodName: 
-        unpause:
-          componentName: 
-          methodName: 
-    - rid: 90097388269600941
-      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
-      data:
-        start:
-          componentName: 
-          methodName: RepetirRutaDePatrulla
-        update:
-          componentName: 
-          methodName: 
-        stop:
-          componentName: 
-          methodName: 
-        pause:
-          componentName: 
-          methodName: 
-        unpause:
-          componentName: 
-          methodName: 
 --- !u!195 &9220417957603831634
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -820,6 +202,379 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &2463974634285924113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2753711945148426859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c1acd1403dbdda4f93907ff92dc657f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  executeOnLoop: 1
+  interruptOptions: 0
+  _eventHandler:
+    debugStatusChanges: 0
+    identifier: 
+  data:
+    graphs:
+    - name: newbehaviourgraph
+      id: dca266ca-4131-4b34-94c8-ab053fc8e29d
+      graph:
+        rid: 90097496608735335
+      nodes:
+      - name: DIVAGANDO
+        id: 9fc86b07-cc28-4814-b6d8-4df3ef31ad99
+        position: {x: 503.87827, y: -98.269104}
+        node:
+          rid: 90097496608735336
+        references:
+        - fieldName: Action
+          value:
+            rid: 90097496608735359
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - 145d9f15-d9bd-4ff8-8eee-4c18be2f7874
+        - 5e5f82d9-bba4-4151-8aea-63f61d88fa63
+        childIds:
+        - f204eb85-4301-4e9c-ab17-be9e50f9e1e4
+      - name: AVANZA A ESCONDITE
+        id: 6072908e-1f90-4f3d-9068-40411077ba83
+        position: {x: 900.22797, y: 826.46185}
+        node:
+          rid: 90097496608735337
+        references:
+        - fieldName: Action
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - 58951c63-d635-4b40-a1db-b88efdef6ec1
+        childIds:
+        - 30c18a9b-bfb0-4888-ba12-ae1c0e53794b
+      - name: ESCONDIDO
+        id: 840796fa-bec6-4ca0-863c-639471eac1e9
+        position: {x: 234.26997, y: 632.28345}
+        node:
+          rid: 90097496608735338
+        references:
+        - fieldName: Action
+          value:
+            rid: 90097496608735363
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - 30c18a9b-bfb0-4888-ba12-ae1c0e53794b
+        childIds:
+        - 5e5f82d9-bba4-4151-8aea-63f61d88fa63
+      - name: SIENDO ACARICIADO
+        id: fd5b92e3-8cb6-4831-9cad-d55270f1d655
+        position: {x: 1063.2715, y: 64.6736}
+        node:
+          rid: 90097496608735339
+        references:
+        - fieldName: Action
+          value:
+            rid: 90097496608735360
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - f204eb85-4301-4e9c-ab17-be9e50f9e1e4
+        childIds:
+        - 145d9f15-d9bd-4ff8-8eee-4c18be2f7874
+        - 58951c63-d635-4b40-a1db-b88efdef6ec1
+      - name: CLIENTE ACARICIA
+        id: f204eb85-4301-4e9c-ab17-be9e50f9e1e4
+        position: {x: 794.70593, y: -57.948}
+        node:
+          rid: 90097496608735340
+        references:
+        - fieldName: Perception
+          value:
+            rid: 90097496608735358
+          fieldType: BehaviourAPI.Core.Perceptions.Perception, BehaviourAPI.Core,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        - fieldName: Action
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - 9fc86b07-cc28-4814-b6d8-4df3ef31ad99
+        childIds:
+        - fd5b92e3-8cb6-4831-9cad-d55270f1d655
+      - name: PACIENCIA AGOTADA
+        id: 58951c63-d635-4b40-a1db-b88efdef6ec1
+        position: {x: 1118.0463, y: 488.72363}
+        node:
+          rid: 90097496608735341
+        references:
+        - fieldName: Perception
+          value:
+            rid: 90097496608735361
+          fieldType: BehaviourAPI.Core.Perceptions.Perception, BehaviourAPI.Core,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        - fieldName: Action
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - fd5b92e3-8cb6-4831-9cad-d55270f1d655
+        childIds:
+        - 6072908e-1f90-4f3d-9068-40411077ba83
+      - name: TIEMPO ESCONDIDO FINALIZADO
+        id: 5e5f82d9-bba4-4151-8aea-63f61d88fa63
+        position: {x: 230.78824, y: 230.26755}
+        node:
+          rid: 90097496608735342
+        references:
+        - fieldName: Perception
+          value:
+            rid: 90097496608735365
+          fieldType: BehaviourAPI.Core.Perceptions.Perception, BehaviourAPI.Core,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        - fieldName: Action
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - 840796fa-bec6-4ca0-863c-639471eac1e9
+        childIds:
+        - 9fc86b07-cc28-4814-b6d8-4df3ef31ad99
+      - name: ESTA EN ESCONDITE
+        id: 30c18a9b-bfb0-4888-ba12-ae1c0e53794b
+        position: {x: 520.88074, y: 889.68176}
+        node:
+          rid: 90097496608735343
+        references:
+        - fieldName: Perception
+          value:
+            rid: 90097496608735364
+          fieldType: BehaviourAPI.Core.Perceptions.Perception, BehaviourAPI.Core,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        - fieldName: Action
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - 6072908e-1f90-4f3d-9068-40411077ba83
+        childIds:
+        - 840796fa-bec6-4ca0-863c-639471eac1e9
+      - name: "INTERACCI\xD3N FINALIZADA"
+        id: 145d9f15-d9bd-4ff8-8eee-4c18be2f7874
+        position: {x: 855.5512, y: -264.84012}
+        node:
+          rid: 90097496608735344
+        references:
+        - fieldName: Perception
+          value:
+            rid: 90097496608735357
+          fieldType: BehaviourAPI.Core.Perceptions.Perception, BehaviourAPI.Core,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        - fieldName: Action
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - fd5b92e3-8cb6-4831-9cad-d55270f1d655
+        childIds:
+        - 9fc86b07-cc28-4814-b6d8-4df3ef31ad99
+    pushPerceptions: []
+  puntosDivagar: []
+  esconditePos: {fileID: 0}
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 90097496608735335
+      type: {class: FSM, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
+      data: 
+    - rid: 90097496608735336
+      type: {class: State, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
+      data: 
+    - rid: 90097496608735337
+      type: {class: State, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
+      data: 
+    - rid: 90097496608735338
+      type: {class: State, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
+      data: 
+    - rid: 90097496608735339
+      type: {class: State, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
+      data: 
+    - rid: 90097496608735340
+      type: {class: StateTransition, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
+      data:
+        StatusFlags: 0
+    - rid: 90097496608735341
+      type: {class: StateTransition, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
+      data:
+        StatusFlags: 0
+    - rid: 90097496608735342
+      type: {class: StateTransition, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
+      data:
+        StatusFlags: 0
+    - rid: 90097496608735343
+      type: {class: StateTransition, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
+      data:
+        StatusFlags: 0
+    - rid: 90097496608735344
+      type: {class: StateTransition, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
+      data:
+        StatusFlags: 0
+    - rid: 90097496608735357
+      type: {class: CustomPerception, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        init:
+          componentName: 
+          methodName: 
+        check:
+          componentName: 
+          methodName: InteraccionFinalizada
+        reset:
+          componentName: 
+          methodName: 
+        pause:
+          componentName: 
+          methodName: 
+        unpause:
+          componentName: 
+          methodName: 
+    - rid: 90097496608735358
+      type: {class: CustomPerception, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        init:
+          componentName: 
+          methodName: 
+        check:
+          componentName: 
+          methodName: ClienteAcaricia
+        reset:
+          componentName: 
+          methodName: 
+        pause:
+          componentName: 
+          methodName: 
+        unpause:
+          componentName: 
+          methodName: 
+    - rid: 90097496608735359
+      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        start:
+          componentName: 
+          methodName: 
+        update:
+          componentName: 
+          methodName: Divagando
+        stop:
+          componentName: 
+          methodName: 
+        pause:
+          componentName: 
+          methodName: 
+        unpause:
+          componentName: 
+          methodName: 
+    - rid: 90097496608735360
+      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        start:
+          componentName: 
+          methodName: 
+        update:
+          componentName: 
+          methodName: SiendoAcariciado
+        stop:
+          componentName: 
+          methodName: 
+        pause:
+          componentName: 
+          methodName: 
+        unpause:
+          componentName: 
+          methodName: 
+    - rid: 90097496608735361
+      type: {class: CustomPerception, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        init:
+          componentName: 
+          methodName: 
+        check:
+          componentName: 
+          methodName: PacienciaAgotada
+        reset:
+          componentName: 
+          methodName: 
+        pause:
+          componentName: 
+          methodName: 
+        unpause:
+          componentName: 
+          methodName: 
+    - rid: 90097496608735363
+      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        start:
+          componentName: 
+          methodName: 
+        update:
+          componentName: 
+          methodName: Escondido
+        stop:
+          componentName: 
+          methodName: 
+        pause:
+          componentName: 
+          methodName: 
+        unpause:
+          componentName: 
+          methodName: 
+    - rid: 90097496608735364
+      type: {class: CustomPerception, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        init:
+          componentName: 
+          methodName: 
+        check:
+          componentName: 
+          methodName: EstaEnEscondite
+        reset:
+          componentName: 
+          methodName: 
+        pause:
+          componentName: 
+          methodName: 
+        unpause:
+          componentName: 
+          methodName: 
+    - rid: 90097496608735365
+      type: {class: CustomPerception, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        init:
+          componentName: 
+          methodName: 
+        check:
+          componentName: 
+          methodName: TiempoEscondidoFinalizado
+        reset:
+          componentName: 
+          methodName: 
+        pause:
+          componentName: 
+          methodName: 
+        unpause:
+          componentName: 
+          methodName: 
 --- !u!1 &3063709687755922950
 GameObject:
   m_ObjectHideFlags: 0
@@ -976,9 +731,9 @@ Transform:
   m_GameObject: {fileID: 6161853161829984843}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: -0.5, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7518710689930535423}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1013,7 +768,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 16e19346f57fa2849bab4e5743b4470f, type: 2}
+  - {fileID: 2100000, guid: 2b53efece65e0b1469b3715f7d8485b1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
