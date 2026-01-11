@@ -172,7 +172,7 @@ MonoBehaviour:
     identifier: 
   data:
     graphs:
-    - name: newbehaviourgraph
+    - name: CustomerController
       id: d6a0a788-9f8c-44c4-b108-e28c63c97add
       graph:
         rid: 697659541331902529
@@ -246,7 +246,7 @@ MonoBehaviour:
         references:
         - fieldName: Action
           value:
-            rid: 90097388269600846
+            rid: 90097537310261363
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
@@ -1502,24 +1502,6 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 90097388269600846
-      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
-      data:
-        start:
-          componentName: 
-          methodName: AcabaDeEntrar
-        update:
-          componentName: 
-          methodName: 
-        stop:
-          componentName: 
-          methodName: 
-        pause:
-          componentName: 
-          methodName: 
-        unpause:
-          componentName: 
-          methodName: 
     - rid: 90097388269600847
       type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
       data:
@@ -2732,6 +2714,24 @@ MonoBehaviour:
         start:
           componentName: 
           methodName: Irse
+        update:
+          componentName: 
+          methodName: 
+        stop:
+          componentName: 
+          methodName: 
+        pause:
+          componentName: 
+          methodName: 
+        unpause:
+          componentName: 
+          methodName: 
+    - rid: 90097537310261363
+      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        start:
+          componentName: 
+          methodName: AcabaDeEntrar
         update:
           componentName: 
           methodName: 
