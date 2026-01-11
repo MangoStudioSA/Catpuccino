@@ -5,21 +5,14 @@ using UnityEngine.AI;
 
 public class CatController : EditorBehaviourRunner
 {
-    NavMeshAgent agent;
+    public NavMeshAgent agent;
 
     public Transform[] puntosDivagar;
     public Transform esconditePos;
 
-    [System.NonSerialized] public bool acariciado;
+    [System.NonSerialized] public bool acariciado = false;
     [System.NonSerialized] public bool divagando;
-    [System.NonSerialized] public float paciencia;
-
-    void Start()
-    {
-        agent = GetComponent<NavMeshAgent>();
-        acariciado = false;
-        paciencia = 100;
-    }
+    [System.NonSerialized] public float paciencia = 100;
 
     public void Divagando()
     {
@@ -51,7 +44,7 @@ public class CatController : EditorBehaviourRunner
         return acariciado;
     }
 
-    public bool InteraccionFinaliza()
+    public bool InteraccionFinalizada()
     {
         return !acariciado;
     }
