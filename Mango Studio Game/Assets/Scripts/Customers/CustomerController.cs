@@ -10,12 +10,11 @@ public class CustomerController : EditorBehaviourRunner
     public float speed = 5f;
     public Vector3 direction = Vector3.forward;
     public bool atCounter = false, atQueue = false;
-    public CustomerManager manager;
+    CustomerManager manager;
     public int model = 0;
     public Animator anim;
 
 
-    public NavMeshAgent agent;
     bool acabaDeEntrar = true;
     bool haIdoAlBanyo = false;
     bool haAcariciadoGato = false;
@@ -26,6 +25,7 @@ public class CustomerController : EditorBehaviourRunner
     bool impatient;
     float paciencia = 100;
     int asientoIdx;
+    public int queueIndex;
     ManagerController gerente;
     CleanerController cleaner;
     CatController gato;
@@ -35,48 +35,97 @@ public class CustomerController : EditorBehaviourRunner
     Transform cola;
     Transform asientoOcupado;
 
+    //void Update()
+    //{
+    //    //if (leavingCounter >= 10)
+    //    //{
+    //    //    Destroy(this.gameObject);
+    //    //}
 
-    void Start()
+    //    //if (!leaving)
+    //    //{
+    //    //    if (!atCounter && !atQueue)
+    //    //    {
+    //    //        transform.Translate(direction.normalized * speed * Time.deltaTime);
+    //    //        anim.SetBool("Idle", false);
+    //    //    }
+    //    //    else
+    //    //    {
+    //    //        anim.SetBool("Idle", true);
+    //    //    }
+    //    //}
+    //    //else
+    //    //{
+    //    //    transform.Translate(direction.normalized * speed * Time.deltaTime);
+    //    //    leavingCounter += Time.deltaTime;
+    //    //}
+
+    //    //if (!atCounter && manager.customers.Count > 0 && manager.customers.Peek() == this)
+    //    //{
+    //    //    atQueue = false;
+    //    //}
+
+    //    if (impatient)
+    //    {
+    //        paciencia -= Time.deltaTime * 2;
+    //    }
+    //    else
+    //    {
+    //        paciencia -= Time.deltaTime;
+    //    }
+    //}
+
+    // Funcion que comprueba si el cliente ha llegado al mostrador
+    private void OnCollisionEnter(Collision other)
     {
-        Debug.Log("Spawned");
-        manager = GameObject.FindWithTag("CustomerManager").GetComponent<CustomerManager>();
-        manager.customers.Enqueue(this);
-        model = Random.Range(0, (int)transform.childCount); // Se accede al prefab de los distintos sprites y fbx de clientes
-        //transform.GetChild(model).gameObject.SetActive(true);
+        if (other.gameObject.CompareTag("CustomerManager"))
+        {
+            atCounter = true;
 
-        anim = transform.GetChild(model).GetChild(0).GetComponent<Animator>();
+            if (!haIdoAlBanyo || (haIdoAlBanyo && haUsadoBanyo))
+            {
+                manager.orderButton.SetActive(true);
+                manager.orderingCustomer = this.gameObject;
+            }
+
+            CoffeeGameManager coffeManager = FindFirstObjectByType<CoffeeGameManager>();
+            if (coffeManager != null)
+            {
+                coffeManager.MostrarCliente(model);
+            }
+        }
+        else if (other.gameObject.CompareTag("Customer") && other.gameObject.transform.position.z > transform.position.z)
+        {
+            atQueue = true;
+        }
     }
 
-    void Update()
+    // Funcion que comprueba si el cliente se ha ido del mostrador
+    private void OnCollisionExit(Collision other)
     {
-        //if (leavingCounter >= 10)
-        //{
-        //    Destroy(this.gameObject);
-        //}
+        if (other.gameObject.CompareTag("CustomerManager"))
+        {
+            atCounter = false;
 
-        //if (!leaving)
-        //{
-        //    if (!atCounter && !atQueue)
-        //    {
-        //        transform.Translate(direction.normalized * speed * Time.deltaTime);
-        //        anim.SetBool("Idle", false);
-        //    }
-        //    else
-        //    {
-        //        anim.SetBool("Idle", true);
-        //    }
-        //}
-        //else
-        //{
-        //    transform.Translate(direction.normalized * speed * Time.deltaTime);
-        //    leavingCounter += Time.deltaTime;
-        //}
+            if (haPedido)
+            {
+                manager.orderingCustomer = null;
+            }
 
-        if (!atCounter && manager.customers.Count > 0 && manager.customers.Peek() == this)
+            CoffeeGameManager coffeManager = FindFirstObjectByType<CoffeeGameManager>();
+            if (coffeManager != null)
+            {
+                coffeManager.MostrarCliente(-1);
+            }
+        }
+        else if (other.gameObject.CompareTag("Customer") && other.gameObject.transform.position.z > transform.position.z)
         {
             atQueue = false;
         }
+    }
 
+    public Status AcabaDeEntrar()
+    {
         if (impatient)
         {
             paciencia -= Time.deltaTime * 2;
@@ -85,56 +134,18 @@ public class CustomerController : EditorBehaviourRunner
         {
             paciencia -= Time.deltaTime;
         }
-    }
 
-    // Funcion que comprueba si el cliente ha llegado al mostrador
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "CustomerManager")
-        {
-            manager.orderButton.SetActive(true);
-            atCounter = true;
-            manager.orderingCustomer = this.gameObject;
-
-            CoffeeGameManager coffeManager = FindFirstObjectByType<CoffeeGameManager>();
-            if (coffeManager != null)
-            {
-                coffeManager.MostrarCliente(model);
-            }
-        }
-        else if (other.CompareTag("Customer"))
-        {
-            atQueue = true;
-        }
-    }
-
-    // Funcion que comprueba si el cliente se ha ido del mostrador
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "CustomerManager")
-        {
-            atCounter = false;
-            manager.orderingCustomer = null;
-
-            CoffeeGameManager coffeManager = FindFirstObjectByType<CoffeeGameManager>();
-            if (coffeManager != null)
-            {
-                coffeManager.MostrarCliente(-1);
-            }
-        }
-        else if (other.CompareTag("Customer"))
-        {
-            atQueue = false;
-        }
-    }
-
-    public Status AcabaDeEntrar()
-    {
         if (acabaDeEntrar)
         {
+            manager = GameObject.FindWithTag("CustomerManager").GetComponent<CustomerManager>();
+            manager.customers.Enqueue(this);
+            queueIndex = manager.customers.Count - 1;
+            model = Random.Range(0, (int)transform.childCount);
+
+            anim = transform.GetChild(model).GetChild(0).GetComponent<Animator>();
+
             impatient = Random.Range(0, 100) < 50;
 
-            agent = GetComponent<NavMeshAgent>();
             gerente = FindFirstObjectByType<ManagerController>();
             cleaner = FindFirstObjectByType<CleanerController>();
             gato = FindFirstObjectByType<CatController>();
@@ -151,6 +162,15 @@ public class CustomerController : EditorBehaviourRunner
 
     public Status ColaMostradorLlena()
     {
+        if (impatient)
+        {
+            paciencia -= Time.deltaTime * 2;
+        }
+        else
+        {
+            paciencia -= Time.deltaTime;
+        }
+
         if (manager.clients > manager.maxClients)
         {
             return Status.Success;
@@ -161,53 +181,81 @@ public class CustomerController : EditorBehaviourRunner
 
     public Status BuscarGerente()
     {
+        if (impatient)
+        {
+            paciencia -= Time.deltaTime * 2;
+        }
+        else
+        {
+            paciencia -= Time.deltaTime;
+        }
+
         if (atCounter && manager.orderingCustomer == this.gameObject)
         {
             manager.orderButton.SetActive(false);
             manager.orderingCustomer = null;
         }
 
-        if (!gerente.hayClienteFrustrado)
-        {
-            agent.SetDestination(gerente.transform.position);
-            return Status.Success;
-        }
-
-        return Status.Failure;
+        gerente.hayClienteFrustrado = true;
+        return Status.Success;
     }
 
     public Status AvanzarAGerente()
     {
-        if (Vector3.Distance(transform.position, gerente.transform.position) < 0.5)
+        if (impatient)
         {
-            return Status.Success;
+            paciencia -= Time.deltaTime * 2;
+        }
+        else
+        {
+            paciencia -= Time.deltaTime;
         }
 
-        return Status.Running;
+        transform.position = new Vector3(gerente.transform.position.x - 1, transform.position.y, gerente.transform.position.z - 1);
+        return Status.Success;
     }
 
     public Status Quejarse()
     {
+        if (impatient)
+        {
+            paciencia -= Time.deltaTime * 2;
+        }
+        else
+        {
+            paciencia -= Time.deltaTime;
+        }
+
+        gerente.hayClienteFrustrado = false;
         return Status.Success;
     }
 
     public Status AvanzarASalida()
     {
-        if (agent.isStopped)
+        if (impatient)
         {
-            agent.SetDestination(salidaPos.position);
+            paciencia -= Time.deltaTime * 2;
+        }
+        else
+        {
+            paciencia -= Time.deltaTime;
         }
 
-        if (Vector3.Distance(transform.position, salidaPos.position) < 0.5)
-        {
-            return Status.Success;
-        }
-
-        return Status.Running;
+        transform.position = new Vector3(salidaPos.position.x, transform.position.y, salidaPos.position.z);
+        return Status.Success;
     }
 
     public Status Irse()
     {
+        if (impatient)
+        {
+            paciencia -= Time.deltaTime * 2;
+        }
+        else
+        {
+            paciencia -= Time.deltaTime;
+        }
+
         if (haIdoAlBanyo && !haUsadoBanyo)
         {
             manager.clientsBathroom -= 1;
@@ -220,16 +268,33 @@ public class CustomerController : EditorBehaviourRunner
 
     public Status NecesidadDeBanyo()
     {
-        if (!haIdoAlBanyo && !atCounter)
+        if (impatient)
         {
-            haIdoAlBanyo = Random.Range(0, 100) < 10;
+            paciencia -= Time.deltaTime * 2;
+        }
+        else
+        {
+            paciencia -= Time.deltaTime;
+        }
 
-            if (haIdoAlBanyo)
+        if (atCounter && (!haIdoAlBanyo || (haIdoAlBanyo && haUsadoBanyo)))
+        {
+            return Status.Failure;
+        }
+
+        if (!haIdoAlBanyo)
+        {
+            if (Random.Range(0, 100) < 1)
             {
+                haIdoAlBanyo = true;
                 manager.clientsBathroom += 1;
-                transform.position = colaBanyo.position;
-                return Status.Success;
+                transform.position = new Vector3(colaBanyo.position.x, transform.position.y, colaBanyo.position.z);
             }
+        }
+
+        if (haIdoAlBanyo && !haUsadoBanyo)
+        {
+            return Status.Success;
         }
 
         return Status.Failure;
@@ -237,17 +302,44 @@ public class CustomerController : EditorBehaviourRunner
 
     public Status PausarTareaActual()
     {
+        if (impatient)
+        {
+            paciencia -= Time.deltaTime * 2;
+        }
+        else
+        {
+            paciencia -= Time.deltaTime;
+        }
+
         return Status.Success;
     }
 
     public Status ResetearPaciencia()
     {
+        if (impatient)
+        {
+            paciencia -= Time.deltaTime * 2;
+        }
+        else
+        {
+            paciencia -= Time.deltaTime;
+        }
+
         paciencia = 100;
         return Status.Success;
     }
 
     public Status AvanzarAColaBanyo()
     {
+        if (impatient)
+        {
+            paciencia -= Time.deltaTime * 2;
+        }
+        else
+        {
+            paciencia -= Time.deltaTime;
+        }
+
         if (atQueue || atCounter)
         {
             return Status.Success;
@@ -259,6 +351,15 @@ public class CustomerController : EditorBehaviourRunner
 
     public Status BanyoMantenimiento()
     {
+        if (impatient)
+        {
+            paciencia -= Time.deltaTime * 2;
+        }
+        else
+        {
+            paciencia -= Time.deltaTime;
+        }
+
         if (gerente.aseosAveriados)
         {
             return Status.Success;
@@ -269,6 +370,15 @@ public class CustomerController : EditorBehaviourRunner
 
     public Status ColaBanyoLlena()
     {
+        if (impatient)
+        {
+            paciencia -= Time.deltaTime * 2;
+        }
+        else
+        {
+            paciencia -= Time.deltaTime;
+        }
+
         if (manager.clientsBathroom > manager.maxClientsBathroom)
         {
             return Status.Success;
@@ -279,11 +389,29 @@ public class CustomerController : EditorBehaviourRunner
 
     public Status ReanudarTarea()
     {
+        if (impatient)
+        {
+            paciencia -= Time.deltaTime * 2;
+        }
+        else
+        {
+            paciencia -= Time.deltaTime;
+        }
+
         return Status.Success;
     }
 
     public Status EstaEnCola()
     {
+        if (impatient)
+        {
+            paciencia -= Time.deltaTime * 2;
+        }
+        else
+        {
+            paciencia -= Time.deltaTime;
+        }
+
         if (atQueue || atCounter)
         {
             return Status.Success;
@@ -294,6 +422,15 @@ public class CustomerController : EditorBehaviourRunner
 
     public Status Paciencia0()
     {
+        if (impatient)
+        {
+            paciencia -= Time.deltaTime * 2;
+        }
+        else
+        {
+            paciencia -= Time.deltaTime;
+        }
+
         if (paciencia <= 0)
         {
             return Status.Success;
@@ -304,27 +441,45 @@ public class CustomerController : EditorBehaviourRunner
 
     public Status EsMiTurno()
     {
+        if (impatient)
+        {
+            paciencia -= Time.deltaTime * 2;
+        }
+        else
+        {
+            paciencia -= Time.deltaTime;
+        }
+
         if (atCounter)
         {
             return Status.Success;
         }
         
-        return Status.Success;
+        return Status.Failure;
     }
 
     public Status UsarBanyo()
     {
-        if (Random.Range(0, 100) < 5)
+        if (impatient)
+        {
+            paciencia -= Time.deltaTime * 2;
+        }
+        else
+        {
+            paciencia -= Time.deltaTime;
+        }
+
+        if (Random.Range(0, 100) < 20)
         {
             gerente.aseosAveriados = true;
         }
 
-        if (Random.Range(0, 100) < 10)
+        if (Random.Range(0, 100) < 33)
         {
             cleaner.aseosSucios = true;
         }
 
-        transform.position = cola.position;
+        transform.position = new Vector3(cola.position.x, transform.position.y, cola.position.z);
         haUsadoBanyo = true;
         manager.clientsBathroom -= 1;
         return Status.Success;
@@ -332,11 +487,29 @@ public class CustomerController : EditorBehaviourRunner
 
     public Status Esperar()
     {
+        if (impatient)
+        {
+            paciencia -= Time.deltaTime * 2;
+        }
+        else
+        {
+            paciencia -= Time.deltaTime;
+        }
+
         return Status.Success;
     }
 
     public Status GatoEnRango()
     {
+        if (impatient)
+        {
+            paciencia -= Time.deltaTime * 2;
+        }
+        else
+        {
+            paciencia -= Time.deltaTime;
+        }
+
         if (gato.divagando && !gato.acariciado)
         {
             return Status.Success;
@@ -347,9 +520,18 @@ public class CustomerController : EditorBehaviourRunner
 
     public Status NecesidadDeAcariciar()
     {
-        if (!haAcariciadoGato && !atCounter)
+        if (impatient)
         {
-            haAcariciadoGato = Random.Range(0, 100) < 10;
+            paciencia -= Time.deltaTime * 2;
+        }
+        else
+        {
+            paciencia -= Time.deltaTime;
+        }
+
+        if (!haAcariciadoGato)
+        {
+            haAcariciadoGato = Random.Range(0, 100) < 1;
 
             if (haAcariciadoGato)
             {
@@ -363,14 +545,34 @@ public class CustomerController : EditorBehaviourRunner
 
     public Status AcariciarGato()
     {
+        if (impatient)
+        {
+            paciencia -= Time.deltaTime * 2;
+        }
+        else
+        {
+            paciencia -= Time.deltaTime;
+        }
+
         gato.acariciado = false;
         return Status.Success;
     }
 
     public Status PedidoRecibido()
     {
+        if (impatient)
+        {
+            paciencia -= Time.deltaTime * 2;
+        }
+        else
+        {
+            paciencia -= Time.deltaTime;
+        }
+
         if (pedidoRecibido)
         {
+            manager.orderButton.SetActive(false);
+            manager.orderingCustomer = null;
             return Status.Success;
         }
 
@@ -379,6 +581,15 @@ public class CustomerController : EditorBehaviourRunner
 
     public Status TipoPedidoLlevar()
     {
+        if (impatient)
+        {
+            paciencia -= Time.deltaTime * 2;
+        }
+        else
+        {
+            paciencia -= Time.deltaTime;
+        }
+
         if (pedidoLlevar)
         {
             return Status.Success;
@@ -389,6 +600,15 @@ public class CustomerController : EditorBehaviourRunner
 
     public Status TipoPedidoTomar()
     {
+        if (impatient)
+        {
+            paciencia -= Time.deltaTime * 2;
+        }
+        else
+        {
+            paciencia -= Time.deltaTime;
+        }
+
         if (!pedidoLlevar)
         {
             return Status.Success;
@@ -399,6 +619,15 @@ public class CustomerController : EditorBehaviourRunner
 
     public Status BuscarAsiento()
     {
+        if (impatient)
+        {
+            paciencia -= Time.deltaTime * 2;
+        }
+        else
+        {
+            paciencia -= Time.deltaTime;
+        }
+
         for (int i = 0; i < manager.asientos.Length; i++)
         {
             if (!manager.asientosOcupados[i])
@@ -406,30 +635,53 @@ public class CustomerController : EditorBehaviourRunner
                 asientoOcupado = manager.asientos[i];
                 manager.asientosOcupados[i] = true;
                 asientoIdx = i;
-                agent.SetDestination(asientoOcupado.position);
+                return Status.Success;
             }
         }
 
-        return Status.Success;
+        return Status.Failure;
     }
 
     public Status AvanzarAAsiento()
     {
-        if (Vector3.Distance(transform.position, asientoOcupado.position) < 0.5)
+        if (impatient)
         {
-            return Status.Success;
+            paciencia -= Time.deltaTime * 2;
+        }
+        else
+        {
+            paciencia -= Time.deltaTime;
         }
 
-        return Status.Running;
+        transform.position = new Vector3(asientoOcupado.position.x, transform.position.y, asientoOcupado.position.z);
+        return Status.Success;
     }
 
     public Status ConsumirPedido()
     {
+        if (impatient)
+        {
+            paciencia -= Time.deltaTime * 2;
+        }
+        else
+        {
+            paciencia -= Time.deltaTime;
+        }
+
         return Status.Success;
     }
 
     public Status LiberarAsiento()
     {
+        if (impatient)
+        {
+            paciencia -= Time.deltaTime * 2;
+        }
+        else
+        {
+            paciencia -= Time.deltaTime;
+        }
+
         asientoOcupado = null;
         manager.asientosOcupados[asientoIdx] = false;
         return Status.Success;
@@ -437,6 +689,15 @@ public class CustomerController : EditorBehaviourRunner
 
     public Status HaPedido()
     {
+        if (impatient)
+        {
+            paciencia -= Time.deltaTime * 2;
+        }
+        else
+        {
+            paciencia -= Time.deltaTime;
+        }
+
         if (haPedido)
         {
             return Status.Success;
@@ -447,18 +708,50 @@ public class CustomerController : EditorBehaviourRunner
 
     public Status EsperarEnMostrador()
     {
+        if (impatient)
+        {
+            paciencia -= Time.deltaTime * 2;
+        }
+        else
+        {
+            paciencia -= Time.deltaTime;
+        }
+
         return Status.Success;
     }
 
     public Status PedirYPagar()
     {
+        if (impatient)
+        {
+            paciencia -= Time.deltaTime * 2;
+        }
+        else
+        {
+            paciencia -= Time.deltaTime;
+        }
+
         haPedido = true;
         return Status.Success;
     }
 
     public Status AvanzarAColaMostrador()
     {
+        if (impatient)
+        {
+            paciencia -= Time.deltaTime * 2;
+        }
+        else
+        {
+            paciencia -= Time.deltaTime;
+        }
+
+        if (atCounter || atQueue)
+        {
+            return Status.Success;
+        }
+
         transform.Translate(direction.normalized * speed * Time.deltaTime);
-        return Status.Success;
+        return Status.Running;
     }
 }

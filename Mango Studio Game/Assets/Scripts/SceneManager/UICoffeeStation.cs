@@ -30,6 +30,8 @@ public class UICoffeeStation : MonoBehaviour
         }
         bakeryPanel.SetActive(false);   
         recipesPanel.SetActive(false);
+
+        manager = FindFirstObjectByType<CustomerManager>();
     }
 
     // Mostrar panel de recetas

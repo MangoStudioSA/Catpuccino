@@ -1887,7 +1887,7 @@ GameObject:
   - component: {fileID: 46485139}
   m_Layer: 0
   m_Name: Escondite
-  m_TagString: Salida
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4353,6 +4353,7 @@ GameObject:
   - component: {fileID: 94516045}
   - component: {fileID: 94516044}
   - component: {fileID: 94516046}
+  - component: {fileID: 94516047}
   m_Layer: 0
   m_Name: CustomerManager
   m_TagString: CustomerManager
@@ -4425,12 +4426,33 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &94516047
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 94516043}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: -2.17, y: 0.11, z: -1.6}
 --- !u!1 &95415474
 GameObject:
   m_ObjectHideFlags: 0
@@ -18996,7 +19018,7 @@ GameObject:
   - component: {fileID: 446336903}
   m_Layer: 0
   m_Name: Aseos
-  m_TagString: AseosCola
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32846,6 +32868,17 @@ RectTransform:
   m_AnchoredPosition: {x: -235, y: -135.5}
   m_SizeDelta: {x: 111.899994, y: 103.9}
   m_Pivot: {x: 0.5, y: 0}
+--- !u!114 &886383914 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5351860986151089318, guid: 70b9a5a1f7cca474eae4e47e8020db3c, type: 3}
+  m_PrefabInstance: {fileID: 1375897343}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12cadccb7d38ccd4cb0bdf1aea87ba58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &893382637
 GameObject:
   m_ObjectHideFlags: 0
@@ -69602,6 +69635,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Technician
       objectReference: {fileID: 0}
+    - target: {fileID: 5220193592214517808, guid: a4b0441b75afb124bb0847db6682e53b, type: 3}
+      propertyPath: manager
+      value: 
+      objectReference: {fileID: 886383914}
     - target: {fileID: 5220193592214517808, guid: a4b0441b75afb124bb0847db6682e53b, type: 3}
       propertyPath: aseosPos
       value: 

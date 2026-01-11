@@ -17,6 +17,7 @@ public class CatController : EditorBehaviourRunner
     public Status Divagando()
     {
         divagando = true;
+        agent.isStopped = false;
 
         if (!agent.pathPending && agent.remainingDistance < 0.5f)
         {
@@ -31,13 +32,18 @@ public class CatController : EditorBehaviourRunner
 
     public Status SiendoAcariciado()
     {
+        agent.isStopped = true;
+        agent.velocity = Vector3.zero;
+
         divagando = false;
-        paciencia = Mathf.Max(paciencia - Time.deltaTime * 2, 0);
+        paciencia = Mathf.Max(paciencia - Time.deltaTime * 40, 0);
+        Debug.Log(paciencia);
         return Status.Running;
     }
 
     public Status AvanzaAEscondite()
     {
+        agent.isStopped = false;
         agent.SetDestination(esconditePos.position);
         return Status.Running;
     }

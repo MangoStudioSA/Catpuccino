@@ -46,7 +46,6 @@ GameObject:
   - component: {fileID: 6711653460611295843}
   - component: {fileID: 7046728267881875669}
   - component: {fileID: 4231839258988541092}
-  - component: {fileID: 408031940437152781}
   m_Layer: 0
   m_Name: Client
   m_TagString: Customer
@@ -145,7 +144,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -168,7 +167,7 @@ MonoBehaviour:
   executeOnLoop: 1
   interruptOptions: 0
   _eventHandler:
-    debugStatusChanges: 1
+    debugStatusChanges: 0
     identifier: 
   data:
     graphs:
@@ -179,7 +178,7 @@ MonoBehaviour:
       nodes:
       - name: 
         id: 3535c517-3f66-4842-9dba-a7799b9d6bc0
-        position: {x: 3815.625, y: 0}
+        position: {x: 3900, y: 0}
         node:
           rid: 697659541331902532
         references: []
@@ -188,7 +187,7 @@ MonoBehaviour:
         - d7ffcdf3-e345-4c7b-925a-90b1a61750fd
       - name: 
         id: d7ffcdf3-e345-4c7b-925a-90b1a61750fd
-        position: {x: 3815.625, y: 200}
+        position: {x: 3900, y: 200}
         node:
           rid: 697659541331902533
         references: []
@@ -227,7 +226,7 @@ MonoBehaviour:
         - e4be1b63-c5f8-4cfc-8401-c2ad0f684a63
       - name: 
         id: 3ea1763b-7578-4530-a8be-439597f19e03
-        position: {x: 3637.5, y: 400}
+        position: {x: 4106.25, y: 400}
         node:
           rid: 697659541331902537
         references: []
@@ -236,7 +235,7 @@ MonoBehaviour:
         childIds:
         - e3e94e05-045a-4823-ac73-99d12a9a61ab
         - b4908d28-f7df-45ab-bb53-abecd47ec31a
-        - 51021442-8721-471f-b519-d1c8fdd63bee
+        - 5faf7b05-4d75-40b8-9a62-426ca5f36b1f
         - 8c65d4c4-3531-4842-bacf-90592a742cb7
       - name: "\xBFACABA DE ENTRAR?"
         id: 29881668-d804-4cbf-b065-d7a6b4282c2e
@@ -277,7 +276,7 @@ MonoBehaviour:
         childIds:
         - 1c0f4b32-aa92-4cb8-ac88-9bea9084d1c2
         - 7dfc78e3-ff54-41b7-9209-f685ccfa611f
-        - a88b8a54-f683-4f7c-ba0e-262c465e79d0
+        - e859aaa0-730d-45fe-8382-2a33ffe0faff
         - d39d66b5-543a-42f5-9dd9-62e00aeb7be3
         - 9bce270a-ed21-4aec-9506-853905538b87
       - name: BUSCAR GERENTE
@@ -310,7 +309,7 @@ MonoBehaviour:
         childIds: []
       - name: QUEJARSE
         id: a88b8a54-f683-4f7c-ba0e-262c465e79d0
-        position: {x: 150, y: 800}
+        position: {x: 150, y: 1000}
         node:
           rid: 697659541331902544
         references:
@@ -320,7 +319,7 @@ MonoBehaviour:
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
-        - 2b09dc3c-4181-408c-b796-6647eddb3ac4
+        - e859aaa0-730d-45fe-8382-2a33ffe0faff
         childIds: []
       - name: AVANZAR A SALIDA
         id: d39d66b5-543a-42f5-9dd9-62e00aeb7be3
@@ -515,7 +514,7 @@ MonoBehaviour:
         childIds:
         - 860f7df5-35b3-4d11-b7a4-ca289f252ebf
         - 75107ad4-76c7-4fb5-aa6b-9a3317a0a00a
-        - 74b01f41-b757-4c9f-971a-99edb4352ae5
+        - 01515045-b6bb-47b9-9fff-70dd4001e1d2
         - f320157c-3e10-4f2e-995a-37ebc8b51e6c
         - e20e89ab-0791-4047-b73e-e0523a38485f
       - name: 
@@ -529,7 +528,7 @@ MonoBehaviour:
         childIds:
         - 1aae4eff-0bcf-41f2-acdb-7a619dbe155a
         - d7c0bc41-5b7d-47e6-8136-7c3687ecc1b0
-        - 59b1ada1-0d0b-421d-ac05-94378d29ce83
+        - ceb9ee7f-6c8c-435a-801e-b4a747357bc9
         - 48d3cf0f-d0b0-4c60-a832-834e2ad7d86a
         - f196c694-14a7-40ba-affe-efe04a89c37d
       - name: BUSCAR GERENTE
@@ -562,7 +561,7 @@ MonoBehaviour:
         childIds: []
       - name: QUEJARSE
         id: 59b1ada1-0d0b-421d-ac05-94378d29ce83
-        position: {x: 1500, y: 1200}
+        position: {x: 1500, y: 1400}
         node:
           rid: 697659541331902563
         references:
@@ -572,7 +571,7 @@ MonoBehaviour:
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
-        - 821cfc1f-75e4-4ae8-81a3-ce9540cd8645
+        - ceb9ee7f-6c8c-435a-801e-b4a747357bc9
         childIds: []
       - name: AVANZAR A SALIDA
         id: 48d3cf0f-d0b0-4c60-a832-834e2ad7d86a
@@ -632,7 +631,7 @@ MonoBehaviour:
         childIds: []
       - name: QUEJARSE
         id: 74b01f41-b757-4c9f-971a-99edb4352ae5
-        position: {x: 3000, y: 1200}
+        position: {x: 4200, y: 0}
         node:
           rid: 697659541331902568
         references:
@@ -641,8 +640,7 @@ MonoBehaviour:
             rid: 90097388269600868
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 7876f6a1-372c-4262-a954-755bbe25f9a3
+        parentIds: []
         childIds: []
       - name: AVANZAR A SALIDA
         id: f320157c-3e10-4f2e-995a-37ebc8b51e6c
@@ -710,7 +708,7 @@ MonoBehaviour:
         - d0a0468e-ee1f-430c-8b2a-aa09387d74d5
         - 07fa3bd7-b12e-407d-b505-aded23ba7988
         - 8e1d6dba-703d-4f25-b312-8a3b2de7f9be
-        - 86ebcab1-c638-4fe0-86d9-13748ffc5f44
+        - afbd3a0d-2cc7-4852-8fd4-8b4310c40f5c
         - 3609154d-bec5-4f05-9156-d975105b5642
         - 6f74075d-280c-4ae8-800e-a34e491d8006
       - name: 
@@ -782,7 +780,7 @@ MonoBehaviour:
         childIds: []
       - name: QUEJARSE
         id: 86ebcab1-c638-4fe0-86d9-13748ffc5f44
-        position: {x: 4050, y: 1600}
+        position: {x: 4050, y: 1800}
         node:
           rid: 697659541331902579
         references:
@@ -792,7 +790,7 @@ MonoBehaviour:
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
-        - c4bb77dc-3054-48fc-a6a3-e10478ba62d9
+        - afbd3a0d-2cc7-4852-8fd4-8b4310c40f5c
         childIds: []
       - name: AVANZAR A SALIDA
         id: 3609154d-bec5-4f05-9156-d975105b5642
@@ -880,7 +878,7 @@ MonoBehaviour:
         childIds: []
       - name: ACARICIAR GATO
         id: 51021442-8721-471f-b519-d1c8fdd63bee
-        position: {x: 3787.5, y: 600}
+        position: {x: 4725, y: 800}
         node:
           rid: 697659541331902586
         references:
@@ -890,11 +888,11 @@ MonoBehaviour:
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
-        - 3ea1763b-7578-4530-a8be-439597f19e03
+        - 5faf7b05-4d75-40b8-9a62-426ca5f36b1f
         childIds: []
       - name: REANUDAR TAREA
         id: 8c65d4c4-3531-4842-bacf-90592a742cb7
-        position: {x: 4104, y: 616}
+        position: {x: 5025, y: 600}
         node:
           rid: 697659541331902587
         references:
@@ -908,7 +906,7 @@ MonoBehaviour:
         childIds: []
       - name: 
         id: 4748162a-2ab1-4bbf-a3e2-16ef96f5d3de
-        position: {x: 5362.5, y: 600}
+        position: {x: 5625, y: 600}
         node:
           rid: 697659541331902588
         references: []
@@ -919,7 +917,7 @@ MonoBehaviour:
         - 4ec3e1ce-44f8-4120-beb5-a6cd4cf791b9
       - name: 
         id: 689c321b-ec73-499c-bd6f-6adc2341eeaf
-        position: {x: 7575, y: 600}
+        position: {x: 7650, y: 600}
         node:
           rid: 697659541331902589
         references: []
@@ -931,7 +929,7 @@ MonoBehaviour:
         - 43d175ee-a368-41ba-9aa9-d3151d88555a
       - name: 
         id: 3b756beb-1d75-451f-a1a5-f608079210cb
-        position: {x: 10200, y: 600}
+        position: {x: 10275, y: 600}
         node:
           rid: 697659541331902590
         references: []
@@ -942,7 +940,7 @@ MonoBehaviour:
         - e0782f70-fbdd-41c0-97c6-b79bdbffbe31
       - name: AVANZAR A COLA MOSTRADOR
         id: 6065efdf-321f-4e72-94ad-623995a41d8e
-        position: {x: 10500, y: 600}
+        position: {x: 10575, y: 600}
         node:
           rid: 697659541331902591
         references:
@@ -956,7 +954,7 @@ MonoBehaviour:
         childIds: []
       - name: "\xBFPEDIDO RECIBIDO?"
         id: 4b509647-fc9e-4827-a1cf-49c39e53055d
-        position: {x: 4725, y: 800}
+        position: {x: 5175, y: 800}
         node:
           rid: 697659541331902592
         references:
@@ -970,7 +968,7 @@ MonoBehaviour:
         childIds: []
       - name: 
         id: 4ec3e1ce-44f8-4120-beb5-a6cd4cf791b9
-        position: {x: 6000, y: 800}
+        position: {x: 6075, y: 800}
         node:
           rid: 697659541331902594
         references: []
@@ -981,7 +979,7 @@ MonoBehaviour:
         - 0637d2b1-af19-4ea2-9b47-20e1b1e1d6df
       - name: 
         id: 0967c460-f5ad-4cab-b267-3afea3aee6e0
-        position: {x: 5250, y: 1000}
+        position: {x: 5325, y: 1000}
         node:
           rid: 697659541331902595
         references: []
@@ -993,7 +991,7 @@ MonoBehaviour:
         - c329c0cc-4956-42eb-b01a-b006773925ca
       - name: 
         id: 0637d2b1-af19-4ea2-9b47-20e1b1e1d6df
-        position: {x: 6750, y: 1000}
+        position: {x: 6825, y: 1000}
         node:
           rid: 697659541331902596
         references: []
@@ -1003,13 +1001,13 @@ MonoBehaviour:
         - b71d8074-6261-4b22-8bba-397822fe5fd4
         - c6a0db58-098d-451f-a527-a89cd78c2d1d
         - 33955ccc-f796-4148-8298-8c71a6c4888b
-        - b4c2d8b4-55f0-40f0-8bd5-17946321061d
+        - 7e3851ad-2f69-4d18-8fac-c5cfe29d8a63
         - 379106d4-fff4-43d5-a515-4739360639ee
         - 898fd2e7-e101-46a6-a341-8c778323b4c3
-        - b81a944e-09c2-41a8-8498-eaf0bcdcbf6f
+        - b7fd4123-2edc-4f84-a438-621b9bc6e38c
       - name: "\xBFTIPOPEDIDO == LLEVAR?"
         id: 1ebeb014-d54a-4843-a1e2-6d73f139babc
-        position: {x: 4950, y: 1200}
+        position: {x: 5025, y: 1200}
         node:
           rid: 697659541331902597
         references:
@@ -1023,7 +1021,7 @@ MonoBehaviour:
         childIds: []
       - name: AVANZAR A SALIDA
         id: a09f2092-78b5-4839-8343-1a49efb49fc0
-        position: {x: 5250, y: 1200}
+        position: {x: 5325, y: 1200}
         node:
           rid: 697659541331902598
         references:
@@ -1037,7 +1035,7 @@ MonoBehaviour:
         childIds: []
       - name: IRSE
         id: c329c0cc-4956-42eb-b01a-b006773925ca
-        position: {x: 5568, y: 1216}
+        position: {x: 5625, y: 1200}
         node:
           rid: 697659541331902599
         references:
@@ -1051,7 +1049,7 @@ MonoBehaviour:
         childIds: []
       - name: "\xBFTIPOPEDIDO == TOMAR?"
         id: b71d8074-6261-4b22-8bba-397822fe5fd4
-        position: {x: 5850, y: 1200}
+        position: {x: 5925, y: 1200}
         node:
           rid: 697659541331902600
         references:
@@ -1065,7 +1063,7 @@ MonoBehaviour:
         childIds: []
       - name: BUSCAR ASIENTO
         id: c6a0db58-098d-451f-a527-a89cd78c2d1d
-        position: {x: 6150, y: 1200}
+        position: {x: 6225, y: 1200}
         node:
           rid: 697659541331902601
         references:
@@ -1079,7 +1077,7 @@ MonoBehaviour:
         childIds: []
       - name: AVANZAR A ASIENTO
         id: 33955ccc-f796-4148-8298-8c71a6c4888b
-        position: {x: 6450, y: 1200}
+        position: {x: 6525, y: 1200}
         node:
           rid: 697659541331902602
         references:
@@ -1093,7 +1091,7 @@ MonoBehaviour:
         childIds: []
       - name: CONSUMIR PEDIDO
         id: b4c2d8b4-55f0-40f0-8bd5-17946321061d
-        position: {x: 6750, y: 1200}
+        position: {x: 6825, y: 1400}
         node:
           rid: 697659541331902603
         references:
@@ -1103,11 +1101,11 @@ MonoBehaviour:
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
-        - 0637d2b1-af19-4ea2-9b47-20e1b1e1d6df
+        - 7e3851ad-2f69-4d18-8fac-c5cfe29d8a63
         childIds: []
       - name: LIBERAR ASIENTO
         id: 379106d4-fff4-43d5-a515-4739360639ee
-        position: {x: 7064, y: 1216}
+        position: {x: 7125, y: 1200}
         node:
           rid: 697659541331902604
         references:
@@ -1121,7 +1119,7 @@ MonoBehaviour:
         childIds: []
       - name: AVANZAR A SALIDA
         id: 898fd2e7-e101-46a6-a341-8c778323b4c3
-        position: {x: 7350, y: 1200}
+        position: {x: 7425, y: 1200}
         node:
           rid: 697659541331902605
         references:
@@ -1135,7 +1133,7 @@ MonoBehaviour:
         childIds: []
       - name: IRSE
         id: b81a944e-09c2-41a8-8498-eaf0bcdcbf6f
-        position: {x: 7650, y: 1200}
+        position: {x: 4500, y: 0}
         node:
           rid: 697659541331902606
         references:
@@ -1144,12 +1142,11 @@ MonoBehaviour:
             rid: 90097388269600896
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 0637d2b1-af19-4ea2-9b47-20e1b1e1d6df
+        parentIds: []
         childIds: []
       - name: 
         id: 26c3a9d8-0730-49dd-85cd-6ac55a74c36f
-        position: {x: 7931.25, y: 400}
+        position: {x: 8100, y: 400}
         node:
           rid: 697659541331902607
         references: []
@@ -1162,7 +1159,7 @@ MonoBehaviour:
         - 6065efdf-321f-4e72-94ad-623995a41d8e
       - name: "\xBFHA PEDIDO?"
         id: b045e0b2-6fa7-4e2e-8a0e-41fabf0e14a1
-        position: {x: 6300, y: 800}
+        position: {x: 6375, y: 800}
         node:
           rid: 697659541331902608
         references:
@@ -1176,7 +1173,7 @@ MonoBehaviour:
         childIds: []
       - name: ESPERAR EN MOSTRADOR
         id: 190182e0-2529-46f5-b692-aa7dffc7cab1
-        position: {x: 6600, y: 800}
+        position: {x: 6675, y: 800}
         node:
           rid: 697659541331902610
         references:
@@ -1190,7 +1187,7 @@ MonoBehaviour:
         childIds: []
       - name: 
         id: 43d175ee-a368-41ba-9aa9-d3151d88555a
-        position: {x: 8850, y: 800}
+        position: {x: 8925, y: 800}
         node:
           rid: 697659541331902612
         references: []
@@ -1201,7 +1198,7 @@ MonoBehaviour:
         - c6fb4815-9895-4137-941b-b07fd40192b1
       - name: 
         id: fb077b2c-8d48-4892-afa7-3e2400713431
-        position: {x: 8700, y: 1000}
+        position: {x: 8775, y: 1000}
         node:
           rid: 697659541331902613
         references: []
@@ -1211,12 +1208,12 @@ MonoBehaviour:
         - 0c63a39a-16bd-4253-9758-eaaf367aa127
         - 32344b65-a5af-47d0-929d-0aaa276abc2d
         - de092729-bca6-4596-87fb-e76e3b316f24
-        - 102fff2b-9006-4ee7-86d1-1bb5e1e68802
+        - 75f7b949-8871-49be-9785-12ec2d3cf3da
         - 0169bca3-1cb9-4f1c-a131-9cebb36fffb1
         - 8f94fa0d-4e5d-46f6-90df-74d5111533db
       - name: ESPERAR
         id: c6fb4815-9895-4137-941b-b07fd40192b1
-        position: {x: 9000, y: 1000}
+        position: {x: 9075, y: 1000}
         node:
           rid: 697659541331902615
         references:
@@ -1230,7 +1227,7 @@ MonoBehaviour:
         childIds: []
       - name: "\xBFPACIENCIA == 0'?"
         id: 0c63a39a-16bd-4253-9758-eaaf367aa127
-        position: {x: 7950, y: 1200}
+        position: {x: 8025, y: 1200}
         node:
           rid: 697659541331902619
         references:
@@ -1244,7 +1241,7 @@ MonoBehaviour:
         childIds: []
       - name: BUSCAR GERENTE
         id: 32344b65-a5af-47d0-929d-0aaa276abc2d
-        position: {x: 8250, y: 1200}
+        position: {x: 8325, y: 1200}
         node:
           rid: 697659541331902621
         references:
@@ -1258,7 +1255,7 @@ MonoBehaviour:
         childIds: []
       - name: QUEJARSE
         id: 102fff2b-9006-4ee7-86d1-1bb5e1e68802
-        position: {x: 8850, y: 1200}
+        position: {x: 8925, y: 1400}
         node:
           rid: 697659541331902622
         references:
@@ -1268,11 +1265,11 @@ MonoBehaviour:
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
-        - fb077b2c-8d48-4892-afa7-3e2400713431
+        - 75f7b949-8871-49be-9785-12ec2d3cf3da
         childIds: []
       - name: AVANZAR A GERENTE
         id: de092729-bca6-4596-87fb-e76e3b316f24
-        position: {x: 8550, y: 1200}
+        position: {x: 8625, y: 1200}
         node:
           rid: 697659541331902623
         references:
@@ -1286,7 +1283,7 @@ MonoBehaviour:
         childIds: []
       - name: IRSE
         id: 8f94fa0d-4e5d-46f6-90df-74d5111533db
-        position: {x: 9450, y: 1200}
+        position: {x: 9525, y: 1200}
         node:
           rid: 697659541331902624
         references:
@@ -1300,7 +1297,7 @@ MonoBehaviour:
         childIds: []
       - name: AVANZAR A SALIDA
         id: 0169bca3-1cb9-4f1c-a131-9cebb36fffb1
-        position: {x: 9150, y: 1200}
+        position: {x: 9225, y: 1200}
         node:
           rid: 697659541331902625
         references:
@@ -1314,7 +1311,7 @@ MonoBehaviour:
         childIds: []
       - name: "\xBFEST\xC1 EN COLA?"
         id: 3504ec41-1cb2-44be-9b06-2732d9c46bd7
-        position: {x: 9150, y: 800}
+        position: {x: 9225, y: 800}
         node:
           rid: 697659541331902626
         references:
@@ -1328,7 +1325,7 @@ MonoBehaviour:
         childIds: []
       - name: 
         id: e0782f70-fbdd-41c0-97c6-b79bdbffbe31
-        position: {x: 11250, y: 800}
+        position: {x: 11325, y: 800}
         node:
           rid: 697659541331902628
         references: []
@@ -1340,7 +1337,7 @@ MonoBehaviour:
         - b29e93c8-01bd-4127-aecb-4ab74d146136
       - name: 
         id: 81a3b2d1-bb55-4ae7-8e48-4a3747fed2ea
-        position: {x: 10500, y: 1000}
+        position: {x: 10575, y: 1000}
         node:
           rid: 697659541331902629
         references: []
@@ -1350,12 +1347,12 @@ MonoBehaviour:
         - 6ebb118e-cfeb-4c99-96b3-0f44491ad734
         - d26c4777-1cdc-4f86-8ecd-869c432895e1
         - 58fbf6d2-fb40-421d-8c2c-d05c182ac23e
-        - 149aea85-df4d-4fc8-89b9-395b342976f4
+        - 36f1e7cf-00cb-45fc-97db-5aebf63834ca
         - 4ce92452-b89a-4b72-aac7-d2cf67574a1b
         - fdd28141-60e2-44da-ab33-f4c1c386da74
       - name: 
         id: 9c9d9207-a06d-41f4-bebe-ee39088035a0
-        position: {x: 11700, y: 1000}
+        position: {x: 11775, y: 1000}
         node:
           rid: 697659541331902630
         references: []
@@ -1366,7 +1363,7 @@ MonoBehaviour:
         - 081c1083-b63b-4da2-bff4-437e37416691
       - name: ESPERAR
         id: b29e93c8-01bd-4127-aecb-4ab74d146136
-        position: {x: 12000, y: 1000}
+        position: {x: 12075, y: 1000}
         node:
           rid: 697659541331902631
         references:
@@ -1380,7 +1377,7 @@ MonoBehaviour:
         childIds: []
       - name: "\xBFES MI TURNO?"
         id: 7a65aa0d-c6e8-42a4-bf58-1d20fe24e143
-        position: {x: 11550, y: 1200}
+        position: {x: 11625, y: 1200}
         node:
           rid: 697659541331902632
         references:
@@ -1394,7 +1391,7 @@ MonoBehaviour:
         childIds: []
       - name: PEDIR Y PAGAR
         id: 081c1083-b63b-4da2-bff4-437e37416691
-        position: {x: 11850, y: 1200}
+        position: {x: 11925, y: 1200}
         node:
           rid: 697659541331902633
         references:
@@ -1408,7 +1405,7 @@ MonoBehaviour:
         childIds: []
       - name: "\xBFPACIENCIA == 0?"
         id: 6ebb118e-cfeb-4c99-96b3-0f44491ad734
-        position: {x: 9750, y: 1200}
+        position: {x: 9825, y: 1200}
         node:
           rid: 697659541331902634
         references:
@@ -1422,7 +1419,7 @@ MonoBehaviour:
         childIds: []
       - name: BUSCAR GERENTE
         id: d26c4777-1cdc-4f86-8ecd-869c432895e1
-        position: {x: 10050, y: 1200}
+        position: {x: 10125, y: 1200}
         node:
           rid: 697659541331902635
         references:
@@ -1436,7 +1433,7 @@ MonoBehaviour:
         childIds: []
       - name: QUEJARSE
         id: 149aea85-df4d-4fc8-89b9-395b342976f4
-        position: {x: 10650, y: 1200}
+        position: {x: 10725, y: 1400}
         node:
           rid: 697659541331902636
         references:
@@ -1446,11 +1443,11 @@ MonoBehaviour:
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
-        - 81a3b2d1-bb55-4ae7-8e48-4a3747fed2ea
+        - 36f1e7cf-00cb-45fc-97db-5aebf63834ca
         childIds: []
       - name: AVANZAR A GERENTE
         id: 58fbf6d2-fb40-421d-8c2c-d05c182ac23e
-        position: {x: 10350, y: 1200}
+        position: {x: 10425, y: 1200}
         node:
           rid: 697659541331902637
         references:
@@ -1464,7 +1461,7 @@ MonoBehaviour:
         childIds: []
       - name: AVANZAR A SALIDA
         id: 4ce92452-b89a-4b72-aac7-d2cf67574a1b
-        position: {x: 10950, y: 1200}
+        position: {x: 11025, y: 1200}
         node:
           rid: 697659541331902638
         references:
@@ -1478,7 +1475,7 @@ MonoBehaviour:
         childIds: []
       - name: IRSE
         id: fdd28141-60e2-44da-ab33-f4c1c386da74
-        position: {x: 11250, y: 1200}
+        position: {x: 11325, y: 1200}
         node:
           rid: 697659541331902639
         references:
@@ -1490,15 +1487,122 @@ MonoBehaviour:
         parentIds:
         - 81a3b2d1-bb55-4ae7-8e48-4a3747fed2ea
         childIds: []
+      - name: 
+        id: ceb9ee7f-6c8c-435a-801e-b4a747357bc9
+        position: {x: 1500, y: 1200}
+        node:
+          rid: 90097537310261612
+        references: []
+        parentIds:
+        - 821cfc1f-75e4-4ae8-81a3-ce9540cd8645
+        childIds:
+        - 59b1ada1-0d0b-421d-ac05-94378d29ce83
+      - name: 
+        id: e859aaa0-730d-45fe-8382-2a33ffe0faff
+        position: {x: 150, y: 800}
+        node:
+          rid: 90097537310261613
+        references: []
+        parentIds:
+        - 2b09dc3c-4181-408c-b796-6647eddb3ac4
+        childIds:
+        - a88b8a54-f683-4f7c-ba0e-262c465e79d0
+      - name: 
+        id: 5faf7b05-4d75-40b8-9a62-426ca5f36b1f
+        position: {x: 4725, y: 600}
+        node:
+          rid: 90097537310261615
+        references: []
+        parentIds:
+        - 3ea1763b-7578-4530-a8be-439597f19e03
+        childIds:
+        - 51021442-8721-471f-b519-d1c8fdd63bee
+      - name: 
+        id: 01515045-b6bb-47b9-9fff-70dd4001e1d2
+        position: {x: 3000, y: 1200}
+        node:
+          rid: 90097537310261616
+        references: []
+        parentIds:
+        - 7876f6a1-372c-4262-a954-755bbe25f9a3
+        childIds:
+        - ed097712-4fd0-405d-8c36-e8c4ca5b6b88
+      - name: QUEJARSE
+        id: ed097712-4fd0-405d-8c36-e8c4ca5b6b88
+        position: {x: 3000, y: 1400}
+        node:
+          rid: 90097537310261617
+        references:
+        - fieldName: Action
+          value:
+            rid: 90097537310261618
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - 01515045-b6bb-47b9-9fff-70dd4001e1d2
+        childIds: []
+      - name: 
+        id: afbd3a0d-2cc7-4852-8fd4-8b4310c40f5c
+        position: {x: 4050, y: 1600}
+        node:
+          rid: 90097537310261619
+        references: []
+        parentIds:
+        - c4bb77dc-3054-48fc-a6a3-e10478ba62d9
+        childIds:
+        - 86ebcab1-c638-4fe0-86d9-13748ffc5f44
+      - name: 
+        id: 7e3851ad-2f69-4d18-8fac-c5cfe29d8a63
+        position: {x: 6825, y: 1200}
+        node:
+          rid: 90097537310261620
+        references: []
+        parentIds:
+        - 0637d2b1-af19-4ea2-9b47-20e1b1e1d6df
+        childIds:
+        - b4c2d8b4-55f0-40f0-8bd5-17946321061d
+      - name: 
+        id: 75f7b949-8871-49be-9785-12ec2d3cf3da
+        position: {x: 8925, y: 1200}
+        node:
+          rid: 90097537310261621
+        references: []
+        parentIds:
+        - fb077b2c-8d48-4892-afa7-3e2400713431
+        childIds:
+        - 102fff2b-9006-4ee7-86d1-1bb5e1e68802
+      - name: 
+        id: 36f1e7cf-00cb-45fc-97db-5aebf63834ca
+        position: {x: 10725, y: 1200}
+        node:
+          rid: 90097537310261622
+        references: []
+        parentIds:
+        - 81a3b2d1-bb55-4ae7-8e48-4a3747fed2ea
+        childIds:
+        - 149aea85-df4d-4fc8-89b9-395b342976f4
+      - name: IRSE
+        id: b7fd4123-2edc-4f84-a438-621b9bc6e38c
+        position: {x: 7725, y: 1200}
+        node:
+          rid: 90097537310261694
+        references:
+        - fieldName: Action
+          value:
+            rid: 90097537310261695
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - 0637d2b1-af19-4ea2-9b47-20e1b1e1d6df
+        childIds: []
     pushPerceptions: []
   speed: 0.75
   direction: {x: -1, y: 0, z: 0}
   atCounter: 0
   atQueue: 0
-  manager: {fileID: 0}
   model: 0
   anim: {fileID: 0}
-  agent: {fileID: 408031940437152781}
+  queueIndex: 0
   references:
     version: 2
     RefIds:
@@ -2744,6 +2848,80 @@ MonoBehaviour:
         unpause:
           componentName: 
           methodName: 
+    - rid: 90097537310261612
+      type: {class: TimerDecoratorNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data:
+        Time: 2
+    - rid: 90097537310261613
+      type: {class: TimerDecoratorNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data:
+        Time: 2
+    - rid: 90097537310261615
+      type: {class: TimerDecoratorNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data:
+        Time: 2
+    - rid: 90097537310261616
+      type: {class: TimerDecoratorNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data:
+        Time: 2
+    - rid: 90097537310261617
+      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data: 
+    - rid: 90097537310261618
+      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        start:
+          componentName: 
+          methodName: 
+        update:
+          componentName: 
+          methodName: Quejarse
+        stop:
+          componentName: 
+          methodName: 
+        pause:
+          componentName: 
+          methodName: 
+        unpause:
+          componentName: 
+          methodName: 
+    - rid: 90097537310261619
+      type: {class: TimerDecoratorNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data:
+        Time: 2
+    - rid: 90097537310261620
+      type: {class: TimerDecoratorNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data:
+        Time: 2
+    - rid: 90097537310261621
+      type: {class: TimerDecoratorNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data:
+        Time: 2
+    - rid: 90097537310261622
+      type: {class: TimerDecoratorNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data:
+        Time: 2
+    - rid: 90097537310261694
+      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
+      data: 
+    - rid: 90097537310261695
+      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        start:
+          componentName: 
+          methodName: 
+        update:
+          componentName: 
+          methodName: Irse
+        stop:
+          componentName: 
+          methodName: 
+        pause:
+          componentName: 
+          methodName: 
+        unpause:
+          componentName: 
+          methodName: 
     - rid: 697659541331902529
       type: {class: BehaviourTree, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data: 
@@ -3093,28 +3271,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!195 &408031940437152781
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2753711945148426859}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.25
-  m_Speed: 1
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0.2
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 0.5
-  m_BaseOffset: 1
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!1 &3063709687755922950
 GameObject:
   m_ObjectHideFlags: 0

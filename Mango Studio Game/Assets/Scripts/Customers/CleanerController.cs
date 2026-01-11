@@ -34,7 +34,7 @@ public class CleanerController : EditorBehaviourRunner
 
     public Status PosicionAlcanzada()
     {
-        if (Vector3.Distance(transform.position, aseosPos.position) < 0.5)
+        if (Vector3.Distance(transform.position, aseosPos.position) < 0.75)
         {
             return Status.Success;
         }
@@ -44,6 +44,7 @@ public class CleanerController : EditorBehaviourRunner
 
     public Status LimpiarAseos()
     {
+        aseosSucios = false;
         return Status.Success;
     }
 
@@ -59,7 +60,7 @@ public class CleanerController : EditorBehaviourRunner
             }
         }
 
-        if (Random.Range(0, 100) < 10 && superficieSucia == null)
+        if (Random.Range(0, 100) < 1 && superficieSucia == null)
         {
             int idx = Random.Range(0, superficies.Length);
             superficies[idx].gameObject.SetActive(true);
@@ -82,7 +83,7 @@ public class CleanerController : EditorBehaviourRunner
 
     public Status PosicionMasCercanaAlcanzada()
     {
-        if (Vector3.Distance(transform.position, superficieSucia.transform.position) < 0.5)
+        if (Vector3.Distance(transform.position, superficieSucia.transform.position) < 0.75)
         {
             return Status.Success;
         }
@@ -109,7 +110,7 @@ public class CleanerController : EditorBehaviourRunner
 
     public Status HaLlegadoAlDestino()
     {
-        if (Vector3.Distance(transform.position, puntosRuta[iRuta].position) < 0.5)
+        if (Vector3.Distance(transform.position, puntosRuta[iRuta].position) < 0.75)
         {
             return Status.Success;
         }

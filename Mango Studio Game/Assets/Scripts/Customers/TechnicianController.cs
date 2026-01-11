@@ -12,6 +12,8 @@ public class TechnicianController : EditorBehaviourRunner
     public Transform aseosPos;
     public Transform salidaPos;
 
+    public ManagerController manager;
+
     [System.NonSerialized] public bool tieneTarea = false;
     [System.NonSerialized] public bool reparacionCompleta = false;
 
@@ -82,6 +84,7 @@ public class TechnicianController : EditorBehaviourRunner
     public Status InformarReparacion()
     {
         reparacionCompleta = true;
+        manager.aseosAveriados = false;
         return Status.Success;
     }
 
