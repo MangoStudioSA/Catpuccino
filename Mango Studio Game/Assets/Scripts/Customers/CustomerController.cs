@@ -13,7 +13,6 @@ public class CustomerController : EditorBehaviourRunner
     public CustomerManager manager;
     public int model = 0;
     public bool leaving = false;
-    float leavingCounter = 0;
 
     public Animator anim;
 
@@ -38,8 +37,9 @@ public class CustomerController : EditorBehaviourRunner
     Transform asientoOcupado;
 
 
-    void Awake()
+    void Start()
     {
+        Debug.Log("Spawned");
         manager = GameObject.FindWithTag("CustomerManager").GetComponent<CustomerManager>();
         manager.customers.Enqueue(this);
         model = Random.Range(0, (int)transform.childCount); // Se accede al prefab de los distintos sprites y fbx de clientes
@@ -60,7 +60,6 @@ public class CustomerController : EditorBehaviourRunner
         gerente = FindFirstObjectByType<ManagerController>();
         gato = FindFirstObjectByType<CatController>();
         salidaPos = GameObject.FindWithTag("Salida").transform;
-        aseosPos = GameObject.FindWithTag("Aseos").transform;
         colaBanyo = GameObject.FindWithTag("AseosCola").transform;
         cola = GameObject.FindWithTag("Cola").transform;
     }
@@ -175,8 +174,13 @@ public class CustomerController : EditorBehaviourRunner
             manager.orderingCustomer = null;
         }
 
-        agent.SetDestination(gerente.transform.position);
-        return Status.Success;
+        if (!gerente.hayClienteFrustrado)
+        {
+            agent.SetDestination(gerente.transform.position);
+            return Status.Success;
+        }
+
+        return Status.Failure;
     }
 
     public Status AvanzarAGerente()

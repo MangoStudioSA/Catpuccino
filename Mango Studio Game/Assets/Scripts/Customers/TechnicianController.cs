@@ -15,7 +15,7 @@ public class TechnicianController : EditorBehaviourRunner
     [System.NonSerialized] public bool tieneTarea;
     [System.NonSerialized] public bool reparacionCompleta;
 
-    private void Awake()
+    private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         model.SetActive(false);

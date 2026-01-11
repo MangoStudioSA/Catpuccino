@@ -17,6 +17,9 @@ TagManager:
   - return
   - accept
   - message
+  - Salida
+  - Cola
+  - AseosCola
   layers:
   - Default
   - TransparentFX

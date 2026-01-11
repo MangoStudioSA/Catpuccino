@@ -16,7 +16,7 @@ public class CleanerController : EditorBehaviourRunner
 
     [System.NonSerialized] public bool aseosSucios;
 
-    private void Awake()
+    private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         aseosSucios = false;

@@ -12,7 +12,7 @@ public class ManagerController : EditorBehaviourRunner
     [System.NonSerialized] public bool aseosAveriados;
     [System.NonSerialized] public bool hayClienteFrustrado;
 
-    private void Awake()
+    private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
     }

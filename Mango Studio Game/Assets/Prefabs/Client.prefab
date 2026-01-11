@@ -168,7 +168,7 @@ MonoBehaviour:
   executeOnLoop: 1
   interruptOptions: 0
   _eventHandler:
-    debugStatusChanges: 0
+    debugStatusChanges: 1
     identifier: 
   data:
     graphs:

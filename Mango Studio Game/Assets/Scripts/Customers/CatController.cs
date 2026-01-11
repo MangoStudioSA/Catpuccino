@@ -14,7 +14,7 @@ public class CatController : EditorBehaviourRunner
     [System.NonSerialized] public bool divagando;
     [System.NonSerialized] public float paciencia;
 
-    void Awake()
+    void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         acariciado = false;
