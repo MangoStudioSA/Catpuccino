@@ -11,6 +11,7 @@ public class CatController : EditorBehaviourRunner
     public Transform esconditePos;
 
     [System.NonSerialized] public bool acariciado;
+    [System.NonSerialized] public bool divagando;
     [System.NonSerialized] public float paciencia;
 
     void Awake()
@@ -22,6 +23,7 @@ public class CatController : EditorBehaviourRunner
 
     public void Divagando()
     {
+        divagando = true;
         if (agent.isStopped)
         {
             agent.SetDestination(puntosDivagar[Random.Range(0, puntosDivagar.Length)].position);
@@ -30,6 +32,7 @@ public class CatController : EditorBehaviourRunner
 
     public void SiendoAcariciado()
     {
+        divagando = false;
         paciencia = Mathf.Max(paciencia - Time.deltaTime * 2, 0);
     }
 

@@ -39,6 +39,7 @@ public class UIDialogue : MonoBehaviour
         {
             //creamos nuevo order en playerorder copiando las cantidades del NPC
             playerOrder.NewOrder(npcOrder.currentOrder);
+            manager.orderingCustomer.GetComponent<CustomerController>().pedidoLlevar = playerOrder.currentOrder.orderType == OrderType.llevar;
         }
         else
         {

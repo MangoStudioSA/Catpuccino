@@ -10,6 +10,7 @@ public class UICoffeeStation : MonoBehaviour
     public GameObject recipesPanel;
 
     public CoffeeGameManager gameManager;
+    public CustomerManager manager;
     public TutorialManager tutorialManager;
     public OrderNoteUI orderNoteUI;
     public CoffeeContainerManager coffeeContainerManager;
@@ -97,6 +98,8 @@ public class UICoffeeStation : MonoBehaviour
             gameManager.SubmitOrder();
             preparationPanel.SetActive(false);
             deliveryPanel.SetActive(true);
+
+            manager.orderingCustomer.GetComponent<CustomerController>().pedidoRecibido = true;
 
             orderNoteUI.isVisible = false;
 

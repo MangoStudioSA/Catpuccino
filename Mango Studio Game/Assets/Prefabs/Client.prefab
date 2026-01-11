@@ -179,7 +179,7 @@ MonoBehaviour:
       nodes:
       - name: 
         id: 3535c517-3f66-4842-9dba-a7799b9d6bc0
-        position: {x: 4078.125, y: 0}
+        position: {x: 3815.625, y: 0}
         node:
           rid: 697659541331902532
         references: []
@@ -188,7 +188,7 @@ MonoBehaviour:
         - d7ffcdf3-e345-4c7b-925a-90b1a61750fd
       - name: 
         id: d7ffcdf3-e345-4c7b-925a-90b1a61750fd
-        position: {x: 4078.125, y: 200}
+        position: {x: 3815.625, y: 200}
         node:
           rid: 697659541331902533
         references: []
@@ -919,7 +919,7 @@ MonoBehaviour:
         - 4ec3e1ce-44f8-4120-beb5-a6cd4cf791b9
       - name: 
         id: 689c321b-ec73-499c-bd6f-6adc2341eeaf
-        position: {x: 8025, y: 600}
+        position: {x: 7575, y: 600}
         node:
           rid: 697659541331902589
         references: []
@@ -931,7 +931,7 @@ MonoBehaviour:
         - 43d175ee-a368-41ba-9aa9-d3151d88555a
       - name: 
         id: 3b756beb-1d75-451f-a1a5-f608079210cb
-        position: {x: 11250, y: 600}
+        position: {x: 10200, y: 600}
         node:
           rid: 697659541331902590
         references: []
@@ -942,7 +942,7 @@ MonoBehaviour:
         - e0782f70-fbdd-41c0-97c6-b79bdbffbe31
       - name: AVANZAR A COLA MOSTRADOR
         id: 6065efdf-321f-4e72-94ad-623995a41d8e
-        position: {x: 11550, y: 600}
+        position: {x: 10500, y: 600}
         node:
           rid: 697659541331902591
         references:
@@ -1149,7 +1149,7 @@ MonoBehaviour:
         childIds: []
       - name: 
         id: 26c3a9d8-0730-49dd-85cd-6ac55a74c36f
-        position: {x: 8456.25, y: 400}
+        position: {x: 7931.25, y: 400}
         node:
           rid: 697659541331902607
         references: []
@@ -1190,7 +1190,7 @@ MonoBehaviour:
         childIds: []
       - name: 
         id: 43d175ee-a368-41ba-9aa9-d3151d88555a
-        position: {x: 9750, y: 800}
+        position: {x: 8850, y: 800}
         node:
           rid: 697659541331902612
         references: []
@@ -1198,11 +1198,10 @@ MonoBehaviour:
         - 689c321b-ec73-499c-bd6f-6adc2341eeaf
         childIds:
         - fb077b2c-8d48-4892-afa7-3e2400713431
-        - 28ba75b1-0e7a-4d74-916b-354a06115602
         - c6fb4815-9895-4137-941b-b07fd40192b1
       - name: 
         id: fb077b2c-8d48-4892-afa7-3e2400713431
-        position: {x: 8850, y: 1000}
+        position: {x: 8700, y: 1000}
         node:
           rid: 697659541331902613
         references: []
@@ -1210,27 +1209,14 @@ MonoBehaviour:
         - 43d175ee-a368-41ba-9aa9-d3151d88555a
         childIds:
         - 0c63a39a-16bd-4253-9758-eaaf367aa127
-        - 93c97b52-ec9a-4974-b9ab-bbe2531a9426
         - 32344b65-a5af-47d0-929d-0aaa276abc2d
         - de092729-bca6-4596-87fb-e76e3b316f24
         - 102fff2b-9006-4ee7-86d1-1bb5e1e68802
         - 0169bca3-1cb9-4f1c-a131-9cebb36fffb1
         - 8f94fa0d-4e5d-46f6-90df-74d5111533db
-      - name: 
-        id: 28ba75b1-0e7a-4d74-916b-354a06115602
-        position: {x: 10350, y: 1000}
-        node:
-          rid: 697659541331902614
-        references: []
-        parentIds:
-        - 43d175ee-a368-41ba-9aa9-d3151d88555a
-        childIds:
-        - 6ec1fe03-b254-4fa6-9c8b-fb54e269e20b
-        - e1ef6811-24e9-4681-9445-a87e5a16a89b
-        - 9d5fa49e-348c-453d-ab17-850ed947bbf7
       - name: ESPERAR
         id: c6fb4815-9895-4137-941b-b07fd40192b1
-        position: {x: 10650, y: 1000}
+        position: {x: 9000, y: 1000}
         node:
           rid: 697659541331902615
         references:
@@ -1241,48 +1227,6 @@ MonoBehaviour:
             Culture=neutral, PublicKeyToken=null
         parentIds:
         - 43d175ee-a368-41ba-9aa9-d3151d88555a
-        childIds: []
-      - name: "\xBFPEDIDO ENTREGADO?"
-        id: 6ec1fe03-b254-4fa6-9c8b-fb54e269e20b
-        position: {x: 10050, y: 1200}
-        node:
-          rid: 697659541331902616
-        references:
-        - fieldName: Action
-          value:
-            rid: 90097388269600906
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 28ba75b1-0e7a-4d74-916b-354a06115602
-        childIds: []
-      - name: RECOGER PEDIDO
-        id: e1ef6811-24e9-4681-9445-a87e5a16a89b
-        position: {x: 10350, y: 1200}
-        node:
-          rid: 697659541331902617
-        references:
-        - fieldName: Action
-          value:
-            rid: 90097388269600907
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 28ba75b1-0e7a-4d74-916b-354a06115602
-        childIds: []
-      - name: RESETEAR PACIENCIA
-        id: 9d5fa49e-348c-453d-ab17-850ed947bbf7
-        position: {x: 10650, y: 1200}
-        node:
-          rid: 697659541331902618
-        references:
-        - fieldName: Action
-          value:
-            rid: 90097388269600908
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - 28ba75b1-0e7a-4d74-916b-354a06115602
         childIds: []
       - name: "\xBFPACIENCIA == 0'?"
         id: 0c63a39a-16bd-4253-9758-eaaf367aa127
@@ -1298,23 +1242,9 @@ MonoBehaviour:
         parentIds:
         - fb077b2c-8d48-4892-afa7-3e2400713431
         childIds: []
-      - name: RECOGER PEDIDO
-        id: 93c97b52-ec9a-4974-b9ab-bbe2531a9426
-        position: {x: 8250, y: 1200}
-        node:
-          rid: 697659541331902620
-        references:
-        - fieldName: Action
-          value:
-            rid: 90097388269600900
-          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        parentIds:
-        - fb077b2c-8d48-4892-afa7-3e2400713431
-        childIds: []
       - name: BUSCAR GERENTE
         id: 32344b65-a5af-47d0-929d-0aaa276abc2d
-        position: {x: 8550, y: 1200}
+        position: {x: 8250, y: 1200}
         node:
           rid: 697659541331902621
         references:
@@ -1328,7 +1258,7 @@ MonoBehaviour:
         childIds: []
       - name: QUEJARSE
         id: 102fff2b-9006-4ee7-86d1-1bb5e1e68802
-        position: {x: 9150, y: 1200}
+        position: {x: 8850, y: 1200}
         node:
           rid: 697659541331902622
         references:
@@ -1342,7 +1272,7 @@ MonoBehaviour:
         childIds: []
       - name: AVANZAR A GERENTE
         id: de092729-bca6-4596-87fb-e76e3b316f24
-        position: {x: 8850, y: 1200}
+        position: {x: 8550, y: 1200}
         node:
           rid: 697659541331902623
         references:
@@ -1356,7 +1286,7 @@ MonoBehaviour:
         childIds: []
       - name: IRSE
         id: 8f94fa0d-4e5d-46f6-90df-74d5111533db
-        position: {x: 9750, y: 1200}
+        position: {x: 9450, y: 1200}
         node:
           rid: 697659541331902624
         references:
@@ -1370,7 +1300,7 @@ MonoBehaviour:
         childIds: []
       - name: AVANZAR A SALIDA
         id: 0169bca3-1cb9-4f1c-a131-9cebb36fffb1
-        position: {x: 9450, y: 1200}
+        position: {x: 9150, y: 1200}
         node:
           rid: 697659541331902625
         references:
@@ -1384,7 +1314,7 @@ MonoBehaviour:
         childIds: []
       - name: "\xBFEST\xC1 EN COLA?"
         id: 3504ec41-1cb2-44be-9b06-2732d9c46bd7
-        position: {x: 10050, y: 800}
+        position: {x: 9150, y: 800}
         node:
           rid: 697659541331902626
         references:
@@ -1398,7 +1328,7 @@ MonoBehaviour:
         childIds: []
       - name: 
         id: e0782f70-fbdd-41c0-97c6-b79bdbffbe31
-        position: {x: 12450, y: 800}
+        position: {x: 11250, y: 800}
         node:
           rid: 697659541331902628
         references: []
@@ -1410,7 +1340,7 @@ MonoBehaviour:
         - b29e93c8-01bd-4127-aecb-4ab74d146136
       - name: 
         id: 81a3b2d1-bb55-4ae7-8e48-4a3747fed2ea
-        position: {x: 11700, y: 1000}
+        position: {x: 10500, y: 1000}
         node:
           rid: 697659541331902629
         references: []
@@ -1425,7 +1355,7 @@ MonoBehaviour:
         - fdd28141-60e2-44da-ab33-f4c1c386da74
       - name: 
         id: 9c9d9207-a06d-41f4-bebe-ee39088035a0
-        position: {x: 12900, y: 1000}
+        position: {x: 11700, y: 1000}
         node:
           rid: 697659541331902630
         references: []
@@ -1436,7 +1366,7 @@ MonoBehaviour:
         - 081c1083-b63b-4da2-bff4-437e37416691
       - name: ESPERAR
         id: b29e93c8-01bd-4127-aecb-4ab74d146136
-        position: {x: 13200, y: 1000}
+        position: {x: 12000, y: 1000}
         node:
           rid: 697659541331902631
         references:
@@ -1450,7 +1380,7 @@ MonoBehaviour:
         childIds: []
       - name: "\xBFES MI TURNO?"
         id: 7a65aa0d-c6e8-42a4-bf58-1d20fe24e143
-        position: {x: 12750, y: 1200}
+        position: {x: 11550, y: 1200}
         node:
           rid: 697659541331902632
         references:
@@ -1464,7 +1394,7 @@ MonoBehaviour:
         childIds: []
       - name: PEDIR Y PAGAR
         id: 081c1083-b63b-4da2-bff4-437e37416691
-        position: {x: 13050, y: 1200}
+        position: {x: 11850, y: 1200}
         node:
           rid: 697659541331902633
         references:
@@ -1478,7 +1408,7 @@ MonoBehaviour:
         childIds: []
       - name: "\xBFPACIENCIA == 0?"
         id: 6ebb118e-cfeb-4c99-96b3-0f44491ad734
-        position: {x: 10950, y: 1200}
+        position: {x: 9750, y: 1200}
         node:
           rid: 697659541331902634
         references:
@@ -1492,7 +1422,7 @@ MonoBehaviour:
         childIds: []
       - name: BUSCAR GERENTE
         id: d26c4777-1cdc-4f86-8ecd-869c432895e1
-        position: {x: 11250, y: 1200}
+        position: {x: 10050, y: 1200}
         node:
           rid: 697659541331902635
         references:
@@ -1506,7 +1436,7 @@ MonoBehaviour:
         childIds: []
       - name: QUEJARSE
         id: 149aea85-df4d-4fc8-89b9-395b342976f4
-        position: {x: 11850, y: 1200}
+        position: {x: 10650, y: 1200}
         node:
           rid: 697659541331902636
         references:
@@ -1520,7 +1450,7 @@ MonoBehaviour:
         childIds: []
       - name: AVANZAR A GERENTE
         id: 58fbf6d2-fb40-421d-8c2c-d05c182ac23e
-        position: {x: 11550, y: 1200}
+        position: {x: 10350, y: 1200}
         node:
           rid: 697659541331902637
         references:
@@ -1534,7 +1464,7 @@ MonoBehaviour:
         childIds: []
       - name: AVANZAR A SALIDA
         id: 4ce92452-b89a-4b72-aac7-d2cf67574a1b
-        position: {x: 12150, y: 1200}
+        position: {x: 10950, y: 1200}
         node:
           rid: 697659541331902638
         references:
@@ -1548,7 +1478,7 @@ MonoBehaviour:
         childIds: []
       - name: IRSE
         id: fdd28141-60e2-44da-ab33-f4c1c386da74
-        position: {x: 12450, y: 1200}
+        position: {x: 11250, y: 1200}
         node:
           rid: 697659541331902639
         references:
@@ -2508,24 +2438,6 @@ MonoBehaviour:
         unpause:
           componentName: 
           methodName: 
-    - rid: 90097388269600900
-      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
-      data:
-        start:
-          componentName: 
-          methodName: RecogerPedido
-        update:
-          componentName: 
-          methodName: 
-        stop:
-          componentName: 
-          methodName: 
-        pause:
-          componentName: 
-          methodName: 
-        unpause:
-          componentName: 
-          methodName: 
     - rid: 90097388269600901
       type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
       data:
@@ -2604,60 +2516,6 @@ MonoBehaviour:
         start:
           componentName: 
           methodName: Irse
-        update:
-          componentName: 
-          methodName: 
-        stop:
-          componentName: 
-          methodName: 
-        pause:
-          componentName: 
-          methodName: 
-        unpause:
-          componentName: 
-          methodName: 
-    - rid: 90097388269600906
-      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
-      data:
-        start:
-          componentName: 
-          methodName: PedidoEntregado
-        update:
-          componentName: 
-          methodName: 
-        stop:
-          componentName: 
-          methodName: 
-        pause:
-          componentName: 
-          methodName: 
-        unpause:
-          componentName: 
-          methodName: 
-    - rid: 90097388269600907
-      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
-      data:
-        start:
-          componentName: 
-          methodName: RecogerPedido
-        update:
-          componentName: 
-          methodName: 
-        stop:
-          componentName: 
-          methodName: 
-        pause:
-          componentName: 
-          methodName: 
-        unpause:
-          componentName: 
-          methodName: 
-    - rid: 90097388269600908
-      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
-      data:
-        start:
-          componentName: 
-          methodName: ResetearPaciencia
         update:
           componentName: 
           methodName: 
@@ -3145,26 +3003,10 @@ MonoBehaviour:
       type: {class: SequencerNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data:
         IsRandomized: 0
-    - rid: 697659541331902614
-      type: {class: SequencerNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data:
-        IsRandomized: 0
     - rid: 697659541331902615
       type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data: 
-    - rid: 697659541331902616
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902617
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902618
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
     - rid: 697659541331902619
-      type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
-      data: 
-    - rid: 697659541331902620
       type: {class: LeafNode, ns: BehaviourAPI.BehaviourTrees, asm: BehaviourAPI.BehaviourTrees}
       data: 
     - rid: 697659541331902621

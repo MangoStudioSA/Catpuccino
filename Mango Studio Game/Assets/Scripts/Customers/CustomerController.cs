@@ -21,30 +21,44 @@ public class CustomerController : EditorBehaviourRunner
     NavMeshAgent agent;
     bool acabaDeEntrar;
     bool haIdoAlBanyo;
+    bool haAcariciadoGato;
     bool haUsadoBanyo;
+    bool haPedido;
+    [System.NonSerialized] public bool pedidoLlevar;
+    [System.NonSerialized] public bool pedidoRecibido;
+    bool impatient;
     float paciencia;
+    int asientoIdx;
     ManagerController gerente;
+    CatController gato;
     Transform salidaPos;
     Transform aseosPos;
     Transform colaBanyo;
     Transform cola;
+    Transform asientoOcupado;
+
 
     void Awake()
     {
         manager = GameObject.FindWithTag("CustomerManager").GetComponent<CustomerManager>();
         manager.customers.Enqueue(this);
         model = Random.Range(0, (int)transform.childCount); // Se accede al prefab de los distintos sprites y fbx de clientes
-        transform.GetChild(model).gameObject.SetActive(true);
+        //transform.GetChild(model).gameObject.SetActive(true);
 
-        anim = transform.GetChild(model).GetChild(0).GetComponent<Animator>();
+        //anim = transform.GetChild(model).GetChild(0).GetComponent<Animator>();
 
 
         acabaDeEntrar = true;
         haIdoAlBanyo = false;
+        haAcariciadoGato = false;
         haUsadoBanyo = false;
+        haPedido = false;
+        pedidoRecibido = false;
+        impatient = Random.Range(0, 100) < 50;
         paciencia = 100;
         agent = GetComponent<NavMeshAgent>();
         gerente = FindFirstObjectByType<ManagerController>();
+        gato = FindFirstObjectByType<CatController>();
         salidaPos = GameObject.FindWithTag("Salida").transform;
         aseosPos = GameObject.FindWithTag("Aseos").transform;
         colaBanyo = GameObject.FindWithTag("AseosCola").transform;
@@ -53,36 +67,42 @@ public class CustomerController : EditorBehaviourRunner
 
     void Update()
     {
-        if (leavingCounter >= 10)
-        {
-            Destroy(this.gameObject);
-        }
+        //if (leavingCounter >= 10)
+        //{
+        //    Destroy(this.gameObject);
+        //}
 
-        if (!leaving)
-        {
-            if (!atCounter && !atQueue)
-            {
-                transform.Translate(direction.normalized * speed * Time.deltaTime);
-                anim.SetBool("Idle", false);
-            }
-            else
-            {
-                anim.SetBool("Idle", true);
-            }
-        }
-        else
-        {
-            transform.Translate(direction.normalized * speed * Time.deltaTime);
-            leavingCounter += Time.deltaTime;
-        }
+        //if (!leaving)
+        //{
+        //    if (!atCounter && !atQueue)
+        //    {
+        //        transform.Translate(direction.normalized * speed * Time.deltaTime);
+        //        anim.SetBool("Idle", false);
+        //    }
+        //    else
+        //    {
+        //        anim.SetBool("Idle", true);
+        //    }
+        //}
+        //else
+        //{
+        //    transform.Translate(direction.normalized * speed * Time.deltaTime);
+        //    leavingCounter += Time.deltaTime;
+        //}
 
         if (!atCounter && manager.customers.Count > 0 && manager.customers.Peek() == this)
         {
             atQueue = false;
         }
 
-
-        paciencia -= Time.deltaTime * 2;
+        if (impatient)
+        {
+            paciencia -= Time.deltaTime * 2;
+        }
+        else
+        {
+            paciencia -= Time.deltaTime;
+        }
     }
 
     // Funcion que comprueba si el cliente ha llegado al mostrador
@@ -149,6 +169,12 @@ public class CustomerController : EditorBehaviourRunner
 
     public Status BuscarGerente()
     {
+        if (atCounter && manager.orderingCustomer == this.gameObject)
+        {
+            manager.orderButton.SetActive(false);
+            manager.orderingCustomer = null;
+        }
+
         agent.SetDestination(gerente.transform.position);
         return Status.Success;
     }
@@ -299,52 +325,95 @@ public class CustomerController : EditorBehaviourRunner
 
     public Status Esperar()
     {
-        if (!atQueue && !atCounter)
-        {
-            transform.Translate(direction.normalized * speed * Time.deltaTime);
-        }
-
         return Status.Success;
     }
 
     public Status GatoEnRango()
     {
-        return Status.Success;
+        if (gato.divagando && !gato.acariciado)
+        {
+            return Status.Success;
+        }
+
+        return Status.Failure;
     }
 
     public Status NecesidadDeAcariciar()
     {
-        return Status.Success;
+        if (!haAcariciadoGato && !atCounter)
+        {
+            haAcariciadoGato = Random.Range(0, 100) < 20;
+
+            if (haAcariciadoGato)
+            {
+                gato.acariciado = true;
+                return Status.Success;
+            }
+        }
+
+        return Status.Failure;
     }
 
     public Status AcariciarGato()
     {
+        gato.acariciado = false;
         return Status.Success;
     }
 
     public Status PedidoRecibido()
     {
-        return Status.Success;
+        if (pedidoRecibido)
+        {
+            return Status.Success;
+        }
+
+        return Status.Failure;
     }
 
     public Status TipoPedidoLlevar()
     {
-        return Status.Success;
+        if (pedidoLlevar)
+        {
+            return Status.Success;
+        }
+
+        return Status.Failure;
     }
 
     public Status TipoPedidoTomar()
     {
-        return Status.Success;
+        if (!pedidoLlevar)
+        {
+            return Status.Success;
+        }
+
+        return Status.Failure;
     }
 
     public Status BuscarAsiento()
     {
+        for (int i = 0; i < manager.asientos.Length; i++)
+        {
+            if (!manager.asientosOcupados[i])
+            {
+                asientoOcupado = manager.asientos[i];
+                manager.asientosOcupados[i] = true;
+                asientoIdx = i;
+                agent.SetDestination(asientoOcupado.position);
+            }
+        }
+
         return Status.Success;
     }
 
     public Status AvanzarAAsiento()
     {
-        return Status.Success;
+        if (Vector3.Distance(transform.position, asientoOcupado.position) < 0.5)
+        {
+            return Status.Success;
+        }
+
+        return Status.Running;
     }
 
     public Status ConsumirPedido()
@@ -354,12 +423,19 @@ public class CustomerController : EditorBehaviourRunner
 
     public Status LiberarAsiento()
     {
+        asientoOcupado = null;
+        manager.asientosOcupados[asientoIdx] = false;
         return Status.Success;
     }
 
     public Status HaPedido()
     {
-        return Status.Success;
+        if (haPedido)
+        {
+            return Status.Success;
+        }
+
+        return Status.Failure;
     }
 
     public Status EsperarEnMostrador()
@@ -367,23 +443,15 @@ public class CustomerController : EditorBehaviourRunner
         return Status.Success;
     }
 
-    public Status RecogerPedido()
-    {
-        return Status.Success;
-    }
-
-    public Status PedidoEntregado()
-    {
-        return Status.Success;
-    }
-
     public Status PedirYPagar()
     {
+        haPedido = true;
         return Status.Success;
     }
 
     public Status AvanzarAColaMostrador()
     {
+        transform.Translate(direction.normalized * speed * Time.deltaTime);
         return Status.Success;
     }
 }

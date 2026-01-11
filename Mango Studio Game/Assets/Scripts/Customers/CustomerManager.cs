@@ -21,10 +21,14 @@ public class CustomerManager : MonoBehaviour
     TimeManager timeManager;
     public float timeDecay = 1f;
 
+    public Transform[] asientos;
+    [System.NonSerialized] public bool[] asientosOcupados;
+
     void Awake()
     {
         customers = new Queue<CustomerController>();
         timeManager = FindFirstObjectByType<TimeManager>();
+        asientosOcupados = new bool[asientos.Length];
     }
 
     void Start()
