@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 4231839258988541092}
   - component: {fileID: 9220417957603831634}
   - component: {fileID: 2463974634285924113}
+  - component: {fileID: 5267654524033604002}
   m_Layer: 0
   m_Name: Cat
   m_TagString: Untagged
@@ -250,7 +251,7 @@ MonoBehaviour:
         references:
         - fieldName: Action
           value:
-            rid: -2
+            rid: 90097537310261370
           fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
         parentIds:
@@ -259,7 +260,7 @@ MonoBehaviour:
         - 30c18a9b-bfb0-4888-ba12-ae1c0e53794b
       - name: ESCONDIDO
         id: 840796fa-bec6-4ca0-863c-639471eac1e9
-        position: {x: 234.26997, y: 632.28345}
+        position: {x: 247, y: 648}
         node:
           rid: 90097496608735338
         references:
@@ -438,7 +439,7 @@ MonoBehaviour:
           componentName: 
           methodName: 
         check:
-          componentName: 
+          componentName: CatController
           methodName: InteraccionFinalizada
         reset:
           componentName: 
@@ -456,7 +457,7 @@ MonoBehaviour:
           componentName: 
           methodName: 
         check:
-          componentName: 
+          componentName: CatController
           methodName: ClienteAcaricia
         reset:
           componentName: 
@@ -474,7 +475,7 @@ MonoBehaviour:
           componentName: 
           methodName: 
         update:
-          componentName: 
+          componentName: CatController
           methodName: Divagando
         stop:
           componentName: 
@@ -492,7 +493,7 @@ MonoBehaviour:
           componentName: 
           methodName: 
         update:
-          componentName: 
+          componentName: CatController
           methodName: SiendoAcariciado
         stop:
           componentName: 
@@ -510,7 +511,7 @@ MonoBehaviour:
           componentName: 
           methodName: 
         check:
-          componentName: 
+          componentName: CatController
           methodName: PacienciaAgotada
         reset:
           componentName: 
@@ -528,7 +529,7 @@ MonoBehaviour:
           componentName: 
           methodName: 
         update:
-          componentName: 
+          componentName: CatController
           methodName: Escondido
         stop:
           componentName: 
@@ -546,7 +547,7 @@ MonoBehaviour:
           componentName: 
           methodName: 
         check:
-          componentName: 
+          componentName: CatController
           methodName: EstaEnEscondite
         reset:
           componentName: 
@@ -564,9 +565,272 @@ MonoBehaviour:
           componentName: 
           methodName: 
         check:
-          componentName: 
+          componentName: CatController
           methodName: TiempoEscondidoFinalizado
         reset:
+          componentName: 
+          methodName: 
+        pause:
+          componentName: 
+          methodName: 
+        unpause:
+          componentName: 
+          methodName: 
+    - rid: 90097537310261370
+      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        start:
+          componentName: 
+          methodName: 
+        update:
+          componentName: CatController
+          methodName: AvanzaAEscondite
+        stop:
+          componentName: 
+          methodName: 
+        pause:
+          componentName: 
+          methodName: 
+        unpause:
+          componentName: 
+          methodName: 
+--- !u!114 &5267654524033604002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2753711945148426859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7033c32493b38240a6a2c47736ac9c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  executeOnLoop: 1
+  interruptOptions: 0
+  _eventHandler:
+    debugStatusChanges: 1
+    identifier: 
+  data:
+    graphs:
+    - name: CatFSM
+      id: 195b2cc7-b734-4bbd-863c-837e005b5b84
+      graph:
+        rid: 90097537310261373
+      nodes:
+      - name: DIVAGANDO
+        id: a0d9789d-020f-4ec9-ac71-cf684dc85a5f
+        position: {x: -288.58603, y: 129.42647}
+        node:
+          rid: 90097537310261374
+        references:
+        - fieldName: Action
+          value:
+            rid: 90097537310261384
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - 9a68619a-b980-4a09-8acb-4f212366bec5
+        - 689cdfc8-78e0-4729-b80b-9864276a5462
+        childIds:
+        - 5a0f1624-2d2d-4831-afc9-f95514baae2e
+      - name: SIENDO ACARICIADO
+        id: f5d9716f-2a6a-4c59-a8ad-04a8aa9721d0
+        position: {x: 439.00052, y: 484.4747}
+        node:
+          rid: 90097537310261375
+        references:
+        - fieldName: Action
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - 5a0f1624-2d2d-4831-afc9-f95514baae2e
+        childIds:
+        - 9a68619a-b980-4a09-8acb-4f212366bec5
+        - c71f52c3-41c1-4075-92a4-3bf95add0d6c
+      - name: AVANZA A ESCONDITE
+        id: 5d793112-a03f-4b01-aa89-c0ed98682e5d
+        position: {x: -115.4343, y: 888.4951}
+        node:
+          rid: 90097537310261376
+        references:
+        - fieldName: Action
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - c71f52c3-41c1-4075-92a4-3bf95add0d6c
+        childIds:
+        - 18c3e4d3-5881-4de9-abf9-32f134331a79
+      - name: ESCONDIDO
+        id: 5ec858a0-f1b6-4763-902c-a87f9a5dc0c9
+        position: {x: -576, y: 537}
+        node:
+          rid: 90097537310261377
+        references:
+        - fieldName: Action
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - 18c3e4d3-5881-4de9-abf9-32f134331a79
+        childIds:
+        - 689cdfc8-78e0-4729-b80b-9864276a5462
+      - name: CLIENTE ACARICIA
+        id: 5a0f1624-2d2d-4831-afc9-f95514baae2e
+        position: {x: 257, y: 115}
+        node:
+          rid: 90097537310261378
+        references:
+        - fieldName: Perception
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Perceptions.Perception, BehaviourAPI.Core,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        - fieldName: Action
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - a0d9789d-020f-4ec9-ac71-cf684dc85a5f
+        childIds:
+        - f5d9716f-2a6a-4c59-a8ad-04a8aa9721d0
+      - name: "INTERACCI\xD3N FINALIZADA"
+        id: 9a68619a-b980-4a09-8acb-4f212366bec5
+        position: {x: 32, y: 376}
+        node:
+          rid: 90097537310261379
+        references:
+        - fieldName: Perception
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Perceptions.Perception, BehaviourAPI.Core,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        - fieldName: Action
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - f5d9716f-2a6a-4c59-a8ad-04a8aa9721d0
+        childIds:
+        - a0d9789d-020f-4ec9-ac71-cf684dc85a5f
+      - name: PACIENCIA AGOTADA
+        id: c71f52c3-41c1-4075-92a4-3bf95add0d6c
+        position: {x: 280, y: 777}
+        node:
+          rid: 90097537310261380
+        references:
+        - fieldName: Perception
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Perceptions.Perception, BehaviourAPI.Core,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        - fieldName: Action
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - f5d9716f-2a6a-4c59-a8ad-04a8aa9721d0
+        childIds:
+        - 5d793112-a03f-4b01-aa89-c0ed98682e5d
+      - name: ESTA EN ESCONDITE
+        id: 18c3e4d3-5881-4de9-abf9-32f134331a79
+        position: {x: -479, y: 709}
+        node:
+          rid: 90097537310261381
+        references:
+        - fieldName: Perception
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Perceptions.Perception, BehaviourAPI.Core,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        - fieldName: Action
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - 5d793112-a03f-4b01-aa89-c0ed98682e5d
+        childIds:
+        - 5ec858a0-f1b6-4763-902c-a87f9a5dc0c9
+      - name: TIEMPO ESCONDIDO FINALIZADO
+        id: 689cdfc8-78e0-4729-b80b-9864276a5462
+        position: {x: -519, y: 283}
+        node:
+          rid: 90097537310261383
+        references:
+        - fieldName: Perception
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Perceptions.Perception, BehaviourAPI.Core,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        - fieldName: Action
+          value:
+            rid: -2
+          fieldType: BehaviourAPI.Core.Actions.Action, BehaviourAPI.Core, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        parentIds:
+        - 5ec858a0-f1b6-4763-902c-a87f9a5dc0c9
+        childIds:
+        - a0d9789d-020f-4ec9-ac71-cf684dc85a5f
+    pushPerceptions: []
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 90097537310261373
+      type: {class: FSM, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
+      data: 
+    - rid: 90097537310261374
+      type: {class: State, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
+      data: 
+    - rid: 90097537310261375
+      type: {class: State, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
+      data: 
+    - rid: 90097537310261376
+      type: {class: State, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
+      data: 
+    - rid: 90097537310261377
+      type: {class: State, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
+      data: 
+    - rid: 90097537310261378
+      type: {class: StateTransition, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
+      data:
+        StatusFlags: 0
+    - rid: 90097537310261379
+      type: {class: StateTransition, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
+      data:
+        StatusFlags: 0
+    - rid: 90097537310261380
+      type: {class: StateTransition, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
+      data:
+        StatusFlags: 0
+    - rid: 90097537310261381
+      type: {class: StateTransition, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
+      data:
+        StatusFlags: 0
+    - rid: 90097537310261383
+      type: {class: StateTransition, ns: BehaviourAPI.StateMachines, asm: BehaviourAPI.StateMachines}
+      data:
+        StatusFlags: 0
+    - rid: 90097537310261384
+      type: {class: CustomAction, ns: BehaviourAPI.UnityToolkit.GUIDesigner.Framework, asm: BehaviourAPI.UnityToolkit.GUIDesigner.Framework}
+      data:
+        start:
+          componentName: 
+          methodName: 
+        update:
+          componentName: 
+          methodName: 
+        stop:
           componentName: 
           methodName: 
         pause:
