@@ -5,24 +5,15 @@ using UnityEngine.AI;
 
 public class TechnicianController : EditorBehaviourRunner
 {
-    NavMeshAgent agent;
+    public NavMeshAgent agent;
 
     public GameObject model;
 
     public Transform aseosPos;
     public Transform salidaPos;
 
-    [System.NonSerialized] public bool tieneTarea;
-    [System.NonSerialized] public bool reparacionCompleta;
-
-    private void Start()
-    {
-        agent = GetComponent<NavMeshAgent>();
-        model.SetActive(false);
-
-        tieneTarea = false;
-        reparacionCompleta = false;
-    }
+    [System.NonSerialized] public bool tieneTarea = false;
+    [System.NonSerialized] public bool reparacionCompleta = false;
 
     public bool TieneTareaAsignada()
     {

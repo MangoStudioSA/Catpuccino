@@ -12,23 +12,22 @@ public class CustomerController : EditorBehaviourRunner
     public bool atCounter = false, atQueue = false;
     public CustomerManager manager;
     public int model = 0;
-    public bool leaving = false;
-
     public Animator anim;
 
 
-    NavMeshAgent agent;
-    bool acabaDeEntrar;
-    bool haIdoAlBanyo;
-    bool haAcariciadoGato;
-    bool haUsadoBanyo;
-    bool haPedido;
+    public NavMeshAgent agent;
+    bool acabaDeEntrar = true;
+    bool haIdoAlBanyo = false;
+    bool haAcariciadoGato = false;
+    bool haUsadoBanyo = false;
+    bool haPedido = false;
     [System.NonSerialized] public bool pedidoLlevar;
     [System.NonSerialized] public bool pedidoRecibido;
     bool impatient;
-    float paciencia;
+    float paciencia = 100;
     int asientoIdx;
     ManagerController gerente;
+    CleanerController cleaner;
     CatController gato;
     Transform salidaPos;
     Transform aseosPos;
@@ -45,23 +44,7 @@ public class CustomerController : EditorBehaviourRunner
         model = Random.Range(0, (int)transform.childCount); // Se accede al prefab de los distintos sprites y fbx de clientes
         //transform.GetChild(model).gameObject.SetActive(true);
 
-        //anim = transform.GetChild(model).GetChild(0).GetComponent<Animator>();
-
-
-        acabaDeEntrar = true;
-        haIdoAlBanyo = false;
-        haAcariciadoGato = false;
-        haUsadoBanyo = false;
-        haPedido = false;
-        pedidoRecibido = false;
-        impatient = Random.Range(0, 100) < 50;
-        paciencia = 100;
-        agent = GetComponent<NavMeshAgent>();
-        gerente = FindFirstObjectByType<ManagerController>();
-        gato = FindFirstObjectByType<CatController>();
-        salidaPos = GameObject.FindWithTag("Salida").transform;
-        colaBanyo = GameObject.FindWithTag("AseosCola").transform;
-        cola = GameObject.FindWithTag("Cola").transform;
+        anim = transform.GetChild(model).GetChild(0).GetComponent<Animator>();
     }
 
     void Update()
@@ -149,6 +132,16 @@ public class CustomerController : EditorBehaviourRunner
     {
         if (acabaDeEntrar)
         {
+            impatient = Random.Range(0, 100) < 50;
+
+            agent = GetComponent<NavMeshAgent>();
+            gerente = FindFirstObjectByType<ManagerController>();
+            cleaner = FindFirstObjectByType<CleanerController>();
+            gato = FindFirstObjectByType<CatController>();
+            salidaPos = GameObject.FindWithTag("Salida").transform;
+            colaBanyo = GameObject.FindWithTag("AseosCola").transform;
+            cola = GameObject.FindWithTag("Cola").transform;
+
             acabaDeEntrar = false;
             return Status.Success;
         }
@@ -229,7 +222,7 @@ public class CustomerController : EditorBehaviourRunner
     {
         if (!haIdoAlBanyo && !atCounter)
         {
-            haIdoAlBanyo = Random.Range(0, 100) < 20;
+            haIdoAlBanyo = Random.Range(0, 100) < 10;
 
             if (haIdoAlBanyo)
             {
@@ -321,6 +314,16 @@ public class CustomerController : EditorBehaviourRunner
 
     public Status UsarBanyo()
     {
+        if (Random.Range(0, 100) < 5)
+        {
+            gerente.aseosAveriados = true;
+        }
+
+        if (Random.Range(0, 100) < 10)
+        {
+            cleaner.aseosSucios = true;
+        }
+
         transform.position = cola.position;
         haUsadoBanyo = true;
         manager.clientsBathroom -= 1;
@@ -346,7 +349,7 @@ public class CustomerController : EditorBehaviourRunner
     {
         if (!haAcariciadoGato && !atCounter)
         {
-            haAcariciadoGato = Random.Range(0, 100) < 20;
+            haAcariciadoGato = Random.Range(0, 100) < 10;
 
             if (haAcariciadoGato)
             {

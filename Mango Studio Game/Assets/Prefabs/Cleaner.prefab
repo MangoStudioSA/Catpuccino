@@ -493,6 +493,7 @@ MonoBehaviour:
         - beed8baa-8b14-4eb3-91fd-4b7fc989f567
         childIds: []
     pushPerceptions: []
+  agent: {fileID: 9220417957603831634}
   aseosPos: {fileID: 0}
   superficies: []
   puntosRuta: []
@@ -587,10 +588,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: AseosSucios
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: AseosSucios
         stop:
           componentName: 
           methodName: 
@@ -605,10 +606,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: AvanzarAAseos
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: AvanzarAAseos
         stop:
           componentName: 
           methodName: 
@@ -623,10 +624,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: PosicionAlcanzada
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: PosicionAlcanzada
         stop:
           componentName: 
           methodName: 
@@ -641,10 +642,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: LimpiarAseos
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: LimpiarAseos
         stop:
           componentName: 
           methodName: 
@@ -659,10 +660,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: SuperficieSucia
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: SuperficieSucia
         stop:
           componentName: 
           methodName: 
@@ -677,10 +678,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: AvanzarASuperficie
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: AvanzarASuperficie
         stop:
           componentName: 
           methodName: 
@@ -695,10 +696,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: PosicionMasCercanaAlcanzada
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: PosicionMasCercanaAlcanzada
         stop:
           componentName: 
           methodName: 
@@ -713,10 +714,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: LimpiarSuperficie
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: LimpiarSuperficie
         stop:
           componentName: 
           methodName: 
@@ -731,10 +732,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: NadaSucio
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: NadaSucio
         stop:
           componentName: 
           methodName: 
@@ -749,10 +750,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: AvanzarASiguientePuntoDeRuta
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: AvanzarASiguientePuntoDeRuta
         stop:
           componentName: 
           methodName: 
@@ -767,10 +768,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: HaLlegadoAlDestino
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: HaLlegadoAlDestino
         stop:
           componentName: 
           methodName: 
@@ -785,10 +786,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: RepetirRutaDePatrulla
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: RepetirRutaDePatrulla
         stop:
           componentName: 
           methodName: 

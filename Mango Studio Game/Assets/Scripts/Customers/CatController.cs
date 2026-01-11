@@ -14,29 +14,38 @@ public class CatController : EditorBehaviourRunner
     [System.NonSerialized] public bool divagando;
     [System.NonSerialized] public float paciencia = 100;
 
-    public void Divagando()
+    public Status Divagando()
     {
         divagando = true;
-        if (agent.isStopped)
+
+        if (!agent.pathPending && agent.remainingDistance < 0.5f)
         {
-            agent.SetDestination(puntosDivagar[Random.Range(0, puntosDivagar.Length)].position);
+            if (agent.velocity.sqrMagnitude == 0f)
+            {
+                agent.SetDestination(puntosDivagar[Random.Range(0, puntosDivagar.Length)].position);
+            }
         }
+
+        return Status.Running;
     }
 
-    public void SiendoAcariciado()
+    public Status SiendoAcariciado()
     {
         divagando = false;
         paciencia = Mathf.Max(paciencia - Time.deltaTime * 2, 0);
+        return Status.Running;
     }
 
-    public void AvanzaAEscondite()
+    public Status AvanzaAEscondite()
     {
         agent.SetDestination(esconditePos.position);
+        return Status.Running;
     }
 
-    public void Escondido()
+    public Status Escondido()
     {
         paciencia = Mathf.Min(paciencia + Time.deltaTime * 2, 100);
+        return Status.Running;
     }
 
     public bool ClienteAcaricia()

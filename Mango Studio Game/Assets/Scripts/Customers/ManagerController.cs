@@ -5,17 +5,10 @@ using UnityEngine.AI;
 
 public class ManagerController : EditorBehaviourRunner
 {
-    NavMeshAgent agent;
-
     public TechnicianController tech;
 
-    [System.NonSerialized] public bool aseosAveriados;
-    [System.NonSerialized] public bool hayClienteFrustrado;
-
-    private void Start()
-    {
-        agent = GetComponent<NavMeshAgent>();
-    }
+    [System.NonSerialized] public bool aseosAveriados = false;
+    [System.NonSerialized] public bool hayClienteFrustrado = false;
 
     public Status NotificacionAveria()
     {

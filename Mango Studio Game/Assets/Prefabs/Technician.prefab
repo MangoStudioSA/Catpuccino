@@ -533,7 +533,8 @@ MonoBehaviour:
         - 34712c82-cc1e-4312-974d-7af4b350d3e9
         childIds: []
     pushPerceptions: []
-  model: {fileID: 0}
+  agent: {fileID: 755689509592173093}
+  model: {fileID: 2714066667616240080}
   aseosPos: {fileID: 0}
   salidaPos: {fileID: 0}
   references:
@@ -587,10 +588,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: ReparacionCompletada
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: ReparacionCompletada
         stop:
           componentName: 
           methodName: 
@@ -605,10 +606,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: AvanzarASalida
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: AvanzarASalida
         stop:
           componentName: 
           methodName: 
@@ -641,10 +642,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: ResetearTarea
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: ResetearTarea
         stop:
           componentName: 
           methodName: 
@@ -659,10 +660,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: Reparar
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: Reparar
         stop:
           componentName: 
           methodName: 
@@ -677,10 +678,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: InformarReparacion
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: InformarReparacion
         stop:
           componentName: 
           methodName: 
@@ -717,10 +718,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: Esperando
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: Esperando
         stop:
           componentName: 
           methodName: 
@@ -749,7 +750,7 @@ MonoBehaviour:
           methodName: 
         check:
           componentName: 
-          methodName: TieneTareaaAsignada
+          methodName: TieneTareaAsignada
         reset:
           componentName: 
           methodName: 
@@ -767,10 +768,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: AvanzarAObjeto
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: AvanzarAObjeto
         stop:
           componentName: 
           methodName: 

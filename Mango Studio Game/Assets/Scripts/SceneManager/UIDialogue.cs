@@ -87,13 +87,12 @@ public class UIDialogue : MonoBehaviour
 
         deliveryPanel.SetActive(false);
         roomPanel.SetActive(true);
-        manager.orderButton.SetActive(false);
-        manager.customers.Dequeue();
-        manager.orderingCustomer.GetComponent<CustomerController>().leaving = true;
-        manager.orderingCustomer.GetComponent<CapsuleCollider>().enabled = false;
-        manager.orderingCustomer.transform.Translate(0.0f, 0.0f, 0.5f);
-        manager.orderingCustomer.transform.Rotate(0.0f, 180.0f, 0.0f);
-        manager.orderingCustomer = null;
+        //manager.orderButton.SetActive(false);
+        //manager.customers.Dequeue();
+        //manager.orderingCustomer.GetComponent<CapsuleCollider>().enabled = false;
+        //manager.orderingCustomer.transform.Translate(0.0f, 0.0f, 0.5f);
+        //manager.orderingCustomer.transform.Rotate(0.0f, 180.0f, 0.0f);
+        //manager.orderingCustomer = null;
         gameUI.orderScreen = false;
         popUpMechanicsMsg.DestroyAllPopUps();
 

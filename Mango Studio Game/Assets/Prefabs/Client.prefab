@@ -894,7 +894,7 @@ MonoBehaviour:
         childIds: []
       - name: REANUDAR TAREA
         id: 8c65d4c4-3531-4842-bacf-90592a742cb7
-        position: {x: 4087.5, y: 600}
+        position: {x: 4104, y: 616}
         node:
           rid: 697659541331902587
         references:
@@ -1037,7 +1037,7 @@ MonoBehaviour:
         childIds: []
       - name: IRSE
         id: c329c0cc-4956-42eb-b01a-b006773925ca
-        position: {x: 5550, y: 1200}
+        position: {x: 5568, y: 1216}
         node:
           rid: 697659541331902599
         references:
@@ -1107,7 +1107,7 @@ MonoBehaviour:
         childIds: []
       - name: LIBERAR ASIENTO
         id: 379106d4-fff4-43d5-a515-4739360639ee
-        position: {x: 7050, y: 1200}
+        position: {x: 7064, y: 1216}
         node:
           rid: 697659541331902604
         references:
@@ -1497,8 +1497,8 @@ MonoBehaviour:
   atQueue: 0
   manager: {fileID: 0}
   model: 0
-  leaving: 0
   anim: {fileID: 0}
+  agent: {fileID: 408031940437152781}
   references:
     version: 2
     RefIds:
@@ -1507,10 +1507,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: ColaMostradorLlena
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: ColaMostradorLlena
         stop:
           componentName: 
           methodName: 
@@ -1525,10 +1525,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: BuscarGerente
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: BuscarGerente
         stop:
           componentName: 
           methodName: 
@@ -1561,10 +1561,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: Quejarse
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: Quejarse
         stop:
           componentName: 
           methodName: 
@@ -1597,10 +1597,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: Irse
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: Irse
         stop:
           componentName: 
           methodName: 
@@ -1615,10 +1615,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: NecesidadDeBanyo
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: NecesidadDeBanyo
         stop:
           componentName: 
           methodName: 
@@ -1633,10 +1633,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: PausarTareaActual
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: PausarTareaActual
         stop:
           componentName: 
           methodName: 
@@ -1651,10 +1651,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: ResetearPaciencia
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: ResetearPaciencia
         stop:
           componentName: 
           methodName: 
@@ -1687,10 +1687,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: BanyoMantenimiento
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: BanyoMantenimiento
         stop:
           componentName: 
           methodName: 
@@ -1705,10 +1705,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: BuscarGerente
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: BuscarGerente
         stop:
           componentName: 
           methodName: 
@@ -1741,10 +1741,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: Quejarse
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: Quejarse
         stop:
           componentName: 
           methodName: 
@@ -1777,10 +1777,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: Irse
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: Irse
         stop:
           componentName: 
           methodName: 
@@ -1795,10 +1795,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: ColaBanyoLlena
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: ColaBanyoLlena
         stop:
           componentName: 
           methodName: 
@@ -1813,10 +1813,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: BuscarGerente
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: BuscarGerente
         stop:
           componentName: 
           methodName: 
@@ -1849,10 +1849,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: Quejarse
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: Quejarse
         stop:
           componentName: 
           methodName: 
@@ -1885,10 +1885,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: Irse
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: Irse
         stop:
           componentName: 
           methodName: 
@@ -1903,10 +1903,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: GatoEnRango
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: GatoEnRango
         stop:
           componentName: 
           methodName: 
@@ -1921,10 +1921,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: NecesidadDeAcariciar
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: NecesidadDeAcariciar
         stop:
           componentName: 
           methodName: 
@@ -1939,10 +1939,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: AcariciarGato
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: AcariciarGato
         stop:
           componentName: 
           methodName: 
@@ -1957,10 +1957,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: ReanudarTarea
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: ReanudarTarea
         stop:
           componentName: 
           methodName: 
@@ -1975,10 +1975,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: ReanudarTarea
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: ReanudarTarea
         stop:
           componentName: 
           methodName: 
@@ -1993,10 +1993,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: EstaEnCola
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: EstaEnCola
         stop:
           componentName: 
           methodName: 
@@ -2011,10 +2011,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: Paciencia0
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: Paciencia0
         stop:
           componentName: 
           methodName: 
@@ -2029,10 +2029,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: BuscarGerente
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: BuscarGerente
         stop:
           componentName: 
           methodName: 
@@ -2065,10 +2065,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: Quejarse
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: Quejarse
         stop:
           componentName: 
           methodName: 
@@ -2101,10 +2101,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: Irse
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: Irse
         stop:
           componentName: 
           methodName: 
@@ -2119,10 +2119,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: Esperar
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: Esperar
         stop:
           componentName: 
           methodName: 
@@ -2137,10 +2137,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: EsMiTurno
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: EsMiTurno
         stop:
           componentName: 
           methodName: 
@@ -2155,10 +2155,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: UsarBanyo
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: UsarBanyo
         stop:
           componentName: 
           methodName: 
@@ -2173,10 +2173,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: PedidoRecibido
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: PedidoRecibido
         stop:
           componentName: 
           methodName: 
@@ -2191,10 +2191,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: TipoPedidoLlevar
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: TipoPedidoLlevar
         stop:
           componentName: 
           methodName: 
@@ -2227,10 +2227,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: Irse
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: Irse
         stop:
           componentName: 
           methodName: 
@@ -2245,10 +2245,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: TipoPedidoTomar
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: TipoPedidoTomar
         stop:
           componentName: 
           methodName: 
@@ -2263,10 +2263,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: BuscarAsiento
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: BuscarAsiento
         stop:
           componentName: 
           methodName: 
@@ -2299,10 +2299,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: ConsumirPedido
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: ConsumirPedido
         stop:
           componentName: 
           methodName: 
@@ -2317,10 +2317,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: LiberarAsiento
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: LiberarAsiento
         stop:
           componentName: 
           methodName: 
@@ -2353,10 +2353,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: Irse
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: Irse
         stop:
           componentName: 
           methodName: 
@@ -2371,10 +2371,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: HaPedido
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: HaPedido
         stop:
           componentName: 
           methodName: 
@@ -2389,10 +2389,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: EsperarEnMostrador
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: EsperarEnMostrador
         stop:
           componentName: 
           methodName: 
@@ -2407,10 +2407,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: Paciencia0
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: Paciencia0
         stop:
           componentName: 
           methodName: 
@@ -2425,10 +2425,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: BuscarGerente
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: BuscarGerente
         stop:
           componentName: 
           methodName: 
@@ -2461,10 +2461,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: Quejarse
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: Quejarse
         stop:
           componentName: 
           methodName: 
@@ -2497,10 +2497,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: Irse
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: Irse
         stop:
           componentName: 
           methodName: 
@@ -2515,10 +2515,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: Esperar
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: Esperar
         stop:
           componentName: 
           methodName: 
@@ -2533,10 +2533,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: EstaEnCola
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: EstaEnCola
         stop:
           componentName: 
           methodName: 
@@ -2551,10 +2551,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: AvanzarAColaMostrador
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: AvanzarAColaMostrador
         stop:
           componentName: 
           methodName: 
@@ -2569,10 +2569,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: Esperar
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: Esperar
         stop:
           componentName: 
           methodName: 
@@ -2587,10 +2587,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: EsMiTurno
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: EsMiTurno
         stop:
           componentName: 
           methodName: 
@@ -2605,10 +2605,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: PedirYPagar
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: PedirYPagar
         stop:
           componentName: 
           methodName: 
@@ -2623,10 +2623,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: Paciencia0
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: Paciencia0
         stop:
           componentName: 
           methodName: 
@@ -2641,10 +2641,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: BuscarGerente
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: BuscarGerente
         stop:
           componentName: 
           methodName: 
@@ -2677,10 +2677,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: Quejarse
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: Quejarse
         stop:
           componentName: 
           methodName: 
@@ -2713,10 +2713,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: Irse
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: Irse
         stop:
           componentName: 
           methodName: 
@@ -2731,10 +2731,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: AcabaDeEntrar
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: AcabaDeEntrar
         stop:
           componentName: 
           methodName: 

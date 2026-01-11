@@ -5,23 +5,16 @@ using UnityEngine.AI;
 
 public class CleanerController : EditorBehaviourRunner
 {
-    NavMeshAgent agent;
+    public NavMeshAgent agent;
 
     public Transform aseosPos;
     public GameObject[] superficies;
     GameObject superficieSucia;
 
     public Transform[] puntosRuta;
-    int iRuta;
+    int iRuta = 0;
 
-    [System.NonSerialized] public bool aseosSucios;
-
-    private void Start()
-    {
-        agent = GetComponent<NavMeshAgent>();
-        aseosSucios = false;
-        iRuta = 0;
-    }
+    [System.NonSerialized] public bool aseosSucios = false;
 
     public Status AseosSucios()
     {
@@ -66,7 +59,7 @@ public class CleanerController : EditorBehaviourRunner
             }
         }
 
-        if (Random.Range(0, 100) < 20 && superficieSucia == null)
+        if (Random.Range(0, 100) < 10 && superficieSucia == null)
         {
             int idx = Random.Range(0, superficies.Length);
             superficies[idx].gameObject.SetActive(true);
@@ -114,7 +107,7 @@ public class CleanerController : EditorBehaviourRunner
         return Status.Success;
     }
 
-    public Status HaLLegadoAlDestino()
+    public Status HaLlegadoAlDestino()
     {
         if (Vector3.Distance(transform.position, puntosRuta[iRuta].position) < 0.5)
         {

@@ -424,10 +424,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: NotificacionAveria
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: NotificacionAveria
         stop:
           componentName: 
           methodName: 
@@ -442,10 +442,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: TecnicoDisponible
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: TecnicoDisponible
         stop:
           componentName: 
           methodName: 
@@ -460,10 +460,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: LlamarTecnico
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: LlamarTecnico
         stop:
           componentName: 
           methodName: 
@@ -478,10 +478,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: ClienteFrustrado
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: ClienteFrustrado
         stop:
           componentName: 
           methodName: 
@@ -514,10 +514,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: NingunProblema
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: NingunProblema
         stop:
           componentName: 
           methodName: 
@@ -532,10 +532,10 @@ MonoBehaviour:
       data:
         start:
           componentName: 
-          methodName: EsperarIncidencias
+          methodName: 
         update:
           componentName: 
-          methodName: 
+          methodName: EsperarIncidencias
         stop:
           componentName: 
           methodName: 
