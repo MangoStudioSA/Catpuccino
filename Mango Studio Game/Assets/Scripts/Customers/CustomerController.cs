@@ -94,7 +94,7 @@ public class CustomerController : EditorBehaviourRunner
                 coffeManager.MostrarCliente(model);
             }
         }
-        else if (other.gameObject.CompareTag("Customer"))
+        else if (other.gameObject.CompareTag("Customer") && other.gameObject.transform.position.z > transform.position.z)
         {
             atQueue = true;
         }
@@ -118,7 +118,7 @@ public class CustomerController : EditorBehaviourRunner
                 coffeManager.MostrarCliente(-1);
             }
         }
-        else if (other.gameObject.CompareTag("Customer"))
+        else if (other.gameObject.CompareTag("Customer") && other.gameObject.transform.position.z > transform.position.z)
         {
             atQueue = false;
         }
