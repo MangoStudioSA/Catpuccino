@@ -140,7 +140,7 @@ public class CustomerController : EditorBehaviourRunner
             manager = GameObject.FindWithTag("CustomerManager").GetComponent<CustomerManager>();
             manager.customers.Enqueue(this);
             queueIndex = manager.customers.Count - 1;
-            model = Random.Range(0, (int)transform.childCount);
+            model = Random.Range(0, (int)transform.childCount - 1);
 
             anim = transform.GetChild(model).GetChild(0).GetComponent<Animator>();
 
